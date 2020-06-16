@@ -16,8 +16,8 @@ A prototype user interface for the ifrc's virtual conference, designed to:
   - [Code formatting](#code-formatting)
   - [Scss usage](#scss-usage)
   - [Temporal aspects](#temporal-aspects)
-  - [Deployment](#deployment)
-  - [Customize configuration](#customize-configuration)
+- [Deployment](#deployment)
+- [Customize configuration](#customize-configuration)
 
 <!-- toc-tail -->
 
