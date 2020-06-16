@@ -1,32 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <strong>{{ appName }}</strong>
+        version {{ appVersion }}
+        | Made by
+        <a href="https://openlab.ncl.ac.uk">Openlab</a>
+      </div>
+    </footer>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  mounted() {
+    const { token } = localStorage
+    if (!token && this.$route.name !== 'Login') {
+      this.$router.replace({ name: 'Login' })
+    } else if (token) {
+      this.$store.dispatch('api/fetchData', token)
     }
+  },
+  computed: {
+    appName() {
+      return process.env.VUE_APP_NAME
+    },
+    appVersion() {
+      return process.env.VUE_APP_VERSION
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+@import '~bulma/bulma.sass';
+
+@include tablet {
+  #app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 </style>

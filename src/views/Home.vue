@@ -1,18 +1,33 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="home-page">
+    <section class="section">
+      <div class="container">
+        <h1 class="title is-1">Hello!</h1>
+
+        <h2 class="title">Conference schedule</h2>
+
+        <Schedule
+          v-if="$store.state.api.hasData"
+          :slots="$store.state.api.slots"
+          :events="$store.state.api.events"
+        />
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Schedule from '@/components/Schedule.vue'
 
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    HelloWorld
+    Schedule
   }
-};
+}
 </script>
+
+<style lang="scss" scoped>
+.home-page {
+}
+</style>

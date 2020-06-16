@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+VERSION=`cat package.json | jq -r .version`
+NAME=`cat package.json | jq -r .name`
+
+TAG=openlab/$NAME:v$VERSION
+
+docker build -t $TAG .
+
+docker push $TAG
