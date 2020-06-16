@@ -6,6 +6,7 @@ COPY ["package*.json", "/app/"]
 ENV NODE_ENV development
 RUN npm ci
 COPY [ ".", "/app/" ]
+ENV NODE_ENV production
 RUN npm run build
 
 # Swaps to nginx and copies the compiled html ready to be serverd
