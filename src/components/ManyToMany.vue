@@ -7,12 +7,14 @@
             v-if="teamsLink"
             class="button is-link is-large"
             :href="teamsLink.url"
+            target="_blank"
             >Open teams meeting →</a
           >
           <a
             v-if="zoomLink"
             class="button is-link is-large"
             :href="zoomLink.url"
+            target="_blank"
             >Open zoom meeting →</a
           >
         </div>
