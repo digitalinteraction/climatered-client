@@ -35,15 +35,15 @@ export function findSlido(links) {
   return null
 }
 
-// https://zoom.us/me/abcdef
+// https://zoom.us/my/abcdef
 export function findZoom(links) {
   for (let link of links) {
     let url = new URL(link)
 
-    if (url.hostname.endsWith('zoom.us') && url.pathname.startsWith('/me/')) {
+    if (url.hostname.endsWith('zoom.us') && url.pathname.startsWith('/my/')) {
       return {
         url: link,
-        id: url.pathname.replace('/me/')
+        id: url.pathname.replace('/my/')
       }
     }
   }
