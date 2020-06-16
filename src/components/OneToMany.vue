@@ -1,7 +1,7 @@
 <template>
   <div class="one-to-many">
     <div class="columns" v-if="youtube">
-      <div class="column is-three-fifths">
+      <div class="column is-two-thirds">
         <h2 class="title is-4">Live video</h2>
         <div class="youtube-wrapper">
           <iframe
@@ -14,7 +14,7 @@
           ></iframe>
         </div>
       </div>
-      <div class="column is-two-fifths">
+      <div class="column is-one-thirds">
         <h2 class="title is-4">Questions and Answers</h2>
         <div v-if="slido" class="slido-wrapper">
           <iframe
