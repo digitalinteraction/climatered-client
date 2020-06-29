@@ -34,6 +34,21 @@
         <h2 class="heading">About</h2>
         <div class="content" v-html="content"></div>
 
+        <div class="content">
+          <h4>Messages</h4>
+          <ul>
+            <li v-for="(msg, id) in messages" :key="id">{{ msg }}</li>
+          </ul>
+          <div class="field has-addons">
+            <div class="control">
+              <input type="text" class="input" v-model="chatMessage" />
+            </div>
+            <div class="control">
+              <button class="button" @click="chat">Send</button>
+            </div>
+          </div>
+        </div>
+
         <component
           v-if="eventComponent"
           :is="eventComponent"
@@ -63,21 +78,49 @@ const eventComponents = {
 export default {
   data() {
     return {
-      slotState: 'before'
+      slotState: 'before',
+      messages: [],
+      chatMessage: ''
     }
   },
   mounted() {
     // this.$clock.bind(this, () => {
     //   this.slotState = slotState(this.slot)
     // })
+    //
+    // if (!this.event) return this.$router.replace('/not-found')
+    //
+    // const sub = this.$socket.join(`event/${this.eventId}`)
+    // this.$socket.on('')
+
+    this.$socket.emit('join-event', { eventId: this.eventId })
+
+    this.$socket.on('user-joined', data => {
+      this.messages.push(data.name + ' joined')
+    })
+
+    this.$socket.on('user-left', data => {
+      this.messages.push(data.name + ' left')
+    })
+
+    this.$socket.on('chat', data => {
+      this.messages.push(data.name + ': ' + data.message)
+    })
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$socket.emit('leave-event', { eventId: this.eventId })
+    next()
   },
   destroyed() {
     this.$clock.unbind(this)
   },
   computed: {
     ...mapState('api', ['hasData', 'events', 'slots']),
+    eventId() {
+      return this.$route.params.event
+    },
     event() {
-      return this.events.find(e => e.id === this.$route.params.event)
+      return this.events.find(e => e.id === this.eventId)
     },
     slot() {
       return this.event && this.slots.find(s => s.id === this.event.slot)
@@ -100,6 +143,14 @@ export default {
       )
       i = (i + 1) % states.length
       this.slotState = states[i]
+    },
+    chat() {
+      if (!this.chatMessage) return
+      this.$socket.emit('chat', {
+        eventId: this.eventId,
+        message: this.chatMessage
+      })
+      this.chatMessage = ''
     }
   }
 }

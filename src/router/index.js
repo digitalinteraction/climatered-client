@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Event from '../views/Event.vue'
 import Login from '../views/Login.vue'
+import NotFound from '../views/NotFound.vue'
 import TokenCapture from '../views/TokenCapture.vue'
 
 Vue.use(VueRouter)
@@ -27,6 +28,11 @@ const routes = [
     path: '/_token',
     name: 'TokenCapture',
     component: TokenCapture
+  },
+  {
+    path: '/not-found',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 

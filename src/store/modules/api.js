@@ -6,7 +6,7 @@ const state = () => ({
   hasData: false
 })
 
-function pickApi() {
+export function pickApi() {
   return window.CONFIG?.API_URL ?? 'http://localhost:3000'
 }
 
@@ -16,9 +16,6 @@ const getters = {
 
     const { token } = localStorage
     if (localStorage.token) headers.authorization = `Bearer ${token}`
-
-    const base = pickApi()
-    console.log(base)
 
     return ky.extend({
       prefixUrl: pickApi(),
