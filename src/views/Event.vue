@@ -41,7 +41,12 @@
           </ul>
           <div class="field has-addons">
             <div class="control">
-              <input type="text" class="input" v-model="chatMessage" />
+              <input
+                type="text"
+                class="input"
+                v-model="chatMessage"
+                @keyup.enter="chat"
+              />
             </div>
             <div class="control">
               <button class="button" @click="chat">Send</button>
