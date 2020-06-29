@@ -4,12 +4,17 @@ import SocketClient from 'socket.io-client'
 
 export default class Sockets extends Vue {
   static install(Vue) {
-    const url = pickApi().replace(/^http/, 'ws')
+    const apiBase = pickApi()
 
-    let { pathname } = new URL(url)
-    if (!pathname.endsWith('/')) pathname += '/'
+    let pathname = new URL(apiBase).pathname.replace(/\/?$/, '/socket.io')
 
-    const socket = new SocketClient(url, { path: pathname + 'socket.io' })
+    const socketUrl = new URL(apiBase)
+    socketUrl.protocol = socketUrl.protocol.replace(/^http/, 'ws')
+    socketUrl.pathname = '/'
+
+    const socket = new SocketClient(socketUrl.toString(), {
+      path: pathname
+    })
 
     socket.on('connect', () => {
       if (!localStorage.token) return
