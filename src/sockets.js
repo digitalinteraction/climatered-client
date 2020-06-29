@@ -6,7 +6,9 @@ export default class Sockets extends Vue {
   static install(Vue) {
     const url = pickApi().replace(/^http/, 'ws')
 
-    const socket = new SocketClient(url)
+    const { pathname } = new URL(url)
+
+    const socket = new SocketClient(url, { path: pathname })
 
     socket.on('connect', () => {
       if (!localStorage.token) return
