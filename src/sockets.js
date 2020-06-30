@@ -2,31 +2,75 @@ import Vue from 'vue'
 import { pickApi } from './store/modules/api'
 import SocketClient from 'socket.io-client'
 
-export default class Sockets extends Vue {
+export default class ApiSocket extends Vue {
+  listeners = new Map()
+
   static install(Vue) {
     const apiBase = pickApi()
 
-    let pathname = new URL(apiBase).pathname.replace(/\/?$/, '/socket.io')
+    const pathname = new URL(apiBase).pathname.replace(/\/?$/, '/socket.io')
 
     const socketUrl = new URL(apiBase)
     socketUrl.protocol = socketUrl.protocol.replace(/^http/, 'ws')
     socketUrl.pathname = '/'
 
-    const socket = new SocketClient(socketUrl.toString(), {
-      path: pathname
-    })
+    Vue.prototype.$socket = new ApiSocket(socketUrl.toString(), pathname)
+  }
 
-    socket.on('connect', () => {
+  constructor(socketUrl, path) {
+    super()
+
+    this.socket = new SocketClient(socketUrl, { path })
+
+    this.socket.on('connect', () => {
       if (localStorage.token) {
-        authenticateSocket(socket, localStorage.token)
+        authenticateSocket(this.socket, localStorage.token)
       }
     })
 
-    socket.on('user-error', ({ message = 'Something went wrong' }) => {
+    this.socket.on('user-error', ({ message = 'Something went wrong' }) => {
       console.error('socket.io recieved an error', message)
     })
+  }
 
-    Vue.prototype.$socket = socket
+  emit(eventName, ...args) {
+    console.log('emit', eventName, ...args)
+
+    this.socket.emit(eventName, ...args)
+  }
+
+  bindEvent(owner, eventName, callback) {
+    console.log('bindEvent', eventName)
+
+    if (!this.listeners.has(eventName)) {
+      this.socket.on(eventName, data => this.handleEvent(eventName, data))
+
+      this.listeners.set(eventName, [])
+    }
+
+    this.listeners.get(eventName).push({ owner, callback })
+  }
+
+  unbindEvent(owner, eventName) {
+    console.log('unbindEvent', eventName)
+
+    const listeners = this.listeners.get(eventName)
+    if (!listeners) return
+
+    const newListeners = listeners.filter(l => l.owner !== owner)
+
+    if (newListeners.length === 0) {
+      this.socket.off(eventName)
+      this.listeners.delete(eventName)
+    } else {
+      this.listeners.set(eventName, newListeners)
+    }
+  }
+
+  handleEvent(eventName, ...args) {
+    const listeners = this.listeners.get(eventName) ?? []
+
+    for (const l of listeners) l.callback(...args)
   }
 }
 

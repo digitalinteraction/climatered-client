@@ -44,4 +44,19 @@ export default {
     justify-content: space-between;
   }
 }
+
+.embedded {
+  background-color: #fafafa;
+  border-radius: $radius;
+  overflow: hidden;
+  position: relative;
+
+  > iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
 </style>

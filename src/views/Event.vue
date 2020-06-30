@@ -129,24 +129,25 @@ export default {
 
     this.$socket.emit('join-event', { eventId: this.eventId })
 
-    this.$socket.on('user-joined', data => {
+    this.$socket.bindEvent(this, 'user-joined', data => {
       this.messages.push(data.name + ' joined')
     })
 
-    this.$socket.on('user-left', data => {
+    this.$socket.bindEvent(this, 'user-left', data => {
       this.messages.push(data.name + ' left')
     })
 
-    this.$socket.on('chat', data => {
+    this.$socket.bindEvent(this, 'chat', data => {
       this.messages.push(data.name + ': ' + data.message)
     })
   },
-  beforeRouteLeave(to, from, next) {
-    this.$socket.emit('leave-event', { eventId: this.eventId })
-    next()
-  },
   destroyed() {
+    this.$socket.emit('leave-event', { eventId: this.eventId })
     this.$clock.unbind(this)
+
+    this.$socket.unbindEvent(this, 'user-joined')
+    this.$socket.unbindEvent(this, 'user-left')
+    this.$socket.unbindEvent(this, 'chat')
   },
   computed: {
     ...mapState('api', ['hasData', 'events', 'slots']),

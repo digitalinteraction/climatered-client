@@ -1,5 +1,5 @@
 <template>
-  <div class="schedule">
+  <div class="attendee-schedule">
     <table class="table is-fullwidth">
       <thead>
         <tr>

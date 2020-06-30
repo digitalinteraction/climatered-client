@@ -13,10 +13,9 @@
           </div>
         </div>
 
-        <h2 class="title">Conference schedule</h2>
-
         <template v-if="isRole('attendee')">
-          <Schedule
+          <h2 class="title">Attendee schedule</h2>
+          <AttendeeSchedule
             v-if="$store.state.api.hasData"
             :slots="$store.state.api.slots"
             :events="$store.state.api.events"
@@ -24,7 +23,12 @@
         </template>
 
         <template v-if="isRole('translator')">
-          <p>Hey translator</p>
+          <h2 class="title">Translator schedule</h2>
+          <TranslatorSchedule
+            v-if="$store.state.api.hasData"
+            :slots="$store.state.api.slots"
+            :events="translatorEvents"
+          />
         </template>
 
         <pre>{{ authToken }}</pre>
@@ -34,17 +38,22 @@
 </template>
 
 <script>
-import Schedule from '@/components/Schedule.vue'
+import AttendeeSchedule from '@/components/AttendeeSchedule.vue'
+import TranslatorSchedule from '@/components/TranslatorSchedule.vue'
 import jwt from 'jsonwebtoken'
 
 export default {
   name: 'Home',
   components: {
-    Schedule
+    AttendeeSchedule,
+    TranslatorSchedule
   },
   computed: {
     authToken() {
       return jwt.decode(localStorage.token)
+    },
+    translatorEvents() {
+      return this.$store.state.api.events?.filter(e => e.channels)
     }
   },
   methods: {
