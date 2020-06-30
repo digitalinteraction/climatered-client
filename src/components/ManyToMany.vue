@@ -25,7 +25,7 @@
           <p>The session organiser has provided these links for this session</p>
           <ul>
             <li v-for="(link, i) in nonVideoLinks" :key="i">
-              <a :href="link" target="_blank">{{ link }}</a>
+              <a :href="link.url" target="_blank">{{ link.url }}</a>
             </li>
           </ul>
         </div>
@@ -35,23 +35,33 @@
 </template>
 
 <script>
-import { findZoom, findTeams } from '../utils'
+import {
+  findLink,
+  parseYouTubeLink,
+  parseTeamsLink,
+  parseZoomLink
+} from '../utils'
+
 export default {
   props: {
     event: { type: Object, required: true },
     eventSlot: { type: Object, required: true }
   },
   computed: {
+    videoLink() {
+      return findLink(this.event.links, 'video', this.language)
+    },
+    youtubeLink() {
+      return this.videoLink && parseYouTubeLink(this.videoLink)
+    },
     zoomLink() {
-      return findZoom(this.event.links)
+      return this.videoLink && parseZoomLink(this.videoLink)
     },
     teamsLink() {
-      return findTeams(this.event.links)
+      return this.videoLink && parseTeamsLink(this.videoLink)
     },
     nonVideoLinks() {
-      return this.event.links.filter(
-        l => l !== this.zoomLink?.url && l !== this.teamsLink?.url
-      )
+      return this.event.links.filter(l => l.type !== 'video')
     }
   }
 }

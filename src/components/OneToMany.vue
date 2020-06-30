@@ -30,19 +30,22 @@
 </template>
 
 <script>
-import { findYoutube, findSlido } from '../utils.js'
+import { findLink, parseYouTubeLink, parseSlidoLink } from '../utils.js'
 
 export default {
   props: {
     event: { type: Object, required: true },
-    eventSlot: { type: Object, required: true }
+    eventSlot: { type: Object, required: true },
+    language: { type: String, required: true }
   },
   computed: {
     youtube() {
-      return findYoutube(this.event.links)
+      const link = findLink(this.event.links, 'video', this.language)
+      return link && parseYouTubeLink(link)
     },
     slido() {
-      return findSlido(this.event.links)
+      const link = findLink(this.event.links, 'poll', this.language)
+      return link && parseSlidoLink(link)
     }
   }
 }

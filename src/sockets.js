@@ -17,11 +17,9 @@ export default class Sockets extends Vue {
     })
 
     socket.on('connect', () => {
-      if (!localStorage.token) return
-
-      socket.emit('auth', {
-        token: localStorage.token
-      })
+      if (localStorage.token) {
+        authenticateSocket(socket, localStorage.token)
+      }
     })
 
     socket.on('user-error', ({ message = 'Something went wrong' }) => {
@@ -30,4 +28,8 @@ export default class Sockets extends Vue {
 
     Vue.prototype.$socket = socket
   }
+}
+
+export function authenticateSocket(socket, token) {
+  socket.emit('auth', { token: token })
 }

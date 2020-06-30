@@ -5,6 +5,7 @@ import Event from '../views/Event.vue'
 import Login from '../views/Login.vue'
 import NotFound from '../views/NotFound.vue'
 import TokenCapture from '../views/TokenCapture.vue'
+import Translator from '../views/Translator.vue'
 
 Vue.use(VueRouter)
 
@@ -15,9 +16,10 @@ const routes = [
     component: Home
   },
   {
-    path: '/event/:event',
+    path: '/event/:eventId',
     name: 'Event',
-    component: Event
+    component: Event,
+    props: true
   },
   {
     path: '/login',
@@ -33,6 +35,12 @@ const routes = [
     path: '/not-found',
     name: 'NotFound',
     component: NotFound
+  },
+  {
+    path: '/translator/:eventId',
+    name: 'Translator',
+    component: Translator,
+    props: true
   }
 ]
 

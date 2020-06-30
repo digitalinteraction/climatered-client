@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { authenticateSocket } from '../sockets.js'
+
 export default {
   mounted() {
     const { token } = this.$route.query
@@ -13,6 +15,7 @@ export default {
       delete window.localStorage.token
     } else {
       window.localStorage.token = token
+      authenticateSocket(this.$socket, token)
     }
 
     this.$router.replace({ name: 'Home' })

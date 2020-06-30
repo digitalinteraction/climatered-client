@@ -2,14 +2,35 @@
   <div class="event-page" v-if="hasData">
     <section class="section">
       <div class="container">
-        <div class="buttons">
-          <router-link class="button is-text" :to="{ name: 'Home' }">
-            ← Back to schedule
-          </router-link>
-          <button class="button is-primary is-light" @click="changeState">
-            Stage: {{ slotState }}
-          </button>
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <router-link class="button is-text" :to="{ name: 'Home' }">
+                ← Back to schedule
+              </router-link>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <div class="control">
+                <div class="select">
+                  <select v-model="language">
+                    <option>en</option>
+                    <option>es</option>
+                    <option>fr</option>
+                    <option>ar</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="level-item">
+              <button class="button" @click="changeState">
+                Stage: {{ slotState }}
+              </button>
+            </div>
+          </div>
         </div>
+        <div class="buttons"></div>
         <h1 class="title">{{ event.name }}</h1>
 
         <table class="table">
@@ -59,6 +80,7 @@
           :is="eventComponent"
           :event="event"
           :event-slot="slot"
+          :language="language"
         />
       </div>
     </section>
@@ -67,6 +89,7 @@
 
 <script>
 import marked from 'marked'
+import jwt from 'jsonwebtoken'
 import { mapState } from 'vuex'
 
 // import { slotState } from '../utils.js'
@@ -81,11 +104,15 @@ const eventComponents = {
 }
 
 export default {
+  props: {
+    eventId: { type: String, required: true }
+  },
   data() {
     return {
       slotState: 'before',
       messages: [],
-      chatMessage: ''
+      chatMessage: '',
+      language: 'en'
     }
   },
   mounted() {
@@ -97,6 +124,8 @@ export default {
     //
     // const sub = this.$socket.join(`event/${this.eventId}`)
     // this.$socket.on('')
+
+    this.language = this.authToken?.user_lang ?? this.language
 
     this.$socket.emit('join-event', { eventId: this.eventId })
 
@@ -121,9 +150,6 @@ export default {
   },
   computed: {
     ...mapState('api', ['hasData', 'events', 'slots']),
-    eventId() {
-      return this.$route.params.event
-    },
     event() {
       return this.events.find(e => e.id === this.eventId)
     },
@@ -137,6 +163,9 @@ export default {
       if (!this.event || !this.slotState) return null
       if (this.slotState === 'before') return Countdown
       return eventComponents[this.event.type] ?? null
+    },
+    authToken() {
+      return jwt.decode(localStorage.token)
     }
   },
   methods: {
@@ -161,8 +190,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.buttons {
-  justify-content: space-between;
-}
-</style>
+<style lang="scss" scoped></style>

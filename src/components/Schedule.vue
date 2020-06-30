@@ -48,7 +48,7 @@ export default {
     events: { type: Array, required: true }
   },
   filters: {
-    eventRoute: e => ({ name: 'Event', params: { event: e.id } })
+    eventRoute: e => ({ name: 'Event', params: { eventId: e.id } })
   },
   computed: {
     slottedEvents() {
