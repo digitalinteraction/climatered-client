@@ -39,6 +39,12 @@ export default class ApiSocket extends Vue {
     this.socket.emit(eventName, ...args)
   }
 
+  emitBinary(eventName, ...args) {
+    console.log('emitBinary', eventName, ...args)
+
+    this.socket.binary(true).emit(eventName, ...args)
+  }
+
   bindEvent(owner, eventName, callback) {
     console.log('bindEvent', eventName)
 

@@ -18,6 +18,7 @@
             </div>
             <div class="column">
               <label class="label">Info</label>
+              <audio ref="audio" type="audio/webm" controls />
             </div>
           </div>
         </div>
@@ -25,7 +26,13 @@
       <div class="column is-one-thirds">
         <h2 class="title is-4">Questions and Answers</h2>
         <div v-if="slido" class="slido-wrapper embedded">
+          <div class="enable-poll" v-if="!showPoll">
+            <button class="button is-primary" @click="showPoll = true">
+              Enable poll
+            </button>
+          </div>
           <iframe
+            v-else
             :src="'https://app.sli.do/event/' + slido.id"
             height="100%"
             width="100%"
@@ -49,6 +56,12 @@ export default {
     eventSlot: { type: Object, required: true },
     language: { type: String, required: true }
   },
+  data() {
+    return {
+      chosenChannel: 'source',
+      showPoll: false
+    }
+  },
   computed: {
     videoLink() {
       return findLink(this.event.links, 'video', this.language)
@@ -58,19 +71,54 @@ export default {
       return link && parseSlidoLink(link)
     },
     channels() {
-      return [this.videoLink?.language].concat(this.event.channels)
-    }
-  },
-  data() {
-    return {
-      chosenChannel: this.language
+      return ['source'].concat(this.event.channels)
+    },
+    isSourceAudio() {
+      return this.language === 'source'
     }
   },
   mounted() {
     this.joinChannel(this.chosenChannel)
 
-    this.$socket.bindEvent(this, 'channel-data', blob => {
-      console.log('channel-data', blob)
+    const audioCtx = new AudioContext()
+
+    const track = audioCtx.createMediaElementSource(this.$refs.audio)
+    track.connect(audioCtx.destination)
+
+    // const numSeconds = 20
+    // const sampleRate = audioCtx.sampleRate
+    // const numChannels = 1
+    // const length = numSeconds * sampleRate * numChannels
+
+    // const buffer = audioCtx.createBuffer(numChannels, length, sampleRate)
+    // buffer.loop = false
+
+    // const source = audioCtx.createBufferSource()
+    // source.buffer = buffer
+    // source.connect(audioCtx.destination)
+    // source.start()
+
+    this.bufferStack = []
+    this.audioCtx = audioCtx
+    // let t = 0
+
+    this.$socket.bindEvent(this, 'channel-data', async data => {
+      console.log('channel-data')
+
+      this.bufferStack.push(data)
+
+      const blob = new Blob(this.bufferStack, { type: 'audio/webm' })
+      const previousTime = this.$refs.audio.currentTime
+      // t += this.$refs.audio.currentTime
+      // console.log(t)
+
+      this.$refs.audio.src = URL.createObjectURL(blob)
+      this.$refs.audio.currentTime = previousTime
+
+      if (this.bufferStack.length > 2 && this.$refs.audio.paused) {
+        // start playing?
+        this.$refs.audio.play()
+      }
     })
   },
   destroyed() {
@@ -79,23 +127,30 @@ export default {
   },
   methods: {
     joinChannel(channel) {
-      if (channel === this.videoLink?.language) {
+      if (channel === 'source') {
+        //
         // Unmute the iframe
+        //
       } else {
         this.$socket.emit('join-channel', {
           eventId: this.event.id,
           channel: channel
         })
+        // this.audioCtx.resume()
+        // this.$refs.audio.play()
       }
     },
     leaveChannel(channel) {
-      if (channel === this.videoLink?.language) {
+      if (channel === 'source') {
+        //
         // Mute the iframe
+        //
       } else {
         this.$socket.emit('leave-channel', {
           eventId: this.event.id,
           channel: channel
         })
+        // this.enqueueAudio()
       }
     },
     onChannel(newChannel) {
@@ -107,22 +162,58 @@ export default {
 
       // Join the new channel
       this.joinChannel(newChannel)
+    },
+    // setState(newState) {
+    //   if (newState === 'playing') {
+    //     this.$refs.audio.play()
+    //   }
+    //   if (newState === 'stopped') {
+    //     this.$refs.audio.stop()
+    //   }
+    // },
+    enqueueAudio() {
+      // if (this.state !== 'playing') return
+      // debugger
+      console.log('enqueueAudio')
+
+      if (this.bufferStack.length === 0) {
+        // this.setState('stopped')
+        console.log('no data')
+
+        return
+      }
+
+      const [first, ...rest] = this.bufferStack
+      this.bufferStack = rest
+
+      console.log(first, rest.length)
+
+      var audioURL = URL.createObjectURL(first)
+      console.log({ audioURL })
+
+      // const source = this.audioCtx.createBufferSource()
+      // source.buffer = first
+      // source.connect(this.audioCtx.destination)
+
+      this.$refs.audio.src = audioURL
+      // source.onended = () => this.enqueueAudio()
+      // source.play()
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.one-to-many {
-}
+// .one-to-many {
+// }
 
-.video-embed,
-.slido-wrapper {
-  // background-color: #fafafa;
-  // border-radius: $radius;
-  // overflow: hidden;
-  // position: relative;
-}
+// .video-embed,
+// .slido-wrapper {
+//   background-color: #fafafa;
+//   border-radius: $radius;
+//   overflow: hidden;
+//   position: relative;
+// }
 
 .slido-wrapper {
   height: 0;
@@ -138,5 +229,17 @@ export default {
 }
 
 .audio-channel {
+  audio {
+    width: 100%;
+  }
+}
+
+.enable-poll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 </style>

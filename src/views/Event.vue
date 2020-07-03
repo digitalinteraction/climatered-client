@@ -109,7 +109,7 @@ export default {
   },
   data() {
     return {
-      slotState: 'before',
+      slotState: 'active',
       messages: [],
       chatMessage: '',
       language: 'en'

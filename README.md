@@ -99,6 +99,19 @@ Make sure to always unbind to reset the time when the component is removed
 
 > WIP
 
+## Notes
+
+- Google's WebRTC examples
+  https://webrtc.github.io/samples/
+- Getting audio data from getUserMedia without braodcastin it
+  https://stackoverflow.com/questions/24874568
+- Queuing up AudioStream objects idea
+  https://stackoverflow.com/questions/28440262
+- MDN boombox introduction
+  https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API
+
+Maybe try https://webaudio.github.io/web-audio-api/#audioworklet
+
 ## Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
