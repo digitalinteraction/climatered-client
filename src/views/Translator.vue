@@ -51,6 +51,7 @@ import { mapState } from 'vuex'
 import ToggleSet from '@/components/ToggleSet.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
 import { findLink } from '../utils.js'
+import { AudioBroadcaster, BroadcastState } from '../audio.js'
 
 // var types = [
 //   'video/webm',
@@ -76,7 +77,7 @@ export default {
   data() {
     return {
       chosenChannel: '',
-      isBroadcasting: false,
+      broadcastState: null,
       timerId: null
     }
   },
@@ -90,11 +91,20 @@ export default {
     },
     channels() {
       return this.event.channels
+    },
+    isBroadcasting() {
+      return this.broadcastState === BroadcastState.active
     }
   },
   created() {
-    this.stream = null
-    this.mediaRecorder = null
+    this.broadcaster = new AudioBroadcaster(
+      newState => {
+        this.broadcastState = newState
+      },
+      arrayBuffer => {
+        this.$socket.emitBinary('channel-data', arrayBuffer)
+      }
+    )
   },
   mounted() {
     this.$socket.bindEvent(this, 'stop-channel-data', () => {
@@ -108,56 +118,27 @@ export default {
   methods: {
     async start() {
       try {
-        this.isBroadcasting = true
-
-        const stream = await navigator.mediaDevices.getUserMedia({
-          audio: true
-        })
-
-        const mediaRecorder = new MediaRecorder(stream, {
-          mimeType: 'audio/webm',
-          audioBitsPerSecond: 128000 // 128 Kbit/sec
-        })
-
-        mediaRecorder.ondataavailable = async event => {
-          const arrayBuffer = await event.data.arrayBuffer()
-          this.$socket.emitBinary('channel-data', arrayBuffer)
-        }
-
-        mediaRecorder.start(1000)
-
-        // **Not** stored in data to avoid reactivity
-        this.stream = stream
-        this.mediaRecorder = mediaRecorder
-
         // Register as the broadcaster
         this.$socket.emit('start-channel', {
           eventId: this.eventId,
           channel: this.chosenChannel
         })
-      } catch (error) {
-        switch (error.name) {
-          case 'NotFoundError':
-            alert('Unable to open your call because no microphone were found.')
-            break
-          case 'SecurityError':
-          case 'PermissionDeniedError':
-            // Do nothing; this is the same as the user canceling the call.
-            break
-          default:
-            alert('Error opening your or microphone: ' + error.message)
-            break
-        }
 
-        this.isBroadcasting = false
+        // Start broadcasting
+        await this.broadcaster.start()
+
+        // Let the ui know
+        // this.isBroadcasting = true
+      } catch (error) {
+        this.broadcaster.handleStreamError(error)
       }
     },
     async stop() {
-      this.isBroadcasting = false
+      if (this.isBroadcasting) {
+        await this.broadcaster.stop()
+      }
 
-      this.mediaRecorder?.stop()
-
-      this.stream?.getTracks().forEach(t => t.stop())
+      // this.isBroadcasting = false
     }
   }
 }

@@ -18,7 +18,8 @@
             </div>
             <div class="column">
               <label class="label">Info</label>
-              <audio ref="audio" type="audio/webm" controls />
+              <p>Reciever: {{ recieverState }}</p>
+              <canvas width="400" height="100" ref="canvas"></canvas>
             </div>
           </div>
         </div>
@@ -48,6 +49,7 @@
 import ToggleSet from '@/components/ToggleSet.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
 import { findLink, parseSlidoLink } from '../utils.js'
+import { AudioReciever } from '../audio.js'
 
 export default {
   components: { ToggleSet, VideoEmbed },
@@ -59,7 +61,8 @@ export default {
   data() {
     return {
       chosenChannel: 'source',
-      showPoll: false
+      showPoll: false,
+      recieverState: null
     }
   },
   computed: {
@@ -80,50 +83,25 @@ export default {
   mounted() {
     this.joinChannel(this.chosenChannel)
 
-    const audioCtx = new AudioContext()
-
-    const track = audioCtx.createMediaElementSource(this.$refs.audio)
-    track.connect(audioCtx.destination)
-
-    // const numSeconds = 20
-    // const sampleRate = audioCtx.sampleRate
-    // const numChannels = 1
-    // const length = numSeconds * sampleRate * numChannels
-
-    // const buffer = audioCtx.createBuffer(numChannels, length, sampleRate)
-    // buffer.loop = false
-
-    // const source = audioCtx.createBufferSource()
-    // source.buffer = buffer
-    // source.connect(audioCtx.destination)
-    // source.start()
-
-    this.bufferStack = []
-    this.audioCtx = audioCtx
-    // let t = 0
+    this.reciever = new AudioReciever(state => {
+      console.log('onState', state)
+      this.recieverState = state
+    })
 
     this.$socket.bindEvent(this, 'channel-data', async data => {
-      console.log('channel-data')
+      console.log('channel-data', data)
+      // debugger
+      // const buffer = await data.arrayBuffer()
+      this.reciever.push(data)
 
-      this.bufferStack.push(data)
-
-      const blob = new Blob(this.bufferStack, { type: 'audio/webm' })
-      const previousTime = this.$refs.audio.currentTime
-      // t += this.$refs.audio.currentTime
-      // console.log(t)
-
-      this.$refs.audio.src = URL.createObjectURL(blob)
-      this.$refs.audio.currentTime = previousTime
-
-      if (this.bufferStack.length > 2 && this.$refs.audio.paused) {
-        // start playing?
-        this.$refs.audio.play()
-      }
+      this.reciever.doodle(this.$refs.canvas)
     })
   },
   destroyed() {
     this.leaveChannel(this.chosenChannel)
     this.$socket.unbindEvent(this, 'channel-data')
+    this.reciever.stop()
+    this.reciever = null
   },
   methods: {
     joinChannel(channel) {
@@ -136,8 +114,9 @@ export default {
           eventId: this.event.id,
           channel: channel
         })
-        // this.audioCtx.resume()
-        // this.$refs.audio.play()
+
+        // Start the reciever
+        this.reciever.play()
       }
     },
     leaveChannel(channel) {
@@ -150,10 +129,14 @@ export default {
           eventId: this.event.id,
           channel: channel
         })
-        // this.enqueueAudio()
+
+        // Stop and reset the reciever
+        this.reciever.stop()
       }
     },
     onChannel(newChannel) {
+      if (this.chosenChannel === newChannel) return
+
       // unsub from the current channel
       this.leaveChannel(this.chosenChannel)
 
@@ -162,42 +145,6 @@ export default {
 
       // Join the new channel
       this.joinChannel(newChannel)
-    },
-    // setState(newState) {
-    //   if (newState === 'playing') {
-    //     this.$refs.audio.play()
-    //   }
-    //   if (newState === 'stopped') {
-    //     this.$refs.audio.stop()
-    //   }
-    // },
-    enqueueAudio() {
-      // if (this.state !== 'playing') return
-      // debugger
-      console.log('enqueueAudio')
-
-      if (this.bufferStack.length === 0) {
-        // this.setState('stopped')
-        console.log('no data')
-
-        return
-      }
-
-      const [first, ...rest] = this.bufferStack
-      this.bufferStack = rest
-
-      console.log(first, rest.length)
-
-      var audioURL = URL.createObjectURL(first)
-      console.log({ audioURL })
-
-      // const source = this.audioCtx.createBufferSource()
-      // source.buffer = first
-      // source.connect(this.audioCtx.destination)
-
-      this.$refs.audio.src = audioURL
-      // source.onended = () => this.enqueueAudio()
-      // source.play()
     }
   }
 }
