@@ -7,6 +7,9 @@ export const AUDIO_SAMPLE_RATE = 44100
 export const AUDIO_LOW_LEVEL = 3
 export const AUDIO_HIGH_LEVEL = 32
 
+//
+// A class for listening to the microphone and sending data to a callback
+//
 export class AudioBroadcaster {
   _state = BroadcastState.inactive
   stream = null
@@ -119,6 +122,9 @@ export class AudioBroadcaster {
   }
 }
 
+//
+// A class for receiving chunks of audio and queing them up for playback
+//
 export const RecieverState = {
   inactive: 'inactive',
   buffering: 'buffering',

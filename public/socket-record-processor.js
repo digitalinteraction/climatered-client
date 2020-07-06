@@ -13,6 +13,10 @@
 
 const LIMIT = 256
 
+// Recieves 128 samples directly from the input source (the mic)
+// I'm trying to chunk them to reduce small message passing and socket payloads
+// I don't think the copy of the arrays works
+
 class SocketRecordProcessor extends AudioWorkletProcessor {
   constructor() {
     super()
