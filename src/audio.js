@@ -285,12 +285,13 @@ export class AudioReciever {
 
     const lineWidth = 4
     const lineGap = 2
+    const lineInterval = lineWidth + lineGap
     const amplify = 2
 
     // Loop across each pixel of the canvas
-    for (let x = 0; x < canvasWidth - 1; x += lineWidth + lineGap) {
+    for (let x = 0; x < canvasWidth - 1; x += lineInterval) {
       const min = x * samplesPerPixel
-      const max = (x + 1) * samplesPerPixel - 1
+      const max = (x + lineInterval) * samplesPerPixel - 1
 
       let largest = -1
       let smallest = 1
