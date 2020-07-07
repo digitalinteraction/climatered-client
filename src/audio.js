@@ -4,8 +4,8 @@ export const BroadcastState = {
 }
 
 export const AUDIO_SAMPLE_RATE = 44100
-export const AUDIO_LOW_LEVEL = 3
-export const AUDIO_HIGH_LEVEL = 32
+export const AUDIO_LOW_LEVEL = 16
+export const AUDIO_HIGH_LEVEL = 64
 export const AUDIO_CHUNK_SIZE = 16 * 1024
 
 //
@@ -253,11 +253,12 @@ export class AudioReciever {
    */
   doodle(canvas) {
     const ctx = canvas.getContext('2d')
+    ctx.imageSmoothingEnabled = false
 
     const canvasWidth = 400
     const canvasHeight = 100
 
-    ctx.fillStyle = '#1e2428'
+    ctx.fillStyle = '#fafafa'
     ctx.fillRect(0, 0, canvasWidth, canvasHeight)
 
     const rawBuffers = this.buffers.map(b => b.getChannelData(0))
@@ -278,37 +279,32 @@ export class AudioReciever {
       throw new Error('Sample out of index')
     }
 
+    function sampleToCanvas(y) {
+      return ((y * amplify + 1) / 2) * canvasHeight
+    }
+
+    const lineWidth = 4
+    const lineGap = 2
     const amplify = 2
-    ctx.lineWidth = 2
-    ctx.strokeStyle = '#00c073'
-    ctx.moveTo(0, canvasHeight / 2)
-    ctx.beginPath()
 
     // Loop across each pixel of the canvas
-    for (let x = 0; x < canvasWidth - 1; x++) {
+    for (let x = 0; x < canvasWidth - 1; x += lineWidth + lineGap) {
       const min = x * samplesPerPixel
       const max = (x + 1) * samplesPerPixel - 1
 
-      // let sum = 0
       let largest = -1
       let smallest = 1
       for (let j = min; j < max; j++) {
         let sample = getSample(j)
         if (sample > largest) largest = sample
         if (sample < smallest) smallest = sample
-        // sum += getSample(j)
       }
 
-      // let avg = sum / (max - min)
-      let avg = -smallest > largest ? smallest : largest
+      let top = sampleToCanvas(largest)
+      let bottom = sampleToCanvas(smallest)
 
-      // const y = avg * (canvasHeight / 2) + canvasHeight / 2
-      const y = ((avg * amplify + 1) / 2) * canvasHeight
-
-      // ctx.fillStyle = '#00c073'
-      // ctx.fillRect(x - 1, y - 1, 3, 3)
-      ctx.lineTo(x, y)
+      ctx.fillStyle = '#e63946'
+      ctx.fillRect(x - lineWidth / 2, top, lineWidth, bottom - top)
     }
-    ctx.stroke()
   }
 }

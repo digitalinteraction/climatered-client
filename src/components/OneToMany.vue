@@ -19,7 +19,12 @@
             <div class="column">
               <label class="label">Info</label>
               <p>Reciever: {{ recieverState }}</p>
-              <canvas width="400" height="100" ref="canvas"></canvas>
+              <canvas
+                class="audio-vis"
+                width="400"
+                height="100"
+                ref="canvas"
+              ></canvas>
             </div>
           </div>
         </div>
@@ -184,5 +189,10 @@ export default {
   width: 100%;
   height: 100%;
   position: absolute;
+}
+
+.audio-vis {
+  border-radius: 4px;
+  overflow: hidden;
 }
 </style>
