@@ -1,14 +1,14 @@
 <template>
   <div class="video-embed">
     <div class="youtube-wrapper embedded" v-if="youtube">
-      <!-- <iframe
+      <iframe
         width="100%"
         height="100%"
         :src="'https://www.youtube-nocookie.com/embed/' + youtube.id"
         frameborder="0"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen
-      ></iframe> -->
+      ></iframe>
     </div>
   </div>
 </template>

@@ -84,14 +84,10 @@ export default {
     this.joinChannel(this.chosenChannel)
 
     this.reciever = new AudioReciever(state => {
-      console.log('onState', state)
       this.recieverState = state
     })
 
     this.$socket.bindEvent(this, 'channel-data', async data => {
-      console.log('channel-data', data)
-      // debugger
-      // const buffer = await data.arrayBuffer()
       this.reciever.push(data)
 
       this.reciever.doodle(this.$refs.canvas)
