@@ -97,7 +97,20 @@ Make sure to always unbind to reset the time when the component is removed
 
 ## Deployment
 
-> WIP
+To deploy a new version, use the [npm version](https://docs.npmjs.com/cli/version) command.
+
+```bash
+npm version # minor | major | patch | --help
+git push --follow-tags
+```
+
+This command will bump the version in the package.json, commit that change
+and tag that commit with the new version.
+When that tag is pushed to git, a GitHub action will automatically
+build a docker image at that point in the git history.
+
+This means that we have semantic versions for every change
+and they can easily be deployed.
 
 ## Notes
 
