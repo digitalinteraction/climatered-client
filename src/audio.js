@@ -49,8 +49,8 @@ export class AudioBroadcaster {
     this.stream = stream
 
     // await this.startUsingRecorder()
-    // await this.startUsingAudioWorklet()
-    await this.startUsingScriptProcessor()
+    await this.startUsingAudioWorklet()
+    // await this.startUsingScriptProcessor()
 
     this.state = BroadcastState.active
   }
@@ -118,8 +118,8 @@ export class AudioBroadcaster {
     this.stream?.getTracks().forEach(t => t.stop())
 
     // await this.stopUsingWebRecorder()
-    // await this.stopUsingAudioWorklet()
-    await this.stopUsingScriptProcessor()
+    await this.stopUsingAudioWorklet()
+    // await this.stopUsingScriptProcessor()
 
     await this.ctx.close()
   }

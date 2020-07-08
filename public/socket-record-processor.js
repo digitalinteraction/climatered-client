@@ -26,7 +26,7 @@ class SocketRecordProcessor extends AudioWorkletProcessor {
   process(inputs /* outputs, parameters */) {
     if (this.bucket.length < LIMIT) {
       if (inputs[0][0]) {
-        this.bucket.push(inputs[0][0])
+        this.bucket.push(new Float32Array(inputs[0][0]))
       }
     } else {
       // console.log(inputs, outputs)
