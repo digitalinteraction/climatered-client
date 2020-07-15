@@ -13,13 +13,19 @@
 </template>
 
 <script>
+import jwt from 'jsonwebtoken'
+
 export default {
   mounted() {
     const { token } = localStorage
     if (!token && this.$route.name !== 'Login') {
       this.$router.replace({ name: 'Login' })
     } else if (token) {
-      this.$store.dispatch('api/fetchData', token)
+      this.$store.dispatch('api/fetchData')
+
+      const userLang = jwt.decode(token).user_lang
+      if (!userLang) console.error('jwt has no user_lang', jwt)
+      this.$i18n.locale = userLang
     }
   },
   computed: {

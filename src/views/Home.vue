@@ -4,7 +4,7 @@
       <div class="container">
         <div class="columns">
           <div class="column">
-            <h1 class="title is-1">Hello!</h1>
+            <h1 class="title is-1">{{ $t('general.message') }}</h1>
           </div>
           <div class="column is-narrow">
             <button class="button is-danger is-light" @click="logout">
