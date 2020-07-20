@@ -1,2 +1,24 @@
-$primary: #e63946;
+$red: #ef3340;
+
+$primary: #ff6f61;
+// $link: $blue;
+// $info: $cyan;
+// $success: $green;
+// $warning: $yellow;
+// $danger: $red;
+// $dark: $grey-darker;
+// $text: $grey-dark;
+
+$track-act: #6c63ff;
+$track-empower: #f4313f;
+$track-influence: #a8003d;
+$track-transform: #4c0047;
+
+$greyish: #757a8a;
+
+$family-sans-serif: Avenir, Helvetica, Arial, sans-serif;
+$family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+
+$navbar-height: 3.75rem;
+
 @import '~bulma/sass/utilities/_all.sass';

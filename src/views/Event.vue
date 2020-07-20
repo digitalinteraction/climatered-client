@@ -127,27 +127,27 @@ export default {
 
     this.language = this.authToken?.user_lang ?? this.language
 
-    this.$socket.emit('join-event', { eventId: this.eventId })
+    // this.$socket.emit('join-event', { eventId: this.eventId })
 
-    this.$socket.bindEvent(this, 'user-joined', data => {
-      this.messages.push(data.name + ' joined')
-    })
+    // this.$socket.bindEvent(this, 'user-joined', data => {
+    //   this.messages.push(data.name + ' joined')
+    // })
 
-    this.$socket.bindEvent(this, 'user-left', data => {
-      this.messages.push(data.name + ' left')
-    })
+    // this.$socket.bindEvent(this, 'user-left', data => {
+    //   this.messages.push(data.name + ' left')
+    // })
 
-    this.$socket.bindEvent(this, 'chat', data => {
-      this.messages.push(data.name + ': ' + data.message)
-    })
+    // this.$socket.bindEvent(this, 'chat', data => {
+    //   this.messages.push(data.name + ': ' + data.message)
+    // })
   },
   destroyed() {
-    this.$socket.emit('leave-event', { eventId: this.eventId })
+    // this.$socket.emit('leave-event', { eventId: this.eventId })
     this.$clock.unbind(this)
 
-    this.$socket.unbindEvent(this, 'user-joined')
-    this.$socket.unbindEvent(this, 'user-left')
-    this.$socket.unbindEvent(this, 'chat')
+    // this.$socket.unbindEvent(this, 'user-joined')
+    // this.$socket.unbindEvent(this, 'user-left')
+    // this.$socket.unbindEvent(this, 'chat')
   },
   computed: {
     ...mapState('api', ['hasData', 'events', 'slots']),
@@ -181,10 +181,10 @@ export default {
     },
     chat() {
       if (!this.chatMessage) return
-      this.$socket.emit('chat', {
-        eventId: this.eventId,
-        message: this.chatMessage
-      })
+      // this.$socket.emit('chat', {
+      //   eventId: this.eventId,
+      //   message: this.chatMessage
+      // })
       this.chatMessage = ''
     }
   }

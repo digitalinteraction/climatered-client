@@ -111,10 +111,7 @@ export default {
         // Unmute the iframe
         //
       } else {
-        this.$socket.emit('join-channel', {
-          eventId: this.event.id,
-          channel: channel
-        })
+        this.$socket.emit('join-channel', this.event.id, channel)
 
         // Start the reciever
         this.reciever.play()
@@ -126,10 +123,7 @@ export default {
         // Mute the iframe
         //
       } else {
-        this.$socket.emit('leave-channel', {
-          eventId: this.event.id,
-          channel: channel
-        })
+        this.$socket.emit('leave-channel', this.event.id, channel)
 
         // Stop and reset the reciever
         this.reciever.stop()

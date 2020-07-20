@@ -1,2 +1,9 @@
 general:
   message: 'Hello, world'
+
+api:
+  auth:
+    general: 'Bad auth'
+    jwtExpired: 'JWT expired'
+  another:
+    thing: 'something'

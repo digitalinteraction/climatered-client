@@ -107,22 +107,19 @@ export default {
     )
   },
   mounted() {
-    this.$socket.bindEvent(this, 'stop-channel-data', () => {
+    this.$socket.bindEvent(this, 'channel-takeover', () => {
       this.stop()
     })
   },
   destroyed() {
-    this.$socket.unbindEvent(this, 'stop-channel-data')
+    this.$socket.unbindEvent(this, 'channel-takeover')
     this.stop()
   },
   methods: {
     async start() {
       try {
         // Register as the broadcaster
-        this.$socket.emit('start-channel', {
-          eventId: this.eventId,
-          channel: this.chosenChannel
-        })
+        this.$socket.emit('start-channel', this.eventId, this.chosenChannel)
 
         // Start broadcasting
         await this.broadcaster.start()

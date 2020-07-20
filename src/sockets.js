@@ -81,5 +81,5 @@ export default class ApiSocket extends Vue {
 }
 
 export function authenticateSocket(socket, token) {
-  socket.emit('auth', { token: token })
+  socket.emit('auth', token)
 }

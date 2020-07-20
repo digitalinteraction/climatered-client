@@ -1,21 +1,17 @@
 <template>
   <div id="app">
-    <router-view />
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <strong>{{ appName }}</strong>
-        version {{ appVersion }}
-        | Made by
-        <a href="https://openlab.ncl.ac.uk">Openlab</a>
-      </div>
-    </footer>
+    <AppWrapper>
+      <router-view />
+    </AppWrapper>
   </div>
 </template>
 
 <script>
+import AppWrapper from '@/components/AppWrapper.vue'
 import jwt from 'jsonwebtoken'
 
 export default {
+  components: { AppWrapper },
   mounted() {
     const { token } = localStorage
     if (!token && this.$route.name !== 'Login') {
@@ -26,14 +22,6 @@ export default {
       const userLang = jwt.decode(token).user_lang
       if (!userLang) console.error('jwt has no user_lang', jwt)
       this.$i18n.locale = userLang
-    }
-  },
-  computed: {
-    appName() {
-      return process.env.VUE_APP_NAME
-    },
-    appVersion() {
-      return process.env.VUE_APP_VERSION
     }
   }
 }
