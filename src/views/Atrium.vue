@@ -4,7 +4,7 @@
     <div class="atrium-info">
       <section class="section">
         <div class="columns">
-          <div class="column is-three-fifths">
+          <div class="column is-two-thirds">
             <div class="container">
               <div
                 v-if="currentContent"
@@ -12,6 +12,15 @@
                 v-html="currentContent"
               />
             </div>
+          </div>
+          <div class="column">
+            <a
+              class="twitter-timeline"
+              href="https://twitter.com/dog_rates?ref_src=twsrc%5Etfw"
+              data-height="600"
+              data-dnt="true"
+              >{{ $t('atrium.tweetTitle') }}</a
+            >
           </div>
         </div>
       </section>
@@ -29,7 +38,8 @@ const content = {
   en: contentEN,
   fr: contentFR,
   es: contentES,
-  ar: contentAR
+  ar: contentAR,
+  dev: 'atrium.content'
 }
 
 export default {
@@ -37,6 +47,11 @@ export default {
     currentContent() {
       return content[this.$i18n.locale]
     }
+  },
+  async mounted() {
+    await import(
+      /* webpackIgnore: true */ 'https://platform.twitter.com/widgets.js'
+    )
   }
 }
 </script>

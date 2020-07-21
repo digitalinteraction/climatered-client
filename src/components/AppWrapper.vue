@@ -32,7 +32,9 @@
                 active-class="is-active"
               >
                 <img class="navbar-item-icon" src="/img/icons/atrium.svg" />
-                <span class="navbar-item-text">Atrium</span>
+                <span class="navbar-item-text">
+                  {{ $t('atrium.navTitle') }}
+                </span>
               </router-link>
               <router-link
                 class="navbar-item"
@@ -44,7 +46,9 @@
                   class="navbar-item-icon"
                   src="/img/icons/schedule-alt-2.svg"
                 />
-                <span class="navbar-item-text">Schedule</span>
+                <span class="navbar-item-text">
+                  {{ $t('schedule.navTitle') }}
+                </span>
               </router-link>
               <router-link
                 class="navbar-item"
@@ -56,7 +60,9 @@
                   class="navbar-item-icon"
                   src="/img/icons/coffee-chat.svg"
                 />
-                <span class="navbar-item-text">Coffee chat</span>
+                <span class="navbar-item-text">
+                  {{ $t('coffeechat.navTitle') }}
+                </span>
               </router-link>
               <router-link
                 class="navbar-item"
@@ -65,7 +71,9 @@
                 active-class="is-active"
               >
                 <img class="navbar-item-icon" src="/img/icons/helpdesk.svg" />
-                <span class="navbar-item-text">Help</span>
+                <span class="navbar-item-text">
+                  {{ $t('help.navTitle') }}
+                </span>
               </router-link>
             </div>
             <div class="navbar-end">
@@ -76,6 +84,7 @@
                     <option value="fr">FR</option>
                     <option value="es">ES</option>
                     <option value="ar">AR</option>
+                    <option v-if="isDev" value="dev">_DEV</option>
                   </select>
                 </div>
               </div>
@@ -90,19 +99,27 @@
     <div class="app-tabbar">
       <router-link class="tabbar-item" :to="atriumRoute">
         <img class="tabbar-item-icon" src="/img/icons/atrium.svg" />
-        <span class="tabbar-item-text">Atrium</span>
+        <span class="tabbar-item-text">
+          {{ $t('atrium.navTitle') }}
+        </span>
       </router-link>
       <router-link class="tabbar-item" :to="scheduleRoute" :disabled="!user">
         <img class="tabbar-item-icon" src="/img/icons/schedule-alt-2.svg" />
-        <span class="tabbar-item-text">Schedule</span>
+        <span class="tabbar-item-text">
+          {{ $t('schedule.navTitle') }}
+        </span>
       </router-link>
       <router-link class="tabbar-item" :to="coffeeRoute" :disabled="!user">
         <img class="tabbar-item-icon" src="/img/icons/coffee-chat.svg" />
-        <span class="tabbar-item-text">Coffee chat</span>
+        <span class="tabbar-item-text">
+          {{ $t('coffeechat.navTitle') }}
+        </span>
       </router-link>
       <router-link class="tabbar-item" :to="helpRoute" :disabled="!user">
         <img class="tabbar-item-icon" src="/img/icons/helpdesk.svg" />
-        <span class="tabbar-item-text">Help!</span>
+        <span class="tabbar-item-text">
+          {{ $t('help.navTitle') }}
+        </span>
       </router-link>
     </div>
     <div class="app-page">
@@ -130,6 +147,11 @@ export default {
       scheduleRoute: { name: ROUTE_SCHEDULE },
       coffeeRoute: { name: ROUTE_COFFEE_CHAT },
       helpRoute: { name: ROUTE_HELP }
+    }
+  },
+  computed: {
+    isDev() {
+      return process.env.NODE_ENV === 'development'
     }
   },
   methods: {

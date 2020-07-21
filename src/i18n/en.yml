@@ -7,3 +7,20 @@ api:
     jwtExpired: 'JWT expired'
   another:
     thing: 'something'
+
+atrium:
+  displayTitle: Atrium
+  navTitle: Atrium
+  tweetTitle: Live tweets
+
+schedule:
+  displayTitle: Schedule
+  navTitle: Schedule
+
+coffeechat:
+  displayTitle: Coffee time
+  navTitle: Coffee time
+
+help:
+  displayTitle: Help
+  navTitle: Help
