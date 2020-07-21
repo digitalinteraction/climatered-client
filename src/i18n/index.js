@@ -24,8 +24,8 @@ const devClone = (obj, chain = []) =>
   )
 
 if (process.env.NODE_ENV === 'development') {
-  // messages.dev = {}
-  console.log(JSON.stringify(devClone(en), null, 2))
+  messages.dev = devClone(en)
+  // console.log(JSON.stringify(devClone(en), null, 2))
 }
 
 const i18n = new VueI18n({

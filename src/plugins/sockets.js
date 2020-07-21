@@ -1,8 +1,7 @@
-import Vue from 'vue'
-import { pickApi } from './store/modules/api'
+import { pickApi } from '../store/modules/api'
 import SocketClient from 'socket.io-client'
 
-export default class ApiSocket extends Vue {
+export default class ApiSocket {
   listeners = new Map()
 
   static install(Vue) {
@@ -18,8 +17,6 @@ export default class ApiSocket extends Vue {
   }
 
   constructor(socketUrl, path) {
-    super()
-
     this.socket = new SocketClient(socketUrl, { path })
 
     this.socket.on('connect', () => {

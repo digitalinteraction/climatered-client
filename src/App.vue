@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AppWrapper>
+    <AppWrapper @locale="setLocale">
       <router-view />
     </AppWrapper>
   </div>
@@ -21,14 +21,30 @@ export default {
 
       const userLang = jwt.decode(token).user_lang
       if (!userLang) console.error('jwt has no user_lang', jwt)
-      this.$i18n.locale = userLang
+      this.setLocale(userLang)
+    }
+  },
+  methods: {
+    setLocale(newLocale) {
+      this.$i18n.locale = newLocale
+      const newDir = newLocale === 'ar' ? 'rtl' : 'lrt'
+
+      const html = document.documentElement
+      html.setAttribute('lang', newLocale)
+      html.setAttribute('dir', newDir)
     }
   }
 }
 </script>
 
 <style lang="scss">
+// @import '~bulma/sass/base/_all.sass';
+// @import '~bulma/sass/elements/_all.sass';
+// @import '~bulma/sass/form/_all.sass';
+// @import '~bulma/sass/helpers/_all.sass';
+// @import '~bulma/sass/layout/_all.sass';
 @import '~bulma/bulma.sass';
+@import '@/scss/app.scss';
 
 @include tablet {
   #app {

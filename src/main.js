@@ -2,17 +2,20 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import clock from './clock'
-import sockets from './sockets'
 import i18n from './i18n'
+
+import Clock from './plugins/clock'
+import Sockets from './plugins/sockets'
+import Content from './plugins/content'
 
 Vue.config.productionTip = false
 
 Vue.filter('localeDate', v => new Date(v).toLocaleDateString())
 Vue.filter('localeTime', v => new Date(v).toLocaleTimeString())
 
-Vue.use(clock)
-Vue.use(sockets)
+Vue.use(Clock)
+Vue.use(Sockets)
+Vue.use(Content)
 
 new Vue({
   router,

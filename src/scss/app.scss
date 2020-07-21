@@ -1,0 +1,15 @@
+p {
+  // color: red !important;
+}
+
+//
+// bulma RTL overrides
+//
+.navbar-menu {
+  .navbar-start {
+  }
+  .navbar-end {
+    margin-left: unset;
+    margin-inline-start: auto;
+  }
+}

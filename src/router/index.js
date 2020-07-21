@@ -1,44 +1,75 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+import Atrium from '../views/Atrium.vue'
+import Schedule from '../views/Schedule.vue'
+import CoffeeChat from '../views/CoffeeChat.vue'
+import Help from '../views/Help.vue'
 import Event from '../views/Event.vue'
 import Login from '../views/Login.vue'
 import NotFound from '../views/NotFound.vue'
 import TokenCapture from '../views/TokenCapture.vue'
 import Translator from '../views/Translator.vue'
 
+import {
+  ROUTE_ATRIUM,
+  ROUTE_EVENT,
+  ROUTE_LOGIN,
+  ROUTE_TOKEN_CAPTURE,
+  ROUTE_NOT_FOUND,
+  ROUTE_TRANSLATOR,
+  ROUTE_SCHEDULE,
+  ROUTE_COFFEE_CHAT,
+  ROUTE_HELP
+} from '../const'
+
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/atrium',
+    name: ROUTE_ATRIUM,
+    component: Atrium
+  },
+  {
+    path: '/schedule',
+    name: ROUTE_SCHEDULE,
+    component: Schedule
+  },
+  {
+    path: '/coffee',
+    name: ROUTE_COFFEE_CHAT,
+    component: CoffeeChat
+  },
+  {
+    path: '/help',
+    name: ROUTE_HELP,
+    component: Help
   },
   {
     path: '/event/:eventId',
-    name: 'Event',
+    name: ROUTE_EVENT,
     component: Event,
     props: true
   },
   {
     path: '/login',
-    name: 'Login',
+    name: ROUTE_LOGIN,
     component: Login
   },
   {
     path: '/_token',
-    name: 'TokenCapture',
+    name: ROUTE_TOKEN_CAPTURE,
     component: TokenCapture
   },
   {
     path: '/not-found',
-    name: 'NotFound',
+    name: ROUTE_NOT_FOUND,
     component: NotFound
   },
   {
     path: '/translator/:eventId',
-    name: 'Translator',
+    name: ROUTE_TRANSLATOR,
     component: Translator,
     props: true
   }

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { authenticateSocket } from '../sockets.js'
+import { authenticateSocket } from '../plugins/sockets.js'
 
 export default {
   mounted() {

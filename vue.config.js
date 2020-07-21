@@ -20,14 +20,26 @@ module.exports = {
   chainWebpack: config => {
     config.resolve.extensions.add('.yml').add('.yaml')
 
+    // prettier-ignore
     config.module
       .rule('yaml')
       .test(/\.ya?ml?$/)
       .use('json-loader')
-      .loader('json-loader')
-      .end()
+        .loader('json-loader')
+        .end()
       .use('yaml-loader')
-      .loader('yaml-loader')
-      .end()
+        .loader('yaml-loader')
+        .end()
+
+    // prettier-ignore
+    config.module
+      .rule('md')
+      .test(/\.md$/)
+      .use('raw-loader')
+        .loader('raw-loader')
+        .end()
+      .use('markdown-loader')
+        .loader('markdown-loader')
+        .end()
   }
 }

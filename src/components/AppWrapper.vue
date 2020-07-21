@@ -26,28 +26,59 @@
           </div>
           <div class="navbar-menu" ref="navbarMenu">
             <div class="navbar-start">
-              <router-link class="navbar-item" to="/">
+              <router-link
+                class="navbar-item"
+                :to="atriumRoute"
+                active-class="is-active"
+              >
                 <img class="navbar-item-icon" src="/img/icons/atrium.svg" />
                 <span class="navbar-item-text">Atrium</span>
               </router-link>
-              <router-link class="navbar-item" to="/">
+              <router-link
+                class="navbar-item"
+                :to="scheduleRoute"
+                :disabled="!user"
+                active-class="is-active"
+              >
                 <img
                   class="navbar-item-icon"
                   src="/img/icons/schedule-alt-2.svg"
                 />
                 <span class="navbar-item-text">Schedule</span>
               </router-link>
-              <router-link class="navbar-item" to="/">
+              <router-link
+                class="navbar-item"
+                :to="coffeeRoute"
+                :disabled="!user"
+                active-class="is-active"
+              >
                 <img
                   class="navbar-item-icon"
                   src="/img/icons/coffee-chat.svg"
                 />
                 <span class="navbar-item-text">Coffee chat</span>
               </router-link>
-              <router-link class="navbar-item" to="/">
+              <router-link
+                class="navbar-item"
+                :to="helpRoute"
+                :disabled="!user"
+                active-class="is-active"
+              >
                 <img class="navbar-item-icon" src="/img/icons/helpdesk.svg" />
                 <span class="navbar-item-text">Help</span>
               </router-link>
+            </div>
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="select is-rounded">
+                  <select :value="$i18n.locale" @change="onLocale">
+                    <option value="en">EN</option>
+                    <option value="fr">FR</option>
+                    <option value="es">ES</option>
+                    <option value="ar">AR</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
         </nav>
@@ -57,19 +88,19 @@
       </div>
     </div>
     <div class="app-tabbar">
-      <router-link class="tabbar-item" to="/">
+      <router-link class="tabbar-item" :to="atriumRoute">
         <img class="tabbar-item-icon" src="/img/icons/atrium.svg" />
         <span class="tabbar-item-text">Atrium</span>
       </router-link>
-      <router-link class="tabbar-item" to="/">
+      <router-link class="tabbar-item" :to="scheduleRoute" :disabled="!user">
         <img class="tabbar-item-icon" src="/img/icons/schedule-alt-2.svg" />
         <span class="tabbar-item-text">Schedule</span>
       </router-link>
-      <router-link class="tabbar-item" to="/">
+      <router-link class="tabbar-item" :to="coffeeRoute" :disabled="!user">
         <img class="tabbar-item-icon" src="/img/icons/coffee-chat.svg" />
         <span class="tabbar-item-text">Coffee chat</span>
       </router-link>
-      <router-link class="tabbar-item" to="/">
+      <router-link class="tabbar-item" :to="helpRoute" :disabled="!user">
         <img class="tabbar-item-icon" src="/img/icons/helpdesk.svg" />
         <span class="tabbar-item-text">Help!</span>
       </router-link>
@@ -81,13 +112,24 @@
 </template>
 
 <script>
+import {
+  ROUTE_ATRIUM,
+  ROUTE_SCHEDULE,
+  ROUTE_COFFEE_CHAT,
+  ROUTE_HELP
+} from '../const'
+
 export default {
   props: {
     user: { type: Object, default: null }
   },
   data() {
     return {
-      showingMenu: false
+      showingMenu: false,
+      atriumRoute: { name: ROUTE_ATRIUM },
+      scheduleRoute: { name: ROUTE_SCHEDULE },
+      coffeeRoute: { name: ROUTE_COFFEE_CHAT },
+      helpRoute: { name: ROUTE_HELP }
     }
   },
   methods: {
@@ -95,6 +137,9 @@ export default {
       this.showingMenu = !this.showingMenu
       this.$refs.menuButton.classList.toggle('is-active', this.showingMenu)
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
+    },
+    onLocale(event) {
+      this.$emit('locale', event.target.value)
     }
   }
 }
@@ -132,11 +177,21 @@ $tabbar-width: 5rem;
     margin-bottom: 1rem;
   }
 
+  &[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
   @include desktop {
     &:hover {
       background-color: $white-ter;
       color: $black;
     }
+  }
+
+  &.router-link-active {
+    color: $link;
+    font-weight: 600;
   }
 }
 
@@ -149,25 +204,30 @@ $tabbar-width: 5rem;
     width: 3rem;
     height: 3rem;
   }
+
+  &[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
 }
 
 @include desktop {
   .app-tabbar {
     position: absolute;
     top: $navbar-height;
-    left: 0;
     bottom: 0;
     width: $tabbar-width;
 
-    border-right: 1px solid $border;
+    inset-inline-start: 0;
+    border-inline-end: 1px solid $border;
 
     display: flex;
     flex-direction: column;
   }
   .app-page {
-    margin-left: $tabbar-width;
+    margin-inline-start: $tabbar-width;
   }
-  .navbar-menu {
+  .navbar-start {
     display: none;
   }
 }
