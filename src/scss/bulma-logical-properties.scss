@@ -1,0 +1,36 @@
+p {
+  // color: red !important;
+}
+
+//
+// bulma RTL overrides
+//
+.navbar {
+  .navbar-menu {
+    .navbar-start {
+    }
+    .navbar-end {
+      margin-left: unset;
+      margin-inline-start: auto;
+    }
+  }
+  .navbar-burger {
+    margin-left: unset;
+    margin-inline-start: auto;
+  }
+}
+
+.select {
+  select:not([multiple]) {
+    padding-left: unset;
+    padding-right: unset;
+
+    padding-inline-end: 2.5em;
+    padding-inline-start: 1em;
+  }
+
+  &:not(.is-multiple):not(.is-loading)::after {
+    right: unset;
+    inset-inline-end: 1.125rem;
+  }
+}

@@ -5,13 +5,13 @@
         <div class="level">
           <div class="level-left">
             <div class="level-item">
-              <router-link class="button is-text" :to="{ name: 'Home' }">
-                ← Back to schedule
+              <router-link class="button is-text" to="/prototype">
+                Back to schedule
               </router-link>
             </div>
           </div>
           <div class="level-right">
-            <div class="level-item">
+            <!-- <div class="level-item">
               <div class="control">
                 <div class="select">
                   <select v-model="language">
@@ -22,7 +22,7 @@
                   </select>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="level-item">
               <button class="button" @click="changeState">
                 Stage: {{ slotState }}
@@ -53,34 +53,14 @@
         </table>
 
         <h2 class="heading">About</h2>
-        <div class="content" v-html="content"></div>
-
-        <div class="content">
-          <h4>Messages</h4>
-          <ul>
-            <li v-for="(msg, id) in messages" :key="id">{{ msg }}</li>
-          </ul>
-          <div class="field has-addons">
-            <div class="control">
-              <input
-                type="text"
-                class="input"
-                v-model="chatMessage"
-                @keyup.enter="chat"
-              />
-            </div>
-            <div class="control">
-              <button class="button" @click="chat">Send</button>
-            </div>
-          </div>
-        </div>
+        <div class="content" v-if="localeContent" v-html="localeContent"></div>
 
         <component
           v-if="eventComponent"
           :is="eventComponent"
           :event="event"
           :event-slot="slot"
-          :language="language"
+          :language="$i18n.locale"
         />
       </div>
     </section>
@@ -111,8 +91,7 @@ export default {
     return {
       slotState: 'active',
       messages: [],
-      chatMessage: '',
-      language: 'en'
+      chatMessage: ''
     }
   },
   mounted() {
@@ -124,19 +103,16 @@ export default {
     //
     // const sub = this.$socket.join(`event/${this.eventId}`)
     // this.$socket.on('')
-
-    this.language = this.authToken?.user_lang ?? this.language
-
+    //
+    /* this.language = this.authToken?.user_lang ?? this.language */
+    //
     // this.$socket.emit('join-event', { eventId: this.eventId })
-
     // this.$socket.bindEvent(this, 'user-joined', data => {
     //   this.messages.push(data.name + ' joined')
     // })
-
     // this.$socket.bindEvent(this, 'user-left', data => {
     //   this.messages.push(data.name + ' left')
     // })
-
     // this.$socket.bindEvent(this, 'chat', data => {
     //   this.messages.push(data.name + ': ' + data.message)
     // })
@@ -157,8 +133,11 @@ export default {
     slot() {
       return this.event && this.slots.find(s => s.id === this.event.slot)
     },
-    content() {
-      return this.event && marked(this.event.content)
+    localeContent() {
+      if (this.$i18n.locale === 'dev') return 'event.content'
+
+      const content = this.event?.content?.[this.$i18n.locale]
+      return content && marked(content)
     },
     eventComponent() {
       if (!this.event || !this.slotState) return null

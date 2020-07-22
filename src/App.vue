@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <AppWrapper @locale="setLocale">
-      <router-view />
-    </AppWrapper>
+    <router-view v-if="isReady" />
   </div>
 </template>
 
 <script>
-import AppWrapper from '@/components/AppWrapper.vue'
 import jwt from 'jsonwebtoken'
+import { ROUTE_ATRIUM, ROUTE_TOKEN_CAPTURE } from './const'
 
 export default {
-  components: { AppWrapper },
-  mounted() {
+  data() {
+    return {
+      isReady: false
+    }
+  },
+  created() {
     const { token } = localStorage
-    if (!token && this.$route.name !== 'Login') {
-      this.$router.replace({ name: 'Login' })
-    } else if (token) {
+    if (token) {
       this.$store.dispatch('api/fetchData')
 
-      const userLang = jwt.decode(token).user_lang
-      if (!userLang) console.error('jwt has no user_lang', jwt)
-      this.setLocale(userLang)
+      const user = jwt.decode(token)
+      this.setLocale(user.user_lang)
+      this.$store.commit('api/user', user)
+    } else if (
+      this.$route.name !== ROUTE_ATRIUM &&
+      this.$route.name !== ROUTE_TOKEN_CAPTURE
+    ) {
+      this.$router.replace({ name: ROUTE_ATRIUM })
     }
+
+    if (this.$route.path === '/') {
+      this.$router.replace({ name: ROUTE_ATRIUM })
+    }
+
+    this.isReady = true
   },
   methods: {
     setLocale(newLocale) {
@@ -44,7 +55,7 @@ export default {
 // @import '~bulma/sass/helpers/_all.sass';
 // @import '~bulma/sass/layout/_all.sass';
 @import '~bulma/bulma.sass';
-@import '@/scss/app.scss';
+@import '@/scss/bulma-logical-properties.scss';
 
 @include tablet {
   #app {
@@ -68,5 +79,9 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+
+.button {
+  font-weight: 600;
 }
 </style>

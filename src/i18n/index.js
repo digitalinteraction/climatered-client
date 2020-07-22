@@ -17,7 +17,7 @@ const devClone = (obj, chain = []) =>
       Object.assign(dev, {
         [key]:
           typeof value === 'string'
-            ? [...chain, key].join('.')
+            ? '{{' + [...chain, key].join('.') + '}}'
             : devClone(obj[key], [...chain, key])
       }),
     {}

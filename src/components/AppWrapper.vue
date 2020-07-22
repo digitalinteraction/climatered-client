@@ -7,7 +7,7 @@
         -->
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
-            <router-link :to="{ name: 'home' }" class="navbar-item">
+            <router-link :to="atriumRoute" class="navbar-item">
               <img src="/img/brand.svg" alt="Home" width="160" height="28" />
             </router-link>
             <a
@@ -24,56 +24,49 @@
               <span aria-hidden="true"></span>
             </a>
           </div>
+          <!--
+            Mobile dropdown menu
+          -->
           <div class="navbar-menu" ref="navbarMenu">
             <div class="navbar-start">
+              <!-- Atrium link -->
               <router-link
                 class="navbar-item"
                 :to="atriumRoute"
                 active-class="is-active"
               >
-                <img class="navbar-item-icon" src="/img/icons/atrium.svg" />
-                <span class="navbar-item-text">
-                  {{ $t('atrium.navTitle') }}
-                </span>
+                <AtriumIcon class="navbar-item-icon" />
+                <span class="navbar-item-text" v-t="'atrium.navTitle'" />
               </router-link>
+              <!-- Schedule link -->
               <router-link
                 class="navbar-item"
                 :to="scheduleRoute"
                 :disabled="!user"
                 active-class="is-active"
               >
-                <img
-                  class="navbar-item-icon"
-                  src="/img/icons/schedule-alt-2.svg"
-                />
-                <span class="navbar-item-text">
-                  {{ $t('schedule.navTitle') }}
-                </span>
+                <ScheduleIcon class="navbar-item-icon" />
+                <span class="navbar-item-text" v-t="'schedule.navTitle'" />
               </router-link>
+              <!-- Coffee link -->
               <router-link
                 class="navbar-item"
                 :to="coffeeRoute"
                 :disabled="!user"
                 active-class="is-active"
               >
-                <img
-                  class="navbar-item-icon"
-                  src="/img/icons/coffee-chat.svg"
-                />
-                <span class="navbar-item-text">
-                  {{ $t('coffeechat.navTitle') }}
-                </span>
+                <CoffeeChatIcon class="navbar-item-icon" />
+                <span class="navbar-item-text" v-t="'coffeechat.navTitle'" />
               </router-link>
+              <!-- Help link -->
               <router-link
                 class="navbar-item"
                 :to="helpRoute"
                 :disabled="!user"
                 active-class="is-active"
               >
-                <img class="navbar-item-icon" src="/img/icons/helpdesk.svg" />
-                <span class="navbar-item-text">
-                  {{ $t('help.navTitle') }}
-                </span>
+                <HelpDeskIcon class="navbar-item-icon" />
+                <span class="navbar-item-text" v-t="'help.navTitle'" />
               </router-link>
             </div>
             <div class="navbar-end">
@@ -88,38 +81,37 @@
                   </select>
                 </div>
               </div>
+              <router-link class="navbar-item" v-if="user" :to="profileRoute">
+                {{ user.sub }}
+              </router-link>
+              <router-link class="navbar-item" v-if="!user" :to="loginRoute">
+                {{ $t('general.loginButton') }}
+              </router-link>
             </div>
           </div>
         </nav>
       </div>
-      <div class="app-header-end">
-        <p>{{ user }}</p>
-      </div>
     </div>
     <div class="app-tabbar">
+      <!-- Atrium tab -->
       <router-link class="tabbar-item" :to="atriumRoute">
-        <img class="tabbar-item-icon" src="/img/icons/atrium.svg" />
-        <span class="tabbar-item-text">
-          {{ $t('atrium.navTitle') }}
-        </span>
+        <AtriumIcon class="tabbar-item-icon" />
+        <span class="tabbar-item-text" v-t="'atrium.navTitle'" />
       </router-link>
+      <!-- Schedule tab -->
       <router-link class="tabbar-item" :to="scheduleRoute" :disabled="!user">
-        <img class="tabbar-item-icon" src="/img/icons/schedule-alt-2.svg" />
-        <span class="tabbar-item-text">
-          {{ $t('schedule.navTitle') }}
-        </span>
+        <ScheduleIcon class="tabbar-item-icon" />
+        <span class="tabbar-item-text" v-t="'schedule.navTitle'" />
       </router-link>
+      <!-- Coffee chat tab -->
       <router-link class="tabbar-item" :to="coffeeRoute" :disabled="!user">
-        <img class="tabbar-item-icon" src="/img/icons/coffee-chat.svg" />
-        <span class="tabbar-item-text">
-          {{ $t('coffeechat.navTitle') }}
-        </span>
+        <CoffeeChatIcon class="tabbar-item-icon" />
+        <span class="tabbar-item-text" v-t="'coffeechat.navTitle'" />
       </router-link>
+      <!-- Help tab -->
       <router-link class="tabbar-item" :to="helpRoute" :disabled="!user">
-        <img class="tabbar-item-icon" src="/img/icons/helpdesk.svg" />
-        <span class="tabbar-item-text">
-          {{ $t('help.navTitle') }}
-        </span>
+        <HelpDeskIcon class="tabbar-item-icon" />
+        <span class="tabbar-item-text" v-t="'help.navTitle'" />
       </router-link>
     </div>
     <div class="app-page">
@@ -133,23 +125,33 @@ import {
   ROUTE_ATRIUM,
   ROUTE_SCHEDULE,
   ROUTE_COFFEE_CHAT,
-  ROUTE_HELP
+  ROUTE_HELP,
+  ROUTE_LOGIN,
+  ROUTE_PROFILE
 } from '../const'
 
+import { mapState } from 'vuex'
+
+import CoffeeChatIcon from '@/icon/coffee-chat.svg'
+import HelpDeskIcon from '@/icon/help-desk.svg'
+import AtriumIcon from '@/icon/atrium.svg'
+import ScheduleIcon from '@/icon/schedule.svg'
+
 export default {
-  props: {
-    user: { type: Object, default: null }
-  },
+  components: { CoffeeChatIcon, HelpDeskIcon, AtriumIcon, ScheduleIcon },
   data() {
     return {
       showingMenu: false,
+      loginRoute: { name: ROUTE_LOGIN },
       atriumRoute: { name: ROUTE_ATRIUM },
       scheduleRoute: { name: ROUTE_SCHEDULE },
       coffeeRoute: { name: ROUTE_COFFEE_CHAT },
-      helpRoute: { name: ROUTE_HELP }
+      helpRoute: { name: ROUTE_HELP },
+      profileRoute: { name: ROUTE_PROFILE }
     }
   },
   computed: {
+    ...mapState('api', ['user']),
     isDev() {
       return process.env.NODE_ENV === 'development'
     }
@@ -161,14 +163,27 @@ export default {
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
     },
     onLocale(event) {
-      this.$emit('locale', event.target.value)
+      const newLocale = event.target.value
+
+      this.$i18n.locale = newLocale
+      const newDir = newLocale === 'ar' ? 'rtl' : 'lrt'
+
+      const html = document.documentElement
+      html.setAttribute('lang', newLocale)
+      html.setAttribute('dir', newDir)
+    },
+    clickGuard(event) {
+      console.log(event)
+      if (!this.user) {
+        event.preventDefault()
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$tabbar-width: 5rem;
+$tabbar-width: 5.5rem;
 
 .app-wrapper {
   position: relative;
@@ -177,6 +192,21 @@ $tabbar-width: 5rem;
 
 .app-header {
   border-bottom: 1px solid $border;
+}
+
+@mixin link {
+  &[disabled] {
+    color: $grey-light;
+    pointer-events: none;
+  }
+
+  @include desktop {
+    &:hover:not([disabled]),
+    &.router-link-active {
+      background-color: $white-ter;
+      color: $black;
+    }
+  }
 }
 
 .tabbar-item {
@@ -188,6 +218,12 @@ $tabbar-width: 5rem;
 
   color: $greyish;
 
+  margin: 6px;
+  padding: 6px 0;
+  border-radius: $radius-large;
+
+  @include link;
+
   .tabbar-item-text {
   }
   .tabbar-item-icon {
@@ -196,24 +232,11 @@ $tabbar-width: 5rem;
   }
 
   &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
-
-  &[disabled] {
-    opacity: 0.4;
-    pointer-events: none;
-  }
-
-  @include desktop {
-    &:hover {
-      background-color: $white-ter;
-      color: $black;
-    }
+    margin-bottom: 6px;
   }
 
   &.router-link-active {
     color: $link;
-    font-weight: 600;
   }
 }
 
@@ -222,9 +245,12 @@ $tabbar-width: 5rem;
   align-items: center;
   color: $greyish;
 
+  @include link;
+
   .navbar-item-icon {
     width: 3rem;
     height: 3rem;
+    margin-right: 0.5rem;
   }
 
   &[disabled] {

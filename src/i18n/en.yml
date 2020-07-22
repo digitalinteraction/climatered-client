@@ -1,5 +1,6 @@
 general:
   message: 'Hello, world'
+  loginButton: Log in
 
 api:
   auth:
@@ -12,14 +13,36 @@ atrium:
   displayTitle: Atrium
   navTitle: Atrium
   tweetTitle: Live tweets
+  registerButton: Register Now!
+  loginButton: Log in
+  or: or
+  scheduleButton: See the schedule!
+
+login:
+  displayTitle: Login
+  infoText: We'll send you an email to confirm who you are. The email will
+    have a link in it which will log you in. It will expire after 30
+    minutes. If you don't recieve anything check your spam folder.
+  backButton: back to atrium
+  emailLabel: Email
+  emailPlaceholder: e.g. geoff@example.com
+  emailHelp: The email address you registered to the conference with
+  submitButton: Request login code
+
+profile:
+  displayTitle: Your profile
+  emailText: Email
+  localeText: Default language
+  whenText: Logged in
+  logoutButton: Log out
 
 schedule:
   displayTitle: Schedule
   navTitle: Schedule
 
 coffeechat:
-  displayTitle: Coffee time
-  navTitle: Coffee time
+  displayTitle: Coffee chat
+  navTitle: Coffee chat
 
 help:
   displayTitle: Help

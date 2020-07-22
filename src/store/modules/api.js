@@ -3,7 +3,8 @@ import ky from 'ky'
 const state = () => ({
   slots: null,
   events: null,
-  hasData: false
+  hasData: false,
+  user: null
 })
 
 export function pickApi() {
@@ -34,6 +35,9 @@ const mutations = {
   },
   hasData: (state, hasData) => {
     state.hasData = hasData
+  },
+  user: (state, user) => {
+    state.user = user
   }
 }
 

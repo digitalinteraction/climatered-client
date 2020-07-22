@@ -4,10 +4,14 @@
 
 <script>
 import { authenticateSocket } from '../plugins/sockets.js'
+import { ROUTE_ATRIUM } from '../const'
 
 export default {
   mounted() {
+    console.log(token)
     const { token } = this.$route.query
+
+    console.log(token)
 
     if (!token) return alert('No token')
 
@@ -18,7 +22,7 @@ export default {
       authenticateSocket(this.$socket, token)
     }
 
-    this.$router.replace({ name: 'Home' })
+    this.$router.replace({ name: ROUTE_ATRIUM })
   }
 }
 </script>

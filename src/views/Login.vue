@@ -1,36 +1,42 @@
 <template>
   <div class="login-page">
+    <div class="buttons">
+      <router-link
+        class="button is-text"
+        :to="atriumRoute"
+        v-t="'login.backButton'"
+      />
+    </div>
     <section class="section is-large">
       <div class="container is-small">
         <div class="box is-centered">
-          <h1 class="title">Login</h1>
+          <h1 class="title" v-t="'login.displayTitle'" />
           <div class="content">
-            <p>
-              We'll send you an email to confirm who you are. The email will
-              have a link in it which will log you in. It will expire after 30
-              minutes.
-            </p>
+            <p>{{ $t('login.infoText') }}</p>
           </div>
 
           <div class="login-form" v-if="!done">
             <div class="field">
-              <label class="label">Email</label>
+              <label class="label" v-t="'login.emailLabel'"></label>
               <div class="control">
                 <input
                   type="text"
                   class="input"
                   v-model="email"
-                  placeholder="geoff@example.com"
+                  :placeholder="$t('login.emailPlaceholder')"
+                  @keyup.enter="submit"
                 />
               </div>
               <p class="help">
-                The email address you registered to the conference with
+                {{ $t('login.emailHelp') }}
               </p>
             </div>
             <div class="buttons">
-              <button class="button is-primary" @click="submit">
-                Request login code
-              </button>
+              <button
+                class="button is-primary"
+                @click="submit"
+                v-t="'login.submitButton'"
+              />
             </div>
           </div>
           <div class="notification is-success is-large" v-else>
@@ -44,11 +50,14 @@
 </template>
 
 <script>
+import { ROUTE_ATRIUM } from '../const'
+
 export default {
   data() {
     return {
       email: '',
-      done: false
+      done: false,
+      atriumRoute: { name: ROUTE_ATRIUM }
     }
   },
   methods: {

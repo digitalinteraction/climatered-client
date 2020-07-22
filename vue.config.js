@@ -20,6 +20,11 @@ module.exports = {
   chainWebpack: config => {
     config.resolve.extensions.add('.yml').add('.yaml')
 
+    // Clear the existing svg rule and load as a component instead
+    const svgRule = config.module.rule('svg')
+    svgRule.uses.clear()
+    svgRule.use('vue-svg-loader').loader('vue-svg-loader')
+
     // prettier-ignore
     config.module
       .rule('yaml')

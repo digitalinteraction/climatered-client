@@ -31,19 +31,19 @@ export default class ApiSocket {
   }
 
   emit(eventName, ...args) {
-    console.log('emit', eventName, ...args)
+    console.debug('emit', eventName, ...args)
 
     this.socket.emit(eventName, ...args)
   }
 
   emitBinary(eventName, ...args) {
-    console.log('emitBinary', eventName, ...args)
+    console.debug('emitBinary', eventName, ...args)
 
     this.socket.binary(true).emit(eventName, ...args)
   }
 
   bindEvent(owner, eventName, callback) {
-    console.log('bindEvent', eventName)
+    console.debug('bindEvent', eventName)
 
     if (!this.listeners.has(eventName)) {
       this.socket.on(eventName, data => this.handleEvent(eventName, data))
@@ -55,7 +55,7 @@ export default class ApiSocket {
   }
 
   unbindEvent(owner, eventName) {
-    console.log('unbindEvent', eventName)
+    console.debug('unbindEvent', eventName)
 
     const listeners = this.listeners.get(eventName)
     if (!listeners) return

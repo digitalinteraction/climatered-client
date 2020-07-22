@@ -5,8 +5,11 @@ import Atrium from '../views/Atrium.vue'
 import Schedule from '../views/Schedule.vue'
 import CoffeeChat from '../views/CoffeeChat.vue'
 import Help from '../views/Help.vue'
-import Event from '../views/Event.vue'
+import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
+
+import Event from '../views/Event.vue'
+import Home from '../views/Home.vue'
 import NotFound from '../views/NotFound.vue'
 import TokenCapture from '../views/TokenCapture.vue'
 import Translator from '../views/Translator.vue'
@@ -20,7 +23,8 @@ import {
   ROUTE_TRANSLATOR,
   ROUTE_SCHEDULE,
   ROUTE_COFFEE_CHAT,
-  ROUTE_HELP
+  ROUTE_HELP,
+  ROUTE_PROFILE
 } from '../const'
 
 Vue.use(VueRouter)
@@ -47,7 +51,16 @@ const routes = [
     component: Help
   },
   {
-    path: '/event/:eventId',
+    path: '/me',
+    name: ROUTE_PROFILE,
+    component: Profile
+  },
+  {
+    path: '/prototype',
+    component: Home
+  },
+  {
+    path: '/prototype/event/:eventId',
     name: ROUTE_EVENT,
     component: Event,
     props: true

@@ -12,6 +12,10 @@ Vue.config.productionTip = false
 
 Vue.filter('localeDate', v => new Date(v).toLocaleDateString())
 Vue.filter('localeTime', v => new Date(v).toLocaleTimeString())
+Vue.filter('localeDateTime', v => {
+  const d = new Date(v)
+  return d.toLocaleTimeString() + ' ' + d.toLocaleDateString()
+})
 
 Vue.use(Clock)
 Vue.use(Sockets)
