@@ -53,7 +53,7 @@ export default {
       return jwt.decode(localStorage.token)
     },
     translatorEvents() {
-      return this.$store.state.api.events?.filter(e => e.channels)
+      return this.$store.state.api.events?.filter(e => e.enableTranslation)
     }
   },
   methods: {

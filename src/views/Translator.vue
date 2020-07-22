@@ -5,7 +5,7 @@
         <div class="level">
           <div class="level-left">
             <div class="level-item">
-              <router-link class="button is-text" :to="{ name: 'Home' }">
+              <router-link class="button is-text" to="/prototype">
                 ← Back to schedule
               </router-link>
             </div>
@@ -90,7 +90,10 @@ export default {
       return findLink(this.event.links, 'video', this.language)
     },
     channels() {
-      return this.event.channels
+      return (
+        this.event.enableTranslation &&
+        ['en', 'fr', 'es', 'ar'].filter(l => l !== this.event.hostLanguage)
+      )
     },
     isBroadcasting() {
       return this.broadcastState === BroadcastState.active
@@ -102,7 +105,7 @@ export default {
         this.broadcastState = newState
       },
       arrayBuffer => {
-        this.$socket.emitBinary('channel-data', arrayBuffer)
+        this.$socket.emitBinary('send-to-channel', arrayBuffer)
       }
     )
   },

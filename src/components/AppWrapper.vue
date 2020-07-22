@@ -171,12 +171,6 @@ export default {
       const html = document.documentElement
       html.setAttribute('lang', newLocale)
       html.setAttribute('dir', newDir)
-    },
-    clickGuard(event) {
-      console.log(event)
-      if (!this.user) {
-        event.preventDefault()
-      }
     }
   }
 }

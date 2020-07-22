@@ -7,7 +7,7 @@
           <th>Start</th>
           <th>End</th>
           <th>Slot</th>
-          <th>Channels</th>
+          <th>Host language</th>
           <th>Event</th>
         </tr>
       </thead>
@@ -17,7 +17,7 @@
           <td>{{ group.slot.start | localeTime }}</td>
           <td>{{ group.slot.end | localeTime }}</td>
           <td>{{ group.slot.id }}</td>
-          <td>{{ group.event.channels.join(', ') }}</td>
+          <td>{{ group.event.hostLanguage }}</td>
           <td>
             <router-link :to="group.event | eventRoute">
               {{ group.event.name }}

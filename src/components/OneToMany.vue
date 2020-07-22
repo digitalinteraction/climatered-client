@@ -4,9 +4,9 @@
       <div class="column is-two-thirds">
         <h2 class="title is-4">Live video</h2>
 
-        <VideoEmbed :video-link="videoLink" />
+        <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
 
-        <div class="audio-channel" v-if="event.channels">
+        <div class="audio-channel" v-if="event.enableTranslation">
           <div class="columns">
             <div class="column is-narrow">
               <label class="label">Audio Channel</label>
@@ -79,7 +79,9 @@ export default {
       return link && parseSlidoLink(link)
     },
     channels() {
-      return ['source'].concat(this.event.channels)
+      return ['source', 'en', 'fr', 'es', 'ar'].filter(
+        l => l !== this.event.hostLanguage
+      )
     },
     isSourceAudio() {
       return this.language === 'source'

@@ -79,8 +79,6 @@ export class AudioBroadcaster {
       numberOfOutputs: 0
     })
     recorder.port.onmessage = event => {
-      console.log(event)
-
       if (event.data.type === 'ondata') {
         this.onData(event.data.buffer)
       }
@@ -219,12 +217,16 @@ export class AudioReciever {
   stop() {
     this.buffers = []
     this.state = RecieverState.inactive
-    this.ctx = null
+    // this.ctx = null
 
     // stop the current BufferSource ?
   }
 
   unqueueBuffer() {
+    if (this.state === RecieverState.inactive) {
+      return
+    }
+
     if (this.buffers.length === 0) {
       this.state = RecieverState.buffering
       return
@@ -291,7 +293,10 @@ export class AudioReciever {
     // Loop across each pixel of the canvas
     for (let x = 0; x < canvasWidth - 1; x += lineInterval) {
       const min = x * samplesPerPixel
-      const max = (x + lineInterval) * samplesPerPixel - 1
+      const max = Math.min(
+        (x + lineInterval) * samplesPerPixel - 1,
+        totalSamples - 1
+      )
 
       let largest = -1
       let smallest = 1
