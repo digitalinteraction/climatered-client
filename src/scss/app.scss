@@ -1,6 +1,29 @@
 //
 // Custom site-wide styles
+// -> Imported from App.vue
 //
+
+//
+// Import the bits of bulma we need
+//
+@import '~bulma/sass/base/_all.sass';
+
+@import '~bulma/sass/elements/button.sass';
+@import '~bulma/sass/elements/container.sass';
+@import '~bulma/sass/elements/content.sass';
+@import '~bulma/sass/elements/notification.sass';
+@import '~bulma/sass/elements/other.sass';
+@import '~bulma/sass/elements/table.sass';
+@import '~bulma/sass/elements/tag.sass';
+@import '~bulma/sass/elements/title.sass';
+
+@import '~bulma/sass/components/level.sass'; // only for v0
+@import '~bulma/sass/components/navbar.sass';
+
+@import '~bulma/sass/form/_all.sass';
+@import '~bulma/sass/grid/columns.sass';
+@import '~bulma/sass/helpers/_all.sass';
+@import '~bulma/sass/layout/_all.sass';
 
 //
 // bulma RTL overrides
