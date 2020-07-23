@@ -7,7 +7,7 @@
         -->
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
-            <router-link :to="atriumRoute" class="navbar-item">
+            <router-link :to="atriumRoute" class="navbar-item" active-class="">
               <img src="/img/brand.svg" alt="Home" width="160" height="28" />
             </router-link>
             <a
@@ -30,11 +30,7 @@
           <div class="navbar-menu" ref="navbarMenu">
             <div class="navbar-start">
               <!-- Atrium link -->
-              <router-link
-                class="navbar-item"
-                :to="atriumRoute"
-                active-class="is-active"
-              >
+              <router-link class="navbar-item" :to="atriumRoute">
                 <AtriumIcon class="navbar-item-icon" />
                 <span class="navbar-item-text" v-t="'atrium.title'" />
               </router-link>
@@ -43,7 +39,6 @@
                 class="navbar-item"
                 :to="scheduleRoute"
                 :disabled="!user"
-                active-class="is-active"
               >
                 <ScheduleIcon class="navbar-item-icon" />
                 <span class="navbar-item-text" v-t="'schedule.title'" />
@@ -53,7 +48,6 @@
                 class="navbar-item"
                 :to="coffeeRoute"
                 :disabled="!user"
-                active-class="is-active"
               >
                 <CoffeeChatIcon class="navbar-item-icon" />
                 <span class="navbar-item-text" v-t="'coffeechat.title'" />
@@ -63,7 +57,6 @@
                 class="navbar-item"
                 :to="helpRoute"
                 :disabled="!user"
-                active-class="is-active"
               >
                 <HelpDeskIcon class="navbar-item-icon" />
                 <span class="navbar-item-text" v-t="'help.title'" />
@@ -81,9 +74,11 @@
                   </select>
                 </div>
               </div>
+              <!-- Profile link -->
               <router-link class="navbar-item" v-if="user" :to="profileRoute">
                 {{ user.sub }}
               </router-link>
+              <!-- or Login button -->
               <router-link class="navbar-item" v-if="!user" :to="loginRoute">
                 {{ $t('general.loginButton') }}
               </router-link>
@@ -92,6 +87,9 @@
         </nav>
       </div>
     </div>
+    <!-- 
+      Side tabbar
+     -->
     <div class="app-tabbar">
       <!-- Atrium tab -->
       <router-link class="tabbar-item" :to="atriumRoute">
@@ -117,6 +115,7 @@
     <div class="app-page">
       <slot />
     </div>
+    <AppFooter class="app-footer" />
   </div>
 </template>
 
@@ -132,13 +131,21 @@ import {
 
 import { mapState } from 'vuex'
 
+import AppFooter from '@/components/AppFooter.vue'
+
 import CoffeeChatIcon from '@/icon/coffee-chat.svg'
 import HelpDeskIcon from '@/icon/help-desk.svg'
 import AtriumIcon from '@/icon/atrium.svg'
 import ScheduleIcon from '@/icon/schedule.svg'
 
 export default {
-  components: { CoffeeChatIcon, HelpDeskIcon, AtriumIcon, ScheduleIcon },
+  components: {
+    AppFooter,
+    CoffeeChatIcon,
+    HelpDeskIcon,
+    AtriumIcon,
+    ScheduleIcon
+  },
   data() {
     return {
       showingMenu: false,
@@ -186,6 +193,8 @@ $tabbar-width: 5.5rem;
 .app-wrapper {
   position: relative;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-header {
@@ -199,11 +208,16 @@ $tabbar-width: 5.5rem;
   }
 
   @include desktop {
-    &:hover:not([disabled]),
-    &.router-link-active {
-      background-color: $white-ter;
-      color: $black;
+    &:hover:not([disabled]):not(.is-active) {
+      background-color: $background;
+      // background-color: $white-ter;
+      // color: $black;
     }
+  }
+
+  &.is-active {
+    color: $navbar-item-active-color;
+    background-color: $navbar-item-active-background-color;
   }
 }
 
@@ -231,10 +245,6 @@ $tabbar-width: 5.5rem;
 
   &:not(:last-child) {
     margin-bottom: 6px;
-  }
-
-  &.router-link-active {
-    color: $link;
   }
 }
 
@@ -275,6 +285,7 @@ $tabbar-width: 5.5rem;
   }
   .app-page {
     margin-inline-start: $tabbar-width;
+    flex: 1;
   }
   .navbar-start {
     display: none;
@@ -292,5 +303,8 @@ $tabbar-width: 5.5rem;
 
 .app-page {
   // ...
+}
+
+.app-footer {
 }
 </style>

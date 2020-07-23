@@ -20,6 +20,12 @@ $family-sans-serif: Avenir, Helvetica, Arial, sans-serif;
 $family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 
 $navbar-height: 3.75rem;
+// $navbar-item-hover-background-color: $scheme-main-bis;
+$navbar-item-active-background-color: #fef2f6;
+$navbar-item-hover-color: $primary;
+$navbar-item-active-color: $primary;
+
+$footer-padding: 1.5rem 1.5rem 2.5rem;
 
 @import '~bulma/sass/utilities/_all.sass';
 

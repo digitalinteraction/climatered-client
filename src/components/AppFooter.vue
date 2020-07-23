@@ -1,10 +1,11 @@
 <template>
   <footer class="footer">
     <div class="content has-text-centered">
-      <strong>{{ appName }}</strong>
-      version {{ appVersion }}
-      | Made by
+      Made by
       <a href="https://openlab.ncl.ac.uk">Openlab</a>
+      /
+      {{ $t('general.appName') }}
+      v{{ appVersion }}
     </div>
   </footer>
 </template>
@@ -21,3 +22,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.footer .content {
+  color: $grey;
+  a {
+    font-weight: bold;
+  }
+}
+</style>
