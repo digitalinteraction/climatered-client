@@ -3,7 +3,7 @@
     <div class="profile">
       <section class="section">
         <div class="container">
-          <h1 class="title" v-t="'profile.displayTitle'" />
+          <h1 class="title" v-t="'profile.title'" />
 
           <table class="table">
             <tbody>

@@ -10,7 +10,7 @@
     <section class="section is-large">
       <div class="container is-small">
         <div class="box is-centered">
-          <h1 class="title" v-t="'login.displayTitle'" />
+          <h1 class="title" v-t="'login.title'" />
           <div class="content">
             <p>{{ $t('login.infoText') }}</p>
           </div>

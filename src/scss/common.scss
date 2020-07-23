@@ -22,3 +22,21 @@ $family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 $navbar-height: 3.75rem;
 
 @import '~bulma/sass/utilities/_all.sass';
+
+@mixin insetInlineStart($value) {
+  &:dir(ltr) {
+    left: $value;
+  }
+  &:dir(rtl) {
+    right: $value;
+  }
+}
+
+@mixin insetInlineEnd($value) {
+  &:dir(ltr) {
+    right: $value;
+  }
+  &:dir(rtl) {
+    left: $value;
+  }
+}

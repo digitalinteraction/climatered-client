@@ -20,7 +20,7 @@ export default {
       this.$store.dispatch('api/fetchData')
 
       const user = jwt.decode(token)
-      this.setLocale(user.user_lang)
+      // this.setLocale(user.user_lang)
       this.$store.commit('api/user', user)
     } else if (
       this.$route.name !== ROUTE_ATRIUM &&
@@ -55,7 +55,7 @@ export default {
 // @import '~bulma/sass/helpers/_all.sass';
 // @import '~bulma/sass/layout/_all.sass';
 @import '~bulma/bulma.sass';
-@import '@/scss/bulma-logical-properties.scss';
+@import '@/scss/app.scss';
 
 @include tablet {
   #app {

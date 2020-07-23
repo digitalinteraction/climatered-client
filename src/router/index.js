@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import i18n from '../i18n'
 
 import Atrium from '../views/Atrium.vue'
 import Schedule from '../views/Schedule.vue'
@@ -33,58 +34,94 @@ const routes = [
   {
     path: '/atrium',
     name: ROUTE_ATRIUM,
-    component: Atrium
+    component: Atrium,
+    meta: {
+      titleKey: 'atrium.title'
+    }
   },
   {
     path: '/schedule',
     name: ROUTE_SCHEDULE,
-    component: Schedule
+    component: Schedule,
+    meta: {
+      titleKey: 'schedule.title'
+    }
   },
   {
     path: '/coffee',
     name: ROUTE_COFFEE_CHAT,
-    component: CoffeeChat
+    component: CoffeeChat,
+    meta: {
+      titleKey: 'coffeechat.title'
+    }
   },
   {
     path: '/help',
     name: ROUTE_HELP,
-    component: Help
+    component: Help,
+    meta: {
+      titleKey: 'help.title'
+    }
   },
   {
     path: '/me',
     name: ROUTE_PROFILE,
-    component: Profile
+    component: Profile,
+    meta: {
+      titleKey: 'profile.title'
+    }
   },
   {
+    path: '/login',
+    name: ROUTE_LOGIN,
+    component: Login,
+    meta: {
+      titleKey: 'login.title'
+    }
+  },
+  {
+    path: '/_token',
+    name: ROUTE_TOKEN_CAPTURE,
+    component: TokenCapture,
+    meta: {
+      title: 'Working...'
+    }
+  },
+  {
+    path: '/not-found',
+    name: ROUTE_NOT_FOUND,
+    component: NotFound,
+    meta: {
+      titleKey: 'notfound.title'
+    }
+  },
+  //
+  // v0 prototype
+  //
+  {
     path: '/prototype',
-    component: Home
+    component: Home,
+    meta: {
+      title: 'v0'
+    }
   },
   {
     path: '/prototype/event/:eventId',
     name: ROUTE_EVENT,
     component: Event,
-    props: true
+    props: true,
+    meta: {
+      title: 'v0 | Event'
+    }
   },
   {
-    path: '/login',
-    name: ROUTE_LOGIN,
-    component: Login
-  },
-  {
-    path: '/_token',
-    name: ROUTE_TOKEN_CAPTURE,
-    component: TokenCapture
-  },
-  {
-    path: '/not-found',
-    name: ROUTE_NOT_FOUND,
-    component: NotFound
-  },
-  {
-    path: '/translator/:eventId',
+    path: '/prototype/translator/:eventId',
     name: ROUTE_TRANSLATOR,
     component: Translator,
-    props: true
+    props: true,
+    meta: {
+      title: 'v0 | translator'
+    }
   }
 ]
 
@@ -92,6 +129,27 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const findMeta = key =>
+    to.matched.reverse().find(r => r.meta?.[key])?.meta?.[key]
+
+  const titleKey = findMeta('titleKey')
+  const title = findMeta('title')
+
+  const appName = i18n.t('general.appName')
+  const seperator = '-'
+
+  if (titleKey) {
+    document.title = `${i18n.t(titleKey)} ${seperator} ${appName}`
+  } else if (title) {
+    document.title = `${title} ${seperator} ${appName}`
+  } else {
+    document.title = appName
+  }
+
+  next()
 })
 
 export default router

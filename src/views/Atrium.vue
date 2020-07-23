@@ -90,11 +90,11 @@ export default {
     }
   },
   async mounted() {
-    setTimeout(() => {
-      import(
-        /* webpackIgnore: true */ 'https://platform.twitter.com/widgets.js'
-      )
-    }, 200)
+    // setTimeout(() => {
+    //   import(
+    //     /* webpackIgnore: true */ 'https://platform.twitter.com/widgets.js'
+    //   )
+    // }, 200)
   }
 }
 </script>

@@ -1,0 +1,21 @@
+//
+// Custom site-wide styles
+//
+
+//
+// bulma RTL overrides
+//
+.navbar {
+  .navbar-menu {
+    .navbar-start {
+    }
+    .navbar-end {
+      margin-left: unset;
+      margin-inline-start: auto;
+    }
+  }
+  .navbar-burger {
+    margin-left: unset;
+    margin-inline-start: auto;
+  }
+}

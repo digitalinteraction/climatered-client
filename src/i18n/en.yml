@@ -1,6 +1,7 @@
 general:
   message: 'Hello, world'
   loginButton: Log in
+  appName: Climate:Red
 
 api:
   auth:
@@ -10,8 +11,7 @@ api:
     thing: 'something'
 
 atrium:
-  displayTitle: Atrium
-  navTitle: Atrium
+  title: Atrium
   tweetTitle: Live tweets
   registerButton: Register Now!
   loginButton: Log in
@@ -19,7 +19,7 @@ atrium:
   scheduleButton: See the schedule!
 
 login:
-  displayTitle: Login
+  title: Login
   infoText: We'll send you an email to confirm who you are. The email will
     have a link in it which will log you in. It will expire after 30
     minutes. If you don't recieve anything check your spam folder.
@@ -30,20 +30,17 @@ login:
   submitButton: Request login code
 
 profile:
-  displayTitle: Your profile
+  title: Your profile
   emailText: Email
   localeText: Default language
   whenText: Logged in
   logoutButton: Log out
 
 schedule:
-  displayTitle: Schedule
-  navTitle: Schedule
+  title: Schedule
 
 coffeechat:
-  displayTitle: Coffee chat
-  navTitle: Coffee chat
+  title: Coffee chat
 
 help:
-  displayTitle: Help
-  navTitle: Help
+  title: Help

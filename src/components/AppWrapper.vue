@@ -36,7 +36,7 @@
                 active-class="is-active"
               >
                 <AtriumIcon class="navbar-item-icon" />
-                <span class="navbar-item-text" v-t="'atrium.navTitle'" />
+                <span class="navbar-item-text" v-t="'atrium.title'" />
               </router-link>
               <!-- Schedule link -->
               <router-link
@@ -46,7 +46,7 @@
                 active-class="is-active"
               >
                 <ScheduleIcon class="navbar-item-icon" />
-                <span class="navbar-item-text" v-t="'schedule.navTitle'" />
+                <span class="navbar-item-text" v-t="'schedule.title'" />
               </router-link>
               <!-- Coffee link -->
               <router-link
@@ -56,7 +56,7 @@
                 active-class="is-active"
               >
                 <CoffeeChatIcon class="navbar-item-icon" />
-                <span class="navbar-item-text" v-t="'coffeechat.navTitle'" />
+                <span class="navbar-item-text" v-t="'coffeechat.title'" />
               </router-link>
               <!-- Help link -->
               <router-link
@@ -66,13 +66,13 @@
                 active-class="is-active"
               >
                 <HelpDeskIcon class="navbar-item-icon" />
-                <span class="navbar-item-text" v-t="'help.navTitle'" />
+                <span class="navbar-item-text" v-t="'help.title'" />
               </router-link>
             </div>
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="select is-rounded">
-                  <select :value="$i18n.locale" @change="onLocale">
+                  <select :value="$i18n.locale" @input="onLocale">
                     <option value="en">EN</option>
                     <option value="fr">FR</option>
                     <option value="es">ES</option>
@@ -96,22 +96,22 @@
       <!-- Atrium tab -->
       <router-link class="tabbar-item" :to="atriumRoute">
         <AtriumIcon class="tabbar-item-icon" />
-        <span class="tabbar-item-text" v-t="'atrium.navTitle'" />
+        <span class="tabbar-item-text" v-t="'atrium.title'" />
       </router-link>
       <!-- Schedule tab -->
       <router-link class="tabbar-item" :to="scheduleRoute" :disabled="!user">
         <ScheduleIcon class="tabbar-item-icon" />
-        <span class="tabbar-item-text" v-t="'schedule.navTitle'" />
+        <span class="tabbar-item-text" v-t="'schedule.title'" />
       </router-link>
       <!-- Coffee chat tab -->
       <router-link class="tabbar-item" :to="coffeeRoute" :disabled="!user">
         <CoffeeChatIcon class="tabbar-item-icon" />
-        <span class="tabbar-item-text" v-t="'coffeechat.navTitle'" />
+        <span class="tabbar-item-text" v-t="'coffeechat.title'" />
       </router-link>
       <!-- Help tab -->
       <router-link class="tabbar-item" :to="helpRoute" :disabled="!user">
         <HelpDeskIcon class="tabbar-item-icon" />
-        <span class="tabbar-item-text" v-t="'help.navTitle'" />
+        <span class="tabbar-item-text" v-t="'help.title'" />
       </router-link>
     </div>
     <div class="app-page">
@@ -150,6 +150,9 @@ export default {
       profileRoute: { name: ROUTE_PROFILE }
     }
   },
+  created() {
+    this.setLocale(this.user?.user_lang ?? 'en')
+  },
   computed: {
     ...mapState('api', ['user']),
     isDev() {
@@ -163,10 +166,11 @@ export default {
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
     },
     onLocale(event) {
-      const newLocale = event.target.value
-
+      this.setLocale(event.target.value)
+    },
+    setLocale(newLocale) {
       this.$i18n.locale = newLocale
-      const newDir = newLocale === 'ar' ? 'rtl' : 'lrt'
+      const newDir = newLocale === 'ar' ? 'rtl' : 'ltr'
 
       const html = document.documentElement
       html.setAttribute('lang', newLocale)
@@ -260,7 +264,10 @@ $tabbar-width: 5.5rem;
     bottom: 0;
     width: $tabbar-width;
 
-    inset-inline-start: 0;
+    // @include insetInline(0, unset);
+    @include insetInlineStart(0);
+
+    // inset-inline-start: 0;
     border-inline-end: 1px solid $border;
 
     display: flex;
