@@ -138,6 +138,8 @@ import HelpDeskIcon from '@/icon/help-desk.svg'
 import AtriumIcon from '@/icon/atrium.svg'
 import ScheduleIcon from '@/icon/schedule.svg'
 
+import { setLocale } from '@/i18n'
+
 export default {
   components: {
     AppFooter,
@@ -158,7 +160,7 @@ export default {
     }
   },
   created() {
-    this.setLocale(this.user?.user_lang ?? 'en')
+    setLocale(this.user?.user_lang ?? 'en')
   },
   computed: {
     ...mapState('api', ['user']),
@@ -173,15 +175,7 @@ export default {
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
     },
     onLocale(event) {
-      this.setLocale(event.target.value)
-    },
-    setLocale(newLocale) {
-      this.$i18n.locale = newLocale
-      const newDir = newLocale === 'ar' ? 'rtl' : 'ltr'
-
-      const html = document.documentElement
-      html.setAttribute('lang', newLocale)
-      html.setAttribute('dir', newDir)
+      setLocale(event.target.value)
     }
   }
 }

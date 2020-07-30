@@ -16,11 +16,9 @@
 
               <!-- Show login/register if they are not signed in -->
               <div class="buttons is-centered" v-if="!user">
-                <a
+                <router-link
                   class="button is-link is-medium"
-                  href="https://google.com"
-                  target="_blank"
-                  rel="noopener"
+                  :to="registerRoute"
                   v-t="'atrium.registerButton'"
                 />
                 <div class="atrium-login-or" v-t="'atrium.or'" />
@@ -57,7 +55,7 @@
 </template>
 
 <script>
-import { ROUTE_LOGIN, ROUTE_SCHEDULE } from '../const'
+import { ROUTE_LOGIN, ROUTE_SCHEDULE, ROUTE_REGISTER } from '../const'
 import { mapState } from 'vuex'
 
 import AppWrapper from '@/components/AppWrapper.vue'
@@ -80,6 +78,7 @@ export default {
   data() {
     return {
       loginRoute: { name: ROUTE_LOGIN },
+      registerRoute: { name: ROUTE_REGISTER },
       scheduleRoute: { name: ROUTE_SCHEDULE }
     }
   },

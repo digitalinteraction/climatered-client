@@ -33,6 +33,13 @@ const i18n = new VueI18n({
   messages
 })
 
-i18n.messages
-
 export default i18n
+
+export function setLocale(newLocale) {
+  i18n.locale = newLocale
+  const newDir = newLocale === 'ar' ? 'rtl' : 'ltr'
+
+  const html = document.documentElement
+  html.setAttribute('lang', newLocale)
+  html.setAttribute('dir', newDir)
+}

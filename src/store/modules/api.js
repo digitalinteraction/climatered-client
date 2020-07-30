@@ -53,6 +53,15 @@ const actions = {
     commit('slots', slots.slots)
     commit('events', events.events)
     commit('hasData', true)
+  },
+  async register({ getters }, { name, email, language, country, affiliation }) {
+    const agent = getters.agent
+
+    const json = { name, email, language, country, affiliation }
+
+    const response = await agent.post('register', { json })
+
+    return response.ok
   }
 }
 

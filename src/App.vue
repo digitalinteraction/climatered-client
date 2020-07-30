@@ -6,7 +6,20 @@
 
 <script>
 import jwt from 'jsonwebtoken'
-import { ROUTE_ATRIUM, ROUTE_TOKEN_CAPTURE } from './const'
+import {
+  ROUTE_ATRIUM,
+  ROUTE_TOKEN_CAPTURE,
+  ROUTE_LOGIN,
+  ROUTE_REGISTER
+} from './const'
+
+// Routes that can be visited without being logged in
+const noAuthRoutes = [
+  ROUTE_ATRIUM,
+  ROUTE_TOKEN_CAPTURE,
+  ROUTE_LOGIN,
+  ROUTE_REGISTER
+]
 
 export default {
   data() {
@@ -22,10 +35,7 @@ export default {
       const user = jwt.decode(token)
       // this.setLocale(user.user_lang)
       this.$store.commit('api/user', user)
-    } else if (
-      this.$route.name !== ROUTE_ATRIUM &&
-      this.$route.name !== ROUTE_TOKEN_CAPTURE
-    ) {
+    } else if (!noAuthRoutes.includes(this.$route.name)) {
       this.$router.replace({ name: ROUTE_ATRIUM })
     }
 
@@ -83,5 +93,9 @@ export default {
 
 .button {
   font-weight: 600;
+}
+
+.label:not(:last-child) {
+  margin-bottom: 0.1em;
 }
 </style>

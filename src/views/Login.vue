@@ -1,58 +1,55 @@
 <template>
-  <div class="login-page">
-    <div class="buttons">
-      <router-link
-        class="button is-text"
-        :to="atriumRoute"
-        v-t="'login.backButton'"
-      />
-    </div>
-    <section class="section is-large">
-      <div class="container is-small">
-        <div class="box is-centered">
-          <h1 class="title" v-t="'login.title'" />
-          <div class="content">
-            <p>{{ $t('login.infoText') }}</p>
-          </div>
+  <UtilWrapper>
+    <router-link
+      slot="back-button"
+      class="button is-text"
+      :to="atriumRoute"
+      v-t="'login.backButton'"
+    />
+    <div slot="content" class="login-page">
+      <h1 class="title" v-t="'login.title'" />
+      <div class="content">
+        <p>{{ $t('login.infoText') }}</p>
+      </div>
 
-          <div class="login-form" v-if="!done">
-            <div class="field">
-              <label class="label" v-t="'login.emailLabel'"></label>
-              <div class="control">
-                <input
-                  type="text"
-                  class="input"
-                  v-model="email"
-                  :placeholder="$t('login.emailPlaceholder')"
-                  @keyup.enter="submit"
-                />
-              </div>
-              <p class="help">
-                {{ $t('login.emailHelp') }}
-              </p>
-            </div>
-            <div class="buttons">
-              <button
-                class="button is-primary"
-                @click="submit"
-                v-t="'login.submitButton'"
-              />
-            </div>
+      <div class="login-form" v-if="!done">
+        <div class="field">
+          <label class="label" v-t="'login.emailLabel'"></label>
+          <div class="control">
+            <input
+              type="text"
+              class="input"
+              v-model="email"
+              :placeholder="$t('login.emailPlaceholder')"
+              @keyup.enter="submit"
+            />
           </div>
-          <div class="notification is-success is-large" v-else>
-            <button class="delete" @click="done = false"></button>
-            <strong>Login code sent</strong>
-          </div>
+          <p class="help">
+            {{ $t('login.emailHelp') }}
+          </p>
+        </div>
+        <div class="buttons">
+          <button
+            class="button is-primary"
+            @click="submit"
+            v-t="'login.submitButton'"
+          />
         </div>
       </div>
-    </section>
-  </div>
+      <div class="notification is-success is-large" v-else>
+        <button class="delete" @click="done = false"></button>
+        <strong>Login code sent</strong>
+      </div>
+    </div>
+  </UtilWrapper>
 </template>
 
 <script>
+import UtilWrapper from '@/components/UtilWrapper.vue'
 import { ROUTE_ATRIUM } from '../const'
 
 export default {
+  components: { UtilWrapper },
   data() {
     return {
       email: '',
@@ -85,14 +82,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.login-page {
-  min-height: 100vh;
-  background-color: $grey-lightest;
-
-  .box {
-    max-width: $tablet;
-    margin: 0 auto;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

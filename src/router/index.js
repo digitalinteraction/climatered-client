@@ -8,6 +8,7 @@ import CoffeeChat from '../views/CoffeeChat.vue'
 import Help from '../views/Help.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 
 import Event from '../views/Event.vue'
 import Home from '../views/Home.vue'
@@ -19,6 +20,7 @@ import {
   ROUTE_ATRIUM,
   ROUTE_EVENT,
   ROUTE_LOGIN,
+  ROUTE_REGISTER,
   ROUTE_TOKEN_CAPTURE,
   ROUTE_NOT_FOUND,
   ROUTE_TRANSLATOR,
@@ -71,12 +73,23 @@ const routes = [
       titleKey: 'profile.title'
     }
   },
+  //
+  // Auth bits
+  //
   {
     path: '/login',
     name: ROUTE_LOGIN,
     component: Login,
     meta: {
       titleKey: 'login.title'
+    }
+  },
+  {
+    path: '/register',
+    name: ROUTE_REGISTER,
+    component: Register,
+    meta: {
+      titleKey: 'register.title'
     }
   },
   {
@@ -121,6 +134,17 @@ const routes = [
     props: true,
     meta: {
       title: 'v0 | translator'
+    }
+  },
+  //
+  // NotFound fallback
+  //
+  {
+    path: '*',
+    name: ROUTE_NOT_FOUND,
+    component: NotFound,
+    meta: {
+      titleKey: 'notFound.title'
     }
   }
 ]

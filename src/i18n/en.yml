@@ -2,6 +2,7 @@ general:
   message: 'Hello, world'
   loginButton: Log in
   appName: Climate:Red
+  pleaseSelect: Please select
 
 api:
   auth:
@@ -29,6 +30,35 @@ login:
   emailHelp: The email address you registered to the conference with
   submitButton: Request login code
 
+register:
+  title: Register
+  infoText: Sign up for Climate:Red
+  backButton: Back to atrium
+  submitButton: Register
+  name:
+    label: Full name
+    placeholder: e.g. Daniel Howard
+    help: Your full name
+  email:
+    label: Your email address
+    placeholder: e.g. dan@example.com
+    help: You'll use your so you can sign in to the conference
+  language:
+    label: Language
+    help: We'll put the conference in this language for you
+  country:
+    label: Country
+    help: So we can see the reach of the conference
+  affiliation:
+    label: Your affiliation
+    placeholder: e.g. Open Lab
+    help: How you're associated with the IFRC
+  consentText: I confirm  that I have read and agree with the Terms and Privacy policy linked below
+  termsLink: Terms and Conditions
+  privacyLink: Privacy policy
+  genericError: Something went wrong, please try again
+  doneText: We've sent you a verification email ...
+
 profile:
   title: Your profile
   emailText: Email
@@ -44,3 +74,7 @@ coffeechat:
 
 help:
   title: Help
+
+notFound:
+  title: Page not found
+  backButton: Go home

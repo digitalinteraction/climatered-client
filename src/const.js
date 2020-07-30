@@ -6,6 +6,7 @@ export const ROUTE_PROFILE = 'Profile'
 
 export const ROUTE_EVENT = 'Event'
 export const ROUTE_LOGIN = 'Login'
+export const ROUTE_REGISTER = 'Register'
 export const ROUTE_TOKEN_CAPTURE = 'TokenCapture'
 export const ROUTE_NOT_FOUND = 'NotFound'
 export const ROUTE_TRANSLATOR = 'Translator'

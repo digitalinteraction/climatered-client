@@ -14,6 +14,8 @@
     "bulma": "^0.9.0",
     "core-js": "^3.6.5",
     "format-ms": "^1.2.1",
+    "i18n-iso-countries": "^6.0.0",
+    "is-email": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "ky": "^0.20.0",
     "marked": "^1.1.0",
