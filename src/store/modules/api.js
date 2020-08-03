@@ -47,7 +47,7 @@ const actions = {
 
     const [slots, events] = await Promise.all([
       agent.get('schedule/slots').json(),
-      agent.get('schedule/events').json()
+      agent.get('schedule/sessions').json()
     ])
 
     commit('slots', slots.slots)
