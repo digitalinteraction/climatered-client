@@ -126,9 +126,9 @@ export default {
     // this.$socket.unbindEvent(this, 'chat')
   },
   computed: {
-    ...mapState('api', ['hasData', 'events', 'slots']),
+    ...mapState('api', ['hasData', 'sessions', 'slots']),
     event() {
-      return this.events.find(e => e.id === this.eventId)
+      return this.sessions.find(e => e.id === this.eventId)
     },
     slot() {
       return this.event && this.slots.find(s => s.id === this.event.slot)

@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import jwt from 'jsonwebtoken'
 import {
   ROUTE_ATRIUM,
   ROUTE_TOKEN_CAPTURE,
@@ -27,18 +26,26 @@ export default {
       isReady: false
     }
   },
-  created() {
+  mounted() {
     const { token } = localStorage
     if (token) {
-      this.$store.dispatch('api/fetchData')
-
-      const user = jwt.decode(token)
-      // this.setLocale(user.user_lang)
-      this.$store.commit('api/user', user)
+      //
+      // If there is a token stored, authenticate with it
+      //
+      this.$store.dispatch('api/authenticate', {
+        socket: this.$socket,
+        token
+      })
     } else if (!noAuthRoutes.includes(this.$route.name)) {
+      //
+      // If there isn't a token and it isn't a whitelisted route, go to the atrium
+      //
       this.$router.replace({ name: ROUTE_ATRIUM })
     }
 
+    //
+    // If they came to exactly the root, go to the atrium
+    //
     if (this.$route.path === '/') {
       this.$router.replace({ name: ROUTE_ATRIUM })
     }

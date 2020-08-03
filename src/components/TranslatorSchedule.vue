@@ -20,7 +20,7 @@
           <td>{{ group.event.hostLanguage }}</td>
           <td>
             <router-link :to="group.event | eventRoute">
-              {{ group.event.name }}
+              {{ group.event.id }}
             </router-link>
           </td>
         </tr>

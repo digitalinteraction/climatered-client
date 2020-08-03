@@ -18,7 +18,7 @@
           <AttendeeSchedule
             v-if="$store.state.api.hasData"
             :slots="$store.state.api.slots"
-            :events="$store.state.api.events"
+            :events="$store.state.api.sessions"
           />
         </template>
 
@@ -53,7 +53,7 @@ export default {
       return jwt.decode(localStorage.token)
     },
     translatorEvents() {
-      return this.$store.state.api.events?.filter(e => e.enableTranslation)
+      return this.$store.state.api.sessions?.filter(e => e.enableTranslation)
     }
   },
   methods: {

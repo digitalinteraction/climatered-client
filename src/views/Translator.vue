@@ -14,10 +14,10 @@
       </div>
     </section>
 
-    <section class="section" v-if="videoLink">
+    <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-two-thirds">
+          <div class="column is-two-thirds" v-if="videoLink">
             <h2 class="title is-3">Live video</h2>
             <VideoEmbed :video-link="videoLink" />
           </div>
@@ -82,9 +82,9 @@ export default {
     }
   },
   computed: {
-    ...mapState('api', ['hasData', 'events', 'slots']),
+    ...mapState('api', ['hasData', 'sessions', 'slots']),
     event() {
-      return this.events.find(e => e.id === this.eventId)
+      return this.sessions.find(e => e.id === this.eventId)
     },
     videoLink() {
       return findLink(this.event.links, 'video', this.language)
