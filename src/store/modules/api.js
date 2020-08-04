@@ -63,7 +63,9 @@ const actions = {
         agent.get('schedule/sessions')
       ])
 
-      if (responses.some(r => !r.ok)) throw new Error('Networking error')
+      for (const response of responses) {
+        if (response.status !== 200) throw new Error(response.statusText)
+      }
 
       const [slots, sessions] = await Promise.all(responses.map(r => r.json()))
 
