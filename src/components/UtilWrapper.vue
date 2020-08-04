@@ -3,7 +3,7 @@
     <div class="buttons">
       <slot name="back-button" />
     </div>
-    <section class="is-large">
+    <section class="section is-large">
       <div class="container is-small">
         <div class="box is-centered">
           <slot name="content" />

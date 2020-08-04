@@ -1,5 +1,5 @@
 <template>
-  <div class="translator" v-if="$store.state.api.hasData">
+  <div class="translator">
     <section class="section is-small">
       <div class="container">
         <div class="level">

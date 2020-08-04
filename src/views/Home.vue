@@ -16,7 +16,6 @@
         <template v-if="isRole('attendee')">
           <h2 class="title">Attendee schedule</h2>
           <AttendeeSchedule
-            v-if="$store.state.api.hasData"
             :slots="$store.state.api.slots"
             :events="$store.state.api.sessions"
           />
@@ -25,7 +24,6 @@
         <template v-if="isRole('translator')">
           <h2 class="title">Translator schedule</h2>
           <TranslatorSchedule
-            v-if="$store.state.api.hasData"
             :slots="$store.state.api.slots"
             :events="translatorEvents"
           />

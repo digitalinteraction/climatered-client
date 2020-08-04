@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <router-view v-if="isReady" />
+    <ApiError v-if="apiState === 'error'" />
+    <router-view v-else-if="isReady" />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import {
   ROUTE_ATRIUM,
   ROUTE_TOKEN_CAPTURE,
   ROUTE_LOGIN,
   ROUTE_REGISTER
 } from './const'
+
+import ApiError from '@/components/ApiError.vue'
 
 // Routes that can be visited without being logged in
 const noAuthRoutes = [
@@ -21,18 +26,22 @@ const noAuthRoutes = [
 ]
 
 export default {
+  components: { ApiError },
   data() {
     return {
       isReady: false
     }
   },
-  mounted() {
+  computed: {
+    ...mapState('api', ['apiState'])
+  },
+  async mounted() {
     const { token } = localStorage
     if (token) {
       //
       // If there is a token stored, authenticate with it
       //
-      this.$store.dispatch('api/authenticate', {
+      await this.$store.dispatch('api/authenticate', {
         socket: this.$socket,
         token
       })
