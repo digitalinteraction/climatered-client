@@ -15,19 +15,21 @@ export function pickApi() {
   return window.CONFIG?.API_URL ?? 'http://localhost:3000'
 }
 
-const getters = {
-  agent: () => {
-    const headers = {}
-
-    const { token } = localStorage
-    if (localStorage.token) headers.authorization = `Bearer ${token}`
-
-    return ky.extend({
-      prefixUrl: pickApi(),
-      throwHttpErrors: false,
-      headers
-    })
+const agent = ky.extend({
+  prefixUrl: pickApi(),
+  throwHttpErrors: false,
+  hooks: {
+    beforeRequest: [
+      request => {
+        if (!localStorage.token) return
+        request.headers.set('Authorization', `Bearer ${localStorage.token}`)
+      }
+    ]
   }
+})
+
+const getters = {
+  agent: () => agent
 }
 
 const mutations = {
@@ -54,14 +56,16 @@ const actions = {
     commit('user', user)
     return dispatch('fetchData')
   },
-  async fetchData({ commit, getters }) {
-    const agent = getters.agent
-
+  async fetchData({ commit }) {
     try {
-      const [slots, sessions] = await Promise.all([
-        agent.get('schedule/slots').json(),
-        agent.get('schedule/sessions').json()
+      const responses = await Promise.all([
+        agent.get('schedule/slots'),
+        agent.get('schedule/sessions')
       ])
+
+      if (responses.some(r => !r.ok)) throw new Error('Networking error')
+
+      const [slots, sessions] = await Promise.all(responses.map(r => r.json()))
 
       commit('slots', slots.slots)
       commit('sessions', sessions.sessions)
