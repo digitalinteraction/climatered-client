@@ -10,6 +10,9 @@ import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
+import Terms from '../views/Terms.vue'
+import Privacy from '../views/Privacy.vue'
+
 import Event from '../views/Event.vue'
 import Home from '../views/Home.vue'
 import NotFound from '../views/NotFound.vue'
@@ -27,7 +30,9 @@ import {
   ROUTE_SCHEDULE,
   ROUTE_COFFEE_CHAT,
   ROUTE_HELP,
-  ROUTE_PROFILE
+  ROUTE_PROFILE,
+  ROUTE_TERMS,
+  ROUTE_PRIVACY
 } from '../const'
 
 Vue.use(VueRouter)
@@ -106,6 +111,25 @@ const routes = [
     component: NotFound,
     meta: {
       titleKey: 'notfound.title'
+    }
+  },
+  //
+  // static pages
+  //
+  {
+    path: '/terms',
+    name: ROUTE_TERMS,
+    component: Terms,
+    meta: {
+      titleKey: 'terms.title'
+    }
+  },
+  {
+    path: '/privacy',
+    name: ROUTE_PRIVACY,
+    component: Privacy,
+    meta: {
+      titleKey: 'privacy.title'
     }
   },
   //

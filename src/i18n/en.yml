@@ -24,7 +24,7 @@ login:
   infoText: We'll send you an email to confirm who you are. The email will
     have a link in it which will log you in. It will expire after 30
     minutes. If you don't recieve anything check your spam folder.
-  backButton: back to atrium
+  backButton: Back to atrium
   emailLabel: Email
   emailPlaceholder: e.g. geoff@example.com
   emailHelp: The email address you registered to the conference with
@@ -78,3 +78,11 @@ help:
 notFound:
   title: Page not found
   backButton: Go home
+
+terms:
+  title: Terms
+  backButton: Back to atrium
+
+privacy:
+  title: Privacy
+  backButton: Back to atrium

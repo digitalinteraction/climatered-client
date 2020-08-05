@@ -12,7 +12,9 @@ import {
   ROUTE_ATRIUM,
   ROUTE_TOKEN_CAPTURE,
   ROUTE_LOGIN,
-  ROUTE_REGISTER
+  ROUTE_REGISTER,
+  ROUTE_TERMS,
+  ROUTE_PRIVACY
 } from './const'
 
 import ApiError from '@/components/ApiError.vue'
@@ -22,7 +24,9 @@ const noAuthRoutes = [
   ROUTE_ATRIUM,
   ROUTE_TOKEN_CAPTURE,
   ROUTE_LOGIN,
-  ROUTE_REGISTER
+  ROUTE_REGISTER,
+  ROUTE_TERMS,
+  ROUTE_PRIVACY
 ]
 
 export default {

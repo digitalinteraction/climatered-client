@@ -4,6 +4,9 @@ export const ROUTE_COFFEE_CHAT = 'CoffeeChat'
 export const ROUTE_HELP = 'Help'
 export const ROUTE_PROFILE = 'Profile'
 
+export const ROUTE_TERMS = 'Terms'
+export const ROUTE_PRIVACY = 'Privacy'
+
 export const ROUTE_EVENT = 'Event'
 export const ROUTE_LOGIN = 'Login'
 export const ROUTE_REGISTER = 'Register'
