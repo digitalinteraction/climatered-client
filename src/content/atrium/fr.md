@@ -1,9 +1,13 @@
-# Bonjour le monde
+# Bienvenue à notre sommet mondial numérique sur le changement climatique!
 
-Hé, tu sais comment j'essaie toujours de sauver la planète? Voici ma chance. Est-ce ma machine à expresso? Comment as-tu obtenu ma machine à expresso? Je faisais partie de quelque chose de spécial. Vous êtes un jeune homme très talentueux, avec vos propres pensées et idées intelligentes. Avez-vous besoin d'un manager?
+**Le changement climatique affecte chacun, partout. Par conséquent, aucune personne, aucun pays ou aucun fuseau horaire n'est exclu du sommet Virtual Climate:Red, organisé par le réseau de la Croix-Rouge et du Croissant-Rouge. En réunissant des personnes du monde entier, nous créons une véritable plateforme mondiale pour débattre et inspirer l'action climatique.**
 
-Finalement, vous prévoyez d'avoir des dinosaures lors de votre tournée de dinosaures, non? Juste ma chance, pas de glace. Dieu crée des dinosaures. Dieu détruit les dinosaures. Dieu crée l'homme. L'homme détruit Dieu. L'homme crée des dinosaures. Oui, oui, sans le oups! Dieu crée des dinosaures. Dieu détruit les dinosaures. Dieu crée l'homme. L'homme détruit Dieu. L'homme crée des dinosaures.
+Tout d'abord, veuillez vous inscrire Une semaine avant le sommet, vous pouvez commencer à parcourir le programme et créer votre propre programme du 9 au 10 septembre. Consultez également la section Quoi de neuf pour découvrir des sessions intéressantes et des conférenciers inspirants.
 
-Je faisais partie de quelque chose de spécial. Juste ma chance, pas de glace. Mon père m'a dit une fois, rire et le monde rit avec toi, Cry, et je te donnerai quelque chose à pleurer sur toi petit salaud! Ouais, mais vos scientifiques étaient tellement préoccupés de savoir s'ils le pouvaient ou non, ils ne se sont pas arrêtés pour se demander s'ils le devraient.
+Pendant le sommet, en plus de nos panels, sessions et ateliers attrayants, vous pouvez vous connecter avec des gens du monde entier dans des conversations de café.
 
-Dieu crée des dinosaures. Dieu détruit les dinosaures. Dieu crée l'homme. L'homme détruit Dieu. L'homme crée des dinosaures. Vous pensez vraiment que vous pouvez piloter cette chose? Ils utilisent nos propres satellites contre nous. Et l'horloge tourne. Que Dieu nous aide, nous sommes entre les mains d'ingénieurs.
+Vous pouvez en savoir plus sur la vision commune du réseau de la Croix-Rouge et du Croissant-Rouge sur la lutte contre le changement climatique en tant qu'urgence humanitaire dans notre Stratégie 2030 et Les ambitions du Mouvement pour faire face à la crise climatique. Notre kit de formation sur le climat peut également être une ressource utile pour vous.
+
+Un sommet ne consiste pas seulement à écouter, il sert aussi à se connecter, à s’inspirer, à apprendre ensemble et à construire de nouvelles idées et initiatives. Lors du sommet Climate:Red, vous pourrez faire exactement cela.
+
+Nous avons hâte de vous y rencontrer.
