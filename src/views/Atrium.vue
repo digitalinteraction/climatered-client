@@ -1,7 +1,7 @@
 <template>
   <AppWrapper>
     <div class="atrium">
-      <img class="atrium-hero" src="/img/atrium.svg" />
+      <img v-if="currentBanner" :src="currentBanner" class="atrium-hero" />
       <div class="atrium-info">
         <section class="section">
           <div class="columns">
@@ -73,6 +73,13 @@ const content = {
   dev: 'atrium.content'
 }
 
+const banner = {
+  en: '/img/atrium-en.svg',
+  fr: '/img/atrium-fr.svg',
+  es: '/img/atrium-es.svg',
+  ar: '/img/atrium-ar.svg'
+}
+
 export default {
   components: { AppWrapper },
   data() {
@@ -86,6 +93,9 @@ export default {
     ...mapState('api', ['user']),
     currentContent() {
       return content[this.$i18n.locale]
+    },
+    currentBanner() {
+      return banner[this.$i18n.locale]
     }
   },
   async mounted() {
