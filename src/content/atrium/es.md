@@ -1,9 +1,13 @@
-# Hola Mundo
+# ¡Bienvenido a nuestra cumbre mundial digital sobre cambio climático!
 
-Oye, ¿sabes cómo siempre trato de salvar el planeta? Aquí está mi oportunidad. ¿Es esta mi máquina de café espresso? ¿Qué, qué, cómo conseguiste mi cafetera espresso? Fui parte de algo especial. Eres un joven muy talentoso, con tus propios pensamientos e ideas inteligentes. ¿Necesitas un gerente?
+**El cambio climático afecta a todos, en todas partes. Por lo tanto, ninguna persona, país o zona horaria está excluida de la cumbre virtual Climate:Red, organizada por la red de la Cruz Roja y la Media Luna Roja. Al reunir a personas de todo el mundo, creamos una plataforma verdaderamente global para debatir e inspirar la acción climática.**
 
-Eventualmente, planeas tener dinosaurios en tu gira de dinosaurios, ¿verdad? Solo mi suerte, sin hielo. Dios crea dinosaurios. Dios destruye a los dinosaurios. Dios crea al hombre. El hombre destruye a Dios. El hombre crea dinosaurios. ¡Sí, sí, sin Uy! Dios crea dinosaurios. Dios destruye a los dinosaurios. Dios crea al hombre. El hombre destruye a Dios. El hombre crea dinosaurios.
+Primero, haga su registro. Una semana antes de la cumbre, puede comenzar a navegar por el programa y crear su propio horario del 9 al 10 de septiembre. Consulte también la sección Qué hay ahora en para ver algunas sesiones interesantes y oradores inspiradores.
 
-Fui parte de algo especial. Solo mi suerte, sin hielo. ¡Mi papá una vez me dijo, ríe y el mundo se ríe contigo, Cry, y te daré algo por lo que llorar, pequeño bastardo! Sí, pero sus científicos estaban tan preocupados por si podían o no, que no se detuvieron a pensar si deberían hacerlo.
+Durante la cumbre, además de nuestros interesantes paneles, sesiones y talleres, puede conectarse con personas de todo el mundo durante conversaciones con café.
 
-Dios crea dinosaurios. Dios destruye a los dinosaurios. Dios crea al hombre. El hombre destruye a Dios. El hombre crea dinosaurios. ¿De verdad crees que puedes volar esa cosa? Están usando nuestros propios satélites contra nosotros. Y el tiempo corre. Dios nos ayude, estamos en manos de ingenieros.
+Puede leer más sobre la visión colectiva de la red de la Cruz Roja y de la Media Luna Roja para abordar el cambio climático como una emergencia humanitaria en nuestra Estrategia 2030 y las Ambiciones del Movimiento para Abordar la Crisis Climática. Nuestro Kit de Capacitación sobre el Clima también podría ser un recurso útil para usted.
+
+Una cumbre no se trata solo de escuchar, sino de conectarse, inspirarse mutuamente, aprender juntos y construir nuevas ideas e iniciativas. En Climate:Red podrás hacer precisamente eso.
+
+No podemos esperar para conocerte.
