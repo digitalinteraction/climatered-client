@@ -84,7 +84,7 @@
         </span>
       </router-link>
     </div>
-    <div class="app-page">
+    <div class="app-page" v-if="hasData">
       <slot />
     </div>
     <AppFooter class="app-footer" />
@@ -166,12 +166,15 @@ export default {
     setLocale(this.user?.user_lang ?? 'en')
   },
   computed: {
-    ...mapState('api', ['user', 'settings']),
+    ...mapState('api', ['user', 'settings', 'apiState']),
     isDev() {
       return process.env.NODE_ENV === 'development'
     },
     scheduleLive() {
-      return this.settings.scheduleLive
+      return this.hasData && this.settings.scheduleLive
+    },
+    hasData() {
+      return this.apiState === 'active'
     }
   },
   methods: {
