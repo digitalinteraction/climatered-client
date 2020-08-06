@@ -1,1 +1,8 @@
-(en) Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur.
+## 100 Sessions Confirmed!
+
+### From [number] National Societies 
+### More to come, take a look at our current top picks! 
+ 
+**Want to host a session at Climate:Red? Submit through this [form](https://future-rcrc.com/climate-red-virtual-summit/)  before 16th August. 
+The full schedule will be announced in September.** 
+
