@@ -4,7 +4,7 @@
       slot="back-button"
       class="button is-text"
       :to="atriumRoute"
-      v-t="'login.backButton'"
+      v-t="'atrium.returnTo'"
     />
     <div slot="content" class="login-page">
       <h1 class="title" v-t="'login.title'" />
@@ -17,7 +17,7 @@
           <label class="label" v-t="'login.emailLabel'"></label>
           <div class="control">
             <input
-              type="text"
+              type="email"
               class="input"
               v-model="email"
               :placeholder="$t('login.emailPlaceholder')"

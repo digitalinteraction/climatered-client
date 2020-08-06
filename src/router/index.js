@@ -13,6 +13,7 @@ import Register from '../views/Register.vue'
 
 import Terms from '../views/Terms.vue'
 import Privacy from '../views/Privacy.vue'
+import ErrorPage from '../views/Error.vue'
 
 import Event from '../views/Event.vue'
 import Home from '../views/Home.vue'
@@ -33,6 +34,7 @@ import {
   ROUTE_HELP,
   ROUTE_PROFILE,
   ROUTE_TERMS,
+  ROUTE_ERROR,
   ROUTE_PRIVACY,
   ROUTE_SESSIONS
 } from '../const'
@@ -140,6 +142,14 @@ const routes = [
     component: Privacy,
     meta: {
       titleKey: 'privacy.title'
+    }
+  },
+  {
+    path: '/error',
+    component: ErrorPage,
+    name: ROUTE_ERROR,
+    meta: {
+      title: 'Error'
     }
   },
   //

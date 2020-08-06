@@ -4,7 +4,7 @@
       slot="back-button"
       class="button is-text"
       :to="atriumRoute"
-      v-t="'terms.backButton'"
+      v-t="'atrium.returnTo'"
     />
     <div slot="content" class="content" v-html="currentContent"></div>
   </UtilWrapper>

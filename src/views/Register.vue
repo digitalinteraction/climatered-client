@@ -10,7 +10,7 @@
     <div slot="content" class="register-page">
       <h1 class="title" v-t="'register.title'" />
       <div class="content">
-        <p>{{ $t('register.infoText') }}</p>
+        <p>{{ $t('atrium.returnTo') }}</p>
       </div>
 
       <div class="register-form" v-if="!done">
@@ -24,6 +24,7 @@
         />
         <TextField
           name="email"
+          type="email"
           v-model="registration.email"
           :has-error="errors.email"
           label-key="register.email.label"

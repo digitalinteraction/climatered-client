@@ -4,7 +4,7 @@
     <div class="control">
       <input
         :id="name"
-        type="text"
+        :type="type"
         class="input"
         :class="inputClass"
         :value="value"
@@ -26,7 +26,8 @@ export default {
     value: { type: String, required: true },
     placeholderKey: { type: String, required: true },
     helpKey: { type: String, default: null },
-    hasError: { type: Boolean, default: false }
+    hasError: { type: Boolean, default: false },
+    type: { type: String, default: 'text' }
   },
   computed: {
     inputClass() {

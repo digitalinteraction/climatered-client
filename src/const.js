@@ -7,6 +7,7 @@ export const ROUTE_PROFILE = 'Profile'
 
 export const ROUTE_TERMS = 'Terms'
 export const ROUTE_PRIVACY = 'Privacy'
+export const ROUTE_ERROR = 'Error'
 
 export const ROUTE_EVENT = 'Event'
 export const ROUTE_LOGIN = 'Login'

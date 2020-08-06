@@ -19,13 +19,13 @@ atrium:
   loginButton: Log in
   or: or
   scheduleButton: See the schedule!
+  returnTo: Back to atrium
 
 login:
   title: Login
   infoText: We'll send you an email to confirm who you are. The email will
     have a link in it which will log you in. It will expire after 30
     minutes. If you don't recieve anything check your spam folder.
-  backButton: Back to atrium
   emailLabel: Email
   emailPlaceholder: e.g. geoff@example.com
   emailHelp: The email address you registered to the conference with
@@ -34,7 +34,6 @@ login:
 register:
   title: Register
   infoText: Sign up for Climate:Red
-  backButton: Back to atrium
   submitButton: Register
   name:
     label: Full name
@@ -92,11 +91,9 @@ notFound:
 
 terms:
   title: Terms
-  backButton: Back to atrium
 
 privacy:
   title: Privacy
-  backButton: Back to atrium
 
 sessionCard:
   type:
