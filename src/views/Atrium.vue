@@ -34,7 +34,7 @@
                 <router-link
                   class="button is-link is-medium"
                   :to="sessionsRoute"
-                  v-t="'atrium.scheduleButton'"
+                  v-t="'atrium.sessionsButton'"
                 />
               </div>
             </div>

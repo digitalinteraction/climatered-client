@@ -59,7 +59,7 @@ export default {
       return typeIcons[this.session.type]
     },
     typeTextKey() {
-      return `sessionCard.type.${this.session.type}`
+      return `data.type.${this.session.type}`
     },
     cardClasses() {
       return [`is-${this.session.track}`]

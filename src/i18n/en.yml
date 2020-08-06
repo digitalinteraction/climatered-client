@@ -3,14 +3,11 @@ general:
   loginButton: Log in
   appName: Climate:Red
   pleaseSelect: Please select
-  comingSoon: (Coming Soon)
 
 api:
   auth:
     general: 'Bad auth'
     jwtExpired: 'JWT expired'
-  another:
-    thing: 'something'
 
 atrium:
   title: Atrium
@@ -18,7 +15,7 @@ atrium:
   registerButton: Register Now!
   loginButton: Log in
   or: or
-  scheduleButton: See the schedule!
+  sessionsButton: See what's on!
   returnTo: Back to atrium
 
 login:
@@ -29,12 +26,13 @@ login:
   emailLabel: Email
   emailPlaceholder: e.g. geoff@example.com
   emailHelp: The email address you registered to the conference with
+  badEmail: Bad email
+  doneText: Login code sent
   submitButton: Request login code
 
 register:
   title: Register
-  infoText: Sign up for Climate:Red
-  submitButton: Register
+  infoText: Register for Climate:Red
   name:
     label: Full name
     placeholder: e.g. Daniel Howard
@@ -53,7 +51,8 @@ register:
     label: Your affiliation
     placeholder: e.g. Open Lab
     help: How you're associated with the IFRC
-  consentText: I confirm  that I have read and agree with the Terms and Privacy policy linked below
+  submitButton: Register
+  consentText: I confirm that I have read and agree with the Terms and Privacy policy linked below
   termsLink: Terms and Conditions
   privacyLink: Privacy policy
   genericError: Something went wrong, please try again
@@ -65,16 +64,15 @@ profile:
   localeText: Default language
   whenText: Logged in
   logoutButton: Log out
+  deleteButton: Delete account
+  deleteText: This is permenant, are you sure?
 
 sessions:
   title: What's on
   tabs:
-    plenary:
-      title: Speakers
-    panel:
-      title: Panels
-    sessions:
-      title: Sessions
+    plenary: Speakers
+    panel: Panels
+    sessions: Sessions
 
 schedule:
   title: Schedule
@@ -96,6 +94,9 @@ privacy:
   title: Privacy
 
 sessionCard:
+  hostedBy: Hosted by
+
+data:
   type:
     ignite-talk: Ignite talk
     games: Games
@@ -105,4 +106,8 @@ sessionCard:
     plenary: Keynote
     speaker: Speaker
     fishbowl: Fishbowl
-  hostedBy: Hosted by
+  theme:
+    act: Act
+    empower: Empower
+    influence: Influence
+    transform: Transform
