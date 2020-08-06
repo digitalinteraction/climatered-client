@@ -13,23 +13,28 @@
         </ul>
       </div>
 
-      <section
-        v-for="item in tabs"
-        :key="item.type"
-        class="section is-small"
-        :id="item.href.slice(1)"
-      >
-        <h2 class="title" v-t="item.titleKey" />
-        <div class="columns is-multiline">
-          <div
-            v-for="session in tabSessions(item)"
-            :key="session.id"
-            class="column is-one-third-desktop is-one-half-tablet is-one"
-          >
-            <SessionCard :session="session" />
+      <div class="container">
+        <section class="section is-small" v-if="currentContent">
+          <div class="content" v-html="currentContent" />
+        </section>
+        <section
+          v-for="item in tabs"
+          :key="item.type"
+          class="section is-small"
+          :id="item.href.slice(1)"
+        >
+          <h2 class="title" v-t="item.titleKey" />
+          <div class="columns is-multiline">
+            <div
+              v-for="session in tabSessions(item)"
+              :key="session.id"
+              class="column is-one-third-desktop is-one-half-tablet is-one"
+            >
+              <SessionCard :session="session" />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   </AppWrapper>
 </template>
@@ -38,6 +43,19 @@
 import AppWrapper from '@/components/AppWrapper.vue'
 import SessionCard from '@/components/SessionCard.vue'
 import { mapState } from 'vuex'
+
+import contentEN from '@/content/sessions/en.md'
+import contentFR from '@/content/sessions/fr.md'
+import contentES from '@/content/sessions/es.md'
+import contentAR from '@/content/sessions/ar.md'
+
+const content = {
+  en: contentEN,
+  fr: contentFR,
+  es: contentES,
+  ar: contentAR,
+  dev: 'sessions.content'
+}
 
 const tabs = [
   {
@@ -66,7 +84,10 @@ export default {
     }
   },
   computed: {
-    ...mapState('api', ['sessions'])
+    ...mapState('api', ['sessions']),
+    currentContent() {
+      return content[this.$i18n.locale]
+    }
   },
   methods: {
     tabClasses(tab) {
