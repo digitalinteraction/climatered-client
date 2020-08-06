@@ -39,13 +39,13 @@
               </div>
             </div>
             <div class="column">
-              <a
+              <!-- <a
                 class="twitter-timeline"
                 href="https://twitter.com/dog_rates?ref_src=twsrc%5Etfw"
                 data-height="600"
                 data-dnt="true"
                 >{{ $t('atrium.tweetTitle') }}</a
-              >
+              > -->
             </div>
           </div>
         </section>
