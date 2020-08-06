@@ -43,17 +43,22 @@ export default {
     const { token } = localStorage
     if (token) {
       //
-      // If there is a token stored, authenticate with it
+      // If there is a token stored, authenticate with it & fetch data
       //
       await this.$store.dispatch('api/authenticate', {
         socket: this.$socket,
         token
       })
-    } else if (!noAuthRoutes.includes(this.$route.name)) {
+    } else {
+      // If there isn't a token, still fetch data
+      this.$store.dispatch('api/fetchData')
+
       //
       // If there isn't a token and it isn't a whitelisted route, go to the atrium
       //
-      this.$router.replace({ name: ROUTE_ATRIUM })
+      if (!noAuthRoutes.includes(this.$route.name)) {
+        this.$router.replace({ name: ROUTE_ATRIUM })
+      }
     }
 
     //
