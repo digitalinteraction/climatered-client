@@ -187,6 +187,10 @@ export default {
       setLocale(event.target.value)
     },
     isDisabled(tabName) {
+      if (tabName === 'helpdesk') {
+        return !(this.hasData && this.settings.enableHelpdesk)
+      }
+
       const alwasyAllowed = new Set(['atrium', 'helpdesk'])
       const preSchedule = new Set(['atrium', 'helpdesk', 'sessions'])
 
