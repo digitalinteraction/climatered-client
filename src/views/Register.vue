@@ -4,7 +4,7 @@
       slot="back-button"
       class="button is-text"
       :to="atriumRoute"
-      v-t="'register.backButton'"
+      v-t="'atrium.returnTo'"
     />
 
     <div slot="content" class="register-page">
