@@ -1,9 +1,14 @@
-# Hello world
+# Welcome to our global, digital climate change summit!
 
-Hey, you know how I'm, like, always trying to save the planet? Here's my chance. Is this my espresso machine? Wh-what is-h-how did you get my espresso machine? I was part of something special. You're a very talented young man, with your own clever thoughts and ideas. Do you need a manager?
 
-Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Just my luck, no ice. God creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys God. Man creates Dinosaurs. Yes, Yes, without the oops! God creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys God. Man creates Dinosaurs.
+Climate change affects everyone, everywhere. Therefore, no person, country or time zone is excluded from the virtual Climate:Red Summit, organised by the Red Cross Red Crescent network. By bringing together people from all around the world, we create a truly global platform to debate and inspire climate action.
 
-I was part of something special. Just my luck, no ice. My dad once told me, laugh and the world laughs with you, Cry, and I'll give you something to cry about you little bastard! Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.
+First, please register here. One week before the summit, you can start browsing the programme [LINK] and build your own schedule for 9 – 10 September. Check also What’s on section for some interesting sessions and inspiring speakers. 
 
-God creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys God. Man creates Dinosaurs. You really think you can fly that thing? They're using our own satellites against us. And the clock is ticking. God help us, we're in the hands of engineers.
+During the summit, in addition to our engaging panels, sessions and workshops, you can connect with people from around the globe in coffee chats.
+
+You can read more about the Red Cross and Red Crescent network’s collective vision on addressing climate change as a humanitarian emergency from our Strategy 2030 and The Movement Ambitions to Address the Climate Crisis. Our Climate Training Kit might also be a useful resource for you.
+
+A summit is not just about listening, but connecting, inspiring each other, learning together and building new ideas and initiatives. In Climate:Red you will be able to do just that. 
+
+We can’t wait to meet you here.
