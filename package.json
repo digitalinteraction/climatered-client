@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "postversion": "git push --follow-tags",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "readme-toc": "md-toc -i"
