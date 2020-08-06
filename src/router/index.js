@@ -175,7 +175,6 @@ const routes = [
   //
   {
     path: '*',
-    name: ROUTE_NOT_FOUND,
     component: NotFound,
     meta: {
       titleKey: 'notFound.title'

@@ -97,3 +97,15 @@ terms:
 privacy:
   title: Privacy
   backButton: Back to atrium
+
+sessionCard:
+  type:
+    ignite-talk: Ignite talk
+    games: Games
+    panel: Panel
+    workshop: Workshop
+    virtual-tour: Virtual tour
+    plenary: Keynote
+    speaker: Speaker
+    fishbowl: Fishbowl
+  hostedBy: Hosted by

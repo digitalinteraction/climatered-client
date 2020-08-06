@@ -1,4 +1,4 @@
-import { pickApi } from '../store/modules/api'
+import { pickApi } from '../utils'
 import SocketClient from 'socket.io-client'
 
 export default class ApiSocket {

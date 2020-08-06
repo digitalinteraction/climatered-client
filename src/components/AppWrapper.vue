@@ -149,9 +149,6 @@ const nav = [
 
 export default {
   components: { AppFooter },
-  props: {
-    scheduleLive: { type: Boolean, default: false }
-  },
   data() {
     return {
       showingMenu: false,
@@ -169,9 +166,12 @@ export default {
     setLocale(this.user?.user_lang ?? 'en')
   },
   computed: {
-    ...mapState('api', ['user']),
+    ...mapState('api', ['user', 'settings']),
     isDev() {
       return process.env.NODE_ENV === 'development'
+    },
+    scheduleLive() {
+      return this.settings.scheduleLive
     }
   },
   methods: {

@@ -33,7 +33,7 @@
               <div class="buttons is-centered" v-if="user">
                 <router-link
                   class="button is-link is-medium"
-                  :to="scheduleRoute"
+                  :to="sessionsRoute"
                   v-t="'atrium.scheduleButton'"
                 />
               </div>
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { ROUTE_LOGIN, ROUTE_SCHEDULE, ROUTE_REGISTER } from '../const'
+import { ROUTE_LOGIN, ROUTE_SESSIONS, ROUTE_REGISTER } from '../const'
 import { mapState } from 'vuex'
 
 import AppWrapper from '@/components/AppWrapper.vue'
@@ -79,7 +79,7 @@ export default {
     return {
       loginRoute: { name: ROUTE_LOGIN },
       registerRoute: { name: ROUTE_REGISTER },
-      scheduleRoute: { name: ROUTE_SCHEDULE }
+      sessionsRoute: { name: ROUTE_SESSIONS }
     }
   },
   computed: {

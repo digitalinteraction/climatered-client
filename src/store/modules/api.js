@@ -2,18 +2,16 @@ import ky from 'ky'
 import jwt from 'jsonwebtoken'
 
 import { setLocale } from '@/i18n'
+import { pickApi } from '@/utils'
 import { authenticateSocket } from '../../plugins/sockets.js'
 
 const state = () => ({
   slots: null,
   sessions: null,
+  settings: null,
   apiState: 'init', // 'init' | 'active' | 'error'
   user: null
 })
-
-export function pickApi() {
-  return window.CONFIG?.API_URL ?? 'http://localhost:3000'
-}
 
 const agent = ky.extend({
   prefixUrl: pickApi(),
@@ -39,6 +37,9 @@ const mutations = {
   sessions: (state, sessions) => {
     state.sessions = sessions
   },
+  settings: (state, settings) => {
+    state.settings = settings
+  },
   apiState: (state, apiState) => {
     state.apiState = apiState
   },
@@ -60,17 +61,21 @@ const actions = {
     try {
       const responses = await Promise.all([
         agent.get('schedule/slots'),
-        agent.get('schedule/sessions')
+        agent.get('schedule/sessions'),
+        agent.get('schedule/settings')
       ])
 
       for (const response of responses) {
         if (response.status !== 200) throw new Error(response.statusText)
       }
 
-      const [slots, sessions] = await Promise.all(responses.map(r => r.json()))
+      const [slots, sessions, settings] = await Promise.all(
+        responses.map(r => r.json())
+      )
 
       commit('slots', slots.slots)
       commit('sessions', sessions.sessions)
+      commit('settings', settings.settings)
       commit('apiState', 'active')
     } catch (error) {
       console.error(error)

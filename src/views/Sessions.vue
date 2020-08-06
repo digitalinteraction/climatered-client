@@ -12,91 +12,22 @@
           </li>
         </ul>
       </div>
-      <section class="section" id="speakers">
-        <div class="content">
-          <h2 class="title">Speakers</h2>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-        </div>
-      </section>
-      <section class="section" id="panels">
-        <div class="content">
-          <h2 class="title">Panels</h2>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-        </div>
-      </section>
-      <section class="section" id="sessions">
-        <div class="content">
-          <h2 class="title">Sessions</h2>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros. Nulla vitae elit libero, a
-            pharetra augue. Vestibulum id ligula porta felis euismod semper.
-          </p>
+
+      <section
+        v-for="item in tabs"
+        :key="item.type"
+        class="section is-small"
+        :id="item.href.slice(1)"
+      >
+        <h2 class="title" v-t="item.titleKey" />
+        <div class="columns is-multiline">
+          <div
+            v-for="session in tabSessions(item)"
+            :key="session.id"
+            class="column is-one-third"
+          >
+            <SessionCard :session="session" />
+          </div>
         </div>
       </section>
     </div>
@@ -105,6 +36,8 @@
 
 <script>
 import AppWrapper from '@/components/AppWrapper.vue'
+import SessionCard from '@/components/SessionCard.vue'
+import { mapState } from 'vuex'
 
 const tabs = [
   {
@@ -125,12 +58,15 @@ const tabs = [
 ]
 
 export default {
-  components: { AppWrapper },
+  components: { AppWrapper, SessionCard },
   data() {
     return {
       tabs,
-      currentTab: window.location.hash
+      currentTab: window.location.hash || '#speakers'
     }
+  },
+  computed: {
+    ...mapState('api', ['sessions'])
   },
   methods: {
     tabClasses(tab) {
@@ -140,6 +76,22 @@ export default {
     },
     updateActive(tab) {
       this.currentTab = tab.href
+    },
+    tabSessions(tab) {
+      // Pluck out plenary sessions
+      if (tab.type === 'plenary') {
+        return this.sessions.filter(s => s.type === 'plenary')
+      }
+
+      // Pluck out panel sessions
+      if (tab.type === 'panel') {
+        return this.sessions.filter(s => s.type === 'panel')
+      }
+
+      // Otherwise, return all sessions that aren't plenary or panels
+      return this.sessions.filter(
+        s => s.type !== 'plenary' && s.type !== 'panel'
+      )
     }
   }
 }
