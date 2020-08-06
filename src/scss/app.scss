@@ -49,3 +49,33 @@
     margin-inline-start: 2em;
   }
 }
+
+//
+// Custom tabs
+//
+.tabs.is-dark {
+  background-color: #2c3242;
+
+  ul {
+    border-bottom: 1px solid #2c3242;
+  }
+
+  li a {
+    color: $white;
+    font-weight: bold;
+    border-bottom: none;
+    padding: 0.5em 1.5em;
+  }
+
+  li.is-active a {
+    border-bottom: none;
+    background-color: #424755;
+  }
+}
+
+//
+// Misc
+//
+html {
+  scroll-behavior: smooth;
+}

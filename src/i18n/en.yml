@@ -3,6 +3,7 @@ general:
   loginButton: Log in
   appName: Climate:Red
   pleaseSelect: Please select
+  comingSoon: (Coming Soon)
 
 api:
   auth:
@@ -65,6 +66,16 @@ profile:
   localeText: Default language
   whenText: Logged in
   logoutButton: Log out
+
+sessions:
+  title: What's on
+  tabs:
+    plenary:
+      title: Speakers
+    panel:
+      title: Panels
+    sessions:
+      title: Sessions
 
 schedule:
   title: Schedule

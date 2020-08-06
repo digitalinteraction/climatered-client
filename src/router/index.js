@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import i18n from '../i18n'
 
 import Atrium from '../views/Atrium.vue'
+import Sessions from '../views/Sessions.vue'
 import Schedule from '../views/Schedule.vue'
 import CoffeeChat from '../views/CoffeeChat.vue'
 import Help from '../views/Help.vue'
@@ -32,7 +33,8 @@ import {
   ROUTE_HELP,
   ROUTE_PROFILE,
   ROUTE_TERMS,
-  ROUTE_PRIVACY
+  ROUTE_PRIVACY,
+  ROUTE_SESSIONS
 } from '../const'
 
 Vue.use(VueRouter)
@@ -44,6 +46,14 @@ const routes = [
     component: Atrium,
     meta: {
       titleKey: 'atrium.title'
+    }
+  },
+  {
+    path: '/sessions',
+    name: ROUTE_SESSIONS,
+    component: Sessions,
+    meta: {
+      titleKey: 'sessions.title'
     }
   },
   {

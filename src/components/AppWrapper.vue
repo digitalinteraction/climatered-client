@@ -29,37 +29,17 @@
           -->
           <div class="navbar-menu" ref="navbarMenu">
             <div class="navbar-start">
-              <!-- Atrium link -->
-              <router-link class="navbar-item" :to="atriumRoute">
-                <AtriumIcon class="navbar-item-icon" />
-                <span class="navbar-item-text" v-t="'atrium.title'" />
-              </router-link>
-              <!-- Schedule link -->
               <router-link
+                v-for="item in nav"
+                :key="item.name"
+                :to="item.to"
+                :disabled="isDisabled(item.name)"
                 class="navbar-item"
-                :to="scheduleRoute"
-                :disabled="!user"
               >
-                <ScheduleIcon class="navbar-item-icon" />
-                <span class="navbar-item-text" v-t="'schedule.title'" />
-              </router-link>
-              <!-- Coffee link -->
-              <router-link
-                class="navbar-item"
-                :to="coffeeRoute"
-                :disabled="!user"
-              >
-                <CoffeeChatIcon class="navbar-item-icon" />
-                <span class="navbar-item-text" v-t="'coffeechat.title'" />
-              </router-link>
-              <!-- Help link -->
-              <router-link
-                class="navbar-item"
-                :to="helpRoute"
-                :disabled="!user"
-              >
-                <HelpDeskIcon class="navbar-item-icon" />
-                <span class="navbar-item-text" v-t="'help.title'" />
+                <component :is="item.icon" class="navbar-item-icon" />
+                <span class="navbar-item-text">
+                  {{ $t(item.titleKey) }}
+                </span>
               </router-link>
             </div>
             <div class="navbar-end">
@@ -91,25 +71,17 @@
       Side tabbar
      -->
     <div class="app-tabbar">
-      <!-- Atrium tab -->
-      <router-link class="tabbar-item" :to="atriumRoute">
-        <AtriumIcon class="tabbar-item-icon" />
-        <span class="tabbar-item-text" v-t="'atrium.title'" />
-      </router-link>
-      <!-- Schedule tab -->
-      <router-link class="tabbar-item" :to="scheduleRoute" :disabled="!user">
-        <ScheduleIcon class="tabbar-item-icon" />
-        <span class="tabbar-item-text" v-t="'schedule.title'" />
-      </router-link>
-      <!-- Coffee chat tab -->
-      <router-link class="tabbar-item" :to="coffeeRoute" :disabled="!user">
-        <CoffeeChatIcon class="tabbar-item-icon" />
-        <span class="tabbar-item-text" v-t="'coffeechat.title'" />
-      </router-link>
-      <!-- Help tab -->
-      <router-link class="tabbar-item" :to="helpRoute" :disabled="!user">
-        <HelpDeskIcon class="tabbar-item-icon" />
-        <span class="tabbar-item-text" v-t="'help.title'" />
+      <router-link
+        v-for="item in nav"
+        :key="item.name"
+        :to="item.to"
+        :disabled="isDisabled(item.name)"
+        class="tabbar-item"
+      >
+        <component :is="item.icon" class="tabbar-item-icon" />
+        <span class="tabbar-item-text">
+          {{ $t(item.titleKey) }}
+        </span>
       </router-link>
     </div>
     <div class="app-page">
@@ -122,6 +94,7 @@
 <script>
 import {
   ROUTE_ATRIUM,
+  ROUTE_SESSIONS,
   ROUTE_SCHEDULE,
   ROUTE_COFFEE_CHAT,
   ROUTE_HELP,
@@ -137,26 +110,59 @@ import CoffeeChatIcon from '@/icon/coffee-chat.svg'
 import HelpDeskIcon from '@/icon/help-desk.svg'
 import AtriumIcon from '@/icon/atrium.svg'
 import ScheduleIcon from '@/icon/schedule.svg'
+import SessionsIcon from '@/icon/whats-on.svg'
 
 import { setLocale } from '@/i18n'
 
+const nav = [
+  {
+    name: 'atrium',
+    icon: AtriumIcon,
+    to: { name: ROUTE_ATRIUM },
+    titleKey: 'atrium.title'
+  },
+  {
+    name: 'sessions',
+    icon: SessionsIcon,
+    to: { name: ROUTE_SESSIONS },
+    titleKey: 'sessions.title'
+  },
+  {
+    name: 'schedule',
+    icon: ScheduleIcon,
+    to: { name: ROUTE_SCHEDULE },
+    titleKey: 'schedule.title'
+  },
+  {
+    name: 'coffeechat',
+    icon: CoffeeChatIcon,
+    to: { name: ROUTE_COFFEE_CHAT },
+    titleKey: 'coffeechat.title'
+  },
+  {
+    name: 'helpdesk',
+    icon: HelpDeskIcon,
+    to: { name: ROUTE_HELP },
+    titleKey: 'help.title'
+  }
+]
+
 export default {
-  components: {
-    AppFooter,
-    CoffeeChatIcon,
-    HelpDeskIcon,
-    AtriumIcon,
-    ScheduleIcon
+  components: { AppFooter },
+  props: {
+    scheduleLive: { type: Boolean, default: false }
   },
   data() {
     return {
       showingMenu: false,
       loginRoute: { name: ROUTE_LOGIN },
       atriumRoute: { name: ROUTE_ATRIUM },
+      sessionsRoute: { name: ROUTE_SESSIONS },
       scheduleRoute: { name: ROUTE_SCHEDULE },
       coffeeRoute: { name: ROUTE_COFFEE_CHAT },
       helpRoute: { name: ROUTE_HELP },
-      profileRoute: { name: ROUTE_PROFILE }
+      profileRoute: { name: ROUTE_PROFILE },
+      nav
     }
   },
   created() {
@@ -176,6 +182,16 @@ export default {
     },
     onLocale(event) {
       setLocale(event.target.value)
+    },
+    isDisabled(tabName) {
+      const alwasyAllowed = new Set(['atrium', 'helpdesk'])
+      const preSchedule = new Set(['atrium', 'helpdesk', 'sessions'])
+
+      if (!this.user) return !alwasyAllowed.has(tabName)
+
+      if (!this.scheduleLive) return !preSchedule.has(tabName)
+
+      return false
     }
   }
 }
@@ -231,6 +247,7 @@ $tabbar-width: 5.5rem;
   @include link;
 
   .tabbar-item-text {
+    text-align: center;
   }
   .tabbar-item-icon {
     height: 3rem;
