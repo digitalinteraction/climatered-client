@@ -80,6 +80,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@include mobile {
+  html {
+    scroll-padding-top: $navbar-height;
+  }
+}
+
 .section.is-small {
   padding: 1.5rem 1.5rem;
 }
