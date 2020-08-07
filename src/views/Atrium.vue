@@ -19,13 +19,13 @@
                 <router-link
                   class="button is-link is-medium"
                   :to="registerRoute"
-                  v-t="'atrium.registerButton'"
+                  v-t="'general.registerButton'"
                 />
                 <div class="atrium-login-or" v-t="'atrium.or'" />
                 <router-link
                   class="button is-medium"
                   :to="loginRoute"
-                  v-t="'atrium.loginButton'"
+                  v-t="'general.loginButton'"
                 />
               </div>
 

@@ -1,2 +1,55 @@
 general:
-  message: 'Bonjour le monde'
+  message: Bonjour le monde
+  loginButton: Se connecter
+  registerButton: Inscrivez-vous dès maintenant!
+  appName: Climate:Red
+  pleaseSelect: _
+#
+# api:
+#   auth:
+#     general: 'Bad auth'
+#     jwtExpired: 'JWT expired'
+#
+atrium:
+  title: _
+  or: ou
+  sessionsButton: _
+  returnTo: _
+
+login:
+  title: _
+  infoText: _
+  emailLabel: _
+  emailPlaceholder: e.g. geoff@example.com
+  emailHelp: _
+  badEmail: _
+  doneText: _
+  submitButton: _
+
+register:
+  title: Inscrivez
+  infoText: Inscrivez-vous à Climate:Red
+  name:
+    label: Nom complet
+    placeholder: e.g. Dan Howard
+    help: _
+  email:
+    label: l'adresse email
+    placeholder: e.g. dan@example.com
+    help: Vous utiliserez votre e-mail pour vous connecter à la conférence
+  language:
+    label: Langue
+    help: Ce sera votre langue principale pour la conférence
+  country:
+    label: Pays
+    help: Pour que nous puissions voir la portée de la conférence
+  affiliation:
+    label: _
+    placeholder:
+    help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
+  consentText: Je confirme avoir lu et accepté les conditions générales et la politique de confidentialité ci-dessous
+  termsLink: Termes et conditions
+  privacyLink: Politique de confidentialité
+  genericError: _
+  submitButton: Inscrivez
+  doneText: Nous vous avons envoyé un e-mail de vérification.

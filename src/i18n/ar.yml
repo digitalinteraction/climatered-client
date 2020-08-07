@@ -1,2 +1,55 @@
 general:
-  message: 'مرحبا بالعالم'
+  message: مرحبا بالعالم
+  loginButton: تسجيل الدخول
+  registerButton: سجل الان!
+  appName: Climate:Red
+  pleaseSelect: _
+#
+# api:
+#   auth:
+#     general: 'Bad auth'
+#     jwtExpired: 'JWT expired'
+#
+atrium:
+  title: _
+  or: أو
+  sessionsButton: _
+  returnTo: _
+
+login:
+  title: _
+  infoText: _
+  emailLabel: _
+  emailPlaceholder: e.g. geoff@example.com
+  emailHelp: _
+  badEmail: _
+  doneText: _
+  submitButton: _
+
+register:
+  title: تسجيل
+  infoText: التسجيل لمؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ
+  name:
+    label: الاسم الكامل
+    placeholder: e.g. Dan Howard
+    help: _
+  email:
+    label: عنوان البريد الالكتروني
+    placeholder: e.g. dan@example.com
+    help: ستستخدم بريدك الإلكتروني لتسجيل الدخول إلى المؤتمر
+  language:
+    label: لغة
+    help: ستكون هذه هي لغتك المفضلة للمؤتمر
+  country:
+    label: البلد
+    help: حتى نتمكن من رؤية مدى تغطية المؤتمر
+  affiliation:
+    label: _
+    placeholder:
+    help: 'جهة الانتماء (على سبيل المثال: موظف/متطوع/عضو مجلس إدارة/عضو جمعية وطنية/الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر/اللجنة الدولية للصليب الأحمر/المركز المرجعي، أو غير ذلك )'
+  consentText: _
+  termsLink: الأحكام والشروط
+  privacyLink: سياسة الخصوصية
+  genericError: _
+  submitButton: تسجيل
+  doneText: لقد أرسلنا إليك بريدًا إلكترونيًا للتحقق

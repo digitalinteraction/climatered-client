@@ -1,6 +1,7 @@
 general:
   message: 'Hello, world'
   loginButton: Log in
+  registerButton: Register Now!
   appName: Climate:Red
   pleaseSelect: Please select
 
@@ -11,9 +12,6 @@ api:
 
 atrium:
   title: Atrium
-  tweetTitle: Live tweets
-  registerButton: Register Now!
-  loginButton: Log in
   or: or
   sessionsButton: See what's on!
   returnTo: Back to atrium
@@ -35,12 +33,12 @@ register:
   infoText: Register for Climate:Red
   name:
     label: Full name
-    placeholder: e.g. Daniel Howard
+    placeholder: e.g. Dan Howard
     help: Your full name
   email:
     label: Your email address
     placeholder: e.g. dan@example.com
-    help: You'll use your so you can sign in to the conference
+    help: You will use your email to log in to the virtual summit
   language:
     label: Language
     help: We'll put the conference in this language for you
@@ -49,7 +47,7 @@ register:
     help: So we can see the reach of the conference
   affiliation:
     label: Your affiliation
-    placeholder: e.g. Open Lab
+    placeholder:
     help: How you're associated with the IFRC
   submitButton: Register
   consentText: I confirm that I have read and agree with the Terms and Privacy policy linked below

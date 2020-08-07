@@ -1,2 +1,55 @@
 general:
   message: 'Hola Mundo'
+  loginButton: Iniciar sesión
+  registerButton: ¡Regístrate ahora!
+  appName: Climate:Red
+  pleaseSelect: _
+#
+# api:
+#   auth:
+#     general: 'Bad auth'
+#     jwtExpired: 'JWT expired'
+#
+atrium:
+  title: _
+  or: o
+  sessionsButton: _
+  returnTo: _
+
+login:
+  title: _
+  infoText: _
+  emailLabel: _
+  emailPlaceholder: e.g. geoff@example.com
+  emailHelp: _
+  badEmail: _
+  doneText: _
+  submitButton: _
+
+register:
+  title: Registrarse
+  infoText: 'Registrarse para el clima: ROJA'
+  name:
+    label: Nombre completo
+    placeholder: e.g. Dan Howard
+    help: _
+  email:
+    label: dirección de correo electrónico
+    placeholder: e.g. dan@example.com
+    help: Usarás tu correo electrónico para iniciar sesión en la cumbre virtual
+  language:
+    label: idioma
+    help: Este será su idioma preferido para la conferencia
+  country:
+    label: País
+    help: Para que podamos ver el alcance de la conferencia
+  affiliation:
+    label: _
+    placeholder:
+    help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
+  consentText: Confirmo que he leído y estoy de acuerdo con los Términos y la Política de Privacidad vinculados a continuación.
+  termsLink: Términos y Condiciones
+  privacyLink: Política de privacidad
+  genericError: _
+  submitButton: Registrarse
+  doneText: Le hemos enviado un correo electrónico de verificación.
