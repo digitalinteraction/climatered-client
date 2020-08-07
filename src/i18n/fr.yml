@@ -3,7 +3,7 @@ general:
   loginButton: Se connecter
   registerButton: Inscrivez-vous dès maintenant!
   appName: Climate:Red
-  pleaseSelect: _
+  pleaseSelect: Veuillez sélectionner
 #
 # api:
 #   auth:
@@ -11,9 +11,9 @@ general:
 #     jwtExpired: 'JWT expired'
 #
 atrium:
-  title: _
+  title: Atrium
   or: ou
-  sessionsButton: _
+  sessionsButton: Voyez ce qui se passe!
   returnTo: Retourner à l’Atrium
 
 login:
@@ -33,7 +33,7 @@ register:
   name:
     label: Nom complet
     placeholder: e.g. Dan Howard
-    help: _
+    help: Votre nom complet
   email:
     label: l'adresse email
     placeholder: e.g. dan@example.com
@@ -45,55 +45,56 @@ register:
     label: Pays
     help: Pour que nous puissions voir la portée de la conférence
   affiliation:
-    label: _
+    label: Votre affiliation
     placeholder:
     help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
   consentText: Je confirme avoir lu et accepté les conditions générales et la politique de confidentialité ci-dessous
   termsLink: Termes et conditions
   privacyLink: Politique de confidentialité
-  genericError: _
+  genericError: Une erreur s'est produite. Veuillez réessayer
   submitButton: Inscrivez
   doneText: Nous vous avons envoyé un e-mail de vérification.
 
 profile:
-  title: _
-  emailText: _
-  localeText: _
-  whenText: _
-  nameText: _
-  countryText: _
-  affiliationText: _
-  logoutButton: _
-  deleteButton: _
-  deleteText: _
+  title: Votre profil
+  emailText: Votre adresse E-mail
+  localeText: Langue choisie
+  whenText: Connecté
+  nameText: Nom
+  countryText: Pays
+  affiliationText: Affiliation
+  logoutButton: Se déconnecter
+  deleteButton: Supprimer le compte
+  deleteText: C'est permanent, êtes-vous sûr?
 
 sessions:
-  title: _
+  title: Quoi de neuf
   tabs:
-    plenary: _
-    panel: _
-    sessions: _
+    plenary: Les intervenants
+    panel: Tables rondes
+    sessions: Séances
 
 schedule:
-  title: _
+  title: Programme
 
 coffeechat:
-  title: _
+  title: Causerie Café
 
 help:
-  title: _
+  title: Aide
 
 notFound:
-  title: _
+  title: Page introuvable
+  info: Nous n'avons pas trouvé la page que vous recherchiez, veuillez vérifier le lien sur lequel vous avez cliqué ou retourner à l'atrium.
 
 terms:
-  title: _
+  title: Termes
 
 privacy:
-  title: _
+  title: Confidentialité
 
 sessionCard:
-  hostedBy: _
+  hostedBy: Organisée par
 
 data:
   type:
@@ -102,7 +103,7 @@ data:
     panel: Tables rondes et discussions
     workshop: Ateliers
     virtual-tour: Visites virtuelles
-    plenary: _
+    plenary: Liminaire
     speaker: _
     fishbowl: Bocal à poisson
   track:

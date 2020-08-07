@@ -87,6 +87,7 @@ help:
 
 notFound:
   title: Page not found
+  info: We couldn't find the page you were looking for, please check the link you clicked or go back to the atrium.
 
 terms:
   title: Terms

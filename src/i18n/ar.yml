@@ -3,7 +3,7 @@ general:
   loginButton: تسجيل الدخول
   registerButton: سجل الان!
   appName: Climate:Red
-  pleaseSelect: _
+  pleaseSelect: يرجى التحديد
 #
 # api:
 #   auth:
@@ -11,9 +11,9 @@ general:
 #     jwtExpired: 'JWT expired'
 #
 atrium:
-  title: _
+  title: الملتقى الرئيسي
   or: أو
-  sessionsButton: _
+  sessionsButton: شاهد ماذا يحدث !
   returnTo: العودة إلى الملتقى الرئيسي
 
 login:
@@ -33,7 +33,7 @@ register:
   name:
     label: الاسم الكامل
     placeholder: e.g. Dan Howard
-    help: _
+    help: اسمك الكامل
   email:
     label: عنوان البريد الالكتروني
     placeholder: e.g. dan@example.com
@@ -45,55 +45,56 @@ register:
     label: البلد
     help: حتى نتمكن من رؤية مدى تغطية المؤتمر
   affiliation:
-    label: _
+    label: جهة الانتساب
     placeholder:
     help: 'جهة الانتماء (على سبيل المثال: موظف/متطوع/عضو مجلس إدارة/عضو جمعية وطنية/الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر/اللجنة الدولية للصليب الأحمر/المركز المرجعي، أو غير ذلك )'
-  consentText: _
+  consentText: _ # waiting on duplication
   termsLink: الأحكام والشروط
   privacyLink: سياسة الخصوصية
-  genericError: _
+  genericError: حدث خطأ ما. أعد المحاولة من فضلك
   submitButton: تسجيل
   doneText: لقد أرسلنا إليك بريدًا إلكترونيًا للتحقق
 
 profile:
-  title: _
-  emailText: _
-  localeText: _
-  whenText: _
-  nameText: _
-  countryText: _
-  affiliationText: _
-  logoutButton: _
-  deleteButton: _
-  deleteText: _
+  title: ملفك الشخصي
+  emailText: بريدك الالكتروني
+  localeText: اللغة المختارة
+  whenText: تسجيل الدخول
+  nameText: الإسم
+  countryText: البلد
+  affiliationText: جهة الانتساب
+  logoutButton: تسجيل الخروج
+  deleteButton: حذف الحساب
+  deleteText: هذا دائم، هل أنت متأكد؟
 
 sessions:
-  title: _
+  title: ماذا يحدث
   tabs:
-    plenary: _
-    panel: _
-    sessions: _
+    plenary: المتحدثون
+    panel: حلقات نقاش
+    sessions: جلسات
 
 schedule:
-  title: _
+  title: البرنامج
 
 coffeechat:
-  title: _
+  title: دردشة حول فنجان قهوة
 
 help:
-  title: _
+  title: المساعدة
 
 notFound:
-  title: _
+  title: الصفحة غير موجودة
+  info: لم نتمكن من العثور على الصفحة التي كنت تبحث عنها، يرجى التحقق من الرابط الذي نقرت عليه أو العودة إلى الملتقى الرئيسي.
 
 terms:
-  title: _
+  title: الشروط
 
 privacy:
-  title: _
+  title: الخصوصية
 
 sessionCard:
-  hostedBy: _
+  hostedBy: المقدم بواسطة
 
 data:
   type:
@@ -102,7 +103,7 @@ data:
     panel: أفرقة خبراء ونقاشات
     workshop: حلقات عملية
     virtual-tour: جولات افتراضية
-    plenary: _
+    plenary: الكلمة الرئيسية
     speaker: _
     fishbowl: حل المشاكل أسلوب الحلقتين
   theme:

@@ -97,7 +97,7 @@
 - [x] data.type.workshop
 - [x] data.type.virtual-tour
 - [x] data.type.plenary
-- [x] data.type.speaker
+- [ ] data.type.speaker
 - [x] data.type.fishbowl
 
 ## content

@@ -3,7 +3,7 @@ general:
   loginButton: Iniciar sesión
   registerButton: ¡Regístrate ahora!
   appName: Climate:Red
-  pleaseSelect: _
+  pleaseSelect: Por favor seleccionar
 #
 # api:
 #   auth:
@@ -11,9 +11,9 @@ general:
 #     jwtExpired: 'JWT expired'
 #
 atrium:
-  title: _
+  title: Entrada
   or: o
-  sessionsButton: _
+  sessionsButton: ¡Mira lo que pasa!
   returnTo: Regresar a la Entrada
 
 login:
@@ -33,7 +33,7 @@ register:
   name:
     label: Nombre completo
     placeholder: e.g. Dan Howard
-    help: _
+    help: Su nombre completo
   email:
     label: dirección de correo electrónico
     placeholder: e.g. dan@example.com
@@ -45,55 +45,56 @@ register:
     label: País
     help: Para que podamos ver el alcance de la conferencia
   affiliation:
-    label: _
+    label: Su afiliación
     placeholder:
     help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
   consentText: Confirmo que he leído y estoy de acuerdo con los Términos y la Política de Privacidad vinculados a continuación.
   termsLink: Términos y Condiciones
   privacyLink: Política de privacidad
-  genericError: _
+  genericError: Algo salió mal. Por favor, vuelva a intentarlo
   submitButton: Registrarse
   doneText: Le hemos enviado un correo electrónico de verificación.
 
 profile:
-  title: _
-  emailText: _
-  localeText: _
-  whenText: _
-  nameText: _
-  countryText: _
-  affiliationText: _
-  logoutButton: _
-  deleteButton: _
-  deleteText: _
+  title: Tu perfil
+  emailText: Su Correo Electrónico
+  localeText: Idioma seleccionado
+  whenText: Sesión iniciada
+  nameText: Nombre
+  countryText: País
+  affiliationText: Afiliación
+  logoutButton: Cerrar sesión
+  deleteButton: Eliminar cuenta
+  deleteText: Esto es permanente, ¿está segura?
 
 sessions:
-  title: _
+  title: Que hay ahora
   tabs:
-    plenary: _
-    panel: _
-    sessions: _
+    plenary: Los oradores
+    panel: Mesas redondas
+    sessions: Sesiones
 
 schedule:
-  title: _
+  title: Calendario
 
 coffeechat:
-  title: _
+  title: Conversaciones con café
 
 help:
-  title: _
+  title: Ayuda
 
 notFound:
-  title: _
+  title: Página no encontrada
+  info: No pudimos encontrar la página que estaba buscando, verifique el enlace en el que hizo clic o regrese al atrio.
 
 terms:
-  title: _
+  title: Términos
 
 privacy:
-  title: _
+  title: Privacidad
 
 sessionCard:
-  hostedBy: _
+  hostedBy: Organizado por
 
 data:
   type:
@@ -102,7 +103,7 @@ data:
     panel: Paneles y Debates
     workshop: Seminarios
     virtual-tour: Visitas Virtuales
-    plenary: _
+    plenary: Nota clave
     speaker: _
     fishbowl: Fishbowls- Peceras
   track:
