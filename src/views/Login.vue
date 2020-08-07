@@ -14,18 +14,18 @@
 
       <div class="login-form" v-if="!done">
         <div class="field">
-          <label class="label" v-t="'login.emailLabel'"></label>
+          <label class="label" v-t="'login.email.label'"></label>
           <div class="control">
             <input
               type="email"
               class="input"
               v-model="email"
-              :placeholder="$t('login.emailPlaceholder')"
+              :placeholder="$t('login.email.placeholder')"
               @keyup.enter="submit"
             />
           </div>
           <p class="help">
-            {{ $t('login.emailHelp') }}
+            {{ $t('login.email.help') }}
           </p>
         </div>
         <div class="buttons">

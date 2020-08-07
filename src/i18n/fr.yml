@@ -14,17 +14,18 @@ atrium:
   title: _
   or: ou
   sessionsButton: _
-  returnTo: _
+  returnTo: Retourner à l’Atrium
 
 login:
-  title: _
-  infoText: _
-  emailLabel: _
-  emailPlaceholder: e.g. geoff@example.com
-  emailHelp: _
-  badEmail: _
-  doneText: _
-  submitButton: _
+  title: Connexion
+  infoText: Après votre inscription, nous vous enverrons un email de confirmation. L'e-mail contiendra un lien qui vous connectera. Le lien expirera au bout de 30 minutes. Si vous ne recevez rien, veuillez vérifier votre dossier “Courriers indésirables”.
+  email:
+    label: Adresse E-mail
+    placeholder: e.g. geoff@example.com
+    help: L'adresse e-mail avec laquelle vous vous êtes inscrit à la conférence
+  submitButton: Demander un code de connexion
+  doneText: Código de inicio de sesión enviado
+  badEmail: Mauvais e-mail
 
 register:
   title: Inscrivez

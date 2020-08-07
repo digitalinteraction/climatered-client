@@ -14,17 +14,18 @@ atrium:
   title: _
   or: o
   sessionsButton: _
-  returnTo: _
+  returnTo: Regresar a la Entrada
 
 login:
-  title: _
-  infoText: _
-  emailLabel: _
-  emailPlaceholder: e.g. geoff@example.com
-  emailHelp: _
-  badEmail: _
-  doneText: _
-  submitButton: _
+  title: Ingreso
+  infoText: Después de registrarse, le enviaremos un correo electrónico de confirmación. El correo electrónico tendrá un enlace que le conectará. El enlace caducará después de 30 minutos. Si no lo recibe, verifique su carpeta de correo no deseado.
+  email:
+    label: Correo Electrónico
+    placeholder: e.g. geoff@example.com
+    help: La dirección de correo electrónico con la que se registró en la conferencia
+  submitButton: Solicitar código de inicio de sesión
+  doneText: Código de inicio de sesión enviado
+  badEmail: Correo electrónico malo
 
 register:
   title: Registrarse

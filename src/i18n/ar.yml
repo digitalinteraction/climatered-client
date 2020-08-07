@@ -14,17 +14,18 @@ atrium:
   title: _
   or: أو
   sessionsButton: _
-  returnTo: _
+  returnTo: العودة إلى الملتقى الرئيسي
 
 login:
-  title: _
-  infoText: _
-  emailLabel: _
-  emailPlaceholder: e.g. geoff@example.com
-  emailHelp: _
-  badEmail: _
-  doneText: _
-  submitButton: _
+  title: تسجيل الدخول
+  infoText: بعد التسجيل ، سوف نرسل لك رسالة تأكيد بالبريد الإلكتروني. سيكون في البريد الإلكتروني رابط ، والذي سيسجل دخولك. ستنتهي صلاحية الرابط بعد 30 دقيقة. إذا لم تتلق أي شيء ، فيرجى التحقق من ملف الرسائل الغير مرغوب بها.
+  email:
+    label: البريد الإلكتروني
+    placeholder: e.g. geoff@example.com
+    help: عنوان البريد الإلكتروني الذي سجلت به في المؤتمر
+  submitButton: طلب رمز تسجيل الدخول
+  doneText: تم إرسال رمز تسجيل الدخول
+  badEmail: البريد الإلكتروني غير جيد
 
 register:
   title: تسجيل
