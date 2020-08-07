@@ -97,16 +97,16 @@ sessionCard:
 
 data:
   type:
-    ignite-talk: _
-    games: _
-    panel: _
-    workshop: _
-    virtual-tour: _
+    ignite-talk: Sesión de tormenta de ideas
+    games: Juegos de aprendizaje y diálogo
+    panel: Paneles y Debates
+    workshop: Seminarios
+    virtual-tour: Visitas Virtuales
     plenary: _
     speaker: _
-    fishbowl: _
-  theme:
-    act: _
-    empower: _
-    influence: _
-    transform: _
+    fishbowl: Fishbowls- Peceras
+  track:
+    act: Acción
+    empower: Habilitación
+    influence: Influencia
+    transform: Transformación

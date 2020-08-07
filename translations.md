@@ -3,20 +3,25 @@
 ## gui
 
 - [x] general.message
-- [ ] general.loginButton
+- [x] general.loginButton
 - [x] general.appName
-- [ ] general.pleaseSelect
+- [x] general.pleaseSelect
+
+---
 
 - [ ] api.auth.general
 - [ ] api.auth.jwtExpired
 
+---
+
 - [ ] atrium.title
-- [ ] atrium.tweetTitle
-- [ ] atrium.registerButton
-- [ ] atrium.loginButton
-- [ ] atrium.or
-- [ ] atrium.sessionsButton
+- [x] atrium.registerButton
+- [x] atrium.loginButton
+- [x] atrium.or
+- [x] atrium.sessionsButton
 - [x] atrium.returnTo
+
+---
 
 - [x] login.title
 - [x] login.infoText
@@ -27,53 +32,60 @@
 - [x] login.submitButton
 - [x] login.doneText
 
+---
+
 - [x] register.title + register.submitButton
 - [x] register.infoText
 - [x] register.name.label
-- [ ] register.name.placeholder
-- [ ] register.name.help
+- [~] register.name.placeholder
+- [x] register.name.help
 - [x] register.email.label
-- [ ] register.email.placeholder
+- [~] register.email.placeholder
 - [x] register.email.help
 - [x] register.language.label
 - [x] register.language.help
 - [x] register.country.label
 - [x] register.country.help
-- [ ] register.affiliation.label
-- [ ] register.affiliation.placeholer
+- [x] register.affiliation.label
+- [~] register.affiliation.placeholer
 - [x] register.affiliation.help
 - [x] register.consentText
 - [x] register.termsLink
 - [x] register.privacyLink
-- [ ] register.genericError
+- [x] register.genericError
 - [x] register.doneText
 
-- [ ] profile.title
-- [ ] profile.emailText
-- [ ] profile.localeText
-- [ ] profile.whenText
-- [ ] profile.logoutButton
-- [ ] profile.deleteButton
-- [ ] profile.deleteConfirm
+---
 
-- [ ] sessions.title
-- [ ] sessions.tabs.plenary
-- [ ] sessions.tabs.panel
-- [ ] sessions.tabs.sessions
+- [x] profile.title
+- [x] profile.emailText
+- [x] profile.localeText
+- [x] profile.whenText
+- [x] profile.nameText
+- [x] profile.countryText
+- [x] profile.affiliationText
+- [x] profile.logoutButton
+- [x] profile.deleteButton
+- [x] profile.deleteText
 
-- [ ] schedule.title
+---
 
-- [ ] coffeechat.title
+- [x] sessions.title
+- [x] sessions.tabs.plenary
+- [x] sessions.tabs.panel
+- [x] sessions.tabs.sessions
 
-- [ ] help.title
+---
 
-- [ ] notFound.title
-
-- [ ] terms.title
-
+- [x] schedule.title
+- [x] coffeechat.title
+- [x] help.title
+- [x] notFound.title
+- [x] terms.title
 - [x] privacy.title
+- [x] sessionCard.hostedBy
 
-- [ ] sessionCard.hostedBy
+---
 
 - [x] data.theme.act
 - [x] data.track.empower
@@ -84,7 +96,7 @@
 - [x] data.type.panel
 - [x] data.type.workshop
 - [x] data.type.virtual-tour
-- [ ] data.type.plenary
+- [x] data.type.plenary
 - [x] data.type.speaker
 - [x] data.type.fishbowl
 
@@ -97,21 +109,23 @@
 
 ## api
 
-- [ ] email.general.greeting
-- [ ] email.general.signature
+- [x] email.general.greeting
+- [x] email.general.signature
 
-- [ ] email.userExists.subject
-- [ ] email.userExists.body
-- [ ] email.userExists.action
+---
 
-- [ ] email.pleaseVerify.subject
-- [ ] email.pleaseVerify.body
+- [x] email.userExists.subject
+- [x] email.userExists.body
+- [x] email.userExists.action
+
+---
+
+- [x] email.pleaseVerify.subject
+- [x] email.pleaseVerify.body
 - [ ] email.pleaseVerify.action
 
-- [ ] email.login.subject
-- [ ] email.login.body
-- [ ] email.login.action
+---
 
-## doc changes
-
-- put some bits into "002 - Atrium Copy_completed"
+- [x] email.login.subject
+- [x] email.login.body
+- [x] email.login.action
