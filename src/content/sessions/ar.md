@@ -1,1 +1,9 @@
-(ar) Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nulla vitae elit libero, a pharetra augue. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+## تم تأكيد ١٠٠ جلسة
+
+### More to come, take a look at our current top picks!
+
+**المزيد قادم، ألق نظرة على أفضل اختياراتنا الحالية
+هل تريد استضافة جلسة في مؤتمر الصليب الأحمر والهلال الأحمر بشأن المناخ؟ أرسل من خلال
+[هذا النموذج](https://future-rcrc.com/climate-red-virtual-summit)
+قبل ١٦ أغسطس
+سيتم الإعلان عن الجدول الزمني الكامل في سبتمبر**
