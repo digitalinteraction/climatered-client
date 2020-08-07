@@ -53,3 +53,59 @@ register:
   genericError: _
   submitButton: Registrarse
   doneText: Le hemos enviado un correo electrónico de verificación.
+
+profile:
+  title: _
+  emailText: _
+  localeText: _
+  whenText: _
+  nameText: _
+  countryText: _
+  affiliationText: _
+  logoutButton: _
+  deleteButton: _
+  deleteText: _
+
+sessions:
+  title: _
+  tabs:
+    plenary: _
+    panel: _
+    sessions: _
+
+schedule:
+  title: _
+
+coffeechat:
+  title: _
+
+help:
+  title: _
+
+notFound:
+  title: _
+
+terms:
+  title: _
+
+privacy:
+  title: _
+
+sessionCard:
+  hostedBy: _
+
+data:
+  type:
+    ignite-talk: _
+    games: _
+    panel: _
+    workshop: _
+    virtual-tour: _
+    plenary: _
+    speaker: _
+    fishbowl: _
+  theme:
+    act: _
+    empower: _
+    influence: _
+    transform: _
