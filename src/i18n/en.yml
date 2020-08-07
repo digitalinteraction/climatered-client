@@ -61,8 +61,11 @@ register:
 profile:
   title: Your profile
   emailText: Email
-  localeText: Default language
+  localeText: Chosen language
   whenText: Logged in
+  nameText: Name
+  countryText: Country
+  affiliationText: Country
   logoutButton: Log out
   deleteButton: Delete account
   deleteText: This is permenant, are you sure?
@@ -85,7 +88,6 @@ help:
 
 notFound:
   title: Page not found
-  backButton: Go home
 
 terms:
   title: Terms
