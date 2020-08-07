@@ -61,17 +61,17 @@ const tabs = [
   {
     type: 'plenary',
     href: '#speakers',
-    titleKey: 'sessions.tabs.plenary.title'
+    titleKey: 'sessions.tabs.plenary'
   },
   {
     type: 'panel',
     href: '#panels',
-    titleKey: 'sessions.tabs.panel.title'
+    titleKey: 'sessions.tabs.panel'
   },
   {
     type: 'sessions',
     href: '#sessions',
-    titleKey: 'sessions.tabs.sessions.title'
+    titleKey: 'sessions.tabs.sessions'
   }
 ]
 
