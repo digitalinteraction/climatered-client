@@ -8,6 +8,7 @@
     />
     <div slot="content" class="not-found-page">
       <h1 class="title" v-t="'notFound.title'" />
+      <p v-t="'notFound.info'" />
       <p><router-link :to="atriumRoute" v-t="'atrium.returnTo'" /></p>
     </div>
   </UtilWrapper>
