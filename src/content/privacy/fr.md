@@ -5,21 +5,14 @@ Pour faciliter la gestion du Sommet, certaines de vos données personnelles (com
  
 ### Tiers et partenaires de confiance
 
-Zoom - https://zoom.us/privacy
-
-Slido - https://www.sli.do/terms#gdpr
-
-Google - https://policies.google.com/privacy
-
-Landbot - http://landbot.io/terms-conditions et https://help.landbot.io/article/h2ndzk6som-privacy-security
-
-Digital Ocean - https://www.digitalocean.com/legal/privacy-policy/
-
-Sendgrid - https://sendgrid.com/policies/privacy-2016/
-
-Github - https://docs.github.com/en/github/site-policy/github-privacy-statement
-
-Open Lab - https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf
+- [Zoom](https://zoom.us/privacy)
+- [Slido](https://www.sli.do/terms#gdpr)
+- [Google](https://policies.google.com/privacy)
+- [Landbot](https://help.landbot.io/article/h2ndzk6som-privacy-security)
+- [Digital Ocean](https://www.digitalocean.com/legal/privacy-policy/)
+- [Sendgrid](https://sendgrid.com/policies/privacy-2016/)
+- [Github](https://docs.github.com/en/github/site-policy/github-privacy-statement)
+- [Open Lab](https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf)
 
 
 Nous ne transmettrons que les données personnelles nécessaires et nous prendrons des mesures pour garantir leur protection et faire en sorte qu’elles ne restent pas stockées chez nous ou chez des tiers et partenaires de confiance plus longtemps que nécessaire. Veuillez noter que vos données personnelles ne seront pas utilisées à des fins autres que celles qu’exige la gestion du Sommet. 

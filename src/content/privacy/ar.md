@@ -5,21 +5,14 @@
 
 ### الأطراف الثالثة والشركاء الموثوق بهم
 
-Zoom - https://zoom.us/privacy
-
-Slido - https://www.sli.do/terms#gdpr
-
-Google - https://policies.google.com/privacy
-
-Landbot - http://landbot.io/terms-conditions & https://help.landbot.io/article/h2ndzk6som-privacy-security
-
-Digital Ocean - https://www.digitalocean.com/legal/privacy-policy/
-
-Sendgrid - https://sendgrid.com/policies/privacy-2016/
-
-Github - https://docs.github.com/en/github/site-policy/github-privacy-statement
-
-Open Lab - https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf
+- [Zoom](https://zoom.us/privacy)
+- [Slido]](https://www.sli.do/terms#gdpr)
+- [Google](https://policies.google.com/privacy)
+- [Landbot](https://help.landbot.io/article/h2ndzk6som-privacy-security)
+- [Digital Ocean](https://www.digitalocean.com/legal/privacy-policy/)
+- [Sendgrid](https://sendgrid.com/policies/privacy-2016/)
+- [Github](https://docs.github.com/en/github/site-policy/github-privacy-statement)
+- [Open Lab](https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf)
 
 لن نتقاسم إلا البيانات الشخصية الضرورية، وسنتخذ جميع التدابير اللازمة لضمان حمايتها وعدم بقائها مخزنة لدينا أو لدى الأطراف الثالثة والشركاء الموثوقين مدة أطول مما تقتضيه الضرورة. وتجدر الإشارة إلى أن بياناتكم الشخصية لن تستخدم لأغراض أخرى تتعدى ما هو منسجم مع إدارة القمة.  
 
