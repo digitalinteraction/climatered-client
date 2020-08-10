@@ -28,7 +28,7 @@
             <div
               v-for="session in tabSessions(item)"
               :key="session.id"
-              class="column is-one-third-desktop is-one-half-tablet is-one"
+              class="column is-one-third-desktop is-one-quarter-fullhd is-half-tablet"
             >
               <SessionCard :session="session" />
             </div>
@@ -75,6 +75,19 @@ const tabs = [
   }
 ]
 
+const plenaryTypes = ['opening-panel', 'speaker', 'plenary', 'closing-panel']
+const panelTypes = ['panel', 'q-and-a']
+
+function sessionsFromTypes(sessions, typeArray) {
+  const matched = []
+  for (const type of typeArray) {
+    for (const s of sessions) {
+      if (s.type === type) matched.push(s)
+    }
+  }
+  return matched
+}
+
 export default {
   components: { AppWrapper, SessionCard },
   data() {
@@ -101,18 +114,17 @@ export default {
     tabSessions(tab) {
       // Pluck out plenary sessions
       if (tab.type === 'plenary') {
-        return this.sessions.filter(s => s.type === 'plenary')
+        return sessionsFromTypes(this.sessions, plenaryTypes)
       }
 
       // Pluck out panel sessions
       if (tab.type === 'panel') {
-        return this.sessions.filter(s => s.type === 'panel')
+        return sessionsFromTypes(this.sessions, panelTypes)
       }
 
       // Otherwise, return all sessions that aren't plenary or panels
-      return this.sessions.filter(
-        s => s.type !== 'plenary' && s.type !== 'panel'
-      )
+      const usedMap = new Set([...plenaryTypes, ...panelTypes])
+      return this.sessions.filter(s => !usedMap.has(s.type))
     }
   }
 }
