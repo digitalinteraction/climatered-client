@@ -46,7 +46,7 @@ register:
     help: Para que podamos ver el alcance de la conferencia
   affiliation:
     label: Su afiliación
-    placeholder:
+    placeholder: ''
     help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
   consentText: Confirmo que he leído y estoy de acuerdo con los Términos y la Política de Privacidad vinculados a continuación.
   termsLink: Términos y Condiciones

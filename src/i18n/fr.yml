@@ -46,7 +46,7 @@ register:
     help: Pour que nous puissions voir la portée de la conférence
   affiliation:
     label: Votre affiliation
-    placeholder:
+    placeholder: ''
     help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
   consentText: Je confirme avoir lu et accepté les conditions générales et la politique de confidentialité ci-dessous
   termsLink: Termes et conditions

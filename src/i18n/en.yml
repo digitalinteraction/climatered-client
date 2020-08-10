@@ -48,7 +48,7 @@ register:
     help: So we can see the reach of the conference
   affiliation:
     label: Your affiliation
-    placeholder:
+    placeholder: ''
     help: How you're associated with the IFRC
   submitButton: Register
   consentText: I confirm that I have read and agree with the Terms and Privacy policy linked below
