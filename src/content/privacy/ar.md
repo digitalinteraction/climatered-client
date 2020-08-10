@@ -31,4 +31,4 @@ Open Lab - https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprote
 
 إذا كانت لديكم أية أسئلة خاصة بشأن استخدام بياناتكم الشخصية، يرجى الاتصال بالعنوان التالي: solferino.academy@ifrc.org 
 
-للاطلاع على النص الكامل لسياسة الاتحاد الدولي بشأن حماية البيانات يرجى زيارة الموقع التالي: [here](https://edit.climate.red/uploads/ifrc-data_protection-policy_ar.pdf)
+للاطلاع على النص الكامل لسياسة الاتحاد الدولي بشأن حماية البيانات يرجى زيارة الموقع التالي: [link](https://edit.climate.red/uploads/ifrc-data_protection-policy_ar.pdf)
