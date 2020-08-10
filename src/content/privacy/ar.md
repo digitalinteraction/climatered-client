@@ -1,9 +1,34 @@
-# Privacy policy [ar]
+# سياسة حماية الخصوصية
 
-Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Etiam porta sem malesuada magna mollis euismod. Aenean lacinia bibendum nulla sed consectetur.
+من الضروري جمع بعض بياناتكم الشخصية (مثل الاسم وعنوان البريد الإلكتروني) تسهيلاً لإدارة قمة المناخ الافتراضية. إضافة إلى ذلك، يجب أن نتقاسم بعض هذه البيانات (مثل عنوان البريد الإلكتروني) مع عدد من الأطراف الثالثة والشركاء الموثوق بهم، ذلك أننا نتعاون مع مجموعة من الشركاء في تنظيم الأحداث الخاصة.
+للحصول على معلومات أدق بشأن الطريقة التي يمكن أن تستخدم بها بعض الأطراف الثالثة بياناتكم الشخصية حيثما ينطبق ذلك، يرجى العودة إلى سياسات حماية الخصوصية المتاحة على مختلف المواقع والمنصات المستخدمة أثناء القمة
 
-Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+### الأطراف الثالثة والشركاء الموثوق بهم
 
-Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor.
+Zoom - https://zoom.us/privacy
 
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+Slido - https://www.sli.do/terms#gdpr
+
+Google - https://policies.google.com/privacy
+
+Landbot - http://landbot.io/terms-conditions & https://help.landbot.io/article/h2ndzk6som-privacy-security
+
+Digital Ocean - https://www.digitalocean.com/legal/privacy-policy/
+
+Sendgrid - https://sendgrid.com/policies/privacy-2016/
+
+Github - https://docs.github.com/en/github/site-policy/github-privacy-statement
+
+Open Lab - https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf
+
+لن نتقاسم إلا البيانات الشخصية الضرورية، وسنتخذ جميع التدابير اللازمة لضمان حمايتها وعدم بقائها مخزنة لدينا أو لدى الأطراف الثالثة والشركاء الموثوقين مدة أطول مما تقتضيه الضرورة. وتجدر الإشارة إلى أن بياناتكم الشخصية لن تستخدم لأغراض أخرى تتعدى ما هو منسجم مع إدارة القمة.  
+
+يتم جمع البيانات الشخصية التالية ومعالجتها للأسباب المحددة أدناه. 
+الاسم وعنوان البريد الإلكتروني: يستخدمان للتسجيل والتدقيق والمراسلات ذات الصلة.  
+
+بيانات التعريف الشخصية بما في ذلك اللغة المفضلة، والانتماء إلى الصليب الأحمر والهلال الأحمر، (ذكر البلد اختياري) : من أجل تزويدكم بالخيارات الصحيحة أثناء المشاركة، وجمع البيانات الإحصائية عن التوزيع الديمغرافي للمشاركين. 
+عنوان بروتوكول الأنترنت (أي بي) IP address : من أجل تسهيل جلسات العمل المصغرة، والحفاظ على أمن وسلامة أعمال الجلسات/والحدث (أو الأحداث). يرجى الانتباه إلى أن ذلك قد يكشف عن موقعكم. وسوف يتم إخفاء هوية مصدر هذه البيانات والبيانات الوصفية الأخرى و/أو حذفها بشكل مأمون حين تنتفي الحاجة إليها لأغراض إدارة الحدث (أو الأحداث). 
+
+إذا كانت لديكم أية أسئلة خاصة بشأن استخدام بياناتكم الشخصية، يرجى الاتصال بالعنوان التالي: solferino.academy@ifrc.org 
+
+للاطلاع على النص الكامل لسياسة الاتحاد الدولي بشأن حماية البيانات يرجى زيارة الموقع التالي: [here](https://edit.climate.red/uploads/ifrc-data_protection-policy_ar.pdf)
