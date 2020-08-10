@@ -80,9 +80,15 @@ html {
   scroll-behavior: smooth;
 }
 
-@include mobile {
+@include touch {
   html {
-    scroll-padding-top: $navbar-height;
+    scroll-padding-top: $size-normal + 1rem;
+  }
+}
+
+@include desktop {
+  html {
+    scroll-padding-top: $navbar-height + $size-normal + 1rem;
   }
 }
 

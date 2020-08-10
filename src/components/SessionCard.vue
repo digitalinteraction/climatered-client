@@ -1,25 +1,29 @@
 <template>
   <div class="session-card" :class="cardClasses">
-    <div class="session-card-header">
-      <component v-if="typeIcon" :is="typeIcon" class="session-icon" />
-      <div class="session-type" v-if="typeTextKey" v-t="typeTextKey" />
+    <div class="session-card-header icon-and-text">
+      <span class="icon" v-if="typeIcon">
+        <component :is="typeIcon" class="session-icon" />
+      </span>
+      <span class="session-type" v-if="localeType" v-t="localeType" />
     </div>
     <div class="session-card-body">
       <p class="session-title">
-        {{ sessionTitle }}
+        {{ localeTitle }}
       </p>
       <div class="columns">
         <div class="column">
-          <p class="session-info" v-if="session.hostOrganisation">
+          <p class="session-info" v-if="localeHostOrganisation">
             {{ $t('sessionCard.hostedBy') }}
-            <strong> {{ session.hostOrganisation }} </strong>
+            <strong> {{ localeHostOrganisation }} </strong>
           </p>
         </div>
         <div class="column is-narrow">
-          <p>
-            <GlobeIcon class="globe" />
+          <p class="icon-and-text">
+            <span class="icon">
+              <GlobeIcon class="globe" />
+            </span>
             <span class="session-card-language">
-              {{ session.hostLanguage }}
+              {{ session.hostLanguage.join('/') }}
             </span>
           </p>
         </div>
@@ -28,13 +32,13 @@
         <div class="column">
           <div class="session-card-speakers">
             <SpeakerRow
-              v-for="(speaker, i) in session.speakers"
+              v-for="(speaker, i) in sessionSpeakers"
               :key="i"
               :speaker="speaker"
             />
           </div>
         </div>
-        <div class="column is-narrow" v-if="isOfficial">
+        <div class="column is-narrow offical-column" v-if="session.isOfficial">
           <OfficialIcon />
         </div>
       </div>
@@ -43,11 +47,22 @@
 </template>
 
 <script>
-import OfficialIcon from '@/icon/ifrc.svg'
-import GlobeIcon from '@/icon/globe.svg'
+import { mapState } from 'vuex'
+import OfficialIcon from '@/icons/ifrc.svg'
+import GlobeIcon from '@/icons/globe.svg'
 import SpeakerRow from '@/components/SpeakerRow.vue'
 
-const typeIcons = {}
+import GamesIcon from '@/icons/types/games.svg'
+import KeynoteIcon from '@/icons/types/keynote.svg'
+import PanelIcon from '@/icons/types/panel.svg'
+import VirtualIcon from '@/icons/types/virtual.svg'
+
+const typeIcons = {
+  'games.svg': GamesIcon,
+  'keynote.svg': KeynoteIcon,
+  'panel.svg': PanelIcon,
+  'virtual.svg': VirtualIcon
+}
 
 export default {
   components: { OfficialIcon, GlobeIcon, SpeakerRow },
@@ -55,20 +70,29 @@ export default {
     session: { type: Object, required: true }
   },
   computed: {
-    typeIcon() {
-      return typeIcons[this.session.type]
+    ...mapState('api', ['speakers']),
+    sessionType() {
+      return this.$store.getters['api/type'](this.session.type)
     },
-    typeTextKey() {
-      return `data.type.${this.session.type}`
+    typeIcon() {
+      return this.sessionType && typeIcons[this.sessionType.icon]
+    },
+    localeType() {
+      return this.sessionType?.title[this.$i18n.locale]
     },
     cardClasses() {
-      return [`is-${this.session.track}`]
+      const track = this.session.isOfficial ? 'official' : this.session.track
+      return [`is-${track}`]
     },
-    sessionTitle() {
+    localeTitle() {
       return this.session.title[this.$i18n.locale]
     },
-    isOfficial() {
-      return this.session.track === 'official'
+    localeHostOrganisation() {
+      return this.session.hostOrganisation[this.$i18n.locale]
+    },
+    sessionSpeakers() {
+      const idSet = new Set(this.session.speakers)
+      return this.speakers.filter(s => idSet.has(s.slug))
     }
   }
 }
@@ -115,8 +139,8 @@ $inner-pad: 0.4rem 0.7rem;
   }
 
   .globe {
-    height: 0.85em;
-    width: 0.85em;
+    height: 0.9em;
+    width: 0.9em;
   }
 
   .session-card-speakers > *:not(:last-child) {
@@ -138,5 +162,16 @@ $inner-pad: 0.4rem 0.7rem;
   &.is-transform .session-card-header {
     background-color: $track-transform;
   }
+}
+
+.icon-and-text {
+  display: flex;
+  align-items: center;
+}
+
+.offical-column {
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
 }
 </style>

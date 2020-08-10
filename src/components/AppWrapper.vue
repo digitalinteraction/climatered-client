@@ -106,11 +106,11 @@ import { mapState } from 'vuex'
 
 import AppFooter from '@/components/AppFooter.vue'
 
-import CoffeeChatIcon from '@/icon/coffee-chat.svg'
-import HelpDeskIcon from '@/icon/help-desk.svg'
-import AtriumIcon from '@/icon/atrium.svg'
-import ScheduleIcon from '@/icon/schedule.svg'
-import SessionsIcon from '@/icon/whats-on.svg'
+import CoffeeChatIcon from '@/icons/coffee-chat.svg'
+import HelpDeskIcon from '@/icons/help-desk.svg'
+import AtriumIcon from '@/icons/atrium.svg'
+import ScheduleIcon from '@/icons/schedule.svg'
+import SessionsIcon from '@/icons/whats-on.svg'
 
 import { setLocale } from '@/i18n'
 

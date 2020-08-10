@@ -2,9 +2,9 @@
   <footer class="footer">
     <div class="content has-text-centered">
       Made by
-      <a href="https://openlab.ncl.ac.uk">Openlab</a>
-      /
-      <router-link class="is-faded" :to="termsLink" v-t="'terms.title'" />
+      <a href="https://openlab.ncl.ac.uk">Open Lab</a>
+      <!-- /
+      <router-link class="is-faded" :to="termsLink" v-t="'terms.title'" /> -->
       /
       <router-link class="is-faded" :to="privacyLink" v-t="'privacy.title'" />
       /

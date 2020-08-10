@@ -27,25 +27,22 @@ const agent = ky.extend({
 })
 
 const getters = {
-  agent: () => agent
+  agent: () => agent,
+  track: state => slug => state.tracks.find(s => s.slug === slug),
+  type: state => slug => state.types.find(s => s.slug === slug)
 }
 
 const mutations = {
-  slots: (state, slots) => {
-    state.slots = slots
-  },
-  sessions: (state, sessions) => {
-    state.sessions = sessions
-  },
-  settings: (state, settings) => {
-    state.settings = settings
-  },
-  apiState: (state, apiState) => {
-    state.apiState = apiState
-  },
-  user: (state, user) => {
-    state.user = user
-  }
+  slots: (state, slots) => Object.assign(state, { slots }),
+  sessions: (state, sessions) => Object.assign(state, { sessions }),
+  settings: (state, settings) => Object.assign(state, { settings }),
+  apiState: (state, apiState) => Object.assign(state, { apiState }),
+  user: (state, user) => Object.assign(state, { user }),
+
+  speakers: (state, speakers) => Object.assign(state, { speakers }),
+  themes: (state, themes) => Object.assign(state, { themes }),
+  tracks: (state, tracks) => Object.assign(state, { tracks }),
+  types: (state, types) => Object.assign(state, { types })
 }
 
 const actions = {
@@ -62,20 +59,36 @@ const actions = {
       const responses = await Promise.all([
         agent.get('schedule/slots'),
         agent.get('schedule/sessions'),
-        agent.get('schedule/settings')
+        agent.get('schedule/settings'),
+
+        agent.get('schedule/speakers'),
+        agent.get('schedule/themes'),
+        agent.get('schedule/tracks'),
+        agent.get('schedule/types')
       ])
 
       for (const response of responses) {
         if (response.status !== 200) throw new Error(response.statusText)
       }
 
-      const [slots, sessions, settings] = await Promise.all(
-        responses.map(r => r.json())
-      )
+      const [
+        slots,
+        sessions,
+        settings,
+        speakers,
+        themes,
+        tracks,
+        types
+      ] = await Promise.all(responses.map(r => r.json()))
 
       commit('slots', slots.slots)
       commit('sessions', sessions.sessions)
       commit('settings', settings.settings)
+      commit('speakers', speakers.speakers)
+      commit('themes', themes.themes)
+      commit('tracks', tracks.tracks)
+      commit('types', types.types)
+
       commit('apiState', 'active')
     } catch (error) {
       console.error(error)

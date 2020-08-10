@@ -64,9 +64,9 @@
         </div>
         <div class="content">
           <ul>
-            <li>
+            <!-- <li>
               <a href="/terms" target="_blank" v-t="'register.termsLink'" />
-            </li>
+            </li> -->
             <li>
               <a href="/privacy" target="_blank" v-t="'register.privacyLink'" />
             </li>

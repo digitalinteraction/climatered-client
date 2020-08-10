@@ -192,11 +192,34 @@ const routes = [
   }
 ]
 
+//
+// Using this breaks the browser's normal flow, which isn't ideal
+//
+const scrollOffset = 80 // 5.25rem into pixels ($navbar-height + tabbar height)
+function scrollBehavior(to, from, savedPosition) {
+  console.log({ from, to, savedPosition })
+
+  // If they clicked on a hash, scroll to that
+  if (to.hash) {
+    return {
+      selector: to.hash,
+      offset: { x: 0, y: scrollOffset }
+    }
+  }
+
+  // If they've been to the page, scroll back to there
+  if (savedPosition) return savedPosition
+
+  // Otherwise, its a new page so go to the top
+  return { x: 0, y: 0 }
+}
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  linkActiveClass: 'is-active'
+  linkActiveClass: 'is-active',
+  scrollBehavior
 })
 
 router.beforeEach((to, from, next) => {
