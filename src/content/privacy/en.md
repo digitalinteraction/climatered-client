@@ -32,5 +32,5 @@ During sessions, your name and affiliated entity will be viewable by other parti
  
 If you have any specific questions about the use of your personal data, please contact solferino.academy@ifrc.org 
 
-For the full IFRC policy on data protection please visit [here](https://climate.red/uploads/ifrc-data-protection-policy-en.pdf).
+For the full IFRC policy on data protection please visit [here](https://edit.climate.red/uploads/ifrc-data-protection-policy-en.pdf).
 
