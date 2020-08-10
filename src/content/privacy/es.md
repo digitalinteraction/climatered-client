@@ -1,9 +1,36 @@
-# Privacy policy [es]
+# Política sobre privacidad
 
-Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada magna mollis euismod. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Etiam porta sem malesuada magna mollis euismod. Aenean lacinia bibendum nulla sed consectetur.
+Ciertos datos personales (tales como el nombre y la dirección de correo electrónico de los participantes) serán recopilados con el fin de facilitar la gestión de la cumbre. Colaboramos, además, con diversos asociados en la gestión de algunos eventos y ciertos datos (tales como la dirección de correo electrónico) deben también ser compartidos con asociados y terceras partes dignas de confianza. Puede consultar información detallada sobre el posible uso de estos datos por parte de terceros, según proceda, en las políticas sobre privacidad disponibles en cada uno de los respectivos sitios y plataformas que serán utilizados durante la cumbre.
 
-Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+### Terceras partes y asociados de confianza
 
-Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vestibulum id ligula porta felis euismod semper. Nulla vitae elit libero, a pharetra augue. Curabitur blandit tempus porttitor.
+Zoom - https://zoom.us/privacy
 
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+Slido - https://www.sli.do/terms#gdpr
+
+Google - https://policies.google.com/privacy
+
+Landbot - http://landbot.io/terms-conditions & https://help.landbot.io/article/h2ndzk6som-privacy-security
+
+Digital Ocean - https://www.digitalocean.com/legal/privacy-policy/
+
+Sendgrid - https://sendgrid.com/policies/privacy-2016/
+
+Github - https://docs.github.com/en/github/site-policy/github-privacy-statement
+
+Open Lab - https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf
+
+Se dará a conocer únicamente los datos personales que sean necesarios y se velará tanto por la protección de estos como por su almacenamiento por parte de la organización, los asociados de confianza y terceros durante el tiempo mínimo imprescindible. Cabe anotar que su información personal no se utilizará con propósitos distintos de aquellos compatibles con la gestión de la cumbre. 
+
+ 
+Conforme a las razones abajo enunciadas, se recopilará y se procesará la siguiente información: 
+nombre y dirección de correo electrónico: utilizados para la inscripción, la verificación y las actividades de comunicación pertinentes; 
+datos característicos, con inclusión de idioma preferido, conexión con las organizaciones de la Cruz Roja y de la Media Luna Roja (optativamente, país): con el fin de aportar a cada participante las opciones correctas a lo largo de la reunión y recopilar estadísticas demográficas;  
+dirección IP: a fin de facilitar la organización de las sesiones en grupos y preservar la seguridad y la integridad del evento o de la sesión.  Cabe señalar que ello podría indicar la ubicación general del participante. Se procederá a la anonimización de estos y otros metadatos, y/o a la eliminación segura de estos cuando ya no sean necesarios para la gestión de los eventos concernidos. 
+
+ 
+Durante las sesiones, los demás participantes podrán ver su nombre y la entidad a la cual está afiliado. Se indicará toda grabación prevista de un evento. 
+
+No dude en dirigir a la siguiente dirección toda pregunta relativa al uso de sus datos personales solferino.academy@ifrc.org 
+
+Puede consultar la Política de la Federación Internacional sobre la protección de datos personales a través de este [enlace](https://edit.climate.red/uploads/ifrc-protecion-de-datos-personales-es.pdf).
