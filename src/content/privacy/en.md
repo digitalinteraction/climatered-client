@@ -4,14 +4,21 @@ In order to facilitate the management of the Summit, some of your personal data 
 
 ### Third Parties and Trusted Partners
 
-*Zoom - https://zoom.us/privacy
-*Slido - https://www.sli.do/terms#gdpr
-*Google - https://policies.google.com/privacy
-*Landbot - http://landbot.io/terms-conditions & https://help.landbot.io/article/h2ndzk6som-privacy-security
-*Digital Ocean - https://www.digitalocean.com/legal/privacy-policy/
-*Sendgrid - https://sendgrid.com/policies/privacy-2016/
-*Github - https://docs.github.com/en/github/site-policy/github-privacy-statement
-*Open Lab - https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf
+Zoom - https://zoom.us/privacy
+
+Slido - https://www.sli.do/terms#gdpr
+
+Google - https://policies.google.com/privacy
+
+Landbot - http://landbot.io/terms-conditions & https://help.landbot.io/article/h2ndzk6som-privacy-security
+
+Digital Ocean - https://www.digitalocean.com/legal/privacy-policy/
+
+Sendgrid - https://sendgrid.com/policies/privacy-2016/
+
+Github - https://docs.github.com/en/github/site-policy/github-privacy-statement
+
+Open Lab - https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf
 
 
 We will only share the personal data that is necessary and will take measures to ensure that it is protected and does not remain stored with us or with third parties and trusted partners any longer than necessary.  Please note that your personal data will not be used for purposes beyond those compatible with the management of the Summit.
@@ -23,7 +30,7 @@ IP address: in order to facilitate breakout sessions, and to maintain security a
  
 During sessions, your name and affiliated entity will be viewable by other participants.  When events are recorded, notice will be provided.
  
-If you have any specific questions about the use of your personal data, please contact solferino.academy@ifrc.org” 
+If you have any specific questions about the use of your personal data, please contact solferino.academy@ifrc.org 
 
-For the full IFRC policy on data protection please visit [here](https://climate.red/assets/ifrc-data-protection-policy-en.pdf).
+For the full IFRC policy on data protection please visit [here](https://climate.red/uploads/ifrc-data-protection-policy-en.pdf).
 
