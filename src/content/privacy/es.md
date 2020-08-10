@@ -31,7 +31,6 @@ dirección IP: a fin de facilitar la organización de las sesiones en grupos y p
  
 Durante las sesiones, los demás participantes podrán ver su nombre y la entidad a la cual está afiliado. Se indicará toda grabación prevista de un evento. 
 
- 
 No dude en dirigir a la siguiente dirección toda pregunta relativa al uso de sus datos personales solferino.academy@ifrc.org 
 
- Puede consultar la Política de la Federación Internacional sobre la protección de datos personales a través de este [enlace](https://edit.climate.red/uploads/ifrc-protecion-de-datos-personales-es.pdf).
+Puede consultar la Política de la Federación Internacional sobre la protección de datos personales a través de este [enlace](https://edit.climate.red/uploads/ifrc-protecion-de-datos-personales-es.pdf).
