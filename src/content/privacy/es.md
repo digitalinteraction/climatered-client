@@ -5,12 +5,19 @@ Ciertos datos personales (tales como el nombre y la dirección de correo electr�
 ### Terceras partes y asociados de confianza
 
 Zoom - https://zoom.us/privacy
+
 Slido - https://www.sli.do/terms#gdpr
+
 Google - https://policies.google.com/privacy
+
 Landbot - http://landbot.io/terms-conditions & https://help.landbot.io/article/h2ndzk6som-privacy-security
+
 Digital Ocean - https://www.digitalocean.com/legal/privacy-policy/
+
 Sendgrid - https://sendgrid.com/policies/privacy-2016/
+
 Github - https://docs.github.com/en/github/site-policy/github-privacy-statement
+
 Open Lab - https://www.ncl.ac.uk/media/wwwnclacuk/freedomofinformation/dataprotection/Data%20Protection%20Policy%20June2020.pdf
 
 Se dará a conocer únicamente los datos personales que sean necesarios y se velará tanto por la protección de estos como por su almacenamiento por parte de la organización, los asociados de confianza y terceros durante el tiempo mínimo imprescindible. Cabe anotar que su información personal no se utilizará con propósitos distintos de aquellos compatibles con la gestión de la cumbre. 
@@ -23,4 +30,4 @@ dirección IP: a fin de facilitar la organización de las sesiones en grupos y p
 Durante las sesiones, los demás participantes podrán ver su nombre y la entidad a la cual está afiliado. Se indicará toda grabación prevista de un evento. 
  
 No dude en dirigir a la siguiente dirección toda pregunta relativa al uso de sus datos personales solferino.academy@ifrc.org 
- Puede consultar la Política de la Federación Internacional sobre la protección de datos personales a través de este [enlace](https://edit.climate.red/uploads/ifrc-protecion-los-datos-personales-es.pdf).
+ Puede consultar la Política de la Federación Internacional sobre la protección de datos personales a través de este [enlace](https://edit.climate.red/uploads/ifrc-protecion-de-datos-personales-es.pdf).
