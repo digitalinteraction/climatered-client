@@ -197,8 +197,6 @@ const routes = [
 //
 const scrollOffset = 80 // 5.25rem into pixels ($navbar-height + tabbar height)
 function scrollBehavior(to, from, savedPosition) {
-  console.log({ from, to, savedPosition })
-
   // If they clicked on a hash, scroll to that
   if (to.hash) {
     return {
