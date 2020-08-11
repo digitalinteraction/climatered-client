@@ -38,9 +38,9 @@
             />
           </div>
         </div>
-        <div class="column is-narrow offical-column" v-if="session.isOfficial">
-          <OfficialIcon />
-        </div>
+      </div>
+      <div class="official-mark" v-if="session.isOfficial">
+        <OfficialIcon />
       </div>
     </div>
   </div>
@@ -169,9 +169,8 @@ $inner-pad: 0.4rem 0.7rem;
   align-items: center;
 }
 
-.offical-column {
-  justify-content: flex-end;
+.official-mark {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
 }
 </style>
