@@ -7,7 +7,7 @@ First, please register [here](https://climate.red/register). One week before the
 
 During the summit, in addition to our engaging panels, sessions and workshops, you can connect with people from around the globe in coffee chats.
 
-You can read more about the Red Cross and Red Crescent network’s collective vision on addressing climate change as a humanitarian emergency from our ([Strategy 2030](https://future-rcrc.com/strategy-2030/) and [The Movement Ambitions to Address the Climate Crisis](https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2020/02/Movement-Climate-Ambitions-2020-final.pdf). Our [Climate Training Kit](https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2020/02/Movement-Climate-Ambitions-2020-final.pdf) might also be a useful resource for you.
+You can read more about the Red Cross and Red Crescent network’s collective vision on addressing climate change as a humanitarian emergency from our ([Strategy 2030](https://future-rcrc.com/strategy-2030/) and [The Movement Ambitions to Address the Climate Crisis](https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2020/02/Movement-Climate-Ambitions-2020-final.pdf). Our [Climate Training Kit](https://www.climatecentre.org/training) might also be a useful resource for you.
 
 A summit is not just about listening, but connecting, inspiring each other, learning together and building new ideas and initiatives. In Climate:Red you will be able to do just that. 
 
