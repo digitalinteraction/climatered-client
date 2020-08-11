@@ -2,7 +2,7 @@
 
 **Le changement climatique affecte chacun, partout. Par conséquent, aucune personne, aucun pays ou aucun fuseau horaire n'est exclu du sommet Virtual Climate:Red, organisé par le réseau de la Croix-Rouge et du Croissant-Rouge. En réunissant des personnes du monde entier, nous créons une véritable plateforme mondiale pour débattre et inspirer l'action climatique.**
 
-Tout d'abord, veuillez vous inscrire Une semaine avant le sommet, vous pouvez commencer à parcourir le programme et créer votre propre programme du 9 au 10 septembre. Consultez également la section Quoi de neuf pour découvrir des sessions intéressantes et des conférenciers inspirants.
+Tout d'abord, veuillez vous inscrire une semaine avant le sommet, vous pouvez commencer à parcourir et créer votre propre programme du 9 au 10 septembre. Consultez également la section Quoi de neuf pour découvrir des sessions intéressantes et des conférenciers inspirants.
 
 Pendant le sommet, en plus de nos panels, sessions et ateliers attrayants, vous pouvez vous connecter avec des gens du monde entier dans des conversations de café.
 
