@@ -1,4 +1,4 @@
-## 100 sesiones confirmadas
+# 100 sesiones confirmadas
 
 ### ¡Más por venir, eche un vistazo a nuestras mejores opciones actuales!
 
