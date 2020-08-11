@@ -49,7 +49,7 @@ register:
   affiliation:
     label: Your affiliation
     placeholder: ''
-    help: How you're associated with the IFRC
+    help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
   submitButton: Register
   consentText: I confirm that I have read and agree with the Terms and Privacy policy linked below
   termsLink: Terms and Conditions
