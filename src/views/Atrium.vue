@@ -49,6 +49,21 @@
             </div>
           </div>
         </section>
+        <section class="section">
+          <div class="container">
+            <div class="sponsors">
+              <img
+                src="/sponsor/solferino-academy.svg"
+                alt="Solferino academy"
+              />
+              <img src="/sponsor/climate-centre.svg" alt="Climate Centre" />
+              <img
+                src="/sponsor/norwegian-red-cross.svg"
+                alt="Norwegian Red Cross"
+              />
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   </AppWrapper>
@@ -125,5 +140,35 @@ export default {
 .atrium-login-or {
   margin: 0 1em;
   font-weight: 600;
+}
+
+.sponsors {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  img {
+    width: auto;
+    height: 42px;
+
+    &:not(:last-child) {
+      margin-inline-end: 4em;
+    }
+  }
+
+  @include touch {
+    align-items: flex-start;
+    flex-direction: column;
+
+    img {
+      // flex: 1;
+      padding-block-end: 1em;
+    }
+
+    img:not(:last-child) {
+      margin-inline-end: 0;
+      margin-block-end: 0.5em;
+    }
+  }
 }
 </style>
