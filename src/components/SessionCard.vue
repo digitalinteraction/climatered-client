@@ -28,16 +28,12 @@
           </p>
         </div>
       </div>
-      <div class="columns">
-        <div class="column">
-          <div class="session-card-speakers">
-            <SpeakerRow
-              v-for="(speaker, i) in sessionSpeakers"
-              :key="i"
-              :speaker="speaker"
-            />
-          </div>
-        </div>
+      <div class="session-card-speakers">
+        <SpeakerRow
+          v-for="(speaker, i) in sessionSpeakers"
+          :key="i"
+          :speaker="speaker"
+        />
       </div>
       <div class="official-mark" v-if="session.isOfficial">
         <OfficialIcon />
@@ -91,8 +87,9 @@ export default {
       return this.session.hostOrganisation[this.$i18n.locale]
     },
     sessionSpeakers() {
-      const idSet = new Set(this.session.speakers)
-      return this.speakers.filter(s => idSet.has(s.slug))
+      return this.session.speakers
+        .map(slug => this.speakers.find(s => s.slug === slug))
+        .filter(s => s)
     }
   }
 }
