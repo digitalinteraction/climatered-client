@@ -89,10 +89,10 @@ const content = {
 }
 
 const banner = {
-  en: '/img/atrium-en.svg',
-  fr: '/img/atrium-fr.svg',
-  es: '/img/atrium-es.svg',
-  ar: '/img/atrium-ar.svg'
+  en: '/img/atrium-en.jpg',
+  fr: '/img/atrium-en.jpg',
+  es: '/img/atrium-en.jpg',
+  ar: '/img/atrium-ar.jpg'
 }
 
 export default {
