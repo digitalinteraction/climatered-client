@@ -24,6 +24,6 @@ Adresse IP : ces données seront utilisées aux fins de faciliter les séances 
 
 Durant les séances, votre nom et l’organisation à laquelle vous êtes affilié(e) seront visibles par les autres participants. Lorsque des événements seront enregistrés, vous en serez informé(e).
  
-Pour toute question relative à l’utilisation de vos données personnelles, veuillez contacter solferino.acadmey@ifrc.org.
+Pour toute question relative à l’utilisation de vos données personnelles, veuillez contacter solferino.academy@ifrc.org.
 
 La version intégrale de la Politique de la Fédération internationale relative à la protection des données est disponible [ici](https://edit.climate.red/uploads/ifrc-la-protection-des-données-à-caractère-personnel-fr.pdf).
