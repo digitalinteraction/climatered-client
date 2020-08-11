@@ -36,7 +36,7 @@ $img-size: 42px;
 }
 
 .speaker-headshot {
-  padding-inline-end: 10px;
+  padding-inline-end: 8px;
   img {
     border-radius: $img-size;
   }
@@ -51,5 +51,6 @@ $img-size: 42px;
 }
 .speaker-role {
   color: $grey;
+  font-size: $size-7;
 }
 </style>
