@@ -154,6 +154,14 @@ export default {
         this.registration
       )
 
+      if (passed) {
+        this.$gtag.event('register', {
+          event_category: 'users',
+          event_label: 'User registered',
+          value: 0
+        })
+      }
+
       this.done = passed
     },
     checkForErrors({ name, email, language, country, affiliation }) {

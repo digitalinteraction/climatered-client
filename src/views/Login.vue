@@ -71,6 +71,12 @@ export default {
         this.done = res.ok
         if (!res.ok) throw new Error(json.message)
 
+        this.$gtag.event('login-start', {
+          event_category: 'users',
+          event_label: 'User requested login code',
+          value: 0
+        })
+
         this.done = true
       } catch (error) {
         console.error(error)

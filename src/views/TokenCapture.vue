@@ -24,6 +24,12 @@ export default {
       token
     })
     this.$router.replace({ name: ROUTE_ATRIUM })
+
+    this.$gtag.event('login-finish', {
+      event_category: 'users',
+      event_label: 'User logged in',
+      value: 0
+    })
   }
 }
 </script>
