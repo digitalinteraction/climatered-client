@@ -70,7 +70,7 @@ export default {
 
       delete localStorage.token
 
-      Vue.$nextTick(() => {
+      Vue.nextTick(() => {
         window.location.reload()
       })
     }
