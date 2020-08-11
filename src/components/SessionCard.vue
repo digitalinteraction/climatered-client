@@ -4,7 +4,7 @@
       <span class="icon" v-if="typeIcon">
         <component :is="typeIcon" class="session-icon" />
       </span>
-      <span class="session-type" v-if="localeType" v-t="localeType" />
+      <span class="session-type" v-if="localeType">{{ localeType }}</span>
     </div>
     <div class="session-card-body">
       <p class="session-title">
