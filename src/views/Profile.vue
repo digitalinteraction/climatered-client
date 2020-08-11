@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 
@@ -61,8 +62,17 @@ export default {
   },
   methods: {
     logout() {
+      this.$gtag.event('logout', {
+        event_category: 'users',
+        event_label: 'User logged out',
+        value: 0
+      })
+
       delete localStorage.token
-      window.location.reload()
+
+      Vue.$nextTick(() => {
+        window.location.reload()
+      })
     }
   }
 }

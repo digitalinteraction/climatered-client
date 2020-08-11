@@ -27,7 +27,7 @@ export default {
 
     this.$gtag.event('login-finish', {
       event_category: 'users',
-      event_label: 'User logged in',
+      event_label: 'User successfully in',
       value: 0
     })
   }
