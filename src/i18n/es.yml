@@ -21,7 +21,7 @@ login:
   infoText: Después de registrarse, le enviaremos un correo electrónico de confirmación. El correo electrónico tendrá un enlace que le conectará. El enlace caducará después de 30 minutos. Si no lo recibe, verifique su carpeta de correo no deseado.
   email:
     label: Correo Electrónico
-    placeholder: e.g. geoff@example.com
+    placeholder: por ejemplo, geoff@example.com
     help: La dirección de correo electrónico con la que se registró en la conferencia
   submitButton: Solicitar código de inicio de sesión
   doneText: Código de inicio de sesión enviado
@@ -32,11 +32,11 @@ register:
   infoText: 'Registrarse para el clima: ROJA'
   name:
     label: Nombre completo
-    placeholder: e.g. Dan Howard
+    placeholder: por ejemplo, Dan Howard
     help: Su nombre completo
   email:
     label: dirección de correo electrónico
-    placeholder: e.g. dan@example.com
+    placeholder: por ejemplo, dan@example.com
     help: Usarás tu correo electrónico para iniciar sesión en la cumbre virtual
   language:
     label: idioma
@@ -46,9 +46,9 @@ register:
     help: Para que podamos ver el alcance de la conferencia
   affiliation:
     label: Su afiliación
-    placeholder: ''
+    placeholder: por ejemplo, un miembro del personal de la FICR
     help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
-  consentText: Confirmo que he leído y estoy de acuerdo con los Términos y la Política de Privacidad vinculados a continuación.
+  consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
   termsLink: Términos y Condiciones
   privacyLink: Política de privacidad
   genericError: Algo salió mal. Por favor, vuelva a intentarlo

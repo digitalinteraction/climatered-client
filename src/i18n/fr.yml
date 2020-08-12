@@ -21,7 +21,7 @@ login:
   infoText: Après votre inscription, nous vous enverrons un email de confirmation. L'e-mail contiendra un lien qui vous connectera. Le lien expirera au bout de 30 minutes. Si vous ne recevez rien, veuillez vérifier votre dossier “Courriers indésirables”.
   email:
     label: Adresse E-mail
-    placeholder: e.g. geoff@example.com
+    placeholder: 'par exemple: geoff@example.com'
     help: L'adresse e-mail avec laquelle vous vous êtes inscrit à la conférence
   submitButton: Demander un code de connexion
   doneText: Código de inicio de sesión enviado
@@ -32,11 +32,11 @@ register:
   infoText: Inscrivez-vous à Climate:Red
   name:
     label: Nom complet
-    placeholder: e.g. Dan Howard
+    placeholder: 'par exemple: Dan Howard'
     help: Votre nom complet
   email:
     label: l'adresse email
-    placeholder: e.g. dan@example.com
+    placeholder: 'par exemple: dan@example.com'
     help: Vous utiliserez votre e-mail pour vous connecter à la conférence
   language:
     label: Langue
@@ -46,9 +46,9 @@ register:
     help: Pour que nous puissions voir la portée de la conférence
   affiliation:
     label: Votre affiliation
-    placeholder: ''
+    placeholder: 'par exemple: Membre du personnel de la FICR'
     help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
-  consentText: Je confirme avoir lu et accepté les conditions générales et la politique de confidentialité ci-dessous
+  consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
   termsLink: Termes et conditions
   privacyLink: Politique de confidentialité
   genericError: Une erreur s'est produite. Veuillez réessayer
