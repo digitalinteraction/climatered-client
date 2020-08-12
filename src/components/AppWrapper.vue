@@ -163,7 +163,9 @@ export default {
     }
   },
   created() {
-    setLocale(this.user?.user_lang ?? 'en')
+    if (this.user) {
+      setLocale(this.user.user_lang, false)
+    }
   },
   computed: {
     ...mapState('api', ['user', 'settings', 'apiState']),
@@ -184,7 +186,7 @@ export default {
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
     },
     onLocale(event) {
-      setLocale(event.target.value)
+      setLocale(event.target.value, true)
     },
     isDisabled(tabName) {
       if (tabName === 'helpdesk') {

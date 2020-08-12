@@ -48,7 +48,8 @@ const mutations = {
 const actions = {
   async authenticate({ commit, dispatch }, { socket, token }) {
     const user = jwt.decode(token)
-    setLocale(user.user_lang)
+    const { chosenLocale = user.user_lang } = localStorage
+    setLocale(chosenLocale)
     authenticateSocket(socket, token)
 
     commit('user', user)

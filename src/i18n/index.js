@@ -25,21 +25,26 @@ const devClone = (obj, chain = []) =>
 
 if (process.env.NODE_ENV === 'development') {
   messages.dev = devClone(en)
-  // console.log(JSON.stringify(devClone(en), null, 2))
 }
+
+const { chosenLocale = 'en' } = window.localStorage
 
 const i18n = new VueI18n({
   locale: 'en',
   messages
 })
 
-export default i18n
+setLocale(chosenLocale)
 
-export function setLocale(newLocale) {
+export function setLocale(newLocale, savePreference = false) {
   i18n.locale = newLocale
   const newDir = newLocale === 'ar' ? 'rtl' : 'ltr'
 
   const html = document.documentElement
   html.setAttribute('lang', newLocale)
   html.setAttribute('dir', newDir)
+
+  if (savePreference) window.localStorage.chosenLocale = newLocale
 }
+
+export default i18n

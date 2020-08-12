@@ -71,16 +71,6 @@ export default {
     }
 
     this.isReady = true
-  },
-  methods: {
-    setLocale(newLocale) {
-      this.$i18n.locale = newLocale
-      const newDir = newLocale === 'ar' ? 'rtl' : 'lrt'
-
-      const html = document.documentElement
-      html.setAttribute('lang', newLocale)
-      html.setAttribute('dir', newDir)
-    }
   }
 }
 </script>

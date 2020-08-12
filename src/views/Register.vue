@@ -142,7 +142,7 @@ export default {
   methods: {
     onLanguage(newLocale) {
       this.registration.language = newLocale
-      setLocale(newLocale)
+      setLocale(newLocale, true)
     },
     async submit() {
       if (this.checkForErrors(this.registration)) {

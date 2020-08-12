@@ -6,7 +6,7 @@
 ### الأطراف الثالثة والشركاء الموثوق بهم
 
 - [Zoom](https://zoom.us/privacy)
-- [Slido]](https://www.sli.do/terms#gdpr)
+- [Slido](https://www.sli.do/terms#gdpr)
 - [Google](https://policies.google.com/privacy)
 - [Landbot](https://help.landbot.io/article/h2ndzk6som-privacy-security)
 - [Digital Ocean](https://www.digitalocean.com/legal/privacy-policy/)
