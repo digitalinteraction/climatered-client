@@ -10,7 +10,7 @@
     <div slot="content" class="register-page">
       <h1 class="title" v-t="'register.title'" />
       <div class="content">
-        <p>{{ $t('atrium.returnTo') }}</p>
+        <p>{{ $t('register.infoText') }}</p>
       </div>
 
       <div class="register-form" v-if="!done">
