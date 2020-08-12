@@ -29,16 +29,16 @@
           />
         </template>
 
-        <pre>{{ authToken }}</pre>
+        <pre>{{ user }}</pre>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AttendeeSchedule from '@/components/AttendeeSchedule.vue'
 import TranslatorSchedule from '@/components/TranslatorSchedule.vue'
-import jwt from 'jsonwebtoken'
 
 export default {
   name: 'Home',
@@ -47,9 +47,7 @@ export default {
     TranslatorSchedule
   },
   computed: {
-    authToken() {
-      return jwt.decode(localStorage.token)
-    },
+    ...mapState('api', ['user']),
     translatorEvents() {
       return this.$store.state.api.sessions?.filter(e => e.enableTranslation)
     }
@@ -62,7 +60,7 @@ export default {
       window.location.reload()
     },
     isRole(role) {
-      return this.authToken?.user_roles?.includes(role)
+      return this.user?.user_roles?.includes(role)
     }
   }
 }

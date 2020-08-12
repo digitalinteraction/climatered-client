@@ -3,23 +3,37 @@ import VueRouter from 'vue-router'
 import i18n from '../i18n'
 
 import Atrium from '../views/Atrium.vue'
-import Sessions from '../views/Sessions.vue'
-import Schedule from '../views/Schedule.vue'
-import CoffeeChat from '../views/CoffeeChat.vue'
-import Help from '../views/Help.vue'
 import Profile from '../views/Profile.vue'
 import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
-
-import Terms from '../views/Terms.vue'
-import Privacy from '../views/Privacy.vue'
-import ErrorPage from '../views/Error.vue'
-
-import Event from '../views/Event.vue'
-import Home from '../views/Home.vue'
-import NotFound from '../views/NotFound.vue'
 import TokenCapture from '../views/TokenCapture.vue'
-import Translator from '../views/Translator.vue'
+
+const Sessions = () =>
+  import(/* webpackChunkName: "attendee" */ '../views/Sessions.vue')
+const Schedule = () =>
+  import(/* webpackChunkName: "attendee" */ '../views/Schedule.vue')
+const CoffeeChat = () =>
+  import(/* webpackChunkName: "attendee" */ '../views/CoffeeChat.vue')
+const Help = () =>
+  import(/* webpackChunkName: "attendee" */ '../views/Help.vue')
+
+const Register = () =>
+  import(/* webpackChunkName: "register" */ '../views/Register.vue')
+
+const Terms = () =>
+  import(/* webpackChunkName: "static" */ '../views/Terms.vue')
+const Privacy = () =>
+  import(/* webpackChunkName: "static" */ '../views/Privacy.vue')
+const ErrorPage = () =>
+  import(/* webpackChunkName: "static" */ '../views/Error.vue')
+
+const Event = () =>
+  import(/* webpackChunkName: "prototype" */ '../views/Event.vue')
+const Home = () =>
+  import(/* webpackChunkName: "prototype" */ '../views/Home.vue')
+const NotFound = () =>
+  import(/* webpackChunkName: "prototype" */ '../views/NotFound.vue')
+const Translator = () =>
+  import(/* webpackChunkName: "prototype" */ '../views/Translator.vue')
 
 import {
   ROUTE_ATRIUM,

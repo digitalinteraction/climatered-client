@@ -56,11 +56,17 @@ These are commands you might need to run but probably won't, also in no particul
 # Manually build web assets using webpack
 npm run build
 
-# Manually run lint source code
+# Manually lint source code
 npm run lint
 
 # Generate the table-of-contents in this readme
 npm run readme-toc
+
+# Build the the app and generate a bundle report
+# -> Builds the site into dist/
+# -> Creates dist/report.json for webpack-bundle-analyser
+# -> Runs bundle analyser and opens in a browser
+npm run report
 ```
 
 ### Code formatting

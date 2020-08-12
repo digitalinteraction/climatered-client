@@ -1,5 +1,5 @@
 import ky from 'ky'
-import jwt from 'jsonwebtoken'
+import jwtDecode from 'jwt-decode'
 
 import { setLocale } from '@/i18n'
 import { pickApi } from '@/utils'
@@ -47,7 +47,7 @@ const mutations = {
 
 const actions = {
   async authenticate({ commit, dispatch }, { socket, token }) {
-    const user = jwt.decode(token)
+    const user = jwtDecode(token)
     const { chosenLocale = user.user_lang } = localStorage
     setLocale(chosenLocale)
     authenticateSocket(socket, token)

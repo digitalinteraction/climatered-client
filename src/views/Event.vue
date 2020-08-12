@@ -69,7 +69,6 @@
 
 <script>
 import marked from 'marked'
-import jwt from 'jsonwebtoken'
 import { mapState } from 'vuex'
 
 // import { slotState } from '../utils.js'
@@ -143,10 +142,10 @@ export default {
       if (!this.event || !this.slotState) return null
       if (this.slotState === 'before') return Countdown
       return eventComponents[this.event.type] ?? null
-    },
-    authToken() {
-      return jwt.decode(localStorage.token)
     }
+    // authToken() {
+    //   return jwt.decode(localStorage.token)
+    // }
   },
   methods: {
     changeState() {
