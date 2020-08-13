@@ -85,3 +85,11 @@ export function slotState(slot) {
   if (now > end) return 'after'
   return 'active'
 }
+
+export function pickApi() {
+  return window.CONFIG?.API_URL ?? 'http://localhost:3000'
+}
+
+export function pickCdn() {
+  return window.CONFIG?.CDN_URL ?? 'https://edit.climate.red'
+}

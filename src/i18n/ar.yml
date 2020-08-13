@@ -1,0 +1,113 @@
+general:
+  message: مرحبا بالعالم
+  loginButton: تسجيل الدخول
+  registerButton: سجل الان!
+  appName: Climate:Red
+  pleaseSelect: يرجى التحديد
+#
+# api:
+#   auth:
+#     general: 'Bad auth'
+#     jwtExpired: 'JWT expired'
+#
+atrium:
+  title: الملتقى الرئيسي
+  or: أو
+  sessionsButton: شاهد ماذا يحدث !
+  returnTo: العودة إلى الملتقى الرئيسي
+
+login:
+  title: تسجيل الدخول
+  infoText: بعد التسجيل ، سوف نرسل لك رسالة تأكيد بالبريد الإلكتروني. سيكون في البريد الإلكتروني رابط ، والذي سيسجل دخولك. ستنتهي صلاحية الرابط بعد 30 دقيقة. إذا لم تتلق أي شيء ، فيرجى التحقق من ملف الرسائل الغير مرغوب بها.
+  email:
+    label: البريد الإلكتروني
+    placeholder: ''
+    help: عنوان البريد الإلكتروني الذي سجلت به في المؤتمر
+  submitButton: طلب رمز تسجيل الدخول
+  doneText: تم إرسال رمز تسجيل الدخول
+  badEmail: البريد الإلكتروني غير جيد
+
+register:
+  title: تسجيل
+  infoText: التسجيل لمؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ
+  name:
+    label: الاسم الكامل
+    placeholder: ''
+    help: اسمك الكامل
+  email:
+    label: عنوان البريد الالكتروني
+    placeholder: ''
+    help: ستستخدم بريدك الإلكتروني لتسجيل الدخول إلى المؤتمر
+  language:
+    label: لغة
+    help: ستكون هذه هي لغتك المفضلة للمؤتمر
+  country:
+    label: البلد
+    help: حتى نتمكن من رؤية مدى تغطية المؤتمر
+  affiliation:
+    label: جهة الانتساب
+    placeholder: على سبيل المثال، موظف الاتحاد الدولي للصليب الأحمر والهلال الأحمر
+    help: 'جهة الانتماء (على سبيل المثال: موظف/متطوع/عضو مجلس إدارة/عضو جمعية وطنية/الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر/اللجنة الدولية للصليب الأحمر/المركز المرجعي، أو غير ذلك )'
+  consentText: أؤكد أنني قد قرأت وأوافق على السياسات الموجودة في الرابط أدناه
+  termsLink: الأحكام والشروط
+  privacyLink: سياسة الخصوصية
+  genericError: حدث خطأ ما. أعد المحاولة من فضلك
+  submitButton: تسجيل
+  doneText: لقد أرسلنا إليك بريدًا إلكترونيًا للتحقق
+
+profile:
+  title: ملفك الشخصي
+  emailText: بريدك الالكتروني
+  localeText: اللغة المختارة
+  whenText: تسجيل الدخول
+  nameText: الإسم
+  countryText: البلد
+  affiliationText: جهة الانتساب
+  logoutButton: تسجيل الخروج
+  deleteButton: حذف الحساب
+  deleteText: هذا دائم، هل أنت متأكد؟
+
+sessions:
+  title: ماذا يحدث
+  tabs:
+    plenary: المتحدثون
+    panel: حلقات نقاش
+    sessions: جلسات
+
+schedule:
+  title: البرنامج
+
+coffeechat:
+  title: دردشة حول فنجان قهوة
+
+help:
+  title: المساعدة
+
+notFound:
+  title: الصفحة غير موجودة
+  info: لم نتمكن من العثور على الصفحة التي كنت تبحث عنها، يرجى التحقق من الرابط الذي نقرت عليه أو العودة إلى الملتقى الرئيسي.
+
+terms:
+  title: الشروط
+
+privacy:
+  title: الخصوصية
+
+sessionCard:
+  hostedBy: المقدم بواسطة
+
+data:
+  type:
+    ignite-talk: جلسة لطرح الأفكار
+    games: ألعاب للتعلم و الحوار
+    panel: أفرقة خبراء ونقاشات
+    workshop: حلقات عملية
+    virtual-tour: جولات افتراضية
+    plenary: الكلمة الرئيسية
+    speaker: _
+    fishbowl: حل المشاكل أسلوب الحلقتين
+  theme:
+    act: العمل
+    empower: التمكين
+    influence: التأثير
+    transform: التحويل

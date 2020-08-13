@@ -45,7 +45,8 @@ import {
 export default {
   props: {
     event: { type: Object, required: true },
-    eventSlot: { type: Object, required: true }
+    eventSlot: { type: Object, required: true },
+    language: { type: String, required: true }
   },
   computed: {
     videoLink() {

@@ -1,11 +1,11 @@
 <template>
-  <div class="translator" v-if="$store.state.api.hasData">
+  <div class="translator">
     <section class="section is-small">
       <div class="container">
         <div class="level">
           <div class="level-left">
             <div class="level-item">
-              <router-link class="button is-text" :to="{ name: 'Home' }">
+              <router-link class="button is-text" to="/prototype">
                 ← Back to schedule
               </router-link>
             </div>
@@ -14,10 +14,10 @@
       </div>
     </section>
 
-    <section class="section" v-if="videoLink">
+    <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column is-two-thirds">
+          <div class="column is-two-thirds" v-if="videoLink">
             <h2 class="title is-3">Live video</h2>
             <VideoEmbed :video-link="videoLink" />
           </div>
@@ -82,15 +82,18 @@ export default {
     }
   },
   computed: {
-    ...mapState('api', ['hasData', 'events', 'slots']),
+    ...mapState('api', ['hasData', 'sessions', 'slots']),
     event() {
-      return this.events.find(e => e.id === this.eventId)
+      return this.sessions.find(e => e.id === this.eventId)
     },
     videoLink() {
       return findLink(this.event.links, 'video', this.language)
     },
     channels() {
-      return this.event.channels
+      return (
+        this.event.enableTranslation &&
+        ['en', 'fr', 'es', 'ar'].filter(l => l !== this.event.hostLanguage)
+      )
     },
     isBroadcasting() {
       return this.broadcastState === BroadcastState.active
@@ -102,27 +105,24 @@ export default {
         this.broadcastState = newState
       },
       arrayBuffer => {
-        this.$socket.emitBinary('channel-data', arrayBuffer)
+        this.$socket.emitBinary('send-to-channel', arrayBuffer)
       }
     )
   },
   mounted() {
-    this.$socket.bindEvent(this, 'stop-channel-data', () => {
+    this.$socket.bindEvent(this, 'channel-takeover', () => {
       this.stop()
     })
   },
   destroyed() {
-    this.$socket.unbindEvent(this, 'stop-channel-data')
+    this.$socket.unbindEvent(this, 'channel-takeover')
     this.stop()
   },
   methods: {
     async start() {
       try {
         // Register as the broadcaster
-        this.$socket.emit('start-channel', {
-          eventId: this.eventId,
-          channel: this.chosenChannel
-        })
+        this.$socket.emit('start-channel', this.eventId, this.chosenChannel)
 
         // Start broadcasting
         await this.broadcaster.start()

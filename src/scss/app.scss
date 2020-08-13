@@ -1,0 +1,102 @@
+//
+// Custom site-wide styles
+// -> Imported from App.vue
+//
+
+//
+// Import the bits of bulma we need
+//
+@import '~bulma/sass/base/_all.sass';
+
+@import '~bulma/sass/elements/button.sass';
+@import '~bulma/sass/elements/container.sass';
+@import '~bulma/sass/elements/content.sass';
+@import '~bulma/sass/elements/notification.sass';
+@import '~bulma/sass/elements/other.sass';
+@import '~bulma/sass/elements/table.sass';
+@import '~bulma/sass/elements/tag.sass';
+@import '~bulma/sass/elements/title.sass';
+
+@import '~bulma/sass/components/level.sass'; // only for v0
+@import '~bulma/sass/components/navbar.sass';
+
+@import '~bulma/sass/form/_all.sass';
+@import '~bulma/sass/grid/columns.sass';
+@import '~bulma/sass/helpers/_all.sass';
+@import '~bulma/sass/layout/_all.sass';
+
+//
+// bulma RTL overrides
+//
+.navbar {
+  .navbar-menu {
+    .navbar-start {
+    }
+    .navbar-end {
+      margin-left: unset;
+      margin-inline-start: auto;
+    }
+  }
+  .navbar-burger {
+    margin-left: unset;
+    margin-inline-start: auto;
+  }
+}
+
+.content {
+  ul {
+    margin-left: unset;
+    margin-inline-start: 2em;
+  }
+}
+
+//
+// Custom tabs
+//
+.tabs.is-dark {
+  background-color: #2c3242;
+
+  ul {
+    border-bottom: 1px solid #2c3242;
+  }
+
+  li a {
+    color: $white;
+    font-weight: bold;
+    border-bottom: none;
+    padding: 0.5em 1.5em;
+  }
+
+  li.is-active a {
+    border-bottom: none;
+    background-color: #424755;
+  }
+}
+
+//
+// Misc
+//
+html {
+  scroll-behavior: smooth;
+}
+
+@include touch {
+  html {
+    scroll-padding-top: $size-normal + 1rem;
+  }
+}
+
+@include desktop {
+  html {
+    scroll-padding-top: $navbar-height + $size-normal + 1rem;
+  }
+}
+
+.section.is-small {
+  padding: 1.5rem 1.5rem;
+}
+
+.icon svg {
+  width: 1.5em;
+  height: 1.5em;
+}

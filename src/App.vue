@@ -1,40 +1,88 @@
 <template>
   <div id="app">
-    <router-view />
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <strong>{{ appName }}</strong>
-        version {{ appVersion }}
-        | Made by
-        <a href="https://openlab.ncl.ac.uk">Openlab</a>
-      </div>
-    </footer>
+    <ApiError v-if="apiState === 'error'" />
+    <router-view v-else-if="isReady" />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+import {
+  ROUTE_ATRIUM,
+  ROUTE_TOKEN_CAPTURE,
+  ROUTE_LOGIN,
+  ROUTE_REGISTER,
+  ROUTE_TERMS,
+  ROUTE_PRIVACY,
+  ROUTE_ERROR
+} from './const'
+
+import ApiError from '@/components/ApiError.vue'
+
+// Routes that can be visited without being logged in
+const noAuthRoutes = [
+  ROUTE_ATRIUM,
+  ROUTE_TOKEN_CAPTURE,
+  ROUTE_LOGIN,
+  ROUTE_REGISTER,
+  ROUTE_TERMS,
+  ROUTE_PRIVACY,
+  ROUTE_ERROR
+]
+
 export default {
-  mounted() {
-    const { token } = localStorage
-    if (!token && this.$route.name !== 'Login') {
-      this.$router.replace({ name: 'Login' })
-    } else if (token) {
-      this.$store.dispatch('api/fetchData', token)
+  components: { ApiError },
+  data() {
+    return {
+      isReady: false
     }
   },
   computed: {
-    appName() {
-      return process.env.VUE_APP_NAME
-    },
-    appVersion() {
-      return process.env.VUE_APP_VERSION
+    ...mapState('api', ['apiState'])
+  },
+  async mounted() {
+    const { token } = localStorage
+    if (token) {
+      //
+      // If there is a token stored, authenticate with it & fetch data
+      //
+      await this.$store.dispatch('api/authenticate', {
+        socket: this.$socket,
+        token
+      })
+    } else {
+      // If there isn't a token, still fetch data
+      this.$store.dispatch('api/fetchData')
+
+      //
+      // If there isn't a token and it isn't a whitelisted route, go to the atrium
+      //
+      if (!noAuthRoutes.includes(this.$route.name)) {
+        this.$router.replace({ name: ROUTE_ATRIUM })
+      }
     }
+
+    //
+    // If they came to exactly the root, go to the atrium
+    //
+    if (this.$route.path === '/') {
+      this.$router.replace({ name: ROUTE_ATRIUM })
+    }
+
+    this.isReady = true
   }
 }
 </script>
 
 <style lang="scss">
+// @import '~bulma/sass/base/_all.sass';
+// @import '~bulma/sass/elements/_all.sass';
+// @import '~bulma/sass/form/_all.sass';
+// @import '~bulma/sass/helpers/_all.sass';
+// @import '~bulma/sass/layout/_all.sass';
 @import '~bulma/bulma.sass';
+@import '@/scss/app.scss';
 
 @include tablet {
   #app {
@@ -58,5 +106,13 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+
+.button {
+  font-weight: 600;
+}
+
+.label:not(:last-child) {
+  margin-bottom: 0.1em;
 }
 </style>

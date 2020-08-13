@@ -1,45 +1,63 @@
 {
   "name": "ifrc-vconf-gui",
-  "version": "0.4.3",
+  "version": "0.10.10",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --modern",
+    "postversion": "git push --follow-tags",
+    "test:unit": "vue-cli-service test:unit",
+    "report": "vue-cli-service build --modern --report-json && webpack-bundle-analyzer dist/report.json",
     "lint": "vue-cli-service lint",
     "readme-toc": "md-toc -i"
   },
   "dependencies": {
-    "@types/marked": "^0.7.4",
     "bulma": "^0.9.0",
     "core-js": "^3.6.5",
     "format-ms": "^1.2.1",
+    "i18n-iso-countries": "^6.0.0",
+    "is-email": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^2.2.0",
     "ky": "^0.20.0",
-    "marked": "^1.1.0",
+    "marked": "^1.1.1",
     "ms": "^2.1.2",
     "socket.io-client": "^2.3.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vue-gtag": "^1.8.0",
+    "vue-i18n": "^8.20.0",
+    "vue-router": "^3.4.3",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@robb_j/md-toc": "^0.3.1",
+    "@types/jest": "^26.0.9",
     "@types/jsonwebtoken": "^8.5.0",
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-plugin-router": "~4.4.0",
-    "@vue/cli-plugin-vuex": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
+    "@types/marked": "^1.1.0",
+    "@vue/cli-plugin-babel": "^4.5.3",
+    "@vue/cli-plugin-eslint": "^4.5.3",
+    "@vue/cli-plugin-router": "^4.5.3",
+    "@vue/cli-plugin-unit-jest": "^4.5.3",
+    "@vue/cli-plugin-vuex": "^4.5.3",
+    "@vue/cli-service": "^4.5.3",
     "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
-    "lint-staged": "^9.5.0",
+    "json-loader": "^0.5.7",
+    "lint-staged": "^10.2.11",
+    "markdown-loader": "^5.1.0",
+    "postcss-dir-pseudo-class": "^5.0.0",
     "prettier": "^1.19.1",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "raw-loader": "^4.0.1",
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.3",
+    "vue-svg-loader": "^0.16.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-bundle-analyzer": "^3.8.0",
+    "yaml-loader": "^0.6.0"
   },
   "eslintConfig": {
     "root": true,
@@ -47,27 +65,42 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/strongly-recommended",
       "eslint:recommended",
       "@vue/prettier"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-debugger": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
   ],
+  "jest": {
+    "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel"
+  },
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx,vue}": [
-      "vue-cli-service lint",
-      "git add"
+      "vue-cli-service lint"
     ]
   },
   "prettier": {

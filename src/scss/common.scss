@@ -1,2 +1,49 @@
-$primary: #e63946;
+$red: #ef3340;
+
+$primary: #e50354;
+$link: #ff6f61;
+// $info: $cyan;
+// $success: $green;
+// $warning: $yellow;
+// $danger: $red;
+// $dark: $grey-darker;
+// $text: $grey-dark;
+
+$track-official: #556183;
+$track-act: #ff6f61;
+$track-empower: #6c63ff;
+$track-influence: #d27fcc;
+$track-transform: #e50354;
+
+$greyish: #757a8a;
+
+$family-sans-serif: Avenir, Helvetica, Arial, sans-serif;
+$family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+
+$navbar-height: 3.75rem;
+// $navbar-item-hover-background-color: $scheme-main-bis;
+$navbar-item-active-background-color: #fef2f6;
+$navbar-item-hover-color: $primary;
+$navbar-item-active-color: $primary;
+
+$footer-padding: 1.5rem 1.5rem 2.5rem;
+
 @import '~bulma/sass/utilities/_all.sass';
+
+@mixin insetInlineStart($value) {
+  &:dir(ltr) {
+    left: $value;
+  }
+  &:dir(rtl) {
+    right: $value;
+  }
+}
+
+@mixin insetInlineEnd($value) {
+  &:dir(ltr) {
+    right: $value;
+  }
+  &:dir(rtl) {
+    left: $value;
+  }
+}

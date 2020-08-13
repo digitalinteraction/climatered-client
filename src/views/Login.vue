@@ -1,54 +1,60 @@
 <template>
-  <div class="login-page">
-    <section class="section is-large">
-      <div class="container is-small">
-        <div class="box is-centered">
-          <h1 class="title">Login</h1>
-          <div class="content">
-            <p>
-              We'll send you an email to confirm who you are. The email will
-              have a link in it which will log you in. It will expire after 30
-              minutes.
-            </p>
-          </div>
+  <UtilWrapper>
+    <router-link
+      slot="back-button"
+      class="button is-text"
+      :to="atriumRoute"
+      v-t="'atrium.returnTo'"
+    />
+    <div slot="content" class="login-page">
+      <h1 class="title" v-t="'login.title'" />
+      <div class="content">
+        <p>{{ $t('login.infoText') }}</p>
+      </div>
 
-          <div class="login-form" v-if="!done">
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control">
-                <input
-                  type="text"
-                  class="input"
-                  v-model="email"
-                  placeholder="geoff@example.com"
-                />
-              </div>
-              <p class="help">
-                The email address you registered to the conference with
-              </p>
-            </div>
-            <div class="buttons">
-              <button class="button is-primary" @click="submit">
-                Request login code
-              </button>
-            </div>
+      <div class="login-form" v-if="!done">
+        <div class="field">
+          <label class="label" v-t="'login.email.label'"></label>
+          <div class="control">
+            <input
+              type="email"
+              class="input"
+              v-model="email"
+              :placeholder="$t('login.email.placeholder')"
+              @keyup.enter="submit"
+            />
           </div>
-          <div class="notification is-success is-large" v-else>
-            <button class="delete" @click="done = false"></button>
-            <strong>Login code sent</strong>
-          </div>
+          <p class="help">
+            {{ $t('login.email.help') }}
+          </p>
+        </div>
+        <div class="buttons">
+          <button
+            class="button is-primary"
+            @click="submit"
+            v-t="'login.submitButton'"
+          />
         </div>
       </div>
-    </section>
-  </div>
+      <div class="notification is-success is-large" v-else>
+        <button class="delete" @click="done = false"></button>
+        <strong>Login code sent</strong>
+      </div>
+    </div>
+  </UtilWrapper>
 </template>
 
 <script>
+import UtilWrapper from '@/components/UtilWrapper.vue'
+import { ROUTE_ATRIUM } from '../const'
+
 export default {
+  components: { UtilWrapper },
   data() {
     return {
       email: '',
-      done: false
+      done: false,
+      atriumRoute: { name: ROUTE_ATRIUM }
     }
   },
   methods: {
@@ -65,6 +71,12 @@ export default {
         this.done = res.ok
         if (!res.ok) throw new Error(json.message)
 
+        this.$gtag.event('login-start', {
+          event_category: 'users',
+          event_label: 'User requested login code',
+          value: 0
+        })
+
         this.done = true
       } catch (error) {
         console.error(error)
@@ -76,14 +88,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.login-page {
-  min-height: 100vh;
-  background-color: $grey-lightest;
-
-  .box {
-    max-width: $tablet;
-    margin: 0 auto;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

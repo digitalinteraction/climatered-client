@@ -1,0 +1,115 @@
+general:
+  message: 'Hello, world'
+  loginButton: Log in
+  registerButton: Register Now!
+  appName: Climate:Red
+  pleaseSelect: Please select
+
+api:
+  auth:
+    general: 'Bad auth'
+    jwtExpired: 'JWT expired'
+
+atrium:
+  title: Atrium
+  or: or
+  sessionsButton: See what's on!
+  returnTo: Back to atrium
+
+login:
+  title: Login
+  infoText: We'll send you an email to confirm who you are. The email will
+    have a link in it which will log you in. It will expire after 30
+    minutes. If you don't recieve anything check your spam folder.
+  email:
+    label: Email
+    placeholder: e.g. geoff@example.com
+    help: The email address you registered to the conference with
+  badEmail: Bad email
+  doneText: Login code sent
+  submitButton: Request login code
+
+register:
+  title: Register
+  infoText: Register for Climate:Red
+  name:
+    label: Full name
+    placeholder: e.g. Dan Howard
+    help: Your full name
+  email:
+    label: Your email address
+    placeholder: e.g. dan@example.com
+    help: You will use your email to log in to the virtual summit
+  language:
+    label: Language
+    help: We'll put the conference in this language for you
+  country:
+    label: Country
+    help: So we can see the reach of the conference
+  affiliation:
+    label: Your affiliation
+    placeholder: e.g. IFRC staff member
+    help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
+  submitButton: Register
+  consentText: I confirm that I have read and agree with the policies linked below
+  termsLink: Terms and Conditions
+  privacyLink: Privacy policy
+  genericError: Something went wrong, please try again
+  doneText: We've sent you a verification email ...
+
+profile:
+  title: Your profile
+  emailText: Email
+  localeText: Chosen language
+  whenText: Logged in
+  nameText: Name
+  countryText: Country
+  affiliationText: Country
+  logoutButton: Log out
+  deleteButton: Delete account
+  deleteText: This is permenant, are you sure?
+
+sessions:
+  title: What's on
+  tabs:
+    plenary: Speakers
+    panel: Panels
+    sessions: Sessions
+
+schedule:
+  title: Schedule
+
+coffeechat:
+  title: Coffee chat
+
+help:
+  title: Help
+
+notFound:
+  title: Page not found
+  info: We couldn't find the page you were looking for, please check the link you clicked or go back to the atrium.
+
+terms:
+  title: Terms
+
+privacy:
+  title: Privacy
+
+sessionCard:
+  hostedBy: Hosted by
+
+data:
+  type:
+    ignite-talk: Ignite talk
+    games: Games
+    panel: Panel
+    workshop: Workshop
+    virtual-tour: Virtual tour
+    plenary: Keynote
+    speaker: Speaker
+    fishbowl: Fishbowl
+  theme:
+    act: Act
+    empower: Empower
+    influence: Influence
+    transform: Transform

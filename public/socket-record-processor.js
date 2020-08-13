@@ -29,7 +29,6 @@ class SocketRecordProcessor extends AudioWorkletProcessor {
         this.bucket.push(new Float32Array(inputs[0][0]))
       }
     } else {
-      // console.log(inputs, outputs)
       const length = this.bucket.reduce((sum, arr) => sum + arr.length, 0)
 
       const array = new Float32Array(length)

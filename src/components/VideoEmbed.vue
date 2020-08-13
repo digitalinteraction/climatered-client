@@ -8,8 +8,10 @@
         frameborder="0"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen
+        ref="iframe"
       ></iframe>
     </div>
+    <p>muted={{ muted }}</p>
   </div>
 </template>
 
@@ -18,7 +20,13 @@ import { parseYouTubeLink } from '../utils.js'
 
 export default {
   props: {
-    videoLink: { type: Object, required: true }
+    videoLink: { type: Object, required: true },
+    muted: { type: Boolean, default: false }
+  },
+  watch: {
+    muted(newValue) {
+      this.$refs.iframe.muted = newValue
+    }
   },
   computed: {
     youtube() {

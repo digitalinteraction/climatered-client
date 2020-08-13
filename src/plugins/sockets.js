@@ -1,8 +1,7 @@
-import Vue from 'vue'
-import { pickApi } from './store/modules/api'
+import { pickApi } from '../utils'
 import SocketClient from 'socket.io-client'
 
-export default class ApiSocket extends Vue {
+export default class ApiSocket {
   listeners = new Map()
 
   static install(Vue) {
@@ -18,8 +17,6 @@ export default class ApiSocket extends Vue {
   }
 
   constructor(socketUrl, path) {
-    super()
-
     this.socket = new SocketClient(socketUrl, { path })
 
     this.socket.on('connect', () => {
@@ -34,19 +31,19 @@ export default class ApiSocket extends Vue {
   }
 
   emit(eventName, ...args) {
-    console.log('emit', eventName, ...args)
+    console.debug('emit', eventName, ...args)
 
     this.socket.emit(eventName, ...args)
   }
 
   emitBinary(eventName, ...args) {
-    console.log('emitBinary', eventName, ...args)
+    console.debug('emitBinary', eventName, ...args)
 
     this.socket.binary(true).emit(eventName, ...args)
   }
 
   bindEvent(owner, eventName, callback) {
-    console.log('bindEvent', eventName)
+    console.debug('bindEvent', eventName)
 
     if (!this.listeners.has(eventName)) {
       this.socket.on(eventName, data => this.handleEvent(eventName, data))
@@ -58,7 +55,7 @@ export default class ApiSocket extends Vue {
   }
 
   unbindEvent(owner, eventName) {
-    console.log('unbindEvent', eventName)
+    console.debug('unbindEvent', eventName)
 
     const listeners = this.listeners.get(eventName)
     if (!listeners) return
@@ -81,5 +78,5 @@ export default class ApiSocket extends Vue {
 }
 
 export function authenticateSocket(socket, token) {
-  socket.emit('auth', { token: token })
+  socket.emit('auth', token)
 }

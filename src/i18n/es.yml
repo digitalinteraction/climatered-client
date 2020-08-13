@@ -1,0 +1,113 @@
+general:
+  message: 'Hola Mundo'
+  loginButton: Iniciar sesión
+  registerButton: ¡Regístrate ahora!
+  appName: Climate:Red
+  pleaseSelect: Por favor seleccionar
+#
+# api:
+#   auth:
+#     general: 'Bad auth'
+#     jwtExpired: 'JWT expired'
+#
+atrium:
+  title: Entrada
+  or: o
+  sessionsButton: ¡Mira lo que pasa!
+  returnTo: Regresar a la Entrada
+
+login:
+  title: Ingreso
+  infoText: Después de registrarse, le enviaremos un correo electrónico de confirmación. El correo electrónico tendrá un enlace que le conectará. El enlace caducará después de 30 minutos. Si no lo recibe, verifique su carpeta de correo no deseado.
+  email:
+    label: Correo Electrónico
+    placeholder: por ejemplo, geoff@example.com
+    help: La dirección de correo electrónico con la que se registró en la conferencia
+  submitButton: Solicitar código de inicio de sesión
+  doneText: Código de inicio de sesión enviado
+  badEmail: Correo electrónico malo
+
+register:
+  title: Registrarse
+  infoText: 'Registrarse para el clima: ROJA'
+  name:
+    label: Nombre completo
+    placeholder: por ejemplo, Dan Howard
+    help: Su nombre completo
+  email:
+    label: dirección de correo electrónico
+    placeholder: por ejemplo, dan@example.com
+    help: Usarás tu correo electrónico para iniciar sesión en la cumbre virtual
+  language:
+    label: idioma
+    help: Este será su idioma preferido para la conferencia
+  country:
+    label: País
+    help: Para que podamos ver el alcance de la conferencia
+  affiliation:
+    label: Su afiliación
+    placeholder: por ejemplo, un miembro del personal de la FICR
+    help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
+  consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
+  termsLink: Términos y Condiciones
+  privacyLink: Política de privacidad
+  genericError: Algo salió mal. Por favor, vuelva a intentarlo
+  submitButton: Registrarse
+  doneText: Le hemos enviado un correo electrónico de verificación.
+
+profile:
+  title: Tu perfil
+  emailText: Su Correo Electrónico
+  localeText: Idioma seleccionado
+  whenText: Sesión iniciada
+  nameText: Nombre
+  countryText: País
+  affiliationText: Afiliación
+  logoutButton: Cerrar sesión
+  deleteButton: Eliminar cuenta
+  deleteText: Esto es permanente, ¿está segura?
+
+sessions:
+  title: Que hay ahora
+  tabs:
+    plenary: Los oradores
+    panel: Mesas redondas
+    sessions: Sesiones
+
+schedule:
+  title: Calendario
+
+coffeechat:
+  title: Conversaciones con café
+
+help:
+  title: Ayuda
+
+notFound:
+  title: Página no encontrada
+  info: No pudimos encontrar la página que estaba buscando, verifique el enlace en el que hizo clic o regrese al atrio.
+
+terms:
+  title: Términos
+
+privacy:
+  title: Privacidad
+
+sessionCard:
+  hostedBy: Organizado por
+
+data:
+  type:
+    ignite-talk: Sesión de tormenta de ideas
+    games: Juegos de aprendizaje y diálogo
+    panel: Paneles y Debates
+    workshop: Seminarios
+    virtual-tour: Visitas Virtuales
+    plenary: Nota clave
+    speaker: _
+    fishbowl: Fishbowls- Peceras
+  track:
+    act: Acción
+    empower: Habilitación
+    influence: Influencia
+    transform: Transformación

@@ -27,7 +27,7 @@
                 class="event-list"
               >
                 <router-link :to="event | eventRoute">
-                  {{ event.name }}
+                  {{ event.id }}
                 </router-link>
               </li>
             </ul>
@@ -52,10 +52,12 @@ export default {
   },
   computed: {
     slottedEvents() {
-      return this.slots.map(slot => ({
+      const grouped = this.slots.map(slot => ({
         slot,
         events: this.events.filter(e => e.slot === slot.id)
       }))
+
+      return grouped.sort((a, b) => a.slot.id.localeCompare(b.slot.id))
     }
   },
   methods: {}

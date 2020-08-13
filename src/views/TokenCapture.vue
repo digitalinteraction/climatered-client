@@ -3,22 +3,33 @@
 </template>
 
 <script>
-import { authenticateSocket } from '../sockets.js'
+import { ROUTE_ATRIUM } from '../const'
 
 export default {
   mounted() {
     const { token } = this.$route.query
 
-    if (!token) return alert('No token')
+    if (!token) return alert('No token passed')
 
     if (token === 'reset') {
-      delete window.localStorage.token
-    } else {
-      window.localStorage.token = token
-      authenticateSocket(this.$socket, token)
+      delete localStorage.token
+      window.location.reload()
+      return
     }
 
-    this.$router.replace({ name: 'Home' })
+    window.localStorage.token = token
+
+    this.$store.dispatch('api/authenticate', {
+      socket: this.$socket,
+      token
+    })
+    this.$router.replace({ name: ROUTE_ATRIUM })
+
+    this.$gtag.event('login-finish', {
+      event_category: 'users',
+      event_label: 'User successfully in',
+      value: 0
+    })
   }
 }
 </script>

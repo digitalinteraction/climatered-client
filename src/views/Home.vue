@@ -4,7 +4,7 @@
       <div class="container">
         <div class="columns">
           <div class="column">
-            <h1 class="title is-1">Hello!</h1>
+            <h1 class="title is-1">{{ $t('general.message') }}</h1>
           </div>
           <div class="column is-narrow">
             <button class="button is-danger is-light" @click="logout">
@@ -16,31 +16,29 @@
         <template v-if="isRole('attendee')">
           <h2 class="title">Attendee schedule</h2>
           <AttendeeSchedule
-            v-if="$store.state.api.hasData"
             :slots="$store.state.api.slots"
-            :events="$store.state.api.events"
+            :events="$store.state.api.sessions"
           />
         </template>
 
         <template v-if="isRole('translator')">
           <h2 class="title">Translator schedule</h2>
           <TranslatorSchedule
-            v-if="$store.state.api.hasData"
             :slots="$store.state.api.slots"
             :events="translatorEvents"
           />
         </template>
 
-        <pre>{{ authToken }}</pre>
+        <pre>{{ user }}</pre>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AttendeeSchedule from '@/components/AttendeeSchedule.vue'
 import TranslatorSchedule from '@/components/TranslatorSchedule.vue'
-import jwt from 'jsonwebtoken'
 
 export default {
   name: 'Home',
@@ -49,11 +47,9 @@ export default {
     TranslatorSchedule
   },
   computed: {
-    authToken() {
-      return jwt.decode(localStorage.token)
-    },
+    ...mapState('api', ['user']),
     translatorEvents() {
-      return this.$store.state.api.events?.filter(e => e.channels)
+      return this.$store.state.api.sessions?.filter(e => e.enableTranslation)
     }
   },
   methods: {
@@ -64,7 +60,7 @@ export default {
       window.location.reload()
     },
     isRole(role) {
-      return this.authToken?.user_roles?.includes(role)
+      return this.user?.user_roles?.includes(role)
     }
   }
 }
