@@ -30,8 +30,6 @@ export default {
   },
   methods: {
     onInput(e) {
-      console.log(e.target)
-      console.log(e.target.checked)
       this.$emit('input', e.target.checked)
     }
   }
