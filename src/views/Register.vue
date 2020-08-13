@@ -128,7 +128,8 @@ export default {
         email: false,
         language: false,
         country: false,
-        affiliation: false
+        affiliation: false,
+        consent: false
       },
       hasConsented: false,
       languages: [
