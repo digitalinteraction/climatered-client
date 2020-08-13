@@ -130,6 +130,7 @@ and they can easily be deployed.
 - [Vuex](https://vuex.vuejs.org/)
 - [vue-i18n](https://kazupon.github.io/vue-i18n/guide/formatting.html)
 - [vue-gtag](https://matteo-gabriele.gitbook.io/vue-gtag/)
+- [browser compatability](https://browsersl.ist/?q=%3E+1%25+or+last+2+versions+or+not+dead)
 
 ## Notes
 
