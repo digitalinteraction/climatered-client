@@ -78,8 +78,7 @@ import ManyToMany from '../components/ManyToMany.vue'
 
 const eventComponents = {
   plenary: OneToMany,
-  panel: OneToMany,
-  session: ManyToMany
+  panel: OneToMany
 }
 
 export default {
@@ -141,7 +140,7 @@ export default {
     eventComponent() {
       if (!this.event || !this.slotState) return null
       if (this.slotState === 'before') return Countdown
-      return eventComponents[this.event.type] ?? null
+      return eventComponents[this.event.type] ?? ManyToMany
     }
     // authToken() {
     //   return jwt.decode(localStorage.token)
