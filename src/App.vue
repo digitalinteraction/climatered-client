@@ -52,7 +52,7 @@ export default {
         token
       })
     } else {
-      // If there isn't a token, still fetch data
+      // If there isn't a token, still fetch data (should we await this?)
       this.$store.dispatch('api/fetchData')
 
       //

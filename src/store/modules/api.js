@@ -1,4 +1,4 @@
-import ky from 'ky'
+import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 
 import { setLocale } from '@/i18n'
@@ -13,21 +13,12 @@ const state = () => ({
   user: null
 })
 
-const agent = ky.extend({
-  prefixUrl: pickApi(),
-  throwHttpErrors: false,
-  hooks: {
-    beforeRequest: [
-      request => {
-        if (!localStorage.token) return
-        request.headers.set('Authorization', `Bearer ${localStorage.token}`)
-      }
-    ]
-  }
+const agent = axios.create({
+  baseURL: pickApi(),
+  validateStatus: code => code < 500
 })
 
 const getters = {
-  agent: () => agent,
   track: state => slug => state.tracks.find(s => s.slug === slug),
   type: state => slug => state.types.find(s => s.slug === slug)
 }
@@ -52,20 +43,25 @@ const actions = {
     setLocale(chosenLocale)
     authenticateSocket(socket, token)
 
+    agent.defaults.headers = {
+      ...agent.defaults.headers,
+      Authorization: `Bearer ${token}`
+    }
+
     commit('user', user)
     return dispatch('fetchData')
   },
   async fetchData({ commit }) {
     try {
       const responses = await Promise.all([
-        agent.get('schedule/slots'),
-        agent.get('schedule/sessions'),
-        agent.get('schedule/settings'),
+        agent.get('/schedule/slots'),
+        agent.get('/schedule/sessions'),
+        agent.get('/schedule/settings'),
 
-        agent.get('schedule/speakers'),
-        agent.get('schedule/themes'),
-        agent.get('schedule/tracks'),
-        agent.get('schedule/types')
+        agent.get('/schedule/speakers'),
+        agent.get('/schedule/themes'),
+        agent.get('/schedule/tracks'),
+        agent.get('/schedule/types')
       ])
 
       for (const response of responses) {
@@ -80,7 +76,7 @@ const actions = {
         themes,
         tracks,
         types
-      ] = await Promise.all(responses.map(r => r.json()))
+      ] = responses.map(r => r.data)
 
       commit('slots', slots.slots)
       commit('sessions', sessions.sessions)
@@ -96,14 +92,22 @@ const actions = {
       commit('apiState', 'error')
     }
   },
-  async register({ getters }, { name, email, language, country, affiliation }) {
-    const agent = getters.agent
+  async login(ctx, email) {
+    const params = { email }
+    const response = await agent.get('/login/email', { params })
 
-    const json = { name, email, language, country, affiliation }
+    return response.status === 200
+  },
+  async register(ctx, { name, email, language, country, affiliation }) {
+    const data = { name, email, language, country, affiliation }
 
-    const response = await agent.post('register', { json })
+    const response = await agent.post('/register', data, {
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
 
-    return response.ok
+    return response.status === 200
   }
 }
 

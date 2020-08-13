@@ -13,21 +13,16 @@
       </div>
 
       <div class="login-form" v-if="!done">
-        <div class="field">
-          <label class="label" v-t="'login.email.label'"></label>
-          <div class="control">
-            <input
-              type="email"
-              class="input"
-              v-model="email"
-              :placeholder="$t('login.email.placeholder')"
-              @keyup.enter="submit"
-            />
-          </div>
-          <p class="help">
-            {{ $t('login.email.help') }}
-          </p>
-        </div>
+        <TextField
+          name="email"
+          type="email"
+          v-model="email"
+          :has-error="hasError"
+          label-key="login.email.label"
+          placeholder-key="login.email.placeholder"
+          help-key="login.email.help"
+          @enter="submit"
+        />
         <div class="buttons">
           <button
             class="button is-primary"
@@ -46,30 +41,32 @@
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
+import TextField from '@/components/TextField.vue'
 import { ROUTE_ATRIUM } from '../const'
 
 export default {
-  components: { UtilWrapper },
+  components: { UtilWrapper, TextField },
   data() {
     return {
       email: '',
       done: false,
-      atriumRoute: { name: ROUTE_ATRIUM }
+      atriumRoute: { name: ROUTE_ATRIUM },
+      hasError: false
     }
   },
   methods: {
     async submit() {
-      if (!this.email) return alert('No email entered')
-      const agent = this.$store.getters['api/agent']
+      if (!this.email) {
+        this.hasError = true
+        return
+      }
 
       try {
-        const searchParams = { email: this.email }
+        const passed = await this.$store.dispatch('api/login', this.email)
 
-        const res = await agent('login/email', { searchParams })
-        const json = await res.json()
+        this.hasError = !passed
 
-        this.done = res.ok
-        if (!res.ok) throw new Error(json.message)
+        if (!passed) return
 
         this.$gtag.event('login-start', {
           event_category: 'users',
@@ -80,8 +77,7 @@ export default {
         this.done = true
       } catch (error) {
         console.error(error)
-        alert(error.message)
-        this.done = false
+        this.hasError = true
       }
     }
   }
