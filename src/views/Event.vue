@@ -1,5 +1,5 @@
 <template>
-  <div class="event-page" v-if="hasData">
+  <div class="event-page">
     <section class="section">
       <div class="container">
         <div class="level">
