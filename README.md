@@ -17,6 +17,8 @@ A prototype user interface for the ifrc's virtual conference, designed to:
   - [Scss usage](#scss-usage)
   - [Temporal aspects](#temporal-aspects)
 - [Deployment](#deployment)
+- [Useful docs](#useful-docs)
+- [Notes](#notes)
 - [Customize configuration](#customize-configuration)
 
 <!-- toc-tail -->
@@ -117,6 +119,16 @@ build a docker image at that point in the git history.
 
 This means that we have semantic versions for every change
 and they can easily be deployed.
+
+## Useful docs
+
+- [CSS Logical properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Logical_Properties)
+- [Bulma docs](https://bulma.io/documentation/)
+- [Bulma variables](https://bulma.io/documentation/customize/variables/)
+- [Vuejs docs](https://vuejs.org/)
+- [Vue router](https://router.vuejs.org/)
+- [Vuex](https://vuex.vuejs.org/)
+- [vue-i18n](https://kazupon.github.io/vue-i18n/guide/formatting.html)
 
 ## Notes
 
