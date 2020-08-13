@@ -46,5 +46,12 @@ module.exports = {
       .use('markdown-loader')
         .loader('markdown-loader')
         .end()
+
+    config.resolve.alias.set(
+      'socket.io-client',
+      process.env.NODE_ENV === 'development'
+        ? 'socket.io-client'
+        : 'socket.io-client/dist/socket.io.slim.js'
+    )
   }
 }
