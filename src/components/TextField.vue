@@ -9,6 +9,7 @@
         :class="inputClass"
         :value="value"
         @input="onInput"
+        @keyup.enter="onEnter"
         :placeholder="$t(placeholderKey)"
       />
     </div>
@@ -39,6 +40,9 @@ export default {
   methods: {
     onInput(e) {
       this.$emit('input', e.target.value)
+    },
+    onEnter() {
+      this.$emit('enter')
     }
   }
 }
