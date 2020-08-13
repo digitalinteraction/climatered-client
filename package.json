@@ -14,7 +14,7 @@
   "dependencies": {
     "bulma": "^0.9.0",
     "core-js": "^3.6.5",
-    "format-ms": "^1.2.1",
+    "countdown": "^2.6.0",
     "i18n-iso-countries": "^6.0.0",
     "is-email": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@robb_j/md-toc": "^0.3.1",
+    "@types/countdown": "0.0.7",
     "@types/jest": "^26.0.9",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/marked": "^1.1.0",

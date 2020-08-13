@@ -10,7 +10,7 @@
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
-import { formatMilliseconds } from 'format-ms'
+import countdown from 'countdown'
 
 export default {
   components: { UtilWrapper },
@@ -25,7 +25,7 @@ export default {
   },
   filters: {
     friendlyTime(timeInMs) {
-      return formatMilliseconds(timeInMs, { ignore: ['millisecond'] })
+      return countdown(Date.now() + timeInMs).toString()
     }
   },
   mounted() {
