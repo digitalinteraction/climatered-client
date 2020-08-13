@@ -129,6 +129,7 @@ and they can easily be deployed.
 - [Vue router](https://router.vuejs.org/)
 - [Vuex](https://vuex.vuejs.org/)
 - [vue-i18n](https://kazupon.github.io/vue-i18n/guide/formatting.html)
+- [vue-gtag](https://matteo-gabriele.gitbook.io/vue-gtag/)
 
 ## Notes
 
