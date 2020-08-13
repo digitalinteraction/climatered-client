@@ -56,12 +56,12 @@
           placeholder-key="register.affiliation.placeholder"
           help-key="register.affiliation.help"
         />
-        <div class="field">
-          <label class="checkbox">
-            <input type="checkbox" v-model="hasConsented" />
-            {{ $t('register.consentText') }}
-          </label>
-        </div>
+        <CheckboxField
+          name="hasConsent"
+          v-model="hasConsented"
+          :has-error="errors.consent"
+          text-key="register.consentText"
+        />
         <div class="content">
           <ul>
             <!-- <li>
@@ -92,6 +92,7 @@
 import UtilWrapper from '@/components/UtilWrapper.vue'
 import TextField from '@/components/TextField.vue'
 import SelectField from '@/components/SelectField.vue'
+import CheckboxField from '@/components/CheckboxField.vue'
 
 import { ROUTE_ATRIUM } from '../const'
 import { setLocale } from '../i18n'
@@ -110,7 +111,7 @@ const countryOptions = Object.entries(countries.getNames('en')).map(
 )
 
 export default {
-  components: { UtilWrapper, TextField, SelectField },
+  components: { UtilWrapper, TextField, SelectField, CheckboxField },
   data() {
     return {
       done: false,
@@ -145,7 +146,7 @@ export default {
       setLocale(newLocale, true)
     },
     async submit() {
-      if (this.checkForErrors(this.registration)) {
+      if (this.checkForErrors(this.registration, this.hasConsented)) {
         return
       }
 
@@ -164,7 +165,7 @@ export default {
 
       this.done = passed
     },
-    checkForErrors({ name, email, language, country, affiliation }) {
+    checkForErrors({ name, email, language, country, affiliation }, consent) {
       Object.keys(this.errors).forEach(key => (this.errors[key] = false))
 
       if (!name) {
@@ -185,6 +186,10 @@ export default {
 
       if (!affiliation) {
         this.errors.affiliation = true
+      }
+
+      if (!consent) {
+        this.errors.consent = true
       }
 
       return Object.keys(this.errors).some(key => this.errors[key])
