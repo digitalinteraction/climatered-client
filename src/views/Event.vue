@@ -61,7 +61,10 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <p>Num Attending</p>
+                  <p class="icon-and-text">
+                    <span class="icon"> </span>
+                    476 attending session
+                  </p>
                 </div>
               </div>
             </div>
@@ -75,11 +78,14 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <div
-                    class="content"
-                    v-if="localeContent"
-                    v-html="localeContent"
-                  ></div>
+                  <p class="icon-and-text">
+                    <span class="icon">
+                      <GlobeIcon class="globe" />
+                    </span>
+                    <span class="session-card-language">
+                      {{ event.hostLanguage.join('/') }}
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -98,7 +104,6 @@
             </div>
             <div>
               <h3>Session Info</h3>
-              <p>session card component here</p>
             </div>
           </div>
         </div>
@@ -122,6 +127,8 @@ import { mapState } from 'vuex'
 import Countdown from '../components/Countdown.vue'
 import OneToMany from '../components/OneToMany.vue'
 import ManyToMany from '../components/ManyToMany.vue'
+import OfficialIcon from '@/icons/ifrc.svg'
+import GlobeIcon from '@/icons/globe.svg'
 
 const eventComponents = {
   plenary: OneToMany,
@@ -129,6 +136,7 @@ const eventComponents = {
 }
 
 export default {
+  components: { OfficialIcon, GlobeIcon },
   props: {
     eventId: { type: String, required: true }
   },
@@ -215,4 +223,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.globe {
+  height: 0.9em;
+  width: 0.9em;
+}
+</style>
