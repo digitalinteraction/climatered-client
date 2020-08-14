@@ -6,6 +6,11 @@
       <p>This event hasn't started yet, come back soon!</p>
     </div>
 
+    <div>
+      <button class="button">Attend Session</button>
+      <button class="button">Add to Calendar</button>
+    </div>
+
     <div class="notification is-info is-light is-size-3 has-text-centered">
       {{ msUntilStart | friendlyTime }}
     </div>

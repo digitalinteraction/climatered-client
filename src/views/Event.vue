@@ -30,9 +30,6 @@
             </div>
           </div>
         </div>
-        <div class="buttons"></div>
-        <h1 class="title">{{ event.name }}</h1>
-
         <table class="table">
           <thead>
             <tr>
@@ -52,9 +49,59 @@
           </tbody>
         </table>
 
-        <h2 class="heading">About</h2>
-        <div class="content" v-if="localeContent" v-html="localeContent"></div>
+        <div class="columns">
+          <div class="column is-two-thirds">
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <router-link class="is-text" to="/prototype">
+                    Back
+                  </router-link>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <p>Num Attending</p>
+                </div>
+              </div>
+            </div>
+            <div class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <h1 class="title">
+                    {{ event.name ? event.name : 'Event Name Here' }}
+                  </h1>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <div
+                    class="content"
+                    v-if="localeContent"
+                    v-html="localeContent"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <h1 class="title">{{ event.name }}</h1>
 
+            <h2 class="heading">About</h2>
+          </div>
+          <div class="column is-one-thirds">
+            <div>
+              <h3>Host</h3>
+              <p>Person name or speaker row component</p>
+            </div>
+            <div>
+              <h3>Speakers</h3>
+              <p>Speaker row components insert here</p>
+            </div>
+            <div>
+              <h3>Session Info</h3>
+              <p>session card component here</p>
+            </div>
+          </div>
+        </div>
         <component
           v-if="eventComponent"
           :is="eventComponent"
