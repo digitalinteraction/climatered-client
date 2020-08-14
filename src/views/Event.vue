@@ -62,7 +62,11 @@
               <div class="level-right">
                 <div class="level-item">
                   <p class="icon-and-text">
-                    <span class="icon"> </span>
+                    <span class="icon">
+                      <span class="icon">
+                        <AttendeeIcon class="globe" />
+                      </span>
+                    </span>
                     476 attending session
                   </p>
                 </div>
@@ -100,7 +104,6 @@
             </div>
             <div>
               <h3>Speakers</h3>
-              <p>Speaker row components insert here</p>
             </div>
             <div>
               <h3>Session Info</h3>
@@ -129,6 +132,7 @@ import OneToMany from '../components/OneToMany.vue'
 import ManyToMany from '../components/ManyToMany.vue'
 import OfficialIcon from '@/icons/ifrc.svg'
 import GlobeIcon from '@/icons/globe.svg'
+import AttendeeIcon from '@/icons/attendee.svg'
 
 const eventComponents = {
   plenary: OneToMany,
@@ -136,7 +140,7 @@ const eventComponents = {
 }
 
 export default {
-  components: { OfficialIcon, GlobeIcon },
+  components: { OfficialIcon, GlobeIcon, AttendeeIcon },
   props: {
     eventId: { type: String, required: true }
   },
