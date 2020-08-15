@@ -8,6 +8,12 @@
       /
       <router-link class="is-faded" :to="privacyLink" v-t="'privacy.title'" />
       /
+      <a
+        class=" is-faded"
+        @click.prevent="triggerCookies"
+        v-t="'cookies.title'"
+      />
+      /
       {{ $t('general.appName') }}
       v{{ appVersion }}
     </div>
@@ -16,6 +22,7 @@
 
 <script>
 import { ROUTE_PRIVACY, ROUTE_TERMS } from '../const'
+import { CookieEvents } from '@/components/CookiePopup.vue'
 
 export default {
   computed: {
@@ -30,6 +37,11 @@ export default {
     },
     privacyLink() {
       return { name: ROUTE_PRIVACY }
+    }
+  },
+  methods: {
+    triggerCookies() {
+      CookieEvents.$emit('trigger')
     }
   }
 }

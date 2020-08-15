@@ -2,6 +2,7 @@
   <div id="app">
     <ApiError v-if="apiState === 'error'" />
     <router-view v-else-if="isReady" />
+    <CookiePopup />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import {
 } from './const'
 
 import ApiError from '@/components/ApiError.vue'
+import CookiePopup from '@/components/CookiePopup.vue'
 
 // Routes that can be visited without being logged in
 const noAuthRoutes = [
@@ -32,7 +34,7 @@ const noAuthRoutes = [
 ]
 
 export default {
-  components: { ApiError },
+  components: { ApiError, CookiePopup },
   data() {
     return {
       isReady: false
