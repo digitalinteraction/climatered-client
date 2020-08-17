@@ -3,7 +3,7 @@
     <div class="cookies-box">
       <p class="cookies-title" v-t="'cookies.popupTitle'" />
       <div class="content cookies-content">
-        <p>{{ $t('cookies.content', $t('cookies.title')) }}</p>
+        <p>{{ $t('cookies.content', [$t('cookies.title')]) }}</p>
       </div>
       <div class="buttons">
         <button
