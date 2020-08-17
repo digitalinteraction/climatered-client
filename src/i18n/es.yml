@@ -112,3 +112,13 @@ data:
     empower: Habilitación
     influence: Influencia
     transform: Transformación
+
+cookies:
+  title: Cookies
+  popupTitle: Nuestro uso de las cookies
+  acceptAction: Permitir análisis de datos
+  rejectAction: Desactivar análisis de datos
+  content: |
+    Utilizamos las cookies necesarias para que el sitio funcione.
+    Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales. 
+    Puede cambiar su preferencia haciendo clic en {0} en el pie de página del sitio.

@@ -50,6 +50,13 @@
   }
 }
 
+.buttons {
+  .button:not(:last-child):not(.is-fullwidth) {
+    margin-right: unset;
+    margin-inline-end: 0.5rem;
+  }
+}
+
 //
 // Custom tabs
 //
@@ -103,4 +110,8 @@ html {
 .icon svg {
   width: 1.5em;
   height: 1.5em;
+}
+
+.content a {
+  font-weight: bold;
 }

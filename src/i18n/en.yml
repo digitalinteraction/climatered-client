@@ -124,3 +124,7 @@ cookies:
   popupTitle: Our use of cookies
   acceptAction: Allow analytics
   rejectAction: Disable analytics
+  content: |
+    We use necessary cookies to make the site work.
+    We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits. 
+    You can change your preference by clicking {0} in the site footer.

@@ -2,7 +2,9 @@
   <div class="cookies" v-if="!pickedConsent">
     <div class="cookies-box">
       <p class="cookies-title" v-t="'cookies.popupTitle'" />
-      <div class="content cookies-content" v-html="localeContent" />
+      <div class="content cookies-content">
+        <p>{{ $t('cookies.content', $t('cookies.title')) }}</p>
+      </div>
       <div class="buttons">
         <button
           class="button is-success is-small is-light"
@@ -23,19 +25,7 @@
 import Vue from 'vue'
 import { STORAGE_ANALYTICS } from '@/const'
 
-import ContentEN from '@/content/cookies/en.md'
-import ContentFR from '@/content/cookies/fr.md'
-import ContentES from '@/content/cookies/es.md'
-import ContentAR from '@/content/cookies/ar.md'
-
 export const CookieEvents = new Vue()
-
-const content = {
-  en: ContentEN,
-  fr: ContentFR,
-  es: ContentES,
-  ar: ContentAR
-}
 
 export default {
   data() {
@@ -43,11 +33,11 @@ export default {
       pickedConsent: localStorage[STORAGE_ANALYTICS] !== undefined
     }
   },
-  computed: {
-    localeContent() {
-      return content[this.$i18n.locale]
-    }
-  },
+  // computed: {
+  //   localeContent() {
+  //     return content[this.$i18n.locale]
+  //   }
+  // },
   mounted() {
     CookieEvents.$on('trigger', this.reTrigger)
   },
@@ -85,7 +75,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  top: 0;
+  top: $navbar-height;
   padding: 1rem;
   z-index: 50;
 
@@ -101,7 +91,7 @@ export default {
   margin: auto;
   background: $white;
   padding: 1rem;
-  border: 1px solid $border;
+  // border: 1px solid $border;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
