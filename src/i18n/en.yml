@@ -4,6 +4,7 @@ general:
   registerButton: Register Now!
   appName: Climate:Red
   pleaseSelect: Please select
+  comingSoon: Coming soon
 
 api:
   auth:

@@ -4,6 +4,7 @@ general:
   registerButton: سجل الان!
   appName: Climate:Red
   pleaseSelect: يرجى التحديد
+  comingSoon: قريبا
 #
 # api:
 #   auth:

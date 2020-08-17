@@ -39,6 +39,9 @@
                 <component :is="item.icon" class="navbar-item-icon" />
                 <span class="navbar-item-text">
                   {{ $t(item.titleKey) }}
+                  <template v-if="isDisabled(item.name)">
+                    {{ '– ' + $t('general.comingSoon') }}
+                  </template>
                 </span>
               </router-link>
             </div>
@@ -80,7 +83,7 @@
       >
         <component :is="item.icon" class="tabbar-item-icon" />
         <span class="tabbar-item-text">
-          {{ $t(item.titleKey) }}
+          {{ $t(isDisabled(item.name) ? 'general.comingSoon' : item.titleKey) }}
         </span>
       </router-link>
     </div>
@@ -224,13 +227,13 @@ $tabbar-width: 5.5rem;
   &[disabled] {
     color: $grey-light;
     pointer-events: none;
+
+    cursor: not-allowed;
   }
 
   @include desktop {
     &:hover:not([disabled]):not(.is-active) {
       background-color: $background;
-      // background-color: $white-ter;
-      // color: $black;
     }
   }
 
@@ -279,11 +282,6 @@ $tabbar-width: 5.5rem;
     width: 3rem;
     height: 3rem;
     margin-right: 0.5rem;
-  }
-
-  &[disabled] {
-    opacity: 0.4;
-    pointer-events: none;
   }
 }
 
