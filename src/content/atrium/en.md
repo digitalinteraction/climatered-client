@@ -12,3 +12,4 @@ You can read more about the Red Cross and Red Crescent network’s collective vi
 A summit is not just about listening, but connecting, inspiring each other, learning together and building new ideas and initiatives. In Climate:Red you will be able to do just that. 
 
 We can’t wait to meet you here.
+ 
