@@ -21,14 +21,6 @@
           />
         </template>
 
-        <template v-if="isRole('translator')">
-          <h2 class="title">Translator schedule</h2>
-          <TranslatorSchedule
-            :slots="$store.state.api.slots"
-            :events="translatorEvents"
-          />
-        </template>
-
         <pre>{{ user }}</pre>
       </div>
     </section>
@@ -38,13 +30,11 @@
 <script>
 import { mapState } from 'vuex'
 import AttendeeSchedule from '@/components/AttendeeSchedule.vue'
-import TranslatorSchedule from '@/components/TranslatorSchedule.vue'
 
 export default {
   name: 'Home',
   components: {
-    AttendeeSchedule,
-    TranslatorSchedule
+    AttendeeSchedule
   },
   computed: {
     ...mapState('api', ['user']),

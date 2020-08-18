@@ -6,6 +6,10 @@ export default class ApiSocket {
   listeners = new Map()
 
   static install(Vue) {
+    Vue.prototype.$socket = sharedSocket
+  }
+
+  constructor() {
     const apiBase = pickApi()
 
     const pathname = new URL(apiBase).pathname.replace(/\/?$/, '/socket.io')
@@ -14,11 +18,7 @@ export default class ApiSocket {
     socketUrl.protocol = socketUrl.protocol.replace(/^http/, 'ws')
     socketUrl.pathname = '/'
 
-    Vue.prototype.$socket = new ApiSocket(socketUrl.toString(), pathname)
-  }
-
-  constructor(socketUrl, path) {
-    this.socket = new SocketClient(socketUrl, { path })
+    this.socket = new SocketClient(socketUrl.toString(), { path: pathname })
 
     this.socket.on('connect', () => {
       if (localStorage[STORAGE_TOKEN]) {
@@ -41,6 +41,12 @@ export default class ApiSocket {
     console.debug('emitBinary', eventName, ...args)
 
     this.socket.binary(true).emit(eventName, ...args)
+  }
+
+  emitAndWait(eventName, ...args) {
+    return new Promise(resolve => {
+      this.emit(...[eventName, ...args, resolve])
+    })
   }
 
   bindEvent(owner, eventName, callback) {
@@ -77,6 +83,8 @@ export default class ApiSocket {
     for (const l of listeners) l.callback(...args)
   }
 }
+
+export const sharedSocket = new ApiSocket()
 
 export function authenticateSocket(socket, token) {
   socket.emit('auth', token)

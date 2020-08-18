@@ -35,6 +35,13 @@ const NotFound = () =>
 const Translator = () =>
   import(/* webpackChunkName: "prototype" */ '../views/Translator.vue')
 
+const InterpretHome = () =>
+  import(
+    /* webpackChunkName: "interpret" */ '../views/interpret/InterpretHome.vue'
+  )
+const Interpret = () =>
+  import(/* webpackChunkName: "interpret" */ '../views/interpret/Interpret.vue')
+
 import {
   ROUTE_ATRIUM,
   ROUTE_EVENT,
@@ -50,7 +57,9 @@ import {
   ROUTE_TERMS,
   ROUTE_ERROR,
   ROUTE_PRIVACY,
-  ROUTE_SESSIONS
+  ROUTE_SESSIONS,
+  ROUTE_INTERPRET_HOME,
+  ROUTE_INTERPRET
 } from '../const'
 
 Vue.use(VueRouter)
@@ -164,6 +173,26 @@ const routes = [
     name: ROUTE_ERROR,
     meta: {
       title: 'Error'
+    }
+  },
+  //
+  // Interpretation
+  //
+  {
+    path: '/interpret',
+    component: InterpretHome,
+    name: ROUTE_INTERPRET_HOME,
+    meta: {
+      titleKey: 'interpretHome.title'
+    }
+  },
+  {
+    path: '/interpret/:sessionId/:channel',
+    component: Interpret,
+    name: ROUTE_INTERPRET,
+    props: true,
+    meta: {
+      titleKey: 'interpret.title'
     }
   },
   //

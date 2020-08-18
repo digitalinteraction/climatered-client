@@ -12,6 +12,7 @@
     "readme-toc": "md-toc -i"
   },
   "dependencies": {
+    "@zoomus/websdk": "^1.7.10",
     "axios": "^0.19.2",
     "bulma": "^0.9.0",
     "core-js": "^3.6.5",
