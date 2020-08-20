@@ -1,7 +1,17 @@
-$red: #ef3340;
+$cc-red: #ef3340;
+$cc-coral: #ff6f61;
+$cc-electric-blue: #5508d3;
+$cc-green: #a9e5bb;
+$cc-light-blue: #7692ff;
+$cc-dark-blue: #091540;
+$cc-green: #7692ff;
+$cc-black: #252525;
 
-$primary: #e50354;
-$link: #ff6f61;
+$red: $cc-red;
+
+$primary: $cc-red;
+$link: $cc-coral;
+
 // $info: $cyan;
 // $success: $green;
 // $warning: $yellow;
@@ -10,19 +20,20 @@ $link: #ff6f61;
 // $text: $grey-dark;
 
 $track-official: #556183;
-$track-act: #ff6f61;
-$track-empower: #6c63ff;
+$track-act: $cc-coral;
+$track-empower: $cc-light-blue;
 $track-influence: #d27fcc;
 $track-transform: #e50354;
 
 $greyish: #757a8a;
 
-$family-sans-serif: Avenir, Helvetica, Arial, sans-serif;
+$family-sans-serif: Avenir, -apple-system, system-ui, BlinkMacSystemFont,
+  'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol';
 $family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
 
-$navbar-height: 3.75rem;
-// $navbar-item-hover-background-color: $scheme-main-bis;
-$navbar-item-active-background-color: #fef2f6;
+$navbar-height: 3.5rem;
+
 $navbar-item-hover-color: $primary;
 $navbar-item-active-color: $primary;
 

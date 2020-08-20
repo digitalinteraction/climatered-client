@@ -1,7 +1,10 @@
 <template>
   <AppWrapper>
     <div class="atrium">
-      <img v-if="currentBanner" :src="currentBanner" class="atrium-hero" />
+      <div class="atrium-triangle">
+        <div />
+      </div>
+      <img src="/img/atrium-2.jpg" class="atrium-hero" />
       <div class="atrium-info">
         <section class="section">
           <div class="columns">
@@ -53,13 +56,10 @@
           <div class="container">
             <div class="sponsors">
               <img
-                src="/sponsor/solferino-academy.svg"
-                alt="Solferino academy"
-              />
-              <img src="/sponsor/climate-centre.svg" alt="Climate Centre" />
-              <img
-                src="/sponsor/norwegian-red-cross.svg"
-                alt="Norwegian Red Cross"
+                v-for="sponsor in sponsors"
+                :key="sponsor.name"
+                :src="sponsor.url"
+                :title="sponsor.name"
               />
             </div>
           </div>
@@ -89,11 +89,19 @@ const content = {
 }
 
 const banner = {
-  en: '/img/atrium-en.jpg',
-  fr: '/img/atrium-en.jpg',
-  es: '/img/atrium-en.jpg',
-  ar: '/img/atrium-ar.jpg'
+  en: '/img/atrium-2.jpg',
+  fr: '/img/atrium-2.jpg',
+  es: '/img/atrium-2.jpg',
+  ar: '/img/atrium-2.jpg'
 }
+
+const sponsors = [
+  { name: 'Solferino academy', url: '/sponsor/solferino-academy.svg' },
+  { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
+  { name: 'Norwegian Red Cross', url: '/sponsor/norwegian-red-cross.svg' },
+  { name: 'Finish Red Cross', url: '/sponsor/finish-red-cross.svg' },
+  { name: 'Open Lab', url: '/sponsor/openlab.svg' }
+]
 
 export default {
   components: { AppWrapper },
@@ -101,7 +109,8 @@ export default {
     return {
       loginRoute: { name: ROUTE_LOGIN },
       registerRoute: { name: ROUTE_REGISTER },
-      sessionsRoute: { name: ROUTE_SESSIONS }
+      sessionsRoute: { name: ROUTE_SESSIONS },
+      sponsors
     }
   },
   computed: {
@@ -124,13 +133,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$tri-size: 120px;
+
 .atrium {
+  position: relative;
 }
 
 .atrium-hero {
   width: 100%;
   height: auto;
   border-bottom: 1px solid $border;
+}
+.atrium-triangle {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+
+  div {
+    // position: absolute;
+    // top: $navbar-height;
+    // right: 0;
+    content: '';
+    display: inline-block;
+    border-block-start: solid $tri-size $cc-coral;
+    border-inline-end: solid $tri-size $cc-coral;
+    border-inline-start: solid $tri-size transparent;
+    border-block-end: solid $tri-size transparent;
+  }
 }
 
 .atrium-content {
@@ -140,6 +171,13 @@ export default {
 .atrium-login-or {
   margin: 0 1em;
   font-weight: 600;
+
+  @include mobile {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0.5em 1em 1em;
+  }
 }
 
 .sponsors {
@@ -149,25 +187,31 @@ export default {
 
   img {
     width: auto;
-    height: 42px;
+    height: 32px;
 
     &:not(:last-child) {
-      margin-inline-end: 4em;
+    }
+  }
+
+  @include desktop {
+    img:not(:last-child) {
+      margin-inline-end: 3em;
+      margin-block-end: 3em;
     }
   }
 
   @include touch {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
 
     img {
-      // flex: 1;
+      height: 48px;
       padding-block-end: 1em;
     }
 
     img:not(:last-child) {
       margin-inline-end: 0;
-      margin-block-end: 0.5em;
+      margin-block-end: 0.75em;
     }
   }
 }
