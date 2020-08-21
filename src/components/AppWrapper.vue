@@ -301,7 +301,7 @@ $tri-width: $tri-height;
     border-block-start: solid $tri-height $white;
   }
   @include desktop {
-    border-left: solid ($tabbar-width - $navbar-height) $cc-coral;
+    border-inline-start: solid ($tabbar-width - $navbar-height) $cc-coral;
   }
   @include touch {
     &:before {
