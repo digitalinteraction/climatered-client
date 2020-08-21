@@ -119,9 +119,12 @@ const atriumVideo = {
 const sponsors = [
   { name: 'Solferino academy', url: '/sponsor/solferino-academy.svg' },
   { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
+  { name: 'Al Jazeera', url: '/sponsor/al-jazeera.svg' },
+  { name: 'Open Lab', url: '/sponsor/openlab.svg' },
+  { name: 'Italian Red Cross', url: '/sponsor/croce-rossa.svg' },
   { name: 'Norwegian Red Cross', url: '/sponsor/norwegian-red-cross.svg' },
-  { name: 'Finish Red Cross', url: '/sponsor/finish-red-cross.svg' },
-  { name: 'Open Lab', url: '/sponsor/openlab.svg' }
+  { name: 'British Red Cross', url: '/sponsor/british-red-cross.svg' },
+  { name: 'Finish Red Cross', url: '/sponsor/finish-red-cross.svg' }
 ]
 
 export default {
@@ -236,6 +239,7 @@ $tri-size: 120px;
 
 .sponsors {
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 
@@ -244,14 +248,14 @@ $tri-size: 120px;
     height: 32px;
   }
 
-  @include desktop {
+  @include tablet {
     img:not(:last-child) {
-      margin-inline-end: 3em;
+      margin-inline-end: 4.5em;
       margin-block-end: 3em;
     }
   }
 
-  @include touch {
+  @include mobile {
     align-items: center;
     flex-direction: column;
 
