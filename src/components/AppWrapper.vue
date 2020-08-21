@@ -288,9 +288,11 @@ $tabbar-width: 5.5rem;
 }
 
 $tri-height: $navbar-height / 2;
-$tri-width: $tabbar-width / 2;
+$tri-width: $tri-height;
+// $tri-width: $tabbar-width / 2;
 
 .navbar-brand {
+  border-left: solid ($tabbar-width - $navbar-height) $cc-coral;
   &:before {
     content: '';
     display: inline-block;
@@ -298,6 +300,12 @@ $tri-width: $tabbar-width / 2;
     border-inline-start: solid $tri-width $cc-coral;
     border-inline-end: solid $tri-width $white;
     border-block-start: solid $tri-height $white;
+  }
+
+  @include touch {
+    &:before {
+      border-width: $tri-height;
+    }
   }
 
   .navbar-item {

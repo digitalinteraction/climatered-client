@@ -152,15 +152,16 @@ $tri-size: 120px;
   top: 0;
 
   div {
-    // position: absolute;
-    // top: $navbar-height;
-    // right: 0;
     content: '';
     display: inline-block;
     border-block-start: solid $tri-size $cc-coral;
     border-inline-end: solid $tri-size $cc-coral;
     border-inline-start: solid $tri-size transparent;
     border-block-end: solid $tri-size transparent;
+
+    @include touch {
+      border-width: 42px;
+    }
   }
 }
 
@@ -188,9 +189,6 @@ $tri-size: 120px;
   img {
     width: auto;
     height: 32px;
-
-    &:not(:last-child) {
-    }
   }
 
   @include desktop {
