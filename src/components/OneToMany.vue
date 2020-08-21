@@ -2,8 +2,6 @@
   <div class="one-to-many">
     <div class="columns" v-if="videoLink">
       <div class="column is-two-thirds left-event-panel bottom-panel">
-        <h2 class="title is-4">Live video</h2>
-
         <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
 
         <div class="audio-channel" v-if="event.enableTranslation">
@@ -30,7 +28,6 @@
         </div>
       </div>
       <div class="column is-one-third right-event-panel bottom-panel">
-        <h2 class="title is-4">Questions and Answers</h2>
         <div v-if="slido" class="slido-wrapper embedded">
           <div class="enable-poll" v-if="!showPoll">
             <button class="button is-primary" @click="showPoll = true">
