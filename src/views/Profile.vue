@@ -39,6 +39,7 @@
 import Vue from 'vue'
 import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
+import { STORAGE_TOKEN } from '@/const'
 
 const languages = {
   en: 'English',
@@ -68,7 +69,7 @@ export default {
         value: 0
       })
 
-      delete localStorage.token
+      delete localStorage[STORAGE_TOKEN]
 
       Vue.nextTick(() => {
         window.location.reload()

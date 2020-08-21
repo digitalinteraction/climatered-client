@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { ROUTE_ATRIUM } from '../const'
+import { ROUTE_ATRIUM, STORAGE_TOKEN } from '@/const'
 
 export default {
   mounted() {
@@ -12,12 +12,12 @@ export default {
     if (!token) return alert('No token passed')
 
     if (token === 'reset') {
-      delete localStorage.token
+      delete localStorage[STORAGE_TOKEN]
       window.location.reload()
       return
     }
 
-    window.localStorage.token = token
+    localStorage[STORAGE_TOKEN] = token
 
     this.$store.dispatch('api/authenticate', {
       socket: this.$socket,

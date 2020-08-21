@@ -5,6 +5,8 @@ import store from './store'
 import i18n from './i18n'
 import VueGtag from 'vue-gtag'
 
+import { STORAGE_ANALYTICS } from '@/const'
+
 import Clock from './plugins/clock'
 import Sockets from './plugins/sockets'
 import Content from './plugins/content'
@@ -33,7 +35,9 @@ Vue.use(
         allow_google_signals: false
       }
     },
-    enabled: process.env.NODE_ENV === 'production'
+    enabled:
+      process.env.NODE_ENV === 'production' &&
+      localStorage[STORAGE_ANALYTICS] === 'accept'
   },
   router
 )

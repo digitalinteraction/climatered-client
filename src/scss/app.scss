@@ -50,6 +50,13 @@
   }
 }
 
+.buttons {
+  .button:not(:last-child):not(.is-fullwidth) {
+    margin-right: unset;
+    margin-inline-end: 0.5rem;
+  }
+}
+
 //
 // Custom tabs
 //
@@ -94,6 +101,10 @@ html {
 
 .section.is-small {
   padding: 1.5rem 1.5rem;
+
+  @include mobile {
+    padding: 1.5rem 0.75rem;
+  }
 }
 
 .icon svg {
@@ -107,3 +118,6 @@ html {
   font-weight: bold;
 }
 
+.content a {
+  font-weight: bold;
+}

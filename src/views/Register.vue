@@ -9,9 +9,7 @@
 
     <div slot="content" class="register-page">
       <h1 class="title" v-t="'register.title'" />
-      <div class="content">
-        <p>{{ $t('register.infoText') }}</p>
-      </div>
+      <p class="subtitle" v-t="'register.infoText'" />
 
       <div class="register-form" v-if="!done">
         <TextField
@@ -82,7 +80,7 @@
       </div>
       <div class="notification is-success is-large" v-else>
         <button class="delete" @click="done = false"></button>
-        <strong>{{ $t('register.doneText') }}</strong>
+        <span v-t="'register.doneText'" />
       </div>
     </div>
   </UtilWrapper>

@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 
+import { STORAGE_LOCALE } from '@/const'
+
 import en from './en.yml'
 import fr from './fr.yml'
 import es from './es.yml'
@@ -27,10 +29,10 @@ if (process.env.NODE_ENV === 'development') {
   messages.dev = devClone(en)
 }
 
-const { chosenLocale = 'en' } = window.localStorage
+const chosenLocale = localStorage[STORAGE_LOCALE] ?? 'en'
 
 const i18n = new VueI18n({
-  locale: 'en',
+  fallbackLocale: 'en',
   messages
 })
 
@@ -44,7 +46,7 @@ export function setLocale(newLocale, savePreference = false) {
   html.setAttribute('lang', newLocale)
   html.setAttribute('dir', newDir)
 
-  if (savePreference) window.localStorage.chosenLocale = newLocale
+  if (savePreference) localStorage[STORAGE_LOCALE] = newLocale
 }
 
 export default i18n

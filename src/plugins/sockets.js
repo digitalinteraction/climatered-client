@@ -1,4 +1,5 @@
 import { pickApi } from '../utils'
+import { STORAGE_TOKEN } from '../const'
 import SocketClient from 'socket.io-client'
 
 export default class ApiSocket {
@@ -20,8 +21,8 @@ export default class ApiSocket {
     this.socket = new SocketClient(socketUrl, { path })
 
     this.socket.on('connect', () => {
-      if (localStorage.token) {
-        authenticateSocket(this.socket, localStorage.token)
+      if (localStorage[STORAGE_TOKEN]) {
+        authenticateSocket(this.socket, localStorage[STORAGE_TOKEN])
       }
     })
 

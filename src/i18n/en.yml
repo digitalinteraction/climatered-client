@@ -4,6 +4,7 @@ general:
   registerButton: Register Now!
   appName: Climate:Red
   pleaseSelect: Please select
+  comingSoon: Coming soon
 
 api:
   auth:
@@ -31,7 +32,7 @@ login:
 
 register:
   title: Register
-  infoText: Register for Climate:Red
+  infoText: Use this form to register for Climate:Red
   name:
     label: Full name
     placeholder: e.g. Dan Howard
@@ -55,7 +56,11 @@ register:
   termsLink: Terms and Conditions
   privacyLink: Privacy policy
   genericError: Something went wrong, please try again
-  doneText: We've sent you a verification email ...
+  doneText: |
+    Thanks for registering!
+    We've sent you an verification email.
+    Click the link in that email to verify and see the conference schedule.
+    If you don't see an email soon please check your spam folder.
 
 profile:
   title: Your profile
@@ -113,3 +118,13 @@ data:
     empower: Empower
     influence: Influence
     transform: Transform
+
+cookies:
+  title: Cookies
+  popupTitle: Our use of cookies
+  acceptAction: Allow analytics
+  rejectAction: Disable analytics
+  content: |
+    We use necessary cookies to make the site work.
+    We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits. 
+    You can change your preference by clicking {0} in the site footer.

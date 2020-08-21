@@ -15,3 +15,7 @@ export const ROUTE_REGISTER = 'Register'
 export const ROUTE_TOKEN_CAPTURE = 'TokenCapture'
 export const ROUTE_NOT_FOUND = 'NotFound'
 export const ROUTE_TRANSLATOR = 'Translator'
+
+export const STORAGE_ANALYTICS = 'analyticsConsent'
+export const STORAGE_LOCALE = 'chosenLocale'
+export const STORAGE_TOKEN = 'token'
