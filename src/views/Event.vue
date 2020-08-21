@@ -3,13 +3,7 @@
     <section class="section">
       <div class="container">
         <div class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <router-link class="button is-text" to="/prototype">
-                Back to schedule
-              </router-link>
-            </div>
-          </div>
+          <div class="level-left"></div>
           <div class="level-right">
             <!-- <div class="level-item">
               <div class="control">
@@ -22,7 +16,7 @@
                   </select>
                 </div>
               </div>
-            </div> -->
+            </div>-->
             <div class="level-item">
               <button class="button" @click="changeState">
                 Stage: {{ slotState }}
@@ -30,33 +24,27 @@
             </div>
           </div>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>When</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Session Id</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{ slot.start | localeDate }}</td>
-              <td>{{ slot.start | localeTime }}</td>
-              <td>{{ slot.end | localeTime }}</td>
-              <td>{{ event.id }}</td>
-            </tr>
-          </tbody>
-        </table>
 
-        <div class="columns">
-          <div class="column is-two-thirds">
+        <div class="columns event-panels">
+          <div class="column is-two-thirds left-event-panel">
+            <div class="level">
+              <router-link class="back-button is-text" to="/prototype"
+                >&lt; Back</router-link
+              >
+            </div>
             <div class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <router-link class="is-text" to="/prototype">
-                    Back
-                  </router-link>
+                  <p class="section-headings">
+                    {{ slot.start | localeDate }}
+                    {{ slot.start | localeTime }} - {{ slot.end | localeTime }}-
+                    <span class="icon" v-if="typeIcon">
+                      <component :is="typeIcon" class="icon-size" />
+                    </span>
+                    <span class="session-type" v-if="localeType">{{
+                      localeType.toUpperCase()
+                    }}</span>
+                  </p>
                 </div>
               </div>
               <div class="level-right">
@@ -64,7 +52,7 @@
                   <p class="icon-and-text">
                     <span class="icon">
                       <span class="icon">
-                        <AttendeeIcon class="globe" />
+                        <AttendeeIcon class="icon-size" />
                       </span>
                     </span>
                     476 attending session
@@ -75,41 +63,51 @@
             <div class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <h1 class="title">
-                    {{ event.name ? event.name : 'Event Name Here' }}
-                  </h1>
+                  <h1 class="title">{{ localeTitle }}</h1>
                 </div>
               </div>
               <div class="level-right">
                 <div class="level-item">
                   <p class="icon-and-text">
                     <span class="icon">
-                      <GlobeIcon class="globe" />
+                      <GlobeIcon class="icon-size" />
                     </span>
-                    <span class="session-card-language">
-                      {{ event.hostLanguage.join('/') }}
-                    </span>
+                    <span class="session-card-language">{{
+                      event.hostLanguage.join('/').toUpperCase()
+                    }}</span>
                   </p>
                 </div>
               </div>
             </div>
-            <h1 class="title">{{ event.name }}</h1>
-
-            <h2 class="heading">About</h2>
+            <h2 class="heading">{{ localeContent }}</h2>
           </div>
-          <div class="column is-one-thirds">
-            <div>
-              <h3>Host</h3>
-              <p>Person name or speaker row component</p>
-            </div>
-            <div>
-              <h3>Speakers</h3>
-            </div>
-            <div>
-              <h3>Session Info</h3>
+          <div class="column is-one-third right-event-panel">
+            <div class="info-panel">
+              <div class="info-panel-section">
+                <h3 class="section-headings">HOST</h3>
+                <p>{{ localeHostOrganisation }}</p>
+              </div>
+              <div class="info-panel-section">
+                <h3 class="section-headings">SPEAKERS</h3>
+                <div class="event-speakers">
+                  <SpeakerRow
+                    v-for="(speaker, i) in sessionSpeakers"
+                    :key="i"
+                    :speaker="speaker"
+                  />
+                </div>
+              </div>
+              <div class="info-panel-section">
+                <h3 class="section-headings">SESSION INFO</h3>
+                <p>{{ event.attendeeDevices }}</p>
+                <p>{{ event.attendeeInteraction }}</p>
+                <p>{{ event.isRecorded }}</p>
+                <p></p>
+              </div>
             </div>
           </div>
         </div>
+
         <component
           v-if="eventComponent"
           :is="eventComponent"
@@ -127,6 +125,11 @@ import marked from 'marked'
 import { mapState } from 'vuex'
 
 // import { slotState } from '../utils.js'
+import SpeakerRow from '@/components/SpeakerRow.vue'
+import GamesIcon from '@/icons/types/games.svg'
+import KeynoteIcon from '@/icons/types/keynote.svg'
+import PanelIcon from '@/icons/types/panel.svg'
+import VirtualIcon from '@/icons/types/virtual.svg'
 import Countdown from '../components/Countdown.vue'
 import OneToMany from '../components/OneToMany.vue'
 import ManyToMany from '../components/ManyToMany.vue'
@@ -139,8 +142,15 @@ const eventComponents = {
   panel: OneToMany
 }
 
+const typeIcons = {
+  'games.svg': GamesIcon,
+  'keynote.svg': KeynoteIcon,
+  'panel.svg': PanelIcon,
+  'virtual.svg': VirtualIcon
+}
+
 export default {
-  components: { OfficialIcon, GlobeIcon, AttendeeIcon },
+  components: { OfficialIcon, GlobeIcon, AttendeeIcon, SpeakerRow },
   props: {
     eventId: { type: String, required: true }
   },
@@ -183,18 +193,38 @@ export default {
     // this.$socket.unbindEvent(this, 'chat')
   },
   computed: {
-    ...mapState('api', ['hasData', 'sessions', 'slots']),
+    ...mapState('api', ['hasData', 'sessions', 'slots', 'speakers']),
     event() {
       return this.sessions.find(e => e.id === this.eventId)
     },
     slot() {
       return this.event && this.slots.find(s => s.id === this.event.slot)
     },
+    eventType() {
+      return this.$store.getters['api/type'](this.event.type)
+    },
+    typeIcon() {
+      return this.eventType && typeIcons[this.eventType.icon]
+    },
+    localeType() {
+      return this.eventType?.title[this.$i18n.locale]
+    },
+    localeTitle() {
+      return this.event.title[this.$i18n.locale]
+    },
+    localeHostOrganisation() {
+      return this.event.hostOrganisation[this.$i18n.locale]
+    },
     localeContent() {
       if (this.$i18n.locale === 'dev') return 'event.content'
 
       const content = this.event?.content?.[this.$i18n.locale]
-      return content && marked(content)
+      return content && marked(content) //marked seems to add <p> tags, not sure why needed
+    },
+    sessionSpeakers() {
+      return this.event.speakers
+        .map(slug => this.speakers.find(s => s.slug === slug))
+        .filter(s => s)
     },
     eventComponent() {
       if (!this.event || !this.slotState) return null
@@ -228,8 +258,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.globe {
+.icon-size {
   height: 0.9em;
   width: 0.9em;
+}
+
+.back-button {
+  color: $grey;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.section-headings {
+  color: $section-headings-coloured;
+  font-weight: bold;
+}
+
+.event-panels {
+  border-top: 2px solid $light-grey;
+}
+
+.left-event-panel {
+  border-right: 2px solid $light-grey;
+}
+
+h3 {
+  padding-bottom: 1em;
+}
+
+.event-speakers > *:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.info-panel {
+  margin: 1em;
+  overflow: auto;
+}
+.info-panel > *:not(:last-child) {
+  margin-bottom: 2em;
 }
 </style>

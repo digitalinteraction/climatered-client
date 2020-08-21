@@ -1,7 +1,7 @@
 <template>
   <div class="one-to-many">
     <div class="columns" v-if="videoLink">
-      <div class="column is-two-thirds">
+      <div class="column is-two-thirds left-event-panel">
         <h2 class="title is-4">Live video</h2>
 
         <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div class="column is-one-thirds">
+      <div class="column is-one-third right-event-panel">
         <h2 class="title is-4">Questions and Answers</h2>
         <div v-if="slido" class="slido-wrapper embedded">
           <div class="enable-poll" v-if="!showPoll">
@@ -190,5 +190,9 @@ export default {
 .audio-vis {
   border-radius: 4px;
   overflow: hidden;
+}
+
+.left-event-panel {
+  border-right: 2px solid $light-grey;
 }
 </style>
