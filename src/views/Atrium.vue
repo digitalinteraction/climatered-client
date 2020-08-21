@@ -4,7 +4,17 @@
       <div class="atrium-triangle">
         <div />
       </div>
-      <img src="/img/atrium-2.jpg" class="atrium-hero" />
+      <div
+        class="atrium-hero hero"
+        style="background-image: url(/img/atrium-2.jpg)"
+      >
+        <div class="hero-body">
+          <div class="xcontainer">
+            <h1 class="title" v-t="'atrium.heroTitle'" />
+            <p class="subtitle" v-t="'atrium.heroSubtitle'" />
+          </div>
+        </div>
+      </div>
       <div class="atrium-info">
         <section class="section">
           <div class="columns">
@@ -140,9 +150,34 @@ $tri-size: 120px;
 }
 
 .atrium-hero {
-  width: 100%;
-  height: auto;
+  background-size: cover;
+  background-position: bottom;
   border-bottom: 1px solid $border;
+
+  .hero-body {
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+  }
+  .title {
+    color: $black;
+  }
+  .subtitle {
+    color: $black;
+    font-weight: bold;
+  }
+  @include mobile {
+    .hero-body {
+      padding: 3rem 1.5rem 6rem;
+    }
+  }
+
+  @include tablet {
+    .title {
+      font-size: $size-2;
+    }
+    .hero-body {
+      padding: 3rem 1.5rem 12rem;
+    }
+  }
 }
 .atrium-triangle {
   display: flex;
