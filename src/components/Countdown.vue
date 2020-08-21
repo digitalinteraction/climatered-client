@@ -119,4 +119,8 @@ export default {
 .left-event-panel {
   border-right: 2px solid $light-grey;
 }
+
+.right-event-panel {
+  border-right: 2px solid $light-grey;
+}
 </style>

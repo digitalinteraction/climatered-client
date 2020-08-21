@@ -79,7 +79,7 @@
                 </div>
               </div>
             </div>
-            <h2 class="heading">{{ localeContent }}</h2>
+            <p class="content"></p>
           </div>
           <div class="column is-one-third right-event-panel">
             <div class="info-panel">
@@ -99,9 +99,47 @@
               </div>
               <div class="info-panel-section">
                 <h3 class="section-headings">SESSION INFO</h3>
-                <p>{{ event.attendeeDevices }}</p>
-                <p>{{ event.attendeeInteraction }}</p>
-                <p>{{ event.isRecorded }}</p>
+                <p class="icon-and-text">
+                  <span class="icon">
+                    <GlobeIcon class="icon-size" />
+                  </span>
+                  <span class="session-card-language">{{
+                    event.hostLanguage.join('/').toUpperCase()
+                  }}</span>
+                </p>
+                <p class="icon-and-text">
+                  <span class="icon">
+                    <span class="icon">
+                      <PlatformIcon class="icon-size" />
+                    </span>
+                  </span>
+                  {{ event.attendeeInteraction }}
+                </p>
+                <p class="icon-and-text">
+                  <span class="icon">
+                    <span class="icon">
+                      <DevicesIcon class="icon-size" />
+                    </span>
+                  </span>
+                  {{ event.attendeeDevices }}
+                </p>
+                <p class="icon-and-text">
+                  <span class="icon">
+                    <span class="icon">
+                      <RecordIcon class="icon-size" />
+                    </span>
+                  </span>
+                  {{ sessionRecorded }}
+                </p>
+                <p class="icon-and-text">
+                  <span class="icon">
+                    <span class="icon">
+                      <InteractionIcon class="icon-size" />
+                    </span>
+                  </span>
+                  No Info Here
+                </p>
+
                 <p></p>
               </div>
             </div>
@@ -136,6 +174,11 @@ import ManyToMany from '../components/ManyToMany.vue'
 import OfficialIcon from '@/icons/ifrc.svg'
 import GlobeIcon from '@/icons/globe.svg'
 import AttendeeIcon from '@/icons/attendee.svg'
+import DevicesIcon from '@/icons/devices.svg'
+import InteractionIcon from '@/icons/interaction.svg'
+import RecordIcon from '@/icons/rec.svg'
+import HelpIcon from '@/icons/help-desk.svg'
+import PlatformIcon from '@/icons/platform.svg'
 
 const eventComponents = {
   plenary: OneToMany,
@@ -150,7 +193,17 @@ const typeIcons = {
 }
 
 export default {
-  components: { OfficialIcon, GlobeIcon, AttendeeIcon, SpeakerRow },
+  components: {
+    OfficialIcon,
+    GlobeIcon,
+    AttendeeIcon,
+    SpeakerRow,
+    HelpIcon,
+    PlatformIcon,
+    DevicesIcon,
+    InteractionIcon,
+    RecordIcon
+  },
   props: {
     eventId: { type: String, required: true }
   },
@@ -214,6 +267,13 @@ export default {
     },
     localeHostOrganisation() {
       return this.event.hostOrganisation[this.$i18n.locale]
+    },
+    sessionRecorded() {
+      if (this.event.isRecorded == true) {
+        return 'Recorded'
+      } else if (this.event.isRecorded == false) {
+        return 'Not Recorded'
+      } else return 'No Info'
     },
     localeContent() {
       if (this.$i18n.locale === 'dev') return 'event.content'
@@ -280,6 +340,10 @@ export default {
 
 .left-event-panel {
   border-right: 2px solid $light-grey;
+  overflow-x: hidden;
+}
+.right-event-panel {
+  border-right: 2px solid $light-grey;
 }
 
 h3 {
@@ -292,8 +356,8 @@ h3 {
 
 .info-panel {
   margin: 1em;
-  overflow: auto;
 }
+
 .info-panel > *:not(:last-child) {
   margin-bottom: 2em;
 }
