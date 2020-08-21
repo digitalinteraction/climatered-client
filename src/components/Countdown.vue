@@ -9,8 +9,12 @@
         </div>
 
         <div>
-          <button class="button button-style-a">Attend Session</button>
-          <button class="button button-style-b">Add to Calendar</button>
+          <button class="button button-style-a" @click="attendSession">
+            Attend Session
+          </button>
+          <button class="button button-style-b" @click="addCal">
+            Add to Calendar
+          </button>
         </div>
 
         <div class="countdown-timer notification is-size-1 has-text-centered">
@@ -32,7 +36,21 @@ export default {
   },
   data() {
     return {
-      msUntilStart: this.timeUntilStart()
+      msUntilStart: this.timeUntilStart(),
+      language: this.$i18n.locale,
+      url: 'www.google.com',
+      organizer: this.event.hostOrganisation[this.$i18n.locale]
+    }
+  },
+  computed: {
+    localeTitle() {
+      return this.event.title[this.$i18n.locale]
+    },
+    begin() {
+      return this.$options.filters.localeDateTime(this.eventSlot.start)
+    },
+    stop() {
+      return this.$options.filters.localeDateTime(this.eventSlot.end)
     }
   },
   filters: {
@@ -51,7 +69,25 @@ export default {
   methods: {
     timeUntilStart() {
       return new Date(this.eventSlot.start).getTime() - Date.now()
-    }
+    },
+    addCal() {
+      console.log(this.event)
+      console.log(this.eventSlot)
+      console.log(this.language)
+      this.$ics.addEvent(
+        this.language,
+        this.localeTitle,
+        null,
+        null,
+        this.begin,
+        this.stop,
+        this.url,
+        this.organizer
+      )
+
+      this.$ics.download(this.localeTitle)
+    },
+    attendSession() {}
   }
 }
 </script>

@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import i18n from './i18n'
 import VueGtag from 'vue-gtag'
+import ICS from 'vue-ics'
 
 import { STORAGE_ANALYTICS } from '@/const'
 
@@ -23,6 +24,7 @@ Vue.filter('localeDateTime', v => {
 Vue.use(Clock)
 Vue.use(Sockets)
 Vue.use(Content)
+Vue.use(ICS)
 
 Vue.use(
   VueGtag,
