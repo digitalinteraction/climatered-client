@@ -292,7 +292,6 @@ $tri-width: $tri-height;
 // $tri-width: $tabbar-width / 2;
 
 .navbar-brand {
-  border-left: solid ($tabbar-width - $navbar-height) $cc-coral;
   &:before {
     content: '';
     display: inline-block;
@@ -301,7 +300,9 @@ $tri-width: $tri-height;
     border-inline-end: solid $tri-width $white;
     border-block-start: solid $tri-height $white;
   }
-
+  @include desktop {
+    border-left: solid ($tabbar-width - $navbar-height) $cc-coral;
+  }
   @include touch {
     &:before {
       border-width: $tri-height;
