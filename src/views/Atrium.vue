@@ -4,12 +4,26 @@
       <div class="atrium-triangle">
         <div />
       </div>
-      <img src="/img/atrium-2.jpg" class="atrium-hero" />
+      <div
+        class="atrium-hero hero"
+        style="background-image: url(/img/atrium.jpg)"
+      >
+        <div class="hero-body">
+          <div class="xcontainer">
+            <h1 class="title" v-t="'atrium.heroTitle'" />
+            <p class="subtitle" v-t="'atrium.heroSubtitle'" />
+          </div>
+        </div>
+      </div>
       <div class="atrium-info">
         <section class="section">
           <div class="columns">
             <div class="column is-two-thirds">
               <div class="container">
+                <h1 class="title" v-t="'atrium.heading'" />
+
+                <VideoEmbed class="atrium-video" :video-link="atriumVideo" />
+
                 <div
                   v-if="currentContent"
                   class="atrium-content content"
@@ -74,6 +88,7 @@ import { ROUTE_LOGIN, ROUTE_SESSIONS, ROUTE_REGISTER } from '../const'
 import { mapState } from 'vuex'
 
 import AppWrapper from '@/components/AppWrapper.vue'
+import VideoEmbed from '@/components/VideoEmbed.vue'
 
 import contentEN from '@/content/atrium/en.md'
 import contentFR from '@/content/atrium/fr.md'
@@ -95,6 +110,12 @@ const banner = {
   ar: '/img/atrium-2.jpg'
 }
 
+const atriumVideo = {
+  language: '*',
+  type: 'video',
+  url: 'https://www.youtube.com/watch?v=sA69GnNYwx8'
+}
+
 const sponsors = [
   { name: 'Solferino academy', url: '/sponsor/solferino-academy.svg' },
   { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
@@ -104,13 +125,14 @@ const sponsors = [
 ]
 
 export default {
-  components: { AppWrapper },
+  components: { AppWrapper, VideoEmbed },
   data() {
     return {
       loginRoute: { name: ROUTE_LOGIN },
       registerRoute: { name: ROUTE_REGISTER },
       sessionsRoute: { name: ROUTE_SESSIONS },
-      sponsors
+      sponsors,
+      atriumVideo
     }
   },
   computed: {
@@ -140,9 +162,34 @@ $tri-size: 120px;
 }
 
 .atrium-hero {
-  width: 100%;
-  height: auto;
+  background-size: cover;
+  background-position: bottom;
   border-bottom: 1px solid $border;
+
+  .hero-body {
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+  }
+  .title {
+    color: $black;
+  }
+  .subtitle {
+    color: $black;
+    font-weight: bold;
+  }
+  @include mobile {
+    .hero-body {
+      padding: 3rem 1.5rem 6rem;
+    }
+  }
+
+  @include tablet {
+    .title {
+      font-size: $size-2;
+    }
+    .hero-body {
+      padding: 3rem 1.5rem 12rem;
+    }
+  }
 }
 .atrium-triangle {
   display: flex;
@@ -152,15 +199,16 @@ $tri-size: 120px;
   top: 0;
 
   div {
-    // position: absolute;
-    // top: $navbar-height;
-    // right: 0;
     content: '';
     display: inline-block;
     border-block-start: solid $tri-size $cc-coral;
     border-inline-end: solid $tri-size $cc-coral;
     border-inline-start: solid $tri-size transparent;
     border-block-end: solid $tri-size transparent;
+
+    @include touch {
+      border-width: 42px;
+    }
   }
 }
 
@@ -180,6 +228,12 @@ $tri-size: 120px;
   }
 }
 
+@include desktop {
+  .atrium-video {
+    width: 66%;
+  }
+}
+
 .sponsors {
   display: flex;
   flex-direction: row;
@@ -188,9 +242,6 @@ $tri-size: 120px;
   img {
     width: auto;
     height: 32px;
-
-    &:not(:last-child) {
-    }
   }
 
   @include desktop {
