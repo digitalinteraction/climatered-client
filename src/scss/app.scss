@@ -61,7 +61,8 @@
 // Custom tabs
 //
 .tabs.is-dark {
-  background-color: #2c3242;
+  background-color: $cc-electric-blue;
+  font-weight: bold;
 
   ul {
     border-bottom: 1px solid #2c3242;
@@ -76,7 +77,7 @@
 
   li.is-active a {
     border-bottom: none;
-    background-color: #424755;
+    background-color: rgba(255, 255, 255, 0.25);
   }
 }
 
