@@ -1,5 +1,3 @@
-# ¡Bienvenido a nuestra cumbre mundial digital sobre cambio climático!
-
 **El cambio climático afecta a todos, en todas partes. Por lo tanto, ninguna persona, país o zona horaria está excluida de la cumbre virtual Climate:Red, organizada por la red de la Cruz Roja y la Media Luna Roja. Al reunir a personas de todo el mundo, creamos una plataforma verdaderamente global para debatir e inspirar la acción climática.**
 
 Primero, haga su [registro](https://climate.red/register). Una semana antes de la cumbre, puede comenzar a navegar por el programa y crear su propio horario del 9 al 10 de septiembre. Consulte también la sección Qué hay ahora en para ver algunas sesiones interesantes y oradores inspiradores.

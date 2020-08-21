@@ -1,6 +1,3 @@
-# Welcome to our global, digital climate change summit!
-
-
 **Climate change affects everyone, everywhere. Therefore, no person, country or time zone is excluded from the virtual Climate:Red Summit, organised by the network of the International Federation of Red Cross and Red Crescent. By bringing together people from all around the world, we create a truly global platform to debate and inspire climate action.**
 
 First, please register [here](https://climate.red/register). One week before the summit, you can start browsing the programme and build your own schedule for 9 – 10 September. Check also What’s on section for some interesting sessions and inspiring speakers. 

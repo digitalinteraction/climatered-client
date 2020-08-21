@@ -6,7 +6,7 @@
       </div>
       <div
         class="atrium-hero hero"
-        style="background-image: url(/img/atrium-2.jpg)"
+        style="background-image: url(/img/atrium.jpg)"
       >
         <div class="hero-body">
           <div class="xcontainer">
@@ -20,6 +20,10 @@
           <div class="columns">
             <div class="column is-two-thirds">
               <div class="container">
+                <h1 class="title" v-t="'atrium.heading'" />
+
+                <VideoEmbed class="atrium-video" :video-link="atriumVideo" />
+
                 <div
                   v-if="currentContent"
                   class="atrium-content content"
@@ -84,6 +88,7 @@ import { ROUTE_LOGIN, ROUTE_SESSIONS, ROUTE_REGISTER } from '../const'
 import { mapState } from 'vuex'
 
 import AppWrapper from '@/components/AppWrapper.vue'
+import VideoEmbed from '@/components/VideoEmbed.vue'
 
 import contentEN from '@/content/atrium/en.md'
 import contentFR from '@/content/atrium/fr.md'
@@ -105,6 +110,12 @@ const banner = {
   ar: '/img/atrium-2.jpg'
 }
 
+const atriumVideo = {
+  language: '*',
+  type: 'video',
+  url: 'https://www.youtube.com/watch?v=sA69GnNYwx8'
+}
+
 const sponsors = [
   { name: 'Solferino academy', url: '/sponsor/solferino-academy.svg' },
   { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
@@ -114,13 +125,14 @@ const sponsors = [
 ]
 
 export default {
-  components: { AppWrapper },
+  components: { AppWrapper, VideoEmbed },
   data() {
     return {
       loginRoute: { name: ROUTE_LOGIN },
       registerRoute: { name: ROUTE_REGISTER },
       sessionsRoute: { name: ROUTE_SESSIONS },
-      sponsors
+      sponsors,
+      atriumVideo
     }
   },
   computed: {
@@ -213,6 +225,12 @@ $tri-size: 120px;
     width: 100%;
     text-align: center;
     margin: 0.5em 1em 1em;
+  }
+}
+
+@include desktop {
+  .atrium-video {
+    width: 66%;
   }
 }
 
