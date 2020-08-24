@@ -1,78 +1,94 @@
 <template>
-  <div class="info-panel">
-    <div class="info-panel-section">
-      <h3 class="section-headings">HOST</h3>
-      <p>{{ localeHostOrganisation }}</p>
-    </div>
-    <div class="info-panel-section">
-      <h3 class="section-headings">SPEAKERS</h3>
-      <div class="event-speakers">
-        <SpeakerRow
-          v-for="(speaker, i) in sessionSpeakers"
-          :key="i"
-          :speaker="speaker"
-        />
+  <div class="session-side-panel">
+    <div class="info-panel" :class="{ 'scroll-panel': slido }">
+      <div class="info-panel-section">
+        <h3 class="section-headings">HOST</h3>
+        <p>{{ localeHostOrganisation }}</p>
+      </div>
+      <div class="info-panel-section">
+        <h3 class="section-headings">SPEAKERS</h3>
+        <div class="event-speakers">
+          <SpeakerRow
+            v-for="(speaker, i) in sessionSpeakers"
+            :key="i"
+            :speaker="speaker"
+          />
+        </div>
+      </div>
+      <div class="info-panel-section">
+        <h3 class="section-headings">SESSION INFO</h3>
+        <p class="icon-and-text">
+          <span class="icon">
+            <GlobeIcon class="icon-size" />
+          </span>
+          <span class="session-card-language">
+            {{ event.hostLanguage.join('/').toUpperCase() }}
+          </span>
+        </p>
+        <p class="icon-and-text">
+          <span class="icon">
+            <span class="icon">
+              <PlatformIcon class="icon-size" />
+            </span>
+          </span>
+          Info Missing
+        </p>
+        <p class="icon-and-text">
+          <span class="icon">
+            <span class="icon">
+              <DevicesIcon class="icon-size" />
+            </span>
+          </span>
+          {{ event.attendeeDevices }}
+        </p>
+        <p class="icon-and-text">
+          <span class="icon">
+            <span class="icon">
+              <RecordIcon class="icon-size" />
+            </span>
+          </span>
+          {{ sessionRecorded }}
+        </p>
+        <p class="icon-and-text">
+          <span class="icon">
+            <span class="icon">
+              <InteractionIcon class="icon-size" />
+            </span>
+          </span>
+          {{ event.attendeeInteraction }}
+        </p>
+      </div>
+      <div class="info-panel-section">
+        <h3 class="section-headings">Links</h3>
+        <div class="table-container">
+          <table class="table is-bordered">
+            <tr v-for="(link, i) in nonVideoLinks" :key="i">
+              <td class="table-heading-column">{{ link.type }}</td>
+              <td class="table-data">
+                <a :href="link.url" target="_blank">{{ link.url }}</a>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="info-panel-section">
-      <h3 class="section-headings">SESSION INFO</h3>
-      <p class="icon-and-text">
-        <span class="icon">
-          <GlobeIcon class="icon-size" />
-        </span>
-        <span class="session-card-language">
-          {{ event.hostLanguage.join('/').toUpperCase() }}
-        </span>
-      </p>
-      <p class="icon-and-text">
-        <span class="icon">
-          <span class="icon">
-            <PlatformIcon class="icon-size" />
-          </span>
-        </span>
-        Info Missing
-      </p>
-      <p class="icon-and-text">
-        <span class="icon">
-          <span class="icon">
-            <DevicesIcon class="icon-size" />
-          </span>
-        </span>
-        {{ event.attendeeDevices }}
-      </p>
-      <p class="icon-and-text">
-        <span class="icon">
-          <span class="icon">
-            <RecordIcon class="icon-size" />
-          </span>
-        </span>
-        {{ sessionRecorded }}
-      </p>
-      <p class="icon-and-text">
-        <span class="icon">
-          <span class="icon">
-            <InteractionIcon class="icon-size" />
-          </span>
-        </span>
-        {{ event.attendeeInteraction }}
-      </p>
-    </div>
-
-    <div class="info-panel-section">
-      <div v-if="slido" class="slido-wrapper embedded">
-        <h3 class="section-headings">Slido</h3>
-        <div class="enable-poll" v-if="!showPoll">
-          <button class="button is-primary" @click="showPoll = true">
-            Enable poll
-          </button>
+    <div class="slido-panel">
+      <div class="info-panel-section">
+        <div v-if="slido" class="slido-wrapper embedded">
+          <h3 class="section-headings">Slido</h3>
+          <div class="enable-poll" v-if="!showPoll">
+            <button class="button is-primary" @click="showPoll = true">
+              Enable poll
+            </button>
+          </div>
+          <iframe
+            v-else
+            :src="'https://app.sli.do/event/' + slido.id"
+            height="100%"
+            width="100%"
+            style="min-height: 560px;"
+          ></iframe>
         </div>
-        <iframe
-          v-else
-          :src="'https://app.sli.do/event/' + slido.id"
-          height="100%"
-          width="100%"
-          style="min-height: 560px;"
-        ></iframe>
       </div>
     </div>
   </div>
@@ -138,6 +154,11 @@ export default {
     slido() {
       const link = findLink(this.event.links, 'poll', this.language)
       return link && parseSlidoLink(link)
+    },
+    nonVideoLinks() {
+      return this.event.links.filter(link => {
+        return link.type !== 'video' && link.type !== 'poll'
+      })
     }
   },
   mounted() {},
@@ -147,8 +168,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .side-panel {
-// }
+.session-side-panel {
+  height: 100%;
+}
 
 h3 {
   padding-bottom: 1em;
@@ -162,7 +184,16 @@ h3 {
   margin: 1em;
 }
 
-.info-panel > *:not(:last-child) {
+.scroll-panel {
+  max-height: 10%;
+  overflow-y: scroll;
+}
+
+.slido-panel {
+  margin: 1em;
+}
+
+.info-panel-section {
   margin-bottom: 2em;
 }
 
@@ -186,5 +217,27 @@ h3 {
   width: 100%;
   height: 100%;
   position: absolute;
+}
+
+.icon-size {
+  height: 1em;
+  width: 1em;
+}
+
+.table-container {
+  display: inline-block;
+  overflow: auto;
+}
+.table-heading-column {
+  background: $light-grey;
+}
+td {
+  font-weight: bold;
+  color: black;
+}
+
+.link-container {
+  width: 100%;
+  overflow-x: scroll;
 }
 </style>

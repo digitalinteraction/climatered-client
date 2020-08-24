@@ -291,8 +291,8 @@ export default {
 
 <style lang="scss" scoped>
 .icon-size {
-  height: 0.9em;
-  width: 0.9em;
+  height: 1em;
+  width: 1em;
 }
 
 .back-button {

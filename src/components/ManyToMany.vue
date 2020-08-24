@@ -1,40 +1,22 @@
 <template>
   <div class="many-to-many">
-    <div class="columns">
-      <div class="left-event-panel video-panel">
-        <div class="columns">
-          <div class="column is-one-half" v-if="zoomLink || teamsLink">
-            <h3 class="section-headings">Session</h3>
-            <div class="video-link">
-              <a
-                v-if="teamsLink"
-                class="button is-link is-large"
-                :href="teamsLink.url"
-                target="_blank"
-                >Open teams meeting →</a
-              >
-              <a
-                v-if="zoomLink"
-                class="button is-link is-large"
-                :href="zoomLink.url"
-                target="_blank"
-                >Open zoom meeting →</a
-              >
-            </div>
-          </div>
-          <div class="column is-one-half link-container">
-            <h3 class="section-headings">Links</h3>
-            <div class="table-container">
-              <table class="table is-bordered">
-                <tr v-for="(link, i) in nonVideoLinks" :key="i">
-                  <td class="table-heading-column">{{ link.type }}</td>
-                  <td class="table-data">
-                    <a :href="link.url" target="_blank">{{ link.url }}</a>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
+    <div class="video-panel">
+      <div v-if="zoomLink || teamsLink">
+        <div class="video-link">
+          <a
+            v-if="teamsLink"
+            class="button is-link is-large"
+            :href="teamsLink.url"
+            target="_blank"
+            >Open teams meeting →</a
+          >
+          <a
+            v-if="zoomLink"
+            class="button is-link is-large"
+            :href="zoomLink.url"
+            target="_blank"
+            >Open zoom meeting →</a
+          >
         </div>
       </div>
     </div>
@@ -68,7 +50,7 @@ export default {
     teamsLink() {
       return this.videoLink && parseTeamsLink(this.videoLink)
     },
-    nonVideoLinks() {
+    nonVideoLinks1() {
       return this.event.links.filter(l => l.type !== 'video')
     }
   }
