@@ -58,7 +58,7 @@
           {{ event.attendeeInteraction }}
         </p>
       </div>
-      <div class="info-panel-section">
+      <div class="info-panel-section" v-if="hasNonVideoLinks">
         <h3 class="section-headings">Links</h3>
         <div class="table-container">
           <table class="table is-bordered">
@@ -159,6 +159,9 @@ export default {
       return this.event.links.filter(link => {
         return link.type !== 'video' && link.type !== 'poll'
       })
+    },
+    hasNonVideoLinks() {
+      return !!this.nonVideoLinks.length > 0
     }
   },
   mounted() {},
