@@ -52,6 +52,16 @@
                   v-t="'atrium.sessionsButton'"
                 />
               </div>
+
+              <!-- Project sponsorts -->
+              <div class="sponsors">
+                <img
+                  v-for="sponsor in sponsors"
+                  :key="sponsor.name"
+                  :src="sponsor.url"
+                  :title="sponsor.name"
+                />
+              </div>
             </div>
             <div class="column">
               <!-- <a
@@ -61,18 +71,6 @@
                 data-dnt="true"
                 >{{ $t('atrium.tweetTitle') }}</a
               > -->
-            </div>
-          </div>
-        </section>
-        <section class="section">
-          <div class="container">
-            <div class="sponsors">
-              <img
-                v-for="sponsor in sponsors"
-                :key="sponsor.name"
-                :src="sponsor.url"
-                :title="sponsor.name"
-              />
             </div>
           </div>
         </section>
@@ -228,6 +226,8 @@ $tri-size: 120px;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
+
+  margin-top: 7rem;
 
   img {
     width: auto;
