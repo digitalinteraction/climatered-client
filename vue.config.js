@@ -32,6 +32,17 @@ module.exports = {
 
     // prettier-ignore
     config.module
+      .rule('mdx')
+      .test(/.mdx?$/)
+      .use('babel-loader')
+        .loader('babel-loader')
+        .end()
+      .use('@mdx-js/vue-loader')
+        .loader('@mdx-js/vue-loader')
+        .end()
+
+    // prettier-ignore
+    config.module
       .rule('yaml')
       .test(/\.ya?ml?$/)
       .use('json-loader')

@@ -22,12 +22,10 @@
               <div class="container">
                 <h1 class="title" v-t="'atrium.heading'" />
 
-                <VideoEmbed class="atrium-video" :video-link="atriumVideo" />
-
-                <div
+                <component
                   v-if="currentContent"
-                  class="atrium-content content"
-                  v-html="currentContent"
+                  :is="currentContent"
+                  class="content atrium-content"
                 />
               </div>
 
@@ -90,17 +88,11 @@ import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
 
-import contentEN from '@/content/atrium/en.md'
-import contentFR from '@/content/atrium/fr.md'
-import contentES from '@/content/atrium/es.md'
-import contentAR from '@/content/atrium/ar.md'
-
 const content = {
-  en: contentEN,
-  fr: contentFR,
-  es: contentES,
-  ar: contentAR,
-  dev: 'atrium.content'
+  en: () => import(/* webpackChunkName: "en" */ '@/content/atrium/en.mdx'),
+  fr: () => import(/* webpackChunkName: "fr" */ '@/content/atrium/fr.mdx'),
+  es: () => import(/* webpackChunkName: "es" */ '@/content/atrium/es.mdx'),
+  ar: () => import(/* webpackChunkName: "ar" */ '@/content/atrium/ar.mdx')
 }
 
 const banner = {
@@ -228,12 +220,6 @@ $tri-size: 120px;
     width: 100%;
     text-align: center;
     margin: 0.5em 1em 1em;
-  }
-}
-
-@include desktop {
-  .atrium-video {
-    width: 66%;
   }
 }
 
