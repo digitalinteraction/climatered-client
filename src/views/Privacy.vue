@@ -6,29 +6,29 @@
       :to="atriumRoute"
       v-t="'atrium.returnTo'"
     />
-    <div slot="content" class="content" v-html="currentContent"></div>
+    <component
+      v-if="currentContent"
+      :is="currentContent"
+      slot="content"
+      class="content"
+    />
   </UtilWrapper>
 </template>
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
+import LanguageControl from '@/components/LanguageControl.vue'
 import { ROUTE_ATRIUM } from '../const'
 
-import contentEN from '@/content/privacy/en.md'
-import contentFR from '@/content/privacy/fr.md'
-import contentES from '@/content/privacy/es.md'
-import contentAR from '@/content/privacy/ar.md'
-
 const content = {
-  en: contentEN,
-  fr: contentFR,
-  es: contentES,
-  ar: contentAR,
-  dev: 'privacy.content'
+  en: () => import(/* webpackChunkName: "en" */ '@/content/privacy/en.mdx'),
+  fr: () => import(/* webpackChunkName: "fr" */ '@/content/privacy/fr.mdx'),
+  es: () => import(/* webpackChunkName: "es" */ '@/content/privacy/es.mdx'),
+  ar: () => import(/* webpackChunkName: "ar" */ '@/content/privacy/ar.mdx')
 }
 
 export default {
-  components: { UtilWrapper },
+  components: { UtilWrapper, LanguageControl },
   data() {
     return {
       atriumRoute: { name: ROUTE_ATRIUM }
