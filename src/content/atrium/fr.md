@@ -1,3 +1,5 @@
+import AtriumVideo from '@/components/AtriumVideo.vue'
+
 # Bienvenue à notre sommet mondial numérique sur le changement climatique!
 
 **Le changement climatique affecte chacun, partout. Par conséquent, aucune personne, aucun pays ou aucun fuseau horaire n'est exclu du sommet Virtual Climate:Red, organisé par le réseau de la Croix-Rouge et du Croissant-Rouge. En réunissant des personnes du monde entier, nous créons une véritable plateforme mondiale pour débattre et inspirer l'action climatique.**
