@@ -17,6 +17,7 @@ During the summit, you can:
 A summit is about connecting, inspiring each other, learning together and building new ideas and initiatives. In Climate:Red you will be able to do just that. 
 
 The sessions are arranged around four tracks:
+
 **ACT**
 What is the RCRC doing on climate? And what more do we need to do? These problem- and solution-oriented sessions will be based on experiences and lessons learned, and seek to accelerate action across the Red Cross Red Crescent network.
 
