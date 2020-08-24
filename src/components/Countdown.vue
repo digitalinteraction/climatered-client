@@ -2,12 +2,9 @@
   <div class="event-countdown">
     <div class="columns event-panels">
       <div class="column is-two-thirds left-event-panel">
-        <h2 class="heading">Coming soon</h2>
-
-        <div class="content">
-          <p>This event hasn't started yet, come back soon!</p>
+        <div class="countdown-timer notification is-size-1 has-text-centered">
+          {{ msUntilStart | friendlyTime }}
         </div>
-
         <div>
           <button class="button button-style-a" @click="attendSession">
             Attend Session
@@ -15,10 +12,6 @@
           <button class="button button-style-b" @click="addCal">
             Add to Calendar
           </button>
-        </div>
-
-        <div class="countdown-timer notification is-size-1 has-text-centered">
-          {{ msUntilStart | friendlyTime }}
         </div>
       </div>
       <div class="column is-one-third right-event-panel"></div>

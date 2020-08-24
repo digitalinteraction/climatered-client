@@ -1,7 +1,7 @@
 <template>
   <div class="many-to-many">
     <div class="columns">
-      <div class="column is-two-thirds left-event-panel video-panel">
+      <div class="left-event-panel video-panel">
         <div class="columns">
           <div class="column is-one-half" v-if="zoomLink || teamsLink">
             <h3 class="section-headings">Session</h3>
@@ -37,7 +37,6 @@
           </div>
         </div>
       </div>
-      <div class="column is-one-third right-event-panel"></div>
     </div>
   </div>
 </template>

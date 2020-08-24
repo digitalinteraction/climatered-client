@@ -1,7 +1,7 @@
 <template>
   <div class="one-to-many">
-    <div class="columns" v-if="videoLink">
-      <div class="column is-two-thirds left-event-panel bottom-panel">
+    <div v-if="videoLink">
+      <div class="bottom-panel">
         <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
 
         <div class="audio-channel" v-if="event.enableTranslation">
@@ -25,22 +25,6 @@
               ></canvas>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="column is-one-third right-event-panel bottom-panel">
-        <div v-if="slido" class="slido-wrapper embedded">
-          <div class="enable-poll" v-if="!showPoll">
-            <button class="button is-primary" @click="showPoll = true">
-              Enable poll
-            </button>
-          </div>
-          <iframe
-            v-else
-            :src="'https://app.sli.do/event/' + slido.id"
-            height="100%"
-            width="100%"
-            style="min-height: 560px;"
-          ></iframe>
         </div>
       </div>
     </div>
@@ -156,32 +140,10 @@ export default {
 //   position: relative;
 // }
 
-.slido-wrapper {
-  height: 0;
-  padding-bottom: percentage(1.5 / 1);
-
-  // > iframe {
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  //   width: 100%;
-  //   height: 100%;
-  // }
-}
-
 .audio-channel {
   audio {
     width: 100%;
   }
-}
-
-.enable-poll {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
 }
 
 .audio-vis {

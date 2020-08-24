@@ -115,79 +115,25 @@
                 </p>
               </div>
             </div>
+
+            <component
+              v-if="eventComponent"
+              :is="eventComponent"
+              :event="event"
+              :event-slot="slot"
+              :language="$i18n.locale"
+            />
           </div>
           <div class="column is-one-third right-event-panel">
-            <div class="info-panel">
-              <div class="info-panel-section">
-                <h3 class="section-headings">HOST</h3>
-                <p>{{ localeHostOrganisation }}</p>
-              </div>
-              <div class="info-panel-section">
-                <h3 class="section-headings">SPEAKERS</h3>
-                <div class="event-speakers">
-                  <SpeakerRow
-                    v-for="(speaker, i) in sessionSpeakers"
-                    :key="i"
-                    :speaker="speaker"
-                  />
-                </div>
-              </div>
-              <div class="info-panel-section">
-                <h3 class="section-headings">SESSION INFO</h3>
-                <p class="icon-and-text">
-                  <span class="icon">
-                    <GlobeIcon class="icon-size" />
-                  </span>
-                  <span class="session-card-language">{{
-                    event.hostLanguage.join('/').toUpperCase()
-                  }}</span>
-                </p>
-                <p class="icon-and-text">
-                  <span class="icon">
-                    <span class="icon">
-                      <PlatformIcon class="icon-size" />
-                    </span>
-                  </span>
-                  {{ event.attendeeInteraction }}
-                </p>
-                <p class="icon-and-text">
-                  <span class="icon">
-                    <span class="icon">
-                      <DevicesIcon class="icon-size" />
-                    </span>
-                  </span>
-                  {{ event.attendeeDevices }}
-                </p>
-                <p class="icon-and-text">
-                  <span class="icon">
-                    <span class="icon">
-                      <RecordIcon class="icon-size" />
-                    </span>
-                  </span>
-                  {{ sessionRecorded }}
-                </p>
-                <p class="icon-and-text">
-                  <span class="icon">
-                    <span class="icon">
-                      <InteractionIcon class="icon-size" />
-                    </span>
-                  </span>
-                  No Info Here
-                </p>
-
-                <p></p>
-              </div>
+            <div>
+              <SessionSidePanel
+                :event="event"
+                :event-slot="slot"
+                :language="$i18n.locale"
+              />
             </div>
           </div>
         </div>
-
-        <component
-          v-if="eventComponent"
-          :is="eventComponent"
-          :event="event"
-          :event-slot="slot"
-          :language="$i18n.locale"
-        />
       </div>
     </section>
   </div>
@@ -198,7 +144,7 @@ import marked from 'marked'
 import { mapState } from 'vuex'
 
 // import { slotState } from '../utils.js'
-import SpeakerRow from '@/components/SpeakerRow.vue'
+import SessionSidePanel from '@/components/SessionSidePanel.vue'
 import GamesIcon from '@/icons/types/games.svg'
 import KeynoteIcon from '@/icons/types/keynote.svg'
 import PanelIcon from '@/icons/types/panel.svg'
@@ -209,11 +155,6 @@ import ManyToMany from '../components/ManyToMany.vue'
 import OfficialIcon from '@/icons/ifrc.svg'
 import GlobeIcon from '@/icons/globe.svg'
 import AttendeeIcon from '@/icons/attendee.svg'
-import DevicesIcon from '@/icons/devices.svg'
-import InteractionIcon from '@/icons/interaction.svg'
-import RecordIcon from '@/icons/rec.svg'
-import HelpIcon from '@/icons/help-desk.svg'
-import PlatformIcon from '@/icons/platform.svg'
 
 const eventComponents = {
   plenary: OneToMany,
@@ -232,12 +173,7 @@ export default {
     OfficialIcon,
     GlobeIcon,
     AttendeeIcon,
-    SpeakerRow,
-    HelpIcon,
-    PlatformIcon,
-    DevicesIcon,
-    InteractionIcon,
-    RecordIcon
+    SessionSidePanel
   },
   props: {
     eventId: { type: String, required: true }
