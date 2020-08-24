@@ -40,7 +40,6 @@ Sessions will cover various themes: climate-smart disaster risk reduction, healt
 
 During the summit, in addition to our engaging panels, sessions and workshops, you can connect with people from around the globe in coffee chats.
 
-We can’t wait to meet you here!
 
 <AtriumVideo />
   
