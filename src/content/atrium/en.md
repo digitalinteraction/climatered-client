@@ -19,15 +19,19 @@ A summit is about connecting, inspiring each other, learning together and buildi
 The sessions are arranged around four tracks:
 
 **ACT**
+
 What is the RCRC doing on climate? And what more do we need to do? These problem- and solution-oriented sessions will be based on experiences and lessons learned, and seek to accelerate action across the Red Cross Red Crescent network.
 
 **EMPOWER**
+
 What can we share and give to others? How can we support volunteers and communities we work with to address climate risks? These sessions will focus on capacity building, awareness-raising, community engagement and local leadership.
 
 **INFLUENCE**
+
 How can we leverage our auxiliary role and partnerships to influence change and raise ambition globally? Focus of these sessions will be on policy engagements and humanitarian diplomacy from local to global level.
 
 **TRANSFORM**
+
 What changes are needed in the ways we work? How can we be fit for the future in a changing climate? In these sessions we will look at innovations, greening and organisational changes.
 
 You can choose from various session types, such as panels and discussions, workshops, live Q&A with experts, Ignite Talks, games for learning and dialogue, fishbowls, doctor-patient clinics and virtual tours. In our innovation pitch tent you will hear innovative ideas and climate projects and vote on your favourites to win. From here you can read more about session types. 
