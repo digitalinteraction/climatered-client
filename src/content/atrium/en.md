@@ -42,7 +42,7 @@ During the summit, in addition to our engaging panels, sessions and workshops, y
 
 We can’t wait to meet you here!
 
-(Insert faces of climate change video here) 
+<AtriumVideo />
   
 You can read more about the Red Cross and Red Crescent network’s collective vision on addressing climate change as a humanitarian emergency from our [Strategy 2030](https://future-rcrc.com/strategy-2030/) and [The Movement Ambitions to Address the Climate Crisis](https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2020/02/Movement-Climate-Ambitions-2020-final.pdf). Our [Climate Training Kit](https://www.climatecentre.org/training) might also be a useful resource for you.
 
