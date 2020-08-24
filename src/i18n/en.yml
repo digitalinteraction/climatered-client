@@ -17,6 +17,9 @@ atrium:
   or: or
   sessionsButton: See what's on!
   returnTo: Back to atrium
+  heroTitle: Virtual Climate Summit 2020
+  heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
+  heading: Welcome to our global, digital climate change summit!
 
 login:
   title: Login

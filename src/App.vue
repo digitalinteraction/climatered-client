@@ -55,7 +55,7 @@ export default {
       })
     } else {
       // If there isn't a token, still fetch data (should we await this?)
-      this.$store.dispatch('api/fetchData')
+      await this.$store.dispatch('api/fetchData')
 
       //
       // If there isn't a token and it isn't a whitelisted route, go to the atrium

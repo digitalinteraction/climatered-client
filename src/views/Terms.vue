@@ -6,7 +6,12 @@
       :to="atriumRoute"
       v-t="'atrium.returnTo'"
     />
-    <div slot="content" class="content" v-html="currentContent"></div>
+    <component
+      slot="content"
+      v-if="currentContent"
+      class="content"
+      :is="currentContent"
+    />
   </UtilWrapper>
 </template>
 
@@ -14,17 +19,11 @@
 import UtilWrapper from '@/components/UtilWrapper.vue'
 import { ROUTE_ATRIUM } from '../const'
 
-import contentEN from '@/content/terms/en.md'
-import contentFR from '@/content/terms/fr.md'
-import contentES from '@/content/terms/es.md'
-import contentAR from '@/content/terms/ar.md'
-
 const content = {
-  en: contentEN,
-  fr: contentFR,
-  es: contentES,
-  ar: contentAR,
-  dev: 'terms.content'
+  en: () => import(/* webpackChunkName: "en" */ '@/content/terms/en.mdx'),
+  fr: () => import(/* webpackChunkName: "fr" */ '@/content/terms/fr.mdx'),
+  es: () => import(/* webpackChunkName: "es" */ '@/content/terms/es.mdx'),
+  ar: () => import(/* webpackChunkName: "ar" */ '@/content/terms/ar.mdx')
 }
 
 export default {

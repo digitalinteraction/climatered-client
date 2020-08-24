@@ -1,16 +1,31 @@
 <template>
   <AppWrapper>
     <div class="atrium">
-      <img v-if="currentBanner" :src="currentBanner" class="atrium-hero" />
+      <div class="atrium-triangle">
+        <div />
+      </div>
+      <div
+        class="atrium-hero hero"
+        style="background-image: url(/img/atrium.jpg)"
+      >
+        <div class="hero-body">
+          <div class="xcontainer">
+            <h1 class="title" v-t="'atrium.heroTitle'" />
+            <p class="subtitle" v-t="'atrium.heroSubtitle'" />
+          </div>
+        </div>
+      </div>
       <div class="atrium-info">
         <section class="section">
           <div class="columns">
             <div class="column is-two-thirds">
               <div class="container">
-                <div
+                <h1 class="title" v-t="'atrium.heading'" />
+
+                <component
                   v-if="currentContent"
-                  class="atrium-content content"
-                  v-html="currentContent"
+                  :is="currentContent"
+                  class="content atrium-content"
                 />
               </div>
 
@@ -37,6 +52,16 @@
                   v-t="'atrium.sessionsButton'"
                 />
               </div>
+
+              <!-- Project sponsorts -->
+              <div class="sponsors">
+                <img
+                  v-for="sponsor in sponsors"
+                  :key="sponsor.name"
+                  :src="sponsor.url"
+                  :title="sponsor.name"
+                />
+              </div>
             </div>
             <div class="column">
               <!-- <a
@@ -46,21 +71,6 @@
                 data-dnt="true"
                 >{{ $t('atrium.tweetTitle') }}</a
               > -->
-            </div>
-          </div>
-        </section>
-        <section class="section">
-          <div class="container">
-            <div class="sponsors">
-              <img
-                src="/sponsor/solferino-academy.svg"
-                alt="Solferino academy"
-              />
-              <img src="/sponsor/climate-centre.svg" alt="Climate Centre" />
-              <img
-                src="/sponsor/norwegian-red-cross.svg"
-                alt="Norwegian Red Cross"
-              />
             </div>
           </div>
         </section>
@@ -74,34 +84,48 @@ import { ROUTE_LOGIN, ROUTE_SESSIONS, ROUTE_REGISTER } from '../const'
 import { mapState } from 'vuex'
 
 import AppWrapper from '@/components/AppWrapper.vue'
-
-import contentEN from '@/content/atrium/en.md'
-import contentFR from '@/content/atrium/fr.md'
-import contentES from '@/content/atrium/es.md'
-import contentAR from '@/content/atrium/ar.md'
+import VideoEmbed from '@/components/VideoEmbed.vue'
 
 const content = {
-  en: contentEN,
-  fr: contentFR,
-  es: contentES,
-  ar: contentAR,
-  dev: 'atrium.content'
+  en: () => import(/* webpackChunkName: "en" */ '@/content/atrium/en.mdx'),
+  fr: () => import(/* webpackChunkName: "fr" */ '@/content/atrium/fr.mdx'),
+  es: () => import(/* webpackChunkName: "es" */ '@/content/atrium/es.mdx'),
+  ar: () => import(/* webpackChunkName: "ar" */ '@/content/atrium/ar.mdx')
 }
 
 const banner = {
-  en: '/img/atrium-en.jpg',
-  fr: '/img/atrium-en.jpg',
-  es: '/img/atrium-en.jpg',
-  ar: '/img/atrium-ar.jpg'
+  en: '/img/atrium-2.jpg',
+  fr: '/img/atrium-2.jpg',
+  es: '/img/atrium-2.jpg',
+  ar: '/img/atrium-2.jpg'
 }
 
+const atriumVideo = {
+  language: '*',
+  type: 'video',
+  url: 'https://www.youtube.com/watch?v=sA69GnNYwx8'
+}
+
+const sponsors = [
+  { name: 'Solferino academy', url: '/sponsor/solferino-academy.svg' },
+  { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
+  { name: 'Al Jazeera', url: '/sponsor/al-jazeera.svg' },
+  { name: 'Open Lab', url: '/sponsor/openlab.svg' },
+  { name: 'Italian Red Cross', url: '/sponsor/croce-rossa.svg' },
+  { name: 'Norwegian Red Cross', url: '/sponsor/norwegian-red-cross.svg' },
+  { name: 'British Red Cross', url: '/sponsor/british-red-cross.svg' },
+  { name: 'Finish Red Cross', url: '/sponsor/finish-red-cross.svg' }
+]
+
 export default {
-  components: { AppWrapper },
+  components: { AppWrapper, VideoEmbed },
   data() {
     return {
       loginRoute: { name: ROUTE_LOGIN },
       registerRoute: { name: ROUTE_REGISTER },
-      sessionsRoute: { name: ROUTE_SESSIONS }
+      sessionsRoute: { name: ROUTE_SESSIONS },
+      sponsors,
+      atriumVideo
     }
   },
   computed: {
@@ -124,13 +148,61 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$tri-size: 120px;
+
 .atrium {
+  position: relative;
 }
 
 .atrium-hero {
-  width: 100%;
-  height: auto;
+  background-size: cover;
+  background-position: bottom;
   border-bottom: 1px solid $border;
+
+  .hero-body {
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+  }
+  .title {
+    color: $black;
+  }
+  .subtitle {
+    color: $black;
+    font-weight: bold;
+  }
+  @include mobile {
+    .hero-body {
+      padding: 3rem 1.5rem 6rem;
+    }
+  }
+
+  @include tablet {
+    .title {
+      font-size: $size-2;
+    }
+    .hero-body {
+      padding: 3rem 1.5rem 12rem;
+    }
+  }
+}
+.atrium-triangle {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+
+  div {
+    content: '';
+    display: inline-block;
+    border-block-start: solid $tri-size $cc-coral;
+    border-inline-end: solid $tri-size $cc-coral;
+    border-inline-start: solid $tri-size transparent;
+    border-block-end: solid $tri-size transparent;
+
+    @include touch {
+      border-width: 42px;
+    }
+  }
 }
 
 .atrium-content {
@@ -140,34 +212,47 @@ export default {
 .atrium-login-or {
   margin: 0 1em;
   font-weight: 600;
+
+  @include mobile {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0.5em 1em 1em;
+  }
 }
 
 .sponsors {
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 
+  margin-top: 7rem;
+
   img {
     width: auto;
-    height: 42px;
+    height: 32px;
+  }
 
-    &:not(:last-child) {
-      margin-inline-end: 4em;
+  @include tablet {
+    img:not(:last-child) {
+      margin-inline-end: 4.5em;
+      margin-block-end: 3em;
     }
   }
 
-  @include touch {
-    align-items: flex-start;
+  @include mobile {
+    align-items: center;
     flex-direction: column;
 
     img {
-      // flex: 1;
+      height: 48px;
       padding-block-end: 1em;
     }
 
     img:not(:last-child) {
       margin-inline-end: 0;
-      margin-block-end: 0.5em;
+      margin-block-end: 0.75em;
     }
   }
 }

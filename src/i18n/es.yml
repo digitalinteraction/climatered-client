@@ -16,6 +16,9 @@ atrium:
   or: o
   sessionsButton: ¡Mira lo que pasa!
   returnTo: Regresar a la Entrada
+  # heroTitle: Virtual Climate Summit 2020
+  # heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
+  heading: ¡Bienvenido a nuestra cumbre mundial digital sobre cambio climático!
 
 login:
   title: Ingreso

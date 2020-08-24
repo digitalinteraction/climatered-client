@@ -11,7 +11,6 @@
         ref="iframe"
       ></iframe>
     </div>
-    <p>muted={{ muted }}</p>
   </div>
 </template>
 

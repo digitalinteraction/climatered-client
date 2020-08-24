@@ -8,7 +8,12 @@
         <nav class="navbar" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
             <router-link :to="atriumRoute" class="navbar-item" active-class="">
-              <img src="/img/brand.svg" alt="Home" width="160" height="28" />
+              <img
+                src="/img/brand-new.svg"
+                alt="Home"
+                width="160"
+                height="28"
+              />
             </router-link>
             <a
               role="button"
@@ -47,15 +52,7 @@
             </div>
             <div class="navbar-end">
               <div class="navbar-item">
-                <div class="select is-rounded">
-                  <select :value="$i18n.locale" @input="onLocale">
-                    <option value="en">EN</option>
-                    <option value="fr">FR</option>
-                    <option value="es">ES</option>
-                    <option value="ar">AR</option>
-                    <option v-if="isDev" value="dev">_DEV</option>
-                  </select>
-                </div>
+                <LanguageControl />
               </div>
               <!-- Interpret link if role is set -->
               <router-link
@@ -117,6 +114,7 @@ import {
 import { mapState } from 'vuex'
 
 import AppFooter from '@/components/AppFooter.vue'
+import LanguageControl from '@/components/LanguageControl.vue'
 
 import CoffeeChatIcon from '@/icons/coffee-chat.svg'
 import HelpDeskIcon from '@/icons/help-desk.svg'
@@ -160,7 +158,7 @@ const nav = [
 ]
 
 export default {
-  components: { AppFooter },
+  components: { AppFooter, LanguageControl },
   data() {
     return {
       showingMenu: false,
@@ -182,9 +180,6 @@ export default {
   },
   computed: {
     ...mapState('api', ['user', 'settings', 'apiState']),
-    isDev() {
-      return process.env.NODE_ENV === 'development'
-    },
     scheduleLive() {
       return this.hasData && this.settings.scheduleLive
     },
@@ -246,30 +241,37 @@ $tabbar-width: 5.5rem;
 
   @include desktop {
     &:hover:not([disabled]):not(.is-active) {
-      background-color: $background;
+      background-color: rgba(255, 255, 255, 0.15);
     }
   }
 
   &.is-active {
-    color: $navbar-item-active-color;
-    background-color: $navbar-item-active-background-color;
+    color: $cc-coral;
+    background-color: $cc-black;
+
+    background-color: rgba(255, 255, 255, 1);
   }
 }
 
 .tabbar-item {
   font-size: $size-7;
+  font-weight: bold;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  color: $greyish;
+  color: $white;
 
   margin: 6px;
   padding: 6px 0;
   border-radius: $radius-large;
 
   @include link;
+
+  &[disabled] {
+    color: #73788c;
+  }
 
   .tabbar-item-text {
     text-align: center;
@@ -298,6 +300,56 @@ $tabbar-width: 5.5rem;
   }
 }
 
+$tri-height: $navbar-height / 2;
+$tri-width: $tri-height;
+// $tri-width: $tabbar-width / 2;
+
+.navbar-brand {
+  &:before {
+    content: '';
+    display: inline-block;
+    border-block-end: solid $tri-height $cc-coral;
+    border-inline-start: solid $tri-width $cc-coral;
+    border-inline-end: solid $tri-width $white;
+    border-block-start: solid $tri-height $white;
+  }
+  @include desktop {
+    border-inline-start: solid ($tabbar-width - $navbar-height) $cc-coral;
+  }
+  @include touch {
+    &:before {
+      border-width: $tri-height;
+    }
+  }
+
+  .navbar-item {
+    // margin-inline-start: $navbar-height;
+  }
+}
+
+@include touch {
+  .navbar-menu {
+    padding: 0;
+  }
+  .navbar-menu .navbar-item {
+    color: $white;
+    background-color: $cc-black;
+    font-weight: bold;
+
+    &:hover:not(.is-active) {
+      background-color: $grey-dark;
+    }
+
+    &.is-active {
+      background-color: $grey-dark;
+    }
+
+    &[disabled] {
+      color: $grey;
+    }
+  }
+}
+
 @include desktop {
   .app-tabbar {
     position: absolute;
@@ -305,11 +357,10 @@ $tabbar-width: 5.5rem;
     bottom: 0;
     width: $tabbar-width;
 
-    // @include insetInline(0, unset);
     @include insetInlineStart(0);
 
     // inset-inline-start: 0;
-    border-inline-end: 1px solid $border;
+    border-inline-end: 1px solid $black;
 
     display: flex;
     flex-direction: column;
@@ -329,7 +380,7 @@ $tabbar-width: 5.5rem;
   }
 }
 .app-tabbar {
-  // ...
+  background: #252525;
 }
 
 .app-page {

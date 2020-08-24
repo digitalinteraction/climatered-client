@@ -16,6 +16,9 @@ atrium:
   or: أو
   sessionsButton: شاهد ماذا يحدث !
   returnTo: العودة إلى الملتقى الرئيسي
+  # heroTitle: Virtual Climate Summit 2020
+  # heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
+  heading: مرحبًا بك في القمة العالمية الرقمية لتغير المناخ!
 
 login:
   title: تسجيل الدخول

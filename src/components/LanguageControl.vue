@@ -1,0 +1,31 @@
+<template>
+  <div class="select is-rounded" :class="selectClass">
+    <select :value="$i18n.locale" @input="onLocale">
+      <option value="en">EN</option>
+      <option value="fr">FR</option>
+      <option value="es">ES</option>
+      <option value="ar">AR</option>
+      <option v-if="isDev" value="dev">_DEV</option>
+    </select>
+  </div>
+</template>
+
+<script>
+import { setLocale } from '@/i18n'
+
+export default {
+  props: {
+    selectClass: { type: String, default: '' }
+  },
+  computed: {
+    isDev() {
+      return process.env.NODE_ENV === 'development'
+    }
+  },
+  methods: {
+    onLocale(event) {
+      setLocale(event.target.value, true)
+    }
+  }
+}
+</script>

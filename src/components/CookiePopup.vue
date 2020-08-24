@@ -1,7 +1,10 @@
 <template>
   <div class="cookies" v-if="!pickedConsent">
     <div class="cookies-box">
-      <p class="cookies-title" v-t="'cookies.popupTitle'" />
+      <p class="cookies-title">
+        <span v-t="'cookies.popupTitle'" />
+        <LanguageControl select-class="is-small" />
+      </p>
       <div class="content cookies-content">
         <p>{{ $t('cookies.content', [$t('cookies.title')]) }}</p>
       </div>
@@ -24,10 +27,12 @@
 <script>
 import Vue from 'vue'
 import { STORAGE_ANALYTICS } from '@/const'
+import LanguageControl from '@/components/LanguageControl.vue'
 
 export const CookieEvents = new Vue()
 
 export default {
+  components: { LanguageControl },
   data() {
     return {
       pickedConsent: localStorage[STORAGE_ANALYTICS] !== undefined
@@ -75,7 +80,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  top: $navbar-height;
+  top: 0;
   padding: 1rem;
   z-index: 50;
 
@@ -91,14 +96,18 @@ export default {
   margin: auto;
   background: $white;
   padding: 1rem;
-  // border: 1px solid $border;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .cookies-title {
-  font-size: $size-5;
-  font-weight: bold;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+
+  span {
+    font-size: $size-5;
+    font-weight: bold;
+  }
 }
 
 .cookies-content {
