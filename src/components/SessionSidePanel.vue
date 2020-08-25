@@ -5,7 +5,7 @@
         <h3 class="section-headings is-uppercase" v-t="'session.hostHeading'" />
         <p>{{ localeHostOrganisation }}</p>
       </div>
-      <div class="info-panel-section">
+      <div class="info-panel-section" v-if="sessionSpeakers.length > 0">
         <h3
           class="section-headings is-uppercase"
           v-t="'session.speakerHeading'"
