@@ -4,9 +4,9 @@
       {{ msUntilStart | friendlyTime }}
     </div>
     <div>
-      <button class="button is-link" @click="attendSession">
+      <!--  <button class="button is-link" @click="attendSession">
         Attend Session
-      </button>
+      </button> -->
       <button class="button is-link" @click="addCal">
         Add to Calendar
       </button>
