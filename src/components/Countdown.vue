@@ -24,13 +24,19 @@ export default {
   },
   data() {
     return {
-      msUntilStart: this.timeUntilStart(),
-      language: this.$i18n.locale,
-      url: 'www.google.com',
-      organizer: this.event.hostOrganisation[this.$i18n.locale]
+      msUntilStart: this.timeUntilStart()
     }
   },
   computed: {
+    language() {
+      return this.$i18n.locale
+    },
+    url() {
+      return 'www.google.com'
+    },
+    organizer() {
+      return this.event.hostOrganisation[this.$i18n.locale]
+    },
     localeTitle() {
       return this.event.title[this.$i18n.locale]
     },
@@ -59,9 +65,6 @@ export default {
       return new Date(this.eventSlot.start).getTime() - Date.now()
     },
     addCal() {
-      console.log(this.event)
-      console.log(this.eventSlot)
-      console.log(this.language)
       this.$ics.addEvent(
         this.language,
         this.localeTitle,
@@ -81,25 +84,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.event-countdown {
-  //
-}
-
 .countdown-timer {
   margin-top: 0.5em;
-}
-
-.button {
-  font-weight: 300;
-  margin-right: 1em;
-  border-radius: 10px;
-}
-
-.left-event-panel {
-  border-inline-end: 2px solid $grey-lighter;
-}
-
-.right-event-panel {
-  border-inline-end: 2px solid $grey-lighter;
 }
 </style>
