@@ -42,7 +42,7 @@
               <DevicesIcon class="icon-size" />
             </span>
           </span>
-          {{ event.attendeeDevices }}
+          {{ $t(`data.devices.${event.attendeeDevices}`) }}
         </p>
         <p class="icon-and-text">
           <span class="icon">
@@ -50,7 +50,7 @@
               <RecordIcon class="icon-size" />
             </span>
           </span>
-          {{ sessionRecorded }}
+          {{ $t(`data.recorded.${event.isRecorded}`) }}
         </p>
         <p class="icon-and-text">
           <span class="icon">
@@ -58,7 +58,7 @@
               <InteractionIcon class="icon-size" />
             </span>
           </span>
-          {{ event.attendeeInteraction }}
+          {{ $t(`data.interaction.${event.attendeeInteraction}`) }}
         </p>
       </div>
       <div class="info-panel-section" v-if="hasNonVideoLinks">
@@ -142,13 +142,6 @@ export default {
     },
     localeHostOrganisation() {
       return this.event.hostOrganisation[this.$i18n.locale]
-    },
-    sessionRecorded() {
-      if (this.event.isRecorded == true) {
-        return 'Recorded'
-      } else if (this.event.isRecorded == false) {
-        return 'Not Recorded'
-      } else return 'No Info'
     },
     localeContent() {
       if (this.$i18n.locale === 'dev') return 'event.content'

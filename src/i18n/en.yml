@@ -121,6 +121,17 @@ data:
     empower: Empower
     influence: Influence
     transform: Transform
+  interaction:
+    interactive: Interactive
+    view: View Only
+  recorded:
+    true: Recorded
+    false: Not Recorded
+  devices:
+    all: All
+    desktop: Desktop
+    mobile: Mobile
+
 
 cookies:
   title: Cookies

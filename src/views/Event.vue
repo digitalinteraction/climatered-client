@@ -224,13 +224,6 @@ export default {
     localeHostOrganisation() {
       return this.event.hostOrganisation[this.$i18n.locale]
     },
-    sessionRecorded() {
-      if (this.event.isRecorded == true) {
-        return 'Recorded'
-      } else if (this.event.isRecorded == false) {
-        return 'Not Recorded'
-      } else return 'No Info'
-    },
     localeContent() {
       if (this.$i18n.locale === 'dev') return 'event.content'
 
