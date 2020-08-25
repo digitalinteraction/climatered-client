@@ -72,21 +72,21 @@ export default {
 }
 
 .left-event-panel {
-  border-right: 2px solid $light-grey;
+  border-right: 2px solid $grey-lighter;
 }
 .right-event-panel {
-  border-right: 2px solid $light-grey;
+  border-right: 2px solid $grey-lighter;
 }
 .table-container {
   display: inline-block;
   overflow: auto;
 }
 .table-heading-column {
-  background: $light-grey;
+  background: $grey-lighter;
 }
 td {
   font-weight: bold;
-  color: black;
+  color: $cc-black;
 }
 
 .link-container {

@@ -2,11 +2,14 @@
   <div class="session-side-panel">
     <div class="info-panel" :class="{ 'scroll-panel': slido }">
       <div class="info-panel-section">
-        <h3 class="section-headings">HOST</h3>
+        <h3 class="section-headings is-uppercase" v-t="'session.hostHeading'" />
         <p>{{ localeHostOrganisation }}</p>
       </div>
       <div class="info-panel-section">
-        <h3 class="section-headings">SPEAKERS</h3>
+        <h3
+          class="section-headings is-uppercase"
+          v-t="'session.speakerHeading'"
+        />
         <div class="event-speakers">
           <SpeakerRow
             v-for="(speaker, i) in sessionSpeakers"
@@ -16,13 +19,13 @@
         </div>
       </div>
       <div class="info-panel-section">
-        <h3 class="section-headings">SESSION INFO</h3>
+        <h3 class="section-headings is-uppercase" v-t="'session.infoHeading'" />
         <p class="icon-and-text">
           <span class="icon">
             <GlobeIcon class="icon-size" />
           </span>
-          <span class="session-card-language">
-            {{ event.hostLanguage.join('/').toUpperCase() }}
+          <span class="session-card-language is-uppercase">
+            {{ event.hostLanguage.join('/') }}
           </span>
         </p>
         <p class="icon-and-text">
@@ -59,13 +62,18 @@
         </p>
       </div>
       <div class="info-panel-section" v-if="hasNonVideoLinks">
-        <h3 class="section-headings">Links</h3>
+        <h3
+          class="section-headings is-uppercase"
+          v-t="'session.linksHeading'"
+        />
         <div class="table-container">
           <table class="table is-bordered">
             <tr v-for="(link, i) in nonVideoLinks" :key="i">
               <td class="table-heading-column">{{ link.type }}</td>
               <td class="table-data">
-                <a :href="link.url" target="_blank">{{ link.url }}</a>
+                <a :href="link.url" target="_blank">{{
+                  link.title ? link.title : link.url
+                }}</a>
               </td>
             </tr>
           </table>
@@ -74,16 +82,18 @@
     </div>
     <div class="slido-panel">
       <div class="info-panel-section">
-        <div v-if="slido" class="slido-wrapper embedded">
-          <h3 class="section-headings">Slido</h3>
+        <div
+          v-if="slido && slotState == 'active'"
+          class="slido-wrapper embedded"
+        >
           <div class="enable-poll" v-if="!showPoll">
             <button class="button is-primary" @click="showPoll = true">
-              Enable poll
+              {{ $t('session.showPoll') }}
             </button>
           </div>
           <iframe
             v-else
-            :src="'https://app.sli.do/event/' + slido.id"
+            :src="slido.url"
             height="100%"
             width="100%"
             style="min-height: 560px;"
@@ -102,7 +112,6 @@ import DevicesIcon from '@/icons/devices.svg'
 import InteractionIcon from '@/icons/interaction.svg'
 import RecordIcon from '@/icons/rec.svg'
 import PlatformIcon from '@/icons/platform.svg'
-
 import { mapState } from 'vuex'
 import marked from 'marked'
 
@@ -118,7 +127,8 @@ export default {
   props: {
     event: { type: Object, required: true },
     eventSlot: { type: Object, required: true },
-    language: { type: String, required: true }
+    language: { type: String, required: true },
+    slotState: { type: String, required: true }
   },
   data() {
     return {
@@ -232,11 +242,11 @@ h3 {
   overflow: auto;
 }
 .table-heading-column {
-  background: $light-grey;
+  background: $grey-lighter;
 }
 td {
   font-weight: bold;
-  color: black;
+  color: $cc-black;
 }
 
 .link-container {

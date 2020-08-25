@@ -1,30 +1,7 @@
 <template>
-  <div class="event-page">
+  <AppWrapper>
     <section class="section">
       <div class="container">
-        <div class="level">
-          <div class="level-left"></div>
-          <div class="level-right">
-            <!-- <div class="level-item">
-              <div class="control">
-                <div class="select">
-                  <select v-model="language">
-                    <option>en</option>
-                    <option>es</option>
-                    <option>fr</option>
-                    <option>ar</option>
-                  </select>
-                </div>
-              </div>
-            </div>-->
-            <div class="level-item">
-              <button class="button" @click="changeState">
-                Stage: {{ slotState }}
-              </button>
-            </div>
-          </div>
-        </div>
-
         <div class="columns event-panels">
           <div class="column is-two-thirds left-event-panel">
             <div class="level">
@@ -79,7 +56,8 @@
                 </div>
               </div>
             </div>
-            <div class="content">
+            <div class="content" v-html="localeContent">
+              <!--
               <p>A simple Read More, Read Less pen in Vue.js</p>
 
               <p>
@@ -113,7 +91,7 @@
                   <span v-if="readMore">See Less</span>
                   <span v-else>See More</span>
                 </p>
-              </div>
+              </div> -->
             </div>
 
             <component
@@ -125,18 +103,22 @@
             />
           </div>
           <div class="column is-one-third right-event-panel">
+            <button class="button" @click="changeState">
+              Stage: {{ slotState }}
+            </button>
             <div>
               <SessionSidePanel
                 :event="event"
                 :event-slot="slot"
                 :language="$i18n.locale"
+                :slot-state="slotState"
               />
             </div>
           </div>
         </div>
       </div>
     </section>
-  </div>
+  </AppWrapper>
 </template>
 
 <script>
@@ -155,6 +137,7 @@ import ManyToMany from '../components/ManyToMany.vue'
 import OfficialIcon from '@/icons/ifrc.svg'
 import GlobeIcon from '@/icons/globe.svg'
 import AttendeeIcon from '@/icons/attendee.svg'
+import AppWrapper from '@/components/AppWrapper.vue'
 
 const eventComponents = {
   plenary: OneToMany,
@@ -173,7 +156,8 @@ export default {
     OfficialIcon,
     GlobeIcon,
     AttendeeIcon,
-    SessionSidePanel
+    SessionSidePanel,
+    AppWrapper
   },
   props: {
     eventId: { type: String, required: true }
@@ -251,7 +235,7 @@ export default {
       if (this.$i18n.locale === 'dev') return 'event.content'
 
       const content = this.event?.content?.[this.$i18n.locale]
-      return content && marked(content) //marked seems to add <p> tags, not sure why needed
+      return content && marked(content)
     },
     sessionSpeakers() {
       return this.event.speakers
@@ -263,9 +247,6 @@ export default {
       if (this.slotState === 'before') return Countdown
       return eventComponents[this.event.type] ?? ManyToMany
     }
-    // authToken() {
-    //   return jwt.decode(localStorage.token)
-    // }
   },
   methods: {
     changeState() {
@@ -307,15 +288,15 @@ export default {
 }
 
 .event-panels {
-  border-top: 2px solid $light-grey;
+  border-block-start: 2px solid $grey-lighter;
 }
 
 .left-event-panel {
-  border-right: 2px solid $light-grey;
+  border-inline-end: 2px solid $grey-lighter;
   overflow-x: hidden;
 }
 .right-event-panel {
-  border-right: 2px solid $light-grey;
+  border-inline-end: 2px solid $grey-lighter;
 }
 
 h3 {

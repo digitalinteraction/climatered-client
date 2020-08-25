@@ -152,11 +152,11 @@ export default {
 }
 
 .left-event-panel {
-  border-right: 2px solid $light-grey;
+  border-right: 2px solid $grey-lighter;
 }
 
 .right-event-panel {
-  border-right: 2px solid $light-grey;
+  border-right: 2px solid $grey-lighter;
 }
 
 .bottom-panel {
