@@ -22,12 +22,10 @@
               <div class="container">
                 <h1 class="title" v-t="'atrium.heading'" />
 
-                <VideoEmbed class="atrium-video" :video-link="atriumVideo" />
-
-                <div
+                <component
                   v-if="currentContent"
-                  class="atrium-content content"
-                  v-html="currentContent"
+                  :is="currentContent"
+                  class="content atrium-content"
                 />
               </div>
 
@@ -54,6 +52,16 @@
                   v-t="'atrium.sessionsButton'"
                 />
               </div>
+
+              <!-- Project sponsorts -->
+              <div class="sponsors">
+                <img
+                  v-for="sponsor in sponsors"
+                  :key="sponsor.name"
+                  :src="sponsor.url"
+                  :title="sponsor.name"
+                />
+              </div>
             </div>
             <div class="column">
               <!-- <a
@@ -63,18 +71,6 @@
                 data-dnt="true"
                 >{{ $t('atrium.tweetTitle') }}</a
               > -->
-            </div>
-          </div>
-        </section>
-        <section class="section">
-          <div class="container">
-            <div class="sponsors">
-              <img
-                v-for="sponsor in sponsors"
-                :key="sponsor.name"
-                :src="sponsor.url"
-                :title="sponsor.name"
-              />
             </div>
           </div>
         </section>
@@ -90,17 +86,11 @@ import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
 
-import contentEN from '@/content/atrium/en.md'
-import contentFR from '@/content/atrium/fr.md'
-import contentES from '@/content/atrium/es.md'
-import contentAR from '@/content/atrium/ar.md'
-
 const content = {
-  en: contentEN,
-  fr: contentFR,
-  es: contentES,
-  ar: contentAR,
-  dev: 'atrium.content'
+  en: () => import(/* webpackChunkName: "en" */ '@/content/atrium/en.mdx'),
+  fr: () => import(/* webpackChunkName: "fr" */ '@/content/atrium/fr.mdx'),
+  es: () => import(/* webpackChunkName: "es" */ '@/content/atrium/es.mdx'),
+  ar: () => import(/* webpackChunkName: "ar" */ '@/content/atrium/ar.mdx')
 }
 
 const banner = {
@@ -119,9 +109,12 @@ const atriumVideo = {
 const sponsors = [
   { name: 'Solferino academy', url: '/sponsor/solferino-academy.svg' },
   { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
+  { name: 'Al Jazeera', url: '/sponsor/al-jazeera.svg' },
+  { name: 'Open Lab', url: '/sponsor/openlab.svg' },
+  { name: 'Italian Red Cross', url: '/sponsor/croce-rossa.svg' },
   { name: 'Norwegian Red Cross', url: '/sponsor/norwegian-red-cross.svg' },
-  { name: 'Finish Red Cross', url: '/sponsor/finish-red-cross.svg' },
-  { name: 'Open Lab', url: '/sponsor/openlab.svg' }
+  { name: 'British Red Cross', url: '/sponsor/british-red-cross.svg' },
+  { name: 'Finish Red Cross', url: '/sponsor/finish-red-cross.svg' }
 ]
 
 export default {
@@ -228,30 +221,27 @@ $tri-size: 120px;
   }
 }
 
-@include desktop {
-  .atrium-video {
-    width: 66%;
-  }
-}
-
 .sponsors {
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
+
+  margin-top: 7rem;
 
   img {
     width: auto;
     height: 32px;
   }
 
-  @include desktop {
+  @include tablet {
     img:not(:last-child) {
-      margin-inline-end: 3em;
+      margin-inline-end: 4.5em;
       margin-block-end: 3em;
     }
   }
 
-  @include touch {
+  @include mobile {
     align-items: center;
     flex-direction: column;
 

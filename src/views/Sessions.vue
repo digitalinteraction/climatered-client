@@ -15,7 +15,7 @@
 
       <div class="container">
         <section class="section is-small" v-if="currentContent">
-          <div class="content" v-html="currentContent" />
+          <component class="content" :is="currentContent" />
         </section>
         <section
           v-for="item in tabs"
@@ -44,17 +44,11 @@ import AppWrapper from '@/components/AppWrapper.vue'
 import SessionCard from '@/components/SessionCard.vue'
 import { mapState } from 'vuex'
 
-import contentEN from '@/content/sessions/en.md'
-import contentFR from '@/content/sessions/fr.md'
-import contentES from '@/content/sessions/es.md'
-import contentAR from '@/content/sessions/ar.md'
-
 const content = {
-  en: contentEN,
-  fr: contentFR,
-  es: contentES,
-  ar: contentAR,
-  dev: 'sessions.content'
+  en: () => import(/* webpackChunkName: "en" */ '@/content/sessions/en.mdx'),
+  fr: () => import(/* webpackChunkName: "fr" */ '@/content/sessions/fr.mdx'),
+  es: () => import(/* webpackChunkName: "es" */ '@/content/sessions/es.mdx'),
+  ar: () => import(/* webpackChunkName: "ar" */ '@/content/sessions/ar.mdx')
 }
 
 const tabs = [
