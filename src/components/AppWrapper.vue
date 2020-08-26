@@ -303,18 +303,26 @@ $tri-width: $tabbar-width / 2;
 @include touch {
   .navbar-menu {
     padding: 0;
+    background: $cc-black;
+    padding: 12px 0;
+  }
+  .navbar-end {
+    border-top: 1px solid $grey-dark;
+    padding-top: 12px;
   }
   .navbar-menu .navbar-item {
     color: $white;
-    background-color: $cc-black;
+    margin: 0 12px 0;
+    border-radius: $radius;
     font-weight: bold;
 
     &:hover:not(.is-active) {
-      background-color: $grey-dark;
+      background-color: inherit;
     }
 
     &.is-active {
-      background-color: $grey-dark;
+      color: $cc-coral;
+      background-color: $white;
     }
 
     &[disabled] {
