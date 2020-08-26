@@ -32,13 +32,13 @@ export default class ApiSocket {
   }
 
   emit(eventName, ...args) {
-    console.debug('emit', eventName, ...args)
+    console.debug('↑', eventName, ...args)
 
     this.socket.emit(eventName, ...args)
   }
 
   emitBinary(eventName, ...args) {
-    console.debug('emitBinary', eventName, ...args)
+    console.debug('↑', eventName, ...args)
 
     this.socket.binary(true).emit(eventName, ...args)
   }
@@ -50,10 +50,10 @@ export default class ApiSocket {
   }
 
   bindEvent(owner, eventName, callback) {
-    console.debug('bindEvent', eventName)
-
     if (!this.listeners.has(eventName)) {
-      this.socket.on(eventName, data => this.handleEvent(eventName, data))
+      this.socket.on(eventName, (...args) =>
+        this.handleEvent(eventName, ...args)
+      )
 
       this.listeners.set(eventName, [])
     }
@@ -62,8 +62,6 @@ export default class ApiSocket {
   }
 
   unbindEvent(owner, eventName) {
-    console.debug('unbindEvent', eventName)
-
     const listeners = this.listeners.get(eventName)
     if (!listeners) return
 
@@ -77,7 +75,14 @@ export default class ApiSocket {
     }
   }
 
+  unbindOwner(owner) {
+    for (const eventName of this.listeners.keys()) {
+      this.unbindEvent(owner, eventName)
+    }
+  }
+
   handleEvent(eventName, ...args) {
+    console.debug('↓', eventName, ...args)
     const listeners = this.listeners.get(eventName) ?? []
 
     for (const l of listeners) l.callback(...args)

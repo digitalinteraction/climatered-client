@@ -25,18 +25,12 @@
       <section class="section">
         <div class="container">
           <div class="columns">
-            <div class="column is-two-thirds">
-              <InterpretControls
-                :session-id="session.id"
-                :channel="channel"
-                @start="onLiveStart"
-                @end="onLiveEnd"
-                @takeover="onTakeoverRequest"
-              />
+            <div class="column is-three-fifths">
+              <InterpretControls />
               <VideoLink v-if="videoLink" :link="videoLink" />
             </div>
             <div class="column">
-              <p>Messaging</p>
+              <InterpretPanel />
             </div>
           </div>
         </div>
@@ -46,12 +40,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { ROUTE_INTERPRET_HOME } from '../../const'
 import { getTranslation, findLink } from '../../utils'
 
 import InterpretWrapper from '@/components/InterpretWrapper.vue'
 import VideoLink from '@/components/VideoLink.vue'
-import InterpretControls from '@/components/InterpretControls.vue'
+
+import InterpretControls from '@/components/interpret/InterpretControls.vue'
+import InterpretPanel from '@/components/interpret/InterpretPanel.vue'
 
 // import { ZoomMtg } from '@zoomus/websdk'
 
@@ -59,25 +56,23 @@ import InterpretControls from '@/components/InterpretControls.vue'
 // ZoomMtg.prepareJssdk()
 
 export default {
-  components: { InterpretWrapper, VideoLink, InterpretControls },
+  components: {
+    InterpretWrapper,
+    VideoLink,
+    InterpretControls,
+    InterpretPanel
+  },
   props: {
     sessionId: { type: String, required: true },
     channel: { type: String, required: true }
   },
-  mounted() {
-    if (!this.session || !this.slot) {
-      this.$router.push({ name: ROUTE_INTERPRET_HOME })
-    }
-  },
   data() {
     return {
-      interpretHomeRoute: { name: ROUTE_INTERPRET_HOME },
-      isLive: false,
-      recordTime: 0
+      interpretHomeRoute: { name: ROUTE_INTERPRET_HOME }
     }
   },
   computed: {
-    // ...mapState('api', ['slots', 'sessions']),
+    ...mapState('interpret', ['isLive']),
     session() {
       return this.$store.getters['api/session'](this.sessionId)
     },
@@ -98,16 +93,51 @@ export default {
       return findLink(this.session.links, 'video', this.floorLanguage)
     }
   },
-  methods: {
-    onLiveStart() {
-      this.isLive = true
-    },
-    onLiveEnd() {
-      this.isLive = false
-    },
-    onTakeoverRequest(time) {
-      console.log('please takeover in ' + time)
+  mounted() {
+    if (!this.session || !this.slot) {
+      this.$router.push({ name: ROUTE_INTERPRET_HOME })
     }
+
+    this.$store.dispatch('interpret/join', {
+      sessionId: this.sessionId,
+      channel: this.channel
+    })
+
+    this.$socket.bindEvent(this, 'interpret-joined', user => {
+      this.$store.commit('interpret/userJoined', user)
+    })
+    this.$socket.bindEvent(this, 'interpret-started', user => {
+      this.$store.dispatch('interpret/liveStarted', user)
+    })
+    this.$socket.bindEvent(this, 'interpret-message', (user, message) => {
+      console.log('interpret-message', user, message)
+      this.$store.commit('interpret/message', { user, message })
+    })
+    this.$socket.bindEvent(this, 'interpret-left', user => {
+      this.$store.commit('interpret/userLeft', user)
+    })
+    this.$socket.bindEvent(this, 'interpret-stopped', () => {
+      this.$store.commit('interpret/activeUser', null)
+    })
+    this.$socket.bindEvent(this, 'interpret-requested', (user, duration) => {
+      this.$store.commit('interpret/startRequest', { user, duration })
+    })
+    this.$socket.bindEvent(this, 'interpret-accepted', async newUser => {
+      this.$store.commit('interpret/updateRequest', {
+        status: 'accept',
+        newUser
+      })
+    })
+  },
+  beforeRouteLeave(to, from, next) {
+    if (!this.isLive) return next()
+
+    let confirmed = window.confirm(this.$t('interpret.confirmLeave'))
+    if (confirmed) next()
+  },
+  destroyed() {
+    this.$store.dispatch('interpret/leave')
+    this.$socket.unbindOwner(this)
   }
 }
 </script>

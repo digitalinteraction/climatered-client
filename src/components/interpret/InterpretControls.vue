@@ -1,5 +1,5 @@
 <template>
-  <div class="interpret-controls">
+  <div class="interpret-controls" :class="isLive && 'is-live'">
     <div class="columns">
       <div class="column">
         <details>
@@ -18,7 +18,12 @@
         </details>
       </div>
       <div class="column">
-        <Stack direction="vertical" gap="medium" align="center">
+        <Stack
+          direction="vertical"
+          gap="medium"
+          align="center"
+          v-if="canGoLive"
+        >
           <button
             class="button"
             :class="startClasses"
@@ -43,6 +48,13 @@
             v-t="'interpret.stopAction'"
           />
         </Stack>
+
+        <Stack direction="vertical" gap="medium" align="center" v-else>
+          <p>{{ $t('interpret.isLive', [activeUser.name]) }}</p>
+          <button class="button" :class="startClasses" @click="takeover">
+            {{ $t('interpret.takeoverAction') }}
+          </button>
+        </Stack>
       </div>
       <div class="column">
         <Stack direction="vertical" gap="regular" align="start">
@@ -51,13 +63,25 @@
               {{ $t('interpret.takeoverActionLabel') }}
             </p>
             <div class="buttons">
-              <button class="button is-small" @click="plusOne">
+              <button
+                class="button is-small"
+                @click="plusOne"
+                :disabled="!canRequestTakeover"
+              >
                 {{ $tc('interpret.plusMins', 1) }}
               </button>
-              <button class="button is-small" @click="plusThree">
+              <button
+                class="button is-small"
+                @click="plusThree"
+                :disabled="!canRequestTakeover"
+              >
                 {{ $tc('interpret.plusMins', 3) }}
               </button>
-              <button class="button is-small" @click="plusFive">
+              <button
+                class="button is-small"
+                @click="plusFive"
+                :disabled="!canRequestTakeover"
+              >
                 {{ $tc('interpret.plusMins', 5) }}
               </button>
             </div>
@@ -67,9 +91,24 @@
               {{ $t('interpret.takeoverStatusLabel') }}
             </p>
             <p>
-              <span class="tag is-light is-info">
-                {{ $t('interpret.noResponse') }}
-              </span>
+              <template v-if="!request">
+                <span class="tag is-light is-info">No requests</span>
+              </template>
+
+              <template v-if="isLive && request && request.status == 'pending'">
+                <span class="tag is-warning is-info">Request pending</span>
+              </template>
+
+              <template v-if="!isLive && request">
+                <div class="buttons">
+                  <button class="button is-success" @click="acceptRequest">
+                    Accept
+                  </button>
+                  <button class="button is-danger" @click="rejectRequest">
+                    Reject
+                  </button>
+                </div>
+              </template>
             </p>
           </div>
         </Stack>
@@ -80,15 +119,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import { AudioBroadcaster, BroadcastState } from '../audio.js'
+import { AudioBroadcaster, BroadcastState } from '../../audio.js'
 import Stack from '@/components/Stack.vue'
 
 export default {
   components: { Stack },
-  props: {
-    sessionId: { type: String, required: true },
-    channel: { type: String, required: true }
-  },
   data() {
     return {
       timeSinceLive: 0,
@@ -96,12 +131,24 @@ export default {
     }
   },
   computed: {
-    ...mapState('interpret', ['isLive', 'liveStarted']),
+    ...mapState('interpret', [
+      'isLive',
+      'liveStarted',
+      'activeUser',
+      'request'
+    ]),
+    ...mapState('api', ['user']),
     startClasses() {
       return this.isLive ? 'is-primary' : 'is-primary is-outlined'
     },
     stopClasses() {
       return this.isLive ? 'is-black' : 'is-light'
+    },
+    canGoLive() {
+      return this.activeUser === null || this.isLive
+    },
+    canRequestTakeover() {
+      return this.isLive
     }
   },
   filters: {
@@ -132,17 +179,33 @@ export default {
         ? Date.now() - this.liveStarted.getTime()
         : 0
     })
+
+    // Make sure to stop any broadcasting if someone else took over
+    this.$socket.bindEvent(this, 'interpret-started', async user => {
+      if (this.isLive && this.user.sub !== user.email) {
+        await this.stopBroadcast()
+      }
+    })
+
+    // this.$socket.bindEvent(this, 'interpret-accepted', async user => {
+    //   if (this.isLive && this.request) {
+
+    //   }
+    // })
   },
-  destroyed() {
+  async destroyed() {
     this.$clock.unbind(this)
+
+    this.$socket.unbindOwner(this)
+
+    if (this.isLive) {
+      await this.stop()
+    }
   },
   methods: {
     async start() {
       try {
-        const isAllowed = await this.$store.dispatch('interpret/goLive', {
-          sessionId: this.sessionId,
-          channel: this.channel
-        })
+        const isAllowed = await this.$store.dispatch('interpret/startLive')
 
         if (isAllowed === false) {
           return alert('You cannot broadcast right now')
@@ -154,19 +217,34 @@ export default {
       }
     },
     async stop() {
+      await this.stopBroadcast()
+      this.$store.dispatch('interpret/stopLive')
+    },
+    async takeover() {
+      let msg = this.$t('interpret.takeoverConfirm')
+      if (!window.confirm(msg)) return
+
+      await this.start()
+    },
+    async stopBroadcast() {
       if (this.broadcastState === BroadcastState.active) {
         await this.broadcaster.stop()
       }
-      this.$store.dispatch('interpret/disconnect')
     },
     plusOne() {
-      this.$store.dispatch('interpret/requestTakeover', '1m')
+      this.$store.dispatch('interpret/request', '1m')
     },
     plusThree() {
-      this.$store.dispatch('interpret/requestTakeover', '3m')
+      this.$store.dispatch('interpret/request', '3m')
     },
     plusFive() {
-      this.$store.dispatch('interpret/requestTakeover', '5m')
+      this.$store.dispatch('interpret/request', '5m')
+    },
+    acceptRequest() {
+      this.$store.dispatch('interpret/respondToRequest', 'accept')
+    },
+    rejectRequest() {
+      this.$store.dispatch('interpret/respondToRequest', 'reject')
     }
   }
 }
@@ -177,9 +255,14 @@ export default {
   padding: 1em;
   border: 2px dashed $border;
   border-radius: $radius-large;
-  background: $white-bis;
+  background-color: $white-bis;
   margin-bottom: 1em;
   min-height: 200px;
+
+  &.is-live {
+    background-color: #feeced;
+    border-color: $danger;
+  }
 }
 
 .controls-label {
