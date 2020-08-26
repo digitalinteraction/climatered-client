@@ -1,6 +1,10 @@
 <template>
   <div class="select is-rounded" :class="selectClass">
-    <select :value="$i18n.locale" @input="onLocale">
+    <select
+      :value="$i18n.locale"
+      @input="onLocale"
+      aria-label="Change the language"
+    >
       <option value="en">EN</option>
       <option value="fr">FR</option>
       <option value="es">ES</option>

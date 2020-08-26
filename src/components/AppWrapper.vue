@@ -51,6 +51,14 @@
               </router-link>
             </div>
             <div class="navbar-end">
+              <div class="navbar-item ifrc-branding">
+                <img
+                  src="/sponsor/solferino-academy.svg"
+                  alt="IFRC Solferino academy"
+                  width="110"
+                  height="28"
+                />
+              </div>
               <div class="navbar-item">
                 <LanguageControl />
               </div>
@@ -362,6 +370,12 @@ $tri-width: $tabbar-width / 2;
 }
 .app-tabbar {
   background: #252525;
+}
+
+@include touch {
+  .ifrc-branding {
+    display: none;
+  }
 }
 
 .app-page {
