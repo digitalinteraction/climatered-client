@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { setLocale } from '@/i18n'
+import { overrideLocale } from '@/i18n'
 
 export default {
   props: {
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     onLocale(event) {
-      setLocale(event.target.value, true)
+      overrideLocale(event.target.value)
     }
   }
 }

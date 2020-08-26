@@ -113,8 +113,6 @@ import AtriumIcon from '@/icons/atrium.svg'
 import ScheduleIcon from '@/icons/schedule.svg'
 import SessionsIcon from '@/icons/whats-on.svg'
 
-import { setLocale } from '@/i18n'
-
 const nav = [
   {
     name: 'atrium',
@@ -163,11 +161,6 @@ export default {
       nav
     }
   },
-  created() {
-    if (this.user) {
-      setLocale(this.user.user_lang, false)
-    }
-  },
   computed: {
     ...mapState('api', ['user', 'settings', 'apiState']),
     scheduleLive() {
@@ -182,9 +175,6 @@ export default {
       this.showingMenu = !this.showingMenu
       this.$refs.menuButton.classList.toggle('is-active', this.showingMenu)
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
-    },
-    onLocale(event) {
-      setLocale(event.target.value, true)
     },
     isDisabled(tabName) {
       if (tabName === 'helpdesk') {

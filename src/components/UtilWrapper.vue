@@ -6,12 +6,26 @@
     <section class="section is-medium">
       <div class="container is-small">
         <div class="box is-centered">
+          <div class="buttons is-right" v-if="pickLanguages">
+            <LanguageControl v-if="pickLanguages" />
+          </div>
           <slot name="content" />
         </div>
       </div>
     </section>
   </div>
 </template>
+
+<script>
+import LanguageControl from '@/components/LanguageControl.vue'
+
+export default {
+  components: { LanguageControl },
+  props: {
+    pickLanguages: { type: Boolean, default: true }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .util-wrapper {
@@ -21,6 +35,10 @@
   .box {
     max-width: $tablet;
     margin: 0 auto;
+  }
+
+  .buttons {
+    padding: 0.5em;
   }
 }
 </style>
