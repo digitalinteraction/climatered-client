@@ -56,7 +56,13 @@
                 </div>
               </div>
             </div>
-            <div class="content" v-html="localeContent"></div>
+            <div :class="{ 'hide-overflow': !readMore }">
+              <div class="content" v-html="localeContent"></div>
+            </div>
+            <p class="button is-text" @click="readMore = !readMore">
+              <span v-if="readMore">See Less</span>
+              <span v-else>See More</span>
+            </p>
 
             <component
               v-if="eventComponent"
@@ -270,6 +276,11 @@ h3 {
 
 .info-panel > *:not(:last-child) {
   margin-bottom: 2em;
+}
+
+.hide-overflow {
+  max-height: 120px;
+  overflow-y: hidden;
 }
 
 .see-more {
