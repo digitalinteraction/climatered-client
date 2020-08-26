@@ -53,12 +53,15 @@
 
           <!-- Project sponsors -->
           <div class="sponsors">
-            <img
-              v-for="sponsor in sponsors"
-              :key="sponsor.name"
-              :src="sponsor.url"
-              :title="sponsor.name"
-            />
+            <h3 class="sponsors-heading" v-t="'atrium.sponsorHeading'" />
+            <div class="sponsors-grid">
+              <img
+                v-for="sponsor in sponsors"
+                :key="sponsor.name"
+                :src="sponsor.url"
+                :title="sponsor.name"
+              />
+            </div>
           </div>
         </section>
       </div>
@@ -209,12 +212,21 @@ $tri-size: 120px;
 }
 
 .sponsors {
+  margin-top: 7rem;
+}
+
+.sponsors-heading {
+  text-align: center;
+  font-size: $size-5;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+.sponsors-grid {
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-
-  margin-top: 7rem;
 
   img {
     width: auto;
