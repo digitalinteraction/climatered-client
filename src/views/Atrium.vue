@@ -217,9 +217,8 @@ $tri-size: 120px;
 
 .sponsors-heading {
   text-align: center;
-  font-size: $size-5;
-  margin-bottom: 1em;
-  font-weight: bold;
+  margin-bottom: 3em;
+  text-transform: uppercase;
 }
 
 .sponsors-grid {
