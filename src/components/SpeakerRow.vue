@@ -1,11 +1,11 @@
 <template>
-  <div class="speaker-row">
+  <div class="speaker-row" aria-label="speaker">
     <div class="speaker-headshot">
-      <img :src="imageUrl" width="42" height="42" />
+      <img :src="imageUrl" width="42" height="42" alt="headshot" />
     </div>
     <div class="speaker-info">
-      <p class="speaker-title">{{ speaker.name }}</p>
-      <p class="speaker-role">{{ localeRole }}</p>
+      <p class="speaker-title" aria-label="name">{{ speaker.name }}</p>
+      <p class="speaker-role" aria-label="job role">{{ localeRole }}</p>
     </div>
   </div>
 </template>

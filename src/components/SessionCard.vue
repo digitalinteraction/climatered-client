@@ -1,28 +1,34 @@
 <template>
-  <div class="session-card" :class="cardClasses">
+  <div class="session-card" :class="cardClasses" aria-label="session">
     <div class="session-card-header icon-and-text">
       <span class="icon" v-if="typeIcon">
-        <component :is="typeIcon" class="session-icon" />
+        <component :is="typeIcon" class="session-icon" role="presentation" />
       </span>
-      <span class="session-type" v-if="localeType">{{ localeType }}</span>
+      <span class="session-type" v-if="localeType" aria-label="session type">{{
+        localeType
+      }}</span>
     </div>
     <div class="session-card-body">
-      <p class="session-title">
+      <p class="session-title" aria-label="session title">
         {{ localeTitle }}
       </p>
       <div class="columns">
         <div class="column">
-          <p class="session-info" v-if="localeHostOrganisation">
+          <p
+            class="session-info"
+            v-if="localeHostOrganisation"
+            aria-label="session host"
+          >
             {{ $t('sessionCard.hostedBy') }}
             <strong> {{ localeHostOrganisation }} </strong>
           </p>
         </div>
         <div class="column is-narrow">
-          <p class="icon-and-text">
-            <span class="icon">
-              <GlobeIcon class="globe" />
-            </span>
-            <span class="session-card-language">
+          <p class="icon-and-text" title="Session languages">
+            <span class="icon"
+              ><GlobeIcon class="globe" role="presentation"
+            /></span>
+            <span class="session-card-language" aria-label="session languages">
               {{ session.hostLanguage.join('/') }}
             </span>
           </p>

@@ -18,7 +18,7 @@
             <button
               role="button"
               class="navbar-burger burger"
-              aria-label="menu"
+              aria-label="toggle menu"
               aria-expanded="false"
               data-target="navbarBasicExample"
               @click.prevent="toggleMenu"
@@ -79,7 +79,7 @@
     <!-- 
       Side tabbar
      -->
-    <div class="app-tabbar">
+    <nav class="app-tabbar" aria-label="site tabbar">
       <component
         v-for="item in nav"
         :key="item.name"
@@ -93,7 +93,7 @@
           {{ $t(isDisabled(item.name) ? 'general.comingSoon' : item.titleKey) }}
         </span>
       </component>
-    </div>
+    </nav>
     <div class="app-page" v-if="hasData">
       <slot />
     </div>

@@ -1,7 +1,7 @@
 <template>
   <AppWrapper>
     <div class="sessions">
-      <div class="tabs is-dark">
+      <nav class="tabs is-dark" aria-label="page navigation">
         <ul>
           <li v-for="item in tabs" :key="item.type" :class="tabClasses(item)">
             <a
@@ -11,10 +11,14 @@
             />
           </li>
         </ul>
-      </div>
+      </nav>
 
       <div class="container">
-        <section class="section is-small" v-if="currentContent">
+        <section
+          class="section is-small"
+          v-if="currentContent"
+          aria-label="page description"
+        >
           <component class="content" :is="currentContent" />
         </section>
         <section
@@ -22,6 +26,7 @@
           :key="item.type"
           class="section is-small"
           :id="item.href.slice(1)"
+          :aria-label="$t(item.titleKey)"
         >
           <h2 class="title" v-t="item.titleKey" />
           <div class="columns is-multiline">

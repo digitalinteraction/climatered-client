@@ -1,17 +1,23 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" aria-label="Site footer">
     <div class="content has-text-centered">
       Made by
-      <a href="https://openlab.ncl.ac.uk">Open Lab</a>
+      <a href="https://openlab.ncl.ac.uk" tabindex="0">Open Lab</a>
       <!-- /
       <router-link class="is-faded" :to="termsLink" v-t="'terms.title'" /> -->
       /
-      <router-link class="is-faded" :to="privacyLink" v-t="'privacy.title'" />
+      <router-link
+        class="is-faded"
+        :to="privacyLink"
+        v-t="'privacy.title'"
+        tabindex="0"
+      />
       /
       <a
         class=" is-faded"
         @click.prevent="triggerCookies"
         v-t="'cookies.title'"
+        tabindex="0"
       />
       /
       {{ $t('general.appName') }}
