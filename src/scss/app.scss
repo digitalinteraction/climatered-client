@@ -88,6 +88,12 @@ html {
   scroll-behavior: smooth;
 }
 
+.navbar-burger {
+  background: $white;
+  border: none;
+  box-shadow: none;
+}
+
 @include touch {
   html {
     scroll-padding-top: $size-normal + 1rem;

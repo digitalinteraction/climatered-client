@@ -15,7 +15,7 @@
                 height="28"
               />
             </router-link>
-            <a
+            <button
               role="button"
               class="navbar-burger burger"
               aria-label="menu"
@@ -27,17 +27,18 @@
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
-            </a>
+            </button>
           </div>
           <!--
             Mobile dropdown menu
           -->
           <div class="navbar-menu" ref="navbarMenu">
             <div class="navbar-start">
-              <router-link
+              <component
                 v-for="item in nav"
                 :key="item.name"
                 :to="item.to"
+                :is="linkComponent(item.name)"
                 :disabled="isDisabled(item.name)"
                 class="navbar-item"
               >
@@ -48,7 +49,7 @@
                     {{ '– ' + $t('general.comingSoon') }}
                   </template>
                 </span>
-              </router-link>
+              </component>
             </div>
             <div class="navbar-end">
               <div class="navbar-item ifrc-branding">
@@ -79,10 +80,11 @@
       Side tabbar
      -->
     <div class="app-tabbar">
-      <router-link
+      <component
         v-for="item in nav"
         :key="item.name"
         :to="item.to"
+        :is="linkComponent(item.name)"
         :disabled="isDisabled(item.name)"
         class="tabbar-item"
       >
@@ -90,7 +92,7 @@
         <span class="tabbar-item-text">
           {{ $t(isDisabled(item.name) ? 'general.comingSoon' : item.titleKey) }}
         </span>
-      </router-link>
+      </component>
     </div>
     <div class="app-page" v-if="hasData">
       <slot />
@@ -197,6 +199,9 @@ export default {
       if (!this.scheduleLive) return !preSchedule.has(tabName)
 
       return false
+    },
+    linkComponent(itemName) {
+      return this.isDisabled(itemName) ? 'span' : 'RouterLink'
     }
   }
 }
@@ -219,13 +224,14 @@ $tabbar-width: 5.5rem;
 @mixin link {
   &[disabled] {
     color: $grey-light;
-    pointer-events: none;
-
     cursor: not-allowed;
   }
 
   @include desktop {
     &:hover:not([disabled]):not(.is-active) {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    &:focus {
       background-color: rgba(255, 255, 255, 0.15);
     }
   }
