@@ -27,7 +27,9 @@
           <div class="columns">
             <div class="column is-three-fifths">
               <InterpretControls />
-              <VideoLink v-if="videoLink" :link="videoLink" />
+              <div class="interpret-video">
+                <VideoLink v-if="videoLink" :link="videoLink" />
+              </div>
             </div>
             <div class="column">
               <InterpretPanel />
