@@ -61,7 +61,7 @@ export default {
     },
     channels() {
       return ['source', 'en', 'fr', 'es', 'ar'].filter(
-        l => l !== this.event.hostLanguage
+        l => l !== this.event.hostLanguage[0]
       )
     },
     isSourceAudio() {

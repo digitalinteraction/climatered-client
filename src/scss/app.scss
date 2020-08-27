@@ -50,7 +50,7 @@
   }
 }
 
-.buttons {
+.buttons:not(.has-addons) {
   .button:not(:last-child):not(.is-fullwidth) {
     margin-right: unset;
     margin-inline-end: 0.5rem;
@@ -112,7 +112,6 @@ html {
   width: 1.5em;
   height: 1.5em;
 }
-
 
 .section-headings {
   color: $section-headings-coloured;

@@ -5,6 +5,7 @@ general:
   appName: Climate:Red
   pleaseSelect: Please select
   comingSoon: Coming soon
+  backTo: Back to {0}
 
 api:
   auth:
@@ -133,7 +134,6 @@ data:
     desktop: Desktop
     mobile: Mobile
 
-
 cookies:
   title: Cookies
   popupTitle: Our use of cookies
@@ -151,4 +151,5 @@ session:
   infoHeading: Session info
   linksHeading: Links
   showPoll: Enable poll
-
+  seeMore: See more
+  seeLess: See less

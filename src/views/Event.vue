@@ -1,20 +1,21 @@
 <template>
   <AppWrapper>
-    <section class="section">
-      <div class="container">
-        <div class="columns event-panels">
-          <div class="column is-two-thirds left-event-panel">
+    <div class="session-detail">
+      <div class="columns event-panels">
+        <div class="column is-two-thirds left-event-panel">
+          <div class="panel-inner">
             <div class="level">
-              <router-link class="back-button is-text" to="/prototype"
-                >&lt; Back</router-link
-              >
+              <router-link class="back-button is-text" to="/prototype">
+                {{ $t('general.backTo', [$t('schedule.title')]) }}
+              </router-link>
             </div>
             <div class="level">
               <div class="level-left">
                 <div class="level-item">
                   <p class="section-headings">
                     {{ slot.start | localeDate }}
-                    {{ slot.start | localeTime }} - {{ slot.end | localeTime }}-
+                    {{ slot.start | localeTime }} -
+                    {{ slot.end | localeTime }} &ndash;
                     <span class="icon" v-if="typeIcon">
                       <component :is="typeIcon" class="icon-size" />
                     </span>
@@ -59,10 +60,11 @@
             <div :class="{ 'hide-overflow': !readMore }">
               <div class="content" v-html="localeContent"></div>
             </div>
-            <p class="button is-text" @click="readMore = !readMore">
-              <span v-if="readMore">See Less</span>
-              <span v-else>See More</span>
-            </p>
+            <div class="buttons is-centered">
+              <p class="button is-text" @click="readMore = !readMore">
+                <span v-t="readMore ? 'session.seeLess' : 'session.seeMore'" />
+              </p>
+            </div>
 
             <component
               v-if="eventComponent"
@@ -72,7 +74,9 @@
               :language="$i18n.locale"
             />
           </div>
-          <div class="column is-one-third right-event-panel">
+        </div>
+        <div class="column is-one-third right-event-panel">
+          <div class="panel-inner">
             <button class="button" @click="changeState">
               Stage: {{ slotState }}
             </button>
@@ -87,7 +91,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </AppWrapper>
 </template>
 
@@ -167,9 +171,7 @@ export default {
     // this.$socket.emit('leave-event', { eventId: this.eventId })
     this.$clock.unbind(this)
 
-    // this.$socket.unbindEvent(this, 'user-joined')
-    // this.$socket.unbindEvent(this, 'user-left')
-    // this.$socket.unbindEvent(this, 'chat')
+    // this.$socket.unbindOwner(this)
   },
   computed: {
     ...mapState('api', ['hasData', 'sessions', 'slots', 'speakers']),
@@ -250,16 +252,16 @@ export default {
   font-weight: bold;
 }
 
-.event-panels {
-  border-block-start: 2px solid $grey-lighter;
-}
-
 .left-event-panel {
-  border-inline-end: 2px solid $grey-lighter;
+  border-inline-end: 1px solid $border;
   overflow-x: hidden;
 }
 .right-event-panel {
-  border-inline-end: 2px solid $grey-lighter;
+  border-inline-end: 1px solid $border;
+}
+
+.panel-inner {
+  padding: 2rem 1rem;
 }
 
 h3 {
@@ -271,7 +273,7 @@ h3 {
 }
 
 .info-panel {
-  margin: 1em;
+  margin: 1em 0;
 }
 
 .info-panel > *:not(:last-child) {
@@ -281,6 +283,17 @@ h3 {
 .hide-overflow {
   max-height: 120px;
   overflow-y: hidden;
+  position: relative;
+  // background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: 0 -1.5em 1.5em -0em white inset;
+  }
 }
 
 .see-more {
