@@ -283,6 +283,12 @@ export default {
   color: $cc-coral;
 }
 
+.dropdown.is-active {
+  .dropdown-menu {
+    animation: navAnimOpen 0.2s ease-in-out;
+  }
+}
+
 .dropdown-menu {
   label {
     width: 100%;
@@ -290,6 +296,21 @@ export default {
   .clear-button {
     text-decoration: underline;
     opacity: 0.5;
+  }
+}
+
+@keyframes navAnimOpen {
+  0% {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+  }
+  10% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>
