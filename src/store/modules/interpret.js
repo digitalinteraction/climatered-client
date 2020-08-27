@@ -75,9 +75,6 @@ function isCurrentUser(rootState, user) {
 }
 
 const actions = {
-  sendData(context, arrayBuffer) {
-    sharedSocket.emitBinary('send-interpret', arrayBuffer)
-  },
   join(context, { sessionId, channel }) {
     sharedSocket.emit('join-interpret', sessionId, channel)
     context.commit('join', { sessionId, channel })

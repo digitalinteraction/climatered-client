@@ -169,7 +169,7 @@ export default {
         this.broadcastState = newState
       },
       arrayBuffer => {
-        this.$store.dispatch('interpret/sendData', arrayBuffer)
+        this.$socket.emitBinary('send-interpret', arrayBuffer)
       }
     )
   },
@@ -205,15 +205,12 @@ export default {
   methods: {
     async start() {
       try {
-        const isAllowed = await this.$store.dispatch('interpret/startLive')
-
-        if (isAllowed === false) {
-          return alert('You cannot broadcast right now')
-        }
+        await this.$store.dispatch('interpret/startLive')
 
         await this.broadcaster.start()
       } catch (error) {
         this.broadcaster.handleStreamError(error)
+        await this.$store.dispatch('interpret/stopLive')
       }
     },
     async stop() {
