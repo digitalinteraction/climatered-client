@@ -93,3 +93,7 @@ export function pickApi() {
 export function pickCdn() {
   return window.CONFIG?.CDN_URL ?? 'https://edit.climate.red'
 }
+
+export function getGaToken() {
+  return window.CONFIG?.GA_TOKEN ?? null
+}

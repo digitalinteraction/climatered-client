@@ -3,14 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
-import VueGtag from 'vue-gtag'
 import ICS from 'vue-ics'
-
-import { STORAGE_ANALYTICS } from '@/const'
 
 import Clock from './plugins/clock'
 import Sockets from './plugins/sockets'
 import Content from './plugins/content'
+import Analytics from './plugins/analytics'
 
 Vue.config.productionTip = false
 
@@ -24,25 +22,8 @@ Vue.filter('localeDateTime', v => {
 Vue.use(Clock)
 Vue.use(Sockets)
 Vue.use(Content)
+Vue.use(Analytics)
 Vue.use(ICS)
-
-Vue.use(
-  VueGtag,
-  {
-    config: {
-      id: 'UA-85374573-23',
-      params: {
-        anonymize_ip: true,
-        allow_ad_personalization_signals: false,
-        allow_google_signals: false
-      }
-    },
-    enabled:
-      process.env.NODE_ENV === 'production' &&
-      localStorage[STORAGE_ANALYTICS] === 'accept'
-  },
-  router
-)
 
 new Vue({
   router,
