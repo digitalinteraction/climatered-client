@@ -6,9 +6,11 @@
 #
 
 name: Publish docker image
+
 on:
   push:
     tags: [v*]
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -23,3 +25,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: openlab/ifrc-vconf-gui
           tag_with_ref: true
+
+      - name: slack
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          JSON=`cat <<EOF
+          {
+            "text": "built $GITHUB_REF for $GITHUB_REPOSITORY"
+          }`
+          curl -X POST --data-urlencode "payload=$JSON" $SLACK_WEBHOOK

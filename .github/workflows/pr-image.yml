@@ -16,6 +16,10 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
+      - name: Get git short SHA
+        id: slug
+        run: echo "::set-output name=sha7::$(echo ${{ github.sha }} | cut -c1-7)"
+
       - name: Push to DockerHub
         uses: docker/build-push-action@v1
         with:
@@ -23,3 +27,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: openlab/ifrc-vconf-gui
           tag_with_sha: true
+
+      - name: slack
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          JSON=`cat <<EOF
+          {
+            "text": "built sha-${{ steps.slug.outputs.sha7 }} for $GITHUB_REPOSITORY"
+          }`
+          curl -X POST --data-urlencode "payload=$JSON" $SLACK_WEBHOOK
