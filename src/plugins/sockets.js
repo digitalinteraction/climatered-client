@@ -18,7 +18,10 @@ export default class ApiSocket {
     socketUrl.protocol = socketUrl.protocol.replace(/^http/, 'ws')
     socketUrl.pathname = '/'
 
-    this.socket = new SocketClient(socketUrl.toString(), { path: pathname })
+    this.socket = new SocketClient(socketUrl.toString(), {
+      path: pathname,
+      transports: ['websocket']
+    })
 
     this.socket.on('connect', () => {
       if (localStorage[STORAGE_TOKEN]) {
