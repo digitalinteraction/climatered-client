@@ -72,12 +72,14 @@ profile:
   emailText: Email
   localeText: Chosen language
   whenText: Logged in
+  registeredText: Registered
   nameText: Name
   countryText: Country
-  affiliationText: Country
+  affiliationText: Affiliation
   logoutButton: Log out
   deleteButton: Delete account
   deleteText: This is permenant, are you sure?
+  loadingText: Fetching profile
 
 sessions:
   title: What's on

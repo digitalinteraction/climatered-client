@@ -108,6 +108,11 @@ const actions = {
     })
 
     return response.status === 200
+  },
+  async getProfile() {
+    const response = await agent.get('/me')
+    if (response.status !== 200) return null
+    return response.data.user
   }
 }
 

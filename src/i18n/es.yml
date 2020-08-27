@@ -65,12 +65,14 @@ profile:
   emailText: Su Correo Electrónico
   localeText: Idioma seleccionado
   whenText: Sesión iniciada
+  # registeredText: Registered
   nameText: Nombre
   countryText: País
   affiliationText: Afiliación
   logoutButton: Cerrar sesión
   deleteButton: Eliminar cuenta
   deleteText: Esto es permanente, ¿está segura?
+  # loadingText: Fetching profile
 
 sessions:
   title: Que hay ahora

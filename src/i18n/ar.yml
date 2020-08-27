@@ -65,12 +65,14 @@ profile:
   emailText: بريدك الالكتروني
   localeText: اللغة المختارة
   whenText: تسجيل الدخول
+  # registeredText: Registered
   nameText: الإسم
   countryText: البلد
   affiliationText: جهة الانتساب
   logoutButton: تسجيل الخروج
   deleteButton: حذف الحساب
   deleteText: هذا دائم، هل أنت متأكد؟
+  # loadingText: Fetching profile
 
 sessions:
   title: ماذا يحدث

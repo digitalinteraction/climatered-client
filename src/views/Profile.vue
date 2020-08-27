@@ -5,8 +5,16 @@
         <div class="container">
           <h1 class="title" v-t="'profile.title'" />
 
-          <table class="table">
+          <div class="notification is-warning" v-if="!profile && debounced">
+            {{ $t('profile.loadingText') }}
+          </div>
+
+          <table class="table" v-if="profile">
             <tbody>
+              <tr>
+                <th>{{ $t('profile.nameText') }}</th>
+                <td>{{ profile.name }}</td>
+              </tr>
               <tr>
                 <th>{{ $t('profile.emailText') }}</th>
                 <td>{{ user.sub }}</td>
@@ -16,15 +24,27 @@
                 <td>{{ user.user_lang | nameLanguage }}</td>
               </tr>
               <tr>
+                <th>{{ $t('profile.registeredText') }}</th>
+                <td>{{ profile.created | isoToDate | localeDateTime }}</td>
+              </tr>
+              <tr>
                 <th>{{ $t('profile.whenText') }}</th>
                 <td>{{ user.iat | iatToDate | localeDateTime }}</td>
+              </tr>
+              <tr>
+                <th>{{ $t('profile.affiliationText') }}</th>
+                <td>{{ profile.affiliation }}</td>
+              </tr>
+              <tr>
+                <th>{{ $t('profile.countryText') }}</th>
+                <td>{{ profile.country }}</td>
               </tr>
             </tbody>
           </table>
 
           <div class="buttons">
             <button
-              class="button is-danger"
+              class="button is-link"
               @click="logout"
               v-t="'profile.logoutButton'"
             />
@@ -57,9 +77,25 @@ export default {
     iatToDate(value) {
       return new Date(value * 1000)
     },
+    isoToDate(value) {
+      return new Date(value)
+    },
     nameLanguage(value) {
       return languages[value]
     }
+  },
+  data() {
+    return {
+      profile: null,
+      debounced: false
+    }
+  },
+  async mounted() {
+    setTimeout(() => {
+      this.debounced = true
+    }, 500)
+    this.profile = await this.$store.dispatch('api/getProfile')
+    if (!this.profile) alert('Something went wrong')
   },
   methods: {
     logout() {
