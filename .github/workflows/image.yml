@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+
       - name: Push to DockerHub
         uses: docker/build-push-action@v1
         with:
@@ -22,3 +23,13 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: openlab/ifrc-vconf-gui
           tag_with_ref: true
+
+      - name: slack
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          JSON=`cat <<EOF
+          {
+            "text": "build $GITHUB_REPOSITORY for $GITHUB_REF"
+          }`
+          curl -X POST --data-urlencode "payload=$JSON" $SLACK_WEBHOOK
