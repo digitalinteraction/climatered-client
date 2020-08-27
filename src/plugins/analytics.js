@@ -17,7 +17,8 @@ export default class VueAnalytics {
     const enabled =
       process.env.NODE_ENV === 'production' &&
       localStorage[STORAGE_ANALYTICS] === 'accept' &&
-      id !== null
+      id !== null &&
+      id !== ''
 
     Vue.use(
       VueGtag,
