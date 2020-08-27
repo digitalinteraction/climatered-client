@@ -2,7 +2,7 @@
   <div class="interpret-controls" :class="isLive && 'is-live'">
     <div class="columns">
       <div class="column">
-        <details>
+        <!-- <details>
           <summary>
             <span
               class="controls-label is-toggle"
@@ -15,7 +15,7 @@
             porta ac consectetur ac, vestibulum at eros. Maecenas faucibus
             mollis interdum. Donec sed odio dui.
           </p>
-        </details>
+        </details> -->
       </div>
       <div class="column">
         <Stack
@@ -58,7 +58,7 @@
       </div>
       <div class="column">
         <Stack direction="vertical" gap="regular" align="start">
-          <div>
+          <!-- <div>
             <p class="controls-label">
               {{ $t('interpret.takeoverActionLabel') }}
             </p>
@@ -110,7 +110,7 @@
                 </div>
               </template>
             </p>
-          </div>
+          </div> -->
         </Stack>
       </div>
     </div>

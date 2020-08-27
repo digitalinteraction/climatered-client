@@ -87,10 +87,11 @@ const actions = {
 
     sharedSocket.emit('message-interpret', sessionId, channel, message)
   },
-  leave({ state }) {
+  leave({ state, commit }) {
     const [sessionId, channel] = activeOrFail(state)
 
     sharedSocket.emit('leave-interpret', sessionId, channel)
+    commit('leave')
   },
   startLive({ state, commit }) {
     const [sessionId, channel] = activeOrFail(state)

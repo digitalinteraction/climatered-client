@@ -107,16 +107,18 @@ export default {
 
     this.$socket.bindEvent(this, 'interpret-joined', user => {
       this.$store.commit('interpret/userJoined', user)
+      this.$store.commit('interpret/message', { user, message: 'joined' })
     })
     this.$socket.bindEvent(this, 'interpret-started', user => {
       this.$store.dispatch('interpret/liveStarted', user)
+      this.$store.commit('interpret/message', { user, message: 'started' })
     })
     this.$socket.bindEvent(this, 'interpret-message', (user, message) => {
-      console.log('interpret-message', user, message)
       this.$store.commit('interpret/message', { user, message })
     })
     this.$socket.bindEvent(this, 'interpret-left', user => {
       this.$store.commit('interpret/userLeft', user)
+      this.$store.commit('interpret/message', { user, message: 'left' })
     })
     this.$socket.bindEvent(this, 'interpret-stopped', () => {
       this.$store.commit('interpret/activeUser', null)
