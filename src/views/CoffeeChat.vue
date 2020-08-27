@@ -204,10 +204,12 @@ export default {
       })
     },
     languageDropDownSelect() {
+      this.filters.themes.isActive = false
       this.filters.languages.isActive = !this.filters.languages.isActive
       return this.filters.languages.isActive
     },
     themesDropDownSelect() {
+      this.filters.languages.isActive = false
       this.filters.themes.isActive = !this.filters.themes.isActive
       return this.filters.themes.isActive
     }
