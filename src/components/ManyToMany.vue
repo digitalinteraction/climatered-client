@@ -1,7 +1,7 @@
 <template>
   <div class="many-to-many">
-    <div class="columns">
-      <div class="column is-one-half" v-if="zoomLink || teamsLink">
+    <div class="video-panel">
+      <div v-if="zoomLink || teamsLink">
         <div class="video-link">
           <a
             v-if="teamsLink"
@@ -17,17 +17,6 @@
             target="_blank"
             >Open zoom meeting →</a
           >
-        </div>
-      </div>
-      <div class="column">
-        <h3 class="heading">Session info</h3>
-        <div class="content">
-          <p>The session organiser has provided these links for this session</p>
-          <ul>
-            <li v-for="(link, i) in nonVideoLinks" :key="i">
-              <a :href="link.url" target="_blank">{{ link.url }}</a>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
@@ -61,7 +50,7 @@ export default {
     teamsLink() {
       return this.videoLink && parseTeamsLink(this.videoLink)
     },
-    nonVideoLinks() {
+    nonVideoLinks1() {
       return this.event.links.filter(l => l.type !== 'video')
     }
   }
@@ -72,13 +61,36 @@ export default {
 .video-link {
   width: 100%;
   height: 100%;
-  min-height: 200px;
-  border: 2px dashed $blue;
-  background-color: lighten($blue, 40%);
-  border-radius: $radius-large;
 
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.video-panel {
+  padding-top: 3em;
+}
+
+.left-event-panel {
+  border-right: 2px solid $grey-lighter;
+}
+.right-event-panel {
+  border-right: 2px solid $grey-lighter;
+}
+.table-container {
+  display: inline-block;
+  overflow: auto;
+}
+.table-heading-column {
+  background: $grey-lighter;
+}
+td {
+  font-weight: bold;
+  color: $cc-black;
+}
+
+.link-container {
+  width: 100%;
+  overflow-x: hidden;
 }
 </style>

@@ -1,9 +1,7 @@
 <template>
   <div class="one-to-many">
-    <div class="columns" v-if="videoLink">
-      <div class="column is-two-thirds">
-        <h2 class="title is-4">Live video</h2>
-
+    <div v-if="videoLink">
+      <div class="bottom-panel">
         <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
 
         <div class="audio-channel" v-if="event.enableTranslation">
@@ -27,23 +25,6 @@
               ></canvas>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="column is-one-thirds">
-        <h2 class="title is-4">Questions and Answers</h2>
-        <div v-if="slido" class="slido-wrapper embedded">
-          <div class="enable-poll" v-if="!showPoll">
-            <button class="button is-primary" @click="showPoll = true">
-              Enable poll
-            </button>
-          </div>
-          <iframe
-            v-else
-            :src="'https://app.sli.do/event/' + slido.id"
-            height="100%"
-            width="100%"
-            style="min-height: 560px;"
-          ></iframe>
         </div>
       </div>
     </div>
@@ -80,7 +61,7 @@ export default {
     },
     channels() {
       return ['source', 'en', 'fr', 'es', 'ar'].filter(
-        l => l !== this.event.hostLanguage
+        l => l !== this.event.hostLanguage[0]
       )
     },
     isSourceAudio() {
@@ -159,36 +140,26 @@ export default {
 //   position: relative;
 // }
 
-.slido-wrapper {
-  height: 0;
-  padding-bottom: percentage(1.5 / 1);
-
-  // > iframe {
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  //   width: 100%;
-  //   height: 100%;
-  // }
-}
-
 .audio-channel {
   audio {
     width: 100%;
   }
 }
 
-.enable-poll {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
 .audio-vis {
   border-radius: 4px;
   overflow: hidden;
+}
+
+.left-event-panel {
+  border-right: 2px solid $grey-lighter;
+}
+
+.right-event-panel {
+  border-right: 2px solid $grey-lighter;
+}
+
+.bottom-panel {
+  padding-top: 3em;
 }
 </style>

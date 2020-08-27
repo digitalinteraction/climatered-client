@@ -1,5 +1,5 @@
 <template>
-  <UtilWrapper>
+  <UtilWrapper :pick-languages="false">
     <router-link
       slot="back-button"
       class="button is-text"
@@ -93,7 +93,7 @@ import SelectField from '@/components/SelectField.vue'
 import CheckboxField from '@/components/CheckboxField.vue'
 
 import { ROUTE_ATRIUM } from '../const'
-import { setLocale } from '../i18n'
+import { overrideLocale } from '../i18n'
 
 import isEmail from 'is-email'
 import countries from 'i18n-iso-countries'
@@ -142,7 +142,7 @@ export default {
   methods: {
     onLanguage(newLocale) {
       this.registration.language = newLocale
-      setLocale(newLocale, true)
+      overrideLocale(newLocale)
     },
     async submit() {
       if (this.checkForErrors(this.registration, this.hasConsented)) {

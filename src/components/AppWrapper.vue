@@ -51,6 +51,14 @@
               </router-link>
             </div>
             <div class="navbar-end">
+              <div class="navbar-item ifrc-branding">
+                <img
+                  src="/sponsor/solferino-academy.svg"
+                  alt="IFRC Solferino academy"
+                  width="110"
+                  height="28"
+                />
+              </div>
               <div class="navbar-item">
                 <LanguageControl />
               </div>
@@ -122,8 +130,6 @@ import AtriumIcon from '@/icons/atrium.svg'
 import ScheduleIcon from '@/icons/schedule.svg'
 import SessionsIcon from '@/icons/whats-on.svg'
 
-import { setLocale } from '@/i18n'
-
 const nav = [
   {
     name: 'atrium',
@@ -173,11 +179,6 @@ export default {
       nav
     }
   },
-  created() {
-    if (this.user) {
-      setLocale(this.user.user_lang, false)
-    }
-  },
   computed: {
     ...mapState('api', ['user', 'settings', 'apiState']),
     scheduleLive() {
@@ -195,9 +196,6 @@ export default {
       this.showingMenu = !this.showingMenu
       this.$refs.menuButton.classList.toggle('is-active', this.showingMenu)
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
-    },
-    onLocale(event) {
-      setLocale(event.target.value, true)
     },
     isDisabled(tabName) {
       if (tabName === 'helpdesk') {
@@ -301,7 +299,6 @@ $tabbar-width: 5.5rem;
 }
 
 $tri-height: $navbar-height / 2;
-$tri-width: $tri-height;
 $tri-width: $tabbar-width / 2;
 
 .navbar-brand {
@@ -327,18 +324,26 @@ $tri-width: $tabbar-width / 2;
 @include touch {
   .navbar-menu {
     padding: 0;
+    background: $cc-black;
+    padding: 12px 0;
+  }
+  .navbar-end {
+    border-top: 1px solid $grey-dark;
+    padding-top: 12px;
   }
   .navbar-menu .navbar-item {
     color: $white;
-    background-color: $cc-black;
+    margin: 0 12px 0;
+    border-radius: $radius;
     font-weight: bold;
 
     &:hover:not(.is-active) {
-      background-color: $grey-dark;
+      background-color: inherit;
     }
 
     &.is-active {
-      background-color: $grey-dark;
+      color: $cc-coral;
+      background-color: $white;
     }
 
     &[disabled] {
@@ -378,6 +383,12 @@ $tri-width: $tabbar-width / 2;
 }
 .app-tabbar {
   background: #252525;
+}
+
+@include touch {
+  .ifrc-branding {
+    display: none;
+  }
 }
 
 .app-page {

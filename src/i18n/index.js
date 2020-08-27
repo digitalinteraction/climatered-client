@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'development') {
   messages.dev = devClone(en)
 }
 
-const chosenLocale = localStorage[STORAGE_LOCALE] ?? 'en'
+const chosenLocale = localStorage.getItem(STORAGE_LOCALE) ?? 'en'
 
 const i18n = new VueI18n({
   fallbackLocale: 'en',
@@ -38,15 +38,21 @@ const i18n = new VueI18n({
 
 setLocale(chosenLocale)
 
-export function setLocale(newLocale, savePreference = false) {
+export function setLocale(newLocale) {
+  console.debug('setLocale', newLocale)
+
   i18n.locale = newLocale
   const newDir = newLocale === 'ar' ? 'rtl' : 'ltr'
 
   const html = document.documentElement
   html.setAttribute('lang', newLocale)
   html.setAttribute('dir', newDir)
+}
 
-  if (savePreference) localStorage[STORAGE_LOCALE] = newLocale
+export function overrideLocale(newLocale) {
+  localStorage.setItem(STORAGE_LOCALE, newLocale)
+  console.debug('overrideLocale', localStorage.getItem(STORAGE_LOCALE))
+  setLocale(newLocale)
 }
 
 export default i18n

@@ -17,7 +17,6 @@
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
-import LanguageControl from '@/components/LanguageControl.vue'
 import { ROUTE_ATRIUM } from '../const'
 
 const content = {
@@ -28,7 +27,7 @@ const content = {
 }
 
 export default {
-  components: { UtilWrapper, LanguageControl },
+  components: { UtilWrapper },
   data() {
     return {
       atriumRoute: { name: ROUTE_ATRIUM }

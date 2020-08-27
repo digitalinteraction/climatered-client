@@ -9,7 +9,7 @@
         style="background-image: url(/img/atrium.jpg)"
       >
         <div class="hero-body">
-          <div class="xcontainer">
+          <div class="container is-smaller">
             <h1 class="title" v-t="'atrium.heroTitle'" />
             <p class="subtitle" v-t="'atrium.heroSubtitle'" />
           </div>
@@ -17,60 +17,50 @@
       </div>
       <div class="atrium-info">
         <section class="section">
-          <div class="columns">
-            <div class="column is-two-thirds">
-              <div class="container">
-                <h1 class="title" v-t="'atrium.heading'" />
+          <div class="container is-smaller">
+            <h1 class="title" v-t="'atrium.heading'" />
 
-                <component
-                  v-if="currentContent"
-                  :is="currentContent"
-                  class="content atrium-content"
-                />
-              </div>
+            <component
+              v-if="currentContent"
+              :is="currentContent"
+              class="content atrium-content"
+            />
 
-              <!-- Show login/register if they are not signed in -->
-              <div class="buttons is-centered" v-if="!user">
-                <router-link
-                  class="button is-link is-medium"
-                  :to="registerRoute"
-                  v-t="'general.registerButton'"
-                />
-                <div class="atrium-login-or" v-t="'atrium.or'" />
-                <router-link
-                  class="button is-medium"
-                  :to="loginRoute"
-                  v-t="'general.loginButton'"
-                />
-              </div>
-
-              <!-- Show a link to the atrium if they are signed in -->
-              <div class="buttons is-centered" v-if="user">
-                <router-link
-                  class="button is-link is-medium"
-                  :to="sessionsRoute"
-                  v-t="'atrium.sessionsButton'"
-                />
-              </div>
-
-              <!-- Project sponsorts -->
-              <div class="sponsors">
-                <img
-                  v-for="sponsor in sponsors"
-                  :key="sponsor.name"
-                  :src="sponsor.url"
-                  :title="sponsor.name"
-                />
-              </div>
+            <!-- Show login/register if they are not signed in -->
+            <div class="buttons is-centered" v-if="!user">
+              <router-link
+                class="button is-link is-medium"
+                :to="registerRoute"
+                v-t="'general.registerButton'"
+              />
+              <div class="atrium-login-or" v-t="'atrium.or'" />
+              <router-link
+                class="button is-medium"
+                :to="loginRoute"
+                v-t="'general.loginButton'"
+              />
             </div>
-            <div class="column">
-              <!-- <a
-                class="twitter-timeline"
-                href="https://twitter.com/dog_rates?ref_src=twsrc%5Etfw"
-                data-height="600"
-                data-dnt="true"
-                >{{ $t('atrium.tweetTitle') }}</a
-              > -->
+
+            <!-- Show a link to the atrium if they are signed in -->
+            <div class="buttons is-centered" v-if="user">
+              <router-link
+                class="button is-link is-medium"
+                :to="sessionsRoute"
+                v-t="'atrium.sessionsButton'"
+              />
+            </div>
+          </div>
+
+          <!-- Project sponsors -->
+          <div class="sponsors">
+            <h3 class="sponsors-heading" v-t="'atrium.sponsorHeading'" />
+            <div class="sponsors-grid">
+              <img
+                v-for="sponsor in sponsors"
+                :key="sponsor.name"
+                :src="sponsor.url"
+                :title="sponsor.name"
+              />
             </div>
           </div>
         </section>
@@ -93,6 +83,17 @@ const content = {
   ar: () => import(/* webpackChunkName: "ar" */ '@/content/atrium/ar.mdx')
 }
 
+const activeContent = {
+  en: () =>
+    import(/* webpackChunkName: "en" */ '@/content/atrium-active/en.mdx'),
+  fr: () =>
+    import(/* webpackChunkName: "fr" */ '@/content/atrium-active/fr.mdx'),
+  es: () =>
+    import(/* webpackChunkName: "es" */ '@/content/atrium-active/es.mdx'),
+  ar: () =>
+    import(/* webpackChunkName: "ar" */ '@/content/atrium-active/ar.mdx')
+}
+
 const banner = {
   en: '/img/atrium-2.jpg',
   fr: '/img/atrium-2.jpg',
@@ -109,8 +110,8 @@ const atriumVideo = {
 const sponsors = [
   { name: 'Solferino academy', url: '/sponsor/solferino-academy.svg' },
   { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
-  { name: 'Al Jazeera', url: '/sponsor/al-jazeera.svg' },
   { name: 'Open Lab', url: '/sponsor/openlab.svg' },
+  { name: 'Al Jazeera', url: '/sponsor/al-jazeera.svg' },
   { name: 'Italian Red Cross', url: '/sponsor/croce-rossa.svg' },
   { name: 'Norwegian Red Cross', url: '/sponsor/norwegian-red-cross.svg' },
   { name: 'British Red Cross', url: '/sponsor/british-red-cross.svg' },
@@ -131,18 +132,12 @@ export default {
   computed: {
     ...mapState('api', ['user']),
     currentContent() {
-      return content[this.$i18n.locale]
+      const chosenContent = this.user ? activeContent : content
+      return chosenContent[this.$i18n.locale]
     },
     currentBanner() {
       return banner[this.$i18n.locale]
     }
-  },
-  async mounted() {
-    // setTimeout(() => {
-    //   import(
-    //     /* webpackIgnore: true */ 'https://platform.twitter.com/widgets.js'
-    //   )
-    // }, 200)
   }
 }
 </script>
@@ -152,6 +147,12 @@ $tri-size: 120px;
 
 .atrium {
   position: relative;
+}
+
+@include tablet {
+  .container.is-smaller {
+    max-width: 720px;
+  }
 }
 
 .atrium-hero {
@@ -190,6 +191,7 @@ $tri-size: 120px;
   justify-content: flex-end;
   position: absolute;
   top: 0;
+  pointer-events: none;
 
   div {
     content: '';
@@ -222,16 +224,24 @@ $tri-size: 120px;
 }
 
 .sponsors {
+  margin-top: 7rem;
+}
+
+.sponsors-heading {
+  text-align: center;
+  margin-bottom: 3em;
+  text-transform: uppercase;
+}
+
+.sponsors-grid {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
 
-  margin-top: 7rem;
-
   img {
     width: auto;
-    height: 32px;
+    height: 36px;
   }
 
   @include tablet {
@@ -239,6 +249,9 @@ $tri-size: 120px;
       margin-inline-end: 4.5em;
       margin-block-end: 3em;
     }
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @include mobile {

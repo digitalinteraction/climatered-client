@@ -100,3 +100,7 @@ export function getTranslation(translation, tryList) {
   }
   return undefined
 }
+
+export function getGaToken() {
+  return window.CONFIG?.GA_TOKEN ?? null
+}
