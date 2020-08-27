@@ -1,15 +1,295 @@
 <template>
   <AppWrapper>
-    <div class="schedule">
-      <h1 class="title">Coffee chat</h1>
+    <div class="coffee-chat">
+      <div class="container">
+        <div class="columns is-centered is-multiline">
+          <div class="column is-12 has-text-centered">
+            <h3>312 Active Participants</h3>
+            <h1 class="title has-text-white">Are you ready?</h1>
+          </div>
+          <div class="column is-3">
+            <div
+              id="language-selector"
+              class="dropdown has-text-left"
+              :class="{ 'is-active': filters.languages.isActive }"
+            >
+              <div class="dropdown-trigger">
+                <button
+                  class="button trigger-btn"
+                  aria-haspopup="true"
+                  aria-controls="language-dropdown-menu"
+                  @click="languageDropDownSelect()"
+                >
+                  <span>Select languages</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div
+                class="dropdown-menu"
+                id="language-dropdown-menu"
+                role="menu"
+              >
+                <div class="dropdown-content">
+                  <div
+                    v-for="(item, key) in filters.languages.options"
+                    :key="item.displayName"
+                  >
+                    <label class="checkbox">
+                      <div
+                        class="dropdown-item"
+                        :class="{
+                          selected: filters.languages.options[key].selected
+                        }"
+                      >
+                        <input
+                          type="checkbox"
+                          v-model="filters.languages.options[key].selected"
+                        />
+                        {{ $t(item.displayName) }}
+                      </div>
+                    </label>
+                  </div>
+                  <hr />
+                  <div class="buttons">
+                    <button
+                      class="button is-outlined is-small is-rounded clear-button"
+                      @click="clearSelectedLanguages()"
+                    >
+                      Clear
+                    </button>
+                    <button
+                      class="button is-primary is-small is-rounded save-button"
+                      @click="languageDropDownSelect()"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div
+              id="themes-selector"
+              class="dropdown has-text-left"
+              :class="{ 'is-active': filters.themes.isActive }"
+            >
+              <div class="dropdown-trigger">
+                <button
+                  class="button trigger-btn"
+                  aria-haspopup="true"
+                  aria-controls="themes-dropdown-menu"
+                  @click="themesDropDownSelect()"
+                >
+                  <span>Select a theme (optional)</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="themes-dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <div
+                    v-for="(item, key) in filters.themes.options"
+                    :key="item.displayName"
+                  >
+                    <label class="checkbox">
+                      <div
+                        class="dropdown-item"
+                        :class="{
+                          selected: filters.themes.options[key].selected
+                        }"
+                      >
+                        <input
+                          type="checkbox"
+                          v-model="filters.themes.options[key].selected"
+                        />
+                        {{ $t(item.displayName) }}
+                      </div>
+                    </label>
+                  </div>
+                  <hr />
+                  <div class="buttons">
+                    <button
+                      class="button is-outlined is-small is-rounded clear-button"
+                      @click="clearSelectedThemes()"
+                    >
+                      Clear
+                    </button>
+                    <button
+                      class="button is-primary is-small is-rounded save-button"
+                      @click="themesDropDownSelect()"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-12 has-text-centered">
+            <button class="button is-primary">
+              {{ $t('coffeechat.readyBtn') }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </AppWrapper>
 </template>
 
 <script>
 import AppWrapper from '@/components/AppWrapper.vue'
-
 export default {
-  components: { AppWrapper }
+  components: { AppWrapper },
+  data() {
+    return {
+      filters: {
+        languages: {
+          isActive: false,
+          options: [
+            {
+              displayName: 'coffeechat.filters.languages.EN',
+              selected: false
+            },
+            {
+              displayName: 'coffeechat.filters.languages.FR',
+              selected: false
+            },
+            {
+              displayName: 'coffeechat.filters.languages.ES',
+              selected: false
+            },
+            {
+              displayName: 'coffeechat.filters.languages.AR',
+              selected: false
+            }
+          ]
+        },
+        themes: {
+          isActive: false,
+          options: [
+            {
+              displayName: 'coffeechat.filters.themes.earlyWarningEarlyAction',
+              selected: false
+            },
+            {
+              displayName: 'coffeechat.filters.themes.conflict',
+              selected: false
+            },
+            {
+              displayName: 'coffeechat.filters.themes.urban',
+              selected: false
+            },
+            {
+              displayName: 'coffeechat.filters.themes.climateSmartDdr',
+              selected: false
+            }
+          ]
+        }
+      }
+    }
+  },
+  methods: {
+    clearSelectedLanguages() {
+      this.filters.languages.options.map(o => {
+        o.selected = false
+      })
+    },
+    clearSelectedThemes() {
+      this.filters.themes.options.map(o => {
+        o.selected = false
+      })
+    },
+    languageDropDownSelect() {
+      this.filters.languages.isActive = !this.filters.languages.isActive
+      return this.filters.languages.isActive
+    },
+    themesDropDownSelect() {
+      this.filters.themes.isActive = !this.filters.themes.isActive
+      return this.filters.themes.isActive
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~bulma/sass/form/_all.sass';
+.coffee-chat {
+  // min-height: calc(100vh - calc(#{$navbar-height} - 4rem));
+  min-height: 100vh;
+  background-color: $greyish;
+  color: #ffffff;
+}
+
+.dropdown {
+  width: 100%;
+  .dropdown-trigger {
+    width: 100%;
+    .trigger-btn {
+      justify-content: flex-start;
+    }
+    .button {
+      width: 100%;
+    }
+  }
+  .dropdown-menu {
+    width: 100%;
+    padding-top: 0px;
+    .dropdown-content {
+      font-weight: bold;
+      border-radius: 0px 0px 4px 4px;
+      .selected {
+        color: $cc-coral;
+      }
+      hr {
+        margin: 0.5rem 0rem;
+      }
+      .buttons {
+        padding: 0rem 0.5rem;
+        .button {
+          width: calc(50% - 0.5rem);
+        }
+      }
+      label.checkbox {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.dropdown.is-active {
+  span {
+    color: $cc-coral;
+  }
+  .dropdown-trigger {
+    button {
+      border-radius: 4px 4px 0px 0px;
+    }
+  }
+}
+
+.dropdown:hover {
+  span {
+    color: $cc-coral;
+  }
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+  // color: #ffffff;
+  color: $cc-coral;
+}
+
+.dropdown-menu {
+  label {
+    width: 100%;
+  }
+  .clear-button {
+    text-decoration: underline;
+    opacity: 0.5;
+  }
+}
+</style>

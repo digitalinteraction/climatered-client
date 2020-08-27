@@ -90,6 +90,19 @@ schedule:
 
 coffeechat:
   title: Coffee chat
+  readyBtn: Ready
+  filters:
+    languages:
+      EN: English
+      FR: Française
+      ES: Español
+      AR: العربية
+    themes:
+      health: Health
+      earlyWarningEarlyAction: Early Warning Early Action
+      conflict: Conflict
+      urban: Urban
+      climateSmartDdr: Climate Smart DDR
 
 help:
   title: Help
@@ -130,5 +143,5 @@ cookies:
   rejectAction: Disable analytics
   content: |
     We use necessary cookies to make the site work.
-    We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits. 
+    We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits.
     You can change your preference by clicking {0} in the site footer.

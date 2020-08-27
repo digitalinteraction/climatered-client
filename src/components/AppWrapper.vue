@@ -75,7 +75,7 @@
         </nav>
       </div>
     </div>
-    <!-- 
+    <!--
       Side tabbar
      -->
     <div class="app-tabbar">
@@ -190,7 +190,12 @@ export default {
       }
 
       const alwasyAllowed = new Set(['atrium', 'helpdesk'])
-      const preSchedule = new Set(['atrium', 'helpdesk', 'sessions'])
+      const preSchedule = new Set([
+        'atrium',
+        'helpdesk',
+        'sessions',
+        'coffeechat'
+      ])
 
       if (!this.user) return !alwasyAllowed.has(tabName)
 
