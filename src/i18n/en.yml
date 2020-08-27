@@ -5,6 +5,7 @@ general:
   appName: Climate:Red
   pleaseSelect: Please select
   comingSoon: Coming soon
+  backTo: Back to {0}
 
 api:
   auth:
@@ -122,6 +123,16 @@ data:
     empower: Empower
     influence: Influence
     transform: Transform
+  interaction:
+    interactive: Interactive
+    view: View Only
+  recorded:
+    true: Recorded
+    false: Not Recorded
+  devices:
+    all: All
+    desktop: Desktop
+    mobile: Mobile
 
 cookies:
   title: Cookies
@@ -132,3 +143,13 @@ cookies:
     We use necessary cookies to make the site work.
     We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits. 
     You can change your preference by clicking {0} in the site footer.
+
+session:
+  title: View Session
+  speakerHeading: Speakers
+  hostHeading: Host
+  infoHeading: Session info
+  linksHeading: Links
+  showPoll: Enable poll
+  seeMore: See more
+  seeLess: See less

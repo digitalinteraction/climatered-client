@@ -83,6 +83,17 @@ const content = {
   ar: () => import(/* webpackChunkName: "ar" */ '@/content/atrium/ar.mdx')
 }
 
+const activeContent = {
+  en: () =>
+    import(/* webpackChunkName: "en" */ '@/content/atrium-active/en.mdx'),
+  fr: () =>
+    import(/* webpackChunkName: "fr" */ '@/content/atrium-active/fr.mdx'),
+  es: () =>
+    import(/* webpackChunkName: "es" */ '@/content/atrium-active/es.mdx'),
+  ar: () =>
+    import(/* webpackChunkName: "ar" */ '@/content/atrium-active/ar.mdx')
+}
+
 const banner = {
   en: '/img/atrium-2.jpg',
   fr: '/img/atrium-2.jpg',
@@ -121,7 +132,8 @@ export default {
   computed: {
     ...mapState('api', ['user']),
     currentContent() {
-      return content[this.$i18n.locale]
+      const chosenContent = this.user ? activeContent : content
+      return chosenContent[this.$i18n.locale]
     },
     currentBanner() {
       return banner[this.$i18n.locale]
