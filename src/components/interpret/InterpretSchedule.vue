@@ -56,7 +56,10 @@ export default {
   computed: {
     interpretedSessions() {
       return this.sessions.filter(
-        session => session.enableTranslation && session.hostLanguage.length > 1
+        session =>
+          session.slot &&
+          session.enableTranslation &&
+          session.hostLanguage.length > 1
       )
     },
     sessionsWithSlots() {
