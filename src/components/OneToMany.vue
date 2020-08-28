@@ -5,7 +5,7 @@
         <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
 
         <div class="audio-channel" v-if="event.enableTranslation">
-          <div class="columns">
+          <div class="columns" v-if="canInterpret">
             <div class="column is-narrow">
               <label class="label">Audio Channel</label>
               <ToggleSet
@@ -24,6 +24,9 @@
                 ref="canvas"
               ></canvas>
             </div>
+          </div>
+          <div class="notification is-warning is-light is-inline-block" v-else>
+            {{ $t('session.noInterpret') }}
           </div>
         </div>
       </div>
@@ -53,7 +56,8 @@ export default {
       chosenChannel: 'source',
       showPoll: false,
       recieverState: null,
-      bufferSize: 0
+      bufferSize: 0,
+      canInterpret: AudioReciever.isSupported()
     }
   },
   computed: {

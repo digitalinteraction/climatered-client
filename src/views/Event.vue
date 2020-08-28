@@ -292,7 +292,7 @@ h3 {
     right: 0;
     top: 0;
     bottom: 0;
-    box-shadow: 0 -1.5em 1.5em -0em white inset;
+    box-shadow: 0 -2em 1em -1em white inset;
   }
 }
 
