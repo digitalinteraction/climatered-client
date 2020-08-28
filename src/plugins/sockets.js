@@ -2,6 +2,14 @@ import { pickApi } from '../utils'
 import { STORAGE_TOKEN } from '../const'
 import SocketClient from 'socket.io-client'
 
+const safeLiterals = new Set(['string', 'number', 'boolean'])
+
+function logSocket(direction, eventName, args) {
+  const safeArgs = args.filter(a => safeLiterals.has(typeof a))
+
+  console.debug(direction, eventName, ...safeArgs)
+}
+
 export default class ApiSocket {
   listeners = new Map()
 
@@ -35,13 +43,13 @@ export default class ApiSocket {
   }
 
   emit(eventName, ...args) {
-    console.debug('↑', eventName, ...args)
+    logSocket('↑', eventName, args)
 
     this.socket.emit(eventName, ...args)
   }
 
   emitBinary(eventName, ...args) {
-    console.debug('↑', eventName, ...args)
+    logSocket('↑', eventName, args)
 
     this.socket.binary(true).emit(eventName, ...args)
   }
@@ -85,7 +93,7 @@ export default class ApiSocket {
   }
 
   handleEvent(eventName, ...args) {
-    console.debug('↓', eventName, ...args)
+    logSocket('↓', eventName, args)
     const listeners = this.listeners.get(eventName) ?? []
 
     for (const l of listeners) l.callback(...args)
