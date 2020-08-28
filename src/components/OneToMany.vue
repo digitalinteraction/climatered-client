@@ -16,7 +16,7 @@
             </div>
             <div class="column">
               <label class="label">Info</label>
-              <p>Reciever: {{ recieverState }}</p>
+              <p>state={{ recieverState }} buffers={{ bufferSize }}</p>
               <canvas
                 class="audio-vis"
                 width="400"
@@ -48,7 +48,8 @@ export default {
     return {
       chosenChannel: 'source',
       showPoll: false,
-      recieverState: null
+      recieverState: null,
+      bufferSize: 0
     }
   },
   computed: {
@@ -71,20 +72,25 @@ export default {
   mounted() {
     this.joinChannel(this.chosenChannel)
 
-    this.reciever = new AudioReciever(state => {
+    this.reciever = new AudioReciever()
+
+    this.reciever.$on('state', state => {
       this.recieverState = state
+    })
+
+    this.reciever.$on('buffer-size', bufferSize => {
+      this.bufferSize = bufferSize
     })
 
     this.$socket.bindEvent(this, 'channel-data', async data => {
       this.reciever.push(data)
 
-      this.reciever.doodle(this.$refs.canvas)
+      // this.reciever.doodle(this.$refs.canvas)
     })
   },
   destroyed() {
     this.leaveChannel(this.chosenChannel)
     this.$socket.unbindEvent(this, 'channel-data')
-    this.reciever.stop()
     this.reciever = null
   },
   methods: {
@@ -94,10 +100,10 @@ export default {
         // Unmute the iframe
         //
       } else {
-        this.$socket.emit('join-channel', this.event.id, channel)
-
         // Start the reciever
-        this.reciever.play()
+        this.reciever.setup()
+
+        this.$socket.emit('join-channel', this.event.id, channel)
       }
     },
     leaveChannel(channel) {
@@ -109,7 +115,7 @@ export default {
         this.$socket.emit('leave-channel', this.event.id, channel)
 
         // Stop and reset the reciever
-        this.reciever.stop()
+        this.reciever.teardown()
       }
     },
     onChannel(newChannel) {

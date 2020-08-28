@@ -94,6 +94,13 @@ export function pickCdn() {
   return window.CONFIG?.CDN_URL ?? 'https://edit.climate.red'
 }
 
+export function getTranslation(translation, tryList) {
+  for (let locale of tryList) {
+    if (translation[locale]) return translation[locale]
+  }
+  return undefined
+}
+
 export function getGaToken() {
   return window.CONFIG?.GA_TOKEN ?? null
 }

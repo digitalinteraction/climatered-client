@@ -1,11 +1,14 @@
+import Vue from 'vue'
+
 export const BroadcastState = {
   active: 'active',
   inactive: 'inactive'
 }
 
 export const AUDIO_SAMPLE_RATE = 44100
-export const AUDIO_LOW_LEVEL = 16
-export const AUDIO_HIGH_LEVEL = 64
+export const AUDIO_RESET_LEVEL = 2 // when to go back to buffering
+export const AUDIO_LOW_LEVEL = 8 // when to start playing after buffering
+export const AUDIO_HIGH_LEVEL = 16 // when to discard old packets
 export const AUDIO_CHUNK_SIZE = 16 * 1024
 
 //
@@ -48,28 +51,7 @@ export class AudioBroadcaster {
     })
     this.stream = stream
 
-    // await this.startUsingRecorder()
-    await this.startUsingAudioWorklet()
-    // await this.startUsingScriptProcessor()
-
-    this.state = BroadcastState.active
-  }
-
-  async startUsingRecorder() {
-    const recorder = new MediaRecorder(this.stream, {
-      mimeType: 'audio/webm',
-      audioBitsPerSecond: AUDIO_SAMPLE_RATE
-    })
-
-    recorder.ondataavailable = async event => {
-      this.onData(event.data)
-    }
-
-    recorder.start(1000)
-    this.recorder = recorder
-  }
-
-  async startUsingAudioWorklet() {
+    // Register our audio worklet
     await this.ctx.audioWorklet.addModule('/socket-record-processor.js')
 
     //
@@ -92,19 +74,8 @@ export class AudioBroadcaster {
     source.onended = () => this.stop()
     source.connect(recorder)
     this.source = source
-  }
 
-  async startUsingScriptProcessor() {
-    const processor = this.ctx.createScriptProcessor(AUDIO_CHUNK_SIZE, 1, 0)
-    processor.onaudioprocess = e => {
-      this.onData(e.inputBuffer.getChannelData(0).buffer)
-    }
-    this.processor = processor
-
-    const source = this.ctx.createMediaStreamSource(this.stream)
-    source.onended = () => this.stop()
-    source.connect(processor)
-    this.source = source
+    this.state = BroadcastState.active
   }
 
   async stop() {
@@ -115,28 +86,12 @@ export class AudioBroadcaster {
     this.state = BroadcastState.inactive
     this.stream?.getTracks().forEach(t => t.stop())
 
-    // await this.stopUsingWebRecorder()
-    await this.stopUsingAudioWorklet()
-    // await this.stopUsingScriptProcessor()
-
-    await this.ctx.close()
-  }
-
-  async stopUsingWebRecorder() {
-    this.recorder?.stop()
-  }
-
-  async stopUsingAudioWorklet() {
     this.source.disconnect()
 
     this.recorder.port.onmessage = null
     this.recorder.disconnect()
-  }
 
-  async stopUsingScriptProcessor() {
-    this.source.disconnect()
-    this.source = null
-    this.processor = null
+    await this.ctx.close()
   }
 
   handleStreamError(error) {
@@ -164,7 +119,7 @@ export const RecieverState = {
   playing: 'playing'
 }
 
-export class AudioReciever {
+export class AudioReciever extends Vue {
   _state = RecieverState.inactive
 
   get state() {
@@ -172,19 +127,32 @@ export class AudioReciever {
   }
   set state(newState) {
     this._state = newState
-    this.onChange(newState)
+    this.$emit('state', newState)
   }
 
-  constructor(onChange) {
-    this.onChange = onChange
+  setup() {
+    console.debug('AudioReciever#setup')
+
     this.ctx = new AudioContext({
       sampleRate: AUDIO_SAMPLE_RATE
     })
     this.buffers = []
+    this.nextPacket = 1
+    this.state = RecieverState.buffering
+  }
+
+  teardown() {
+    console.debug('AudioReciever#teardown')
+
+    this.buffers = []
+    this.state = RecieverState.inactive
+    this.ctx.close()
+    this.ctx = null
   }
 
   push(data) {
-    if (this.state === RecieverState.inactive) return
+    console.debug('AudioReciever#push')
+    if (this.state === RecieverState.inactive || !this.ctx) return
 
     const floats = new Float32Array(data)
     const buffer = this.ctx.createBuffer(
@@ -194,32 +162,22 @@ export class AudioReciever {
     )
 
     buffer.copyToChannel(floats, 0, 0)
-    this.buffers.push(buffer)
+    this.buffers.push({
+      index: this.nextPacket++,
+      buffer: buffer
+    })
+
+    this.$emit('buffer-size', this.buffers.length)
 
     if (
       this.state === RecieverState.buffering &&
-      this.buffers.length >= AUDIO_LOW_LEVEL
+      this.buffers.length > AUDIO_LOW_LEVEL
     ) {
       this.state = RecieverState.playing
       this.unqueueBuffer()
-    }
-  }
-
-  play() {
-    if (this.buffers.length < AUDIO_LOW_LEVEL) {
+    } else if (this.state !== RecieverState.playing) {
       this.state = RecieverState.buffering
-    } else {
-      this.state = RecieverState.playing
-      this.unqueueBuffer()
     }
-  }
-
-  stop() {
-    this.buffers = []
-    this.state = RecieverState.inactive
-    // this.ctx = null
-
-    // stop the current BufferSource ?
   }
 
   unqueueBuffer() {
@@ -236,18 +194,30 @@ export class AudioReciever {
       return
     }
 
+    if (this.buffers.length < AUDIO_RESET_LEVEL) {
+      this.state = RecieverState.buffering
+      return
+    }
+
     const [top, ...rest] = this.buffers.slice(-AUDIO_HIGH_LEVEL)
 
+    console.debug('AudioReciever#unqueueBuffer packet=%d', top.index)
+
     const source = this.ctx.createBufferSource()
-    source.buffer = top
+    source.buffer = top.buffer
     source.connect(this.ctx.destination)
-    source.start()
 
     source.onended = () => {
+      console.debug('source@onended packet=%d', top.index)
+      source.disconnect(this.ctx)
       this.unqueueBuffer()
     }
 
+    source.start()
+
     this.buffers = rest
+
+    this.$emit('buffer-size', this.buffers.length)
   }
 
   /**

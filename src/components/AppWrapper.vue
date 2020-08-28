@@ -62,6 +62,14 @@
               <div class="navbar-item">
                 <LanguageControl />
               </div>
+              <!-- Interpret link if role is set -->
+              <router-link
+                class="navbar-item"
+                v-if="isTranslator"
+                :to="interpretRoute"
+              >
+                {{ $t('interpretHome.goto') }}
+              </router-link>
               <!-- Profile link -->
               <router-link class="navbar-item" v-if="user" :to="profileRoute">
                 {{ user.sub }}
@@ -107,7 +115,8 @@ import {
   ROUTE_COFFEE_CHAT,
   ROUTE_HELP,
   ROUTE_LOGIN,
-  ROUTE_PROFILE
+  ROUTE_PROFILE,
+  ROUTE_INTERPRET_HOME
 } from '../const'
 
 import { mapState } from 'vuex'
@@ -166,6 +175,7 @@ export default {
       coffeeRoute: { name: ROUTE_COFFEE_CHAT },
       helpRoute: { name: ROUTE_HELP },
       profileRoute: { name: ROUTE_PROFILE },
+      interpretRoute: { name: ROUTE_INTERPRET_HOME },
       nav
     }
   },
@@ -176,6 +186,9 @@ export default {
     },
     hasData() {
       return this.apiState === 'active'
+    },
+    isTranslator() {
+      return this.user?.user_roles.includes('translator')
     }
   },
   methods: {

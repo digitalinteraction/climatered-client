@@ -144,6 +144,46 @@ cookies:
     We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits. 
     You can change your preference by clicking {0} in the site footer.
 
+interpretHome:
+  title: Interpretation
+  subtitle: Use this page to navigate the session's you're assigned to interpret for
+  goto: Interpret mode
+
+interpretSchedule:
+  heading:
+    session: Session
+    slot: Slot
+    date: Date
+    start: Start
+    end: End
+    language: Floor language
+    actions: Interpret
+
+interpret:
+  title: Interpreting session
+  sessionLabel: 'Session title:'
+  floorLabel: 'Floor language:'
+  outputLabel: 'Output language:'
+  live: You are live
+  testLabel: Test mic
+  startAction: Go Live
+  stopAction: Disconnect
+  takeoverAction: Takeover
+  takeoverConfirm: Are you sure you want to takeover?
+  takeoverActionLabel: Request takeover
+  takeoverStatusLabel: status
+  plusMins: now | 1 min | {count} mins
+  noResponse: No response
+  acceptedBy: Accepted by {0}
+  onlineLabel: Online now
+  isLive: '{0} is live'
+  confirmLeave: 'You are live broadcasting, are you sure?'
+  sendMessage:
+    placeholder: Send a message
+    action: Send
+  isSelf: (you)
+  messagesLabel: Messages
+
 session:
   title: View Session
   speakerHeading: Speakers
