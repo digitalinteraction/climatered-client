@@ -16,6 +16,10 @@
 </template>
 
 <script>
+//
+// A common wrapper for interpret pages
+//
+
 import { ROUTE_ATRIUM } from '@/const'
 
 export default {

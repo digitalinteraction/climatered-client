@@ -20,6 +20,10 @@
 </template>
 
 <script>
+//
+// Wraps a bulma input field
+//
+
 export default {
   props: {
     name: { type: String, required: true },

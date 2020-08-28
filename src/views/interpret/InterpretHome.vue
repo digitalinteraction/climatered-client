@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import InterpretWrapper from '@/components/InterpretWrapper.vue'
-import InterpretSchedule from '@/components/InterpretSchedule.vue'
+import InterpretWrapper from '@/components/interpret/InterpretWrapper.vue'
+import InterpretSchedule from '@/components/interpret/InterpretSchedule.vue'
 
 export default {
   components: { InterpretWrapper, InterpretSchedule }

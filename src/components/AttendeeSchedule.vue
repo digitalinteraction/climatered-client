@@ -42,6 +42,10 @@
 </template>
 
 <script>
+//
+// The prototype attendee schedule TBR
+//
+
 export default {
   props: {
     slots: { type: Array, required: true },

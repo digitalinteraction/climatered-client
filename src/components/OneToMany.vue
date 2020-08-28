@@ -32,6 +32,10 @@
 </template>
 
 <script>
+//
+// The main bit for a broadcast-type event
+//
+
 import ToggleSet from '@/components/ToggleSet.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
 import { findLink, parseSlidoLink } from '../utils.js'

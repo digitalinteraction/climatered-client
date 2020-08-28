@@ -39,7 +39,11 @@
 </template>
 
 <script>
-import { ROUTE_INTERPRET } from '../const'
+//
+// The interpret schedule table with links to start interpreting
+//
+
+import { ROUTE_INTERPRET } from '@/const'
 
 export default {
   props: {

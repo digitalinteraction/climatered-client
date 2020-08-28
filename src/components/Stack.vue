@@ -5,6 +5,10 @@
 </template>
 
 <script>
+//
+// A reusable component to quickly flex between items without needing styles
+//
+
 function enumProp(values) {
   return {
     type: String,

@@ -108,6 +108,12 @@
 </template>
 
 <script>
+//
+// A wrapper for most pages on the site.
+// adding nav, tabs and a <slot> for the page
+// and only displays <slot> when data has been fetched
+//
+
 import {
   ROUTE_ATRIUM,
   ROUTE_SESSIONS,
@@ -122,7 +128,7 @@ import {
 import { mapState } from 'vuex'
 
 import AppFooter from '@/components/AppFooter.vue'
-import LanguageControl from '@/components/LanguageControl.vue'
+import LanguageControl from '@/components/form/LanguageControl.vue'
 
 import CoffeeChatIcon from '@/icons/coffee-chat.svg'
 import HelpDeskIcon from '@/icons/help-desk.svg'

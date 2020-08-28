@@ -88,9 +88,9 @@
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
-import TextField from '@/components/TextField.vue'
-import SelectField from '@/components/SelectField.vue'
-import CheckboxField from '@/components/CheckboxField.vue'
+import TextField from '@/components/form/TextField.vue'
+import SelectField from '@/components/form/SelectField.vue'
+import CheckboxField from '@/components/form/CheckboxField.vue'
 
 import { ROUTE_ATRIUM } from '../const'
 import { overrideLocale } from '../i18n'

@@ -54,6 +54,10 @@
 </template>
 
 <script>
+//
+// The interpret panel with active users and messages
+//
+
 import Vue from 'vue'
 import { mapState } from 'vuex'
 

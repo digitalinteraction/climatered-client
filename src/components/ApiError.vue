@@ -9,6 +9,10 @@
 </template>
 
 <script>
+//
+// Displays the api-unavailable error and reloads every minute
+//
+
 import UtilWrapper from '@/components/UtilWrapper.vue'
 import countdown from 'countdown'
 

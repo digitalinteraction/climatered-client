@@ -118,6 +118,10 @@
 </template>
 
 <script>
+//
+// The top controls for the interpret page
+//
+
 import { mapState } from 'vuex'
 import { AudioBroadcaster, BroadcastState } from '../../audio.js'
 import Stack from '@/components/Stack.vue'

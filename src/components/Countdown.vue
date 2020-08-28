@@ -15,6 +15,10 @@
 </template>
 
 <script>
+//
+// A countdown to a session
+//
+
 import countdown from 'countdown'
 
 export default {
