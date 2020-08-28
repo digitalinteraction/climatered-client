@@ -2,12 +2,21 @@
   <AppWrapper>
     <div class="coffee-chat">
       <div class="container">
-        <div class="columns is-centered is-multiline">
-          <div class="column is-12 has-text-centered">
-            <h3>312 Active Participants</h3>
+        <div class="columns is-centered">
+          <div class="column is-8 has-text-centered">
+            <h3>
+              <span class="online-dot"></span>{{ peers }} Active Participants
+            </h3>
             <h1 class="title has-text-white">Are you ready?</h1>
+            <h3 class="is-size-5">
+              We'll use the settings below to match you with another Climate:Red
+              attendee. Click the button below to video chat with another
+              attendee.
+            </h3>
           </div>
-          <div class="column is-3">
+        </div>
+        <div class="columns is-centered is-multiline">
+          <div class="column is-4">
             <div
               id="language-selector"
               class="dropdown has-text-left"
@@ -70,7 +79,7 @@
               </div>
             </div>
           </div>
-          <div class="column is-3">
+          <div class="column is-4">
             <div
               id="themes-selector"
               class="dropdown has-text-left"
@@ -130,7 +139,7 @@
             </div>
           </div>
           <div class="column is-12 has-text-centered">
-            <button class="button is-primary">
+            <button class="button is-primary is-large">
               {{ $t('coffeechat.readyBtn') }}
             </button>
           </div>
@@ -146,6 +155,7 @@ export default {
   components: { AppWrapper },
   data() {
     return {
+      peers: Math.ceil(Math.random() * 1000),
       filters: {
         languages: {
           isActive: false,
@@ -218,12 +228,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/sass/form/_all.sass';
 .coffee-chat {
   // min-height: calc(100vh - calc(#{$navbar-height} - 4rem));
   min-height: 100vh;
   background-color: $greyish;
   color: #ffffff;
+  padding-top: 15vh;
+}
+
+.online-dot {
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 50%;
+  padding: 0.25rem;
+  margin: 0 0.25rem;
+  display: inline-block;
+  background-color: #2bd145;
 }
 
 .dropdown {
