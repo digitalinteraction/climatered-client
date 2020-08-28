@@ -15,6 +15,33 @@
             </h3>
           </div>
         </div>
+        <div class="columns is-centered">
+          <div class="column is-4 has-text-right">
+            <p>
+              Language(s):
+              <span
+                v-for="(option, index) in selectedLanguages"
+                :key="option.displayName"
+              >
+                <span v-if="index != 0">, </span
+                >{{ $t(option.displayName) }}</span
+              >
+            </p>
+          </div>
+          <div class="column is-4 has-text-left">
+            <p>
+              Theme(s):
+              <span
+                v-for="(option, index) in selectedThemes"
+                :key="option.displayName"
+              >
+                <span v-if="index != 0">, </span
+                >{{ $t(option.displayName) }}</span
+              >
+              <span v-if="selectedThemes.length == 0">Any</span>
+            </p>
+          </div>
+        </div>
         <div class="columns is-centered is-multiline">
           <div class="column is-4">
             <div
@@ -162,7 +189,7 @@ export default {
           options: [
             {
               displayName: 'coffeechat.filters.languages.EN',
-              selected: false
+              selected: true
             },
             {
               displayName: 'coffeechat.filters.languages.FR',
@@ -200,6 +227,14 @@ export default {
           ]
         }
       }
+    }
+  },
+  computed: {
+    selectedLanguages() {
+      return this.filters.languages.options.filter(o => o.selected == true)
+    },
+    selectedThemes() {
+      return this.filters.themes.options.filter(o => o.selected == true)
     }
   },
   methods: {
