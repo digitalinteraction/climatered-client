@@ -65,13 +65,6 @@ export default {
       }
     }
 
-    //
-    // If they came to exactly the root, go to the atrium
-    //
-    if (this.$route.path === '/') {
-      this.$router.replace({ name: ROUTE_ATRIUM })
-    }
-
     this.isReady = true
   }
 }
