@@ -50,8 +50,8 @@
 import { mapState } from 'vuex'
 import ToggleSet from '@/components/ToggleSet.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
-import { findLink } from '../utils.js'
-import { AudioBroadcaster, BroadcastState } from '../audio.js'
+import { findLink } from '@/utils'
+import { AudioBroadcaster, BroadcastState } from '@/audio'
 
 // var types = [
 //   'video/webm',

@@ -123,7 +123,7 @@
 //
 
 import { mapState } from 'vuex'
-import { AudioBroadcaster, BroadcastState } from '../../audio.js'
+import { AudioBroadcaster, BroadcastState } from '@/audio'
 import Stack from '@/components/Stack.vue'
 
 export default {
