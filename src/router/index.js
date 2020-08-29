@@ -65,6 +65,7 @@ import {
 Vue.use(VueRouter)
 
 const routes = [
+  { path: '/', redirect: '/atrium' },
   {
     path: '/atrium',
     name: ROUTE_ATRIUM,
