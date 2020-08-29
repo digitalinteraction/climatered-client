@@ -112,7 +112,7 @@ const sponsors = [
   { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
   { name: 'Open Lab', url: '/sponsor/openlab.svg' },
   { name: 'Al Jazeera', url: '/sponsor/al-jazeera.svg' },
-  { name: 'Italian Red Cross', url: '/sponsor/croce-rossa.svg' },
+  { name: 'Italian Red Cross', url: '/sponsor/croce-rossa-v2.svg' },
   { name: 'Norwegian Red Cross', url: '/sponsor/norwegian-red-cross.svg' },
   { name: 'British Red Cross', url: '/sponsor/british-red-cross.svg' },
   { name: 'Finish Red Cross', url: '/sponsor/finish-red-cross.svg' }

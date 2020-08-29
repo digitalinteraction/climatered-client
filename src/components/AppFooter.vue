@@ -21,6 +21,10 @@
 </template>
 
 <script>
+//
+// The common site footer
+//
+
 import { ROUTE_PRIVACY, ROUTE_TERMS } from '../const'
 import { CookieEvents } from '@/components/CookiePopup.vue'
 

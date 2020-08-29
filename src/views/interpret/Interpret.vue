@@ -43,10 +43,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import { ROUTE_INTERPRET_HOME } from '../../const'
-import { getTranslation, findLink } from '../../utils'
+import { ROUTE_INTERPRET_HOME } from '@/const'
+import { getTranslation, findLink } from '@/utils'
 
-import InterpretWrapper from '@/components/InterpretWrapper.vue'
+import InterpretWrapper from '@/components/interpret/InterpretWrapper.vue'
 import VideoLink from '@/components/VideoLink.vue'
 
 import InterpretControls from '@/components/interpret/InterpretControls.vue'

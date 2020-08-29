@@ -11,6 +11,10 @@
 </template>
 
 <script>
+//
+// A table-like row to show a speaker's headshot, name and role
+//
+
 import { pickCdn } from '@/utils'
 
 export default {

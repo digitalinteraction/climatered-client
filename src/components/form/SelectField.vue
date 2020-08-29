@@ -29,6 +29,10 @@
 </template>
 
 <script>
+//
+// Wraps a bulma select field
+//
+
 export default {
   props: {
     name: { type: String, required: true },

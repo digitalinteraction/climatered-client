@@ -25,6 +25,11 @@
 </template>
 
 <script>
+//
+// Embed a link to a video on another platform
+// supports teams, zoom and youtube
+//
+
 import { parseYouTubeLink, parseTeamsLink, parseZoomLink } from '../utils'
 
 export default {

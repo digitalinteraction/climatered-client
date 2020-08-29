@@ -14,6 +14,10 @@
 </template>
 
 <script>
+//
+// A set of buttons where only one is selected
+//
+
 export default {
   props: {
     options: { type: Array, required: true },

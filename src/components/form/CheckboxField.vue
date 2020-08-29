@@ -14,6 +14,10 @@
 </template>
 
 <script>
+//
+// Wraps a bulma checkbox field
+//
+
 export default {
   props: {
     name: { type: String, required: true },

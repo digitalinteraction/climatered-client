@@ -15,6 +15,10 @@
 </template>
 
 <script>
+//
+// Embed a video on the site, currently only supports youtube
+//
+
 import { parseYouTubeLink } from '../utils.js'
 
 export default {

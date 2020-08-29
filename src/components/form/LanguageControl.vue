@@ -15,6 +15,10 @@
 </template>
 
 <script>
+//
+// A generic site language control, will update their local preference
+//
+
 import { overrideLocale } from '@/i18n'
 
 export default {

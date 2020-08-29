@@ -148,6 +148,9 @@ interpretHome:
   title: Interpretation
   subtitle: Use this page to navigate the session's you're assigned to interpret for
   goto: Interpret mode
+  unavailableTitle: Your browser isn't supported
+  unavailableBody: |
+    It looks like your using an unsupported browser. Please swap to chrome (v42+), safari (13.1+) or firefox (v80+) and return to this page. If you're on iOS please upgrade to iOS version 13.5 or above.
 
 interpretSchedule:
   heading:
@@ -193,3 +196,4 @@ session:
   showPoll: Enable poll
   seeMore: See more
   seeLess: See less
+  noInterpret: Your browser doesn't support interpretation, sorry!
