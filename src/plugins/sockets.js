@@ -71,10 +71,28 @@ export default class ApiSocket {
     }
   }
 
+  unbindAllEvents(owner) {
+    Object.keys(this.listeners).forEach(k => {
+      this.unbindEvent(owner, k)
+    })
+  }
+
   handleEvent(eventName, ...args) {
     const listeners = this.listeners.get(eventName) ?? []
 
     for (const l of listeners) l.callback(...args)
+  }
+
+  joinRoom(roomName) {
+    this.socket.join(roomName)
+  }
+
+  leaveRoom(roomName) {
+    this.socket.leave(roomName)
+  }
+
+  emitToRoom(roomName, event, ...args) {
+    this.socket.to(roomName).emit(event, ...args)
   }
 }
 
