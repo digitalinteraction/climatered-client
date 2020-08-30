@@ -1,4 +1,5 @@
 import Vue from 'vue'
+
 import {
   AUDIO_SAMPLE_RATE,
   AUDIO_LOW_LEVEL,
@@ -50,21 +51,20 @@ export class AudioReciever extends Vue {
     this.ctx = null
   }
 
+  /** @param {ArrayBuffer} data */
   async push(data) {
     console.debug('AudioReciever#push')
+
+    const { arrayBuffer, sampleRate } = data
+
+    console.log('samples', this.ctx.sampleRate, sampleRate)
+
+    console.log(sampleRate)
+
     if (this.state === RecieverState.inactive || !this.ctx) return
 
-    const floats = new Float32Array(data)
-    const buffer = this.ctx.createBuffer(
-      1,
-      data.byteLength / 4,
-      AUDIO_SAMPLE_RATE
-    )
-
-    /** @type {AudioBuffer} */
-    // const buffer = await new Promise((resolve, reject) => {
-    //   this.ctx.decodeAudioData(floats.buffer, resolve, reject)
-    // })
+    const floats = new Float32Array(arrayBuffer)
+    const buffer = this.ctx.createBuffer(1, floats.length, sampleRate)
 
     buffer.copyToChannel(floats, 0, 0)
     this.buffers.push({
@@ -105,8 +105,6 @@ export class AudioReciever extends Vue {
     }
 
     const [top, ...rest] = this.buffers.slice(-AUDIO_HIGH_LEVEL)
-
-    console.debug('AudioReciever#unqueueBuffer packet=%d', top.index)
 
     const source = this.ctx.createBufferSource()
     source.buffer = top.buffer

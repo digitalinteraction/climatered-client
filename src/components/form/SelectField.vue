@@ -3,7 +3,7 @@
     <label class="label" v-t="labelKey" :for="name" />
     <div class="control">
       <div class="select" :class="selectClass">
-        <select :value="value" @input="onInput" :id="name">
+        <select :value="value" @input="onInput" :id="name" :disabled="disabled">
           <option disabled selected value="">{{
             $t('general.pleaseSelect')
           }}</option>
@@ -40,7 +40,8 @@ export default {
     value: { type: String, required: true },
     helpKey: { type: String, default: null },
     options: { type: Array, required: true },
-    hasError: { type: Boolean, default: false }
+    hasError: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false }
   },
   computed: {
     selectClass() {

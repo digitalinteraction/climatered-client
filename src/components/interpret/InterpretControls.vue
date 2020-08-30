@@ -2,6 +2,24 @@
   <div class="interpret-controls" :class="isLive && 'is-live'">
     <div class="columns">
       <div class="column">
+        <Stack direction="vertical" gap="medium" align="start">
+          <SelectField
+            v-if="userDevices.length > 0"
+            name="device"
+            v-model="chosenDevice"
+            label-key="interpret.deviceLabel"
+            :options="userDevices"
+            :disabled="isLive"
+          />
+          <div class="buttons is-centered">
+            <button
+              class="button is-text"
+              @click="fetchDevices"
+              :disabled="isLive"
+              v-t="'interpret.refreshButton'"
+            />
+          </div>
+        </Stack>
         <!-- <details>
           <summary>
             <span
@@ -56,9 +74,9 @@
           </button>
         </Stack>
       </div>
-      <div class="column">
+      <!-- <div class="column">
         <Stack direction="vertical" gap="regular" align="start">
-          <!-- <div>
+          <div>
             <p class="controls-label">
               {{ $t('interpret.takeoverActionLabel') }}
             </p>
@@ -110,9 +128,9 @@
                 </div>
               </template>
             </p>
-          </div> -->
+          </div> 
         </Stack>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -125,13 +143,16 @@
 import { mapState } from 'vuex'
 import { AudioBroadcaster, BroadcastState } from '@/audio'
 import Stack from '@/components/Stack.vue'
+import SelectField from '@/components/form/SelectField.vue'
 
 export default {
-  components: { Stack },
+  components: { Stack, SelectField },
   data() {
     return {
       timeSinceLive: 0,
-      broadcastState: null
+      broadcastState: null,
+      userDevices: [],
+      chosenDevice: null
     }
   },
   computed: {
@@ -172,10 +193,11 @@ export default {
       newState => {
         this.broadcastState = newState
       },
-      arrayBuffer => {
-        this.$socket.emitBinary('send-interpret', arrayBuffer)
+      (arrayBuffer, sampleRate) => {
+        this.$socket.emitBinary('send-interpret', { arrayBuffer, sampleRate })
       }
     )
+    this.fetchDevices()
   },
   mounted() {
     this.$clock.bind(this, () => {
@@ -209,9 +231,9 @@ export default {
   methods: {
     async start() {
       try {
-        await this.$store.dispatch('interpret/startLive')
+        await this.broadcaster.start(this.chosenDevice)
 
-        await this.broadcaster.start()
+        await this.$store.dispatch('interpret/startLive')
       } catch (error) {
         this.broadcaster.handleStreamError(error)
         await this.$store.dispatch('interpret/stopLive')
@@ -246,6 +268,19 @@ export default {
     },
     rejectRequest() {
       this.$store.dispatch('interpret/respondToRequest', 'reject')
+    },
+    async fetchDevices() {
+      const devices = await navigator.mediaDevices.enumerateDevices()
+      const audioDevices = devices.filter(d => d.kind === 'audioinput')
+
+      this.chosenDevice = (
+        audioDevices.find(d => d.id === 'default') ?? audioDevices[0]
+      ).deviceId
+
+      this.userDevices = audioDevices.map(d => ({
+        value: d.deviceId,
+        label: d.label
+      }))
     }
   }
 }
