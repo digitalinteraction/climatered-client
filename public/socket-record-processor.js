@@ -15,6 +15,7 @@ class SocketRecordProcessor extends AudioWorkletProcessor {
     this.insertIndex = 0
   }
 
+  /** @param {ArrayBuffer} buffer */
   postBuffer(buffer) {
     this.port.postMessage({ type: 'ondata', buffer }, [buffer])
   }
