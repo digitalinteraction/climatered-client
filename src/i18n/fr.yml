@@ -91,6 +91,9 @@ coffeechat:
       ES: Español
       AR: العربية
 
+coffeechatroom:
+  title: Causerie Café
+
 help:
   title: Aide
 

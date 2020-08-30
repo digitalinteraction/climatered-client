@@ -104,6 +104,9 @@ coffeechat:
       urban: Urban
       climateSmartDdr: Climate Smart DDR
 
+coffeechatroom:
+  title: Coffee chat
+
 help:
   title: Help
 

@@ -79,6 +79,7 @@
 
 - [x] schedule.title
 - [x] coffeechat.title
+- [ ] coffeechatroom.title
 - [x] help.title
 - [x] notFound.title
 - [x] terms.title

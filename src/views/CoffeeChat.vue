@@ -166,7 +166,7 @@
             </div>
           </div>
           <div class="column is-12 has-text-centered">
-            <button class="button is-primary is-large">
+            <button class="button is-primary is-large" @click="ready">
               {{ $t('coffeechat.readyBtn') }}
             </button>
           </div>
@@ -178,6 +178,8 @@
 
 <script>
 import AppWrapper from '@/components/AppWrapper.vue'
+import CoffeeChatLobby from '../coffee-chat/coffee-chat-lobby'
+import { ROUTE_COFFEE_CHAT_ROOM } from '../const'
 export default {
   components: { AppWrapper },
   data() {
@@ -229,6 +231,14 @@ export default {
       }
     }
   },
+  mounted() {
+    this.coffeeChatLobby = new CoffeeChatLobby(this.$socket, roomId => {
+      this.$router.push({
+        name: ROUTE_COFFEE_CHAT_ROOM,
+        params: { room: roomId }
+      })
+    })
+  },
   computed: {
     selectedLanguages() {
       return this.filters.languages.options.filter(o => o.selected == true)
@@ -257,6 +267,9 @@ export default {
       this.filters.languages.isActive = false
       this.filters.themes.isActive = !this.filters.themes.isActive
       return this.filters.themes.isActive
+    },
+    ready() {
+      this.coffeeChatLobby.joinLobby()
     }
   }
 }

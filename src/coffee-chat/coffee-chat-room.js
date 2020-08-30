@@ -1,35 +1,30 @@
 import WebRTC from './webrtc'
 
 export default class CoffeeChat {
-  sockets
+  socket
   webRTC
+  mediaStreamCb
+  userStateCb
   userId
   currentRoom
   acknowledgedUsers
   listenersSetup
 
-  constructor(sockets, userId) {
-    this.sockets = sockets
+  constructor(socket, userId, mediaStreamCb, userStateCb) {
+    this.socket = socket
     this.webRTC = new WebRTC(userId)
+    this.mediaStreamCbs = mediaStreamCb
+    this.userStateCb = userStateCb
     this.userId = userId
     this.acknowledgedUsers = []
     this.listenersSetup = []
   }
 
   destroy() {
-    this.sockets.unbindAllEvents(this)
-    this.sockets.emit('user-left', this.currentRoom, this.userId)
-    this.sockets.leaveRoom(this.currentRoom)
+    this.socket.unbindAllEvents(this)
+    this.socket.emit('leave-room', this.currentRoom, this.userId)
     this.webRTC.closeAll()
     this.currentRoom = undefined
-  }
-
-  joinLobby(languagePrefs, topicPrefs) {
-    this.sockets.bindEvent(this, 'room-found', room => {
-      if (!this.currentRoom) this.joinRoom(room)
-      this.sockets.unbindEvent(this, 'room-found')
-    })
-    this.sockets.emit('join-lobby', languagePrefs, topicPrefs)
   }
 
   joinRoom(roomId) {
@@ -41,42 +36,37 @@ export default class CoffeeChat {
     this.currentRoom = roomId
     const userId = this.userId
 
-    this.sockets.bindEvent(this, 'user-joined', fromUser => {
-      this.sockets.emit('user-ack', this.currentRoom, userId, fromUser)
+    this.socket.bindEvent(this, 'user-joined', fromUser => {
+      this.socket.emit('user-ack', this.currentRoom, userId, fromUser)
       this._setupUserListeners(fromUser)
     })
 
-    this.sockets.bindEvent(this, `user-ack-${userId}`, fromUser => {
+    this.socket.bindEvent(this, `user-ack-${userId}`, fromUser => {
       if (this.acknowledgedUsers.includes(fromUser)) return
       this.acknowledgedUsers.push(fromUser)
       this._setupUserListeners(fromUser)
-      this.sockets.emit('user-ack', this.currentRoom, userId, fromUser)
+      this.socket.emit('user-ack', this.currentRoom, userId, fromUser)
     })
 
-    this.sockets.bindEvent(this, 'user-left', userId => {
+    this.socket.bindEvent(this, 'user-left', userId => {
       this.webRTC.close(userId)
-      this.sockets.unbindEvent(`offer-${userId}-${this.userId}`)
-      this.sockets.unbindEvent(`answer-${userId}-${this.userId}`)
-      this.sockets.unbindEvent(`ice-${userId}-${this.userId}`)
+      this.socket.unbindEvent(`offer-${userId}-${this.userId}`)
+      this.socket.unbindEvent(`answer-${userId}-${this.userId}`)
+      this.socket.unbindEvent(`ice-${userId}-${this.userId}`)
     })
 
-    this.sockets.join(roomId)
-    this.sockets.emit('user-joined', this.currentRoom, userId)
+    this.socket.emit('join-room', this.currentRoom, userId)
   }
 
   _setupUserListeners(toUser) {
     if (this.listenersSetup.includes(toUser)) return
     this.listenersSetup.push(toUser)
     if (this.webRTC.determineCaller(this.userId, toUser)) {
-      this.sockets.bindEvent(
-        this,
-        `answer-${toUser}-${this.userId}`,
-        answer => {
-          this.webRTC.addAnswer(toUser, answer)
-        }
-      )
+      this.socket.bindEvent(this, `answer-${toUser}-${this.userId}`, answer => {
+        this.webRTC.addAnswer(toUser, answer)
+      })
     } else {
-      this.sockets.bindEvent(
+      this.socket.bindEvent(
         this,
         `offer-${toUser}-${this.userId}`,
         async offer => {
@@ -88,7 +78,7 @@ export default class CoffeeChat {
             rs => this._remoteStreamReceived(toUser, rs),
             s => this._remoteUserStateChanged(toUser, s)
           )
-          this.sockets.emit(
+          this.socket.emit(
             'send-answer',
             this.currentRoom,
             this.userId,
@@ -112,7 +102,7 @@ export default class CoffeeChat {
         rs => this._remoteStreamReceived(toUser, rs),
         s => this._remoteUserStateChanged(toUser, s)
       )
-      this.sockets.emit(
+      this.socket.emit(
         'send-offer',
         this.currentRoom,
         this.userId,
@@ -144,7 +134,7 @@ export default class CoffeeChat {
   }
 
   _iceCandidateReceived(toUser, ice) {
-    this.sockets.emit(
+    this.socket.emit(
       `ice-${this.userId}-${toUser}`,
       this.currentRoom,
       this.userId,
@@ -155,9 +145,11 @@ export default class CoffeeChat {
 
   _remoteStreamReceived(fromUser, stream) {
     console.log('Remote stream recieved: ', fromUser, stream)
+    this.mediaStreamCb(fromUser, stream)
   }
 
   _remoteUserStateChanged(fromUser, state) {
     console.log('User state changed: ', fromUser, state)
+    this.userStateCb(fromUser, state)
   }
 }

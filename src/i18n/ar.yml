@@ -91,6 +91,9 @@ coffeechat:
       ES: Español
       AR: العربية
 
+coffeechatroom:
+  title: دردشة حول فنجان قهوة
+
 help:
   title: المساعدة
 
