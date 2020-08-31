@@ -54,6 +54,7 @@ export default class CoffeeChat {
       } else {
         this.acknowledgedUsers.push(fromUser)
         this._setupUserListeners(fromUser)
+        this._setupUserConnection(fromUser)
         this.socket.emit('user-ack', this.currentRoom, this.userId, fromUser)
       }
     })
