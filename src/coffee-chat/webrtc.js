@@ -45,7 +45,7 @@ export default class WebRTC {
       this.close(forUserId)
       console.log('Closed connection for new one: ', forUserId)
     }
-    const peerConnection = this.create(forUserId, localStream)
+    const peerConnection = this._create(forUserId, localStream)
     this._listenForIceCandidates(peerConnection.pc, iceCb)
     this._listenForAudioStream(peerConnection.pc, remoteStreamCb)
     this._setupUserStateChannel(forUserId, onUserStateChangeCb)
