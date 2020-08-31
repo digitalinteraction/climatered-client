@@ -8,6 +8,9 @@
       >
         <WebRTCVideo :media-stream="ms" />
       </div>
+      <div v-if="localMediaStream">
+        <WebRTCVideo :media-stream="localMediaStream" />
+      </div>
     </div>
   </AppWrapper>
 </template>
@@ -28,14 +31,15 @@ export default {
   data() {
     return {
       mediaStreams: {},
-      userState: {}
+      userState: {},
+      localMediaStream: null
     }
   },
   async mounted() {
-    const mediaStream = await this.setupMedia()
+    this.localMediaStream = await this.setupMedia()
     this.coffeeChat = new CoffeeChatRoom(
       this.$socket,
-      mediaStream,
+      this.localMediaStream,
       this.user.iat,
       (fromUser, ms) => {
         this.$set(this.mediaStreams, fromUser, ms)
