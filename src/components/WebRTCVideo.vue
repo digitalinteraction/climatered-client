@@ -1,6 +1,6 @@
 <template>
   <div class="webrtc-video">
-    <video ref="webrtc-video" height="100" width="100" autoplay />
+    <video ref="webrtc-video" height="100" width="100" autoplay controls />
   </div>
 </template>
 
