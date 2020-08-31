@@ -15,7 +15,7 @@ export default class CoffeeChat {
     this.socket = socket
     this.mediaStream = mediaStream
     this.webRTC = new WebRTC(userId)
-    this.mediaStreamCbs = mediaStreamCb
+    this.mediaStreamCb = mediaStreamCb
     this.userStateCb = userStateCb
     this.userId = userId
     this.acknowledgedUsers = []
