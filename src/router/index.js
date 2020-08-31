@@ -23,6 +23,8 @@ const Terms = () =>
   import(/* webpackChunkName: "static" */ '../views/Terms.vue')
 const Privacy = () =>
   import(/* webpackChunkName: "static" */ '../views/Privacy.vue')
+const Guidelines = () =>
+  import(/* webpackChunkName: "static" */ '../views/Guidelines.vue')
 const ErrorPage = () =>
   import(/* webpackChunkName: "static" */ '../views/Error.vue')
 
@@ -57,6 +59,7 @@ import {
   ROUTE_TERMS,
   ROUTE_ERROR,
   ROUTE_PRIVACY,
+  ROUTE_GUIDELINES,
   ROUTE_SESSIONS,
   ROUTE_INTERPRET_HOME,
   ROUTE_INTERPRET
@@ -166,6 +169,14 @@ const routes = [
     component: Privacy,
     meta: {
       titleKey: 'privacy.title'
+    }
+  },
+  {
+    path: '/guidelines',
+    name: ROUTE_GUIDELINES,
+    component: Guidelines,
+    meta: {
+      titleKey: 'guidelines.title'
     }
   },
   {
