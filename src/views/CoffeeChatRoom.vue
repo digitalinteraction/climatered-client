@@ -44,7 +44,6 @@ export default {
     this.coffeeChat.joinRoom(roomId)
   },
   destroyed() {
-    this.coffeeChat.leaveRoom()
     this.coffeeChat.destroy()
   }
 }

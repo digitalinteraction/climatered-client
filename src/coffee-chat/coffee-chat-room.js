@@ -8,7 +8,7 @@ export default class CoffeeChat {
   userId
   currentRoom
   acknowledgedUsers
-  listenersSetup
+  secondAcknowledgeUsers
 
   constructor(socket, userId, mediaStreamCb, userStateCb) {
     this.socket = socket
@@ -17,7 +17,7 @@ export default class CoffeeChat {
     this.userStateCb = userStateCb
     this.userId = userId
     this.acknowledgedUsers = []
-    this.listenersSetup = []
+    this.secondAcknowledgeUsers = []
   }
 
   destroy() {
@@ -34,33 +34,45 @@ export default class CoffeeChat {
       )
 
     this.currentRoom = roomId
-    const userId = this.userId
 
     this.socket.bindEvent(this, 'user-joined', fromUser => {
-      this.socket.emit('user-ack', this.currentRoom, userId, fromUser)
-      this._setupUserListeners(fromUser)
-    })
-
-    this.socket.bindEvent(this, `user-ack-${userId}`, fromUser => {
-      if (this.acknowledgedUsers.includes(fromUser)) return
+      if (this.userId === fromUser) return
       this.acknowledgedUsers.push(fromUser)
       this._setupUserListeners(fromUser)
-      this.socket.emit('user-ack', this.currentRoom, userId, fromUser)
+      this.socket.emit('user-ack', this.currentRoom, this.userId, fromUser)
     })
 
-    this.socket.bindEvent(this, 'user-left', userId => {
-      this.webRTC.close(userId)
-      this.socket.unbindEvent(`offer-${userId}-${this.userId}`)
-      this.socket.unbindEvent(`answer-${userId}-${this.userId}`)
-      this.socket.unbindEvent(`ice-${userId}-${this.userId}`)
+    this.socket.bindEvent(this, `user-ack-${this.userId}`, fromUser => {
+      if (
+        this.acknowledgedUsers.includes(fromUser) &&
+        !this.secondAcknowledgeUsers.includes(fromUser)
+      ) {
+        this.secondAcknowledgeUsers.push(fromUser)
+        this._setupUserConnection(fromUser)
+      } else {
+        this.acknowledgedUsers.push(fromUser)
+        this._setupUserListeners(fromUser)
+        this.socket.emit('user-ack', this.currentRoom, this.userId, fromUser)
+      }
     })
 
-    this.socket.emit('join-room', this.currentRoom, userId)
+    this.socket.bindEvent(this, 'user-left', fromUser => {
+      this.webRTC.close(fromUser)
+      this.acknowledgedUsers = this.acknowledgedUsers.filter(
+        a => a !== fromUser
+      )
+      this.secondAcknowledgeUsers = this.secondAcknowledgeUsers.filter(
+        a => a !== fromUser
+      )
+      this.socket.unbindEvent(`offer-${fromUser}-${this.userId}`)
+      this.socket.unbindEvent(`answer-${fromUser}-${this.userId}`)
+      this.socket.unbindEvent(`ice-${fromUser}-${this.userId}`)
+    })
+
+    this.socket.emit('join-room', this.currentRoom, this.userId)
   }
 
   _setupUserListeners(toUser) {
-    if (this.listenersSetup.includes(toUser)) return
-    this.listenersSetup.push(toUser)
     if (this.webRTC.determineCaller(this.userId, toUser)) {
       this.socket.bindEvent(this, `answer-${toUser}-${this.userId}`, answer => {
         this.webRTC.addAnswer(toUser, answer)
@@ -88,12 +100,13 @@ export default class CoffeeChat {
         }
       )
     }
-    this.bindEvent(this, `ice-${toUser}-${this.userId}`, ice => {
+    this.socket.bindEvent(this, `ice-${toUser}-${this.userId}`, ice => {
       this.webRTC.addIceCandidate(toUser, ice)
     })
   }
 
   async _setupUserConnection(toUser) {
+    console.log('Setting up user connection:', toUser)
     if (this.webRTC.determineCaller(this.userId, toUser)) {
       const offer = this.webRTC.createOffer(
         toUser,
