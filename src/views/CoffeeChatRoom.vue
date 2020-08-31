@@ -48,7 +48,7 @@ export default {
         } else {
           mediaStream = this.mediaStreams[fromUser]
         }
-        mediaStream.addTrack(mst)
+        mediaStream.addTrack(mst, mediaStream)
         console.log('Updated media stream:', mediaStream)
         this.$set(this.mediaStreams, fromUser, mediaStream)
       },
