@@ -1,8 +1,12 @@
 <template>
   <AppWrapper>
     <div class="columns">
-      <div class="column" v-for="u in users" :key="`media-${u}`">
-        <video :srcObject="mediaStreams[u]" />
+      <div
+        class="column"
+        v-for="(ms, user) in mediaStreams"
+        :key="`media-${user}`"
+      >
+        <WebRTCVideo :media-stream="ms" />
       </div>
     </div>
   </AppWrapper>
@@ -11,17 +15,15 @@
 <script>
 import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
+import WebRTCVideo from '@/components/WebRTCVideo.vue'
 import CoffeeChatRoom from '../coffee-chat/coffee-chat-room'
 export default {
-  components: { AppWrapper },
+  components: { AppWrapper, WebRTCVideo },
   props: {
     timeLimit: { type: Number, default: 0 }
   },
   computed: {
-    ...mapState('api', ['user']),
-    users() {
-      return Object.keys(this.mediaStreams)
-    }
+    ...mapState('api', ['user'])
   },
   data() {
     return {
@@ -36,10 +38,10 @@ export default {
       mediaStream,
       this.user.iat,
       (fromUser, ms) => {
-        this.mediaStreams[fromUser] = ms
+        this.$set(this.mediaStreams, fromUser, ms)
       },
       (fromUser, s) => {
-        this.userState[fromUser] = s
+        this.$set(this.mediaStreams, fromUser, s)
       }
     )
     const roomId = this.$route.params.room
