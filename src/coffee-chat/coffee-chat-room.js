@@ -128,7 +128,13 @@ export default class CoffeeChat {
   }
 
   _iceCandidateReceived(toUser, ice) {
-    this.socket.emit('send-ice', this.currentRoom, this.userId, toUser, ice)
+    this.socket.emit(
+      'send-ice',
+      this.currentRoom,
+      this.userId,
+      toUser,
+      ice.candidate
+    )
   }
 
   _remoteStreamReceived(fromUser, stream) {
