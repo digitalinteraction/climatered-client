@@ -82,7 +82,7 @@ export default class CoffeeChat {
         this,
         `offer-${toUser}-${this.userId}`,
         async offer => {
-          const answer = this.webRTC.createAnswer(
+          const answer = await this.webRTC.createAnswer(
             toUser,
             offer,
             await this._setupMedia(),
@@ -108,7 +108,7 @@ export default class CoffeeChat {
   async _setupUserConnection(toUser) {
     console.log('Setting up user connection:', toUser)
     if (this.webRTC.determineCaller(this.userId, toUser)) {
-      const offer = this.webRTC.createOffer(
+      const offer = await this.webRTC.createOffer(
         toUser,
         await this._setupMedia(),
         ice => this._iceCandidateReceived(toUser, ice),
