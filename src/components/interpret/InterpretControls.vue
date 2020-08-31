@@ -271,7 +271,9 @@ export default {
     },
     async fetchDevices() {
       const devices = await navigator.mediaDevices.enumerateDevices()
-      const audioDevices = devices.filter(d => d.kind === 'audioinput')
+      const audioDevices = devices.filter(
+        d => d.kind === 'audioinput' && !d.label.match(/bluetooth/i)
+      )
 
       this.chosenDevice = (
         audioDevices.find(d => d.id === 'default') ?? audioDevices[0]
