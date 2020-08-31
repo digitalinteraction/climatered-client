@@ -41,8 +41,16 @@ export default {
       this.$socket,
       this.localMediaStream,
       this.user.iat,
-      (fromUser, ms) => {
-        this.$set(this.mediaStreams, fromUser, ms)
+      (fromUser, mst) => {
+        let mediaStream
+        if (!this.mediaStreams[fromUser]) {
+          mediaStream = new MediaStream()
+        } else {
+          mediaStream = this.mediaStreams[fromUser]
+        }
+        mediaStream.addTrack(mst)
+        console.log('Updated media stream:', mediaStream)
+        this.$set(this.mediaStreams, fromUser, mediaStream)
       },
       (fromUser, s) => {
         this.$set(this.mediaStreams, fromUser, s)

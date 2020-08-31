@@ -119,9 +119,7 @@ export default class WebRTC {
   /* eslint-disable-next-line class-methods-use-this */
   _listenForAudioStream(peerConnection, cb) {
     peerConnection.addEventListener('track', ev => {
-      console.log(ev)
-      console.log('RECEIVED STREAM!!!')
-      cb(ev.streams[0])
+      cb(ev)
     })
   }
 

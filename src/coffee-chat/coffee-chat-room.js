@@ -11,11 +11,11 @@ export default class CoffeeChat {
   acknowledgedUsers
   secondAcknowledgeUsers
 
-  constructor(socket, mediaStream, userId, mediaStreamCb, userStateCb) {
+  constructor(socket, mediaStream, userId, mediaStreamTrackCb, userStateCb) {
     this.socket = socket
     this.mediaStream = mediaStream
     this.webRTC = new WebRTC(userId)
-    this.mediaStreamCb = mediaStreamCb
+    this.mediaStreamTrackCb = mediaStreamTrackCb
     this.userStateCb = userStateCb
     this.userId = userId
     this.acknowledgedUsers = []
@@ -141,7 +141,7 @@ export default class CoffeeChat {
 
   _remoteStreamReceived(fromUser, stream) {
     console.log('Remote stream recieved: ', fromUser, stream)
-    this.mediaStreamCb(fromUser, stream)
+    this.mediaStreamTrackCb(fromUser, stream)
   }
 
   _remoteUserStateChanged(fromUser, state) {
