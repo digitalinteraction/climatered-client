@@ -26,6 +26,7 @@
     "marked": "^1.1.1",
     "ms": "^2.1.2",
     "socket.io-client": "^2.3.0",
+    "standardized-audio-context": "^24.1.26",
     "vue": "^2.6.11",
     "vue-gtag": "^1.8.0",
     "vue-i18n": "^8.20.0",
