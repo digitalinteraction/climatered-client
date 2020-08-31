@@ -45,10 +45,17 @@ export default class WebRTC {
       this.close(forUserId)
       console.log('Closed connection for new one: ', forUserId)
     }
-    const peerConnection = this._create(forUserId, localStream)
+    const peerConnection = this.create(forUserId, localStream)
     this._listenForIceCandidates(peerConnection.pc, iceCb)
     this._listenForAudioStream(peerConnection.pc, remoteStreamCb)
     this._setupUserStateChannel(forUserId, onUserStateChangeCb)
+    peerConnection.pc.addEventListener('datachannel', ev => {
+      peerConnection.dc = ev.channel
+      // eslint-disable-next-line no-param-reassign
+      ev.channel.onmessage = msg => {
+        onUserStateChangeCb(msg.data)
+      }
+    })
     await peerConnection.pc.setRemoteDescription(offer)
     const answer = await peerConnection.pc.createAnswer()
     await peerConnection.pc.setLocalDescription(answer)
@@ -126,15 +133,10 @@ export default class WebRTC {
     this.peerConnections[forUserId] = {
       pc: new RTCPeerConnection(configuration)
     }
-    WebRTC.setupMicForConnection(this.peerConnections[forUserId].pc, media)
-    return this.peerConnections[forUserId]
-  }
-
-  static setupMicForConnection(connection, localStream) {
-    console.log('ADDING AUDIO TO TRACK!!!')
-    localStream.getTracks().forEach(t => {
-      connection.addTrack(t, localStream)
+    media.getTracks().forEach(t => {
+      this.peerConnections[forUserId].pc.addTrack(t, media)
     })
+    return this.peerConnections[forUserId]
   }
 
   _setupUserStateChannel(forUserId, onUserStateChangeCb) {

@@ -9,7 +9,7 @@
         <WebRTCVideo :media-stream="ms" />
       </div>
       <div v-if="localMediaStream">
-        <WebRTCVideo :media-stream="localMediaStream" />
+        <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
       </div>
     </div>
   </AppWrapper>
