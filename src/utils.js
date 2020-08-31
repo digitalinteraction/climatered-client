@@ -1,3 +1,5 @@
+window.CONFIG = { API_URL: 'https://dev.climate.red/api/' }
+
 export function findLink(links, type, language) {
   const matches = links.filter(l => l.type === type)
 
