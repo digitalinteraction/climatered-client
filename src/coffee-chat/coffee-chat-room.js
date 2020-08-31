@@ -2,6 +2,7 @@ import WebRTC from './webrtc'
 
 export default class CoffeeChat {
   socket
+  mediaStream
   webRTC
   mediaStreamCb
   userStateCb
@@ -10,8 +11,9 @@ export default class CoffeeChat {
   acknowledgedUsers
   secondAcknowledgeUsers
 
-  constructor(socket, userId, mediaStreamCb, userStateCb) {
+  constructor(socket, mediaStream, userId, mediaStreamCb, userStateCb) {
     this.socket = socket
+    this.mediaStream = mediaStream
     this.webRTC = new WebRTC(userId)
     this.mediaStreamCbs = mediaStreamCb
     this.userStateCb = userStateCb
@@ -85,7 +87,7 @@ export default class CoffeeChat {
           const answer = await this.webRTC.createAnswer(
             toUser,
             offer,
-            await this._setupMedia(),
+            this.mediaStream,
             ice => this._iceCandidateReceived(toUser, ice),
             rs => this._remoteStreamReceived(toUser, rs),
             s => this._remoteUserStateChanged(toUser, s)
@@ -110,7 +112,7 @@ export default class CoffeeChat {
     if (this.webRTC.determineCaller(this.userId, toUser)) {
       const offer = await this.webRTC.createOffer(
         toUser,
-        await this._setupMedia(),
+        this.mediaStream,
         ice => this._iceCandidateReceived(toUser, ice),
         rs => this._remoteStreamReceived(toUser, rs),
         s => this._remoteUserStateChanged(toUser, s)
@@ -123,27 +125,6 @@ export default class CoffeeChat {
         offer
       )
     }
-  }
-
-  _setupMedia() {
-    return new Promise((resolve, reject) => {
-      navigator.getUserMedia(
-        {
-          video: true,
-          audio: {
-            echoCancellation: true,
-            autoGainControl: true,
-            noiseSuppression: true
-          }
-        },
-        stream => {
-          resolve(stream)
-        },
-        error => {
-          reject(error)
-        }
-      )
-    })
   }
 
   _iceCandidateReceived(toUser, ice) {

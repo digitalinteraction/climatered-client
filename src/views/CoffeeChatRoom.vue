@@ -29,9 +29,11 @@ export default {
       userState: {}
     }
   },
-  mounted() {
+  async mounted() {
+    const mediaStream = await this.setupMedia()
     this.coffeeChat = new CoffeeChatRoom(
       this.$socket,
+      mediaStream,
       this.user.iat,
       (fromUser, ms) => {
         this.mediaStreams[fromUser] = ms
@@ -45,6 +47,28 @@ export default {
   },
   destroyed() {
     this.coffeeChat.destroy()
+  },
+  methods: {
+    setupMedia() {
+      return new Promise((resolve, reject) => {
+        navigator.getUserMedia(
+          {
+            video: true,
+            audio: {
+              echoCancellation: true,
+              autoGainControl: true,
+              noiseSuppression: true
+            }
+          },
+          stream => {
+            resolve(stream)
+          },
+          error => {
+            reject(error)
+          }
+        )
+      })
+    }
   }
 }
 </script>
