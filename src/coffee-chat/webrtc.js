@@ -119,7 +119,7 @@ export default class WebRTC {
   /* eslint-disable-next-line class-methods-use-this */
   _listenForAudioStream(peerConnection, cb) {
     peerConnection.addEventListener('track', ev => {
-      cb(ev)
+      cb(ev.track)
     })
   }
 
