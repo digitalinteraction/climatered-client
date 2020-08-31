@@ -1,4 +1,5 @@
 import Vue from 'vue'
+// import { AudioContext } from 'standardized-audio-context'
 
 import {
   AUDIO_SAMPLE_RATE,
@@ -57,16 +58,15 @@ export class AudioReciever extends Vue {
 
     const { arrayBuffer, sampleRate } = data
 
-    console.log('samples', this.ctx.sampleRate, sampleRate)
-
-    console.log(sampleRate)
-
     if (this.state === RecieverState.inactive || !this.ctx) return
 
     const floats = new Float32Array(arrayBuffer)
-    const buffer = this.ctx.createBuffer(1, floats.length, sampleRate)
 
-    buffer.copyToChannel(floats, 0, 0)
+    const buffer = this.ctx.createBuffer(1, floats.length, sampleRate)
+    const bufferFloats = buffer.getChannelData(0)
+
+    for (let i = 0; i < floats.length; i++) bufferFloats[i] = floats[i]
+
     this.buffers.push({
       index: this.nextPacket++,
       buffer: buffer
