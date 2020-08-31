@@ -95,7 +95,9 @@ export class AudioBroadcaster {
       const floats = new Float32Array(arrayBuffer)
 
       const buffer = this.ctx.createBuffer(1, floats.length, sampleRate)
-      buffer.copyToChannel(floats, 0, 0)
+      const bufferFloats = buffer.getChannelData(0)
+
+      for (let i = 0; i < floats.length; i++) bufferFloats[i] = floats[i]
 
       resample(buffer, AUDIO_SAMPLE_RATE, result => {
         /** @type {AudioBuffer} */
