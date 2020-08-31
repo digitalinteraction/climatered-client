@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    mediaStream: { type: Object, required: true }
+    mediaStream: { type: MediaStream, required: true }
   },
   mounted() {
     this.$refs['webrtc-video'].srcObject = this.mediaStream
