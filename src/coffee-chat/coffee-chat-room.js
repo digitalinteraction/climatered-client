@@ -103,6 +103,7 @@ export default class CoffeeChat {
       )
     }
     this.socket.bindEvent(this, `ice-${toUser}-${this.userId}`, ice => {
+      console.log('Recived remote ice:', ice)
       this.webRTC.addIceCandidate(toUser, ice)
     })
   }
