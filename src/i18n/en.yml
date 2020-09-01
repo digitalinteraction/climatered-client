@@ -245,6 +245,7 @@ schedule:
     joinSession: Join session
     previewSession: Preview session
   workshops:
+    workshop: Workshop
     workshops: Workshops
     title: Interactive workshops
     description: Participate in one of the following interactive workshops.

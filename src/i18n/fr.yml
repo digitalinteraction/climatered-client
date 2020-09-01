@@ -173,6 +173,7 @@ schedule:
     joinSession: 'Joindre la session'
     previewSession: 'Prévisualiser la session'
   workshops:
+    workshop: ''
     workshops: ''
     title: ''
     description: ''
