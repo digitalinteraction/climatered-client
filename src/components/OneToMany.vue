@@ -4,7 +4,7 @@
       <div class="bottom-panel">
         <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
 
-        <div class="audio-channel" v-if="event.enableTranslation">
+        <div class="audio-channel" v-if="session.enableTranslation">
           <div class="columns" v-if="canInterpret">
             <div class="column is-narrow">
               <label class="label">Audio Channel</label>
@@ -36,7 +36,7 @@
 
 <script>
 //
-// The main bit for a broadcast-type event
+// The main bit for a broadcast-type session
 //
 
 import ToggleSet from '@/components/ToggleSet.vue'
@@ -47,9 +47,8 @@ import { AudioReciever } from '@/audio'
 export default {
   components: { ToggleSet, VideoEmbed },
   props: {
-    event: { type: Object, required: true },
-    eventSlot: { type: Object, required: true },
-    language: { type: String, required: true }
+    session: { type: Object, required: true },
+    sessionSlot: { type: Object, required: true }
   },
   data() {
     return {
@@ -62,19 +61,19 @@ export default {
   },
   computed: {
     videoLink() {
-      return findLink(this.event.links, 'video', this.language)
+      return findLink(this.session.links, 'video', this.$i18n.locale)
     },
     slido() {
-      const link = findLink(this.event.links, 'poll', this.language)
+      const link = findLink(this.session.links, 'poll', this.$i18n.locale)
       return link && parseSlidoLink(link)
     },
     channels() {
       return ['source', 'en', 'fr', 'es', 'ar'].filter(
-        l => l !== this.event.hostLanguage[0]
+        l => l !== this.session.hostLanguage[0]
       )
     },
     isSourceAudio() {
-      return this.language === 'source'
+      return this.$i18n.locale === 'source'
     }
   },
   mounted() {
@@ -111,7 +110,7 @@ export default {
         // Start the reciever
         this.reciever.setup()
 
-        this.$socket.emit('join-channel', this.event.id, channel)
+        this.$socket.emit('join-channel', this.session.id, channel)
       }
     },
     leaveChannel(channel) {
@@ -120,7 +119,7 @@ export default {
         // Mute the iframe
         //
       } else {
-        this.$socket.emit('leave-channel', this.event.id, channel)
+        this.$socket.emit('leave-channel', this.session.id, channel)
 
         // Stop and reset the reciever
         this.reciever.teardown()
@@ -163,14 +162,6 @@ export default {
 .audio-vis {
   border-radius: 4px;
   overflow: hidden;
-}
-
-.left-event-panel {
-  border-right: 2px solid $grey-lighter;
-}
-
-.right-event-panel {
-  border-right: 2px solid $grey-lighter;
 }
 
 .bottom-panel {
