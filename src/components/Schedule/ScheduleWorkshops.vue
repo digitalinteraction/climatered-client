@@ -13,8 +13,11 @@
     <div :class="['workshops-wrapper', slotState, { expanded: isExpanded }]">
       <div class="workshops-info-wrapper">
         <h3>
-          {{ sessions.length }}
-          {{ $t(`schedule.workshops.workshops`) }}
+          {{
+            sessions.length === 1
+              ? `${sessions.length} ${$t('schedule.workshops.workshop')}`
+              : `${sessions.length} ${$t('schedule.workshops.workshops')}`
+          }}
         </h3>
         <button
           v-if="!searchActive"
