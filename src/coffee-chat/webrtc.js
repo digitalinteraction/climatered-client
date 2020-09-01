@@ -21,13 +21,13 @@ export default class WebRTC {
     forUserId,
     localStream,
     iceCb,
-    remoteStreamCb,
-    onUserStateChangeCb
+    remoteStreamCb
+    // onUserStateChangeCb
   ) {
     const peerConnection = this._create(forUserId, localStream)
     this._listenForIceCandidates(peerConnection.pc, iceCb)
     this._listenForAudioStream(peerConnection.pc, remoteStreamCb)
-    this._setupUserStateChannel(forUserId, onUserStateChangeCb)
+    // this._setupUserStateChannel(forUserId, onUserStateChangeCb)
     const offer = await peerConnection.pc.createOffer()
     peerConnection.pc.setLocalDescription(offer)
     return offer
@@ -48,7 +48,7 @@ export default class WebRTC {
     const peerConnection = this._create(forUserId, localStream)
     this._listenForIceCandidates(peerConnection.pc, iceCb)
     this._listenForAudioStream(peerConnection.pc, remoteStreamCb)
-    this._setupUserStateChannel(forUserId, onUserStateChangeCb)
+    // this._setupUserStateChannel(forUserId, onUserStateChangeCb)
     peerConnection.pc.addEventListener('datachannel', ev => {
       peerConnection.dc = ev.channel
       // eslint-disable-next-line no-param-reassign
@@ -119,7 +119,10 @@ export default class WebRTC {
   /* eslint-disable-next-line class-methods-use-this */
   _listenForAudioStream(peerConnection, cb) {
     peerConnection.addEventListener('track', ev => {
-      cb(ev.track)
+      console.log('TRACK EVENT', ev)
+      // cb(ev)
+      // cb(ev.track)
+      cb(ev.streams[0])
     })
   }
 

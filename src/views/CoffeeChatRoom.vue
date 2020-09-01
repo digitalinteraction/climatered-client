@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      mediaStreams: {},
+      mediaStreams: [],
       userState: {},
       localMediaStream: null
     }
@@ -41,16 +41,21 @@ export default {
       this.$socket,
       this.localMediaStream,
       this.user.iat,
-      (fromUser, mst) => {
-        let mediaStream
-        if (!this.mediaStreams[fromUser]) {
-          mediaStream = new MediaStream()
-        } else {
-          mediaStream = this.mediaStreams[fromUser]
-        }
-        mediaStream.addTrack(mst, mediaStream)
-        console.log('Updated media stream:', mediaStream)
-        this.$set(this.mediaStreams, fromUser, mediaStream)
+      (fromUser, ms) => {
+        this.mediaStreams.push(ms)
+        // let mediaStream
+        // if (!this.mediaStreams[fromUser]) {
+        //   mediaStream = new MediaStream()
+        // } else {
+        //   mediaStream = this.mediaStreams[fromUser]
+        // }
+        // aggregateStream.addTrack(remoteStream.getTracks()[0]);
+        // console.log(mediaStream.getTracks())
+        // mediaStream.addTrack(mediaStream.getTracks()[0])
+        console.log('MS', ms)
+        // mediaStream.addTrack(ms.track, mediaStream)
+        // console.log('Updated media stream:', mediaStream)
+        // this.$set(this.mediaStreams, fromUser, mediaStream)
       },
       (fromUser, s) => {
         this.$set(this.mediaStreams, fromUser, s)

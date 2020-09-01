@@ -13,7 +13,7 @@
 <script>
 export default {
   props: {
-    mediaStream: { type: MediaStream, required: true },
+    mediaStream: { type: MediaStream, required: false },
     muted: { type: Boolean, default: false }
   },
   mounted() {
