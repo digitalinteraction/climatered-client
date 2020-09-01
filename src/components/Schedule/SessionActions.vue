@@ -4,14 +4,14 @@
       <div class="flex-spacer"></div>
 
       <!-- Meta button -->
-      <!-- <div class="button-wrapper">
+      <div class="button-wrapper" v-if="isDev">
         <button
           class="button is-modern is-fullwidth is-small"
           @click="metaVisible = !metaVisible"
         >
           Toggle Meta
         </button>
-      </div> -->
+      </div>
 
       <!-- Add to calendar button -->
       <div class="button-wrapper">
@@ -33,7 +33,7 @@
         </router-link>
       </div>
     </div>
-    <div v-if="metaVisible" class="meta-section">
+    <div v-if="isDev && metaVisible" class="meta-section">
       <pre>{{ session }}</pre>
     </div>
   </span>
@@ -66,6 +66,9 @@ export default {
     }
   },
   computed: {
+    isDev() {
+      return process.env.NODE_ENV === 'development'
+    },
     isPast() {
       return this.sessionState === 'past'
     },
