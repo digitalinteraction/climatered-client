@@ -101,6 +101,7 @@ schedule:
     ninth: 9 September
     tenth: 10 September
   search: Search
+  redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
   filters:
     all: All
     showFilters: Show Filters

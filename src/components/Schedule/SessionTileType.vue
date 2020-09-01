@@ -9,7 +9,7 @@
         <OfficialIcon />
       </span>
       <span class="text">
-        Red Cross Red Crescent Members Only
+        {{ $t('schedule.redCrossRedCrescentMembersOnly') }}
       </span>
     </p>
     <p :class="['icon-and-text']" v-else>
