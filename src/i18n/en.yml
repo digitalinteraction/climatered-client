@@ -88,6 +88,37 @@ sessions:
 
 schedule:
   title: Schedule
+  description: Browse the available sessions over the two days. Here you can plan your experience by adding reminders to your calendar.
+  close: Close
+  past: Past
+  now: Now
+  present: Present
+  future: Future
+  addToCalendar: Add to Calendar
+  dates:
+    ninth: 9 September
+    tenth: 10 September
+  search: Search
+  filters:
+    showFilters: Show Filters
+    clearFilters: Clear Filters
+    date: Date
+    tracks:
+      track: Track
+      act: Act
+      influence: Influence
+      empower: Empower
+      transform: Transform
+    interactivity:
+      interactivity: Interactivity
+      interactive: Interactive
+      nonInteractive: Non-interactive
+  attributes:
+    sessionAttributes: Session attributes
+  actions:
+    viewSession: View session
+    joinSession: Join session
+    previewSession: Preview session
 
 coffeechat:
   title: Coffee chat
