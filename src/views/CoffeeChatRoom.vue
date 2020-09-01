@@ -1,16 +1,20 @@
 <template>
   <AppWrapper>
-    <div class="columns">
-      <div
-        class="column"
-        v-for="(ms, user) in remoteStreams"
-        :key="`media-${user}`"
-      >
-        <WebRTCVideo :media-stream="ms" />
+    <div class="wrapper">
+      <div class="grid-container">
+        <!-- <div class="grid-item" v-if="localMediaStream">
+          <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
+        </div> -->
+        <div
+          class="grid-item"
+          v-for="(ms, user) in mediaStreams"
+          :key="`media-${user}`"
+        >
+          <WebRTCVideo :media-stream="ms" />
       </div>
-      <div v-if="localMediaStream">
-        <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
-      </div>
+    </div>
+    <div class="localCamera" v-if="localMediaStream">
+      <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
     </div>
   </AppWrapper>
 </template>
@@ -89,3 +93,32 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.app-page {
+  display: flex;
+}
+</style>
+<style lang="scss" scoped>
+.wrapper {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.grid-container {
+  flex: 1;
+  display: grid;
+  grid-gap: 10px;
+  // grid-template-columns: 100px 100px 100px;
+  // grid-template-rows: 100px 100px 100px;
+}
+.grid-item {
+}
+
+.localCamera {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  max-width: 20vw;
+}
+</style>
