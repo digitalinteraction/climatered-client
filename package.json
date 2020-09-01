@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@zoomus/websdk": "^1.7.10",
+    "audio-play": "^2.2.1",
+    "audio-resampler": "^1.0.1",
     "axios": "^0.19.2",
     "bulma": "^0.9.0",
     "core-js": "^3.6.5",
@@ -24,6 +26,7 @@
     "marked": "^1.1.1",
     "ms": "^2.1.2",
     "socket.io-client": "^2.3.0",
+    "standardized-audio-context": "^24.1.26",
     "vue": "^2.6.11",
     "vue-gtag": "^1.8.0",
     "vue-i18n": "^8.20.0",

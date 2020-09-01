@@ -15,13 +15,14 @@ class SocketRecordProcessor extends AudioWorkletProcessor {
     this.insertIndex = 0
   }
 
+  /** @param {ArrayBuffer} buffer */
   postBuffer(buffer) {
     this.port.postMessage({ type: 'ondata', buffer }, [buffer])
   }
 
   /** @param {Float32Array[][]} inputs */
   process(inputs) {
-    if (!inputs[0][0]) return
+    if (!inputs[0][0]) return true
 
     // Loop through each new sample
     for (let i = 0; i < inputs[0][0].length; i++) {
@@ -36,6 +37,8 @@ class SocketRecordProcessor extends AudioWorkletProcessor {
       // Put the sample into our local buffer
       this.buffer[this.insertIndex] = inputs[0][0][i]
     }
+
+    return true
   }
 }
 

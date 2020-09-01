@@ -50,9 +50,6 @@ export default {
     slots: { type: Array, required: true },
     sessions: { type: Array, required: true }
   },
-  // filters: {
-  //   eventRoute: e => ({ name: 'Translator', params: { eventId: e.id } })
-  // },
   computed: {
     interpretedSessions() {
       return this.sessions.filter(

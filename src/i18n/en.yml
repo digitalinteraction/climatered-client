@@ -189,6 +189,8 @@ interpret:
     action: Send
   isSelf: (you)
   messagesLabel: Messages
+  deviceLabel: Pick a device
+  refreshButton: Refresh devices
 
 session:
   title: View Session

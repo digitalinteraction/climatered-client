@@ -41,8 +41,8 @@
 
 import ToggleSet from '@/components/ToggleSet.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
-import { findLink, parseSlidoLink } from '../utils.js'
-import { AudioReciever } from '../audio.js'
+import { findLink, parseSlidoLink } from '@/utils'
+import { AudioReciever } from '@/audio'
 
 export default {
   components: { ToggleSet, VideoEmbed },
@@ -91,7 +91,7 @@ export default {
     })
 
     this.$socket.bindEvent(this, 'channel-data', async data => {
-      this.reciever.push(data)
+      await this.reciever.push(data)
 
       // this.reciever.doodle(this.$refs.canvas)
     })
