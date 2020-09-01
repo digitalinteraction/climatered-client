@@ -27,6 +27,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: openlab/ifrc-vconf-gui
           tag_with_sha: true
+          build_args: BUILD_NAME=sha-${{ steps.slug.outputs.sha7 }}
 
       - name: slack
         env:

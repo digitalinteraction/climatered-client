@@ -15,7 +15,7 @@
       />
       /
       {{ $t('general.appName') }}
-      v{{ appVersion }}
+      {{ appVersion }}
     </div>
   </footer>
 </template>
@@ -34,7 +34,7 @@ export default {
       return process.env.VUE_APP_NAME
     },
     appVersion() {
-      return process.env.VUE_APP_VERSION
+      return window.CONFIG?.BUILD_NAME || 'v' + process.env.VUE_APP_VERSION
     },
     termsLink() {
       return { name: ROUTE_TERMS }
