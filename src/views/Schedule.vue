@@ -21,7 +21,7 @@
 
       <!-- Display details of search results -->
       <ScheduleSectionHeader v-if="searchActive && searchQuery" class="is-dark">
-        Showing results for "{{ searchQuery }}"
+        {{ $t('schedule.showingResultsFor', [searchQuery]) }}
       </ScheduleSectionHeader>
 
       <!-- Schedule wrapper -->
@@ -33,7 +33,7 @@
         >
           <!-- Date header (Day One / Day Two etc.) -->
           <ScheduleSectionHeader v-if="!searchActive" class="is-primary">
-            {{ date.title }}
+            {{ $t(`${date.title}`) }}
           </ScheduleSectionHeader>
           <!-- Wrapper for slots -->
           <div class="slot-section-wrapper">
@@ -132,11 +132,11 @@ const workshopTypes = [
 
 const schedule = [
   {
-    title: '9 September 2020', // 'Day One',
+    title: 'schedule.dates.ninth',
     date: new Date('Sep 9 2020')
   },
   {
-    title: '10 September 2020', // 'Day Two',
+    title: 'schedule.dates.tenth',
     date: new Date('Sep 10 2020')
   }
 ]
@@ -156,8 +156,11 @@ export default {
   },
   mounted() {
     this.$clock.bind(this, () => {
-      // TODO: Enable
-      // this.currentTime = Date.now()
+      if (this.isDev && this.$route.query.time) {
+        this.currentTime = this.$route.query.time
+      } else {
+        this.currentTime = Date.now()
+      }
     })
   },
   destroyed() {
@@ -166,7 +169,7 @@ export default {
   data() {
     return {
       schedule,
-      currentTime: 1599658300000, // TODO: Remove
+      currentTime: Date.now(),
       pastSessionsVisible: false,
       modalSession: undefined,
       searchQuery: undefined,
@@ -184,6 +187,9 @@ export default {
   },
   computed: {
     ...mapState('api', ['sessions', 'slots']),
+    isDev() {
+      return process.env.NODE_ENV === 'development'
+    },
     searchActive() {
       // User has an active search query
       return this.searchQuery?.length > 0
