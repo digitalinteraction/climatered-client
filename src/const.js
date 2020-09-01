@@ -10,7 +10,7 @@ export const ROUTE_PRIVACY = 'Privacy'
 export const ROUTE_GUIDELINES = 'Guidelines'
 export const ROUTE_ERROR = 'Error'
 
-export const ROUTE_EVENT = 'Event'
+export const ROUTE_SESSION = 'Session'
 export const ROUTE_LOGIN = 'Login'
 export const ROUTE_REGISTER = 'Register'
 export const ROUTE_TOKEN_CAPTURE = 'TokenCapture'

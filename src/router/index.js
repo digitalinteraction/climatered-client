@@ -42,7 +42,7 @@ const Interpret = () =>
 
 import {
   ROUTE_ATRIUM,
-  ROUTE_EVENT,
+  ROUTE_SESSION,
   ROUTE_LOGIN,
   ROUTE_REGISTER,
   ROUTE_TOKEN_CAPTURE,
@@ -207,7 +207,7 @@ const routes = [
   //
   {
     path: '/session/:sessionId',
-    name: ROUTE_EVENT,
+    name: ROUTE_SESSION,
     component: Session,
     props: true,
     meta: {

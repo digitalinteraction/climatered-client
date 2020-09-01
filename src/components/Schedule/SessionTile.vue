@@ -34,7 +34,7 @@
 
 <script>
 // Constants
-import { ROUTE_EVENT } from '../../const'
+import { ROUTE_SESSION } from '../../const'
 
 // Components
 import SessionTileType from '@/components/Schedule/SessionTileType.vue'
@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     routeEvent() {
-      return ROUTE_EVENT
+      return ROUTE_SESSION
     },
     localeTitle() {
       return this.session.title[this.$i18n.locale]
