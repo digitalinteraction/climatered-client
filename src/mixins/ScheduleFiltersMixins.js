@@ -10,15 +10,34 @@ export default {
       sessions = sessions.filter(s => {
         let hasMatched = false
         for (const languageCode in s.title) {
-          const titleQuery = s.title[languageCode].toLowerCase().includes(query)
-          const contentQuery = s.content[languageCode]
+          let titleHasMatched = false
+          let contentHasMatched = false
+          let speakerHasMatched = false
+
+          titleHasMatched = s.title[languageCode].toLowerCase().includes(query)
+          contentHasMatched = s.content[languageCode]
             .toLowerCase()
             .includes(query)
-          const speakerQuery = s.speakers
-            .join('')
-            .toLowerCase()
-            .includes(query)
-          if (titleQuery || contentQuery || speakerQuery) {
+
+          for (const speaker of s.speakers) {
+            // TODO: Currently only searching by speaker slug e.g. 'prince-charles'
+            if (
+              speaker
+                .split('-')
+                .join(' ')
+                .toLowerCase()
+                .includes(
+                  query
+                    .toLowerCase()
+                    .split(' ')
+                    .join('')
+                )
+            ) {
+              speakerHasMatched = true
+            }
+          }
+
+          if (titleHasMatched || contentHasMatched || speakerHasMatched) {
             hasMatched = true
           }
         }
