@@ -35,16 +35,16 @@
           <div class="navbar-menu" ref="navbarMenu">
             <div class="navbar-start">
               <router-link
-                v-for="item in nav"
+                v-for="item in currentNav"
                 :key="item.name"
                 :to="item.to"
-                :disabled="isDisabled(item.name)"
+                :disabled="tabIsDisabled(item.name)"
                 class="navbar-item"
               >
                 <component :is="item.icon" class="navbar-item-icon" />
                 <span class="navbar-item-text">
                   {{ $t(item.titleKey) }}
-                  <template v-if="isDisabled(item.name)">
+                  <template v-if="!tabIsActive(item.name)">
                     {{ '– ' + $t('general.comingSoon') }}
                   </template>
                 </span>
@@ -88,15 +88,17 @@
      -->
     <div class="app-tabbar">
       <router-link
-        v-for="item in nav"
+        v-for="item in currentNav"
         :key="item.name"
         :to="item.to"
-        :disabled="isDisabled(item.name)"
+        :disabled="tabIsDisabled(item.name)"
         class="tabbar-item"
       >
         <component :is="item.icon" class="tabbar-item-icon" />
         <span class="tabbar-item-text">
-          {{ $t(isDisabled(item.name) ? 'general.comingSoon' : item.titleKey) }}
+          {{
+            $t(tabIsActive(item.name) ? item.titleKey : 'general.comingSoon')
+          }}
         </span>
       </router-link>
     </div>
@@ -141,33 +143,50 @@ const nav = [
     name: 'atrium',
     icon: AtriumIcon,
     to: { name: ROUTE_ATRIUM },
-    titleKey: 'atrium.title'
+    titleKey: 'atrium.title',
+    public: true
   },
   {
     name: 'sessions',
     icon: SessionsIcon,
     to: { name: ROUTE_SESSIONS },
-    titleKey: 'sessions.title'
+    titleKey: 'sessions.title',
+    public: false
   },
   {
     name: 'schedule',
     icon: ScheduleIcon,
     to: { name: ROUTE_SCHEDULE },
-    titleKey: 'schedule.title'
+    titleKey: 'schedule.title',
+    public: false
   },
   {
     name: 'coffeechat',
     icon: CoffeeChatIcon,
     to: { name: ROUTE_COFFEE_CHAT },
-    titleKey: 'coffeechat.title'
+    titleKey: 'coffeechat.title',
+    public: false
   },
   {
     name: 'helpdesk',
     icon: HelpDeskIcon,
     to: { name: ROUTE_HELP },
-    titleKey: 'help.title'
+    titleKey: 'help.title',
+    public: false
   }
 ]
+
+const alwasyAllowedTabs = new Set(['atrium'])
+const preScheduleTabs = new Set(['atrium', 'helpdesk', 'sessions'])
+const liveScheduleTabs = new Set([
+  'atrium',
+  'helpdesk',
+  'schedule',
+  'coffeechat'
+])
+
+// const authedTabs = new Set(['atrium', ''])
+const publicTabs = new Set(['atrium'])
 
 export default {
   components: { AppFooter, LanguageControl },
@@ -195,6 +214,14 @@ export default {
     },
     isTranslator() {
       return this.user?.user_roles.includes('translator')
+    },
+    currentNav() {
+      const filterOut = new Set()
+
+      if (this.scheduleLive) filterOut.add('sessions')
+      else filterOut.add('schedule')
+
+      return nav.filter(item => !filterOut.has(item.name))
     }
   },
   methods: {
@@ -203,19 +230,22 @@ export default {
       this.$refs.menuButton.classList.toggle('is-active', this.showingMenu)
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
     },
-    isDisabled(tabName) {
-      if (tabName === 'helpdesk') {
-        return !(this.hasData && this.settings.enableHelpdesk)
-      }
+    tabIsActive(tabName) {
+      // If not loaded from the api yet, only show specific tabs
+      if (!this.hasData) return alwasyAllowedTabs.has(tabName)
 
-      const alwasyAllowed = new Set(['atrium', 'helpdesk'])
-      const preSchedule = new Set(['atrium', 'helpdesk', 'sessions'])
+      // The helpdesk is tied to its own setting
+      if (tabName === 'helpdesk') return this.settings.enableHelpdesk
 
-      if (!this.user) return !alwasyAllowed.has(tabName)
-
-      if (!this.scheduleLive) return !preSchedule.has(tabName)
-
-      return false
+      // Use a tab set based on whether the schedule is live or not
+      const activeSet = this.scheduleLive ? liveScheduleTabs : preScheduleTabs
+      return activeSet.has(tabName)
+    },
+    tabIsAllowed(tabName) {
+      return this.user || publicTabs.has(tabName)
+    },
+    tabIsDisabled(tabName) {
+      return !this.tabIsActive(tabName) || !this.tabIsAllowed(tabName)
     }
   }
 }
