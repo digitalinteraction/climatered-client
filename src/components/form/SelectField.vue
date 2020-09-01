@@ -3,7 +3,12 @@
     <label class="label" v-t="labelKey" :for="name" />
     <div class="control">
       <div class="select" :class="selectClass">
-        <select :value="value" @input="onInput" :id="name" :disabled="disabled">
+        <select
+          :value="value"
+          @change="onInput"
+          :id="name"
+          :disabled="disabled"
+        >
           <option disabled selected value="">{{
             $t('general.pleaseSelect')
           }}</option>

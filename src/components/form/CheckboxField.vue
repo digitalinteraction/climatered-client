@@ -6,7 +6,7 @@
         type="checkbox"
         class="checkbox"
         :value="value"
-        @input="onInput"
+        @change="onInput"
       />
       {{ $t(textKey) }}
     </label>
