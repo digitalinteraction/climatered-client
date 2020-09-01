@@ -46,8 +46,8 @@
             >
               {{
                 pastSessionsVisible
-                  ? 'Hide past sessions'
-                  : 'Show past sessions'
+                  ? $t('schedule.hidePastSessions')
+                  : $t('schedule.showPastSessions')
               }}
             </button>
 

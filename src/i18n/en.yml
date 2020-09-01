@@ -86,59 +86,6 @@ sessions:
     panel: Panels
     sessions: Sessions
 
-schedule:
-  title: Schedule
-  description: Browse the available sessions over the two days. Here you can plan your experience by adding reminders to your calendar.
-  close: Close
-  past: Past
-  now: Now
-  present: Present
-  future: Future
-  addToCalendar: Add to Calendar
-  showAll: Show all
-  hideAll: Hide all
-  dates:
-    ninth: 9 September
-    tenth: 10 September
-  search: Search
-  redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
-  filters:
-    all: All
-    showFilters: Show Filters
-    clearFilters: Clear Filters
-    date: Date
-    tracks:
-      track: Track
-      act: Act
-      influence: Influence
-      empower: Empower
-      transform: Transform
-    interactivity:
-      interactivity: Interactivity
-      interactive: Interactive
-      nonInteractive: Non-interactive
-    platform:
-      platform: Platform
-      zoom: Zoom
-    device:
-      device: Device
-      desktopOnly: Desktop only
-      mobileOnly: Mobile only
-    recorded:
-      recorded: Recorded
-      willBeRecorded: Will be recorded
-      notRecorded: Not recorded
-  attributes:
-    sessionAttributes: Session attributes
-  actions:
-    viewSession: View session
-    joinSession: Join session
-    previewSession: Preview session
-  workshops:
-    workshops: Workshops
-    title: Interactive workshops
-    description: Participate in one of the following interactive workshops.
-
 coffeechat:
   title: Coffee chat
 
@@ -171,7 +118,7 @@ data:
     plenary: Keynote
     speaker: Speaker
     fishbowl: Fishbowl
-  theme:
+  track:
     act: Act
     empower: Empower
     influence: Influence
@@ -250,3 +197,54 @@ session:
   seeMore: See more
   seeLess: See less
   noInterpret: Your browser doesn't support interpretation, sorry!
+
+schedule:
+  title: Schedule
+  description: Browse the available sessions and plan your experience by adding reminders to your calendar.
+  close: Close
+  past: Past
+  now: Now
+  present: Present
+  future: Future
+  addToCalendar: Add to Calendar
+  showAll: Show all
+  hideAll: Hide all
+  hidePastSessions: Hide past sessions
+  showPastSessions: Show past sessions
+  dates:
+    ninth: 9 September
+    tenth: 10 September
+  search: Search
+  showingResultsFor: 'Showing results for "{0}"'
+  redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
+  filters:
+    all: All
+    showFilters: Show Filters
+    clearFilters: Clear Filters
+    date: Date
+    track: Track
+    interactivity:
+      interactivity: Interactivity
+      interactive: Interactive
+      nonInteractive: Non-interactive
+    platform:
+      platform: Platform
+      zoom: Zoom
+    device:
+      device: Device
+      desktopOnly: Desktop only
+      mobileOnly: Mobile only
+    recorded:
+      recorded: Recorded
+      willBeRecorded: Will be recorded
+      notRecorded: Not recorded
+  attributes:
+    sessionAttributes: Session attributes
+  actions:
+    viewSession: View session
+    joinSession: Join session
+    previewSession: Preview session
+  workshops:
+    workshops: Workshops
+    title: Interactive workshops
+    description: Participate in one of the following interactive workshops.

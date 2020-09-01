@@ -99,7 +99,7 @@
           <div class="field has-addons">
             <p class="control">
               <a class="button is-small is-static">
-                {{ $t(`schedule.filters.tracks.track`) }}
+                {{ $t(`schedule.filters.track`) }}
               </a>
             </p>
             <div class="control">
@@ -108,17 +108,15 @@
                   <option value="All" selected>{{
                     $t(`schedule.filters.all`)
                   }}</option>
-                  <option value="act">{{
-                    $t(`schedule.filters.tracks.act`)
-                  }}</option>
+                  <option value="act">{{ $t(`data.track.act`) }}</option>
                   <option value="influence">{{
-                    $t(`schedule.filters.tracks.influence`)
+                    $t(`data.track.influence`)
                   }}</option>
                   <option value="empower">{{
-                    $t(`schedule.filters.tracks.empower`)
+                    $t(`data.track.empower`)
                   }}</option>
                   <option value="transform">{{
-                    $t(`schedule.filters.tracks.transform`)
+                    $t(`data.track.transform`)
                   }}</option>
                 </select>
               </div>
