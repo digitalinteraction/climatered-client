@@ -79,9 +79,6 @@ sessions:
     panel: Tables rondes
     sessions: Séances
 
-schedule:
-  title: Programme
-
 coffeechat:
   title: Causerie Café
 
@@ -126,3 +123,57 @@ cookies:
     Nous utilisons les cookies nécessaires au bon fonctionnement du site.
     Nous aimerions pouvoir les analyser afin de voir comment les gens vivent le sommet Climate:RED et ainsi nous assurer que nous pouvons améliorer les futures conférences et sommets virtuels.
     Vous pouvez modifier vos préférences en cliquant sur {0} dans le pied de page du site.
+
+schedule:
+  title: ''
+  description: ''
+  close: 'Fermer'
+  past: 'Précédemment'
+  now: 'Maintenant'
+  present: ''
+  future: 'À venir'
+  addToCalendar: 'Ajouter au calendrier'
+  showAll: ''
+  hideAll: ''
+  hidePastSessions: ''
+  showPastSessions: 'Montrer les sessions passées'
+  dates:
+    ninth: ''
+    tenth: ''
+  dayOne: Jour 1
+  dayTwo: Jour 2
+  search: 'Recherche'
+  showingResultsFor: 'Montrer les résultats pour "{0}"'
+  redCrossRedCrescentMembersOnly: ''
+  filters:
+    all: ''
+    showFilters: 'Montrer les filtres'
+    clearFilters: 'Cacher les filtres'
+    date: 'Date'
+    track: Track
+    interactivity:
+      interactivity: ''
+      interactive: ''
+      nonInteractive: ''
+    platform:
+      platform: ''
+      zoom: ''
+    device:
+      device: ''
+      desktopOnly: ''
+      mobileOnly: ''
+    recorded:
+      recorded: ''
+      willBeRecorded: ''
+      notRecorded: ''
+  attributes:
+    sessionAttributes: ''
+  actions:
+    viewSession: 'Voir la session'
+    joinSession: 'Joindre la session'
+    previewSession: 'Prévisualiser la session'
+  workshops:
+    workshop: ''
+    workshops: ''
+    title: ''
+    description: ''

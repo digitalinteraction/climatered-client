@@ -420,6 +420,7 @@ $tri-width: $tabbar-width / 2;
 }
 .app-tabbar {
   background: #252525;
+  z-index: 2;
 }
 
 @include touch {

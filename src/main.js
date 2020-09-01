@@ -10,10 +10,23 @@ import Sockets from './plugins/sockets'
 import Content from './plugins/content'
 import Analytics from './plugins/analytics'
 
+require('./plugins/icons')
+
 Vue.config.productionTip = false
 
 Vue.filter('localeDate', v => new Date(v).toLocaleDateString())
+Vue.filter('localeDateShort', v =>
+  new Date(v).toLocaleDateString([], {
+    // weekday: 'long',
+    // year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+)
 Vue.filter('localeTime', v => new Date(v).toLocaleTimeString())
+Vue.filter('localeTimeShort', v =>
+  new Date(v).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+)
 Vue.filter('localeDateTime', v => {
   const d = new Date(v)
   return d.toLocaleTimeString() + ' ' + d.toLocaleDateString()
