@@ -128,7 +128,7 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-end;
-  justify-content: end;
+  justify-content: flex-end;
 
   min-height: auto;
   padding: 0;
