@@ -353,25 +353,17 @@ export default {
         &:before {
           content: '';
           background-color: white;
-          border-start-end-radius: 12px;
-          border-end-end-radius: 12px;
+          border-radius: 12px;
           box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.03);
           pointer-events: none;
           width: calc(960px + 260px + 20px);
-
+          z-index: -1;
           // Positioning
           position: absolute;
           top: 0;
-          left: 0;
+          left: -12px;
           right: auto;
           bottom: 0;
-        }
-
-        &:dir(rtl) {
-          &:before {
-            left: auto;
-            right: 0;
-          }
         }
       }
 
@@ -414,5 +406,9 @@ export default {
       width: 100%;
     }
   }
+}
+*[dir='rtl'] .present:before {
+  left: auto !important;
+  right: -12px !important;
 }
 </style>
