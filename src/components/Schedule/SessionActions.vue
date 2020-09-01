@@ -82,8 +82,7 @@ export default {
         'is-fullwidth',
         'is-small',
         {
-          'is-success': this.isPresent,
-          'is-light': this.isPast || this.isFuture
+          'is-success': this.isPresent
         }
       ]
     },
