@@ -159,7 +159,7 @@ export default {
   mounted() {
     this.$clock.bind(this, () => {
       if (this.isDev && this.$route.query.time) {
-        this.currentTime = this.$route.query.time
+        this.currentTime = parseInt(this.$route.query.time)
       } else {
         this.currentTime = Date.now()
       }
