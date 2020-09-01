@@ -42,6 +42,10 @@ $navbar-item-active-color: $primary;
 
 $footer-padding: 1.5rem 1.5rem 2.5rem;
 
+$z-cookies: 50;
+$z-appwrapper-tabbar: 20;
+$z-sessions-tabs: 10;
+
 @import '~bulma/sass/utilities/_all.sass';
 
 @mixin insetInlineStart($value) {

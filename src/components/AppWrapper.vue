@@ -394,6 +394,7 @@ $tri-width: $tabbar-width / 2;
     top: $navbar-height;
     bottom: 0;
     width: $tabbar-width;
+    z-index: $z-appwrapper-tabbar;
 
     @include insetInlineStart(0);
 
