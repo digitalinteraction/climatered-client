@@ -9,7 +9,7 @@
           @change="updateSearchQuery"
           class="input is-small"
           type="text"
-          placeholder="Search"
+          :placeholder="`${$t(`schedule.search`)}`"
         />
       </div>
 
@@ -47,7 +47,9 @@
             <div class="control">
               <div class="select is-small">
                 <select v-model="filters.date">
-                  <option value="All" selected>All</option>
+                  <option value="All" selected>{{
+                    $t(`schedule.filters.all`)
+                  }}</option>
                   <option value="9 September 2020">
                     {{ $t(`schedule.dates.ninth`) }}
                   </option>
@@ -69,7 +71,9 @@
             <div class="control">
               <div class="select is-small">
                 <select v-model="filters.type">
-                  <option selected>All</option>
+                  <option value="All" selected>{{
+                    $t(`schedule.filters.all`)
+                  }}</option>
                   <option value="ignite-talk">{{
                     $t(`data.type.ignite-talk`)
                   }}</option>
@@ -95,17 +99,27 @@
           <div class="field has-addons">
             <p class="control">
               <a class="button is-small is-static">
-                Track
+                {{ $t(`schedule.filters.tracks.track`) }}
               </a>
             </p>
             <div class="control">
               <div class="select is-small">
                 <select v-model="filters.track">
-                  <option selected>All</option>
-                  <option value="act">Act</option>
-                  <option value="influence">Influence</option>
-                  <option value="empower">Empower</option>
-                  <option value="transform">Transform</option>
+                  <option value="All" selected>{{
+                    $t(`schedule.filters.all`)
+                  }}</option>
+                  <option value="act">{{
+                    $t(`schedule.filters.tracks.act`)
+                  }}</option>
+                  <option value="influence">{{
+                    $t(`schedule.filters.tracks.influence`)
+                  }}</option>
+                  <option value="empower">{{
+                    $t(`schedule.filters.tracks.empower`)
+                  }}</option>
+                  <option value="transform">{{
+                    $t(`schedule.filters.tracks.transform`)
+                  }}</option>
                 </select>
               </div>
             </div>
@@ -115,15 +129,21 @@
           <div class="field has-addons">
             <p class="control">
               <a class="button is-small is-static">
-                Interactivity
+                {{ $t(`schedule.filters.interactivity.interactivity`) }}
               </a>
             </p>
             <div class="control">
               <div class="select is-small">
                 <select v-model="filters.interactivity">
-                  <option value="All" selected>All</option>
-                  <option value="interactive">Interactive</option>
-                  <option value="view">Non-interactive</option>
+                  <option value="All" selected>{{
+                    $t(`schedule.filters.all`)
+                  }}</option>
+                  <option value="interactive">{{
+                    $t(`schedule.filters.interactivity.interactive`)
+                  }}</option>
+                  <option value="view">{{
+                    $t(`schedule.filters.interactivity.nonInteractive`)
+                  }}</option>
                 </select>
               </div>
             </div>
@@ -133,13 +153,15 @@
           <div class="field has-addons">
             <p class="control">
               <a class="button is-small is-static">
-                Platform
+                {{ $t(`schedule.filters.platform.platform`) }}
               </a>
             </p>
             <div class="control">
               <div class="select is-small">
                 <select v-model="filters.platform">
-                  <option selected>All</option>
+                  <option value="All" selected>{{
+                    $t(`schedule.filters.all`)
+                  }}</option>
                   <!-- TODO: Add platforms -->
                 </select>
               </div>
@@ -150,15 +172,21 @@
           <div class="field has-addons">
             <p class="control">
               <a class="button is-small is-static">
-                Device
+                {{ $t(`schedule.filters.device.device`) }}
               </a>
             </p>
             <div class="control">
               <div class="select is-small">
                 <select v-model="filters.device">
-                  <option selected>All</option>
-                  <option value="desktop">Desktop only</option>
-                  <option value="mobile">Mobile only</option>
+                  <option value="All" selected>{{
+                    $t(`schedule.filters.all`)
+                  }}</option>
+                  <option value="desktop">{{
+                    $t(`schedule.filters.device.desktopOnly`)
+                  }}</option>
+                  <option value="mobile">{{
+                    $t(`schedule.filters.device.mobileOnly`)
+                  }}</option>
                 </select>
               </div>
             </div>
@@ -168,15 +196,21 @@
           <div class="field has-addons">
             <p class="control">
               <a class="button is-small is-static">
-                Recorded
+                {{ $t(`schedule.filters.recorded.recorded`) }}
               </a>
             </p>
             <div class="control">
               <div class="select is-small">
                 <select v-model="filters.recorded">
-                  <option selected>All</option>
-                  <option value="recorded">Will be recorded</option>
-                  <option value="not-recorded">Not recorded</option>
+                  <option value="All" selected>{{
+                    $t(`schedule.filters.all`)
+                  }}</option>
+                  <option value="recorded">{{
+                    $t(`schedule.filters.recorded.willBeRecorded`)
+                  }}</option>
+                  <option value="not-recorded">{{
+                    $t(`schedule.filters.recorded.notRecorded`)
+                  }}</option>
                 </select>
               </div>
             </div>

@@ -100,6 +100,7 @@ schedule:
     tenth: 10 September
   search: Search
   filters:
+    all: All
     showFilters: Show Filters
     clearFilters: Clear Filters
     date: Date
@@ -113,6 +114,17 @@ schedule:
       interactivity: Interactivity
       interactive: Interactive
       nonInteractive: Non-interactive
+    platform:
+      platform: Platform
+      zoom: Zoom
+    device:
+      device: Device
+      desktopOnly: Desktop only
+      mobileOnly: Mobile only
+    recorded:
+      recorded: Recorded
+      willBeRecorded: Will be recorded
+      notRecorded: Not recorded
   attributes:
     sessionAttributes: Session attributes
   actions:
