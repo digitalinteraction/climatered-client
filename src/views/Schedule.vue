@@ -356,14 +356,15 @@ export default {
           border-radius: 12px;
           box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.03);
           pointer-events: none;
-          width: calc(960px + 260px + 20px);
+          width: calc(960px + 240px);
           z-index: -1;
+
           // Positioning
           position: absolute;
-          top: 0;
+          top: 0px;
           left: -12px;
           right: auto;
-          bottom: 0;
+          bottom: 0px;
         }
       }
 
@@ -387,7 +388,7 @@ export default {
   background-color: white;
   border-radius: 8px;
   flex-grow: 1;
-  margin: 30px 10px 20px 1.5rem;
+  margin-top: 20px;
   max-width: 960px;
 
   @include mobile {

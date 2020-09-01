@@ -99,6 +99,8 @@ export default {
 
 <style lang="scss" scoped>
 .workshops {
+  padding-bottom: 20px;
+
   .workshops-header {
     padding: 20px 20px 0 20px;
 
@@ -143,7 +145,9 @@ export default {
     background-color: $cc-lightestgrey;
     border-radius: 8px;
     margin: 20px;
+    margin-bottom: 0px;
     position: relative;
+    display: block;
     &.expanded {
       .workshops-info-wrapper {
         border-bottom: 1px solid $border;
