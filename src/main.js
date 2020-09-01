@@ -10,7 +10,7 @@ import Sockets from './plugins/sockets'
 import Content from './plugins/content'
 import Analytics from './plugins/analytics'
 
-require('./plugins/icons')
+import './plugins/icons'
 
 Vue.config.productionTip = false
 
