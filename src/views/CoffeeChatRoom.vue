@@ -7,7 +7,7 @@
         </div> -->
         <div
           class="grid-item"
-          v-for="(ms, user) in mediaStreams"
+          v-for="(ms, user) in remoteStreams"
           :key="`media-${user}`"
         >
           <WebRTCVideo :media-stream="ms" />
