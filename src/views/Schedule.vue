@@ -1,7 +1,9 @@
 <template>
   <AppWrapper>
     <!-- Modal for displaying detailed information about session attributes -->
-    <SessionAttributesModal :session.sync="modalSession" />
+    <!-- TODO: Add further details to modal and reenable click action -->
+    <!-- <SessionAttributesModal :session.sync="modalSession" /> -->
+
     <div class="schedule">
       <!-- Page header -->
       <SchedulePageHeader class="is-light">
@@ -115,9 +117,9 @@ import ScheduleFilters from '@/components/Schedule/ScheduleFilters.vue'
 import SchedulePageHeader from '@/components/Schedule/SchedulePageHeader.vue'
 import ScheduleSectionHeader from '@/components/Schedule/ScheduleSectionHeader.vue'
 import SessionTile from '@/components/Schedule/SessionTile.vue'
-import SessionAttributesModal from '@/components/Schedule/SessionAttributesModal.vue'
 import ScheduleSlotTime from '@/components/Schedule/ScheduleSlotTime.vue'
 import ScheduleWorkshops from '@/components/Schedule/ScheduleWorkshops.vue'
+// import SessionAttributesModal from '@/components/Schedule/SessionAttributesModal.vue'
 
 const workshopTypes = [
   'games',
@@ -150,9 +152,9 @@ export default {
     SchedulePageHeader,
     ScheduleSectionHeader,
     SessionTile,
-    SessionAttributesModal,
     ScheduleSlotTime,
     ScheduleWorkshops
+    // SessionAttributesModal
   },
   mounted() {
     this.$clock.bind(this, () => {
