@@ -57,7 +57,7 @@
 
 <script>
 // Components
-import SessionTile from '@/components/Schedule/SessionTile.vue'
+import SessionTile from '@/components/schedule/SessionTile.vue'
 
 export default {
   name: 'ScheduleWorkshops',

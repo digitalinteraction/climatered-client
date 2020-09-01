@@ -37,10 +37,10 @@
 import { ROUTE_EVENT } from '../../const'
 
 // Components
-import SessionTileType from '@/components/Schedule/SessionTileType.vue'
-import SessionAttributes from '@/components/Schedule/SessionAttributes.vue'
-import SessionSpeakers from '@/components/Schedule/SessionSpeakers.vue'
-import SessionActions from '@/components/Schedule/SessionActions.vue'
+import SessionTileType from '@/components/schedule/SessionTileType.vue'
+import SessionAttributes from '@/components/schedule/SessionAttributes.vue'
+import SessionSpeakers from '@/components/schedule/SessionSpeakers.vue'
+import SessionActions from '@/components/schedule/SessionActions.vue'
 
 export default {
   name: 'SessionTile',
