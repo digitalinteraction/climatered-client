@@ -29,7 +29,7 @@ export default class WebRTC {
     this._listenForIceCandidates(peerConnection.pc, iceCb)
     this._listenForRemoteStream(peerConnection.pc, remoteStreamCb)
     this._setupDataChannel(forUserId, onDataReceivedCb)
-    this._listenForPeerConnectionClosed(forUserId, connectionClosedCb)
+    this._listenForPeerConnectionClosed(peerConnection.pc, connectionClosedCb)
     const offer = await peerConnection.pc.createOffer()
     peerConnection.pc.setLocalDescription(offer)
     return offer
