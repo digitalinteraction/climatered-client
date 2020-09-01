@@ -147,7 +147,7 @@ schedule:
     tenth: 10 septembre
   search: Búsqueda
   showingResultsFor: 'Resultados para "{0}"'
-  redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
+  redCrossRedCrescentMembersOnly: Solo miembros de la Cruz Roja y de la Media Luna Roja
   filters:
     all: Todos
     showFilters: Mostrar filtros
