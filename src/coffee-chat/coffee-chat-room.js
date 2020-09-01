@@ -11,6 +11,9 @@ export default class CoffeeChat {
   acknowledgedUsers
   secondAcknowledgeUsers
 
+  iceSent
+  iceReceived
+
   constructor(socket, mediaStream, userId, mediaStreamTrackCb, userStateCb) {
     this.socket = socket
     this.mediaStream = mediaStream
@@ -20,6 +23,9 @@ export default class CoffeeChat {
     this.userId = userId
     this.acknowledgedUsers = []
     this.secondAcknowledgeUsers = []
+
+    this.iceSent = 0
+    this.iceReceived = 0
   }
 
   destroy() {
@@ -104,7 +110,8 @@ export default class CoffeeChat {
       )
     }
     this.socket.bindEvent(this, `ice-${toUser}-${this.userId}`, ice => {
-      console.log('Recived remote ice:', ice)
+      this.iceReceived++
+      console.log('Received ice:', this.iceReceived, ice)
       this.webRTC.addIceCandidate(toUser, ice)
     })
   }
@@ -130,6 +137,8 @@ export default class CoffeeChat {
   }
 
   _iceCandidateReceived(toUser, ice) {
+    this.iceSent++
+    console.log('Sending ice:', this.iceSent, ice.candidate)
     this.socket.emit(
       'send-ice',
       this.currentRoom,
