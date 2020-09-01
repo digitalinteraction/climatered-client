@@ -130,10 +130,18 @@ export default {
     &:not(:first-child) {
       margin-top: 10px;
     }
+    @include mobile {
+      flex-grow: 1;
+      flex-basis: 100%;
+      margin-inline-start: 0;
+    }
   }
 
   .flex-spacer {
     flex-grow: 1;
+    @include mobile {
+      flex-grow: 0;
+    }
   }
 }
 .meta-section {
