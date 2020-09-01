@@ -48,12 +48,7 @@ export default {
       this.localMediaStream,
       this.user.iat,
       (fromUser, remoteTrack) => {
-        let remoteStream
-        if (!this.remoteStreams[fromUser]) {
-          remoteStream = new MediaStream()
-        } else {
-          remoteStream = this.remoteStreams[fromUser]
-        }
+        const remoteStream = new MediaStream()
         remoteStream.addTrack(remoteTrack, remoteStream)
         this.$set(this.remoteStreams, fromUser, remoteStream)
       },
