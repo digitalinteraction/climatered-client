@@ -21,13 +21,15 @@ export default class WebRTC {
     forUserId,
     localStream,
     iceCb,
-    remoteStreamCb
-    // onUserStateChangeCb
+    remoteStreamCb,
+    onDataReceivedCb,
+    connectionClosedCb
   ) {
     const peerConnection = this._create(forUserId, localStream)
     this._listenForIceCandidates(peerConnection.pc, iceCb)
     this._listenForAudioStream(peerConnection.pc, remoteStreamCb)
-    // this._setupUserStateChannel(forUserId, onUserStateChangeCb)
+    this._setupDataChannel(forUserId, onDataReceivedCb)
+    this._listenForPeerConnectionClosed(forUserId, connectionClosedCb)
     const offer = await peerConnection.pc.createOffer()
     peerConnection.pc.setLocalDescription(offer)
     return offer
@@ -39,21 +41,20 @@ export default class WebRTC {
     localStream,
     iceCb,
     remoteStreamCb,
-    onUserStateChangeCb
+    onDataReceivedCb,
+    connectionClosedCb
   ) {
     if (this.peerConnections[forUserId]) {
       this.close(forUserId)
-      console.log('Closed connection for new one: ', forUserId)
     }
     const peerConnection = this._create(forUserId, localStream)
     this._listenForIceCandidates(peerConnection.pc, iceCb)
-    this._listenForAudioStream(peerConnection.pc, remoteStreamCb)
-    // this._setupUserStateChannel(forUserId, onUserStateChangeCb)
+    this._listenForRemoteStream(peerConnection.pc, remoteStreamCb)
+    this._listenForPeerConnectionClosed(peerConnection.pc, connectionClosedCb)
     peerConnection.pc.addEventListener('datachannel', ev => {
       peerConnection.dc = ev.channel
-      // eslint-disable-next-line no-param-reassign
       ev.channel.onmessage = msg => {
-        onUserStateChangeCb(msg.data)
+        onDataReceivedCb(msg.data)
       }
     })
     await peerConnection.pc.setRemoteDescription(offer)
@@ -71,15 +72,14 @@ export default class WebRTC {
   }
 
   addIceCandidate(forUserId, candidate) {
-    this.peerConnections[forUserId].pc.addIceCandidate(candidate.candidate)
+    this.peerConnections[forUserId].pc.addIceCandidate(candidate)
   }
 
-  sendUserStateChange(forUserId, msg) {
+  sendMessageToPeer(forUserId, msg) {
     if (
       this.peerConnections[forUserId]?.dc &&
       this.peerConnections[forUserId].dc?.readyState === 'open'
     ) {
-      console.log('Sending MuteState:', msg)
       this.peerConnections[forUserId].dc?.send(msg)
     }
   }
@@ -94,7 +94,6 @@ export default class WebRTC {
 
   close(userId) {
     if (!this.peerConnections[userId]) return
-    console.log('Closing connection to ', userId)
     this.peerConnections[userId].dc?.close()
     this.peerConnections[userId].pc.close()
     delete this.peerConnections[userId]
@@ -116,20 +115,27 @@ export default class WebRTC {
     })
   }
 
-  /* eslint-disable-next-line class-methods-use-this */
-  _listenForAudioStream(peerConnection, cb) {
+  _listenForRemoteStream(peerConnection, cb) {
     peerConnection.addEventListener('track', ev => {
-      console.log('TRACK EVENT', ev)
-      // cb(ev)
-      // cb(ev.track)
-      cb(ev.streams[0])
+      cb(ev.track)
+    })
+  }
+
+  _listenForPeerConnectionClosed(peerConnection, cb) {
+    peerConnection.addEventListener('connectionstatechange', () => {
+      switch (peerConnection.connectionState) {
+        case 'disconnected':
+        case 'failed':
+        case 'closed':
+          cb()
+          break
+      }
     })
   }
 
   _create(forUserId, media) {
     if (this.peerConnections[forUserId]) {
       this.peerConnections[forUserId].pc.close()
-      console.log('Closing connection to old user: ', forUserId)
     }
     this.peerConnections[forUserId] = {
       pc: new RTCPeerConnection(configuration)
@@ -140,25 +146,13 @@ export default class WebRTC {
     return this.peerConnections[forUserId]
   }
 
-  _setupUserStateChannel(forUserId, onUserStateChangeCb) {
+  _setupDataChannel(forUserId, onDataReceiveCb) {
     this.peerConnections[forUserId].dc = this.peerConnections[
       forUserId
-    ].pc.createDataChannel('userState')
-
-    this.peerConnections[forUserId].dc?.addEventListener('open', () => {
-      console.log('dataChannel opened')
-    })
+    ].pc.createDataChannel('userDataChannel')
 
     this.peerConnections[forUserId].dc?.addEventListener('message', msg => {
-      onUserStateChangeCb(msg.data)
-    })
-
-    this.peerConnections[forUserId].dc?.addEventListener('error', error => {
-      console.log(error)
-    })
-
-    this.peerConnections[forUserId].dc?.addEventListener('close', error => {
-      console.log('dataChannel closed', error)
+      onDataReceiveCb(msg.data)
     })
   }
 }

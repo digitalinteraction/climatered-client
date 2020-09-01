@@ -11,9 +11,6 @@ export default class CoffeeChat {
   acknowledgedUsers
   secondAcknowledgeUsers
 
-  iceSent
-  iceReceived
-
   constructor(socket, mediaStream, userId, mediaStreamTrackCb, userStateCb) {
     this.socket = socket
     this.mediaStream = mediaStream
@@ -23,9 +20,6 @@ export default class CoffeeChat {
     this.userId = userId
     this.acknowledgedUsers = []
     this.secondAcknowledgeUsers = []
-
-    this.iceSent = 0
-    this.iceReceived = 0
   }
 
   destroy() {
@@ -66,16 +60,7 @@ export default class CoffeeChat {
     })
 
     this.socket.bindEvent(this, 'user-left', fromUser => {
-      this.webRTC.close(fromUser)
-      this.acknowledgedUsers = this.acknowledgedUsers.filter(
-        a => a !== fromUser
-      )
-      this.secondAcknowledgeUsers = this.secondAcknowledgeUsers.filter(
-        a => a !== fromUser
-      )
-      this.socket.unbindEvent(`offer-${fromUser}-${this.userId}`)
-      this.socket.unbindEvent(`answer-${fromUser}-${this.userId}`)
-      this.socket.unbindEvent(`ice-${fromUser}-${this.userId}`)
+      this._cleanUpClosedUserConnection(fromUser)
     })
 
     this.socket.emit('join-room', this.currentRoom, this.userId)
@@ -97,7 +82,8 @@ export default class CoffeeChat {
             this.mediaStream,
             ice => this._iceCandidateReceived(toUser, ice),
             rs => this._remoteStreamReceived(toUser, rs),
-            s => this._remoteUserStateChanged(toUser, s)
+            s => this._remoteUserStateChanged(toUser, s),
+            () => this._cleanUpClosedUserConnection(toUser)
           )
           this.socket.emit(
             'send-answer',
@@ -110,8 +96,6 @@ export default class CoffeeChat {
       )
     }
     this.socket.bindEvent(this, `ice-${toUser}-${this.userId}`, ice => {
-      this.iceReceived++
-      console.log('Received ice:', this.iceReceived, ice)
       this.webRTC.addIceCandidate(toUser, ice)
     })
   }
@@ -124,7 +108,8 @@ export default class CoffeeChat {
         this.mediaStream,
         ice => this._iceCandidateReceived(toUser, ice),
         rs => this._remoteStreamReceived(toUser, rs),
-        s => this._remoteUserStateChanged(toUser, s)
+        s => this._remoteUserStateChanged(toUser, s),
+        () => this._cleanUpClosedUserConnection(toUser)
       )
       this.socket.emit(
         'send-offer',
@@ -137,18 +122,25 @@ export default class CoffeeChat {
   }
 
   _iceCandidateReceived(toUser, ice) {
-    this.iceSent++
-    console.log('Sending ice:', this.iceSent, ice)
     this.socket.emit('send-ice', this.currentRoom, this.userId, toUser, ice)
   }
 
   _remoteStreamReceived(fromUser, stream) {
-    console.log('Remote stream recieved: ', fromUser, stream)
     this.mediaStreamTrackCb(fromUser, stream)
   }
 
   _remoteUserStateChanged(fromUser, state) {
-    console.log('User state changed: ', fromUser, state)
     this.userStateCb(fromUser, state)
+  }
+
+  _cleanUpClosedUserConnection(toUser) {
+    this.webRTC.close(toUser)
+    this.acknowledgedUsers = this.acknowledgedUsers.filter(a => a !== toUser)
+    this.secondAcknowledgeUsers = this.secondAcknowledgeUsers.filter(
+      a => a !== toUser
+    )
+    this.socket.unbindEvent(`offer-${toUser}-${this.userId}`)
+    this.socket.unbindEvent(`answer-${toUser}-${this.userId}`)
+    this.socket.unbindEvent(`ice-${toUser}-${this.userId}`)
   }
 }

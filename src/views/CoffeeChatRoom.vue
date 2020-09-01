@@ -3,7 +3,7 @@
     <div class="columns">
       <div
         class="column"
-        v-for="(ms, user) in mediaStreams"
+        v-for="(ms, user) in remoteStreams"
         :key="`media-${user}`"
       >
         <WebRTCVideo :media-stream="ms" />
@@ -30,9 +30,10 @@ export default {
   },
   data() {
     return {
-      mediaStreams: [],
+      remoteStreams: {},
       userState: {},
-      localMediaStream: null
+      localMediaStream: null,
+      muted: false
     }
   },
   async mounted() {
@@ -41,24 +42,18 @@ export default {
       this.$socket,
       this.localMediaStream,
       this.user.iat,
-      (fromUser, ms) => {
-        this.mediaStreams.push(ms)
-        // let mediaStream
-        // if (!this.mediaStreams[fromUser]) {
-        //   mediaStream = new MediaStream()
-        // } else {
-        //   mediaStream = this.mediaStreams[fromUser]
-        // }
-        // aggregateStream.addTrack(remoteStream.getTracks()[0]);
-        // console.log(mediaStream.getTracks())
-        // mediaStream.addTrack(mediaStream.getTracks()[0])
-        console.log('MS', ms)
-        // mediaStream.addTrack(ms.track, mediaStream)
-        // console.log('Updated media stream:', mediaStream)
-        // this.$set(this.mediaStreams, fromUser, mediaStream)
+      (fromUser, remoteTrack) => {
+        let remoteStream
+        if (!this.remoteStreams[fromUser]) {
+          remoteStream = new MediaStream()
+        } else {
+          remoteStream = this.remoteStreams[fromUser]
+        }
+        remoteStream.addTrack(remoteTrack, remoteStream)
+        this.$set(this.remoteStreams, fromUser, remoteStream)
       },
       (fromUser, s) => {
-        this.$set(this.mediaStreams, fromUser, s)
+        this.$set(this.userState, fromUser, s)
       }
     )
     const roomId = this.$route.params.room
@@ -87,6 +82,9 @@ export default {
           }
         )
       })
+    },
+    toggleMute() {
+      this.muted = !this.muted
     }
   }
 }
