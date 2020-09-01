@@ -126,3 +126,57 @@ cookies:
     نحن نستخدم ملفات تعريف الارتباط الضرورية لتشغيل الموقع بشكل صحيح
     نود استخدام التحليلات لمعرفة تجارب الناس في مؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ و لضمان قدرتنا على تحسين المؤتمرات الافتراضية ومؤتمرات القمة المستقبلية
     يمكنك تغيير تفضيلات ملفات تعريف الارتباط الخاصة بك من خلال النقر{0} في تذييل هذا الموقع
+
+
+
+schedule:
+  title: جدول المواعيد
+  description: تصفح الجلسات المتاحة وقم بوضع خطة لتجربتك عن طريق إضافة تذكير إلى التقويم الخاص بك.
+  close: إغلاق
+  past: الماضي
+  now: الآن
+  present: حالي
+  future: المستقبل
+  addToCalendar: إضافة إلى الجدول الزمني
+  showAll: إظهار الكل
+  hideAll: إخفاء الكل
+  hidePastSessions: إخفاء الجلسات القديمة
+  showPastSessions: إظهار الجلسات السابقة
+  dates:
+    ninth: 9 سبتمبر
+    tenth:  سبتمبر 10
+  search: بحث
+  showingResultsFor: '"{0}"عرض النتائج ل'
+  redCrossRedCrescentMembersOnly: أعضاء الصليب الأحمر والهلال الأحمر فقط
+  filters:
+    all: الكل
+    showFilters: اظهار الفلاتر
+    clearFilters: إخفاء الفلاتر
+    date: التاريخ
+    track: مسار
+    interactivity:
+      interactivity: التفاعل
+      interactive: التفاعلية
+      nonInteractive: غير تفاعلي
+    platform:
+      platform: المنصة
+      zoom: Zoom
+    device:
+      device: الجهاز
+      desktopOnly: عبر جهاز الحاسوب فقط
+      mobileOnly: عبر الأجهزة المحمول فقط
+    recorded:
+      recorded: التسجيل
+      willBeRecorded: التسجيل سيكون متاحاَ
+      notRecorded: غير مسجلة
+  attributes:
+    sessionAttributes: خصائص الجلسة
+  actions:
+    viewSession: مشاهدة الجلسة
+    joinSession: الانضمام إلى الجلسة
+    previewSession: معاينة الجلسة
+  workshops:
+    workshop: ورشة عمل
+    workshops: ورشات العمل
+    title: ورشات العمل التفاعلية
+    description: شارك بإحدى ورش العمل التفاعلية التالية
