@@ -11,10 +11,11 @@
           :key="`media-${user}`"
         >
           <WebRTCVideo :media-stream="ms" />
+        </div>
       </div>
-    </div>
-    <div class="localCamera" v-if="localMediaStream">
-      <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
+      <div class="localCamera" v-if="localMediaStream">
+        <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
+      </div>
     </div>
   </AppWrapper>
 </template>
