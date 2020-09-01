@@ -15,13 +15,24 @@
 
       <!-- Add to calendar button -->
       <div class="button-wrapper">
-        <button
-          v-if="isFuture"
-          @click="addSessionToCalendar(session, scheduleSlot)"
-          class="button is-modern is-purple is-fullwidth is-small"
-        >
-          <span>{{ $t('schedule.addToCalendar') }}</span>
-        </button>
+        <div class="buttons has-addons">
+          <button
+            v-if="isFuture"
+            @click="addSessionToCalendar(session, scheduleSlot)"
+            class="button is-modern is-purple is-small"
+          >
+            <span>{{ $t('schedule.addToCalendar') }}</span>
+          </button>
+          <button
+            v-if="isFuture"
+            @click="addSessionToCalendar(session, scheduleSlot)"
+            class="button is-modern is-purple is-small"
+          >
+            <span class="icon is-small">
+              <fa :icon="['fas', 'plus']" />
+            </span>
+          </button>
+        </div>
       </div>
 
       <!-- View/join/preview session button -->
@@ -126,8 +137,17 @@ export default {
   .button-wrapper {
     justify-self: end;
     margin-inline-start: 0.75em;
+    .buttons {
+      .button:first-child {
+        flex-grow: 1;
+      }
+      .button:not(:first-child) {
+        border-inline-start: 1px solid rgba($color: #000000, $alpha: 0.2);
+        margin-inline-start: 1px;
+      }
+    }
     .button {
-      padding: 0 30px;
+      padding: 0 15px;
     }
     &:not(:first-child) {
       margin-top: 10px;

@@ -13,8 +13,8 @@
       </span>
     </p>
     <p :class="['icon-and-text']" v-else>
-      <span class="icon" v-if="typeIcon" :title="localeType">
-        <component :is="typeIcon" class="session-icon" />
+      <span class="icon" :title="localeType">
+        <fa :icon="typeFaIcon" class="fa-sm fa-fw" />
       </span>
       <span class="text"> {{ localeType }}</span>
     </p>
@@ -24,17 +24,6 @@
 <script>
 // Icons
 import OfficialIcon from '@/icons/ifrc.svg'
-import GamesIcon from '@/icons/types/games.svg'
-import KeynoteIcon from '@/icons/types/keynote.svg'
-import PanelIcon from '@/icons/types/panel.svg'
-import VirtualIcon from '@/icons/types/virtual.svg'
-
-const typeIcons = {
-  'games.svg': GamesIcon,
-  'keynote.svg': KeynoteIcon,
-  'panel.svg': PanelIcon,
-  'virtual.svg': VirtualIcon
-}
 
 export default {
   name: 'SessionTileType',
@@ -51,8 +40,54 @@ export default {
     sessionType() {
       return this.$store.getters['api/type'](this.session.type)
     },
-    typeIcon() {
-      return this.sessionType && typeIcons[this.sessionType.icon]
+    typeFaIcon() {
+      switch (this.sessionType.slug) {
+        case 'closing-panel': {
+          return ['fas', 'users']
+        }
+        case 'connect': {
+          return ['fas', 'people-arrows']
+        }
+        case 'doctor-patient-clinics': {
+          return ['fas', 'briefcase-medical']
+        }
+        case 'fishbowl': {
+          return ['fas', 'fish']
+        }
+        case 'games': {
+          return ['fas', 'gamepad']
+        }
+        case 'headline-feature-panel': {
+          return ['fas', 'users']
+        }
+        case 'ignite-talk': {
+          return ['fab', 'youtube']
+        }
+        case 'opening-panel': {
+          return ['fas', 'users']
+        }
+        case 'plenary': {
+          return ['fab', 'youtube']
+        }
+        case 'propose-a-speaker': {
+          return ['fas', 'microphone']
+        }
+        case 'q-and-a': {
+          return ['fas', 'comments']
+        }
+        case 'speaker': {
+          return ['fas', 'microphone']
+        }
+        case 'virtual-tour': {
+          return ['fas', 'street-view']
+        }
+        case 'workshop': {
+          return ['fas', 'object-group']
+        }
+        default: {
+          return ['fab', 'youtube']
+        }
+      }
     },
     localeType() {
       return this.sessionType?.title[this.$i18n.locale]

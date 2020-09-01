@@ -21,7 +21,7 @@
             >
               <p class="icon-and-text">
                 <span class="icon">
-                  <GlobeIcon class="icon-size" />
+                  <fa :icon="['fas', 'globe']" class="fa-xs fa-fw" />
                 </span>
                 <span class="session-card-language is-uppercase">
                   {{ session.hostLanguage.join('/') }}
@@ -34,7 +34,7 @@
             <p class="icon-and-text">
               <span class="icon">
                 <span class="icon">
-                  <PlatformIcon class="icon-size" />
+                <fa :icon="['fas', 'tv']" class="fa-xs fa-fw" />
                 </span>
               </span>
               Info Missing
@@ -44,9 +44,7 @@
             <li class="session-attribute" v-if="session.attendeeDevices">
               <p class="icon-and-text">
                 <span class="icon">
-                  <span class="icon">
-                    <DevicesIcon class="icon-size" />
-                  </span>
+                  <fa :icon="['fas', 'desktop']" class="fa-xs fa-fw" />
                 </span>
                 {{ $t(`data.devices.${session.attendeeDevices}`) }}
               </p>
@@ -58,9 +56,7 @@
             >
               <p class="icon-and-text">
                 <span class="icon">
-                  <span class="icon">
-                    <InteractionIcon class="icon-size" />
-                  </span>
+                  <fa :icon="['fas', 'hand-paper']" class="fa-xs fa-fw" />
                 </span>
                 {{ $t(`data.interaction.${session.attendeeInteraction}`) }}
               </p>
@@ -69,9 +65,7 @@
             <li class="session-attribute" v-if="session.isRecorded">
               <p class="icon-and-text">
                 <span class="icon">
-                  <span class="icon">
-                    <RecordIcon class="icon-size" />
-                  </span>
+                  <fa :icon="['fas', 'save']" class="fa-xs fa-fw" />
                 </span>
                 {{ $t(`data.recorded.${session.isRecorded}`) }}
               </p>
@@ -104,15 +98,8 @@
 </template>
 
 <script>
-// Icons
-import GlobeIcon from '@/icons/globe.svg'
-import DevicesIcon from '@/icons/devices.svg'
-import InteractionIcon from '@/icons/interaction.svg'
-import RecordIcon from '@/icons/rec.svg'
-
 export default {
   name: 'SessionAttributesModal',
-  components: { GlobeIcon, DevicesIcon, InteractionIcon, RecordIcon },
   props: {
     session: {
       type: Object,

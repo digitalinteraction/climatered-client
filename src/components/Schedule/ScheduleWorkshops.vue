@@ -2,6 +2,7 @@
   <div v-if="sessions.length > 0" class="workshops">
     <div class="workshops-header">
       <h2 class="workshops-title">
+        <!-- <fa :icon="['fas', 'cubes']" class="fa-sm fa-fw" /> -->
         <span class="text">
           {{ $t(`schedule.workshops.title`) }}
         </span>

@@ -12,6 +12,10 @@
     "readme-toc": "md-toc -i"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
     "@zoomus/websdk": "^1.7.10",
     "axios": "^0.19.2",
     "bulma": "^0.9.0",

@@ -10,6 +10,8 @@ import Sockets from './plugins/sockets'
 import Content from './plugins/content'
 import Analytics from './plugins/analytics'
 
+require('./plugins/icons')
+
 Vue.config.productionTip = false
 
 Vue.filter('localeDate', v => new Date(v).toLocaleDateString())

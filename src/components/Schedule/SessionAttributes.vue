@@ -4,7 +4,7 @@
     <li class="session-attribute emphasise">
       <p class="icon-and-text">
         <span class="icon">
-          <GlobeIcon class="icon-size" />
+          <fa :icon="['fas', 'globe']" class="fa-xs fa-fw" />
         </span>
         <span class="session-card-language is-uppercase">
           {{ session.hostLanguage.join('/') }}
@@ -17,7 +17,7 @@
       <p class="icon-and-text">
         <span class="icon">
           <span class="icon">
-            
+            <fa :icon="['fas', 'folder']" class="fa-xs fa-fw" />
           </span>
         </span>
         {{ $t(`schedule.filters.tracks.${session.track}`) }}
@@ -29,9 +29,7 @@
     <!-- <li class="session-attribute" v-if="session.links">
             <p class="icon-and-text">
               <span class="icon">
-                <span class="icon">
-                  <PlatformIcon class="icon-size" />
-                </span>
+                <fa :icon="['fas', 'tv']" class="fa-xs fa-fw" />
               </span>
               Info Missing
             </p>
@@ -41,9 +39,7 @@
     <li class="session-attribute" v-if="session.attendeeDevices">
       <p class="icon-and-text">
         <span class="icon">
-          <span class="icon">
-            <DevicesIcon class="icon-size" />
-          </span>
+          <fa :icon="['fas', 'desktop']" class="fa-xs fa-fw" />
         </span>
         {{ $t(`data.devices.${session.attendeeDevices}`) }}
       </p>
@@ -56,9 +52,7 @@
     >
       <p class="icon-and-text">
         <span class="icon">
-          <span class="icon">
-            <InteractionIcon class="icon-size" />
-          </span>
+          <fa :icon="['fas', 'hand-paper']" class="fa-xs fa-fw" />
         </span>
         {{ $t(`data.interaction.${session.attendeeInteraction}`) }}
       </p>
@@ -68,9 +62,7 @@
     <li class="session-attribute" v-if="session.isRecorded">
       <p class="icon-and-text">
         <span class="icon">
-          <span class="icon">
-            <RecordIcon class="icon-size" />
-          </span>
+          <fa :icon="['fas', 'save']" class="fa-xs fa-fw" />
         </span>
         {{ $t(`data.recorded.${session.isRecorded}`) }}
       </p>
@@ -81,22 +73,8 @@
 </template>
 
 <script>
-// Icons
-import GlobeIcon from '@/icons/globe.svg'
-import DevicesIcon from '@/icons/devices.svg'
-import InteractionIcon from '@/icons/interaction.svg'
-import RecordIcon from '@/icons/rec.svg'
-// import PlatformIcon from '@/icons/platform.svg'
-
 export default {
   name: 'SessionAttributes',
-  components: {
-    GlobeIcon,
-    DevicesIcon,
-    InteractionIcon,
-    RecordIcon
-    // PlatformIcon
-  },
   props: {
     session: {
       type: Object,

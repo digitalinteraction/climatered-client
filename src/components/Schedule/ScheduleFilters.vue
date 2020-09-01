@@ -16,7 +16,7 @@
       <!-- Search button -->
       <div class="control">
         <a class="button is-small is-dark">
-          {{ $t(`schedule.search`) }}
+          <fa :icon="['fas', 'search']" />
         </a>
       </div>
 
