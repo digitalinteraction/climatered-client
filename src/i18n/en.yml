@@ -95,6 +95,8 @@ schedule:
   present: Present
   future: Future
   addToCalendar: Add to Calendar
+  showAll: Show all
+  hideAll: Hide all
   dates:
     ninth: 9 September
     tenth: 10 September
@@ -131,6 +133,10 @@ schedule:
     viewSession: View session
     joinSession: Join session
     previewSession: Preview session
+  workshops:
+    workshops: Workshops
+    title: Interactive workshops
+    description: Participate in one of the following interactive workshops.
 
 coffeechat:
   title: Coffee chat

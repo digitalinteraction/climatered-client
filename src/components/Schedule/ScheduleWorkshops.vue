@@ -3,21 +3,18 @@
     <div class="workshops-header">
       <h2 class="workshops-title">
         <span class="text">
-          Interactive workshops
+          {{ $t(`schedule.workshops.title`) }}
         </span>
       </h2>
       <p class="workshops-description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-        accusamus tempora exercitationem sequi repellendus magni autem maxime
-        ullam ex amet expedita obcaecati enim nesciunt, magnam quae quo
-        corporis, animi soluta?
+        {{ $t(`schedule.workshops.description`) }}
       </p>
     </div>
     <div :class="['workshops-wrapper', slotState, { expanded: isExpanded }]">
       <div class="workshops-info-wrapper">
         <h3>
           {{ sessions.length }}
-          workshops
+          {{ $t(`schedule.workshops.workshops`) }}
         </h3>
         <button
           v-if="!searchActive"
@@ -32,7 +29,9 @@
             }
           ]"
         >
-          {{ workshopsExpanded ? `Hide all` : `Show all` }}
+          {{
+            workshopsExpanded ? $t(`schedule.hideAll`) : $t(`schedule.showAll`)
+          }}
         </button>
       </div>
       <transition name="fade">
