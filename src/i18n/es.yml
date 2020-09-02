@@ -170,11 +170,11 @@ schedule:
   showingResultsFor: 'Resultados para "{0}"'
   redCrossRedCrescentMembersOnly: Solo miembros de la Cruz Roja y de la Media Luna Roja
   filters:
-    all: Todos
+    all: Todas
     showFilters: Mostrar filtros
     clearFilters: Esconder filtros
     date: Fecha
-    track: ''
+    track: Vertiente
     interactivity:
       interactivity: Interactividad
       interactive: Interactivo
