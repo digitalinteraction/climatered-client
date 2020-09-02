@@ -16,7 +16,7 @@
       <!-- Add to calendar button -->
       <div class="button-wrapper">
         <div class="buttons has-addons">
-          <a :href="calendarLink" target="_blank">
+          <a :href="calendarLink" target="_blank" @click="trackCalendar">
             <button v-if="isFuture" class="button is-modern is-purple is-small">
               <span>{{ $t('schedule.addToCalendar') }}</span>
             </button>
@@ -124,6 +124,15 @@ export default {
           return 'schedule.actions.viewSession'
         }
       }
+    }
+  },
+  methods: {
+    trackCalendar() {
+      this.$gtag.event('ical', {
+        event_category: this.session.slug,
+        event_label: 'ical downloaded',
+        value: 0
+      })
     }
   }
 }
