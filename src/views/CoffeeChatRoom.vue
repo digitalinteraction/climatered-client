@@ -130,6 +130,9 @@ export default {
         muted: this.muted,
         contact: this.contactDetails
       })
+    },
+    leave() {
+      this.$router.go(-100)
     }
   }
 }
