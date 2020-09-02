@@ -13,8 +13,33 @@
           <WebRTCVideo class="remote-video" :media-stream="ms" />
         </div>
       </div>
-      <div class="localCamera" v-if="localMediaStream">
+      <div class="local-camera" v-if="localMediaStream">
         <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
+      </div>
+      <div class="call-controls">
+        <div class="level">
+          <div class="level-item has-text-centered">
+            <button class="button" @click="toggleMute">
+              <i
+                :class="
+                  `fas ${muted ? 'fa-microphone-slash' : 'fa-microphone'}`
+                "
+              ></i>
+            </button>
+          </div>
+          <div class="level-item has-text-centered">
+            <button
+              class="button"
+              @click="shareContactDetails"
+              :disabled="!contactDetails"
+            >
+              Share Contact Details
+            </button>
+          </div>
+          <div class="level-item has-text-centered">
+            <button class="button" @click="leave">Leave</button>
+          </div>
+        </div>
       </div>
     </div>
   </AppWrapper>
@@ -38,7 +63,8 @@ export default {
       remoteStreams: {},
       userState: {},
       localMediaStream: null,
-      muted: false
+      muted: false,
+      contactDetails: null
     }
   },
   async mounted() {
@@ -64,7 +90,7 @@ export default {
     const roomId = this.$route.params.room
     this.coffeeChat.joinRoom(roomId)
   },
-  destroyed() {
+  beforeDestroy() {
     this.coffeeChat.destroy()
   },
   methods: {
@@ -91,6 +117,19 @@ export default {
     },
     toggleMute() {
       this.muted = !this.muted
+      this.sendStateToPeers()
+    },
+    shareContactDetails() {
+      this.contactDetails = {
+        email: 'test@test.com'
+      }
+      this.sendStateToPeers()
+    },
+    sendStateToPeers() {
+      this.coffeeChat.sendUserData({
+        muted: this.muted,
+        contact: this.contactDetails
+      })
     }
   }
 }
@@ -119,10 +158,16 @@ export default {
   min-width: 100% !important;
 }
 
-.localCamera {
+.local-camera {
   position: absolute;
   bottom: 50px;
   right: 50px;
   max-width: 20vw;
+}
+
+.call-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
 }
 </style>

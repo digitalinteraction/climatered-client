@@ -5,25 +5,23 @@ export default class CoffeeChat {
   mediaStream
   webRTC
   mediaStreamCb
-  userStateCb
+  userDataCb
   userId
   currentRoom
-  acknowledgedUsers
-  secondAcknowledgeUsers
+  mediationState
 
-  constructor(socket, mediaStream, userId, mediaStreamTrackCb, userStateCb) {
+  constructor(socket, mediaStream, userId, mediaStreamTrackCb, userDataCb) {
     this.socket = socket
     this.mediaStream = mediaStream
     this.webRTC = new WebRTC(userId)
     this.mediaStreamTrackCb = mediaStreamTrackCb
-    this.userStateCb = userStateCb
+    this.userDataCb = userDataCb
     this.userId = userId
-    this.acknowledgedUsers = []
-    this.secondAcknowledgeUsers = []
+    this.mediationState = {}
   }
 
   destroy() {
-    this.socket.unbindAllEvents(this)
+    this.socket.unbindOwner(this)
     this.socket.emit('leave-room', this.currentRoom, this.userId)
     this.webRTC.closeAll()
     this.currentRoom = undefined
@@ -39,20 +37,17 @@ export default class CoffeeChat {
 
     this.socket.bindEvent(this, 'user-joined', fromUser => {
       if (this.userId === fromUser) return
-      this.acknowledgedUsers.push(fromUser)
+      this.mediationState[fromUser] = 'acknowledged'
       this._setupUserListeners(fromUser)
       this.socket.emit('user-ack', this.currentRoom, this.userId, fromUser)
     })
 
     this.socket.bindEvent(this, `user-ack-${this.userId}`, fromUser => {
-      if (
-        this.acknowledgedUsers.includes(fromUser) &&
-        !this.secondAcknowledgeUsers.includes(fromUser)
-      ) {
-        this.secondAcknowledgeUsers.push(fromUser)
+      if (this.mediationState[fromUser] === 'acknowledged') {
+        this.mediationState[fromUser] = 'ready'
         this._setupUserConnection(fromUser)
-      } else {
-        this.acknowledgedUsers.push(fromUser)
+      } else if (this.mediationState[fromUser] === undefined) {
+        this.mediationState[fromUser] = 'ready'
         this._setupUserListeners(fromUser)
         this._setupUserConnection(fromUser)
         this.socket.emit('user-ack', this.currentRoom, this.userId, fromUser)
@@ -64,6 +59,10 @@ export default class CoffeeChat {
     })
 
     this.socket.emit('join-room', this.currentRoom, this.userId)
+  }
+
+  sendUserData(data) {
+    this.webRTC.sendMessageToAll(data)
   }
 
   _setupUserListeners(toUser) {
@@ -82,7 +81,7 @@ export default class CoffeeChat {
             this.mediaStream,
             ice => this._iceCandidateReceived(toUser, ice),
             rs => this._remoteStreamReceived(toUser, rs),
-            s => this._remoteUserStateChanged(toUser, s),
+            s => this._remoteUserDataReceived(toUser, s),
             () => this._cleanUpClosedUserConnection(toUser)
           )
           this.socket.emit(
@@ -108,7 +107,7 @@ export default class CoffeeChat {
         this.mediaStream,
         ice => this._iceCandidateReceived(toUser, ice),
         rs => this._remoteStreamReceived(toUser, rs),
-        s => this._remoteUserStateChanged(toUser, s),
+        s => this._remoteUserDataReceived(toUser, s),
         () => this._cleanUpClosedUserConnection(toUser)
       )
       this.socket.emit(
@@ -129,16 +128,13 @@ export default class CoffeeChat {
     this.mediaStreamTrackCb(fromUser, stream)
   }
 
-  _remoteUserStateChanged(fromUser, state) {
-    this.userStateCb(fromUser, state)
+  _remoteUserDataReceived(fromUser, state) {
+    this.userDataCb(fromUser, state)
   }
 
   _cleanUpClosedUserConnection(toUser) {
     this.webRTC.close(toUser)
-    this.acknowledgedUsers = this.acknowledgedUsers.filter(a => a !== toUser)
-    this.secondAcknowledgeUsers = this.secondAcknowledgeUsers.filter(
-      a => a !== toUser
-    )
+    delete this.mediationState[toUser]
     this.socket.unbindEvent(`offer-${toUser}-${this.userId}`)
     this.socket.unbindEvent(`answer-${toUser}-${this.userId}`)
     this.socket.unbindEvent(`ice-${toUser}-${this.userId}`)

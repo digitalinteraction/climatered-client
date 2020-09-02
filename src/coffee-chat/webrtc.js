@@ -84,6 +84,12 @@ export default class WebRTC {
     }
   }
 
+  sendMessageToAll(msg) {
+    this.getAllPeerConnectionUserIds().forEach(user => {
+      this.sendMessageToPeer(user, msg)
+    })
+  }
+
   getAllPeerConnectionUserIds() {
     return Object.keys(this.peerConnections)
   }
@@ -146,13 +152,13 @@ export default class WebRTC {
     return this.peerConnections[forUserId]
   }
 
-  _setupDataChannel(forUserId, onDataReceiveCb) {
+  _setupDataChannel(forUserId, onDataReceivedCb) {
     this.peerConnections[forUserId].dc = this.peerConnections[
       forUserId
     ].pc.createDataChannel('userDataChannel')
 
     this.peerConnections[forUserId].dc?.addEventListener('message', msg => {
-      onDataReceiveCb(msg.data)
+      onDataReceivedCb(msg.data)
     })
   }
 }
