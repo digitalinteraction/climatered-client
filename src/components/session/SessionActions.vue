@@ -135,8 +135,8 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-end;
-  justify-content: end;
   margin-top: -10px;
+  justify-content: flex-end;
 
   min-height: auto;
   padding: 0;

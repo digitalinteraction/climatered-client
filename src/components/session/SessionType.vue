@@ -109,7 +109,7 @@ h3.session-tile-type {
   // Flex
   display: flex;
   align-content: center;
-  justify-content: start;
+  justify-content: flex-start;
 
   .icon-and-text {
     display: flex;
