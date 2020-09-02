@@ -74,6 +74,10 @@
           </div>
           <div class="column is-one-third">
             <div class="session-sidebar">
+              <!-- Cover image -->
+              <section v-if="hasCoverImage">
+                <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
+              </section>
               <!-- Time and state for slot -->
               <section>
                 <h4 class="section-title">
@@ -85,10 +89,6 @@
                   :is-padded="false"
                   class="is-large"
                 />
-              </section>
-              <!-- Cover image -->
-              <section v-if="hasCoverImage">
-                <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
               </section>
               <!-- Speakers -->
               <section v-if="session.speakers && session.speakers.length > 0">
@@ -227,7 +227,10 @@ export default {
       return 'present'
     },
     hasCoverImage() {
-      return this.coverImage && this.coverImage !== '/uploads/cover-default.jpg'
+      return (
+        this.session.coverImage &&
+        this.session.coverImage !== '/uploads/cover-default.jpg'
+      )
     },
     coverImageUrl() {
       return pickCdn() + this.session.coverImage
