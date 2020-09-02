@@ -176,16 +176,6 @@ const nav = [
   }
 ]
 
-const alwasyAllowedTabs = new Set(['atrium'])
-const preScheduleTabs = new Set(['atrium', 'helpdesk', 'sessions'])
-const liveScheduleTabs = new Set([
-  'atrium',
-  'helpdesk',
-  'schedule',
-  'coffeechat'
-])
-
-// const authedTabs = new Set(['atrium', ''])
 const publicTabs = new Set(['atrium'])
 
 export default {
@@ -230,17 +220,19 @@ export default {
       this.$refs.menuButton.classList.toggle('is-active', this.showingMenu)
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
     },
+    /** Wether a tab should be shown or "coming-soon" */
     tabIsActive(tabName) {
-      // If not loaded from the api yet, only show specific tabs
-      if (!this.hasData) return alwasyAllowedTabs.has(tabName)
-
       // The helpdesk is tied to its own setting
-      if (tabName === 'helpdesk') return this.settings.enableHelpdesk
+      if (tabName === 'helpdesk') return this.settings?.enableHelpdesk
 
-      // Use a tab set based on whether the schedule is live or not
-      const activeSet = this.scheduleLive ? liveScheduleTabs : preScheduleTabs
-      return activeSet.has(tabName)
+      // The coffeechat is tied to its own setting
+      if (tabName === 'coffeechat') return this.settings?.enableCoffeechat
+
+      // If the schedule is live any other tab is enabled
+      // otherwise only public tabs are enabled
+      return this.scheduleLive || publicTabs.has(tabName)
     },
+    /** Whether the current user can access a tab */
     tabIsAllowed(tabName) {
       return this.user || publicTabs.has(tabName)
     },
