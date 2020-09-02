@@ -16,14 +16,11 @@
       <!-- Add to calendar button -->
       <div class="button-wrapper">
         <div class="buttons has-addons">
-          <button
-            v-if="isFuture"
-            @click="addSessionToCalendar(session, scheduleSlot)"
-            class="button is-modern is-purple is-small"
-          >
-            <span>{{ $t('schedule.addToCalendar') }}</span>
-          </button>
-          <!-- <button
+          <a :href="calendarLink" target="_blank">
+            <button v-if="isFuture" class="button is-modern is-purple is-small">
+              <span>{{ $t('schedule.addToCalendar') }}</span>
+            </button>
+            <!-- <button
             v-if="isFuture"
             @click="addSessionToCalendar(session, scheduleSlot)"
             class="button is-modern is-purple is-small"
@@ -32,6 +29,7 @@
               <fa :icon="['fas', 'plus']" />
             </span>
           </button> -->
+          </a>
         </div>
       </div>
 
@@ -51,6 +49,8 @@
 </template>
 
 <script>
+import { pickApi } from '@/utils'
+
 // Constants
 import { ROUTE_SESSION } from '../../const'
 
@@ -58,14 +58,10 @@ import { ROUTE_SESSION } from '../../const'
 import CalendarMixin from '@/mixins/CalendarMixin.js'
 
 // Icons
-// import CalendarIcon from '@/icons/calendar.svg'
 
 export default {
   name: 'SessionActions',
   mixins: [CalendarMixin],
-  components: {
-    // CalendarIcon
-  },
   props: {
     scheduleSlot: { type: Object, required: true },
     session: { type: Object, required: true },
@@ -84,6 +80,9 @@ export default {
     }
   },
   computed: {
+    calendarLink() {
+      return `${pickApi()}/schedule/ics/${this.session.slug}`
+    },
     onSessionPage() {
       return this.$route.name === ROUTE_SESSION
     },
