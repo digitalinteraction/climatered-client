@@ -176,7 +176,7 @@ const nav = [
   }
 ]
 
-const publicTabs = new Set(['atrium'])
+const publicTabs = new Set(['atrium', 'sessions'])
 
 export default {
   components: { AppFooter, LanguageControl },
