@@ -73,7 +73,10 @@ export default {
     isFullwidth: { type: Boolean, default: false }
   },
   filters: {
-    sessionRoute: e => ({ name: ROUTE_SESSION, params: { sessionId: e.id } })
+    sessionRoute: s => ({
+      name: ROUTE_SESSION,
+      params: { sessionSlug: s.slug }
+    })
   },
   data() {
     return {

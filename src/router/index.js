@@ -206,7 +206,7 @@ const routes = [
   // sessions
   //
   {
-    path: '/session/:sessionId',
+    path: '/session/:sessionSlug',
     name: ROUTE_SESSION,
     component: Session,
     props: true,
