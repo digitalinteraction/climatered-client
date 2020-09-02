@@ -3,18 +3,30 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import i18n from './i18n'
-import VueGtag from 'vue-gtag'
-
-import { STORAGE_ANALYTICS } from '@/const'
+import ICS from 'vue-ics'
 
 import Clock from './plugins/clock'
 import Sockets from './plugins/sockets'
 import Content from './plugins/content'
+import Analytics from './plugins/analytics'
+
+require('./plugins/icons')
 
 Vue.config.productionTip = false
 
 Vue.filter('localeDate', v => new Date(v).toLocaleDateString())
+Vue.filter('localeDateShort', v =>
+  new Date(v).toLocaleDateString([], {
+    // weekday: 'long',
+    // year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+)
 Vue.filter('localeTime', v => new Date(v).toLocaleTimeString())
+Vue.filter('localeTimeShort', v =>
+  new Date(v).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+)
 Vue.filter('localeDateTime', v => {
   const d = new Date(v)
   return d.toLocaleTimeString() + ' ' + d.toLocaleDateString()
@@ -23,24 +35,8 @@ Vue.filter('localeDateTime', v => {
 Vue.use(Clock)
 Vue.use(Sockets)
 Vue.use(Content)
-
-Vue.use(
-  VueGtag,
-  {
-    config: {
-      id: 'UA-85374573-23',
-      params: {
-        anonymize_ip: true,
-        allow_ad_personalization_signals: false,
-        allow_google_signals: false
-      }
-    },
-    enabled:
-      process.env.NODE_ENV === 'production' &&
-      localStorage[STORAGE_ANALYTICS] === 'accept'
-  },
-  router
-)
+Vue.use(Analytics)
+Vue.use(ICS)
 
 new Vue({
   router,

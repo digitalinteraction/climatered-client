@@ -17,7 +17,12 @@
 </template>
 
 <script>
-import LanguageControl from '@/components/LanguageControl.vue'
+//
+// A wrapper for utility-like pages on the site, like login or privacy
+// - configure whether to show a language control or not
+//
+
+import LanguageControl from '@/components/form/LanguageControl.vue'
 
 export default {
   components: { LanguageControl },

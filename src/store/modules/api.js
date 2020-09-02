@@ -20,7 +20,9 @@ const agent = axios.create({
 
 const getters = {
   track: state => slug => state.tracks.find(s => s.slug === slug),
-  type: state => slug => state.types.find(s => s.slug === slug)
+  type: state => slug => state.types.find(s => s.slug === slug),
+  session: state => id => state.sessions.find(s => s.id === id),
+  slot: state => id => state.slots.find(s => s.id === id)
 }
 
 const mutations = {

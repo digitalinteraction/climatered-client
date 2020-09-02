@@ -50,7 +50,7 @@
   }
 }
 
-.buttons {
+.buttons:not(.has-addons) {
   .button:not(:last-child):not(.is-fullwidth) {
     margin-right: unset;
     margin-inline-end: 0.5rem;
@@ -61,7 +61,7 @@
 // Custom tabs
 //
 .tabs.is-dark {
-  background-color: $cc-electric-blue;
+  background-color: #2c3242; // $cc-electric-blue;
   font-weight: bold;
 
   ul {
@@ -115,4 +115,62 @@ html {
 
 .content a {
   font-weight: bold;
+}
+
+.message.is-narrow {
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Clearfix
+.clearfix {
+  clear: both;
+  float: none;
+}
+
+// Custom buttons
+button.button {
+  &.is-coral {
+    background-color: $cc-coral;
+    border-color: $cc-coral;
+    color: white;
+    &:hover {
+      background-color: darken($color: $cc-coral, $amount: 2);
+    }
+  }
+  &.is-purple {
+    background-color: #6c63ff;
+    border-color: #6c63ff;
+    color: white;
+    &:hover {
+      background-color: darken($color: #6c63ff, $amount: 2);
+    }
+  }
+  &.is-light-blue {
+    background-color: $cc-light-blue;
+    border-color: $cc-light-blue;
+    color: white;
+    &:hover {
+      background-color: darken($color: $cc-light-blue, $amount: 2);
+    }
+  }
+  &.is-modern {
+    border-radius: 8px;
+    height: 3em;
+    padding-top: calc(0.75em - 1px);
+    padding-bottom: calc(0.75em - 1px);
+    .icon svg {
+      fill: white;
+    }
+  }
+}
+
+// Animations
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }

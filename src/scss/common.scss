@@ -4,8 +4,11 @@ $cc-electric-blue: #5508d3;
 $cc-green: #a9e5bb;
 $cc-light-blue: #7692ff;
 $cc-dark-blue: #091540;
-$cc-green: #7692ff;
 $cc-black: #252525;
+
+$cc-lightestgrey: #f4f4f4;
+$cc-lightergrey: #e6e6e6;
+$cc-bluegrey: #757a8a;
 
 $red: $cc-red;
 
@@ -25,7 +28,11 @@ $track-empower: $cc-light-blue;
 $track-influence: #d27fcc;
 $track-transform: #e50354;
 
+$navy: #2c3242;
+
 $greyish: #757a8a;
+
+// $section-headings-coloured: #6c63ff;
 
 $family-sans-serif: acumin-pro, Avenir, -apple-system, system-ui,
   BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
@@ -38,6 +45,10 @@ $navbar-item-hover-color: $primary;
 $navbar-item-active-color: $primary;
 
 $footer-padding: 1.5rem 1.5rem 2.5rem;
+
+$z-cookies: 50;
+$z-appwrapper-tabbar: 20;
+$z-sessions-tabs: 10;
 
 @import '~bulma/sass/utilities/_all.sass';
 

@@ -1,13 +1,11 @@
 <template>
   <div class="one-to-many">
-    <div class="columns" v-if="videoLink">
-      <div class="column is-two-thirds">
-        <h2 class="title is-4">Live video</h2>
-
+    <div v-if="videoLink">
+      <div class="bottom-panel">
         <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
 
-        <div class="audio-channel" v-if="event.enableTranslation">
-          <div class="columns">
+        <div class="audio-channel" v-if="session.enableTranslation">
+          <div class="columns" v-if="canInterpret">
             <div class="column is-narrow">
               <label class="label">Audio Channel</label>
               <ToggleSet
@@ -18,7 +16,7 @@
             </div>
             <div class="column">
               <label class="label">Info</label>
-              <p>Reciever: {{ recieverState }}</p>
+              <p>state={{ recieverState }} buffers={{ bufferSize }}</p>
               <canvas
                 class="audio-vis"
                 width="400"
@@ -27,23 +25,9 @@
               ></canvas>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="column is-one-thirds">
-        <h2 class="title is-4">Questions and Answers</h2>
-        <div v-if="slido" class="slido-wrapper embedded">
-          <div class="enable-poll" v-if="!showPoll">
-            <button class="button is-primary" @click="showPoll = true">
-              Enable poll
-            </button>
+          <div class="notification is-warning is-light is-inline-block" v-else>
+            {{ $t('session.noInterpret') }}
           </div>
-          <iframe
-            v-else
-            :src="'https://app.sli.do/event/' + slido.id"
-            height="100%"
-            width="100%"
-            style="min-height: 560px;"
-          ></iframe>
         </div>
       </div>
     </div>
@@ -51,59 +35,69 @@
 </template>
 
 <script>
+//
+// The main bit for a broadcast-type session
+//
+
 import ToggleSet from '@/components/ToggleSet.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
-import { findLink, parseSlidoLink } from '../utils.js'
-import { AudioReciever } from '../audio.js'
+import { findLink, parseSlidoLink } from '@/utils'
+import { AudioReciever } from '@/audio'
 
 export default {
   components: { ToggleSet, VideoEmbed },
   props: {
-    event: { type: Object, required: true },
-    eventSlot: { type: Object, required: true },
-    language: { type: String, required: true }
+    session: { type: Object, required: true },
+    sessionSlot: { type: Object, required: true }
   },
   data() {
     return {
       chosenChannel: 'source',
       showPoll: false,
-      recieverState: null
+      recieverState: null,
+      bufferSize: 0,
+      canInterpret: AudioReciever.isSupported()
     }
   },
   computed: {
     videoLink() {
-      return findLink(this.event.links, 'video', this.language)
+      return findLink(this.session.links, 'video', this.$i18n.locale)
     },
     slido() {
-      const link = findLink(this.event.links, 'poll', this.language)
+      const link = findLink(this.session.links, 'poll', this.$i18n.locale)
       return link && parseSlidoLink(link)
     },
     channels() {
       return ['source', 'en', 'fr', 'es', 'ar'].filter(
-        l => l !== this.event.hostLanguage
+        l => l !== this.session.hostLanguage[0]
       )
     },
     isSourceAudio() {
-      return this.language === 'source'
+      return this.$i18n.locale === 'source'
     }
   },
   mounted() {
     this.joinChannel(this.chosenChannel)
 
-    this.reciever = new AudioReciever(state => {
+    this.reciever = new AudioReciever()
+
+    this.reciever.$on('state', state => {
       this.recieverState = state
     })
 
-    this.$socket.bindEvent(this, 'channel-data', async data => {
-      this.reciever.push(data)
+    this.reciever.$on('buffer-size', bufferSize => {
+      this.bufferSize = bufferSize
+    })
 
-      this.reciever.doodle(this.$refs.canvas)
+    this.$socket.bindEvent(this, 'channel-data', async data => {
+      await this.reciever.push(data)
+
+      // this.reciever.doodle(this.$refs.canvas)
     })
   },
   destroyed() {
     this.leaveChannel(this.chosenChannel)
     this.$socket.unbindEvent(this, 'channel-data')
-    this.reciever.stop()
     this.reciever = null
   },
   methods: {
@@ -113,10 +107,10 @@ export default {
         // Unmute the iframe
         //
       } else {
-        this.$socket.emit('join-channel', this.event.id, channel)
-
         // Start the reciever
-        this.reciever.play()
+        this.reciever.setup()
+
+        this.$socket.emit('join-channel', this.session.id, channel)
       }
     },
     leaveChannel(channel) {
@@ -125,10 +119,10 @@ export default {
         // Mute the iframe
         //
       } else {
-        this.$socket.emit('leave-channel', this.event.id, channel)
+        this.$socket.emit('leave-channel', this.session.id, channel)
 
         // Stop and reset the reciever
-        this.reciever.stop()
+        this.reciever.teardown()
       }
     },
     onChannel(newChannel) {
@@ -159,36 +153,18 @@ export default {
 //   position: relative;
 // }
 
-.slido-wrapper {
-  height: 0;
-  padding-bottom: percentage(1.5 / 1);
-
-  // > iframe {
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  //   width: 100%;
-  //   height: 100%;
-  // }
-}
-
 .audio-channel {
   audio {
     width: 100%;
   }
 }
 
-.enable-poll {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
-
 .audio-vis {
   border-radius: 4px;
   overflow: hidden;
+}
+
+.bottom-panel {
+  padding-top: 3em;
 }
 </style>

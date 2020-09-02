@@ -25,9 +25,13 @@
 </template>
 
 <script>
+//
+// A popup to inform on cookie use and optionally enable analytics
+//
+
 import Vue from 'vue'
 import { STORAGE_ANALYTICS } from '@/const'
-import LanguageControl from '@/components/LanguageControl.vue'
+import LanguageControl from '@/components/form/LanguageControl.vue'
 
 export const CookieEvents = new Vue()
 
@@ -38,11 +42,6 @@ export default {
       pickedConsent: localStorage[STORAGE_ANALYTICS] !== undefined
     }
   },
-  // computed: {
-  //   localeContent() {
-  //     return content[this.$i18n.locale]
-  //   }
-  // },
   mounted() {
     CookieEvents.$on('trigger', this.reTrigger)
   },
@@ -82,7 +81,7 @@ export default {
   bottom: 0;
   top: 0;
   padding: 1rem;
-  z-index: 50;
+  z-index: $z-cookies;
 
   display: flex;
   align-items: flex-end;

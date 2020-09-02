@@ -43,6 +43,13 @@
 </template>
 
 <script>
+//
+// A session displayed as a handy card
+//
+// TODO:
+// - should be seperated out into simple and detailed cards depending on which page its on
+//
+
 import { mapState } from 'vuex'
 import OfficialIcon from '@/icons/ifrc.svg'
 import GlobeIcon from '@/icons/globe.svg'

@@ -41,7 +41,7 @@
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
-import TextField from '@/components/TextField.vue'
+import TextField from '@/components/form/TextField.vue'
 import { ROUTE_ATRIUM } from '../const'
 
 export default {

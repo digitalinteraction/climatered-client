@@ -12,5 +12,7 @@ RUN npm run build
 # Swaps to nginx and copies the compiled html ready to be serverd
 # Uses a configurable nginx which can pass envionment variables to JavaScript
 FROM robbj/configurable-nginx:1.0.1
-ENV CONFIG_KEYS API_URL,CDN_URL
+ARG BUILD_NAME
+ENV CONFIG_KEYS API_URL,CDN_URL,GA_TOKEN,BUILD_NAME
+ENV BUILD_NAME $BUILD_NAME
 COPY --from=builder /app/dist /usr/share/nginx/html

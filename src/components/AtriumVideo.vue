@@ -3,6 +3,10 @@
 </template>
 
 <script>
+//
+// The atrium video, so it can be imported from mdx
+//
+
 import VideoEmbed from '@/components/VideoEmbed.vue'
 
 export default {

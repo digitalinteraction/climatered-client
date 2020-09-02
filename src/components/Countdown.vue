@@ -1,18 +1,24 @@
 <template>
   <div class="event-countdown">
-    <h2 class="heading">Coming soon</h2>
-
-    <div class="content">
-      <p>This event hasn't started yet, come back soon!</p>
-    </div>
-
-    <div class="notification is-info is-light is-size-3 has-text-centered">
+    <div class="countdown-timer notification is-size-1 has-text-centered">
       {{ msUntilStart | friendlyTime }}
+    </div>
+    <div>
+      <!--  <button class="button is-link" @click="attendSession">
+        Attend Session
+      </button> -->
+      <button class="button is-link" @click="addCal">
+        Add to Calendar
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+//
+// A countdown to a session
+//
+
 import countdown from 'countdown'
 
 export default {
@@ -23,6 +29,26 @@ export default {
   data() {
     return {
       msUntilStart: this.timeUntilStart()
+    }
+  },
+  computed: {
+    language() {
+      return this.$i18n.locale
+    },
+    url() {
+      return 'www.google.com'
+    },
+    organizer() {
+      return this.event.hostOrganisation[this.$i18n.locale]
+    },
+    localeTitle() {
+      return this.event.title[this.$i18n.locale]
+    },
+    begin() {
+      return this.$options.filters.localeDateTime(this.eventSlot.start)
+    },
+    stop() {
+      return this.$options.filters.localeDateTime(this.eventSlot.end)
     }
   },
   filters: {
@@ -41,13 +67,28 @@ export default {
   methods: {
     timeUntilStart() {
       return new Date(this.eventSlot.start).getTime() - Date.now()
-    }
+    },
+    addCal() {
+      this.$ics.addEvent(
+        this.language,
+        this.localeTitle,
+        null,
+        null,
+        this.begin,
+        this.stop,
+        this.url,
+        this.organizer
+      )
+
+      this.$ics.download(this.localeTitle)
+    },
+    attendSession() {}
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.event-countdown {
-  //
+.countdown-timer {
+  margin-top: 0.5em;
 }
 </style>
