@@ -42,7 +42,7 @@
               /> -->
 
               <div class="session-headings">
-                <SessionTileType :schedule-slot="slot" :session="session" />
+                <SessionType :schedule-slot="slot" :session="session" />
                 <h1 class="title">{{ localeTitle }}</h1>
               </div>
 
@@ -148,10 +148,10 @@ import { ROUTE_SCHEDULE } from '@/const'
 // Components
 import ScheduleSlotTime from '@/components/schedule/ScheduleSlotTime.vue'
 
-import SessionTileType from '@/components/schedule/SessionTileType.vue'
-import SessionAttributes from '@/components/schedule/SessionAttributes.vue'
-import SessionSpeakers from '@/components/schedule/SessionSpeakers.vue'
-import SessionActions from '@/components/schedule/SessionActions.vue'
+import SessionType from '@/components/session/SessionType.vue'
+import SessionAttributes from '@/components/session/SessionAttributes.vue'
+import SessionSpeakers from '@/components/session/SessionSpeakers.vue'
+import SessionActions from '@/components/session/SessionActions.vue'
 
 import Countdown from '@/components/Countdown.vue'
 import OneToMany from '@/components/OneToMany.vue'
@@ -166,7 +166,7 @@ const sessionComponents = {
 export default {
   components: {
     ScheduleSlotTime,
-    SessionTileType,
+    SessionType,
     SessionAttributes,
     SessionSpeakers,
     SessionActions,

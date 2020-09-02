@@ -26,7 +26,7 @@
 import OfficialIcon from '@/icons/ifrc.svg'
 
 export default {
-  name: 'SessionTileType',
+  name: 'SessionType',
   components: {
     OfficialIcon
   },

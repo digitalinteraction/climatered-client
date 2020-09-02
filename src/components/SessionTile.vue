@@ -1,7 +1,7 @@
 <template>
   <div class="session-tile">
     <!-- Type -->
-    <SessionTileType :session="session" />
+    <SessionType :session="session" />
 
     <!-- Title -->
     <router-link :to="session | sessionRoute">
@@ -34,18 +34,18 @@
 
 <script>
 // Constants
-import { ROUTE_SESSION } from '../../const'
+import { ROUTE_SESSION } from '../const'
 
 // Components
-import SessionTileType from '@/components/schedule/SessionTileType.vue'
-import SessionAttributes from '@/components/schedule/SessionAttributes.vue'
-import SessionSpeakers from '@/components/schedule/SessionSpeakers.vue'
-import SessionActions from '@/components/schedule/SessionActions.vue'
+import SessionType from '@/components/session/SessionType.vue'
+import SessionAttributes from '@/components/session/SessionAttributes.vue'
+import SessionSpeakers from '@/components/session/SessionSpeakers.vue'
+import SessionActions from '@/components/session/SessionActions.vue'
 
 export default {
   name: 'SessionTile',
   components: {
-    SessionTileType,
+    SessionType,
     SessionAttributes,
     SessionSpeakers,
     SessionActions
