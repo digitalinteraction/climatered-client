@@ -124,8 +124,24 @@ cookies:
     Nous aimerions pouvoir les analyser afin de voir comment les gens vivent le sommet Climate:RED et ainsi nous assurer que nous pouvons améliorer les futures conférences et sommets virtuels.
     Vous pouvez modifier vos préférences en cliquant sur {0} dans le pied de page du site.
 
+session:
+  title:
+  speakerHeading:
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: Programme
+  actionsHeading: Actions
+  hostedByHeading: Présenté par
+  contactHost: Contacter l’hôte
+  sessionOnlyAvailableIn: Veuillez noter que cette session n’est disponible qu’en
+
 schedule:
-  title: ''
+  title: Programme
   description: ''
   close: 'Fermer'
   past: 'Précédemment'

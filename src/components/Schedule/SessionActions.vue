@@ -1,6 +1,6 @@
 <template>
   <span>
-    <div class="session-actions">
+    <div :class="['session-actions', { 'is-fullwidth': isFullwidth }]">
       <div class="flex-spacer"></div>
 
       <!-- Meta button -->
@@ -23,7 +23,7 @@
           >
             <span>{{ $t('schedule.addToCalendar') }}</span>
           </button>
-          <button
+          <!-- <button
             v-if="isFuture"
             @click="addSessionToCalendar(session, scheduleSlot)"
             class="button is-modern is-purple is-small"
@@ -31,13 +31,13 @@
             <span class="icon is-small">
               <fa :icon="['fas', 'plus']" />
             </span>
-          </button>
+          </button> -->
         </div>
       </div>
 
       <!-- View/join/preview session button -->
-      <div class="button-wrapper">
-        <router-link :to="session | eventRoute">
+      <div v-if="!onSessionPage" class="button-wrapper">
+        <router-link :to="session | sessionRoute">
           <button :class="primaryActionClasses">
             {{ $t(primaryAction) }}
           </button>
@@ -51,6 +51,9 @@
 </template>
 
 <script>
+// Constants
+import { ROUTE_SESSION } from '../../const'
+
 // Mixins
 import CalendarMixin from '@/mixins/CalendarMixin.js'
 
@@ -66,10 +69,11 @@ export default {
   props: {
     scheduleSlot: { type: Object, required: true },
     session: { type: Object, required: true },
-    sessionState: { type: String, required: true }
+    sessionState: { type: String, required: true },
+    isFullwidth: { type: Boolean, default: false }
   },
   filters: {
-    eventRoute: e => ({ name: 'Event', params: { eventId: e.id } })
+    sessionRoute: e => ({ name: ROUTE_SESSION, params: { sessionId: e.id } })
   },
   data() {
     return {
@@ -77,6 +81,9 @@ export default {
     }
   },
   computed: {
+    onSessionPage() {
+      return this.$route.name === ROUTE_SESSION
+    },
     isDev() {
       return process.env.NODE_ENV === 'development'
     },
@@ -129,10 +136,21 @@ export default {
   flex-wrap: wrap;
   align-content: flex-end;
   justify-content: end;
+  margin-top: -10px;
 
   min-height: auto;
   padding: 0;
   width: 100%;
+
+  &.is-fullwidth {
+    flex-direction: row;
+
+    .button-wrapper {
+      flex-grow: 1;
+      flex-basis: 100%;
+      margin-inline-start: 0;
+    }
+  }
 
   .button-wrapper {
     justify-self: end;

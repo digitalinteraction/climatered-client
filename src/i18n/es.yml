@@ -79,6 +79,22 @@ sessions:
     panel: Mesas redondas
     sessions: Sesiones
 
+session:
+  title:
+  speakerHeading:
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: Calendario
+  actionsHeading: Acciones
+  hostedByHeading: Presentado por
+  contactHost: Contactar el anfitrión
+  sessionOnlyAvailableIn: Favor de notar que esta sesión solo estará disponible en
+
 schedule:
   title: Calendario
 

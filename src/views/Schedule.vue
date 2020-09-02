@@ -72,6 +72,7 @@
                     <ScheduleSlotTime
                       :current-time="currentTime"
                       :schedule-slot="scheduleSlot"
+                      :is-padded="true"
                     />
                   </div>
 

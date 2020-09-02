@@ -79,6 +79,22 @@ sessions:
     panel: حلقات نقاش
     sessions: جلسات
 
+session:
+  title:
+  speakerHeading:
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: البرنامج
+  actionsHeading: الاجراءات
+  hostedByHeading: مضيف الجلسة
+  contactHost: التواصل مع مضيف الجلسة
+  sessionOnlyAvailableIn: يرجى ملاحظة أن الجلسة متاحة فقط ضمن
+
 schedule:
   title: البرنامج
 

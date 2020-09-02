@@ -4,7 +4,7 @@
     <SessionTileType :session="session" />
 
     <!-- Title -->
-    <router-link :to="session | eventRoute">
+    <router-link :to="session | sessionRoute">
       <h2 class="session-title">
         <span class="text">
           {{ localeTitle }}
@@ -21,7 +21,7 @@
     <SessionAttributes :session="session" @show-modal="$emit('show-modal')" />
 
     <!-- Speakers -->
-    <SessionSpeakers :session="session" />
+    <SessionSpeakers :session="session" :is-padded="true" />
 
     <!-- Actions -->
     <SessionActions
@@ -34,7 +34,7 @@
 
 <script>
 // Constants
-import { ROUTE_EVENT } from '../../const'
+import { ROUTE_SESSION } from '../../const'
 
 // Components
 import SessionTileType from '@/components/schedule/SessionTileType.vue'
@@ -60,12 +60,9 @@ export default {
       if (value.length < length) return value
       return `${value.substring(0, length)}...`
     },
-    eventRoute: e => ({ name: 'Event', params: { eventId: e.id } })
+    sessionRoute: e => ({ name: ROUTE_SESSION, params: { sessionId: e.id } })
   },
   computed: {
-    routeEvent() {
-      return ROUTE_EVENT
-    },
     localeTitle() {
       return this.session.title[this.$i18n.locale]
     },
