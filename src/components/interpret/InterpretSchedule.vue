@@ -70,7 +70,7 @@ export default {
     interpretRoute(session, language) {
       return {
         name: ROUTE_INTERPRET,
-        params: { sessionId: session.id, channel: language }
+        params: { sessionSlug: session.slug, channel: language }
       }
     }
   }
