@@ -9,7 +9,7 @@ export default class CoffeeChatLobby {
 
   joinLobby(languagePrefs, topicPrefs) {
     this.socket.bindEvent(this, 'room-found', room => {
-      this.sockets.unbindEvent(this, 'room-found')
+      this.socket.unbindEvent(this, 'room-found')
       this.roomFoundCb(room)
     })
     this.socket.emit('join-lobby', languagePrefs, topicPrefs)

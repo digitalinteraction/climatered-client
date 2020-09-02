@@ -191,18 +191,22 @@ export default {
           options: [
             {
               displayName: 'coffeechat.filters.languages.EN',
+              value: 'en',
               selected: true
             },
             {
               displayName: 'coffeechat.filters.languages.FR',
+              value: 'fr',
               selected: false
             },
             {
               displayName: 'coffeechat.filters.languages.ES',
+              value: 'es',
               selected: false
             },
             {
               displayName: 'coffeechat.filters.languages.AR',
+              value: 'ar',
               selected: false
             }
           ]
@@ -212,18 +216,22 @@ export default {
           options: [
             {
               displayName: 'coffeechat.filters.themes.earlyWarningEarlyAction',
+              value: 'early-warn',
               selected: false
             },
             {
               displayName: 'coffeechat.filters.themes.conflict',
+              value: 'conflict',
               selected: false
             },
             {
               displayName: 'coffeechat.filters.themes.urban',
+              value: 'urban',
               selected: false
             },
             {
               displayName: 'coffeechat.filters.themes.climateSmartDdr',
+              value: 'climate-smart',
               selected: false
             }
           ]
@@ -269,7 +277,20 @@ export default {
       return this.filters.themes.isActive
     },
     ready() {
-      this.coffeeChatLobby.joinLobby()
+      const langPrefs = this.filters.languages.options
+        .filter(l => l.selected)
+        .map(l => l.value)
+      const themePrefs = this.filters.themes.options
+        .filter(t => t.selected)
+        .map(t => t.value)
+      this.coffeeChatLobby.joinLobby(
+        langPrefs.length > 0
+          ? langPrefs
+          : this.filters.languages.options.map(l => l.value),
+        themePrefs.length > 0
+          ? themePrefs
+          : this.filters.themes.options.map(t => t.value)
+      )
     }
   }
 }
