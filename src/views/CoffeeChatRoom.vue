@@ -8,13 +8,19 @@
           :key="`media-${user}`"
         >
           <WebRTCVideo
-            class="remote-video"
+            class="remote-video remote-video-1"
             :media-stream="remoteStream.mediaStream"
+            :muted="remoteStream.muted"
           />
         </div>
       </div>
       <div class="local-camera" v-if="localMediaStream">
-        <WebRTCVideo :media-stream="localMediaStream" muted />
+        <WebRTCVideo
+          :media-stream="localMediaStream"
+          muted
+          :show-muted-icon="false"
+          :is-local-video="true"
+        />
       </div>
       <div class="call-controls">
         <div class="level">
@@ -40,11 +46,6 @@
             <button class="button" @click="leave">Leave</button>
           </div>
         </div>
-      </div>
-      <div>
-        <p v-for="(state, user) in userState" :key="`state-${user}`">
-          {{ state }}
-        </p>
       </div>
     </div>
   </AppWrapper>
@@ -91,7 +92,9 @@ export default {
         console.log(remoteStream)
       },
       (fromUser, s) => {
-        // this.remoteStreams[fromUser].muted = s.muted
+        if (this.remoteStreams[fromUser]) {
+          this.remoteStreams[fromUser].muted = s.muted
+        }
         this.$set(this.userState, fromUser, s)
       }
     )
@@ -149,8 +152,26 @@ export default {
 }
 </script>
 <style lang="scss">
+body {
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow-y: hidden;
+}
 .app-page {
   display: flex;
+  flex: 1;
+}
+.remote-video {
+  video {
+    position: absolute;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
 <style lang="scss" scoped>
@@ -158,30 +179,31 @@ export default {
   flex: 1;
   display: flex;
   position: relative;
+  background-color: $greyish;
 }
 
 .grid-container {
   flex: 1;
   display: grid;
   grid-gap: 10px;
+  grid-area: auto;
   // grid-template-columns: 100px 100px 100px;
   // grid-template-rows: 100px 100px 100px;
 }
 
-.remote-video {
-  min-width: 100% !important;
-}
-
 .local-camera {
   position: absolute;
-  bottom: 50px;
-  right: 50px;
-  max-width: 20vw;
+  bottom: 2rem;
+  right: 2.5rem;
+  width: 16rem;
+  height: 9rem;
 }
 
 .call-controls {
-  position: absolute;
-  bottom: 10px;
+  position: fixed;
   left: 50%;
+  bottom: 6rem;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
 }
 </style>
