@@ -65,7 +65,7 @@ export default {
     InterpretPanel
   },
   props: {
-    sessionId: { type: String, required: true },
+    sessionSlug: { type: String, required: true },
     channel: { type: String, required: true }
   },
   data() {
@@ -76,7 +76,7 @@ export default {
   computed: {
     ...mapState('interpret', ['isLive']),
     session() {
-      return this.$store.getters['api/session'](this.sessionId)
+      return this.$store.getters['api/session'](this.sessionSlug)
     },
     slot() {
       return this.session && this.$store.getters['api/slot'](this.session.slot)

@@ -32,7 +32,8 @@
           <a
             :href="calendarLink"
             target="_blank"
-            class="button is-modern is-purple is-small is-fullwidth"
+            @click="trackCalendar"
+            class="button is-modern is-purple is-small"
           >
             <span>{{ $t('schedule.addToCalendar') }}</span>
           </a>
@@ -73,7 +74,10 @@ export default {
     isFullwidth: { type: Boolean, default: false }
   },
   filters: {
-    sessionRoute: e => ({ name: ROUTE_SESSION, params: { sessionId: e.id } })
+    sessionRoute: s => ({
+      name: ROUTE_SESSION,
+      params: { sessionSlug: s.slug }
+    })
   },
   data() {
     return {
@@ -93,7 +97,7 @@ export default {
       return `mailto:${emailRecipient}?cc=${emailCCRecipient}&subject=${emailSubject}&body=${emailBody}`
     },
     calendarLink() {
-      return `${pickApi()}/schedule/ics/${this.session.slug}`
+      return `${pickApi()}schedule/ics/${this.session.slug}`
     },
     onSessionPage() {
       return this.$route.name === ROUTE_SESSION
@@ -136,6 +140,15 @@ export default {
           return 'schedule.actions.viewSession'
         }
       }
+    }
+  },
+  methods: {
+    trackCalendar() {
+      this.$gtag.event('ical', {
+        event_category: this.session.slug,
+        event_label: 'ical downloaded',
+        value: 0
+      })
     }
   }
 }

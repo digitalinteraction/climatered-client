@@ -173,7 +173,7 @@ export default {
     AppWrapper
   },
   props: {
-    sessionId: { type: String, required: true }
+    sessionSlug: { type: String, required: true }
   },
   data() {
     return {
@@ -187,7 +187,7 @@ export default {
   computed: {
     ...mapState('api', ['hasData', 'slots', 'speakers']),
     session() {
-      return this.$store.getters['api/session'](this.sessionId)
+      return this.$store.getters['api/session'](this.sessionSlug)
     },
     slot() {
       return this.session && this.$store.getters['api/slot'](this.session.slot)

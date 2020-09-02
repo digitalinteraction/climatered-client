@@ -60,7 +60,10 @@ export default {
       if (value.length < length) return value
       return `${value.substring(0, length)}...`
     },
-    sessionRoute: e => ({ name: ROUTE_SESSION, params: { sessionId: e.id } })
+    sessionRoute: s => ({
+      name: ROUTE_SESSION,
+      params: { sessionSlug: s.slug }
+    })
   },
   computed: {
     localeTitle() {

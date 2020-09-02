@@ -194,7 +194,7 @@ const routes = [
     }
   },
   {
-    path: '/interpret/:sessionId/:channel',
+    path: '/interpret/:sessionSlug/:channel',
     component: Interpret,
     name: ROUTE_INTERPRET,
     props: true,
@@ -206,7 +206,7 @@ const routes = [
   // sessions
   //
   {
-    path: '/session/:sessionId',
+    path: '/session/:sessionSlug',
     name: ROUTE_SESSION,
     component: Session,
     props: true,
