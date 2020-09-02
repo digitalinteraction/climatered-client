@@ -54,7 +54,7 @@ export default class WebRTC {
     peerConnection.pc.addEventListener('datachannel', ev => {
       peerConnection.dc = ev.channel
       ev.channel.onmessage = msg => {
-        onDataReceivedCb(msg.data)
+        onDataReceivedCb(JSON.parse(msg.data))
       }
     })
     await peerConnection.pc.setRemoteDescription(offer)
@@ -86,7 +86,7 @@ export default class WebRTC {
 
   sendMessageToAll(msg) {
     this.getAllPeerConnectionUserIds().forEach(user => {
-      this.sendMessageToPeer(user, msg)
+      this.sendMessageToPeer(user, JSON.stringify(msg))
     })
   }
 
@@ -158,7 +158,7 @@ export default class WebRTC {
     ].pc.createDataChannel('userDataChannel')
 
     this.peerConnections[forUserId].dc?.addEventListener('message', msg => {
-      onDataReceivedCb(msg.data)
+      onDataReceivedCb(JSON.parse(msg.data))
     })
   }
 }

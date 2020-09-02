@@ -22,6 +22,7 @@ import {
   faPeopleArrows, // Connect
   faUsers, // Panel
   faMicrophone, // Speakers / Propose a speaker
+  faMicrophoneSlash,
   faPlus,
   faCalendarPlus,
   faSearch,
@@ -58,6 +59,7 @@ library.add(
   faPeopleArrows,
   faUsers,
   faMicrophone,
+  faMicrophoneSlash,
   faPlus,
   faCalendarPlus,
   faSearch,

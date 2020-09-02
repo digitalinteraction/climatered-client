@@ -20,18 +20,14 @@
         <div class="level">
           <div class="level-item has-text-centered">
             <button class="button" @click="toggleMute">
-              <i
-                :class="
-                  `fas ${muted ? 'fa-microphone-slash' : 'fa-microphone'}`
-                "
-              ></i>
+              <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
             </button>
           </div>
           <div class="level-item has-text-centered">
             <button
               class="button"
               @click="shareContactDetails"
-              :disabled="!contactDetails"
+              :disabled="contactDetails"
             >
               Share Contact Details
             </button>
@@ -40,6 +36,11 @@
             <button class="button" @click="leave">Leave</button>
           </div>
         </div>
+      </div>
+      <div>
+        <p v-for="(state, user) in userState" :key="`state-${user}`">
+          {{ state }}
+        </p>
       </div>
     </div>
   </AppWrapper>
@@ -82,6 +83,7 @@ export default {
         }
         remoteStream.addTrack(remoteTrack, remoteStream)
         this.$set(this.remoteStreams, fromUser, remoteStream)
+        console.log(remoteStream)
       },
       (fromUser, s) => {
         this.$set(this.userState, fromUser, s)
