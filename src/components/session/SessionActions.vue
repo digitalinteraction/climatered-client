@@ -81,7 +81,7 @@ export default {
   },
   computed: {
     calendarLink() {
-      return `${pickApi()}/schedule/ics/${this.session.slug}`
+      return `${pickApi()}schedule/ics/${this.session.slug}`
     },
     onSessionPage() {
       return this.$route.name === ROUTE_SESSION
