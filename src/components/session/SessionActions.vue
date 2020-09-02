@@ -1,6 +1,6 @@
 <template>
   <span>
-    <div class="session-actions">
+    <div :class="['session-actions', { 'is-fullwidth': isFullwidth }]">
       <div class="flex-spacer"></div>
 
       <!-- Meta button -->
@@ -16,14 +16,11 @@
       <!-- Add to calendar button -->
       <div class="button-wrapper">
         <div class="buttons has-addons">
-          <button
-            v-if="isFuture"
-            @click="addSessionToCalendar(session, scheduleSlot)"
-            class="button is-modern is-purple is-small"
-          >
-            <span>{{ $t('schedule.addToCalendar') }}</span>
-          </button>
-          <button
+          <a :href="calendarLink" target="_blank" @click="trackCalendar">
+            <button v-if="isFuture" class="button is-modern is-purple is-small">
+              <span>{{ $t('schedule.addToCalendar') }}</span>
+            </button>
+            <!-- <button
             v-if="isFuture"
             @click="addSessionToCalendar(session, scheduleSlot)"
             class="button is-modern is-purple is-small"
@@ -31,13 +28,14 @@
             <span class="icon is-small">
               <fa :icon="['fas', 'plus']" />
             </span>
-          </button>
+          </button> -->
+          </a>
         </div>
       </div>
 
       <!-- View/join/preview session button -->
-      <div class="button-wrapper">
-        <router-link :to="session | eventRoute">
+      <div v-if="!onSessionPage" class="button-wrapper">
+        <router-link :to="session | sessionRoute">
           <button :class="primaryActionClasses">
             {{ $t(primaryAction) }}
           </button>
@@ -51,25 +49,30 @@
 </template>
 
 <script>
+import { pickApi } from '@/utils'
+
+// Constants
+import { ROUTE_SESSION } from '../../const'
+
 // Mixins
 import CalendarMixin from '@/mixins/CalendarMixin.js'
 
 // Icons
-// import CalendarIcon from '@/icons/calendar.svg'
 
 export default {
   name: 'SessionActions',
   mixins: [CalendarMixin],
-  components: {
-    // CalendarIcon
-  },
   props: {
     scheduleSlot: { type: Object, required: true },
     session: { type: Object, required: true },
-    sessionState: { type: String, required: true }
+    sessionState: { type: String, required: true },
+    isFullwidth: { type: Boolean, default: false }
   },
   filters: {
-    eventRoute: e => ({ name: 'Event', params: { eventId: e.id } })
+    sessionRoute: s => ({
+      name: ROUTE_SESSION,
+      params: { sessionSlug: s.slug }
+    })
   },
   data() {
     return {
@@ -77,6 +80,12 @@ export default {
     }
   },
   computed: {
+    calendarLink() {
+      return `${pickApi()}schedule/ics/${this.session.slug}`
+    },
+    onSessionPage() {
+      return this.$route.name === ROUTE_SESSION
+    },
     isDev() {
       return process.env.NODE_ENV === 'development'
     },
@@ -116,6 +125,15 @@ export default {
         }
       }
     }
+  },
+  methods: {
+    trackCalendar() {
+      this.$gtag.event('ical', {
+        event_category: this.session.slug,
+        event_label: 'ical downloaded',
+        value: 0
+      })
+    }
   }
 }
 </script>
@@ -128,11 +146,22 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-end;
-  justify-content: end;
+  margin-top: -10px;
+  justify-content: flex-end;
 
   min-height: auto;
   padding: 0;
   width: 100%;
+
+  &.is-fullwidth {
+    flex-direction: row;
+
+    .button-wrapper {
+      flex-grow: 1;
+      flex-basis: 100%;
+      margin-inline-start: 0;
+    }
+  }
 
   .button-wrapper {
     justify-self: end;

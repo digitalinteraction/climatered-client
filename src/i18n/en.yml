@@ -199,6 +199,11 @@ session:
   seeMore: See more
   seeLess: See less
   noInterpret: Your browser doesn't support interpretation, sorry!
+  scheduleHeading: Schedule
+  actionsHeading: Actions
+  hostedByHeading: Hosted by
+  contactHost: Contact Host
+  sessionOnlyAvailableIn: Please note this session is only available in
 
 schedule:
   title: Schedule

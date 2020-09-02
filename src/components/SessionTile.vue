@@ -1,10 +1,10 @@
 <template>
   <div class="session-tile">
     <!-- Type -->
-    <SessionTileType :session="session" />
+    <SessionType :session="session" />
 
     <!-- Title -->
-    <router-link :to="session | eventRoute">
+    <router-link :to="session | sessionRoute">
       <h2 class="session-title">
         <span class="text">
           {{ localeTitle }}
@@ -21,7 +21,7 @@
     <SessionAttributes :session="session" @show-modal="$emit('show-modal')" />
 
     <!-- Speakers -->
-    <SessionSpeakers :session="session" />
+    <SessionSpeakers :session="session" :is-padded="true" />
 
     <!-- Actions -->
     <SessionActions
@@ -34,18 +34,18 @@
 
 <script>
 // Constants
-import { ROUTE_EVENT } from '../../const'
+import { ROUTE_SESSION } from '../const'
 
 // Components
-import SessionTileType from '@/components/schedule/SessionTileType.vue'
-import SessionAttributes from '@/components/schedule/SessionAttributes.vue'
-import SessionSpeakers from '@/components/schedule/SessionSpeakers.vue'
-import SessionActions from '@/components/schedule/SessionActions.vue'
+import SessionType from '@/components/session/SessionType.vue'
+import SessionAttributes from '@/components/session/SessionAttributes.vue'
+import SessionSpeakers from '@/components/session/SessionSpeakers.vue'
+import SessionActions from '@/components/session/SessionActions.vue'
 
 export default {
   name: 'SessionTile',
   components: {
-    SessionTileType,
+    SessionType,
     SessionAttributes,
     SessionSpeakers,
     SessionActions
@@ -60,12 +60,12 @@ export default {
       if (value.length < length) return value
       return `${value.substring(0, length)}...`
     },
-    eventRoute: e => ({ name: 'Event', params: { eventId: e.id } })
+    sessionRoute: s => ({
+      name: ROUTE_SESSION,
+      params: { sessionSlug: s.slug }
+    })
   },
   computed: {
-    routeEvent() {
-      return ROUTE_EVENT
-    },
     localeTitle() {
       return this.session.title[this.$i18n.locale]
     },

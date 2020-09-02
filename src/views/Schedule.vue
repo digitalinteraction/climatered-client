@@ -72,6 +72,7 @@
                     <ScheduleSlotTime
                       :current-time="currentTime"
                       :schedule-slot="scheduleSlot"
+                      :is-padded="true"
                     />
                   </div>
 
@@ -116,10 +117,10 @@ import AppWrapper from '@/components/AppWrapper.vue'
 import ScheduleFilters from '@/components/schedule/ScheduleFilters.vue'
 import SchedulePageHeader from '@/components/schedule/SchedulePageHeader.vue'
 import ScheduleSectionHeader from '@/components/schedule/ScheduleSectionHeader.vue'
-import SessionTile from '@/components/schedule/SessionTile.vue'
+import SessionTile from '@/components/SessionTile.vue'
 import ScheduleSlotTime from '@/components/schedule/ScheduleSlotTime.vue'
 import ScheduleWorkshops from '@/components/schedule/ScheduleWorkshops.vue'
-// import SessionAttributesModal from '@/components/schedule/SessionAttributesModal.vue'
+// import SessionAttributesModal from '@/components/session/SessionAttributesModal.vue'
 
 const workshopTypes = [
   'games',

@@ -113,6 +113,16 @@ data:
     empower: Donner les moyens d’agir
     influence: Influencer
     transform: Transformer
+  interaction:
+    interactive: Intéractif
+    view: Non intéractif
+  recorded:
+    true: Sera enregistré
+    false: Non enregistré
+  devices:
+    all: Tous
+    desktop: Ordinateur seulement
+    mobile: Mobile seulement
 
 cookies:
   title: Cookies
@@ -124,56 +134,72 @@ cookies:
     Nous aimerions pouvoir les analyser afin de voir comment les gens vivent le sommet Climate:RED et ainsi nous assurer que nous pouvons améliorer les futures conférences et sommets virtuels.
     Vous pouvez modifier vos préférences en cliquant sur {0} dans le pied de page du site.
 
+session:
+  title:
+  speakerHeading:
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: Programme
+  actionsHeading: Actions
+  hostedByHeading: Présenté par
+  contactHost: Contacter l’hôte
+  sessionOnlyAvailableIn: Veuillez noter que cette session n’est disponible qu’en
+
 schedule:
-  title: ''
-  description: ''
-  close: 'Fermer'
-  past: 'Précédemment'
-  now: 'Maintenant'
-  present: ''
-  future: 'À venir'
-  addToCalendar: 'Ajouter au calendrier'
-  showAll: ''
-  hideAll: ''
-  hidePastSessions: ''
-  showPastSessions: 'Montrer les sessions passées'
+  title: Programme
+  description: Explorez les sessions disponibles et planifiez votre expérience en ajoutant des rappels à votre calendrier.
+  close: Fermer
+  past: Précédemment
+  now: Maintenant
+  present: Maintenant
+  future: À venir
+  addToCalendar: Ajouter au calendrier
+  showAll: Tout montrer
+  hideAll: Tout cacher
+  hidePastSessions: Cacher les sessions passées
+  showPastSessions: Montrer les sessions passées
   dates:
-    ninth: ''
-    tenth: ''
+    ninth: 9 septembre
+    tenth: 10 septembre
   dayOne: Jour 1
   dayTwo: Jour 2
-  search: 'Recherche'
-  showingResultsFor: 'Montrer les résultats pour "{0}"'
-  redCrossRedCrescentMembersOnly: ''
+  search: Recherche
+  showingResultsFor: Montrer les résultats pour "{0}"
+  redCrossRedCrescentMembersOnly: Membres de la Croix-Rouge et du Croissant-Rouge uniquement
   filters:
-    all: ''
-    showFilters: 'Montrer les filtres'
-    clearFilters: 'Cacher les filtres'
-    date: 'Date'
+    all: Tous
+    showFilters: Montrer les filtres
+    clearFilters: Cacher les filtres
+    date: Date
     track: Track
     interactivity:
-      interactivity: ''
-      interactive: ''
-      nonInteractive: ''
+      interactivity: Intéractivité
+      interactive: Intéractif
+      nonInteractive: Non intéractif
     platform:
-      platform: ''
-      zoom: ''
+      platform: Plateforme
+      zoom: Zoom
     device:
-      device: ''
-      desktopOnly: ''
-      mobileOnly: ''
+      device: Dispositif
+      desktopOnly: Ordinateur seulement
+      mobileOnly: Mobile seulement
     recorded:
-      recorded: ''
-      willBeRecorded: ''
-      notRecorded: ''
+      recorded: Enregistré
+      willBeRecorded: Sera enregistré
+      notRecorded: Non enregistré
   attributes:
-    sessionAttributes: ''
+    sessionAttributes: Attributs de session
   actions:
-    viewSession: 'Voir la session'
-    joinSession: 'Joindre la session'
-    previewSession: 'Prévisualiser la session'
+    viewSession: Voir la session
+    joinSession: Joindre la session
+    previewSession: Prévisualiser la session
   workshops:
-    workshop: ''
-    workshops: ''
-    title: ''
-    description: ''
+    workshop: Atelier
+    workshops: Ateliers
+    title: Ateliers interactifs
+    description: Participez à l'un des ateliers interactifs suivants
