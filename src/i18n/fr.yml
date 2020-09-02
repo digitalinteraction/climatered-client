@@ -113,6 +113,16 @@ data:
     empower: Donner les moyens d’agir
     influence: Influencer
     transform: Transformer
+  interaction:
+    interactive: Intéractif
+    view: Non intéractif
+  recorded:
+    true: Sera enregistré
+    false: Non enregistré
+  devices:
+    all: Tous
+    desktop: Ordinateur seulement
+    mobile: Mobile seulement
 
 cookies:
   title: Cookies
@@ -123,6 +133,22 @@ cookies:
     Nous utilisons les cookies nécessaires au bon fonctionnement du site.
     Nous aimerions pouvoir les analyser afin de voir comment les gens vivent le sommet Climate:RED et ainsi nous assurer que nous pouvons améliorer les futures conférences et sommets virtuels.
     Vous pouvez modifier vos préférences en cliquant sur {0} dans le pied de page du site.
+
+session:
+  title:
+  speakerHeading:
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: Programme
+  actionsHeading: Actions
+  hostedByHeading: Présenté par
+  contactHost: Contacter l’hôte
+  sessionOnlyAvailableIn: Veuillez noter que cette session n’est disponible qu’en
 
 schedule:
   title: Programme

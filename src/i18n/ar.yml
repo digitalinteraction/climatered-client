@@ -79,6 +79,22 @@ sessions:
     panel: حلقات نقاش
     sessions: جلسات
 
+session:
+  title:
+  speakerHeading: مكبرات الصوت
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: البرنامج
+  actionsHeading: الاجراءات
+  hostedByHeading: مضيف الجلسة
+  contactHost: التواصل مع مضيف الجلسة
+  sessionOnlyAvailableIn: يرجى ملاحظة أن الجلسة متاحة فقط ضمن
+
 coffeechat:
   title: دردشة حول فنجان قهوة
 
@@ -113,6 +129,16 @@ data:
     empower: التمكين
     influence: التأثير
     transform: التحويل
+  interaction:
+    interactive: التفاعلية
+    view: غير تفاعلي
+  recorded:
+    true: التسجيل سيكون متاحاَ
+    false: غير مسجلة
+  devices:
+    all: الكل
+    desktop: عبر جهاز الحاسوب فقط
+    mobile: عبر الأجهزة المحمول فقط
 
 cookies:
   title: ملفات تعريف الارتباط

@@ -1,5 +1,8 @@
 <template>
-  <div class="session-speakers" v-if="sessionSpeakers.length > 0">
+  <div
+    v-if="sessionSpeakers.length > 0"
+    :class="['session-speakers', { 'is-padded': isPadded }]"
+  >
     <div
       class="speaker-wrapper"
       v-for="(speaker, i) in sessionSpeakers"
@@ -28,6 +31,10 @@ export default {
     session: {
       type: Object,
       required: true
+    },
+    isPadded: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -44,12 +51,15 @@ export default {
 <style lang="scss" scoped>
 // Speakers
 .session-speakers {
-  padding: 0.75rem 0;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: flex-start;
   vertical-align: top;
+
+  &.is-padded {
+    padding: 0.75rem 0;
+  }
 
   .speaker-wrapper {
     flex-basis: 280px;

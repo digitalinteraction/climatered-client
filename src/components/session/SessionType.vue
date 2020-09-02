@@ -26,7 +26,7 @@
 import OfficialIcon from '@/icons/ifrc.svg'
 
 export default {
-  name: 'SessionTileType',
+  name: 'SessionType',
   components: {
     OfficialIcon
   },
@@ -103,7 +103,6 @@ h3.session-tile-type {
   font-weight: $weight-semibold;
   letter-spacing: 0.05em;
   line-height: 1.25rem;
-  margin: 0 -5px;
   position: relative;
   text-transform: uppercase;
 
@@ -117,6 +116,7 @@ h3.session-tile-type {
     align-items: center;
     &.is-official {
       color: red;
+      margin: 0 -5px;
       .icon,
       .icon svg {
         margin-inline-end: 0;

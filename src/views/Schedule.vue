@@ -72,6 +72,7 @@
                     <ScheduleSlotTime
                       :current-time="currentTime"
                       :schedule-slot="scheduleSlot"
+                      :is-padded="true"
                     />
                   </div>
 
@@ -113,13 +114,13 @@ import ScheduleFiltersMixins from '@/mixins/ScheduleFiltersMixins.js'
 
 // Components
 import AppWrapper from '@/components/AppWrapper.vue'
-import ScheduleFilters from '@/components/Schedule/ScheduleFilters.vue'
-import SchedulePageHeader from '@/components/Schedule/SchedulePageHeader.vue'
-import ScheduleSectionHeader from '@/components/Schedule/ScheduleSectionHeader.vue'
-import SessionTile from '@/components/Schedule/SessionTile.vue'
-import ScheduleSlotTime from '@/components/Schedule/ScheduleSlotTime.vue'
-import ScheduleWorkshops from '@/components/Schedule/ScheduleWorkshops.vue'
-// import SessionAttributesModal from '@/components/Schedule/SessionAttributesModal.vue'
+import ScheduleFilters from '@/components/schedule/ScheduleFilters.vue'
+import SchedulePageHeader from '@/components/schedule/SchedulePageHeader.vue'
+import ScheduleSectionHeader from '@/components/schedule/ScheduleSectionHeader.vue'
+import SessionTile from '@/components/SessionTile.vue'
+import ScheduleSlotTime from '@/components/schedule/ScheduleSlotTime.vue'
+import ScheduleWorkshops from '@/components/schedule/ScheduleWorkshops.vue'
+// import SessionAttributesModal from '@/components/session/SessionAttributesModal.vue'
 
 const workshopTypes = [
   'games',
