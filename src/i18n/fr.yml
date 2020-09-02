@@ -172,7 +172,7 @@ schedule:
   showingResultsFor: Montrer les résultats pour "{0}"
   redCrossRedCrescentMembersOnly: Membres de la Croix-Rouge et du Croissant-Rouge uniquement
   filters:
-    all: Toutes
+    all: Tous
     showFilters: Montrer les filtres
     clearFilters: Cacher les filtres
     date: Date
