@@ -1,5 +1,5 @@
 <template>
-  <div class="schedule-slot-time">
+  <div :class="['schedule-slot-time', { 'is-padded': isPadded }]">
     <!-- NOW tag -->
     <div class="state-tag present" v-if="isPresent">
       {{ $t('schedule.now') }}
@@ -39,6 +39,10 @@ export default {
     scheduleSlot: {
       type: Object,
       required: true
+    },
+    isPadded: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -57,8 +61,9 @@ export default {
 
       if (this.currentTime < start) return 'future'
       if (this.currentTime > end) return 'past'
+      if (this.currentTime > start && this.currentTime < end) return 'present'
 
-      return 'present'
+      return 'unknown'
     }
   }
 }
@@ -68,8 +73,6 @@ export default {
 .schedule-slot-time {
   letter-spacing: 0.05em;
   min-width: 260px;
-  padding: 30px 40px;
-  padding: 15px 40px;
 
   // Positioning
   position: sticky;
@@ -78,16 +81,23 @@ export default {
   top: 2.5em;
   z-index: 1;
 
+  &.is-padded {
+    padding: 15px 40px;
+
+    @include tablet {
+      padding: 30px;
+    }
+
+    @include mobile {
+      padding: 15px;
+    }
+  }
+
   @include mobile {
     display: block;
     width: auto;
     min-width: 100%;
-    padding: 15px;
     text-align: center;
-  }
-
-  @include tablet {
-    padding: 30px;
   }
 
   .state-tag {
@@ -120,6 +130,15 @@ export default {
     color: $text-light;
     font-size: 0.9em;
     font-weight: $weight-normal;
+  }
+
+  &.is-large {
+    h4 {
+      font-size: 1.5em;
+    }
+    h5 {
+      font-size: 1.1em;
+    }
   }
 }
 </style>
