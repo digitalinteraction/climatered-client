@@ -95,9 +95,6 @@ session:
   contactHost: Contactar el anfitrión
   sessionOnlyAvailableIn: Favor de notar que esta sesión solo estará disponible en
 
-schedule:
-  title: Calendario
-
 coffeechat:
   title: Conversaciones con café
 
@@ -132,6 +129,16 @@ data:
     empower: Habilitación
     influence: Influencia
     transform: Transformación
+  interaction:
+    interactive: Interactivo
+    view: No interactivo
+  recorded:
+    true: Será grabado
+    false: No grabado
+  devices:
+    all: Todos
+    desktop: Solo computadoras
+    mobile: Solo Móvil
 
 cookies:
   title: Cookies
@@ -142,8 +149,6 @@ cookies:
     Utilizamos las cookies necesarias para que el sitio funcione.
     Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales. 
     Puede cambiar su preferencia haciendo clic en {0} en el pie de página del sitio.
-
-
 
 schedule:
   title: Programa
@@ -186,7 +191,7 @@ schedule:
       willBeRecorded: Será grabado
       notRecorded: No grabado
   attributes:
-    sessionAttributes: Atributos de sesión 
+    sessionAttributes: Atributos de sesión
   actions:
     viewSession: Ver la sesión
     joinSession: Sumarse a la sesión
