@@ -79,9 +79,6 @@ sessions:
     panel: Mesas redondas
     sessions: Sesiones
 
-schedule:
-  title: Calendario
-
 coffeechat:
   title: Conversaciones con café
 
@@ -127,8 +124,6 @@ cookies:
     Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales. 
     Puede cambiar su preferencia haciendo clic en {0} en el pie de página del sitio.
 
-
-
 schedule:
   title: Programa
   description: Explore las sesiones disponibles y planifique su experiencia agregando recordatorios a su calendario.
@@ -170,7 +165,7 @@ schedule:
       willBeRecorded: Será grabado
       notRecorded: No grabado
   attributes:
-    sessionAttributes: Atributos de sesión 
+    sessionAttributes: Atributos de sesión
   actions:
     viewSession: Ver la sesión
     joinSession: Sumarse a la sesión
