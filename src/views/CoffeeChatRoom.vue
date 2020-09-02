@@ -7,14 +7,17 @@
         </div> -->
         <div
           class="grid-item"
-          v-for="(ms, user) in remoteStreams"
+          v-for="(remoteStream, user) in remoteStreams"
           :key="`media-${user}`"
         >
-          <WebRTCVideo class="remote-video" :media-stream="ms" />
+          <WebRTCVideo
+            class="remote-video"
+            :media-stream="remoteStream.mediaStream"
+          />
         </div>
       </div>
       <div class="local-camera" v-if="localMediaStream">
-        <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
+        <WebRTCVideo :media-stream="localMediaStream" controls muted />
       </div>
       <div class="call-controls">
         <div class="level">
@@ -75,17 +78,19 @@ export default {
       this.localMediaStream,
       this.user.iat,
       (fromUser, remoteTrack) => {
-        let remoteStream
+        let remoteStream = {}
         if (!this.remoteStreams[fromUser]) {
-          remoteStream = new MediaStream()
+          remoteStream.mediaStream = new MediaStream()
+          remoteStream.muted = false
         } else {
           remoteStream = this.remoteStreams[fromUser]
         }
-        remoteStream.addTrack(remoteTrack, remoteStream)
+        remoteStream.mediaStream.addTrack(remoteTrack, remoteStream.mediaStream)
         this.$set(this.remoteStreams, fromUser, remoteStream)
         console.log(remoteStream)
       },
       (fromUser, s) => {
+        // this.remoteStreams[fromUser].muted = s.muted
         this.$set(this.userState, fromUser, s)
       }
     )
@@ -119,6 +124,9 @@ export default {
     },
     toggleMute() {
       this.muted = !this.muted
+      this.localMediaStream.getAudioTracks().forEach(t => {
+        t.enabled = this.muted
+      })
       this.sendStateToPeers()
     },
     shareContactDetails() {
