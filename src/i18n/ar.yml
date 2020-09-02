@@ -196,6 +196,7 @@ schedule:
     viewSession: مشاهدة الجلسة
     joinSession: الانضمام إلى الجلسة
     previewSession: معاينة الجلسة
+    registerInterest:
   workshops:
     workshop: ورشة عمل
     workshops: ورشات العمل
