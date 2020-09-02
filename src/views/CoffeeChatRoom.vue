@@ -196,7 +196,7 @@ body {
   bottom: 2rem;
   right: 2.5rem;
   width: 16rem;
-  height: 9rem;
+  height: 12rem;
 }
 
 .call-controls {
