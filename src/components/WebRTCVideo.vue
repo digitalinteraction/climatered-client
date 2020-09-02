@@ -1,7 +1,5 @@
 <template>
-  <div class="webrtc-video">
-    <video ref="webrtc-video" autoplay :muted="muted" />
-  </div>
+  <video ref="webrtc-video" autoplay :muted="muted" />
 </template>
 
 <script>

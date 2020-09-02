@@ -10,7 +10,7 @@
           v-for="(ms, user) in remoteStreams"
           :key="`media-${user}`"
         >
-          <WebRTCVideo :media-stream="ms" />
+          <WebRTCVideo class="remote-video" :media-stream="ms" />
         </div>
       </div>
       <div class="localCamera" v-if="localMediaStream">
@@ -76,7 +76,8 @@ export default {
             audio: {
               echoCancellation: true,
               autoGainControl: true,
-              noiseSuppression: true
+              noiseSuppression: true,
+              channelCount: 1
             }
           },
           stream => {
@@ -113,7 +114,9 @@ export default {
   // grid-template-columns: 100px 100px 100px;
   // grid-template-rows: 100px 100px 100px;
 }
-.grid-item {
+
+.remote-video {
+  min-width: 100% !important;
 }
 
 .localCamera {
