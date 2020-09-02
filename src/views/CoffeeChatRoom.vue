@@ -2,9 +2,6 @@
   <AppWrapper>
     <div class="wrapper">
       <div class="grid-container">
-        <!-- <div class="grid-item" v-if="localMediaStream">
-          <WebRTCVideo :media-stream="localMediaStream" :muted="true" />
-        </div> -->
         <div
           class="grid-item"
           v-for="(remoteStream, user) in remoteStreams"
@@ -17,13 +14,17 @@
         </div>
       </div>
       <div class="local-camera" v-if="localMediaStream">
-        <WebRTCVideo :media-stream="localMediaStream" controls muted />
+        <WebRTCVideo :media-stream="localMediaStream" muted />
       </div>
       <div class="call-controls">
         <div class="level">
           <div class="level-item has-text-centered">
             <button class="button" @click="toggleMute">
-              <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
+              <span class="icon is-small">
+                <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
+              </span>
+              <span v-if="muted">Unmute</span>
+              <span v-else>Mute</span>
             </button>
           </div>
           <div class="level-item has-text-centered">
@@ -125,13 +126,13 @@ export default {
     toggleMute() {
       this.muted = !this.muted
       this.localMediaStream.getAudioTracks().forEach(t => {
-        t.enabled = this.muted
+        t.enabled = !this.muted
       })
       this.sendStateToPeers()
     },
     shareContactDetails() {
       this.contactDetails = {
-        email: 'test@test.com'
+        email: this.user.sub
       }
       this.sendStateToPeers()
     },
