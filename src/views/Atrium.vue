@@ -70,7 +70,12 @@
 </template>
 
 <script>
-import { ROUTE_LOGIN, ROUTE_SESSIONS, ROUTE_REGISTER } from '../const'
+import {
+  ROUTE_LOGIN,
+  ROUTE_SESSIONS,
+  ROUTE_REGISTER,
+  ROUTE_SCHEDULE
+} from '../const'
 import { mapState } from 'vuex'
 
 import AppWrapper from '@/components/AppWrapper.vue'
@@ -124,19 +129,23 @@ export default {
     return {
       loginRoute: { name: ROUTE_LOGIN },
       registerRoute: { name: ROUTE_REGISTER },
-      sessionsRoute: { name: ROUTE_SESSIONS },
       sponsors,
       atriumVideo
     }
   },
   computed: {
-    ...mapState('api', ['user']),
+    ...mapState('api', ['user', 'settings']),
     currentContent() {
       const chosenContent = this.user ? activeContent : content
       return chosenContent[this.$i18n.locale]
     },
     currentBanner() {
       return banner[this.$i18n.locale]
+    },
+    sessionsRoute() {
+      return {
+        name: this.settings?.scheduleLive ? ROUTE_SCHEDULE : ROUTE_SESSIONS
+      }
     }
   }
 }
