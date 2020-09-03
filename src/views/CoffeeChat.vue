@@ -166,7 +166,13 @@
             </div>
           </div>
           <div class="column is-12 has-text-centered">
-            <button class="button is-primary is-large" @click="ready">
+            <button class="button is-primary is-info is-large" v-if="isWaiting">
+              <span class="icon rotate is-small">
+                <fa icon="globe" />
+              </span>
+              <span>{{ $t('coffeechat.waitingBtn') }}</span>
+            </button>
+            <button class="button is-primary is-large" @click="ready" v-else>
               {{ $t('coffeechat.readyBtn') }}
             </button>
           </div>
@@ -185,6 +191,7 @@ export default {
   data() {
     return {
       peers: Math.ceil(Math.random() * 1000),
+      isWaiting: false,
       filters: {
         languages: {
           isActive: false,
@@ -291,6 +298,7 @@ export default {
           ? themePrefs
           : this.filters.themes.options.map(t => t.value)
       )
+      this.isWaiting = true
     }
   }
 }
@@ -402,6 +410,19 @@ export default {
   }
   100% {
     opacity: 1;
+  }
+}
+
+.rotate {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
   }
 }
 </style>

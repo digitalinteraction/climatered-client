@@ -89,6 +89,8 @@ sessions:
 coffeechat:
   title: Coffee chat
   readyBtn: Ready
+  waitingBtn: Waiting
+  joiningBtn: Joining
   filters:
     languages:
       EN: English
