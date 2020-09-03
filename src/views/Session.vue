@@ -33,14 +33,6 @@
                 ></button>
               </div>
 
-              <!-- Session view -->
-              <!-- <component
-                v-if="sessionComponent"
-                :is="sessionComponent"
-                :event="session"
-                :session-slot="slot"
-              /> -->
-
               <div class="session-headings">
                 <SessionType :schedule-slot="slot" :session="session" />
                 <h1 class="title">{{ localeTitle }}</h1>
@@ -62,6 +54,14 @@
                   />
                 </p>
               </div> -->
+
+              <!-- Session view -->
+              <component
+                v-if="sessionComponent"
+                :is="sessionComponent"
+                :session="session"
+                :session-slot="slot"
+              />
 
               <!-- Attributes -->
               <div id="session-attributes-wrapper">
@@ -160,7 +160,8 @@ import AppWrapper from '@/components/AppWrapper.vue'
 
 const sessionComponents = {
   plenary: OneToMany,
-  panel: OneToMany
+  panel: OneToMany,
+  misc: ManyToMany
 }
 
 export default {
@@ -213,9 +214,8 @@ export default {
         .filter(s => s)
     },
     sessionComponent() {
-      if (!this.session || !this.slotState) return null
       if (this.slotState === 'before') return Countdown
-      return sessionComponents[this.session.type] ?? ManyToMany
+      return sessionComponents[this.session.type] ?? OneToMany
     },
     sessionState() {
       const start = new Date(this.slot.start).getTime()
