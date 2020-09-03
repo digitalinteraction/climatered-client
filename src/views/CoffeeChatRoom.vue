@@ -73,7 +73,8 @@ export default {
       localMediaStream: null,
       muted: false,
       contactDetails: null,
-      showControls: false
+      showControls: false,
+      coffeeChat: null
     }
   },
   async mounted() {
@@ -106,7 +107,9 @@ export default {
     this.coffeeChat.joinRoom(roomId)
   },
   beforeDestroy() {
-    this.coffeeChat.destroy()
+    if (this.coffeeChat !== null) {
+      this.coffeeChat.destroy()
+    }
   },
   methods: {
     setupMedia() {
