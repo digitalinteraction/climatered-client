@@ -42,7 +42,7 @@ export default {
     margin: 0 auto;
   }
 
-  .buttons {
+  > .buttons {
     padding: 0.5em;
   }
 }

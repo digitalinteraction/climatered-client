@@ -43,6 +43,10 @@ export default {
     isPadded: {
       type: Boolean,
       default: false
+    },
+    forceActiveSessionState: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -56,6 +60,8 @@ export default {
       return this.stateForSlot === 'future'
     },
     stateForSlot() {
+      if (this.forceActiveSessionState) return 'present'
+
       const start = new Date(this.scheduleSlot.start).getTime()
       const end = new Date(this.scheduleSlot.end).getTime()
 

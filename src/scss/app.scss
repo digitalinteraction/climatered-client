@@ -130,7 +130,7 @@
 }
 
 // Custom buttons
-button.button {
+.button {
   &.is-coral {
     background-color: $cc-coral;
     border-color: $cc-coral;
@@ -140,11 +140,11 @@ button.button {
     }
   }
   &.is-purple {
-    background-color: #6c63ff;
-    border-color: #6c63ff;
+    background-color: $cc-purple;
+    border-color: $cc-purple;
     color: white;
     &:hover {
-      background-color: darken($color: #6c63ff, $amount: 2);
+      background-color: darken($color: $cc-purple, $amount: 2);
     }
   }
   &.is-light-blue {
@@ -157,13 +157,24 @@ button.button {
   }
   &.is-modern {
     border-radius: 8px;
-    height: 3em;
-    padding-top: calc(0.75em - 1px);
-    padding-bottom: calc(0.75em - 1px);
+    // height: 3em;
+    // padding-top: calc(0.75em - 1px);
+    // padding-bottom: calc(0.75em - 1px);
+    padding: 1.4em 1.5em !important;
     .icon svg {
       fill: white;
     }
   }
+}
+
+// Headings
+h4.section-heading {
+  color: $cc-bluegrey;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 // Animations

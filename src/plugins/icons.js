@@ -32,7 +32,8 @@ import {
   faHandPaper,
   faSave,
   faCircle,
-  faCubes
+  faCubes,
+  faArrowLeft
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -68,7 +69,8 @@ library.add(
   faHandPaper,
   faSave,
   faCircle,
-  faCubes
+  faCubes,
+  faArrowLeft
 )
 
 //

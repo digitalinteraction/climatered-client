@@ -198,6 +198,7 @@ schedule:
     viewSession: Voir la session
     joinSession: Joindre la session
     previewSession: Prévisualiser la session
+    registerInterest:
   workshops:
     workshop: Atelier
     workshops: Ateliers

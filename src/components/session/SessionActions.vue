@@ -9,36 +9,41 @@
           class="button is-modern is-fullwidth is-small"
           @click="metaVisible = !metaVisible"
         >
-          Toggle Meta
+          Toggle meta
         </button>
       </div>
 
-      <!-- Add to calendar button -->
-      <div class="button-wrapper">
+      <!-- Register interest button -->
+      <!-- <div class="button-wrapper" v-if="onSessionPage && isFuture">
         <div class="buttons has-addons">
-          <a :href="calendarLink" target="_blank" @click="trackCalendar">
-            <button v-if="isFuture" class="button is-modern is-purple is-small">
-              <span>{{ $t('schedule.addToCalendar') }}</span>
-            </button>
-            <!-- <button
-            v-if="isFuture"
-            @click="addSessionToCalendar(session, scheduleSlot)"
+          <a
+            :href="registerInterestLink"
+            target="_blank"
+            class="button is-modern is-coral is-small is-fullwidth"
+          >
+            <span>{{ $t('schedule.actions.registerInterest') }}</span>
+          </a>
+        </div>
+      </div> -->
+
+      <!-- Add to calendar button -->
+      <div class="button-wrapper" v-if="isFuture">
+        <div class="buttons has-addons">
+          <a
+            :href="calendarLink"
+            target="_blank"
+            @click="trackCalendar"
             class="button is-modern is-purple is-small"
           >
-            <span class="icon is-small">
-              <fa :icon="['fas', 'plus']" />
-            </span>
-          </button> -->
+            <span>{{ $t('schedule.addToCalendar') }}</span>
           </a>
         </div>
       </div>
 
       <!-- View/join/preview session button -->
       <div v-if="!onSessionPage" class="button-wrapper">
-        <router-link :to="session | sessionRoute">
-          <button :class="primaryActionClasses">
-            {{ $t(primaryAction) }}
-          </button>
+        <router-link :to="session | sessionRoute" :class="primaryActionClasses">
+          {{ $t(primaryAction) }}
         </router-link>
       </div>
     </div>
@@ -80,6 +85,17 @@ export default {
     }
   },
   computed: {
+    localeTitle() {
+      return this.session.title[this.$i18n.locale]
+    },
+    registerInterestLink() {
+      const emailSubject = 'Someone registered interest in your session'
+      const emailRecipient = this.session.hostEmail
+      const emailBody = `I am interested in your session - "${this.localeTitle}"`
+      const emailCCRecipient = 'support@climate.red'
+
+      return `mailto:${emailRecipient}?cc=${emailCCRecipient}&subject=${emailSubject}&body=${emailBody}`
+    },
     calendarLink() {
       return `${pickApi()}schedule/ics/${this.session.slug}`
     },
@@ -167,16 +183,9 @@ export default {
     justify-self: end;
     margin-inline-start: 0.75em;
     .buttons {
-      .button:first-child {
+      a {
         flex-grow: 1;
       }
-      .button:not(:first-child) {
-        border-inline-start: 1px solid rgba($color: #000000, $alpha: 0.2);
-        margin-inline-start: 1px;
-      }
-    }
-    .button {
-      padding: 0 15px;
     }
     &:not(:first-child) {
       margin-top: 10px;

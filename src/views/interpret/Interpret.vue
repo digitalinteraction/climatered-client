@@ -101,7 +101,7 @@ export default {
     }
 
     this.$store.dispatch('interpret/join', {
-      sessionId: this.sessionId,
+      sessionId: this.session.id,
       channel: this.channel
     })
 

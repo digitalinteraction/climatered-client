@@ -85,7 +85,7 @@ export default {
           return ['fas', 'object-group']
         }
         default: {
-          return ['fab', 'youtube']
+          return ['fas', 'comments']
         }
       }
     },

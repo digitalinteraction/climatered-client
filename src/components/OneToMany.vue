@@ -1,33 +1,38 @@
 <template>
   <div class="one-to-many">
-    <div v-if="videoLink">
-      <div class="bottom-panel">
-        <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
+    <div class="bottom-panel">
+      <VideoEmbed
+        v-if="videoLink"
+        :video-link="videoLink"
+        :muted="!isSourceAudio"
+      />
+      <div class="notification is-warning is-light" v-else>
+        No video to show
+      </div>
 
-        <div class="audio-channel" v-if="session.enableTranslation">
-          <div class="columns" v-if="canInterpret">
-            <div class="column is-narrow">
-              <label class="label">Audio Channel</label>
-              <ToggleSet
-                :value="chosenChannel"
-                @input="onChannel"
-                :options="channels"
-              />
-            </div>
-            <div class="column">
-              <label class="label">Info</label>
-              <p>state={{ recieverState }} buffers={{ bufferSize }}</p>
-              <canvas
-                class="audio-vis"
-                width="400"
-                height="100"
-                ref="canvas"
-              ></canvas>
-            </div>
+      <div class="audio-channel" v-if="session.enableTranslation">
+        <div class="columns" v-if="canInterpret">
+          <div class="column is-narrow">
+            <label class="label">Audio Channel</label>
+            <ToggleSet
+              :value="chosenChannel"
+              @input="onChannel"
+              :options="channels"
+            />
           </div>
-          <div class="notification is-warning is-light is-inline-block" v-else>
-            {{ $t('session.noInterpret') }}
+          <div class="column">
+            <label class="label">Info</label>
+            <p>state={{ recieverState }} buffers={{ bufferSize }}</p>
+            <canvas
+              class="audio-vis"
+              width="400"
+              height="100"
+              ref="canvas"
+            ></canvas>
           </div>
+        </div>
+        <div class="notification is-warning is-light is-inline-block" v-else>
+          {{ $t('session.noInterpret') }}
         </div>
       </div>
     </div>
@@ -91,8 +96,6 @@ export default {
 
     this.$socket.bindEvent(this, 'channel-data', async data => {
       await this.reciever.push(data)
-
-      // this.reciever.doodle(this.$refs.canvas)
     })
   },
   destroyed() {
@@ -162,9 +165,5 @@ export default {
 .audio-vis {
   border-radius: 4px;
   overflow: hidden;
-}
-
-.bottom-panel {
-  padding-top: 3em;
 }
 </style>
