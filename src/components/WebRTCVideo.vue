@@ -19,6 +19,9 @@ export default {
   },
   mounted() {
     this.$refs['webrtc-video'].srcObject = this.mediaStream
+    if (this.isLocalVideo) {
+      this.$refs['webrtc-video'].muted = true
+    }
   }
 }
 </script>
@@ -30,7 +33,7 @@ export default {
 }
 
 .is-rounded {
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 

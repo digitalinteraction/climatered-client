@@ -20,8 +20,6 @@
         <div class="local-camera" v-if="localMediaStream">
           <WebRTCVideo
             :media-stream="localMediaStream"
-            muted
-            :show-muted-icon="false"
             :is-local-video="true"
           />
         </div>
