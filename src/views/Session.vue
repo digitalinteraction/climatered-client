@@ -144,13 +144,13 @@
                 <p>
                   {{ localeHostOrganisation }}
                 </p>
-                <a :href="`mailto:${session.hostEmail}`">
+                <!-- <a :href="`mailto:${session.hostEmail}`">
                   <button
                     class="button is-modern is-small is-purple is-fullwidth mt-3"
                   >
                     {{ $t('session.contactHost') }}
                   </button>
-                </a>
+                </a> -->
               </section>
             </div>
           </div>
