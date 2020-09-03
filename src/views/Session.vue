@@ -38,6 +38,14 @@
                 <h1 class="title">{{ localeTitle }}</h1>
               </div>
 
+              <!-- Session view -->
+              <component
+                v-if="sessionComponent"
+                :is="sessionComponent"
+                :session="session"
+                :session-slot="slot"
+              />
+
               <!-- Session abstract -->
               <div
                 class="session-abstract"
@@ -54,14 +62,6 @@
                   />
                 </p>
               </div> -->
-
-              <!-- Session view -->
-              <component
-                v-if="sessionComponent"
-                :is="sessionComponent"
-                :session="session"
-                :session-slot="slot"
-              />
 
               <!-- Attributes -->
               <div id="session-attributes-wrapper">

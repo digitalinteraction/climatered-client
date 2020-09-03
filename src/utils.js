@@ -30,6 +30,24 @@ export function parseYouTubeLink(link) {
   return null
 }
 
+// https://www.youtube.com/embed/live_stream?channel=UC7v2Rs4f_UlIQNuNKUjmtgA
+export function parseYouTubeChannel(link) {
+  let url = new URL(link.url)
+
+  if (
+    url.hostname.endsWith('youtube.com') &&
+    url.pathname === '/embed/live_stream' &&
+    url.searchParams.has('channel')
+  ) {
+    return {
+      url: link.url,
+      channel: url.searchParams.get('channel')
+    }
+  }
+
+  return null
+}
+
 // https://app.sli.do/event/z4amyxli
 export function parseSlidoLink(link) {
   let url = new URL(link.url)
