@@ -216,7 +216,7 @@ body {
 }
 
 .pop-in-enter-active {
-  transition: transform 1.2s ease-in-out;
+  transition: transform 1.25s ease-in-out;
 }
 .pop-in-leave-active {
   transition: transform 1s ease-out;
@@ -224,6 +224,6 @@ body {
 
 .pop-in-enter,
 .pop-in-leave-to {
-  transform: scale(0);
+  transform: scale(0.25);
 }
 </style>
