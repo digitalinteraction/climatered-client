@@ -256,3 +256,8 @@ schedule:
     workshops: Workshops
     title: Interactive workshops
     description: Participate in one of the following interactive workshops.
+
+errors:
+  title: Something went wrong
+  general: An unexpected error occured, please try again.
+  loginExpired: Your login code has expired, they last for 30 minutes from when you request one. Please try again below.
