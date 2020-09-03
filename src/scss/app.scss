@@ -140,11 +140,11 @@
     }
   }
   &.is-purple {
-    background-color: #6c63ff;
-    border-color: #6c63ff;
+    background-color: $cc-purple;
+    border-color: $cc-purple;
     color: white;
     &:hover {
-      background-color: darken($color: #6c63ff, $amount: 2);
+      background-color: darken($color: $cc-purple, $amount: 2);
     }
   }
   &.is-light-blue {
@@ -165,6 +165,16 @@
       fill: white;
     }
   }
+}
+
+// Headings
+h4.section-heading {
+  color: $cc-bluegrey;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 // Animations

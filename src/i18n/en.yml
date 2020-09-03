@@ -204,6 +204,7 @@ session:
   hostedByHeading: Hosted by
   contactHost: Contact Host
   sessionOnlyAvailableIn: Please note this session is only available in
+  joinLiveQandA: Join live Q&A
 
 schedule:
   title: Schedule
