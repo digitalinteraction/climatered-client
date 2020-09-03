@@ -25,6 +25,7 @@ const Privacy = () =>
   import(/* webpackChunkName: "static" */ '../views/Privacy.vue')
 const Guidelines = () =>
   import(/* webpackChunkName: "static" */ '../views/Guidelines.vue')
+const Faqs = () => import(/* webpackChunkName: "static" */ '../views/Faqs.vue')
 const ErrorPage = () =>
   import(/* webpackChunkName: "static" */ '../views/Error.vue')
 
@@ -55,6 +56,7 @@ import {
   ROUTE_ERROR,
   ROUTE_PRIVACY,
   ROUTE_GUIDELINES,
+  ROUTE_FAQS,
   ROUTE_SESSIONS,
   ROUTE_INTERPRET_HOME,
   ROUTE_INTERPRET
@@ -172,6 +174,14 @@ const routes = [
     component: Guidelines,
     meta: {
       titleKey: 'guidelines.title'
+    }
+  },
+  {
+    path: '/faqs',
+    name: ROUTE_FAQS,
+    component: Faqs,
+    meta: {
+      titleKey: 'faqs.title'
     }
   },
   {

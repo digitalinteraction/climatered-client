@@ -8,6 +8,7 @@ export const ROUTE_PROFILE = 'Profile'
 export const ROUTE_TERMS = 'Terms'
 export const ROUTE_PRIVACY = 'Privacy'
 export const ROUTE_GUIDELINES = 'Guidelines'
+export const ROUTE_FAQS = 'Faqs'
 export const ROUTE_ERROR = 'Error'
 
 export const ROUTE_SESSION = 'Session'
