@@ -14,7 +14,7 @@
       </div>
 
       <!-- Register interest button -->
-      <div class="button-wrapper" v-if="onSessionPage && isFuture">
+      <!-- <div class="button-wrapper" v-if="onSessionPage && isFuture">
         <div class="buttons has-addons">
           <a
             :href="registerInterestLink"
@@ -24,7 +24,7 @@
             <span>{{ $t('schedule.actions.registerInterest') }}</span>
           </a>
         </div>
-      </div>
+      </div> -->
 
       <!-- Add to calendar button -->
       <div class="button-wrapper" v-if="isFuture">

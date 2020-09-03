@@ -46,7 +46,7 @@
         <div class="columns">
           <div class="column is-two-thirds">
             <div class="session-main">
-              <div class="session-component">
+              <div class="session-component" v-if="sessionState === 'present'">
                 <!-- Auditorium -->
                 <div v-if="isAuditorium" class="auditorium">
                   <OneToMany :session="session" :session-slot="slot" />
