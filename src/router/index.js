@@ -28,14 +28,10 @@ const Guidelines = () =>
 const ErrorPage = () =>
   import(/* webpackChunkName: "static" */ '../views/Error.vue')
 
-const Event = () =>
-  import(/* webpackChunkName: "prototype" */ '../views/Event.vue')
-const Home = () =>
-  import(/* webpackChunkName: "prototype" */ '../views/Home.vue')
+const Session = () =>
+  import(/* webpackChunkName: "prototype" */ '../views/Session.vue')
 const NotFound = () =>
   import(/* webpackChunkName: "prototype" */ '../views/NotFound.vue')
-const Translator = () =>
-  import(/* webpackChunkName: "prototype" */ '../views/Translator.vue')
 
 const InterpretHome = () =>
   import(
@@ -46,12 +42,11 @@ const Interpret = () =>
 
 import {
   ROUTE_ATRIUM,
-  ROUTE_EVENT,
+  ROUTE_SESSION,
   ROUTE_LOGIN,
   ROUTE_REGISTER,
   ROUTE_TOKEN_CAPTURE,
   ROUTE_NOT_FOUND,
-  ROUTE_TRANSLATOR,
   ROUTE_SCHEDULE,
   ROUTE_COFFEE_CHAT,
   ROUTE_HELP,
@@ -199,7 +194,7 @@ const routes = [
     }
   },
   {
-    path: '/interpret/:sessionId/:channel',
+    path: '/interpret/:sessionSlug/:channel',
     component: Interpret,
     name: ROUTE_INTERPRET,
     props: true,
@@ -208,31 +203,15 @@ const routes = [
     }
   },
   //
-  // v0 prototype
+  // sessions
   //
   {
-    path: '/prototype',
-    component: Home,
-    meta: {
-      title: 'v0'
-    }
-  },
-  {
-    path: '/prototype/event/:eventId',
-    name: ROUTE_EVENT,
-    component: Event,
+    path: '/session/:sessionSlug',
+    name: ROUTE_SESSION,
+    component: Session,
     props: true,
     meta: {
-      title: 'v0 | Event'
-    }
-  },
-  {
-    path: '/prototype/translator/:eventId',
-    name: ROUTE_TRANSLATOR,
-    component: Translator,
-    props: true,
-    meta: {
-      title: 'v0 | translator'
+      titleKey: 'session.title'
     }
   },
   //

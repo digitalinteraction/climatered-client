@@ -1,6 +1,6 @@
 {
   "name": "ifrc-vconf-gui",
-  "version": "0.15.2",
+  "version": "0.17.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,6 +12,10 @@
     "readme-toc": "md-toc -i"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
     "@zoomus/websdk": "^1.7.10",
     "audio-play": "^2.2.1",
     "audio-resampler": "^1.0.1",
@@ -19,7 +23,6 @@
     "bulma": "^0.9.0",
     "core-js": "^3.6.5",
     "countdown": "^2.6.0",
-    "i18n-iso-countries": "^6.0.0",
     "is-email": "^1.0.0",
     "jwt-decode": "^2.2.0",
     "ky": "^0.20.0",

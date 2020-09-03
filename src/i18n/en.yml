@@ -86,9 +86,6 @@ sessions:
     panel: Panels
     sessions: Sessions
 
-schedule:
-  title: Schedule
-
 coffeechat:
   title: Coffee chat
 
@@ -121,7 +118,7 @@ data:
     plenary: Keynote
     speaker: Speaker
     fishbowl: Fishbowl
-  theme:
+  track:
     act: Act
     empower: Empower
     influence: Influence
@@ -202,3 +199,65 @@ session:
   seeMore: See more
   seeLess: See less
   noInterpret: Your browser doesn't support interpretation, sorry!
+  scheduleHeading: Schedule
+  actionsHeading: Actions
+  hostedByHeading: Hosted by
+  contactHost: Contact Host
+  sessionOnlyAvailableIn: Please note this session is only available in
+
+schedule:
+  title: Schedule
+  description: Browse the available sessions and plan your experience by adding reminders to your calendar.
+  close: Close
+  past: Past
+  now: Now
+  present: Present
+  future: Future
+  addToCalendar: Add to Calendar
+  showAll: Show all
+  hideAll: Hide all
+  hidePastSessions: Hide past sessions
+  showPastSessions: Show past sessions
+  dates:
+    ninth: 9 September
+    tenth: 10 September
+  search: Search
+  showingResultsFor: 'Showing results for "{0}"'
+  redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
+  filters:
+    all: All
+    showFilters: Show Filters
+    clearFilters: Clear Filters
+    date: Date
+    track: Track
+    interactivity:
+      interactivity: Interactivity
+      interactive: Interactive
+      nonInteractive: Non-interactive
+    platform:
+      platform: Platform
+      zoom: Zoom
+    device:
+      device: Device
+      desktopOnly: Desktop only
+      mobileOnly: Mobile only
+    recorded:
+      recorded: Recorded
+      willBeRecorded: Will be recorded
+      notRecorded: Not recorded
+  attributes:
+    sessionAttributes: Session attributes
+  actions:
+    viewSession: View session
+    joinSession: Join session
+    previewSession: Preview session
+  workshops:
+    workshop: Workshop
+    workshops: Workshops
+    title: Interactive workshops
+    description: Participate in one of the following interactive workshops.
+
+errors:
+  title: Something went wrong
+  general: An unexpected error occured, please try again.
+  loginExpired: Your login code has expired, they last for 30 minutes from when you request one. Please try again below.

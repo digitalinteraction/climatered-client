@@ -92,16 +92,14 @@ import TextField from '@/components/form/TextField.vue'
 import SelectField from '@/components/form/SelectField.vue'
 import CheckboxField from '@/components/form/CheckboxField.vue'
 
-import { ROUTE_ATRIUM } from '../const'
-import { overrideLocale } from '../i18n'
+import { ROUTE_ATRIUM } from '@/const'
+import { overrideLocale } from '@/i18n'
+
+import countriesEn from '@/data/countries-en.json'
 
 import isEmail from 'is-email'
-import countries from 'i18n-iso-countries'
-import countriesEn from 'i18n-iso-countries/langs/en.json'
 
-countries.registerLocale(countriesEn)
-
-const countryOptions = Object.entries(countries.getNames('en')).map(
+const countryOptions = Object.entries(countriesEn.countries).map(
   ([key, text]) => ({
     value: key,
     label: text

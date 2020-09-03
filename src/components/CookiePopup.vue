@@ -81,7 +81,7 @@ export default {
   bottom: 0;
   top: 0;
   padding: 1rem;
-  z-index: 50;
+  z-index: $z-cookies;
 
   display: flex;
   align-items: flex-end;

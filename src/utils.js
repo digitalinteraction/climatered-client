@@ -86,12 +86,16 @@ export function slotState(slot) {
   return 'active'
 }
 
+const trailingSlash = str => str.replace(/\/*$/, '/')
+
+/** Get the url of the API to use, always has a trailing slash */
 export function pickApi() {
-  return window.CONFIG?.API_URL ?? 'http://localhost:3000'
+  return trailingSlash(window.CONFIG?.API_URL ?? 'http://localhost:3000/')
 }
 
+/** Get the url of the CDN to use, always has a trailing slash */
 export function pickCdn() {
-  return window.CONFIG?.CDN_URL ?? 'https://edit.climate.red'
+  return trailingSlash(window.CONFIG?.CDN_URL ?? 'https://edit.climate.red/')
 }
 
 export function getTranslation(translation, tryList) {

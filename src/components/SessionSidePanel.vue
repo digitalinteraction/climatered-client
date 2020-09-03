@@ -1,111 +1,98 @@
 <template>
-  <div class="session-side-panel">
-    <div class="info-panel" :class="{ 'scroll-panel': slido }">
-      <div class="info-panel-section">
-        <h3 class="section-headings is-uppercase" v-t="'session.hostHeading'" />
-        <p>{{ localeHostOrganisation }}</p>
-      </div>
-      <div class="info-panel-section" v-if="sessionSpeakers.length > 0">
-        <h3
-          class="section-headings is-uppercase"
-          v-t="'session.speakerHeading'"
+  <div class="session-sidepanel">
+    <div class="sidepanel-section">
+      <h3 class="sidepanel-heading" v-t="'session.hostHeading'" />
+      <p>{{ localeHostOrganisation }}</p>
+    </div>
+    <div class="sidepanel-section" v-if="sessionSpeakers.length > 0">
+      <h3 class="sidepanel-heading" v-t="'session.speakerHeading'" />
+      <div class="session-speakers">
+        <SpeakerRow
+          v-for="(speaker, i) in sessionSpeakers"
+          :key="i"
+          :speaker="speaker"
         />
-        <div class="event-speakers">
-          <SpeakerRow
-            v-for="(speaker, i) in sessionSpeakers"
-            :key="i"
-            :speaker="speaker"
-          />
-        </div>
-      </div>
-      <div class="info-panel-section">
-        <h3 class="section-headings is-uppercase" v-t="'session.infoHeading'" />
-        <p class="icon-and-text">
-          <span class="icon">
-            <GlobeIcon class="icon-size" />
-          </span>
-          <span class="session-card-language is-uppercase">
-            {{ event.hostLanguage.join('/') }}
-          </span>
-        </p>
-        <p class="icon-and-text">
-          <span class="icon">
-            <span class="icon">
-              <PlatformIcon class="icon-size" />
-            </span>
-          </span>
-          Info Missing
-        </p>
-        <p class="icon-and-text">
-          <span class="icon">
-            <span class="icon">
-              <DevicesIcon class="icon-size" />
-            </span>
-          </span>
-          {{ $t(`data.devices.${event.attendeeDevices}`) }}
-        </p>
-        <p class="icon-and-text">
-          <span class="icon">
-            <span class="icon">
-              <RecordIcon class="icon-size" />
-            </span>
-          </span>
-          {{ $t(`data.recorded.${event.isRecorded}`) }}
-        </p>
-        <p class="icon-and-text">
-          <span class="icon">
-            <span class="icon">
-              <InteractionIcon class="icon-size" />
-            </span>
-          </span>
-          {{ $t(`data.interaction.${event.attendeeInteraction}`) }}
-        </p>
-      </div>
-      <div class="info-panel-section" v-if="hasNonVideoLinks">
-        <h3
-          class="section-headings is-uppercase"
-          v-t="'session.linksHeading'"
-        />
-        <div class="table-container">
-          <table class="table is-bordered">
-            <tr v-for="(link, i) in nonVideoLinks" :key="i">
-              <td class="table-heading-column">{{ link.type }}</td>
-              <td class="table-data">
-                <a :href="link.url" target="_blank">{{
-                  link.title ? link.title : link.url
-                }}</a>
-              </td>
-            </tr>
-          </table>
-        </div>
       </div>
     </div>
-    <div class="slido-panel">
-      <div class="info-panel-section">
-        <div
-          v-if="slido && slotState == 'active'"
-          class="slido-wrapper embedded"
-        >
-          <div class="enable-poll" v-if="!showPoll">
-            <button class="button is-primary" @click="showPoll = true">
-              {{ $t('session.showPoll') }}
-            </button>
-          </div>
-          <iframe
-            v-else
-            :src="slido.url"
-            height="100%"
-            width="100%"
-            style="min-height: 560px;"
-          ></iframe>
+    <div class="sidepanel-section">
+      <h3 class="sidepanel-heading" v-t="'session.infoHeading'" />
+      <p class="icon-and-text">
+        <span class="icon">
+          <GlobeIcon class="icon-size" />
+        </span>
+        <span class="session-card-language is-uppercase">
+          {{ session.hostLanguage.join('/') }}
+        </span>
+      </p>
+      <p class="icon-and-text">
+        <span class="icon">
+          <span class="icon">
+            <PlatformIcon class="icon-size" />
+          </span>
+        </span>
+        Info Missing
+      </p>
+      <p class="icon-and-text">
+        <span class="icon">
+          <span class="icon">
+            <DevicesIcon class="icon-size" />
+          </span>
+        </span>
+        {{ $t(`data.devices.${session.attendeeDevices}`) }}
+      </p>
+      <p class="icon-and-text">
+        <span class="icon">
+          <span class="icon">
+            <RecordIcon class="icon-size" />
+          </span>
+        </span>
+        {{ $t(`data.recorded.${session.isRecorded}`) }}
+      </p>
+      <p class="icon-and-text">
+        <span class="icon">
+          <span class="icon">
+            <InteractionIcon class="icon-size" />
+          </span>
+        </span>
+        {{ $t(`data.interaction.${session.attendeeInteraction}`) }}
+      </p>
+    </div>
+    <div class="sidepanel-section" v-if="hasNonVideoLinks">
+      <h3 class="sidepanel-heading " v-t="'session.linksHeading'" />
+      <div class="table-container">
+        <table class="table is-bordered">
+          <tr v-for="(link, i) in nonVideoLinks" :key="i">
+            <td class="table-heading-column">{{ link.type }}</td>
+            <td class="table-data">
+              <a :href="link.url" target="_blank">{{
+                link.title ? link.title : link.url
+              }}</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="sidepanel-section">
+      <div v-if="slido && slotState == 'active'" class="slido-wrapper embedded">
+        <div class="enable-poll" v-if="!showPoll">
+          <button class="button is-primary" @click="showPoll = true">
+            {{ $t('session.showPoll') }}
+          </button>
         </div>
+        <iframe
+          v-else
+          :src="slido.url"
+          height="100%"
+          width="100%"
+          style="min-height: 560px;"
+        ></iframe>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { findLink, parseSlidoLink } from '../utils.js'
+import { findLink, parseSlidoLink, getTranslation } from '@/utils'
 import SpeakerRow from '@/components/SpeakerRow.vue'
 import GlobeIcon from '@/icons/globe.svg'
 import DevicesIcon from '@/icons/devices.svg'
@@ -113,7 +100,6 @@ import InteractionIcon from '@/icons/interaction.svg'
 import RecordIcon from '@/icons/rec.svg'
 import PlatformIcon from '@/icons/platform.svg'
 import { mapState } from 'vuex'
-import marked from 'marked'
 
 export default {
   components: {
@@ -125,9 +111,7 @@ export default {
     RecordIcon
   },
   props: {
-    event: { type: Object, required: true },
-    eventSlot: { type: Object, required: true },
-    language: { type: String, required: true },
+    session: { type: Object, required: true },
     slotState: { type: String, required: true }
   },
   data() {
@@ -138,28 +122,25 @@ export default {
   computed: {
     ...mapState('api', ['hasData', 'sessions', 'slots', 'speakers']),
     localeTitle() {
-      return this.event.title[this.$i18n.locale]
+      return this.session.title[this.$i18n.locale]
     },
     localeHostOrganisation() {
-      return this.event.hostOrganisation[this.$i18n.locale]
-    },
-    localeContent() {
-      if (this.$i18n.locale === 'dev') return 'event.content'
-
-      const content = this.event?.content?.[this.$i18n.locale]
-      return content && marked(content) //marked seems to add <p> tags, not sure why needed
+      return getTranslation(this.session.hostOrganisation, [
+        this.$i18n.locale,
+        'en'
+      ])
     },
     sessionSpeakers() {
-      return this.event.speakers
+      return this.session.speakers
         .map(slug => this.speakers.find(s => s.slug === slug))
         .filter(s => s)
     },
     slido() {
-      const link = findLink(this.event.links, 'poll', this.language)
+      const link = findLink(this.session.links, 'poll', this.$i18n.locale)
       return link && parseSlidoLink(link)
     },
     nonVideoLinks() {
-      return this.event.links.filter(link => {
+      return this.session.links.filter(link => {
         return link.type !== 'video' && link.type !== 'poll'
       })
     },
@@ -174,46 +155,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.session-side-panel {
+.session-sidepanel {
   height: 100%;
+  min-height: 100%;
+  margin: 1em 0;
 }
 
-h3 {
-  padding-bottom: 1em;
-}
-
-.event-speakers > *:not(:last-child) {
+.session-speakers > *:not(:last-child) {
   margin-bottom: 1em;
 }
 
-.info-panel {
-  margin: 1em;
-}
-
-.scroll-panel {
-  max-height: 10%;
-  overflow-y: scroll;
-}
-
-.slido-panel {
-  margin: 1em;
-}
-
-.info-panel-section {
+.sidepanel-section {
   margin-bottom: 2em;
 }
 
 .slido-wrapper {
   height: 0;
   padding-bottom: percentage(1.5 / 1);
+}
 
-  // > iframe {
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  //   width: 100%;
-  //   height: 100%;
-  // }
+.sidepanel-heading {
+  color: $cc-light-blue;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 0.5em;
 }
 
 .enable-poll {
