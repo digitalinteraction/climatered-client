@@ -166,8 +166,4 @@ export default {
   border-radius: 4px;
   overflow: hidden;
 }
-
-.bottom-panel {
-  padding-top: 3em;
-}
 </style>

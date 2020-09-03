@@ -204,6 +204,7 @@ session:
   hostedByHeading: Hosted by
   contactHost: Contact Host
   sessionOnlyAvailableIn: Please note this session is only available in
+  joinLiveQandA: Join live Q&A
 
 schedule:
   title: Schedule
@@ -251,6 +252,7 @@ schedule:
     viewSession: View session
     joinSession: Join session
     previewSession: Preview session
+    registerInterest: Register interest
   workshops:
     workshop: Workshop
     workshops: Workshops

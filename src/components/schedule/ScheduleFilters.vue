@@ -1,23 +1,24 @@
 <template>
   <div id="schedule-filters">
-    <!-- Search -->
-    <div class="field has-addons">
-      <!-- Search input -->
-      <div class="control">
-        <input
-          v-model="query"
-          @change="updateSearchQuery"
-          class="input is-small"
-          type="text"
-          :placeholder="`${$t(`schedule.search`)}`"
-        />
-      </div>
-
-      <!-- Search button -->
-      <div class="control">
-        <a class="button is-small is-dark">
-          <fa :icon="['fas', 'search']" />
-        </a>
+    <!-- Search & Filters -->
+    <div id="fitler-actions">
+      <div class="field has-addons">
+        <div id="search-wrapper">
+          <!-- Search input -->
+          <input
+            v-model="query"
+            @change="updateSearchQuery"
+            class="input is-small"
+            type="text"
+            :placeholder="`${$t(`schedule.search`)}`"
+          />
+          <!-- Search button -->
+          <div class="control">
+            <a class="button is-small is-modern is-dark">
+              <fa :icon="['fas', 'search']" />
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Toggle filters -->
@@ -270,7 +271,7 @@ export default {
   },
   computed: {
     filterToggleClasses() {
-      let classes = ['button', 'is-small', 'mx-3']
+      let classes = ['button', 'is-small', 'is-modern', 'mx-3']
       classes.push(this.filtersVisible ? 'is-danger' : 'is-light')
       return classes
     }
@@ -299,6 +300,19 @@ export default {
 
   .flex-spacer {
     flex-grow: 1;
+  }
+}
+#fitler-actions {
+  display: flex;
+  flex-direction: row;
+  #search-wrapper {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    input[type='text'] {
+      box-shadow: none;
+      padding: 1.4em 1em;
+    }
   }
 }
 </style>
