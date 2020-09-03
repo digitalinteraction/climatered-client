@@ -2,27 +2,31 @@
   <AppWrapper>
     <div class="wrapper">
       <div class="grid-container">
-        <div
-          class="grid-item"
-          v-for="(remoteStream, user) in remoteStreams"
-          :key="`media-${user}`"
-        >
+        <transition name="pop-in">
+          <div
+            class="grid-item"
+            v-for="(remoteStream, user) in remoteStreams"
+            :key="`media-${user}`"
+          >
+            <WebRTCVideo
+              class="remote-video remote-video-1"
+              :media-stream="remoteStream.mediaStream"
+              :muted="remoteStream.muted"
+            />
+          </div>
+        </transition>
+      </div>
+      <transition name="pop-in">
+        <div class="local-camera" v-if="localMediaStream">
           <WebRTCVideo
-            class="remote-video remote-video-1"
-            :media-stream="remoteStream.mediaStream"
-            :muted="remoteStream.muted"
+            :media-stream="localMediaStream"
+            muted
+            :show-muted-icon="false"
+            :is-local-video="true"
           />
         </div>
-      </div>
-      <div class="local-camera" v-if="localMediaStream">
-        <WebRTCVideo
-          :media-stream="localMediaStream"
-          muted
-          :show-muted-icon="false"
-          :is-local-video="true"
-        />
-      </div>
-      <div class="call-controls">
+      </transition>
+      <div class="call-controls" v-if="showControls">
         <div class="level">
           <div class="level-item has-text-centered">
             <button class="button" @click="toggleMute">
@@ -70,11 +74,13 @@ export default {
       userState: {},
       localMediaStream: null,
       muted: false,
-      contactDetails: null
+      contactDetails: null,
+      showControls: false
     }
   },
   async mounted() {
     this.localMediaStream = await this.setupMedia()
+    this.enterLocalVideo()
     this.coffeeChat = new CoffeeChatRoom(
       this.$socket,
       this.localMediaStream,
@@ -126,6 +132,9 @@ export default {
         )
       })
     },
+    enterLocalVideo() {
+      this.showControls = true
+    },
     toggleMute() {
       this.muted = !this.muted
       this.localMediaStream.getAudioTracks().forEach(t => {
@@ -173,8 +182,7 @@ body {
     height: 100%;
   }
 }
-</style>
-<style lang="scss" scoped>
+
 .wrapper {
   flex: 1;
   display: flex;
@@ -205,5 +213,17 @@ body {
   bottom: 6rem;
   transform: translate(-50%, -50%);
   margin: 0 auto;
+}
+
+.pop-in-enter-active {
+  transition: transform 1.2s ease-in-out;
+}
+.pop-in-leave-active {
+  transition: transform 1s ease-out;
+}
+
+.pop-in-enter,
+.pop-in-leave-to {
+  transform: scale(0);
 }
 </style>
