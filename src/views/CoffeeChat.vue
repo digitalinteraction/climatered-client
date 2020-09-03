@@ -97,7 +97,7 @@
                     </button>
                     <button
                       class="button is-primary is-small is-rounded save-button"
-                      @click="languageDropDownSelect()"
+                      @click="savePreferences()"
                     >
                       Save
                     </button>
@@ -156,7 +156,7 @@
                     </button>
                     <button
                       class="button is-primary is-small is-rounded save-button"
-                      @click="themesDropDownSelect()"
+                      @click="savePreferences()"
                     >
                       Save
                     </button>
@@ -166,7 +166,11 @@
             </div>
           </div>
           <div class="column is-12 has-text-centered">
-            <button class="button is-primary is-info is-large" v-if="isWaiting">
+            <button
+              class="button is-primary is-info is-large"
+              @click="leave"
+              v-if="isWaiting"
+            >
               <span class="icon rotate is-small">
                 <fa icon="globe" />
               </span>
@@ -283,7 +287,22 @@ export default {
       this.filters.themes.isActive = !this.filters.themes.isActive
       return this.filters.themes.isActive
     },
+    savePreferences() {
+      if (this.isWaiting) {
+        this.leave()
+      }
+      if (this.filters.languages.isActive) {
+        this.filters.languages.isActive = false
+      }
+
+      if (this.filters.themes.isActive) {
+        this.filters.themes.isActive = false
+      }
+    },
     ready() {
+      if (this.filters.languages.isActive || this.filters.themes.isActive) {
+        return
+      }
       const langPrefs = this.filters.languages.options
         .filter(l => l.selected)
         .map(l => l.value)
@@ -299,6 +318,10 @@ export default {
           : this.filters.themes.options.map(t => t.value)
       )
       this.isWaiting = true
+    },
+    leave() {
+      this.coffeeChatLobby.leaveLobby()
+      this.isWaiting = false
     }
   }
 }

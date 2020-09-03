@@ -14,4 +14,11 @@ export default class CoffeeChatLobby {
     })
     this.socket.emit('join-lobby', languagePrefs, topicPrefs)
   }
+
+  leaveLobby() {
+    this.socket.bindEvent(this, 'left-lobby', () => {
+      console.log('left lobby')
+    })
+    this.socket.emit('leave-lobby')
+  }
 }
