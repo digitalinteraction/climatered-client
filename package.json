@@ -1,6 +1,6 @@
 {
   "name": "ifrc-vconf-gui",
-  "version": "0.18.3",
+  "version": "0.18.4",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -24,6 +24,8 @@
     "jwt-decode": "^2.2.0",
     "ky": "^0.20.0",
     "marked": "^1.1.1",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
     "ms": "^2.1.2",
     "socket.io-client": "^2.3.0",
     "vue": "^2.6.11",

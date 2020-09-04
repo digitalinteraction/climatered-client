@@ -19,8 +19,9 @@
           <a
             :href="registerInterestLink"
             target="_blank"
-            class="button is-modern is-coral is-small is-fullwidth"
+            class="button has-icon is-modern is-coral is-small"
           >
+            <fa :icon="['fas', 'user-plus']" class="icon fa-fw fa-xs" />
             <span>{{ $t('schedule.actions.registerInterest') }}</span>
           </a>
         </div>
@@ -33,8 +34,9 @@
             :href="calendarLink"
             target="_blank"
             @click="trackCalendar"
-            class="button is-modern is-purple is-small"
+            class="button has-icon is-modern is-purple is-small"
           >
+            <fa :icon="['fas', 'calendar-plus']" class="icon fa-fw fa-xs" />
             <span>{{ $t('schedule.addToCalendar') }}</span>
           </a>
         </div>
