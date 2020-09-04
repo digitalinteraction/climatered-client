@@ -1,3 +1,6 @@
+import moment from 'moment'
+import 'moment-timezone'
+
 export function findLink(links, type, language) {
   const matches = links.filter(l => l.type === type)
 
@@ -103,6 +106,19 @@ export function getTranslation(translation, tryList) {
     if (translation[locale]) return translation[locale]
   }
   return undefined
+}
+
+export function getTimeZone(abbr = false) {
+  let tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+  if (typeof tz === 'undefined') {
+    tz = moment.tz.guess(true)
+  }
+  if (abbr) {
+    return moment()
+      .tz(tz)
+      .zoneAbbr()
+  }
+  return tz
 }
 
 export function getGaToken() {
