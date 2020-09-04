@@ -14,18 +14,36 @@
       </div>
 
       <!-- Register interest button -->
-      <!-- <div class="button-wrapper" v-if="onSessionPage && isFuture">
+      <div class="button-wrapper" v-if="onSessionPage && isFuture">
         <div class="buttons has-addons">
-          <a
-            :href="registerInterestLink"
-            target="_blank"
-            class="button has-icon is-modern is-coral is-small"
+          <button
+            @click="registerInterest"
+            class=""
+            :class="[
+              'button',
+              'has-icon',
+              'is-modern',
+              'is-small',
+              {
+                'is-coral': !hasRegisteredInterest,
+                'is-success': hasRegisteredInterest
+              }
+            ]"
           >
-            <fa :icon="['fas', 'user-plus']" class="icon fa-fw fa-xs" />
-            <span>{{ $t('schedule.actions.registerInterest') }}</span>
-          </a>
+            <fa
+              :icon="
+                hasRegisteredInterest ? ['fas', 'check'] : ['fas', 'user-plus']
+              "
+              class="icon fa-fw fa-xs"
+            />
+            <span>{{
+              hasRegisteredInterest
+                ? $t('schedule.actions.interestRegistered')
+                : $t('schedule.actions.registerInterest')
+            }}</span>
+          </button>
         </div>
-      </div> -->
+      </div>
 
       <!-- Add to calendar button -->
       <div class="button-wrapper" v-if="isFuture">
@@ -50,6 +68,7 @@
       </div>
     </div>
     <div v-if="isDev && metaVisible" class="meta-section">
+      <pre>{{ sessionLayout }}</pre>
       <pre>{{ session }}</pre>
     </div>
   </span>
@@ -73,6 +92,7 @@ export default {
     scheduleSlot: { type: Object, required: true },
     session: { type: Object, required: true },
     sessionState: { type: String, required: true },
+    sessionLayout: { type: String, required: true },
     isFullwidth: { type: Boolean, default: false }
   },
   filters: {
@@ -83,7 +103,8 @@ export default {
   },
   data() {
     return {
-      metaVisible: false
+      metaVisible: false,
+      hasRegisteredInterest: false
     }
   },
   computed: {
@@ -91,9 +112,11 @@ export default {
       return this.session.title[this.$i18n.locale]
     },
     registerInterestLink() {
-      const emailSubject = 'Someone registered interest in your session'
+      const emailSubject = this.$t('schedule.actions.registerInterestSubject')
       const emailRecipient = this.session.hostEmail
-      const emailBody = `I am interested in your session - "${this.localeTitle}"`
+      const emailBody = this.$t('schedule.actions.registerInterestBody', [
+        this.localeTitle
+      ])
       const emailCCRecipient = 'support@climate.red'
 
       return `mailto:${emailRecipient}?cc=${emailCCRecipient}&subject=${emailSubject}&body=${emailBody}`
@@ -145,6 +168,18 @@ export default {
     }
   },
   methods: {
+    async registerInterest() {
+      // TODO: Enable for production
+      // if (this.sessionLayout === 'room') {
+      //   document.location = this.registerInterestLink
+      // }
+
+      // Increment attendence
+      await this.$store.dispatch('api/registerAttendence', {
+        sessionSlug: this.session.slug
+      })
+      this.hasRegisteredInterest = true
+    },
     trackCalendar() {
       this.$gtag.event('ical', {
         event_category: this.session.slug,
@@ -185,7 +220,7 @@ export default {
     justify-self: end;
     margin-inline-start: 0.75em;
     .buttons {
-      a {
+      .button {
         flex-grow: 1;
       }
     }
