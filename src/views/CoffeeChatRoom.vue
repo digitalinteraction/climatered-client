@@ -35,7 +35,7 @@
         </div>
         <div class="info-text" v-if="joiningInfoWindowActive">
           <h3 class="is-size-5 has-text-weight-semibold">Joining Info</h3>
-          {{ roomLink }}
+          <p>{{ roomLink }}</p>
         </div>
       </div>
       <transition name="pop-in">
@@ -46,30 +46,23 @@
           />
         </div>
       </transition>
-      <div class="call-controls" v-if="showControls">
-        <div class="level">
-          <div class="level-item has-text-centered">
-            <button class="button" @click="toggleMute">
-              <span class="icon is-small">
-                <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
-              </span>
-              <span v-if="muted">Unmute</span>
-              <span v-else>Mute</span>
-            </button>
-          </div>
-          <div class="level-item has-text-centered">
-            <button
-              class="button"
-              @click="shareContactDetails"
-              :disabled="contactDetails"
-            >
-              Share Contact Details
-            </button>
-          </div>
-          <div class="level-item has-text-centered">
-            <button class="button" @click="leave">Leave</button>
-          </div>
-        </div>
+      <div class="call-controls buttons" v-if="showControls">
+        <button class="button" @click="toggleMute">
+          <span class="icon is-small">
+            <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
+          </span>
+          <span v-if="muted">Unmute</span>
+          <span v-else>Mute</span>
+        </button>
+        <button
+          class="button"
+          @click="shareContactDetails"
+          :disabled="contactDetails"
+        >
+          Share Contact Details
+        </button>
+
+        <button class="button" @click="leave">Leave</button>
       </div>
     </div>
   </AppWrapper>
@@ -185,18 +178,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-body {
-  min-height: 100vh;
-  max-height: 100vh;
-  overflow-y: hidden;
-}
-
-.app-page {
-  display: flex;
-  flex: 1;
-}
-
+<style lang="scss" scoped>
 .joining-message {
   width: 100%;
   align-items: stretch;
@@ -212,10 +194,17 @@ body {
   position: absolute;
   left: 2rem;
   top: 2rem;
-  max-width: 385px;
   background-color: rgba($color: #000000, $alpha: 0.4);
   padding: 1rem;
   border-radius: 0.75rem;
+  max-width: 386px;
+
+  @include mobile {
+    top: 0.5rem;
+    left: 0.5rem;
+    margin-right: 0.5rem;
+    max-width: 100%;
+  }
 
   .info-button {
     width: 1.75rem;
@@ -239,33 +228,24 @@ body {
   }
 }
 
-.remote-video {
-  video {
-    position: absolute;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-  }
-}
-
 .wrapper {
-  flex: 1;
-  display: flex;
-  position: relative;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: $greyish;
 }
 
 .grid-container {
-  flex: 1;
+  width: 100%;
+  height: 100%;
   display: grid;
-  grid-gap: 10px;
-  grid-area: auto;
-  // grid-template-columns: 100px 100px 100px;
-  // grid-template-rows: 100px 100px 100px;
+  .grid-item {
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+  }
 }
 
 .local-camera {

@@ -32,6 +32,12 @@ export default {
   height: 100%;
 }
 
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .is-rounded {
   border-radius: 0.5rem;
   overflow: hidden;

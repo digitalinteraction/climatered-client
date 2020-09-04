@@ -398,7 +398,6 @@ $tri-width: $tabbar-width / 2;
   }
   .app-page {
     margin-inline-start: $tabbar-width;
-    flex: 1;
   }
   .navbar-start {
     display: none;
@@ -422,7 +421,8 @@ $tri-width: $tabbar-width / 2;
 }
 
 .app-page {
-  // ...
+  flex: 1;
+  position: relative;
 }
 
 .app-footer {
