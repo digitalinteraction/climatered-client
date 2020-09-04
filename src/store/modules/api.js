@@ -128,6 +128,15 @@ const actions = {
     })
     console.log('response', response)
     return response.status === 200
+  },
+  async checkAttendence(ctx, { sessionSlug }) {
+    const response = await agent.get(`/attendance/${sessionSlug}`, {
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    console.log('response', response)
+    return response
   }
 }
 

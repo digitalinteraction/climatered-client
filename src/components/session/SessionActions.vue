@@ -18,15 +18,16 @@
         <div class="buttons has-addons">
           <button
             @click="registerInterest"
-            class=""
+            :disabled="checkingAttendance"
             :class="[
               'button',
               'has-icon',
               'is-modern',
               'is-small',
               {
-                'is-coral': !hasRegisteredInterest,
-                'is-success': hasRegisteredInterest
+                'is-loading': checkingAttendance,
+                'is-coral': !checkingAttendance && !hasRegisteredInterest,
+                'is-success': !checkingAttendance && hasRegisteredInterest
               }
             ]"
           >
@@ -101,10 +102,16 @@ export default {
       params: { sessionSlug: s.slug }
     })
   },
+  mounted() {
+    if (this.onSessionPage) {
+      this.checkAttendance()
+    }
+  },
   data() {
     return {
       metaVisible: false,
-      hasRegisteredInterest: false
+      hasRegisteredInterest: false,
+      checkingAttendance: true
     }
   },
   computed: {
@@ -168,6 +175,13 @@ export default {
     }
   },
   methods: {
+    async checkAttendance() {
+      const result = await this.$store.dispatch('api/checkAttendence', {
+        sessionSlug: this.session.slug
+      })
+      this.hasRegisteredInterest = result.data.isAttending
+      this.checkingAttendance = false
+    },
     async registerInterest() {
       // TODO: Enable for production
       // if (this.sessionLayout === 'room') {
