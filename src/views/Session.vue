@@ -176,6 +176,19 @@
         </div>
       </div>
     </div>
+    <UtilWrapper :pick-languages="false" v-else>
+      <router-link
+        :to="scheduleRoute"
+        slot="back-button"
+        class="button is-link"
+      >
+        {{ $t('general.backTo', [$t('schedule.title')]) }}
+      </router-link>
+      <div slot="content" class="content">
+        <h1 v-t="'notFound.title'" />
+        <p v-t="'notFound.info'" />
+      </div>
+    </UtilWrapper>
   </AppWrapper>
 </template>
 
@@ -199,6 +212,7 @@ import SessionSidePanel from '@/components/session/SessionSidePanel.vue'
 import OneToMany from '@/components/OneToMany.vue'
 import ManyToMany from '@/components/ManyToMany.vue'
 import AppWrapper from '@/components/AppWrapper.vue'
+import UtilWrapper from '@/components/UtilWrapper.vue'
 
 export default {
   components: {
@@ -211,7 +225,8 @@ export default {
     // Countdown,
     OneToMany,
     ManyToMany,
-    AppWrapper
+    AppWrapper,
+    UtilWrapper
   },
   props: {
     sessionSlug: { type: String, required: true }
