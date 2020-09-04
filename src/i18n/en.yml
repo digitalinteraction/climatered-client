@@ -202,6 +202,9 @@ session:
   joinLiveQandA: Join live Q&A
   linksWillBeAvailable: The session links will be available 15 minutes before the start time
   sessionWillBeHostedIn: This session will be hosted in
+  interestRegisteredConfirmation: Your interest has been registered!
+  personInterested: '{0} person interested'
+  peopleInterested: '{0} people interested'
 
 schedule:
   title: Schedule
@@ -250,6 +253,9 @@ schedule:
     joinSession: Join session
     previewSession: Preview session
     registerInterest: Register interest
+    interestRegistered: Interest registered
+    registerInterestSubject: Register interest in climate:red session
+    registerInterestBody: I am interested in your climate:red session - "{0}"
   workshops:
     workshop: Workshop
     workshops: Workshops

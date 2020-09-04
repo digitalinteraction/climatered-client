@@ -115,12 +115,6 @@ export default {
       background-color: white;
     }
     &.poll-visible {
-      background-color: #252525;
-      // padding-top: 30px;
-
-      .section-heading {
-        display: none;
-      }
       #slido-wrapper {
         height: 573px;
       }
