@@ -1,16 +1,17 @@
 <template>
   <div class="schedule-page-header">
     <div class="page-header is-light">
-      <!-- Title -->
-      <h1 class="title">
-        <slot name="title"></slot>
-      </h1>
+      <div class="page-header-content">
+        <!-- Title -->
+        <h1 class="title">
+          <slot name="title"></slot>
+        </h1>
 
-      <!-- Description -->
-      <h4 class="description">
-        <slot name="description"></slot>
-      </h4>
-
+        <!-- Description -->
+        <h4 class="description">
+          <slot name="description"></slot>
+        </h4>
+      </div>
       <!-- Page controls -->
       <div class="page-controls-wrapper">
         <div class="page-controls">
@@ -30,8 +31,16 @@ export default {
 <style lang="scss" scoped>
 .schedule-page-header {
   .page-header {
-    background-color: $cc-lightestgrey;
-    padding: 1.5em;
+    .page-header-content {
+      padding: 1.5em;
+      padding-bottom: 0;
+
+      .title {
+        color: #515151;
+        font-weight: bold;
+        margin-bottom: 0;
+      }
+    }
 
     &.is-primary {
       background-color: $cc-coral;
@@ -46,23 +55,11 @@ export default {
       background-color: white;
     }
 
-    .title {
-      color: #515151;
-      font-weight: bold;
-      margin-bottom: 0;
-    }
-    .description {
-      margin: 10px 0;
-    }
-
     // Page controls
     .page-controls-wrapper {
-      border-top: 1px solid $border;
-      margin-top: 20px;
-      padding-top: 20px;
+      background-color: white;
+
       .page-controls {
-        display: inline-block;
-        margin-bottom: -15px;
         .field {
           margin-bottom: 0px;
         }

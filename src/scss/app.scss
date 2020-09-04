@@ -131,6 +131,9 @@
 
 // Custom buttons
 .button {
+  display: flex;
+  max-width: 300px;
+  padding: 0 2em;
   &.is-coral {
     background-color: $cc-coral;
     border-color: $cc-coral;
@@ -157,12 +160,25 @@
   }
   &.is-modern {
     border-radius: 8px;
-    // height: 3em;
-    // padding-top: calc(0.75em - 1px);
-    // padding-bottom: calc(0.75em - 1px);
     padding: 1.4em 1.5em !important;
     .icon svg {
       fill: white;
+    }
+  }
+  &.has-icon {
+    padding-inline-start: 3em !important;
+    &:not(.is-fullwidth) {
+      .icon:first-child:not(:last-child) {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    &:dir(ltr) .icon:first-child:not(:last-child) {
+      left: 2em;
+    }
+    &:dir(rtl) .icon:first-child:not(:last-child) {
+      right: 2em;
     }
   }
 }

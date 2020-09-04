@@ -144,13 +144,15 @@
                 <p>
                   {{ localeHostOrganisation }}
                 </p>
-                <a :href="`mailto:${session.hostEmail}`">
-                  <button
-                    class="button is-modern is-small is-purple is-fullwidth mt-3"
+                <div class="button-wrapper">
+                  <a
+                    :href="`mailto:${session.hostEmail}`"
+                    class="button has-icon is-modern is-small is-purple mt-3"
                   >
-                    {{ $t('session.contactHost') }}
-                  </button>
-                </a>
+                    <fa :icon="['fas', 'envelope']" class="icon fa-fw fa-xs" />
+                    <span>{{ $t('session.contactHost') }}</span>
+                  </a>
+                </div>
               </section>
             </div>
           </div>
@@ -353,7 +355,6 @@ export default {
       section {
         align-self: flex-start;
         flex-shrink: 1;
-        // border-bottom: 1px solid $border;
 
         width: 100%;
         &:not(#session-panel) {
