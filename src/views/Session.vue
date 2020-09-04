@@ -6,8 +6,8 @@
         <div class="buttons">
           <router-link class="session-back" :to="scheduleRoute">
             <button class="button is-modern is-small is-coral">
-              <fa :icon="['fas', 'arrow-left']" />
-              <!-- {{ $t('general.backTo', [$t('schedule.title')]) }} -->
+              <!-- <fa :icon="['fas', 'arrow-left']" /> -->
+              {{ $t('general.backTo', [$t('schedule.title')]) }}
             </button>
           </router-link>
           <button
