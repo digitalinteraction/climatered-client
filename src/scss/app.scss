@@ -171,16 +171,16 @@
       .icon:first-child:not(:last-child) {
         position: absolute;
         top: 50%;
+        left: 2em;
         transform: translateY(-50%);
       }
     }
-    &:dir(ltr) .icon:first-child:not(:last-child) {
-      left: 2em;
-    }
-    &:dir(rtl) .icon:first-child:not(:last-child) {
-      right: 2em;
-    }
   }
+}
+
+*[dir='rtl'] .button.has-icon .icon:first-child:not(:last-child) {
+  left: auto;
+  right: 2em;
 }
 
 // Headings
