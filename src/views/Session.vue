@@ -20,24 +20,6 @@
         </div>
       </div>
       <div class="session-wrapper">
-        <!-- Locale warning -->
-        <div
-          v-if="displayLanguageNotification && !languageNotificationDismissed"
-          class="notification is-danger"
-        >
-          <span class="icon">
-            <fa :icon="['fas', 'globe']" class="fa-xs fa-fw" />
-          </span>
-          <span>{{ $t('session.sessionOnlyAvailableIn') }}</span>
-          <span class="is-uppercase">
-            {{ session.hostLanguage.join('/') }}
-          </span>
-          <button
-            @click="languageNotificationDismissed = true"
-            class="delete"
-          ></button>
-        </div>
-
         <div class="session-headings">
           <SessionType :schedule-slot="slot" :session="session" />
           <h1 class="title">{{ localeTitle }}</h1>
@@ -46,6 +28,25 @@
         <div class="columns">
           <div class="column is-two-thirds">
             <div class="session-main">
+              <!-- Locale warning -->
+              <div
+                v-if="
+                  displayLanguageNotification && !languageNotificationDismissed
+                "
+                class="notification is-danger is-light"
+              >
+                <span class="icon">
+                  <fa :icon="['fas', 'globe']" class="fa-xs fa-fw" />
+                </span>
+                <span>{{ $t('session.sessionOnlyAvailableIn') }}</span>
+                <span class="is-uppercase">
+                  {{ session.hostLanguage.join('/') }}
+                </span>
+                <button
+                  @click="languageNotificationDismissed = true"
+                  class="delete"
+                ></button>
+              </div>
               <div class="session-component">
                 <!-- Auditorium -->
                 <div v-if="isAuditorium" class="auditorium">
@@ -107,6 +108,11 @@
                   :force-active-session-state="forceActiveSessionState"
                   class="is-large"
                 />
+                <div v-if="isRoom">
+                  <p class="is-size-6 mt-4 has-text-danger">
+                    *{{ $t('session.linksWillBeAvailable') }}
+                  </p>
+                </div>
               </section>
 
               <!-- Speakers -->
@@ -401,6 +407,7 @@ export default {
 }
 
 .notification {
+  margin: 0 !important;
   padding: 0.75rem 2.5rem 0.75rem 2.5rem !important;
   .icon {
     left: 0.5rem;
