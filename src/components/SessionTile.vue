@@ -14,7 +14,15 @@
 
     <!-- Description -->
     <p class="session-description">
-      {{ localeContent | trim(300) }}
+      <span v-if="session.content[$i18n.locale] === '-'">
+        {{ $t('session.sessionWillBeHostedIn') }}
+        <span class="is-uppercase">
+          {{ session.hostLanguage.join('/') }}
+        </span>
+      </span>
+      <span v-else>
+        {{ localeContent | trim(300) }}
+      </span>
     </p>
 
     <!-- Attributes -->
@@ -70,7 +78,8 @@ export default {
       return this.session.title[this.$i18n.locale]
     },
     localeContent() {
-      return this.session.content[this.$i18n.locale]
+      let content = this.session.content[this.$i18n.locale]
+      return content
     },
     localeHostOrganisation() {
       return this.session.hostOrganisation[this.$i18n.locale]

@@ -77,7 +77,18 @@
                 class="session-abstract"
                 :class="{ 'hide-overflow': !readMore }"
               >
-                <div class="content" v-html="localeContent"></div>
+                <div
+                  v-if="session.content[$i18n.locale] === '-'"
+                  class="content"
+                >
+                  <span>
+                    {{ $t('session.sessionWillBeHostedIn') }}
+                    <span class="is-uppercase">
+                      {{ session.hostLanguage.join('/') }}
+                    </span>
+                  </span>
+                </div>
+                <div v-else class="content" v-html="localeContent"></div>
               </div>
             </div>
           </div>
@@ -400,10 +411,6 @@ export default {
     bottom: 0;
     box-shadow: 0 -2em 1em -1em white inset;
   }
-}
-
-#session-attributes-wrapper {
-  margin-top: 30px;
 }
 
 .notification {

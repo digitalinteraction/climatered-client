@@ -206,6 +206,7 @@ session:
   sessionOnlyAvailableIn: Please note this session is only available in
   joinLiveQandA: Join live Q&A
   linksWillBeAvailable: The session links will be available 15 minutes before the start time
+  sessionWillBeHostedIn: This session will be hosted in
 
 schedule:
   title: Schedule
