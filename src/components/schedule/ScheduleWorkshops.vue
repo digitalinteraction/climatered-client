@@ -161,9 +161,6 @@ export default {
       align-items: center;
       padding: 5px;
       text-align: left;
-      &:dir(rtl) {
-        text-align: right;
-      }
       h3 {
         color: $cc-coral;
         flex-grow: 1;
@@ -172,6 +169,24 @@ export default {
         padding: 0 10px;
         text-transform: capitalize;
       }
+    }
+  }
+}
+
+// RTL support
+*[dir='ltr'] {
+  .workshops-info-wrapper {
+    text-align: left;
+    h3 {
+      text-align: left;
+    }
+  }
+}
+*[dir='rtl'] {
+  .workshops-info-wrapper {
+    text-align: right;
+    h3 {
+      text-align: right;
     }
   }
 }

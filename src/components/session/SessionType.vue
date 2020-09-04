@@ -84,6 +84,9 @@ export default {
         case 'workshop': {
           return ['fas', 'object-group']
         }
+        case 'welcome': {
+          return ['fab', 'youtube']
+        }
         default: {
           return ['fas', 'comments']
         }

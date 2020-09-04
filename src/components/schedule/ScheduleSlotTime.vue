@@ -164,18 +164,6 @@ export default {
     font-weight: $weight-normal;
   }
 
-  svg.fa-flip-horizontal {
-    display: none;
-  }
-  :dir(rtl) {
-    svg:not(.fa-flip-horizontal) {
-      display: none;
-    }
-    svg.fa-flip-horizontal {
-      display: inline-block;
-    }
-  }
-
   &.is-large {
     h3 {
       font-size: 1.5em;
@@ -185,6 +173,28 @@ export default {
     }
     h5 {
       font-size: 1.1em;
+    }
+  }
+}
+
+// RTL support
+*[dir='ltr'] {
+  .schedule-slot-time {
+    svg:not(.fa-flip-horizontal) {
+      display: inline-block;
+    }
+    svg.fa-flip-horizontal {
+      display: none;
+    }
+  }
+}
+*[dir='rtl'] {
+  .schedule-slot-time {
+    svg:not(.fa-flip-horizontal) {
+      display: none;
+    }
+    svg.fa-flip-horizontal {
+      display: inline-block;
     }
   }
 }

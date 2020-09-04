@@ -321,20 +321,6 @@ export default {
         border-bottom-right-radius: 8px;
       }
     }
-    &:dir(rtl) {
-      .field.has-addons {
-        input {
-          border-radius: 0;
-          border-top-right-radius: 8px;
-          border-bottom-right-radius: 8px;
-        }
-        .control:last-child:not(:only-child) * {
-          border-radius: 0;
-          border-top-left-radius: 8px;
-          border-bottom-left-radius: 8px;
-        }
-      }
-    }
   }
   #filters {
     padding: 1.5rem;
@@ -342,6 +328,22 @@ export default {
   }
 
   width: 100%;
+}
+*[dir='rtl'] {
+  #schedule-filters #controls {
+    .field.has-addons {
+      input {
+        border-radius: 0;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+      .control:last-child:not(:only-child) * {
+        border-radius: 0;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+    }
+  }
 }
 .field-body {
   flex-wrap: wrap;
