@@ -35,7 +35,16 @@ const mutations = {
   speakers: (state, speakers) => Object.assign(state, { speakers }),
   themes: (state, themes) => Object.assign(state, { themes }),
   tracks: (state, tracks) => Object.assign(state, { tracks }),
-  types: (state, types) => Object.assign(state, { types })
+  types: (state, types) => Object.assign(state, { types }),
+
+  updateAttendance: (state, payload) => {
+    const session = state.sessions.find(
+      session => session.slug === payload.sessionSlug
+    )
+    Object.assign(session, {
+      attendance: parseInt(session.attendance) + parseInt(payload.change)
+    })
+  }
 }
 
 const actions = {
@@ -117,7 +126,11 @@ const actions = {
         'content-type': 'application/json'
       }
     })
-    console.log('response', response)
+
+    if (response.status === 200) {
+      ctx.commit('updateAttendance', { change: 1, sessionSlug })
+    }
+
     return response.status === 200
   },
   async unregisterAttendence(ctx, { sessionSlug }) {
@@ -126,7 +139,11 @@ const actions = {
         'content-type': 'application/json'
       }
     })
-    console.log('response', response)
+
+    if (response.status === 200) {
+      ctx.commit('updateAttendance', { change: -1, sessionSlug })
+    }
+
     return response.status === 200
   },
   async checkAttendence(ctx, { sessionSlug }) {
@@ -135,7 +152,6 @@ const actions = {
         'content-type': 'application/json'
       }
     })
-    console.log('response', response)
     return response
   }
 }
