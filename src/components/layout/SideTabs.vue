@@ -81,10 +81,7 @@ export default {
 }
 
 .tabbar-item {
-  transition: 'border-color' 0.3s ease;
-  // border-radius: 8px;
-  border-left: 3px solid transparent;
-  border-right: 3px solid transparent;
+  transition: 'background-color' 0.3s ease;
 
   font-size: $size-7;
   font-weight: bold;
@@ -95,12 +92,9 @@ export default {
 
   color: $white;
 
-  margin: 0;
-  padding: 12px 0;
-  // padding-inline-start: 6px;
-  // border-radius: $radius-large;
-
-  // @include link;
+  margin: 6px;
+  padding: 6px 0;
+  border-radius: $radius-large;
 
   &[disabled] {
     opacity: 0.3;
@@ -134,11 +128,9 @@ export default {
   }
 
   &.is-active {
+    background-color: white;
     color: $cc-coral;
-    color: white;
-    background: rgba($color: #000000, $alpha: 0.2);
-    // background-color: $cc-coral;
-    // border-inline-start-color: white;
+    border-inline-start-color: white;
     border-inline-start-color: $cc-coral;
   }
 }

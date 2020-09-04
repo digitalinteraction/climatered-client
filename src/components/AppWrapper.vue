@@ -265,8 +265,8 @@ $tri-width: $tabbar-width / 2;
     &:before {
       content: '';
       display: inline-block;
-      border-block-end: solid $tri-height #232323;
-      border-inline-start: solid $tri-width #232323;
+      border-block-end: solid $tri-height $cc-coral;
+      border-inline-start: solid $tri-width $cc-coral;
       border-inline-end: solid $tri-width $white;
       border-block-start: solid $tri-height $white;
     }
