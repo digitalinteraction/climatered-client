@@ -35,7 +35,9 @@ import {
   faCubes,
   faArrowLeft,
   faEnvelope,
-  faUserPlus
+  faUserPlus,
+  faLongArrowAltRight,
+  faArrowRight
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -74,7 +76,9 @@ library.add(
   faCubes,
   faArrowLeft,
   faEnvelope,
-  faUserPlus
+  faUserPlus,
+  faLongArrowAltRight,
+  faArrowRight
 )
 
 //

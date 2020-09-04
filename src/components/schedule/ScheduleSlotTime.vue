@@ -11,16 +11,27 @@
     </div>
 
     <!-- Time label -->
-    <h4>
+    <h3>
       <span :title="new Date(scheduleSlot.start)">
         {{ scheduleSlot.start | localeTimeShort }}
       </span>
-      <span>
+      <!-- <span>
         -
-      </span>
+      </span> -->
+      <fa :icon="['fas', 'long-arrow-alt-right']" class="fa-fw fa-sm" />
+      <fa
+        :icon="['fas', 'long-arrow-alt-right']"
+        class="fa-fw fa-sm fa-flip-horizontal"
+      />
       <span :title="new Date(scheduleSlot.end)">
         {{ scheduleSlot.end | localeTimeShort }}
       </span>
+    </h3>
+
+    <!-- Timezone label -->
+    <h4>
+      <span>{{ currentTimeZone }}</span>
+      <span> ({{ currentTimeZoneAbbr }})</span>
     </h4>
 
     <!-- Date label -->
@@ -29,6 +40,8 @@
 </template>
 
 <script>
+import { getTimeZone } from '../../utils'
+
 export default {
   name: 'ScheduleSlotTime',
   props: {
@@ -47,6 +60,12 @@ export default {
     forceActiveSessionState: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      currentTimeZone: getTimeZone(),
+      currentTimeZoneAbbr: getTimeZone(true)
     }
   },
   computed: {
@@ -126,21 +145,43 @@ export default {
     }
   }
 
-  h4 {
+  h3 {
     color: #757a8a;
     font-size: 1.1em;
     font-weight: $weight-bold;
     line-height: 1.25rem;
   }
+  h4 {
+    color: #757a8a;
+    font-size: 0.9em;
+    font-weight: $weight-bold;
+    line-height: 1.25rem;
+  }
   h5 {
     color: $text-light;
+    color: #999;
     font-size: 0.9em;
     font-weight: $weight-normal;
   }
 
+  svg.fa-flip-horizontal {
+    display: none;
+  }
+  :dir(rtl) {
+    svg:not(.fa-flip-horizontal) {
+      display: none;
+    }
+    svg.fa-flip-horizontal {
+      display: inline-block;
+    }
+  }
+
   &.is-large {
-    h4 {
+    h3 {
       font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.1em;
     }
     h5 {
       font-size: 1.1em;

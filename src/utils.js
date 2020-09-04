@@ -1,3 +1,6 @@
+import moment from 'moment'
+import 'moment-timezone'
+
 export function findLink(links, type, language) {
   const matches = links.filter(l => l.type === type)
 
@@ -24,6 +27,24 @@ export function parseYouTubeLink(link) {
     return {
       url: link.url,
       id: url.searchParams.get('v')
+    }
+  }
+
+  return null
+}
+
+// https://www.youtube.com/embed/live_stream?channel=UC7v2Rs4f_UlIQNuNKUjmtgA
+export function parseYouTubeChannel(link) {
+  let url = new URL(link.url)
+
+  if (
+    url.hostname.endsWith('youtube.com') &&
+    url.pathname === '/embed/live_stream' &&
+    url.searchParams.has('channel')
+  ) {
+    return {
+      url: link.url,
+      channel: url.searchParams.get('channel')
     }
   }
 
@@ -103,6 +124,19 @@ export function getTranslation(translation, tryList) {
     if (translation[locale]) return translation[locale]
   }
   return undefined
+}
+
+export function getTimeZone(abbr = false) {
+  let tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+  if (typeof tz === 'undefined') {
+    tz = moment.tz.guess(true)
+  }
+  if (abbr) {
+    return moment()
+      .tz(tz)
+      .zoneAbbr()
+  }
+  return tz
 }
 
 export function getGaToken() {
