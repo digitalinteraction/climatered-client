@@ -94,6 +94,24 @@
           </div>
           <div class="column is-one-third">
             <div class="session-sidebar">
+              <span
+                id="interest-tag"
+                class="tag is-light"
+                v-if="parseInt(session.attendance) > 0"
+              >
+                <fa :icon="['fas', 'fire']" class="fa-fw" />
+                <span class="mx-1">
+                  {{
+                    $t(
+                      parseInt(session.attendance) === 1
+                        ? 'session.personInterested'
+                        : 'session.peopleInterested',
+                      [parseInt(session.attendance)]
+                    )
+                  }}
+                </span>
+              </span>
+
               <!-- Cover image -->
               <section v-if="hasCoverImage">
                 <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
@@ -143,6 +161,7 @@
                   :schedule-slot="slot"
                   :session="session"
                   :session-state="sessionState"
+                  :session-layout="sessionLayout"
                   :is-fullwidth="true"
                 />
               </section>
@@ -443,5 +462,9 @@ section#cover-image {
   }
   .connect {
   }
+}
+
+#interest-tag {
+  margin-bottom: 2em;
 }
 </style>

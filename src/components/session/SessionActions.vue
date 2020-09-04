@@ -92,7 +92,7 @@ export default {
     scheduleSlot: { type: Object, required: true },
     session: { type: Object, required: true },
     sessionState: { type: String, required: true },
-    sessionLayout: { type: String, required: true },
+    sessionLayout: { type: String, required: false, default: 'unknown' },
     isFullwidth: { type: Boolean, default: false }
   },
   filters: {
