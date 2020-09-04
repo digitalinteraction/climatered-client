@@ -22,7 +22,7 @@ const getters = {
   track: state => slug => state.tracks.find(s => s.slug === slug),
   type: state => slug => state.types.find(s => s.slug === slug),
   session: state => slug => state.sessions.find(s => s.slug === slug),
-  slot: state => id => state.slots.find(s => s.id === id)
+  slot: state => slug => state.slots.find(s => s.slug === slug)
 }
 
 const mutations = {
