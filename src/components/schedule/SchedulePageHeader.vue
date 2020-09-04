@@ -54,35 +54,6 @@ export default {
     &.is-light {
       background-color: white;
     }
-
-    // Page controls
-    .page-controls-wrapper {
-      background-color: white;
-
-      .page-controls {
-        .field {
-          margin-bottom: 0px;
-        }
-        .control {
-          padding-bottom: 15px;
-          .button {
-            &.is-small {
-              margin: 0;
-            }
-          }
-          &:not(:last-child) {
-            .select {
-              &:dir(ltr) {
-                margin-right: 15px;
-              }
-              &:dir(rtl) {
-                margin-left: 15px;
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }
 </style>
