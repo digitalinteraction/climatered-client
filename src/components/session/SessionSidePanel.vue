@@ -29,16 +29,16 @@
       <h4 class="section-heading">
         Live Q&A
       </h4>
-      <div class="embedded" id="slido-wrapper">
-        <div v-if="!showPoll">
-          <button
-            class="button is-modern is-coral is-small is-fullwidth"
-            @click="showPoll = true"
-          >
-            <!-- {{ $t('session.showPoll') }} -->
-            {{ $t('session.joinLiveQandA') }}
-          </button>
-        </div>
+      <div id="slido-wrapper">
+        <!-- Button -->
+        <button
+          v-if="!showPoll"
+          class="button is-modern is-coral is-small is-fullwidth"
+          @click="showPoll = true"
+        >
+          <span>{{ $t('session.joinLiveQandA') }}</span>
+        </button>
+        <!-- Slido embed -->
         <iframe
           v-else
           :src="slido.url"
@@ -104,25 +104,26 @@ export default {
 
 <style lang="scss" scoped>
 .session-sidepanel {
-  margin-bottom: 3em;
-}
-
-.sidepanel-section {
-  &.slido-section {
-    border-radius: 8px;
-    overflow: hidden;
-    #slido-wrapper {
-      background-color: white;
-    }
-    &.poll-visible {
-      background-color: #252525;
-      // padding-top: 30px;
-
-      .section-heading {
-        display: none;
-      }
+  .sidepanel-section {
+    &.slido-section {
+      overflow: hidden;
       #slido-wrapper {
-        height: 573px;
+        background-color: white;
+        display: block;
+      }
+      &.poll-visible {
+        // background-color: #252525;
+        // padding-top: 30px;
+
+        // .section-heading {
+        //   display: none;
+        // }
+        #slido-wrapper {
+          border: 1px solid $border;
+          border-radius: 8px;
+          height: 573px;
+          overflow: hidden;
+        }
       }
     }
   }

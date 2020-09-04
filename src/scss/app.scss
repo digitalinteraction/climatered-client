@@ -177,7 +177,7 @@
   }
   &.is-modern {
     border-radius: 8px;
-    padding: 1.4em 1.5em !important;
+    padding: 1.4em 1.5em;
     .icon svg {
       fill: white;
     }
@@ -217,4 +217,12 @@ h4.section-heading {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.is-modern {
+  &.select {
+    select {
+      border-radius: 8px;
+    }
+  }
 }
