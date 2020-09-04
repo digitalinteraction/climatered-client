@@ -33,7 +33,11 @@ function findMissing(mainset, subset) {
 }
 
 function removeAllowListed(array) {
-  const allowlist = [/^interpret\./i]
+  const allowlist = [
+    /^interpret\./i,
+    /^interpretHome\./i,
+    /^interpretSchedule\./i
+  ]
 
   return array.filter(key => allowlist.every(regex => regex.test(key) == false))
 }
