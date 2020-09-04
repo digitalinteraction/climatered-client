@@ -176,7 +176,7 @@ schedule:
     showFilters: Montrer les filtres
     clearFilters: Cacher les filtres
     date: Date
-    track: Track
+    track: Axe
     interactivity:
       interactivity: Intéractivité
       interactive: Intéractif
