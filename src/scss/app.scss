@@ -29,6 +29,24 @@
 // bulma RTL overrides
 //
 .navbar {
+  position: relative;
+
+  &.has-shadow {
+    box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.05);
+  }
+  &.has-border {
+    &:after {
+      content: '';
+      height: 1px;
+      background-color: $border;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+    }
+  }
+
   .navbar-menu {
     .navbar-start {
     }

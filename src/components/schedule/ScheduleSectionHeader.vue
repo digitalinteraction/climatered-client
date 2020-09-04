@@ -24,8 +24,8 @@ export default {
   position: sticky;
   left: 0;
   right: 0;
-  top: 0;
-  z-index: 3;
+  top: $navbar-height;
+  z-index: 31;
 
   h1.title {
     line-height: 1em;

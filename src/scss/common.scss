@@ -9,6 +9,7 @@ $cc-black: #252525;
 
 $cc-lightestgrey: #f4f4f4;
 $cc-lightergrey: #e6e6e6;
+$cc-darkestgrey: #1e1e1e;
 $cc-bluegrey: #757a8a;
 
 $red: $cc-red;
@@ -50,6 +51,9 @@ $footer-padding: 1.5rem 1.5rem 2.5rem;
 $z-cookies: 50;
 $z-appwrapper-tabbar: 20;
 $z-sessions-tabs: 10;
+
+// Layout
+$tabbar-width: 5.5rem;
 
 @import '~bulma/sass/utilities/_all.sass';
 
