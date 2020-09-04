@@ -166,8 +166,6 @@ schedule:
   dates:
     ninth: 9 septembre
     tenth: 10 septembre
-  dayOne: Jour 1
-  dayTwo: Jour 2
   search: Recherche
   showingResultsFor: Montrer les résultats pour "{0}"
   redCrossRedCrescentMembersOnly: Membres de la Croix-Rouge et du Croissant-Rouge uniquement

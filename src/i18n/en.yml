@@ -7,11 +7,6 @@ general:
   comingSoon: Coming soon
   backTo: Back to {0}
 
-api:
-  auth:
-    general: 'Bad auth'
-    jwtExpired: 'JWT expired'
-
 atrium:
   title: Atrium
   or: or
