@@ -17,17 +17,17 @@
       <div class="button-wrapper" v-if="onSessionPage && isFuture">
         <div class="buttons has-addons">
           <button
-            @click="registerInterest"
-            :disabled="checkingAttendance"
+            @click="toggleInterest"
+            :disabled="checkingInterest"
             :class="[
               'button',
               'has-icon',
               'is-modern',
               'is-small',
               {
-                'is-loading': checkingAttendance,
-                'is-coral': !checkingAttendance && !hasRegisteredInterest,
-                'is-success': !checkingAttendance && hasRegisteredInterest
+                'is-loading': checkingInterest,
+                'is-coral': !checkingInterest && !hasRegisteredInterest,
+                'is-success': !checkingInterest && hasRegisteredInterest
               }
             ]"
           >
@@ -104,14 +104,14 @@ export default {
   },
   mounted() {
     if (this.onSessionPage) {
-      this.checkAttendance()
+      this.checkIfInterestRegistered()
     }
   },
   data() {
     return {
       metaVisible: false,
       hasRegisteredInterest: false,
-      checkingAttendance: true
+      checkingInterest: true
     }
   },
   computed: {
@@ -175,25 +175,51 @@ export default {
     }
   },
   methods: {
-    async checkAttendance() {
+    async checkIfInterestRegistered() {
       const result = await this.$store.dispatch('api/checkAttendence', {
         sessionSlug: this.session.slug
       })
       this.hasRegisteredInterest = result.data.isAttending
-      this.checkingAttendance = false
+      this.checkingInterest = false
+    },
+    toggleInterest() {
+      this.checkingInterest = true
+
+      if (this.hasRegisteredInterest) {
+        this.unregisterInterest()
+      } else {
+        this.registerInterest()
+      }
     },
     async registerInterest() {
       // TODO: Enable for production
       // if (this.sessionLayout === 'room') {
       //   document.location = this.registerInterestLink
       // }
+      setTimeout(async () => {
+        // Register attendence
+        await this.$store.dispatch('api/registerAttendence', {
+          sessionSlug: this.session.slug
+        })
 
-      // Increment attendence
-      await this.$store.dispatch('api/registerAttendence', {
-        sessionSlug: this.session.slug
-      })
-      this.hasRegisteredInterest = true
+        this.hasRegisteredInterest = true
+        this.checkingInterest = false
+        this.checkIfInterestRegistered()
+      }, 1000)
     },
+    async unregisterInterest() {
+      setTimeout(async () => {
+        // Unregister attendence
+        await this.$store.dispatch('api/unregisterAttendence', {
+          sessionSlug: this.session.slug
+        })
+
+        this.hasRegisteredInterest = false
+        this.checkingInterest = false
+        this.checkIfInterestRegistered()
+      }, 1000)
+    },
+
     trackCalendar() {
       this.$gtag.event('ical', {
         event_category: this.session.slug,
