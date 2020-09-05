@@ -300,9 +300,11 @@ export default {
 <style lang="scss" scoped>
 #schedule-filters {
   background-color: white;
+  padding: 1.5rem;
+  padding-top: 0;
   #controls {
     margin-bottom: 0;
-    padding: 1.5rem;
+    margin-top: 1.5rem;
     &.level {
       .level-item {
         margin: 0;
@@ -323,8 +325,7 @@ export default {
     }
   }
   #filters {
-    padding: 1.5rem;
-    padding-top: 0;
+    padding-top: 1.5rem;
   }
 
   width: 100%;
