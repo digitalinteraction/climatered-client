@@ -202,7 +202,7 @@ export default {
         this.hasRegisteredInterest = true
         this.checkingInterest = false
         this.checkIfInterestRegistered()
-      }, 1000)
+      }, 500)
     },
     async unregisterInterest() {
       setTimeout(async () => {
@@ -214,7 +214,7 @@ export default {
         this.hasRegisteredInterest = false
         this.checkingInterest = false
         this.checkIfInterestRegistered()
-      }, 1000)
+      }, 500)
     },
 
     trackCalendar() {
