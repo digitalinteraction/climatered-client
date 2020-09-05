@@ -43,7 +43,10 @@ import {
   faEye,
   faCheck,
   faUser,
-  faFire
+  faFire,
+  faPhone,
+  faVideo,
+  faVideoSlash
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -90,7 +93,10 @@ library.add(
   faEye,
   faCheck,
   faUser,
-  faFire
+  faFire,
+  faPhone,
+  faVideo,
+  faVideoSlash
 )
 
 //

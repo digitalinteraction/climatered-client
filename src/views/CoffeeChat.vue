@@ -165,7 +165,7 @@
               </div>
             </div>
           </div>
-          <div class="column is-12 has-text-centered">
+          <div class="column is-12 has-text-centered ready-button-container">
             <button
               class="button is-primary is-info is-large"
               @click="leave"
@@ -418,6 +418,12 @@ export default {
   .clear-button {
     text-decoration: underline;
     opacity: 0.5;
+  }
+}
+
+.ready-button-container {
+  button {
+    margin: auto;
   }
 }
 

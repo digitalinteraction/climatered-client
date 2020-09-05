@@ -38,32 +38,46 @@
           <p>{{ roomLink }}</p>
         </div>
       </div>
-      <transition name="pop-in">
-        <div class="local-camera" v-if="localMediaStream">
+      <div class="local-camera" v-if="localMediaStream">
+        <transition name="pop-in">
           <WebRTCVideo
             :media-stream="localMediaStream"
             :muted="true"
             :is-local-video="true"
           />
-        </div>
-      </transition>
-      <div class="call-controls buttons" v-if="showControls">
-        <button class="button" @click="toggleMute">
-          <span class="icon is-small">
-            <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
-          </span>
-          <span v-if="muted">Unmute</span>
-          <span v-else>Mute</span>
-        </button>
+        </transition>
         <button
-          class="button"
+          class="button share-button is-purple"
           @click="shareContactDetails"
           :disabled="contactDetails"
         >
           Share Contact Details
         </button>
-
-        <button class="button" @click="leave">Leave</button>
+      </div>
+      <div class="call-controls buttons" v-if="showControls">
+        <button
+          class="button"
+          @click="toggleMute"
+          :title="`${muted ? 'Unmute Mic' : 'Mute Mic'}`"
+        >
+          <span class="mute-button icon is-large has-text-white">
+            <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
+          </span>
+        </button>
+        <button
+          class="button"
+          @click="toggleCamera"
+          :title="`${videoEnabled ? 'Enable Video' : 'Disable Video'}`"
+        >
+          <span class="video-button icon is-large has-text-white">
+            <fa :icon="`${videoEnabled ? 'video-slash' : 'video'}`" />
+          </span>
+        </button>
+        <button class="button" @click="leave" title="Leave Chat">
+          <span class="leave-button icon is-large has-text-white">
+            <fa icon="phone" />
+          </span>
+        </button>
       </div>
     </div>
   </AppWrapper>
@@ -88,6 +102,7 @@ export default {
       userState: {},
       localMediaStream: null,
       muted: false,
+      videoEnabled: false,
       contactDetails: null,
       showControls: false,
       coffeeChat: null,
@@ -125,6 +140,7 @@ export default {
     this.coffeeChat.joinRoom(roomId)
   },
   beforeDestroy() {
+    console.log('destroy')
     if (this.coffeeChat !== null) {
       this.coffeeChat.destroy()
     }
@@ -150,6 +166,9 @@ export default {
       })
       this.sendStateToPeers()
     },
+    toggleCamera() {
+      this.videoEnabled = !this.videoEnabled
+    },
     shareContactDetails() {
       this.contactDetails = {
         email: this.user.sub
@@ -163,7 +182,7 @@ export default {
       })
     },
     leave() {
-      this.$router.go(-100)
+      this.$router.go(-1)
     }
   }
 }
@@ -219,6 +238,7 @@ export default {
 }
 
 .wrapper {
+  overflow-y: hidden;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -240,18 +260,48 @@ export default {
 
 .local-camera {
   position: absolute;
-  bottom: 2rem;
-  right: 2.5rem;
+  bottom: 5.5rem;
+  right: 2rem;
   width: 16rem;
   height: 12rem;
+}
+
+.share-button {
+  margin-top: 0.5rem;
+  width: 100%;
 }
 
 .call-controls {
   position: fixed;
   left: 50%;
-  bottom: 6rem;
+  bottom: 4.75rem;
   transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.4);
   margin: 0 auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  .button {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 4rem;
+    border-color: none;
+    background-color: rgba($color: #000000, $alpha: 0);
+    margin-bottom: 0;
+    span {
+      height: 4rem;
+      width: 4rem;
+      border-radius: 4rem;
+    }
+  }
+  .button:active {
+    border-color: rgb(219, 219, 219);
+  }
+  .mute-button {
+  }
+  .leave-button {
+  }
+  .video-button {
+  }
 }
 
 .pop-in-enter-active {
