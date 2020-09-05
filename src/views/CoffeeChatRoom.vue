@@ -42,7 +42,8 @@
         <div class="local-camera" v-if="localMediaStream">
           <WebRTCVideo
             :media-stream="localMediaStream"
-            :is-local-video="true"
+            :muted="true"
+            :show-mute-icon="false"
           />
         </div>
       </transition>
@@ -133,8 +134,9 @@ export default {
       return navigator.mediaDevices.getUserMedia({
         video: true,
         audio: {
+          autoGainControl: { exact: true },
           echoCancellation: { exact: true },
-          autoGainControl: { exact: false }
+          noiseSuppression: { exact: true }
         }
       })
     },

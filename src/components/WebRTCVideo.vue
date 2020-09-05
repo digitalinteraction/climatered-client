@@ -3,7 +3,7 @@
     <video ref="webrtc-video" autoplay />
     <span
       class="mute-button icon is-large has-text-white"
-      v-if="muted && !isLocalVideo"
+      v-if="muted && showMuteIcon"
     >
       <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
     </span>
@@ -15,12 +15,13 @@ export default {
   props: {
     mediaStream: { type: MediaStream, required: true },
     muted: { type: Boolean, default: false },
-    isLocalVideo: { type: Boolean, default: false }
+    showMuteIcon: { type: Boolean, default: true }
   },
   mounted() {
     this.$refs['webrtc-video'].srcObject = this.mediaStream
-    if (this.isLocalVideo) {
+    if (this.muted) {
       this.$refs['webrtc-video'].muted = true
+      this.$refs['webrtc-video'].volume = 0
     }
   }
 }
