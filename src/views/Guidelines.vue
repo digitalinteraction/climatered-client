@@ -1,23 +1,9 @@
 <template>
-  <UtilWrapper>
-    <router-link
-      slot="back-button"
-      class="button is-text"
-      :to="atriumRoute"
-      v-t="'atrium.returnTo'"
-    />
-    <component
-      v-if="currentContent"
-      :is="currentContent"
-      slot="content"
-      class="content"
-    />
-  </UtilWrapper>
+  <ContentWrapper :content="content" />
 </template>
 
 <script>
-import UtilWrapper from '@/components/UtilWrapper.vue'
-import { ROUTE_ATRIUM } from '../const'
+import ContentWrapper from '@/components/ContentWrapper.vue'
 
 const content = {
   en: () => import(/* webpackChunkName: "en" */ '@/content/guidelines/en.mdx'),
@@ -27,14 +13,9 @@ const content = {
 }
 
 export default {
-  components: { UtilWrapper },
-  data() {
-    return {
-      atriumRoute: { name: ROUTE_ATRIUM }
-    }
-  },
+  components: { ContentWrapper },
   computed: {
-    currentContent() {
+    content() {
       return content[this.$i18n.locale]
     }
   }

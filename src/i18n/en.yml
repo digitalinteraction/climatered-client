@@ -29,6 +29,8 @@ login:
   badEmail: Bad email
   doneText: Login code sent
   submitButton: Request login code
+  registerLabel: Not registered yet?
+  registerAction: Register here
 
 register:
   title: Register
@@ -61,6 +63,8 @@ register:
     We've sent you an verification email.
     Click the link in that email to verify and see the conference schedule.
     If you don't see an email soon please check your spam folder.
+  loginLabel: Already registered?
+  loginAction: Log in here
 
 profile:
   title: Your profile

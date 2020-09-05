@@ -75,9 +75,26 @@
                 {{ user.sub }}
               </router-link>
               <!-- or Login button -->
-              <router-link class="navbar-item" v-if="!user" :to="loginRoute">
-                {{ $t('general.loginButton') }}
-              </router-link>
+              <template v-if="!user">
+                <div class="navbar-item">
+                  <div class="buttons">
+                    <router-link
+                      class="button is-coral is-modern is-small"
+                      v-if="!user"
+                      :to="registerRoute"
+                    >
+                      {{ $t('general.registerButton') }}
+                    </router-link>
+                    <router-link
+                      class="button is-text is-small is-modern"
+                      v-if="!user"
+                      :to="loginRoute"
+                    >
+                      {{ $t('general.loginButton') }}
+                    </router-link>
+                  </div>
+                </div>
+              </template>
             </div>
           </div>
         </nav>
@@ -123,6 +140,7 @@ import {
   ROUTE_COFFEE_CHAT,
   ROUTE_HELP,
   ROUTE_LOGIN,
+  ROUTE_REGISTER,
   ROUTE_PROFILE,
   ROUTE_INTERPRET_HOME
 } from '../const'
@@ -184,6 +202,7 @@ export default {
     return {
       showingMenu: false,
       loginRoute: { name: ROUTE_LOGIN },
+      registerRoute: { name: ROUTE_REGISTER },
       atriumRoute: { name: ROUTE_ATRIUM },
       sessionsRoute: { name: ROUTE_SESSIONS },
       scheduleRoute: { name: ROUTE_SCHEDULE },

@@ -13,6 +13,7 @@
         </div>
       </div>
     </section>
+    <AppFooter class="is-grey" />
   </div>
 </template>
 
@@ -23,9 +24,10 @@
 //
 
 import LanguageControl from '@/components/form/LanguageControl.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
-  components: { LanguageControl },
+  components: { LanguageControl, AppFooter },
   props: {
     pickLanguages: { type: Boolean, default: true }
   }

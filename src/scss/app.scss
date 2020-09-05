@@ -200,3 +200,15 @@ h4.section-heading {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+*[dir='rtl'] {
+  .ltr-only {
+    display: none;
+  }
+}
+
+*[dir='ltr'] {
+  .rtl-only {
+    display: none;
+  }
+}

@@ -16,7 +16,9 @@ import {
   ROUTE_REGISTER,
   ROUTE_TERMS,
   ROUTE_PRIVACY,
-  ROUTE_ERROR
+  ROUTE_ERROR,
+  ROUTE_FAQS,
+  ROUTE_GUIDELINES
 } from './const'
 
 import ApiError from '@/components/ApiError.vue'
@@ -30,6 +32,8 @@ const noAuthRoutes = [
   ROUTE_REGISTER,
   ROUTE_TERMS,
   ROUTE_PRIVACY,
+  ROUTE_FAQS,
+  ROUTE_GUIDELINES,
   ROUTE_ERROR
 ]
 
