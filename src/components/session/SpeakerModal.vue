@@ -1,5 +1,5 @@
 <template>
-  <div class="speaker-modal">
+  <div id="speaker-modal">
     <!-- Modal wrapper -->
     <div :class="['modal', { 'is-active': speaker }]">
       <!-- Modal background -->
@@ -15,7 +15,11 @@
             <div class="media">
               <div class="media-left">
                 <figure class="image is-48x48">
-                  <img :src="imageUrl" alt="Speaker headshot" />
+                  <img
+                    class="headshot"
+                    :src="imageUrl"
+                    alt="Speaker headshot"
+                  />
                 </figure>
               </div>
               <div class="media-content">
@@ -36,7 +40,6 @@
             </a>
           </div>
         </div>
-        <!-- <pre>{{ speaker }}</pre> -->
 
         <!-- Fixed close modal button -->
         <button
@@ -79,7 +82,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img {
-  border-radius: 50%;
+#speaker-modal {
+  .modal-content {
+    img.headshot {
+      border-radius: 50%;
+    }
+  }
 }
 </style>
