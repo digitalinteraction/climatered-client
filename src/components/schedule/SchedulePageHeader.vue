@@ -36,7 +36,7 @@ export default {
       padding-bottom: 0;
 
       .title {
-        color: #515151;
+        color: $cc-darkestgrey;
         font-weight: bold;
         margin-bottom: 0;
       }

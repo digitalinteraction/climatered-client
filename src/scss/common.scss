@@ -9,6 +9,7 @@ $cc-black: #252525;
 
 $cc-lightestgrey: #f4f4f4;
 $cc-lightergrey: #e6e6e6;
+$cc-darkestgrey: #1e1e1e;
 $cc-bluegrey: #757a8a;
 $cc-pink: #e50354;
 
@@ -66,6 +67,8 @@ $radius-small: 6px;
 
 // Sizes
 $size-6: 0.9rem;
+// Layout
+$tabbar-width: 5.5rem;
 
 @import '~bulma/sass/utilities/_all.sass';
 

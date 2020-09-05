@@ -90,7 +90,22 @@ export default {
     }
     &.poll-visible {
       #slido-wrapper {
-        height: 573px;
+        background-color: white;
+        display: block;
+      }
+      &.poll-visible {
+        // background-color: #252525;
+        // padding-top: 30px;
+
+        // .section-heading {
+        //   display: none;
+        // }
+        #slido-wrapper {
+          border: 1px solid $border;
+          border-radius: 8px;
+          height: 573px;
+          overflow: hidden;
+        }
       }
     }
   }

@@ -109,8 +109,8 @@ export default {
   position: sticky;
   left: 0;
   right: 0;
-  top: 2.5em;
   z-index: 1;
+  top: $navbar-height + 2.5rem;
 
   &.is-padded {
     padding: 15px 40px;
