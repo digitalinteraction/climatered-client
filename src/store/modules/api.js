@@ -105,7 +105,7 @@ const actions = {
   },
   async login(ctx, email) {
     const response = await agent.get('/login/email', {
-      params: { email },
+      params: { email, n: Date.now() },
       headers: { 'cache-control': 'no-cache' }
     })
 
@@ -153,6 +153,9 @@ const actions = {
       headers: {
         'content-type': 'application/json',
         'cache-control': 'no-cache'
+      },
+      params: {
+        n: Date.now()
       }
     })
     return response
