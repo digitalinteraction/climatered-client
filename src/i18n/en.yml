@@ -6,6 +6,7 @@ general:
   pleaseSelect: Please select
   comingSoon: Coming soon
   backTo: Back to {0}
+  genericError: Something went wrong, please try again
 
 atrium:
   title: Atrium
@@ -57,7 +58,6 @@ register:
   consentText: I confirm that I have read and agree with the policies linked below
   termsLink: Terms and Conditions
   privacyLink: Privacy policy
-  genericError: Something went wrong, please try again
   doneText: |
     Thanks for registering!
     We've sent you an verification email.
@@ -79,6 +79,8 @@ profile:
   deleteButton: Delete account
   deleteText: This is permenant, are you sure?
   loadingText: Fetching profile
+  actionLabel: Actions
+  dangerLabel: Danger zone
 
 sessions:
   title: What's on

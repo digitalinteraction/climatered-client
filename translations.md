@@ -34,6 +34,8 @@
 
 - `profile.registeredText`
 - `profile.loadingText`
+- `profile.actionLabel`
+- `profile.dangerLabel`
 
 - `register.loginLabel`
 - `register.loginAction`

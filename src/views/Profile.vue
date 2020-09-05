@@ -37,10 +37,12 @@
               </tr>
               <tr>
                 <th>{{ $t('profile.countryText') }}</th>
-                <td>{{ profile.country }}</td>
+                <td>{{ countryName }}</td>
               </tr>
             </tbody>
           </table>
+
+          <p class="actions-label" v-t="'profile.actionLabel'" />
 
           <div class="buttons">
             <button
@@ -49,6 +51,16 @@
               v-t="'profile.logoutButton'"
             />
           </div>
+
+          <hr />
+
+          <p class="actions-label" v-t="'profile.dangerLabel'" />
+
+          <button
+            class="button is-danger"
+            @click="deleteProfile"
+            v-t="'profile.deleteButton'"
+          />
         </div>
       </section>
     </div>
@@ -60,6 +72,7 @@ import Vue from 'vue'
 import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import { STORAGE_TOKEN } from '@/const'
+import countriesEn from '@/data/countries-en.json'
 
 const languages = {
   en: 'English',
@@ -70,9 +83,6 @@ const languages = {
 
 export default {
   components: { AppWrapper },
-  computed: {
-    ...mapState('api', ['user'])
-  },
   filters: {
     iatToDate(value) {
       return new Date(value * 1000)
@@ -88,6 +98,13 @@ export default {
     return {
       profile: null,
       debounced: false
+    }
+  },
+  computed: {
+    ...mapState('api', ['user']),
+    countryName() {
+      const upperCode = this.profile.country.toUpperCase()
+      return (this.profile && countriesEn.countries[upperCode]) || upperCode
     }
   },
   async mounted() {
@@ -110,6 +127,29 @@ export default {
       Vue.nextTick(() => {
         window.location.reload()
       })
+    },
+    async deleteProfile() {
+      const msg = this.$i18n.t('profile.deleteText')
+      if (!confirm(msg)) return
+
+      const deleted = await this.$store.dispatch('api/unregister')
+
+      if (!deleted) {
+        alert(this.$i18n.t('register.genericError'))
+        return
+      }
+
+      delete localStorage[STORAGE_TOKEN]
+
+      this.$gtag.event('deleted', {
+        event_category: 'users',
+        event_label: 'User deleted account',
+        value: 0
+      })
+
+      Vue.nextTick(() => {
+        window.location.reload()
+      })
     }
   }
 }
@@ -123,5 +163,10 @@ export default {
     flex: 1;
     background-color: $cc-lightestgrey;
   }
+}
+
+.actions-label {
+  font-weight: bold;
+  margin-bottom: 0.3em;
 }
 </style>

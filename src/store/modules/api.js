@@ -127,6 +127,11 @@ const actions = {
     if (response.status !== 200) return null
     return response.data.user
   },
+  async unregister() {
+    const response = await agent.delete('/me')
+    if (response.status !== 200) return false
+    return true
+  },
   async registerAttendence(ctx, { sessionSlug }) {
     const response = await agent.post(`/attend/${sessionSlug}`, {
       headers: {
