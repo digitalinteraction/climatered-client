@@ -70,3 +70,14 @@ $z-sessions-tabs: 10;
     left: $value;
   }
 }
+
+@mixin appPageFlexFillChild() {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+}

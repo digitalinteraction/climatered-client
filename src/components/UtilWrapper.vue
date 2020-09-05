@@ -1,16 +1,14 @@
 <template>
   <div class="util-wrapper">
-    <div class="buttons">
+    <div class="buttons is-marginless">
       <slot name="back-button" />
     </div>
-    <section class="section is-medium">
-      <div class="container is-small">
-        <div class="box is-centered">
-          <div class="buttons is-right" v-if="pickLanguages">
-            <LanguageControl v-if="pickLanguages" />
-          </div>
-          <slot name="content" />
+    <section class="section">
+      <div class="box is-small">
+        <div class="buttons is-right" v-if="pickLanguages">
+          <LanguageControl v-if="pickLanguages" />
         </div>
+        <slot name="content" />
       </div>
     </section>
     <AppFooter class="is-grey" />
@@ -38,8 +36,14 @@ export default {
 .util-wrapper {
   min-height: 100vh;
   background-color: $grey-lightest;
+  display: flex;
+  flex-direction: column;
 
-  .box {
+  > .section {
+    flex: 1;
+  }
+
+  > .box {
     max-width: $tablet;
     margin: 0 auto;
   }

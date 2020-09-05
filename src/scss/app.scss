@@ -212,3 +212,8 @@ h4.section-heading {
     display: none;
   }
 }
+
+.box.is-small {
+  max-width: $tablet;
+  margin: 0 auto;
+}

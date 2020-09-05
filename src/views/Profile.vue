@@ -2,7 +2,7 @@
   <AppWrapper>
     <div class="profile">
       <section class="section">
-        <div class="container">
+        <div class="box is-small">
           <h1 class="title" v-t="'profile.title'" />
 
           <div class="notification is-warning" v-if="!profile && debounced">
@@ -114,3 +114,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.profile {
+  @include appPageFlexFillChild;
+
+  > .section {
+    flex: 1;
+    background-color: $cc-lightestgrey;
+  }
+}
+</style>
