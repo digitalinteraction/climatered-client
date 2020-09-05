@@ -451,6 +451,9 @@ export default {
 .ready-button-container {
   button {
     margin: auto;
+    @include mobile {
+      width: 100%;
+    }
   }
 }
 
