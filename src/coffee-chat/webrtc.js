@@ -169,7 +169,11 @@ export default class WebRTC {
   }
 
   _manipulateSDP(sdp) {
-    sdp = sdp.replace('maxplaybackrate=48000', 'maxplaybackrate=8000')
+    if (sdp.contains()) {
+      sdp = sdp.replace('maxplaybackrate=48000', 'maxplaybackrate=8000')
+    } else {
+      sdp = sdp.replace('useinbandfec=1', 'maxplaybackrate=8000;useinbandfec=1')
+    }
     return sdp
   }
 }
