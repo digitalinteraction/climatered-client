@@ -199,12 +199,8 @@ export default {
 <style lang="scss" scoped>
 .joining-message {
   width: 100%;
-  align-items: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   text-align: center;
-  margin-top: 12rem;
+  margin-top: 30vh;
   padding: 1rem;
 }
 
@@ -270,7 +266,7 @@ export default {
 
 .local-camera {
   position: absolute;
-  bottom: 5.5rem;
+  bottom: 4.75rem;
   right: 2rem;
   width: 16rem;
   height: 12rem;
@@ -295,21 +291,24 @@ export default {
 }
 
 .call-controls {
-  position: fixed;
+  position: absolute;
   left: 50%;
-  bottom: 4.75rem;
-  transform: translate(-50%, -50%);
+  bottom: 1.75rem;
+  // transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 auto;
   border-radius: 0.5rem;
   padding: 0.75rem;
+  width: 208px;
+  margin-left: -104px;
   .button {
-    height: 4rem;
-    width: 4rem;
-    border-radius: 4rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 3.5rem;
     border-color: none;
     background-color: rgba($color: #000000, $alpha: 0);
     margin-bottom: 0;
+    padding: 0;
   }
   .button:active {
     border-color: rgb(219, 219, 219);
