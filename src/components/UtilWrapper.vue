@@ -13,14 +13,21 @@
         </div>
       </div>
     </section>
+    <AppFooter class="is-grey" />
   </div>
 </template>
 
 <script>
-import LanguageControl from '@/components/LanguageControl.vue'
+//
+// A wrapper for utility-like pages on the site, like login or privacy
+// - configure whether to show a language control or not
+//
+
+import LanguageControl from '@/components/form/LanguageControl.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
-  components: { LanguageControl },
+  components: { LanguageControl, AppFooter },
   props: {
     pickLanguages: { type: Boolean, default: true }
   }
@@ -37,7 +44,7 @@ export default {
     margin: 0 auto;
   }
 
-  .buttons {
+  > .buttons {
     padding: 0.5em;
   }
 }

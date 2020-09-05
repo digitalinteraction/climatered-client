@@ -1,30 +1,38 @@
 <template>
   <div class="one-to-many">
-    <div v-if="videoLink">
-      <div class="bottom-panel">
-        <VideoEmbed :video-link="videoLink" :muted="!isSourceAudio" />
+    <div class="bottom-panel">
+      <VideoEmbed
+        v-if="videoLink"
+        :video-link="videoLink"
+        :muted="!isSourceAudio"
+      />
+      <div class="notification is-warning is-light" v-else>
+        No video to show
+      </div>
 
-        <div class="audio-channel" v-if="event.enableTranslation">
-          <div class="columns">
-            <div class="column is-narrow">
-              <label class="label">Audio Channel</label>
-              <ToggleSet
-                :value="chosenChannel"
-                @input="onChannel"
-                :options="channels"
-              />
-            </div>
-            <div class="column">
-              <label class="label">Info</label>
-              <p>Reciever: {{ recieverState }}</p>
-              <canvas
-                class="audio-vis"
-                width="400"
-                height="100"
-                ref="canvas"
-              ></canvas>
-            </div>
+      <div class="audio-channel" v-if="session.enableTranslation">
+        <div class="columns" v-if="canInterpret">
+          <div class="column is-narrow">
+            <label class="label">Audio Channel</label>
+            <ToggleSet
+              :value="chosenChannel"
+              @input="onChannel"
+              :options="channels"
+            />
           </div>
+          <div class="column">
+            <label class="label">Info</label>
+            <p>state={{ recieverState }} buffers={{ bufferSize }}</p>
+            <canvas
+              class="audio-vis"
+              width="400"
+              height="100"
+              ref="canvas"
+            ></canvas>
+          </div>
+        </div>
+        <div class="notification is-warning is-light is-inline-block" v-else>
+          {{ $t('session.noInterpret') }}
         </div>
       </div>
     </div>
@@ -32,59 +40,67 @@
 </template>
 
 <script>
+//
+// The main bit for a broadcast-type session
+//
+
 import ToggleSet from '@/components/ToggleSet.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
-import { findLink, parseSlidoLink } from '../utils.js'
-import { AudioReciever } from '../audio.js'
+import { findLink, parseSlidoLink } from '@/utils'
+import { AudioReciever } from '@/audio'
 
 export default {
   components: { ToggleSet, VideoEmbed },
   props: {
-    event: { type: Object, required: true },
-    eventSlot: { type: Object, required: true },
-    language: { type: String, required: true }
+    session: { type: Object, required: true },
+    sessionSlot: { type: Object, required: true }
   },
   data() {
     return {
       chosenChannel: 'source',
       showPoll: false,
-      recieverState: null
+      recieverState: null,
+      bufferSize: 0,
+      canInterpret: AudioReciever.isSupported()
     }
   },
   computed: {
     videoLink() {
-      return findLink(this.event.links, 'video', this.language)
+      return findLink(this.session.links, 'video', this.$i18n.locale)
     },
     slido() {
-      const link = findLink(this.event.links, 'poll', this.language)
+      const link = findLink(this.session.links, 'poll', this.$i18n.locale)
       return link && parseSlidoLink(link)
     },
     channels() {
       return ['source', 'en', 'fr', 'es', 'ar'].filter(
-        l => l !== this.event.hostLanguage[0]
+        l => l !== this.session.hostLanguage[0]
       )
     },
     isSourceAudio() {
-      return this.language === 'source'
+      return this.$i18n.locale === 'source'
     }
   },
   mounted() {
     this.joinChannel(this.chosenChannel)
 
-    this.reciever = new AudioReciever(state => {
+    this.reciever = new AudioReciever()
+
+    this.reciever.$on('state', state => {
       this.recieverState = state
     })
 
-    this.$socket.bindEvent(this, 'channel-data', async data => {
-      this.reciever.push(data)
+    this.reciever.$on('buffer-size', bufferSize => {
+      this.bufferSize = bufferSize
+    })
 
-      this.reciever.doodle(this.$refs.canvas)
+    this.$socket.bindEvent(this, 'channel-data', async data => {
+      await this.reciever.push(data)
     })
   },
   destroyed() {
     this.leaveChannel(this.chosenChannel)
     this.$socket.unbindEvent(this, 'channel-data')
-    this.reciever.stop()
     this.reciever = null
   },
   methods: {
@@ -94,10 +110,10 @@ export default {
         // Unmute the iframe
         //
       } else {
-        this.$socket.emit('join-channel', this.event.id, channel)
-
         // Start the reciever
-        this.reciever.play()
+        this.reciever.setup()
+
+        this.$socket.emit('join-channel', this.session.id, channel)
       }
     },
     leaveChannel(channel) {
@@ -106,10 +122,10 @@ export default {
         // Mute the iframe
         //
       } else {
-        this.$socket.emit('leave-channel', this.event.id, channel)
+        this.$socket.emit('leave-channel', this.session.id, channel)
 
         // Stop and reset the reciever
-        this.reciever.stop()
+        this.reciever.teardown()
       }
     },
     onChannel(newChannel) {
@@ -149,17 +165,5 @@ export default {
 .audio-vis {
   border-radius: 4px;
   overflow: hidden;
-}
-
-.left-event-panel {
-  border-right: 2px solid $grey-lighter;
-}
-
-.right-event-panel {
-  border-right: 2px solid $grey-lighter;
-}
-
-.bottom-panel {
-  padding-top: 3em;
 }
 </style>

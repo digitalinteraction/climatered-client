@@ -11,6 +11,10 @@
 </template>
 
 <script>
+//
+// A table-like row to show a speaker's headshot, name and role
+//
+
 import { pickCdn } from '@/utils'
 
 export default {
@@ -44,9 +48,11 @@ $img-size: 42px;
 
 .speaker-info {
   flex: 1;
+  padding-inline-end: 2rem;
 }
 
 .speaker-title {
+  min-height: 1.5em;
   font-weight: bold;
 }
 .speaker-role {

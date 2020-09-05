@@ -42,13 +42,18 @@
 </template>
 
 <script>
+import { ROUTE_SESSION } from '../const'
+//
+// The prototype attendee schedule TBR
+//
+
 export default {
   props: {
     slots: { type: Array, required: true },
     events: { type: Array, required: true }
   },
   filters: {
-    eventRoute: e => ({ name: 'Event', params: { eventId: e.id } })
+    eventRoute: e => ({ name: ROUTE_SESSION, params: { sessionId: e.id } })
   },
   computed: {
     slottedEvents() {

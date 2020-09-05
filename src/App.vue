@@ -16,7 +16,9 @@ import {
   ROUTE_REGISTER,
   ROUTE_TERMS,
   ROUTE_PRIVACY,
-  ROUTE_ERROR
+  ROUTE_ERROR,
+  ROUTE_FAQS,
+  ROUTE_GUIDELINES
 } from './const'
 
 import ApiError from '@/components/ApiError.vue'
@@ -30,6 +32,8 @@ const noAuthRoutes = [
   ROUTE_REGISTER,
   ROUTE_TERMS,
   ROUTE_PRIVACY,
+  ROUTE_FAQS,
+  ROUTE_GUIDELINES,
   ROUTE_ERROR
 ]
 
@@ -63,13 +67,6 @@ export default {
       if (!noAuthRoutes.includes(this.$route.name)) {
         this.$router.replace({ name: ROUTE_ATRIUM })
       }
-    }
-
-    //
-    // If they came to exactly the root, go to the atrium
-    //
-    if (this.$route.path === '/') {
-      this.$router.replace({ name: ROUTE_ATRIUM })
     }
 
     this.isReady = true

@@ -81,8 +81,21 @@ sessions:
     panel: Mesas redondas
     sessions: Sesiones
 
-schedule:
-  title: Calendario
+session:
+  title:
+  speakerHeading:
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: Calendario
+  actionsHeading: Acciones
+  hostedByHeading: Presentado por
+  contactHost: Contactar el anfitrión
+  sessionOnlyAvailableIn: Favor de notar que esta sesión solo estará disponible en
 
 coffeechat:
   title: Conversaciones con café
@@ -118,6 +131,16 @@ data:
     empower: Habilitación
     influence: Influencia
     transform: Transformación
+  interaction:
+    interactive: Interactivo
+    view: No interactivo
+  recorded:
+    true: Será grabado
+    false: No grabado
+  devices:
+    all: Todos
+    desktop: Solo computadoras
+    mobile: Solo Móvil
 
 cookies:
   title: Cookies
@@ -128,3 +151,59 @@ cookies:
     Utilizamos las cookies necesarias para que el sitio funcione.
     Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales. 
     Puede cambiar su preferencia haciendo clic en {0} en el pie de página del sitio.
+
+schedule:
+  title: Programa
+  description: Explore las sesiones disponibles y planifique su experiencia agregando recordatorios a su calendario.
+  close: Cerrar
+  past: Precedentemente
+  now: Ahora
+  present: Ahora
+  future: Próximamente
+  addToCalendar: Añadir al calendario
+  showAll: Mostrar todo
+  hideAll: Esconder todo
+  hidePastSessions: Esconder las sesiones pasadas
+  showPastSessions: Mostrar las sesiones pasadas
+  dates:
+    ninth: 9 septembre
+    tenth: 10 septembre
+  search: Búsqueda
+  showingResultsFor: 'Resultados para "{0}"'
+  redCrossRedCrescentMembersOnly: Solo miembros de la Cruz Roja y de la Media Luna Roja
+  filters:
+    all: Todas
+    showFilters: Mostrar filtros
+    clearFilters: Esconder filtros
+    date: Fecha
+    track: Vertiente
+    interactivity:
+      interactivity: Interactividad
+      interactive: Interactivo
+      nonInteractive: No interactivo
+    platform:
+      platform: Plataforma
+      zoom: Zoom
+    device:
+      device: Dispositivo
+      desktopOnly: Solo computadoras
+      mobileOnly: Solo Móvil
+    recorded:
+      recorded: Grabado
+      willBeRecorded: Será grabado
+      notRecorded: No grabado
+  attributes:
+    sessionAttributes: Atributos de sesión
+  actions:
+    viewSession: Ver la sesión
+    joinSession: Sumarse a la sesión
+    previewSession: Previsualizar sesión
+    registerInterest:
+  workshops:
+    workshop: Tallere
+    workshops: Talleres
+    title: Talleres Interactivos
+    description: Partícipe a uno de los talleres interactivos siguientes
+
+faqs:
+  title: FAQ

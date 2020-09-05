@@ -6,7 +6,7 @@
         type="checkbox"
         class="checkbox"
         :value="value"
-        @input="onInput"
+        @change="onInput"
       />
       {{ $t(textKey) }}
     </label>
@@ -14,6 +14,10 @@
 </template>
 
 <script>
+//
+// Wraps a bulma checkbox field
+//
+
 export default {
   props: {
     name: { type: String, required: true },

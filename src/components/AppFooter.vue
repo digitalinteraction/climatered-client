@@ -3,41 +3,51 @@
     <div class="content has-text-centered">
       Made by
       <a href="https://openlab.ncl.ac.uk">Open Lab</a>
-      <!-- /
-      <router-link class="is-faded" :to="termsLink" v-t="'terms.title'" /> -->
       /
-      <router-link class="is-faded" :to="privacyLink" v-t="'privacy.title'" />
-      /
+
+      <!-- Iterate links -->
+      <span v-for="link in footerLinks" :key="link.key">
+        <router-link class="is-faded" :to="link.route" v-t="link.key" />
+        /
+      </span>
       <a
         class=" is-faded"
         @click.prevent="triggerCookies"
         v-t="'cookies.title'"
+        :title="$t('cookies.popupTitle')"
       />
       /
       {{ $t('general.appName') }}
-      v{{ appVersion }}
+      {{ appVersion }}
     </div>
   </footer>
 </template>
 
 <script>
-import { ROUTE_PRIVACY, ROUTE_TERMS } from '../const'
+//
+// The common site footer
+//
+
+const footerLinks = [
+  {
+    key: 'privacy.title',
+    route: { name: ROUTE_PRIVACY }
+  },
+  {
+    key: 'faqs.title',
+    route: { name: ROUTE_FAQS }
+  }
+]
+
+import { ROUTE_PRIVACY, ROUTE_FAQS } from '../const'
 import { CookieEvents } from '@/components/CookiePopup.vue'
 
 export default {
-  computed: {
-    appName() {
-      return process.env.VUE_APP_NAME
-    },
-    appVersion() {
-      return process.env.VUE_APP_VERSION
-    },
-    termsLink() {
-      return { name: ROUTE_TERMS }
-    },
-    privacyLink() {
-      return { name: ROUTE_PRIVACY }
-    }
+  data() {
+    const appName = process.env.VUE_APP_NAME
+    const appVersion =
+      window.CONFIG?.BUILD_NAME || 'v' + process.env.VUE_APP_VERSION
+    return { appName, appVersion, footerLinks }
   },
   methods: {
     triggerCookies() {
@@ -55,6 +65,13 @@ export default {
   }
 
   a.is-faded {
+    color: $grey-dark;
+  }
+}
+
+.footer.is-grey {
+  background: $grey-lightest;
+  .content {
     color: $grey-dark;
   }
 }

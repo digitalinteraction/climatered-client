@@ -20,7 +20,9 @@ const agent = axios.create({
 
 const getters = {
   track: state => slug => state.tracks.find(s => s.slug === slug),
-  type: state => slug => state.types.find(s => s.slug === slug)
+  type: state => slug => state.types.find(s => s.slug === slug),
+  session: state => slug => state.sessions.find(s => s.slug === slug),
+  slot: state => slug => state.slots.find(s => s.slug === slug)
 }
 
 const mutations = {
@@ -33,7 +35,16 @@ const mutations = {
   speakers: (state, speakers) => Object.assign(state, { speakers }),
   themes: (state, themes) => Object.assign(state, { themes }),
   tracks: (state, tracks) => Object.assign(state, { tracks }),
-  types: (state, types) => Object.assign(state, { types })
+  types: (state, types) => Object.assign(state, { types }),
+
+  updateAttendance: (state, payload) => {
+    const session = state.sessions.find(
+      session => session.slug === payload.sessionSlug
+    )
+    Object.assign(session, {
+      attendance: parseInt(session.attendance) + parseInt(payload.change)
+    })
+  }
 }
 
 const actions = {
@@ -93,8 +104,10 @@ const actions = {
     }
   },
   async login(ctx, email) {
-    const params = { email }
-    const response = await agent.get('/login/email', { params })
+    const response = await agent.get('/login/email', {
+      params: { email, n: Date.now() },
+      headers: { 'cache-control': 'no-cache' }
+    })
 
     return response.status === 200
   },
@@ -113,6 +126,44 @@ const actions = {
     const response = await agent.get('/me')
     if (response.status !== 200) return null
     return response.data.user
+  },
+  async registerAttendence(ctx, { sessionSlug }) {
+    const response = await agent.post(`/attend/${sessionSlug}`, {
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+
+    if (response.status === 200) {
+      ctx.commit('updateAttendance', { change: 1, sessionSlug })
+    }
+
+    return response.status === 200
+  },
+  async unregisterAttendence(ctx, { sessionSlug }) {
+    const response = await agent.post(`/unattend/${sessionSlug}`, {
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+
+    if (response.status === 200) {
+      ctx.commit('updateAttendance', { change: -1, sessionSlug })
+    }
+
+    return response.status === 200
+  },
+  async checkAttendence(ctx, { sessionSlug }) {
+    const response = await agent.get(`/attendance/${sessionSlug}`, {
+      headers: {
+        'content-type': 'application/json',
+        'cache-control': 'no-cache'
+      },
+      params: {
+        n: Date.now()
+      }
+    })
+    return response
   }
 }
 

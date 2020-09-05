@@ -81,8 +81,21 @@ sessions:
     panel: حلقات نقاش
     sessions: جلسات
 
-schedule:
-  title: البرنامج
+session:
+  title:
+  speakerHeading: مكبرات الصوت
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: البرنامج
+  actionsHeading: الاجراءات
+  hostedByHeading: مضيف الجلسة
+  contactHost: التواصل مع مضيف الجلسة
+  sessionOnlyAvailableIn: يرجى ملاحظة أن الجلسة متاحة فقط ضمن
 
 coffeechat:
   title: دردشة حول فنجان قهوة
@@ -113,11 +126,21 @@ data:
     plenary: الكلمة الرئيسية
     speaker: _
     fishbowl: حل المشاكل أسلوب الحلقتين
-  theme:
+  track:
     act: العمل
     empower: التمكين
     influence: التأثير
     transform: التحويل
+  interaction:
+    interactive: التفاعلية
+    view: غير تفاعلي
+  recorded:
+    true: التسجيل سيكون متاحاَ
+    false: غير مسجلة
+  devices:
+    all: الكل
+    desktop: عبر جهاز الحاسوب فقط
+    mobile: عبر الأجهزة المحمول فقط
 
 cookies:
   title: ملفات تعريف الارتباط
@@ -128,3 +151,59 @@ cookies:
     نحن نستخدم ملفات تعريف الارتباط الضرورية لتشغيل الموقع بشكل صحيح
     نود استخدام التحليلات لمعرفة تجارب الناس في مؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ و لضمان قدرتنا على تحسين المؤتمرات الافتراضية ومؤتمرات القمة المستقبلية
     يمكنك تغيير تفضيلات ملفات تعريف الارتباط الخاصة بك من خلال النقر{0} في تذييل هذا الموقع
+
+schedule:
+  title: جدول المواعيد
+  description: تصفح الجلسات المتاحة وقم بوضع خطة لتجربتك عن طريق إضافة تذكير إلى التقويم الخاص بك.
+  close: إغلاق
+  past: الماضي
+  now: الآن
+  present: حالي
+  future: المستقبل
+  addToCalendar: إضافة إلى الجدول الزمني
+  showAll: إظهار الكل
+  hideAll: إخفاء الكل
+  hidePastSessions: إخفاء الجلسات القديمة
+  showPastSessions: إظهار الجلسات السابقة
+  dates:
+    ninth: 9 سبتمبر
+    tenth: سبتمبر 10
+  search: بحث
+  showingResultsFor: '"{0}"عرض النتائج ل'
+  redCrossRedCrescentMembersOnly: أعضاء الصليب الأحمر والهلال الأحمر فقط
+  filters:
+    all: الكل
+    showFilters: اظهار الفلاتر
+    clearFilters: إخفاء الفلاتر
+    date: التاريخ
+    track: مسار
+    interactivity:
+      interactivity: التفاعل
+      interactive: التفاعلية
+      nonInteractive: غير تفاعلي
+    platform:
+      platform: المنصة
+      zoom: Zoom
+    device:
+      device: الجهاز
+      desktopOnly: عبر جهاز الحاسوب فقط
+      mobileOnly: عبر الأجهزة المحمول فقط
+    recorded:
+      recorded: التسجيل
+      willBeRecorded: التسجيل سيكون متاحاَ
+      notRecorded: غير مسجلة
+  attributes:
+    sessionAttributes: خصائص الجلسة
+  actions:
+    viewSession: مشاهدة الجلسة
+    joinSession: الانضمام إلى الجلسة
+    previewSession: معاينة الجلسة
+    registerInterest:
+  workshops:
+    workshop: ورشة عمل
+    workshops: ورشات العمل
+    title: ورشات العمل التفاعلية
+    description: شارك بإحدى ورش العمل التفاعلية التالية
+
+faqs:
+  title: أسئلة وأجوبة

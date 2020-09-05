@@ -1,3 +1,6 @@
+import moment from 'moment'
+import 'moment-timezone'
+
 export function findLink(links, type, language) {
   const matches = links.filter(l => l.type === type)
 
@@ -24,6 +27,24 @@ export function parseYouTubeLink(link) {
     return {
       url: link.url,
       id: url.searchParams.get('v')
+    }
+  }
+
+  return null
+}
+
+// https://www.youtube.com/embed/live_stream?channel=UC7v2Rs4f_UlIQNuNKUjmtgA
+export function parseYouTubeChannel(link) {
+  let url = new URL(link.url)
+
+  if (
+    url.hostname.endsWith('youtube.com') &&
+    url.pathname === '/embed/live_stream' &&
+    url.searchParams.has('channel')
+  ) {
+    return {
+      url: link.url,
+      channel: url.searchParams.get('channel')
     }
   }
 
@@ -86,12 +107,36 @@ export function slotState(slot) {
   return 'active'
 }
 
+const trailingSlash = str => str.replace(/\/*$/, '/')
+
+/** Get the url of the API to use, always has a trailing slash */
 export function pickApi() {
-  return window.CONFIG?.API_URL ?? 'http://localhost:3000'
+  return trailingSlash(window.CONFIG?.API_URL ?? 'http://localhost:3000/')
 }
 
+/** Get the url of the CDN to use, always has a trailing slash */
 export function pickCdn() {
-  return window.CONFIG?.CDN_URL ?? 'https://edit.climate.red'
+  return trailingSlash(window.CONFIG?.CDN_URL ?? 'https://edit.climate.red/')
+}
+
+export function getTranslation(translation, tryList) {
+  for (let locale of tryList) {
+    if (translation[locale]) return translation[locale]
+  }
+  return undefined
+}
+
+export function getTimeZone(abbr = false) {
+  let tz = Intl.DateTimeFormat().resolvedOptions().timeZone
+  if (typeof tz === 'undefined') {
+    tz = moment.tz.guess(true)
+  }
+  if (abbr) {
+    return moment()
+      .tz(tz)
+      .zoneAbbr()
+  }
+  return tz
 }
 
 export function getGaToken() {

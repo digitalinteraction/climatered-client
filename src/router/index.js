@@ -23,26 +23,31 @@ const Terms = () =>
   import(/* webpackChunkName: "static" */ '../views/Terms.vue')
 const Privacy = () =>
   import(/* webpackChunkName: "static" */ '../views/Privacy.vue')
+const Guidelines = () =>
+  import(/* webpackChunkName: "static" */ '../views/Guidelines.vue')
+const Faqs = () => import(/* webpackChunkName: "static" */ '../views/Faqs.vue')
 const ErrorPage = () =>
   import(/* webpackChunkName: "static" */ '../views/Error.vue')
 
-const Event = () =>
-  import(/* webpackChunkName: "prototype" */ '../views/Event.vue')
-const Home = () =>
-  import(/* webpackChunkName: "prototype" */ '../views/Home.vue')
+const Session = () =>
+  import(/* webpackChunkName: "prototype" */ '../views/Session.vue')
 const NotFound = () =>
   import(/* webpackChunkName: "prototype" */ '../views/NotFound.vue')
-const Translator = () =>
-  import(/* webpackChunkName: "prototype" */ '../views/Translator.vue')
+
+const InterpretHome = () =>
+  import(
+    /* webpackChunkName: "interpret" */ '../views/interpret/InterpretHome.vue'
+  )
+const Interpret = () =>
+  import(/* webpackChunkName: "interpret" */ '../views/interpret/Interpret.vue')
 
 import {
   ROUTE_ATRIUM,
-  ROUTE_EVENT,
+  ROUTE_SESSION,
   ROUTE_LOGIN,
   ROUTE_REGISTER,
   ROUTE_TOKEN_CAPTURE,
   ROUTE_NOT_FOUND,
-  ROUTE_TRANSLATOR,
   ROUTE_SCHEDULE,
   ROUTE_COFFEE_CHAT,
   ROUTE_HELP,
@@ -50,12 +55,17 @@ import {
   ROUTE_TERMS,
   ROUTE_ERROR,
   ROUTE_PRIVACY,
-  ROUTE_SESSIONS
+  ROUTE_GUIDELINES,
+  ROUTE_FAQS,
+  ROUTE_SESSIONS,
+  ROUTE_INTERPRET_HOME,
+  ROUTE_INTERPRET
 } from '../const'
 
 Vue.use(VueRouter)
 
 const routes = [
+  { path: '/', redirect: '/atrium' },
   {
     path: '/atrium',
     name: ROUTE_ATRIUM,
@@ -159,6 +169,22 @@ const routes = [
     }
   },
   {
+    path: '/guidelines',
+    name: ROUTE_GUIDELINES,
+    component: Guidelines,
+    meta: {
+      titleKey: 'guidelines.title'
+    }
+  },
+  {
+    path: '/faqs',
+    name: ROUTE_FAQS,
+    component: Faqs,
+    meta: {
+      titleKey: 'faqs.title'
+    }
+  },
+  {
     path: '/error',
     component: ErrorPage,
     name: ROUTE_ERROR,
@@ -167,31 +193,35 @@ const routes = [
     }
   },
   //
-  // v0 prototype
+  // Interpretation
   //
   {
-    path: '/prototype',
-    component: Home,
+    path: '/interpret',
+    component: InterpretHome,
+    name: ROUTE_INTERPRET_HOME,
     meta: {
-      title: 'v0'
+      titleKey: 'interpretHome.title'
     }
   },
   {
-    path: '/prototype/event/:eventId',
-    name: ROUTE_EVENT,
-    component: Event,
+    path: '/interpret/:sessionSlug/:channel',
+    component: Interpret,
+    name: ROUTE_INTERPRET,
     props: true,
     meta: {
-      title: 'v0 | Event'
+      titleKey: 'interpret.title'
     }
   },
+  //
+  // sessions
+  //
   {
-    path: '/prototype/translator/:eventId',
-    name: ROUTE_TRANSLATOR,
-    component: Translator,
+    path: '/session/:sessionSlug',
+    name: ROUTE_SESSION,
+    component: Session,
     props: true,
     meta: {
-      title: 'v0 | translator'
+      titleKey: 'session.title'
     }
   },
   //

@@ -1,0 +1,485 @@
+<template>
+  <AppWrapper>
+    <div class="session" v-if="session">
+      <!-- Navigation -->
+      <div class="session-navigation">
+        <div class="buttons">
+          <router-link class="session-back" :to="scheduleRoute">
+            <button class="button is-modern is-small is-coral">
+              <!-- <fa :icon="['fas', 'arrow-left']" /> -->
+              {{ $t('general.backTo', [$t('schedule.title')]) }}
+            </button>
+          </router-link>
+          <button
+            v-if="isDev"
+            @click="forceActiveSessionState = !forceActiveSessionState"
+            class="button mx-3 is-modern is-small"
+          >
+            Toggle State
+          </button>
+        </div>
+      </div>
+      <div class="session-wrapper">
+        <div class="session-headings">
+          <SessionType :schedule-slot="slot" :session="session" />
+          <h1 class="title">{{ localeTitle }}</h1>
+        </div>
+
+        <div class="columns">
+          <div class="column is-two-thirds">
+            <div class="session-main">
+              <!-- Locale warning -->
+              <div
+                v-if="
+                  displayLanguageNotification && !languageNotificationDismissed
+                "
+                class="notification is-danger is-light"
+              >
+                <span class="icon">
+                  <fa :icon="['fas', 'globe']" class="fa-xs fa-fw" />
+                </span>
+                <span>{{ $t('session.sessionOnlyAvailableIn') }}</span>
+                <span class="is-uppercase">
+                  {{ session.hostLanguage.join('/') }}
+                </span>
+                <button
+                  @click="languageNotificationDismissed = true"
+                  class="delete"
+                ></button>
+              </div>
+              <div class="session-component" v-if="sessionState == 'present'">
+                <!-- Auditorium -->
+                <div v-if="isAuditorium" class="auditorium">
+                  <OneToMany :session="session" :session-slot="slot" />
+                </div>
+
+                <!-- Room -->
+                <div v-if="isRoom" class="room">
+                  <ManyToMany :session="session" :session-slot="slot" />
+                </div>
+
+                <!-- Connect -->
+                <div v-if="isConnect" class="connect">
+                  <h3>Connect session</h3>
+                </div>
+              </div>
+
+              <!-- Attributes -->
+              <div id="session-attributes-wrapper">
+                <SessionAttributes
+                  :session="session"
+                  @show-modal="$emit('show-modal')"
+                />
+              </div>
+
+              <!-- Session abstract -->
+              <div
+                class="session-abstract"
+                :class="{ 'hide-overflow': !readMore }"
+              >
+                <div
+                  v-if="session.content[$i18n.locale] === '-'"
+                  class="content"
+                >
+                  <span>
+                    {{ $t('session.sessionWillBeHostedIn') }}
+                    <span class="is-uppercase">
+                      {{ session.hostLanguage.join('/') }}
+                    </span>
+                  </span>
+                </div>
+                <div v-else class="content" v-html="localeContent"></div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-third">
+            <div class="session-sidebar">
+              <span
+                id="interest-tag"
+                class="tag is-light"
+                v-if="parseInt(session.attendance) > 0"
+              >
+                <fa :icon="['fas', 'fire']" class="fa-fw" />
+                <span class="mx-1">
+                  {{
+                    $t(
+                      parseInt(session.attendance) === 1
+                        ? 'session.personInterested'
+                        : 'session.peopleInterested',
+                      [parseInt(session.attendance)]
+                    )
+                  }}
+                </span>
+              </span>
+
+              <!-- Cover image -->
+              <section v-if="hasCoverImage">
+                <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
+              </section>
+
+              <section v-if="sessionState === 'present'" id="session-panel">
+                <SessionSidePanel
+                  :session="session"
+                  :session-state="sessionState"
+                />
+              </section>
+
+              <!-- Time and state for slot -->
+              <section>
+                <h4 class="section-heading">
+                  {{ $t('session.scheduleHeading') }}
+                </h4>
+                <!-- <Countdown /> -->
+                <ScheduleSlotTime
+                  :current-time="currentTime"
+                  :schedule-slot="slot"
+                  :is-padded="false"
+                  :force-active-session-state="forceActiveSessionState"
+                  class="is-large"
+                />
+                <div v-if="isRoom">
+                  <p class="is-size-6 mt-4 has-text-danger">
+                    *{{ $t('session.linksWillBeAvailable') }}
+                  </p>
+                </div>
+              </section>
+
+              <!-- Speakers -->
+              <section v-if="session.speakers && session.speakers.length > 0">
+                <h4 class="section-heading">
+                  {{ $t('session.speakerHeading') }}
+                </h4>
+                <SessionSpeakers :session="session" :is-padded="false" />
+              </section>
+
+              <!-- Actions -->
+              <section v-if="sessionState !== 'present'">
+                <h4 class="section-heading">
+                  {{ $t('session.actionsHeading') }}
+                </h4>
+                <SessionActions
+                  :schedule-slot="slot"
+                  :session="session"
+                  :session-state="sessionState"
+                  :session-layout="sessionLayout"
+                  :is-fullwidth="true"
+                />
+              </section>
+
+              <!-- Spacer -->
+              <div class="flex-spacer"></div>
+
+              <!-- Host -->
+              <section class="host-section">
+                <h4 class="section-heading">
+                  {{ $t('session.hostedByHeading') }}
+                </h4>
+                <h5>
+                  <strong>{{ session.hostName }}</strong>
+                </h5>
+                <p>
+                  {{ localeHostOrganisation }}
+                </p>
+                <div class="button-wrapper">
+                  <a
+                    :href="`mailto:${session.hostEmail}`"
+                    class="button has-icon is-modern is-small is-purple mt-3"
+                  >
+                    <fa :icon="['fas', 'envelope']" class="icon fa-fw fa-xs" />
+                    <span>{{ $t('session.contactHost') }}</span>
+                  </a>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <UtilWrapper :pick-languages="false" v-else>
+      <router-link
+        :to="scheduleRoute"
+        slot="back-button"
+        class="button is-link"
+      >
+        {{ $t('general.backTo', [$t('schedule.title')]) }}
+      </router-link>
+      <div slot="content" class="content">
+        <h1 v-t="'notFound.title'" />
+        <p v-t="'notFound.info'" />
+      </div>
+    </UtilWrapper>
+  </AppWrapper>
+</template>
+
+<script>
+import marked from 'marked'
+import { mapState } from 'vuex'
+import { pickCdn } from '@/utils'
+
+import { ROUTE_SCHEDULE } from '@/const'
+
+// Components
+import ScheduleSlotTime from '@/components/schedule/ScheduleSlotTime.vue'
+
+import SessionType from '@/components/session/SessionType.vue'
+import SessionAttributes from '@/components/session/SessionAttributes.vue'
+import SessionSpeakers from '@/components/session/SessionSpeakers.vue'
+import SessionActions from '@/components/session/SessionActions.vue'
+import SessionSidePanel from '@/components/session/SessionSidePanel.vue'
+
+// import Countdown from '@/components/Countdown.vue'
+import OneToMany from '@/components/OneToMany.vue'
+import ManyToMany from '@/components/ManyToMany.vue'
+import AppWrapper from '@/components/AppWrapper.vue'
+import UtilWrapper from '@/components/UtilWrapper.vue'
+
+export default {
+  components: {
+    ScheduleSlotTime,
+    SessionType,
+    SessionAttributes,
+    SessionSpeakers,
+    SessionActions,
+    SessionSidePanel,
+    // Countdown,
+    OneToMany,
+    ManyToMany,
+    AppWrapper,
+    UtilWrapper
+  },
+  props: {
+    sessionSlug: { type: String, required: true }
+  },
+  data() {
+    return {
+      forceActiveSessionState: false,
+      languageNotificationDismissed: false,
+      currentTime: Date.now(),
+      readMore: true,
+      scheduleRoute: { name: ROUTE_SCHEDULE }
+    }
+  },
+  computed: {
+    ...mapState('api', ['hasData', 'slots', 'speakers']),
+    isDev() {
+      return process.env.NODE_ENV === 'development'
+    },
+    isTestSession() {
+      return this.session && this.session.slug.includes('test')
+    },
+    session() {
+      return this.$store.getters['api/session'](this.sessionSlug)
+    },
+    slot() {
+      return this.session && this.$store.getters['api/slot'](this.session.slot)
+    },
+    sessionLayout() {
+      return this.sessionType.layout
+    },
+    isAuditorium() {
+      return this.sessionLayout === 'auditorium'
+    },
+    isRoom() {
+      return this.sessionLayout === 'room'
+    },
+    isConnect() {
+      return this.sessionLayout === 'connect'
+    },
+    sessionType() {
+      return this.session && this.$store.getters['api/type'](this.session.type)
+    },
+    localeTitle() {
+      return this.session.title[this.$i18n.locale]
+    },
+    localeHostOrganisation() {
+      return this.session.hostOrganisation[this.$i18n.locale]
+    },
+    localeContent() {
+      if (this.$i18n.locale === 'dev') return '{{session.content}}'
+
+      const content = this.session?.content?.[this.$i18n.locale]
+      return content && marked(content)
+    },
+    sessionSpeakers() {
+      return this.session?.speakers
+        .map(slug => this.speakers.find(s => s.slug === slug))
+        .filter(s => s)
+    },
+    sessionState() {
+      if (this.isTestSession || this.forceActiveSessionState) return 'present'
+
+      const start = new Date(this.slot.start).getTime()
+      const end = new Date(this.slot.end).getTime()
+
+      if (this.currentTime < start) return 'future'
+      if (this.currentTime > end) return 'past'
+
+      return 'present'
+    },
+    hasCoverImage() {
+      return (
+        this.session.coverImage &&
+        this.session.coverImage !== '/uploads/cover-default.jpg'
+      )
+    },
+    coverImageUrl() {
+      return pickCdn() + this.session.coverImage
+    },
+    displayLanguageNotification() {
+      return (
+        this.session.hostLanguage.length < 4 &&
+        !this.session.hostLanguage.includes(this.$i18n.locale)
+      )
+    }
+  },
+  mounted() {
+    this.$clock.bind(this, () => {
+      if (this.isDev && this.$route.query.time) {
+        this.currentTime = parseInt(this.$route.query.time)
+      } else {
+        this.currentTime = Date.now()
+      }
+    })
+  },
+  destroyed() {
+    this.$clock.unbind(this)
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.session {
+  background-color: $cc-lightestgrey;
+  min-height: 100vh;
+  padding: 2em;
+
+  @include mobile {
+    padding: 0em;
+
+    .session-navigation {
+      padding: 1em;
+    }
+    .session-wrapper {
+      border-radius: 0 !important;
+    }
+  }
+
+  .session-navigation {
+    padding-bottom: 1em;
+  }
+  .columns {
+    margin: 0;
+    .column {
+      padding: 0;
+    }
+  }
+
+  .session-wrapper {
+    border-radius: $radius-large;
+    background-color: white;
+    max-width: 1600px;
+
+    .session-headings {
+      border-bottom: 1px solid $border;
+      padding: 1.5em;
+      h1.title {
+        color: #222;
+        max-width: 800px;
+        font-size: $size-4;
+        font-weight: 900;
+        position: relative;
+      }
+    }
+
+    .session-main {
+      padding: 1.5em;
+    }
+    .session-sidebar {
+      border-inline-start: 1px solid $border;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5em;
+
+      .flex-spacer {
+        flex-grow: 1;
+      }
+      section {
+        align-self: flex-start;
+        flex-shrink: 1;
+
+        width: 100%;
+        &:not(#session-panel) {
+          margin-bottom: 3em;
+        }
+
+        &.host-section {
+          align-self: flex-end;
+          p {
+            color: $cc-bluegrey;
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
+  }
+}
+
+.session-back {
+  padding-inline-start: 0;
+}
+.session-abstract {
+  color: $cc-bluegrey;
+  font-size: 1em;
+  margin-top: 0.75em;
+}
+.session-abstract.hide-overflow {
+  max-height: 120px;
+  overflow-y: hidden;
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    box-shadow: 0 -2em 1em -1em white inset;
+  }
+}
+
+.notification {
+  margin: 0 !important;
+  padding: 0.75rem 2.5rem 0.75rem 2.5rem !important;
+  .icon {
+    left: 0.5rem;
+    position: absolute;
+    top: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  > .delete {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+section#cover-image {
+  img {
+    max-height: 200px;
+    max-width: 100%;
+  }
+}
+
+.session-component {
+  .auditorium {
+  }
+  .room {
+  }
+  .connect {
+  }
+}
+
+#interest-tag {
+  margin-bottom: 2em;
+}
+</style>

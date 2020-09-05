@@ -70,7 +70,12 @@
 </template>
 
 <script>
-import { ROUTE_LOGIN, ROUTE_SESSIONS, ROUTE_REGISTER } from '../const'
+import {
+  ROUTE_LOGIN,
+  ROUTE_SESSIONS,
+  ROUTE_REGISTER,
+  ROUTE_SCHEDULE
+} from '../const'
 import { mapState } from 'vuex'
 
 import AppWrapper from '@/components/AppWrapper.vue'
@@ -112,7 +117,7 @@ const sponsors = [
   { name: 'Climate Centre', url: '/sponsor/climate-centre.svg' },
   { name: 'Open Lab', url: '/sponsor/openlab.svg' },
   { name: 'Al Jazeera', url: '/sponsor/al-jazeera.svg' },
-  { name: 'Italian Red Cross', url: '/sponsor/croce-rossa.svg' },
+  { name: 'Italian Red Cross', url: '/sponsor/croce-rossa-v2.svg' },
   { name: 'Norwegian Red Cross', url: '/sponsor/norwegian-red-cross.svg' },
   { name: 'British Red Cross', url: '/sponsor/british-red-cross.svg' },
   { name: 'Finish Red Cross', url: '/sponsor/finish-red-cross.svg' }
@@ -124,19 +129,23 @@ export default {
     return {
       loginRoute: { name: ROUTE_LOGIN },
       registerRoute: { name: ROUTE_REGISTER },
-      sessionsRoute: { name: ROUTE_SESSIONS },
       sponsors,
       atriumVideo
     }
   },
   computed: {
-    ...mapState('api', ['user']),
+    ...mapState('api', ['user', 'settings']),
     currentContent() {
       const chosenContent = this.user ? activeContent : content
       return chosenContent[this.$i18n.locale]
     },
     currentBanner() {
       return banner[this.$i18n.locale]
+    },
+    sessionsRoute() {
+      return {
+        name: this.settings?.scheduleLive ? ROUTE_SCHEDULE : ROUTE_SESSIONS
+      }
     }
   }
 }

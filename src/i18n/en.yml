@@ -7,11 +7,6 @@ general:
   comingSoon: Coming soon
   backTo: Back to {0}
 
-api:
-  auth:
-    general: 'Bad auth'
-    jwtExpired: 'JWT expired'
-
 atrium:
   title: Atrium
   or: or
@@ -34,6 +29,8 @@ login:
   badEmail: Bad email
   doneText: Login code sent
   submitButton: Request login code
+  registerLabel: Not registered yet?
+  registerAction: Register here
 
 register:
   title: Register
@@ -66,6 +63,8 @@ register:
     We've sent you an verification email.
     Click the link in that email to verify and see the conference schedule.
     If you don't see an email soon please check your spam folder.
+  loginLabel: Already registered?
+  loginAction: Log in here
 
 profile:
   title: Your profile
@@ -88,9 +87,6 @@ sessions:
     panel: Panels
     sessions: Sessions
 
-schedule:
-  title: Schedule
-
 coffeechat:
   title: Coffee chat
 
@@ -103,6 +99,9 @@ notFound:
 
 terms:
   title: Terms
+
+guidelines:
+  title: Guidelines
 
 privacy:
   title: Privacy
@@ -120,7 +119,7 @@ data:
     plenary: Keynote
     speaker: Speaker
     fishbowl: Fishbowl
-  theme:
+  track:
     act: Act
     empower: Empower
     influence: Influence
@@ -146,6 +145,51 @@ cookies:
     We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits. 
     You can change your preference by clicking {0} in the site footer.
 
+interpretHome:
+  title: Interpretation
+  subtitle: Use this page to navigate the session's you're assigned to interpret for
+  goto: Interpret mode
+  unavailableTitle: Your browser isn't supported
+  unavailableBody: |
+    It looks like your using an unsupported browser. Please swap to chrome (v42+), safari (13.1+) or firefox (v80+) and return to this page. If you're on iOS please upgrade to iOS version 13.5 or above.
+
+interpretSchedule:
+  heading:
+    session: Session
+    slot: Slot
+    date: Date
+    start: Start
+    end: End
+    language: Floor language
+    actions: Interpret
+
+interpret:
+  title: Interpreting session
+  sessionLabel: 'Session title:'
+  floorLabel: 'Floor language:'
+  outputLabel: 'Output language:'
+  live: You are live
+  testLabel: Test mic
+  startAction: Go Live
+  stopAction: Disconnect
+  takeoverAction: Takeover
+  takeoverConfirm: Are you sure you want to takeover?
+  takeoverActionLabel: Request takeover
+  takeoverStatusLabel: status
+  plusMins: now | 1 min | {count} mins
+  noResponse: No response
+  acceptedBy: Accepted by {0}
+  onlineLabel: Online now
+  isLive: '{0} is live'
+  confirmLeave: 'You are live broadcasting, are you sure?'
+  sendMessage:
+    placeholder: Send a message
+    action: Send
+  isSelf: (you)
+  messagesLabel: Messages
+  deviceLabel: Pick a device
+  refreshButton: Refresh devices
+
 session:
   title: View Session
   speakerHeading: Speakers
@@ -155,3 +199,79 @@ session:
   showPoll: Enable poll
   seeMore: See more
   seeLess: See less
+  noInterpret: Your browser doesn't support interpretation, sorry!
+  scheduleHeading: Schedule
+  actionsHeading: Actions
+  hostedByHeading: Hosted by
+  contactHost: Contact Host
+  sessionOnlyAvailableIn: Please note this session is only available in
+  joinLiveQandA: Join live Q&A
+  linksWillBeAvailable: The session links will be available 15 minutes before the start time
+  sessionWillBeHostedIn: This session will be hosted in
+  interestRegisteredConfirmation: Your interest has been registered!
+  personInterested: '{0} person interested'
+  peopleInterested: '{0} people interested'
+
+schedule:
+  title: Schedule
+  description: Browse the available sessions and plan your experience by adding reminders to your calendar.
+  close: Close
+  past: Past
+  now: Now
+  present: Present
+  future: Future
+  addToCalendar: Add to Calendar
+  showAll: Show all
+  hideAll: Hide all
+  hidePastSessions: Hide past sessions
+  showPastSessions: Show past sessions
+  dates:
+    ninth: 9 September
+    tenth: 10 September
+  search: Search
+  showingResultsFor: 'Showing results for "{0}"'
+  redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
+  filters:
+    all: All
+    showFilters: Show Filters
+    clearFilters: Clear Filters
+    date: Date
+    track: Track
+    interactivity:
+      interactivity: Interactivity
+      interactive: Interactive
+      nonInteractive: Non-interactive
+    platform:
+      platform: Platform
+      zoom: Zoom
+    device:
+      device: Device
+      desktopOnly: Desktop only
+      mobileOnly: Mobile only
+    recorded:
+      recorded: Recorded
+      willBeRecorded: Will be recorded
+      notRecorded: Not recorded
+  attributes:
+    sessionAttributes: Session attributes
+  actions:
+    viewSession: View session
+    joinSession: Join session
+    previewSession: Preview session
+    registerInterest: Register interest
+    interestRegistered: Interest registered
+    registerInterestSubject: Register interest in climate:red session
+    registerInterestBody: I am interested in your climate:red session - "{0}"
+  workshops:
+    workshop: Workshop
+    workshops: Workshops
+    title: Interactive workshops
+    description: Participate in one of the following interactive workshops.
+
+errors:
+  title: Something went wrong
+  general: An unexpected error occured, please try again.
+  loginExpired: Your login code has expired, they last for 30 minutes from when you request one. Please try again below.
+
+faqs:
+  title: FAQs

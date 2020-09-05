@@ -24,6 +24,11 @@
 </template>
 
 <script>
+//
+// The main bit of a workshop-type event
+// - a link to join a room plus extra links too
+//
+
 import {
   findLink,
   parseYouTubeLink,
