@@ -1,5 +1,8 @@
 <template>
-  <div class="speaker-row">
+  <div
+    :class="['speaker-row', { 'is-interactive': isInteractive }]"
+    @click="isInteractive ? $emit('click') : undefined"
+  >
     <div class="speaker-headshot">
       <img :src="imageUrl" width="42" height="42" />
     </div>
@@ -19,7 +22,8 @@ import { pickCdn } from '@/utils'
 
 export default {
   props: {
-    speaker: { type: Object, required: true }
+    speaker: { type: Object, required: true },
+    isInteractive: { type: Boolean, default: false }
   },
   computed: {
     imageUrl() {
@@ -37,6 +41,14 @@ $img-size: 42px;
 
 .speaker-row {
   display: flex;
+  &.is-interactive {
+    &:hover {
+      cursor: pointer;
+      .speaker-title {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .speaker-headshot {
@@ -53,6 +65,7 @@ $img-size: 42px;
 
 .speaker-title {
   min-height: 1.5em;
+  margin-bottom: 0 !important;
   font-weight: bold;
 }
 .speaker-role {
