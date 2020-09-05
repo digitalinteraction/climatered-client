@@ -1,5 +1,5 @@
 <template>
-  <div class="select is-small" :class="selectClass">
+  <div class="select is-rounded" :class="selectClass">
     <select
       :value="$i18n.locale"
       @input="onLocale"

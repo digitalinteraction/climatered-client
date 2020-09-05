@@ -131,8 +131,15 @@
 }
 
 // Custom buttons
+*[dir='rtl'] .icon:first-child:not(:last-child) {
+  margin-left: 0.375em !important;
+  margin-right: calc(-0.75em - 1px) !important;
+}
+
 .button {
-  // font-size: 0.8em !important;
+  &.is-static {
+    padding: 0 1rem;
+  }
   &.is-coral {
     background-color: $cc-coral;
     border-color: $cc-coral;
@@ -159,17 +166,6 @@
   }
 }
 
-// Select
-.select.is-small,
-.select.is-small select {
-  height: 3em;
-}
-
-*[dir='rtl'] .button.has-icon .icon:first-child:not(:last-child) {
-  left: auto;
-  right: 2em;
-}
-
 // Headings
 h4.section-heading {
   color: $cc-bluegrey;
@@ -178,6 +174,22 @@ h4.section-heading {
   line-height: 20px;
   margin-bottom: 10px;
   text-transform: uppercase;
+}
+
+// Tags
+.tag:not(body) {
+  &.is-pink {
+    background-color: $cc-pink;
+    color: white;
+  }
+  &.is-coral {
+    background-color: $cc-coral;
+    color: white;
+  }
+  &.is-purple {
+    background-color: $cc-purple;
+    color: white;
+  }
 }
 
 // Animations
