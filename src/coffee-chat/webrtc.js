@@ -31,6 +31,8 @@ export default class WebRTC {
     this._setupDataChannel(forUserId, onDataReceivedCb)
     this._listenForPeerConnectionClosed(peerConnection.pc, connectionClosedCb)
     const offer = await peerConnection.pc.createOffer()
+    offer.sdp = this._manipulateSDP(offer.sdp)
+    console.log(offer.sdp)
     peerConnection.pc.setLocalDescription(offer)
     return offer
   }
@@ -59,12 +61,16 @@ export default class WebRTC {
     })
     await peerConnection.pc.setRemoteDescription(offer)
     const answer = await peerConnection.pc.createAnswer()
+    answer.sdp = this._manipulateSDP(answer.sdp)
+    console.log(answer.sdp)
     await peerConnection.pc.setLocalDescription(answer)
     return answer
   }
 
   async addAnswer(forUserId, answer) {
     if (this.peerConnections[forUserId].pc?.signalingState === 'stable') return
+    answer.sdp = this._manipulateSDP(answer.sdp)
+    console.log(answer.sdp)
     await this.peerConnections[forUserId].pc.setRemoteDescription({
       sdp: answer.sdp,
       type: answer.type
@@ -160,5 +166,10 @@ export default class WebRTC {
     this.peerConnections[forUserId].dc?.addEventListener('message', msg => {
       onDataReceivedCb(JSON.parse(msg.data))
     })
+  }
+
+  _manipulateSDP(sdp) {
+    sdp = sdp.replace('maxplaybackrate=48000', 'maxplaybackrate=8000')
+    return sdp
   }
 }
