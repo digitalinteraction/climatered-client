@@ -194,7 +194,7 @@ export default {
   components: { AppWrapper },
   data() {
     return {
-      peers: Math.ceil(Math.random() * 1000),
+      peers: 0,
       isWaiting: false,
       filters: {
         languages: {
@@ -257,6 +257,7 @@ export default {
         params: { room: roomId }
       })
     })
+    this.queryLobby()
   },
   computed: {
     selectedLanguages() {
@@ -264,6 +265,14 @@ export default {
     },
     selectedThemes() {
       return this.filters.themes.options.filter(o => o.selected == true)
+    }
+  },
+  watch: {
+    filters: {
+      deep: true,
+      handler() {
+        this.queryLobby()
+      }
     }
   },
   methods: {
@@ -303,25 +312,34 @@ export default {
       if (this.filters.languages.isActive || this.filters.themes.isActive) {
         return
       }
-      const langPrefs = this.filters.languages.options
-        .filter(l => l.selected)
-        .map(l => l.value)
-      const themePrefs = this.filters.themes.options
-        .filter(t => t.selected)
-        .map(t => t.value)
-      this.coffeeChatLobby.joinLobby(
-        langPrefs.length > 0
-          ? langPrefs
-          : this.filters.languages.options.map(l => l.value),
-        themePrefs.length > 0
-          ? themePrefs
-          : this.filters.themes.options.map(t => t.value)
-      )
+      this.coffeeChatLobby.joinLobby(this.getLanguages(), this.getThemes())
       this.isWaiting = true
     },
     leave() {
       this.coffeeChatLobby.leaveLobby()
       this.isWaiting = false
+    },
+    async queryLobby() {
+      this.peers = await this.coffeeChatLobby.queryLobby(
+        this.getLanguages(),
+        this.getThemes()
+      )
+    },
+    getLanguages() {
+      const langPrefs = this.filters.languages.options
+        .filter(l => l.selected)
+        .map(l => l.value)
+      return langPrefs.length > 0
+        ? langPrefs
+        : this.filters.languages.options.map(l => l.value)
+    },
+    getThemes() {
+      const themePrefs = this.filters.themes.options
+        .filter(t => t.selected)
+        .map(t => t.value)
+      return themePrefs.length > 0
+        ? themePrefs
+        : this.filters.themes.options.map(t => t.value)
     }
   }
 }

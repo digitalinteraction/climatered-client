@@ -32,7 +32,6 @@ export default class WebRTC {
     this._listenForPeerConnectionClosed(peerConnection.pc, connectionClosedCb)
     const offer = await peerConnection.pc.createOffer()
     offer.sdp = this._manipulateSDP(offer.sdp)
-    console.log(offer.sdp)
     peerConnection.pc.setLocalDescription(offer)
     return offer
   }
@@ -46,9 +45,6 @@ export default class WebRTC {
     onDataReceivedCb,
     connectionClosedCb
   ) {
-    if (this.peerConnections[forUserId]) {
-      this.close(forUserId)
-    }
     const peerConnection = this._create(forUserId, localStream)
     this._listenForIceCandidates(peerConnection.pc, iceCb)
     this._listenForRemoteStream(peerConnection.pc, remoteStreamCb)
@@ -62,7 +58,6 @@ export default class WebRTC {
     await peerConnection.pc.setRemoteDescription(offer)
     const answer = await peerConnection.pc.createAnswer()
     answer.sdp = this._manipulateSDP(answer.sdp)
-    console.log(answer.sdp)
     await peerConnection.pc.setLocalDescription(answer)
     return answer
   }
@@ -70,7 +65,6 @@ export default class WebRTC {
   async addAnswer(forUserId, answer) {
     if (this.peerConnections[forUserId].pc?.signalingState === 'stable') return
     answer.sdp = this._manipulateSDP(answer.sdp)
-    console.log(answer.sdp)
     await this.peerConnections[forUserId].pc.setRemoteDescription({
       sdp: answer.sdp,
       type: answer.type
@@ -147,7 +141,7 @@ export default class WebRTC {
 
   _create(forUserId, media) {
     if (this.peerConnections[forUserId]) {
-      this.peerConnections[forUserId].pc.close()
+      this.close(forUserId)
     }
     this.peerConnections[forUserId] = {
       pc: new RTCPeerConnection(configuration)
