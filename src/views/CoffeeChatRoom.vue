@@ -80,6 +80,13 @@
         </button>
       </div>
     </div>
+    <div
+      class="notification share-popup has-text-light"
+      v-if="showNotification"
+    >
+      <button class="delete"></button>
+      {{ contactDetails.email }}
+    </div>
   </AppWrapper>
 </template>
 
@@ -328,6 +335,13 @@ export default {
       padding: 0.5rem;
     }
   }
+}
+
+.share-popup {
+  background-color: $cc-purple;
+  max-width: 35%;
+  margin: auto;
+  margin-top: 1.75rem;
 }
 
 .pop-in-enter-active {
