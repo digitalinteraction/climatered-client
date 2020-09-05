@@ -15,7 +15,7 @@
             />
             <!-- Search button -->
             <div class="control">
-              <a class="button is-small is-modern is-dark">
+              <a class="button is-small is-dark">
                 <fa :icon="['fas', 'search']" />
               </a>
             </div>
@@ -278,7 +278,7 @@ export default {
   },
   computed: {
     filterToggleClasses() {
-      let classes = ['button', 'is-small', 'is-modern']
+      let classes = ['button', 'is-small']
       classes.push(this.filtersVisible ? 'is-danger' : 'is-light')
       return classes
     }

@@ -25,7 +25,6 @@
           @click="workshopsExpanded = !workshopsExpanded"
           :class="[
             'button',
-            'is-modern',
             'is-small',
             {
               'is-coral': !workshopsExpanded,

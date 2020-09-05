@@ -51,12 +51,12 @@
   }
 }
 
-.buttons:not(.has-addons) {
-  .button:not(:last-child):not(.is-fullwidth) {
-    margin-right: unset;
-    margin-inline-end: 0.5rem;
-  }
-}
+// .buttons:not(.has-addons) {
+//   .button:not(:last-child):not(.is-fullwidth) {
+//     margin-right: unset;
+//     margin-inline-end: 0.5rem;
+//   }
+// }
 
 //
 // Custom tabs
@@ -132,6 +132,7 @@
 
 // Custom buttons
 .button {
+  // font-size: 0.8em !important;
   &.is-coral {
     background-color: $cc-coral;
     border-color: $cc-coral;
@@ -156,6 +157,12 @@
       background-color: darken($color: $cc-light-blue, $amount: 2);
     }
   }
+}
+
+// Select
+.select.is-small,
+.select.is-small select {
+  height: 3em;
 }
 
 *[dir='rtl'] .button.has-icon .icon:first-child:not(:last-child) {

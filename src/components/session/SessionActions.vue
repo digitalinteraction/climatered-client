@@ -6,7 +6,7 @@
       <!-- Register interest button -->
       <div class="button-wrapper" v-if="onSessionPage && isFuture">
         <div class="buttons has-addons">
-          <button
+          <a
             @click="toggleInterest"
             :disabled="checkingInterest"
             :class="[
@@ -20,14 +20,12 @@
             ]"
           >
             <span class="icon">
-              <i class="fas fa-italic"></i>
               <fa
                 :icon="
                   hasRegisteredInterest
                     ? ['fas', 'check']
                     : ['fas', 'user-plus']
                 "
-                class="fa-fw fa-xs"
               />
             </span>
             <span>{{
@@ -35,7 +33,7 @@
                 ? $t('schedule.actions.interestRegistered')
                 : $t('schedule.actions.registerInterest')
             }}</span>
-          </button>
+          </a>
         </div>
       </div>
 

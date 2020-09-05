@@ -56,7 +56,8 @@ $button-border-width: 1px;
 $button-padding-vertical: calc(1.5em - #{$button-border-width}) !default;
 $button-padding-horizontal: 1.5em !default;
 
-$radius-small: 8px;
+$radius: 8px;
+$radius-small: 6px;
 
 @import '~bulma/sass/utilities/_all.sass';
 

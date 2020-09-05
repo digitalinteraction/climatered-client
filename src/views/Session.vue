@@ -2,22 +2,18 @@
   <AppWrapper>
     <div class="session" v-if="session">
       <!-- Navigation -->
-      <div class="session-navigation">
-        <div class="buttons">
-          <router-link class="session-back" :to="scheduleRoute">
-            <button class="button is-modern is-small is-coral">
-              <!-- <fa :icon="['fas', 'arrow-left']" /> -->
-              {{ $t('general.backTo', [$t('schedule.title')]) }}
-            </button>
-          </router-link>
-          <button
-            v-if="isDev"
-            @click="cycleStates()"
-            class="button mx-3 is-modern is-small"
-          >
-            Cycle States ({{ forcedState || 'auto' }})
-          </button>
-        </div>
+      <div class="session-navigation is-clearfix">
+        <router-link class="button is-small is-coral" :to="scheduleRoute">
+          <!-- <fa :icon="['fas', 'arrow-left']" /> -->
+          {{ $t('general.backTo', [$t('schedule.title')]) }}
+        </router-link>
+        <a
+          v-if="isDev"
+          @click="cycleStates()"
+          class="button is-small is-pulled-right"
+        >
+          <span>Cycle States ({{ forcedState || 'auto' }})</span>
+        </a>
       </div>
       <div class="session-wrapper">
         <div class="session-headings">
