@@ -41,7 +41,7 @@
           <div class="slot-section-wrapper">
             <!-- Show past sessions button -->
             <button
-              v-if="!searchActive"
+              v-if="!searchActive && hasStarted"
               id="past-sessions-toggle"
               class="button is-small is-text"
               @click="pastSessionsVisible = !pastSessionsVisible"
@@ -72,6 +72,7 @@
                     <ScheduleSlotTime
                       :current-time="currentTime"
                       :schedule-slot="scheduleSlot"
+                      :is-padded="true"
                     />
                   </div>
 
@@ -106,6 +107,7 @@
 </template>
 
 <script>
+import { getTimeZone } from '../utils'
 import { mapState } from 'vuex'
 
 // Mixins
@@ -113,13 +115,13 @@ import ScheduleFiltersMixins from '@/mixins/ScheduleFiltersMixins.js'
 
 // Components
 import AppWrapper from '@/components/AppWrapper.vue'
-import ScheduleFilters from '@/components/Schedule/ScheduleFilters.vue'
-import SchedulePageHeader from '@/components/Schedule/SchedulePageHeader.vue'
-import ScheduleSectionHeader from '@/components/Schedule/ScheduleSectionHeader.vue'
-import SessionTile from '@/components/Schedule/SessionTile.vue'
-import ScheduleSlotTime from '@/components/Schedule/ScheduleSlotTime.vue'
-import ScheduleWorkshops from '@/components/Schedule/ScheduleWorkshops.vue'
-// import SessionAttributesModal from '@/components/Schedule/SessionAttributesModal.vue'
+import ScheduleFilters from '@/components/schedule/ScheduleFilters.vue'
+import SchedulePageHeader from '@/components/schedule/SchedulePageHeader.vue'
+import ScheduleSectionHeader from '@/components/schedule/ScheduleSectionHeader.vue'
+import SessionTile from '@/components/SessionTile.vue'
+import ScheduleSlotTime from '@/components/schedule/ScheduleSlotTime.vue'
+import ScheduleWorkshops from '@/components/schedule/ScheduleWorkshops.vue'
+// import SessionAttributesModal from '@/components/session/SessionAttributesModal.vue'
 
 const workshopTypes = [
   'games',
@@ -171,6 +173,9 @@ export default {
   data() {
     return {
       schedule,
+      currentTimeZone: (() => {
+        return getTimeZone()
+      })(),
       currentTime: Date.now(),
       pastSessionsVisible: false,
       modalSession: undefined,
@@ -191,6 +196,10 @@ export default {
     ...mapState('api', ['sessions', 'slots']),
     isDev() {
       return process.env.NODE_ENV === 'development'
+    },
+    hasStarted() {
+      // this.currentTime > new Date('9 September 2020')
+      return this.currentTime > new Date('9 Sep 2020')
     },
     searchActive() {
       // User has an active search query
@@ -356,7 +365,7 @@ export default {
           border-radius: 12px;
           box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.03);
           pointer-events: none;
-          width: calc(960px + 240px);
+          width: calc(960px + 260px);
           z-index: -1;
 
           // Positioning
@@ -401,7 +410,7 @@ export default {
 
   .time-column {
     padding: 0.75rem;
-    width: 240px;
+    width: 260px;
 
     @include mobile {
       width: 100%;

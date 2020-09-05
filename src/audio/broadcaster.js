@@ -1,5 +1,5 @@
-import { AUDIO_SAMPLE_RATE } from '@/const'
-import resample from 'audio-resampler'
+import { AUDIO_TRANSPORT_RATE } from '@/const'
+import { resample, resampledLength } from './resample'
 
 export const BroadcastState = {
   active: 'active',
@@ -13,7 +13,6 @@ export class AudioBroadcaster {
   _state = BroadcastState.inactive
   stream = null
   recorder = null
-  sampleRate = 0
 
   static isSupported() {
     return Boolean(AudioContext)
@@ -32,13 +31,19 @@ export class AudioBroadcaster {
     this.onData = onData
   }
 
+  getTrackRate() {
+    const tracks = this.stream.getAudioTracks()
+    const trackSettings = tracks[0].getSettings()
+    return trackSettings.sampleRate
+  }
+
   async start(deviceId) {
     if (this.state !== BroadcastState.inactive) {
       throw new Error('Already recording!')
     }
 
     this.ctx = new AudioContext({
-      sampleRate: AUDIO_SAMPLE_RATE
+      sampleRate: AUDIO_TRANSPORT_RATE
     })
 
     //
@@ -48,14 +53,12 @@ export class AudioBroadcaster {
       video: false,
       audio: {
         deviceId,
-        sampleRate: { ideal: AUDIO_SAMPLE_RATE }
+        sampleRate: { ideal: AUDIO_TRANSPORT_RATE },
+        echoCancellation: true,
+        noiseSuppression: true
       }
     })
     this.stream = stream
-
-    const [audioTrack] = stream.getAudioTracks()
-    const trackSettings = audioTrack.getSettings()
-    this.sampleRate = trackSettings.sampleRate
 
     // Register our audio worklet
     await this.ctx.audioWorklet.addModule('/socket-record-processor.js')
@@ -70,7 +73,11 @@ export class AudioBroadcaster {
     })
     recorder.port.onmessage = event => {
       if (event.data.type === 'ondata') {
-        this.handleData(event.data.buffer, this.sampleRate)
+        this.handleData(
+          event.data.buffer,
+          this.getTrackRate(),
+          AUDIO_TRANSPORT_RATE
+        )
       }
     }
     this.recorder = recorder
@@ -86,27 +93,26 @@ export class AudioBroadcaster {
     this.state = BroadcastState.active
   }
 
-  handleData(arrayBuffer, sampleRate) {
-    console.debug('AudioBroadcaster#handleData sampleRate=%d', sampleRate)
+  handleData(arrayBuffer, inputRate, outputRate) {
+    console.debug(
+      'AudioBroadcaster#handleData byteLength=%d inputRate=%d outputRate=%d',
+      arrayBuffer.byteLength,
+      inputRate,
+      outputRate
+    )
 
-    if (sampleRate === AUDIO_SAMPLE_RATE) {
-      this.onData(arrayBuffer, AUDIO_SAMPLE_RATE)
-    } else {
-      const floats = new Float32Array(arrayBuffer)
+    const inputFloats = new Float32Array(arrayBuffer)
 
-      const buffer = this.ctx.createBuffer(1, floats.length, sampleRate)
-      const bufferFloats = buffer.getChannelData(0)
+    const targetLength = resampledLength(
+      inputFloats.length,
+      inputRate,
+      outputRate
+    )
 
-      for (let i = 0; i < floats.length; i++) bufferFloats[i] = floats[i]
+    const outputFloats = new Float32Array(targetLength)
+    resample(inputFloats, outputFloats)
 
-      resample(buffer, AUDIO_SAMPLE_RATE, result => {
-        /** @type {AudioBuffer} */
-        const resampled = result.getAudioBuffer()
-        const arr2 = new Float32Array(resampled.length)
-        resampled.copyFromChannel(arr2, 0, 0)
-        this.onData(arrayBuffer, AUDIO_SAMPLE_RATE)
-      })
-    }
+    this.onData(arrayBuffer, outputRate)
   }
 
   async stop() {

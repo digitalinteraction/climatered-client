@@ -79,6 +79,22 @@ sessions:
     panel: Mesas redondas
     sessions: Sesiones
 
+session:
+  title:
+  speakerHeading:
+  hostHeading:
+  infoHeading:
+  linksHeading:
+  showPoll:
+  seeMore:
+  seeLess:
+  noInterpret:
+  scheduleHeading: Calendario
+  actionsHeading: Acciones
+  hostedByHeading: Presentado por
+  contactHost: Contactar el anfitrión
+  sessionOnlyAvailableIn: Favor de notar que esta sesión solo estará disponible en
+
 coffeechat:
   title: Conversaciones con café
   filters:
@@ -122,6 +138,16 @@ data:
     empower: Habilitación
     influence: Influencia
     transform: Transformación
+  interaction:
+    interactive: Interactivo
+    view: No interactivo
+  recorded:
+    true: Será grabado
+    false: No grabado
+  devices:
+    all: Todos
+    desktop: Solo computadoras
+    mobile: Solo Móvil
 
 cookies:
   title: Cookies
@@ -153,11 +179,11 @@ schedule:
   showingResultsFor: 'Resultados para "{0}"'
   redCrossRedCrescentMembersOnly: Solo miembros de la Cruz Roja y de la Media Luna Roja
   filters:
-    all: Todos
+    all: Todas
     showFilters: Mostrar filtros
     clearFilters: Esconder filtros
     date: Fecha
-    track: ''
+    track: Vertiente
     interactivity:
       interactivity: Interactividad
       interactive: Interactivo
@@ -179,6 +205,7 @@ schedule:
     viewSession: Ver la sesión
     joinSession: Sumarse a la sesión
     previewSession: Previsualizar sesión
+    registerInterest:
   workshops:
     workshop: Tallere
     workshops: Talleres

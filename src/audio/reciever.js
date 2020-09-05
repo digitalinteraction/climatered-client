@@ -1,8 +1,10 @@
 import Vue from 'vue'
-// import { AudioContext } from 'standardized-audio-context'
+import { resample, resampledLength } from './resample'
 
 import {
-  AUDIO_SAMPLE_RATE,
+  AUDIO_BUFFER_SIZE,
+  AUDIO_TRANSPORT_RATE,
+  AUDIO_PLAYBACK_RATE,
   AUDIO_LOW_LEVEL,
   AUDIO_RESET_LEVEL,
   AUDIO_HIGH_LEVEL
@@ -19,6 +21,7 @@ export const RecieverState = {
 //
 export class AudioReciever extends Vue {
   _state = RecieverState.inactive
+  playbackRate = AUDIO_PLAYBACK_RATE
 
   static isSupported() {
     return Boolean(AudioContext)
@@ -36,11 +39,22 @@ export class AudioReciever extends Vue {
     console.debug('AudioReciever#setup')
 
     this.ctx = new AudioContext({
-      sampleRate: AUDIO_SAMPLE_RATE
+      sampleRate: AUDIO_TRANSPORT_RATE
     })
+
     this.buffers = []
     this.nextPacket = 1
     this.state = RecieverState.buffering
+
+    //
+    // Prefil the audio buffer so a mouse click directly starts audio
+    //
+    for (let i = 0; i <= AUDIO_LOW_LEVEL; i++) {
+      this.push({
+        arrayBuffer: new Float32Array(AUDIO_BUFFER_SIZE).buffer,
+        sampleRate: AUDIO_TRANSPORT_RATE
+      })
+    }
   }
 
   teardown() {
@@ -52,24 +66,35 @@ export class AudioReciever extends Vue {
     this.ctx = null
   }
 
-  /** @param {ArrayBuffer} data */
   async push(data) {
-    console.debug('AudioReciever#push')
-
     const { arrayBuffer, sampleRate } = data
+
+    console.debug(
+      'AudioReciever#push byteLength=%d',
+      data.arrayBuffer.byteLength
+    )
 
     if (this.state === RecieverState.inactive || !this.ctx) return
 
-    const floats = new Float32Array(arrayBuffer)
+    const inputFloats = new Float32Array(arrayBuffer)
+    const targetLength = resampledLength(
+      inputFloats.length,
+      sampleRate,
+      this.playbackRate
+    )
 
-    const buffer = this.ctx.createBuffer(1, floats.length, sampleRate)
-    const bufferFloats = buffer.getChannelData(0)
+    const audioBuffer = this.ctx.createBuffer(
+      1,
+      targetLength,
+      this.playbackRate
+    )
+    const outputFloats = audioBuffer.getChannelData(0)
 
-    for (let i = 0; i < floats.length; i++) bufferFloats[i] = floats[i]
+    resample(inputFloats, outputFloats)
 
     this.buffers.push({
       index: this.nextPacket++,
-      buffer: buffer
+      buffer: audioBuffer
     })
 
     this.$emit('buffer-size', this.buffers.length)
