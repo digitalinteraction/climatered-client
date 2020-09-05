@@ -130,24 +130,9 @@ export default {
   },
   methods: {
     setupMedia() {
-      return new Promise((resolve, reject) => {
-        navigator.getUserMedia(
-          {
-            video: true,
-            audio: {
-              echoCancellation: true,
-              autoGainControl: true,
-              noiseSuppression: true,
-              channelCount: 1
-            }
-          },
-          stream => {
-            resolve(stream)
-          },
-          error => {
-            reject(error)
-          }
-        )
+      return navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true
       })
     },
     enterLocalVideo() {
