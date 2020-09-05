@@ -143,7 +143,6 @@ export default {
     this.coffeeChat.joinRoom(roomId)
   },
   beforeDestroy() {
-    console.log('destroy')
     if (this.coffeeChat !== null) {
       this.coffeeChat.destroy()
     }
@@ -212,6 +211,7 @@ export default {
   max-width: 386px;
 
   @include mobile {
+    z-index: 1;
     top: 0.5rem;
     left: 0.5rem;
     margin-right: 0.5rem;
@@ -267,6 +267,19 @@ export default {
   right: 2rem;
   width: 16rem;
   height: 12rem;
+  @include mobile {
+    width: 35%;
+    height: 30%;
+    right: 0.5rem;
+    top: 0.5rem;
+    // width: 40vw;
+    // height: 15vh;
+    // top: 0.5rem;
+    // right: 0.5rem;
+    .share-button {
+      display: none;
+    }
+  }
 }
 
 .share-button {
@@ -282,7 +295,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 auto;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 0.75rem;
   .button {
     height: 4rem;
     width: 4rem;
@@ -290,20 +303,30 @@ export default {
     border-color: none;
     background-color: rgba($color: #000000, $alpha: 0);
     margin-bottom: 0;
-    span {
-      height: 4rem;
-      width: 4rem;
-      border-radius: 4rem;
-    }
   }
   .button:active {
     border-color: rgb(219, 219, 219);
   }
-  .mute-button {
-  }
   .leave-button {
+    svg {
+      transform: rotate(226deg);
+      transform-origin: center;
+    }
   }
-  .video-button {
+  @include mobile {
+    min-width: 200px;
+    left: 50%;
+    margin-left: -100px;
+    position: absolute;
+    bottom: 0.5rem;
+    padding: 0.5rem;
+    transform: unset;
+    .button {
+      height: 3.5rem;
+      width: 3.5rem;
+      border-radius: 3.5rem;
+      padding: 0.5rem;
+    }
   }
 }
 
