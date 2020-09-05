@@ -4,7 +4,7 @@
       <div class="flex-spacer"></div>
 
       <!-- Register interest button -->
-      <div class="button-wrapper" v-if="onSessionPage && isFuture">
+      <div class="button-wrapper" v-if="onSessionPage">
         <div class="buttons has-addons">
           <a
             @click="toggleInterest"
@@ -38,7 +38,7 @@
       </div>
 
       <!-- Add to calendar button -->
-      <div class="button-wrapper" v-if="isFuture">
+      <div class="button-wrapper">
         <div class="buttons has-addons">
           <a
             :href="calendarLink"
@@ -142,6 +142,9 @@ export default {
     },
     isPast() {
       return this.sessionState === 'past'
+    },
+    isSoon() {
+      return this.sessionState === 'soon'
     },
     isPresent() {
       return this.sessionState === 'present'

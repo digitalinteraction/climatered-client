@@ -41,7 +41,10 @@ import {
   faEye,
   faCheck,
   faUser,
-  faFire
+  faFire,
+  faExternalLinkAlt,
+  faExclamationTriangle,
+  faCopy
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -86,7 +89,10 @@ library.add(
   faEye,
   faCheck,
   faUser,
-  faFire
+  faFire,
+  faExternalLinkAlt,
+  faExclamationTriangle,
+  faCopy
 )
 
 //

@@ -1,48 +1,66 @@
 <template>
   <AppWrapper>
     <div class="session" v-if="session">
-      <!-- Navigation -->
-      <div class="session-navigation is-clearfix">
-        <router-link class="button is-small is-coral" :to="scheduleRoute">
-          <!-- <fa :icon="['fas', 'arrow-left']" /> -->
-          {{ $t('general.backTo', [$t('schedule.title')]) }}
-        </router-link>
-        <a
-          v-if="isDev"
-          @click="cycleStates()"
-          class="button is-small is-pulled-right"
-        >
-          <span>Cycle States ({{ forcedState || 'auto' }})</span>
-        </a>
-      </div>
-      <div class="session-wrapper">
-        <div class="session-headings">
-          <SessionType :schedule-slot="slot" :session="session" />
-          <h1 class="title">{{ localeTitle }}</h1>
-        </div>
+      <!-- Modal for displaying detailed information about a speaker -->
+      <SpeakerModal :speaker.sync="currentSpeaker" />
 
+      <!-- Session navigation -->
+      <div class="session-navigation is-clearfix">
+        <div class="level is-mobile">
+          <div class="level-item is-narrow">
+            <!-- Back button -->
+            <router-link
+              class="button is-small is-white"
+              id="back-button"
+              :to="scheduleRoute"
+            >
+              <span class="icon">
+                <fa :icon="['fas', 'arrow-left']" />
+                <fa :icon="['fas', 'arrow-right']" />
+              </span>
+              <span>{{ $t('general.backTo', [$t('schedule.title')]) }}</span>
+            </router-link>
+
+            <!-- Cycle state -->
+            <a
+              v-if="isDev"
+              @click="cycleStates()"
+              class="button is-small is-white is-uppercase mx-3"
+            >
+              <span>{{ forcedState || 'auto' }}</span>
+            </a>
+          </div>
+
+          <!-- Session state -->
+          <span class="level-item is-narrow">
+            <SessionStateTag
+              :session-state="sessionState"
+              :attendance="parseInt(session.attendance)"
+            />
+          </span>
+        </div>
+      </div>
+
+      <!-- Session wrapper -->
+      <div class="session-wrapper">
         <div class="columns">
-          <div class="column is-two-thirds">
+          <!-- Main column -->
+          <div class="column column-main">
+            <div class="session-headings">
+              <!-- Type -->
+              <SessionType
+                :schedule-slot="slot"
+                :session="session"
+                :session-state="sessionState"
+              />
+              <!-- Title -->
+              <h1 class="title">{{ localeTitle }}</h1>
+            </div>
             <div class="session-main">
               <!-- Locale warning -->
-              <div
-                v-if="
-                  displayLanguageNotification && !languageNotificationDismissed
-                "
-                class="notification is-danger is-light"
-              >
-                <span class="icon">
-                  <fa :icon="['fas', 'globe']" class="fa-xs fa-fw" />
-                </span>
-                <span>{{ $t('session.sessionOnlyAvailableIn') }}</span>
-                <span class="is-uppercase">
-                  {{ session.hostLanguage.join('/') }}
-                </span>
-                <button
-                  @click="languageNotificationDismissed = true"
-                  class="delete"
-                ></button>
-              </div>
+              <SessionLocaleWarning :session="session" />
+
+              <!-- Session component -->
               <div class="session-component" v-if="sessionState == 'present'">
                 <!-- Auditorium -->
                 <div v-if="isAuditorium" class="auditorium">
@@ -52,11 +70,6 @@
                 <!-- Room -->
                 <div v-if="isRoom" class="room">
                   <ManyToMany :session="session" :session-slot="slot" />
-                </div>
-
-                <!-- Connect -->
-                <div v-if="isConnect" class="connect">
-                  <h3>Connect session</h3>
                 </div>
               </div>
 
@@ -69,10 +82,7 @@
               </div>
 
               <!-- Session abstract -->
-              <div
-                class="session-abstract"
-                :class="{ 'hide-overflow': !readMore }"
-              >
+              <div class="session-abstract">
                 <div
                   v-if="session.content[$i18n.locale] === '-'"
                   class="content"
@@ -88,36 +98,43 @@
               </div>
             </div>
           </div>
-          <div class="column is-one-third">
+
+          <!-- Side column -->
+          <div class="column column-side">
             <div class="session-sidebar">
-              <span
-                id="interest-tag"
-                class="tag is-light"
-                v-if="parseInt(session.attendance) > 0"
-              >
-                <fa :icon="['fas', 'fire']" class="fa-fw" />
-                <span class="mx-1">
-                  {{
-                    $t(
-                      parseInt(session.attendance) === 1
-                        ? 'session.personInterested'
-                        : 'session.peopleInterested',
-                      [parseInt(session.attendance)]
-                    )
-                  }}
-                </span>
-              </span>
+              <!-- Countdown -->
+              <section v-if="sessionState === 'soon'">
+                <h4 class="section-heading">
+                  {{ $t('session.countdownHeading') }}
+                </h4>
+                <SessionCountdown :session="session" :schedule-slot="slot" />
+              </section>
 
               <!-- Cover image -->
               <section v-if="hasCoverImage">
                 <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
               </section>
 
+              <!-- Interaction panel (Slido / Q&A) -->
               <section v-if="sessionState === 'present'" id="session-panel">
-                <SessionSidePanel
+                <SessionInteractionPanel
                   :session="session"
                   :session-state="sessionState"
                 />
+              </section>
+
+              <!-- Session Links -->
+              <section v-if="!isPast && hasLinks">
+                <h4 class="section-heading">
+                  {{ $t('session.linksHeading') }}
+                </h4>
+                <SessionLinks v-if="showSessionLinks" :links="nonVideoLinks" />
+                <div
+                  v-else
+                  class="has-text-danger has-text-weight-semibold is-size-6"
+                >
+                  {{ $t('session.linksWillBeAvailable') }}
+                </div>
               </section>
 
               <!-- Time and state for slot -->
@@ -125,11 +142,6 @@
                 <h4 class="section-heading">
                   {{ $t('session.scheduleHeading') }}
                 </h4>
-                <Countdown
-                  v-if="sessionState === 'soon'"
-                  :session="session"
-                  :schedule-slot="slot"
-                />
                 <ScheduleSlotTime
                   :current-time="currentTime"
                   :schedule-slot="slot"
@@ -137,11 +149,6 @@
                   :force-active-session-state="sessionState === 'present'"
                   class="is-large"
                 />
-                <div v-if="isRoom">
-                  <p class="is-size-6 mt-4 has-text-danger">
-                    *{{ $t('session.linksWillBeAvailable') }}
-                  </p>
-                </div>
               </section>
 
               <!-- Speakers -->
@@ -149,11 +156,16 @@
                 <h4 class="section-heading">
                   {{ $t('session.speakerHeading') }}
                 </h4>
-                <SessionSpeakers :session="session" :is-padded="false" />
+                <SessionSpeakers
+                  :session="session"
+                  :is-padded="false"
+                  :is-interactive="true"
+                  :current-speaker.sync="currentSpeaker"
+                />
               </section>
 
               <!-- Actions -->
-              <section v-if="sessionState !== 'present'">
+              <section v-if="showActions">
                 <h4 class="section-heading">
                   {{ $t('session.actionsHeading') }}
                 </h4>
@@ -183,7 +195,7 @@
                 <div class="button-wrapper">
                   <a
                     :href="`mailto:${session.hostEmail}`"
-                    class="button is-small is-fullwidth is-purple mt-3"
+                    class="button is-small is-fullwidth is-dark mt-3"
                   >
                     <span class="icon">
                       <fa :icon="['fas', 'envelope']" class="fa-fw fa-xs" />
@@ -221,45 +233,52 @@ import { pickCdn } from '@/utils'
 import { ROUTE_SCHEDULE } from '@/const'
 
 // Components
-import ScheduleSlotTime from '@/components/schedule/ScheduleSlotTime.vue'
-
-import SessionType from '@/components/session/SessionType.vue'
-import SessionAttributes from '@/components/session/SessionAttributes.vue'
-import SessionSpeakers from '@/components/session/SessionSpeakers.vue'
-import SessionActions from '@/components/session/SessionActions.vue'
-import SessionSidePanel from '@/components/session/SessionSidePanel.vue'
-
-import Countdown from '@/components/Countdown.vue'
-import OneToMany from '@/components/OneToMany.vue'
-import ManyToMany from '@/components/ManyToMany.vue'
 import AppWrapper from '@/components/AppWrapper.vue'
 import UtilWrapper from '@/components/UtilWrapper.vue'
 
+import ScheduleSlotTime from '@/components/schedule/ScheduleSlotTime.vue'
+import SpeakerModal from '@/components/session/SpeakerModal.vue'
+import SessionType from '@/components/session/SessionType.vue'
+import SessionStateTag from '@/components/session/SessionStateTag.vue'
+import SessionAttributes from '@/components/session/SessionAttributes.vue'
+import SessionLinks from '@/components/session/SessionLinks.vue'
+import SessionSpeakers from '@/components/session/SessionSpeakers.vue'
+import SessionActions from '@/components/session/SessionActions.vue'
+import SessionInteractionPanel from '@/components/session/SessionInteractionPanel.vue'
+import SessionLocaleWarning from '@/components/session/SessionLocaleWarning.vue'
+import SessionCountdown from '@/components/session/SessionCountdown.vue'
+
+import OneToMany from '@/components/OneToMany.vue'
+import ManyToMany from '@/components/ManyToMany.vue'
+
 export default {
   components: {
+    AppWrapper,
+    UtilWrapper,
     ScheduleSlotTime,
+    SpeakerModal,
     SessionType,
+    SessionStateTag,
     SessionAttributes,
+    SessionLinks,
     SessionSpeakers,
     SessionActions,
-    SessionSidePanel,
-    Countdown,
+    SessionInteractionPanel,
+    SessionLocaleWarning,
+    SessionCountdown,
     OneToMany,
-    ManyToMany,
-    AppWrapper,
-    UtilWrapper
+    ManyToMany
   },
   props: {
     sessionSlug: { type: String, required: true }
   },
   data() {
     return {
-      forcedStateIndex: undefined,
-      availableStates: ['past', 'soon', 'present', 'future'],
+      forcedStateIndex: -1,
+      availableStates: ['future', 'soon', 'present', 'past'],
       forceActiveSessionState: false,
-      languageNotificationDismissed: false,
+      currentSpeaker: undefined,
       currentTime: Date.now(),
-      readMore: true,
       scheduleRoute: { name: ROUTE_SCHEDULE }
     }
   },
@@ -272,14 +291,23 @@ export default {
       if (!this.isDev) return undefined
       return this.availableStates[this.forcedStateIndex]
     },
-    isTestSession() {
-      return this.session && this.session.slug.includes('test')
+    hasLinks() {
+      return this.isRoom || !!this.nonVideoLinks.length > 0
+    },
+    nonVideoLinks() {
+      return this.session.links.filter(link => {
+        return link.type !== 'video' && link.type !== 'poll'
+      })
     },
     session() {
       return this.$store.getters['api/session'](this.sessionSlug)
     },
     slot() {
-      return this.session && this.$store.getters['api/slot'](this.session.slot)
+      let slot =
+        this.session && this.$store.getters['api/slot'](this.session.slot)
+      slot.start = this.$route.query.start || slot.start // ?start=2020-09-05T18:00:00.000Z
+      slot.end = this.$route.query.end || slot.end // 2020-09-05T19:00:00.000Z
+      return slot
     },
     sessionLayout() {
       return this.sessionType.layout
@@ -314,16 +342,32 @@ export default {
         .filter(s => s)
     },
     sessionState() {
-      if (this.isTestSession) return 'present'
       if (this.forcedState) return this.forcedState
 
-      const start = new Date(this.slot.start).getTime()
-      const end = new Date(this.slot.end).getTime()
+      let start = new Date(this.slot.start).getTime()
+      let end = new Date(this.slot.end).getTime()
+
+      const offset = 3600000 // One hour
+
+      if (this.currentTime < start && this.currentTime > start - offset)
+        return 'soon'
 
       if (this.currentTime < start) return 'future'
       if (this.currentTime > end) return 'past'
 
       return 'present'
+    },
+    isFuture() {
+      return this.sessionState === 'future'
+    },
+    isSoon() {
+      return this.sessionState === 'soon'
+    },
+    isPresent() {
+      return this.sessionState === 'present'
+    },
+    isPast() {
+      return this.sessionState === 'past'
     },
     hasCoverImage() {
       return (
@@ -334,11 +378,11 @@ export default {
     coverImageUrl() {
       return pickCdn() + this.session.coverImage
     },
-    displayLanguageNotification() {
-      return (
-        this.session.hostLanguage.length < 4 &&
-        !this.session.hostLanguage.includes(this.$i18n.locale)
-      )
+    showActions() {
+      return this.isFuture
+    },
+    showSessionLinks() {
+      return this.isSoon || this.isPresent
     }
   },
   mounted() {
@@ -366,6 +410,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$page-max-width: 1500px;
+
 .session {
   background-color: $cc-lightestgrey;
   min-height: 100vh;
@@ -374,32 +420,50 @@ export default {
   @include mobile {
     padding: 0em;
 
-    .session-navigation {
-      padding: 1em;
-    }
     .session-wrapper {
       border-radius: 0 !important;
     }
   }
 
   .session-navigation {
-    padding-bottom: 1em;
+    margin: 0 auto;
+    max-width: $page-max-width;
+    margin-bottom: 1em;
+    @include mobile {
+      margin-bottom: 0em;
+      padding: 1em;
+    }
   }
   .columns {
     margin: 0;
+    flex-wrap: wrap;
     .column {
+      position: relative;
       padding: 0;
+      &.column-main {
+        flex-grow: 1;
+        flex-basis: 540px;
+      }
+      &.column-side {
+        border-inline-start: 1px solid $border;
+        flex-basis: 360px;
+        flex-grow: 0;
+        flex-shrink: 1;
+        position: relative;
+      }
     }
   }
 
   .session-wrapper {
-    border-radius: $radius-large;
     background-color: white;
-    max-width: 1600px;
-
+    border-radius: $radius-large;
+    box-shadow: 0 0 15px 15px rgba($color: black, $alpha: 0.02);
+    max-width: $page-max-width;
+    margin: 0 auto;
     .session-headings {
-      border-bottom: 1px solid $border;
       padding: 1.5em;
+      padding-bottom: 0;
+      position: relative;
       h1.title {
         color: #222;
         max-width: 800px;
@@ -413,7 +477,6 @@ export default {
       padding: 1.5em;
     }
     .session-sidebar {
-      border-inline-start: 1px solid $border;
       display: flex;
       flex-direction: column;
       padding: 1.5em;
@@ -424,8 +487,8 @@ export default {
       section {
         align-self: flex-start;
         flex-shrink: 1;
-
         width: 100%;
+
         &:not(#session-panel) {
           margin-bottom: 3em;
         }
@@ -467,14 +530,7 @@ export default {
 
 .notification {
   margin: 0 !important;
-  padding: 0.75rem 2.5rem 0.75rem 2.5rem !important;
-  .icon {
-    left: 0.5rem;
-    position: absolute;
-    top: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+
   > .delete {
     top: 50%;
     transform: translateY(-50%);
@@ -497,7 +553,25 @@ section#cover-image {
   }
 }
 
-#interest-tag {
-  margin-bottom: 2em;
+// RTL support
+*[dir='ltr'] {
+  #back-button {
+    .icon .fa-arrow-left {
+      display: inline-block;
+    }
+    .icon .fa-arrow-right {
+      display: none;
+    }
+  }
+}
+*[dir='rtl'] {
+  #back-button {
+    .icon .fa-arrow-left {
+      display: none;
+    }
+    .icon .fa-arrow-right {
+      display: inline-block;
+    }
+  }
 }
 </style>
