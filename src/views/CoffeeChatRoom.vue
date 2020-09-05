@@ -18,8 +18,7 @@
           >
             <WebRTCVideo
               class="remote-video remote-video-1"
-              :media-stream="remoteStream.mediaStream"
-              :muted="remoteStream.muted"
+              :media-stream="remoteStream"
             />
           </div>
         </transition>
@@ -85,6 +84,8 @@ export default {
   data() {
     return {
       remoteStreams: {},
+      remoteAudioContext: new (window.AudioContext ||
+        window.webkitAudioContext)(),
       userState: {},
       localMediaStream: null,
       muted: false,
@@ -103,16 +104,18 @@ export default {
       this.localMediaStream,
       this.user.iat,
       (fromUser, remoteTrack) => {
-        let remoteStream = {}
-        if (!this.remoteStreams[fromUser]) {
-          remoteStream.mediaStream = new MediaStream()
-          remoteStream.muted = false
+        if (remoteTrack.kind === 'audio') {
+          const remoteAudioStream = new MediaStream()
+          remoteAudioStream.addTrack(remoteTrack, remoteAudioStream)
+          const mediaStreamSource = this.remoteAudioContext.createMediaStreamSource(
+            remoteAudioStream
+          )
+          mediaStreamSource.connect(this.remoteAudioContext.destination)
         } else {
-          remoteStream = this.remoteStreams[fromUser]
+          const remoteVideoStream = new MediaStream()
+          remoteVideoStream.addTrack(remoteTrack, remoteVideoStream)
+          this.$set(this.remoteStreams, fromUser, remoteVideoStream)
         }
-        remoteStream.mediaStream.addTrack(remoteTrack, remoteStream.mediaStream)
-        this.$set(this.remoteStreams, fromUser, remoteStream)
-        console.log(remoteStream)
       },
       (fromUser, s) => {
         if (this.remoteStreams[fromUser]) {
