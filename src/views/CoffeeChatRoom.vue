@@ -298,9 +298,9 @@ export default {
   background-color: rgba(0, 0, 0, 0.4);
   margin: 0 auto;
   border-radius: 0.5rem;
-  padding: 0.75rem;
-  width: 208px;
-  margin-left: -104px;
+  padding: 0.5rem;
+  width: 200px;
+  margin-left: -100px;
   .button {
     height: 3.5rem;
     width: 3.5rem;
