@@ -20,7 +20,7 @@
               : `${sessions.length} ${$t('schedule.workshops.workshops')}`
           }}
         </h3>
-        <button
+        <a
           v-if="!searchActive"
           @click="workshopsExpanded = !workshopsExpanded"
           :class="[
@@ -39,7 +39,7 @@
                 : $t(`schedule.showAll`)
             }}
           </span>
-        </button>
+        </a>
       </div>
       <transition name="fade">
         <div v-if="isExpanded">
