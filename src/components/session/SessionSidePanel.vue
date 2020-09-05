@@ -31,10 +31,7 @@
       </h4>
       <div class="embedded" id="slido-wrapper">
         <div v-if="!showPoll">
-          <button
-            class="button is-modern is-coral is-small is-fullwidth"
-            @click="showPoll = true"
-          >
+          <button class="button is-coral is-fullwidth" @click="showPoll = true">
             <!-- {{ $t('session.showPoll') }} -->
             {{ $t('session.joinLiveQandA') }}
           </button>

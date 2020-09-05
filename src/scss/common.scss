@@ -51,6 +51,13 @@ $z-cookies: 50;
 $z-appwrapper-tabbar: 20;
 $z-sessions-tabs: 10;
 
+// Buttons
+$button-border-width: 1px;
+$button-padding-vertical: calc(1.5em - #{$button-border-width}) !default;
+$button-padding-horizontal: 1.5em !default;
+
+$radius-small: 8px;
+
 @import '~bulma/sass/utilities/_all.sass';
 
 @mixin insetInlineStart($value) {

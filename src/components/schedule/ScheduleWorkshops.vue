@@ -33,9 +33,13 @@
             }
           ]"
         >
-          {{
-            workshopsExpanded ? $t(`schedule.hideAll`) : $t(`schedule.showAll`)
-          }}
+          <span>
+            {{
+              workshopsExpanded
+                ? $t(`schedule.hideAll`)
+                : $t(`schedule.showAll`)
+            }}
+          </span>
         </button>
       </div>
       <transition name="fade">

@@ -3,16 +3,6 @@
     <div :class="['session-actions', { 'is-fullwidth': isFullwidth }]">
       <div class="flex-spacer"></div>
 
-      <!-- Meta button -->
-      <div class="button-wrapper" v-if="isDev">
-        <button
-          class="button is-modern is-fullwidth is-small"
-          @click="metaVisible = !metaVisible"
-        >
-          Toggle meta
-        </button>
-      </div>
-
       <!-- Register interest button -->
       <div class="button-wrapper" v-if="onSessionPage && isFuture">
         <div class="buttons has-addons">
@@ -21,8 +11,6 @@
             :disabled="checkingInterest"
             :class="[
               'button',
-              'has-icon',
-              'is-modern',
               'is-small',
               {
                 'is-loading': checkingInterest,
@@ -31,12 +19,17 @@
               }
             ]"
           >
-            <fa
-              :icon="
-                hasRegisteredInterest ? ['fas', 'check'] : ['fas', 'user-plus']
-              "
-              class="icon fa-fw fa-xs"
-            />
+            <span class="icon">
+              <i class="fas fa-italic"></i>
+              <fa
+                :icon="
+                  hasRegisteredInterest
+                    ? ['fas', 'check']
+                    : ['fas', 'user-plus']
+                "
+                class="fa-fw fa-xs"
+              />
+            </span>
             <span>{{
               hasRegisteredInterest
                 ? $t('schedule.actions.interestRegistered')
@@ -53,9 +46,11 @@
             :href="calendarLink"
             target="_blank"
             @click="trackCalendar"
-            class="button has-icon is-modern is-purple is-small"
+            :class="['button', 'is-purple', 'is-small']"
           >
-            <fa :icon="['fas', 'calendar-plus']" class="icon fa-fw fa-xs" />
+            <span class="icon">
+              <fa :icon="['fas', 'calendar-plus']" class="fa-fw fa-xs" />
+            </span>
             <span>{{ $t('schedule.addToCalendar') }}</span>
           </a>
         </div>
@@ -63,7 +58,15 @@
 
       <!-- View/join/preview session button -->
       <div v-if="!onSessionPage" class="button-wrapper">
-        <router-link :to="session | sessionRoute" :class="primaryActionClasses">
+        <router-link
+          :to="session | sessionRoute"
+          :class="[
+            'button',
+            'is-small',
+            'is-fullwidth',
+            ...primaryActionClasses
+          ]"
+        >
           {{ $t(primaryAction) }}
         </router-link>
       </div>
@@ -109,7 +112,9 @@ export default {
   },
   data() {
     return {
-      metaVisible: false,
+      metaVisible: (() => {
+        return this.$route.query.showMeta
+      })(),
       hasRegisteredInterest: false,
       checkingInterest: true
     }
@@ -147,15 +152,9 @@ export default {
       return this.sessionState === 'future'
     },
     primaryActionClasses() {
-      return [
-        'button',
-        'is-modern',
-        'is-fullwidth',
-        'is-small',
-        {
-          'is-success': this.isPresent
-        }
-      ]
+      return {
+        'is-success': this.isPresent
+      }
     },
     primaryAction() {
       switch (this.sessionState) {

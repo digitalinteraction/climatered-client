@@ -28,6 +28,7 @@
 //
 // bulma RTL overrides
 //
+
 .navbar {
   .navbar-menu {
     .navbar-start {
@@ -131,8 +132,6 @@
 
 // Custom buttons
 .button {
-  display: flex;
-  padding: 0 2em;
   &.is-coral {
     background-color: $cc-coral;
     border-color: $cc-coral;
@@ -155,24 +154,6 @@
     color: white;
     &:hover {
       background-color: darken($color: $cc-light-blue, $amount: 2);
-    }
-  }
-  &.is-modern {
-    border-radius: 8px;
-    padding: 1.4em 1.5em !important;
-    .icon svg {
-      fill: white;
-    }
-  }
-  &.has-icon {
-    padding-inline-start: 3em !important;
-    &:not(.is-fullwidth) {
-      .icon:first-child:not(:last-child) {
-        position: absolute;
-        top: 50%;
-        left: 2em;
-        transform: translateY(-50%);
-      }
     }
   }
 }
