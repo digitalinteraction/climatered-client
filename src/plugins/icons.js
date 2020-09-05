@@ -34,7 +34,16 @@ import {
   faSave,
   faCircle,
   faCubes,
-  faInfoCircle
+  faInfoCircle,
+  faArrowLeft,
+  faEnvelope,
+  faUserPlus,
+  faLongArrowAltRight,
+  faArrowRight,
+  faEye,
+  faCheck,
+  faUser,
+  faFire
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -72,7 +81,16 @@ library.add(
   faSave,
   faCircle,
   faCubes,
-  faInfoCircle
+  faInfoCircle,
+  faArrowLeft,
+  faEnvelope,
+  faUserPlus,
+  faLongArrowAltRight,
+  faArrowRight,
+  faEye,
+  faCheck,
+  faUser,
+  faFire
 )
 
 //

@@ -69,6 +69,9 @@ npm run readme-toc
 # -> Creates dist/report.json for webpack-bundle-analyser
 # -> Runs bundle analyser and opens in a browser
 npm run report
+
+# Check for missing i18n keys
+node bin/check-i18n.js
 ```
 
 ### Code formatting

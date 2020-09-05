@@ -8,8 +8,17 @@
     />
     <div slot="content" class="not-found-page">
       <h1 class="title" v-t="'notFound.title'" />
-      <p v-t="'notFound.info'" />
-      <p><router-link :to="atriumRoute" v-t="'atrium.returnTo'" /></p>
+      <div class="content">
+        <p v-t="'notFound.info'"></p>
+      </div>
+
+      <div class="buttons">
+        <router-link
+          class="button is-link"
+          :to="atriumRoute"
+          v-t="'atrium.returnTo'"
+        />
+      </div>
     </div>
   </UtilWrapper>
 </template>

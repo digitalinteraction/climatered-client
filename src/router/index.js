@@ -27,6 +27,7 @@ const Privacy = () =>
   import(/* webpackChunkName: "static" */ '../views/Privacy.vue')
 const Guidelines = () =>
   import(/* webpackChunkName: "static" */ '../views/Guidelines.vue')
+const Faqs = () => import(/* webpackChunkName: "static" */ '../views/Faqs.vue')
 const ErrorPage = () =>
   import(/* webpackChunkName: "static" */ '../views/Error.vue')
 
@@ -58,6 +59,7 @@ import {
   ROUTE_ERROR,
   ROUTE_PRIVACY,
   ROUTE_GUIDELINES,
+  ROUTE_FAQS,
   ROUTE_SESSIONS,
   ROUTE_INTERPRET_HOME,
   ROUTE_INTERPRET
@@ -186,6 +188,14 @@ const routes = [
     }
   },
   {
+    path: '/faqs',
+    name: ROUTE_FAQS,
+    component: Faqs,
+    meta: {
+      titleKey: 'faqs.title'
+    }
+  },
+  {
     path: '/error',
     component: ErrorPage,
     name: ROUTE_ERROR,
@@ -205,7 +215,7 @@ const routes = [
     }
   },
   {
-    path: '/interpret/:sessionId/:channel',
+    path: '/interpret/:sessionSlug/:channel',
     component: Interpret,
     name: ROUTE_INTERPRET,
     props: true,
@@ -217,7 +227,7 @@ const routes = [
   // sessions
   //
   {
-    path: '/session/:sessionId',
+    path: '/session/:sessionSlug',
     name: ROUTE_SESSION,
     component: Session,
     props: true,

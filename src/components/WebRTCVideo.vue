@@ -22,8 +22,6 @@ export default {
     if (this.muted) {
       this.$refs['webrtc-video'].muted = true
       this.$refs['webrtc-video'].volume = 0
-    } else {
-      this.$refs['webrtc-video'].volume = 0.5
     }
   }
 }

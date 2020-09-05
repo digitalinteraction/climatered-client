@@ -25,6 +25,10 @@ export default {
     },
     addSessionToCalendar(session, slot) {
       // TODO: addCal (alias)
+      // Remove existing events
+      this.$ics.removeAllEvents()
+
+      // Add new event
       this.$ics.addEvent(
         this.$i18n.locale, // Language
         this.getLocaleTitle(session), // Subject
@@ -36,7 +40,8 @@ export default {
         this.getEventOrganizer(session) // Organiser
       )
 
-      this.$ics.download(this.getLocaleTitle(session))
+      // Download event
+      this.$ics.download(this.session.slug)
     }
   }
 }

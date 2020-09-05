@@ -85,14 +85,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+*[dir='ltr'] {
+  ul.session-attributes {
+    li.session-attribute {
+      float: left;
+    }
+  }
+}
+*[dir='rtl'] {
+  ul.session-attributes {
+    li.session-attribute {
+      float: right;
+    }
+  }
+}
 // Attributes
 ul.session-attributes {
   margin: 0 -10px;
   li.session-attribute {
-    float: left;
-    &:dir(rtl) {
-      float: right;
-    }
     font-size: 1em;
     padding: 0;
     margin: 10px;
