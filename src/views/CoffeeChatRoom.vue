@@ -132,7 +132,9 @@ export default {
     setupMedia() {
       return navigator.mediaDevices.getUserMedia({
         video: true,
-        audio: true
+        audio: {
+          echoCancellation: { exact: true }
+        }
       })
     },
     enterLocalVideo() {
