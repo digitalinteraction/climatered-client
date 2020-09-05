@@ -202,3 +202,6 @@ schedule:
     workshops: Talleres
     title: Talleres Interactivos
     description: Partícipe a uno de los talleres interactivos siguientes
+
+faqs:
+  title: FAQ

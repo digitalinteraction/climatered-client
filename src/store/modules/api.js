@@ -22,7 +22,7 @@ const getters = {
   track: state => slug => state.tracks.find(s => s.slug === slug),
   type: state => slug => state.types.find(s => s.slug === slug),
   session: state => slug => state.sessions.find(s => s.slug === slug),
-  slot: state => id => state.slots.find(s => s.id === id)
+  slot: state => slug => state.slots.find(s => s.slug === slug)
 }
 
 const mutations = {
@@ -104,8 +104,10 @@ const actions = {
     }
   },
   async login(ctx, email) {
-    const params = { email }
-    const response = await agent.get('/login/email', { params })
+    const response = await agent.get('/login/email', {
+      params: { email, n: Date.now() },
+      headers: { 'cache-control': 'no-cache' }
+    })
 
     return response.status === 200
   },
@@ -149,7 +151,11 @@ const actions = {
   async checkAttendence(ctx, { sessionSlug }) {
     const response = await agent.get(`/attendance/${sessionSlug}`, {
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'cache-control': 'no-cache'
+      },
+      params: {
+        n: Date.now()
       }
     })
     return response

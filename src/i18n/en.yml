@@ -275,3 +275,6 @@ errors:
   title: Something went wrong
   general: An unexpected error occured, please try again.
   loginExpired: Your login code has expired, they last for 30 minutes from when you request one. Please try again below.
+
+faqs:
+  title: FAQs

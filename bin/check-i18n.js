@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const yaml = require('yaml')
+const dot = require('dot-prop')
 
 async function loadYaml(filename) {
   return fs.promises
@@ -51,24 +52,35 @@ async function main() {
       const keys = flattenKeys(yaml)
       const keySet = new Set(keys)
 
+      const en = yield yaml
+
       const allSet = yield keys
 
       const missing = removeAllowListed(findMissing(allSet, keySet))
 
       if (missing.length > 0) {
         console.log(`${filename} is missing:`)
-        missing.forEach(k => console.log(' -', k))
+
+        for (const key of missing) {
+          const value = dot.get(en, key) || ''
+          console.log(' -', key + `\n   en: ${value}\n`)
+        }
       } else {
         console.log(`${filename} is good`)
       }
       console.log()
     })
 
-    const keyResult = await Promise.all(task.map(t => t.next()))
+    // Load up and get en out of them first
+    const [en] = await Promise.all(task.map(t => t.next()))
 
+    // Then get flattened keys
+    const keyResult = await Promise.all(task.map(t => t.next(en.value)))
+
+    // Then run to completion
     const allKeys = new Set(keyResult.map(it => it.value).flat())
 
-    task.forEach(it => it.next(allKeys))
+    await task.forEach(it => it.next(allKeys))
   } catch (error) {
     console.error(error)
     process.exit(1)
