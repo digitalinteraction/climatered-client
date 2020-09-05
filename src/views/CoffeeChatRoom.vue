@@ -43,7 +43,7 @@
           <WebRTCVideo
             :media-stream="localMediaStream"
             :muted="true"
-            :show-mute-icon="false"
+            :is-local-video="true"
           />
         </div>
       </transition>
