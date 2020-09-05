@@ -104,8 +104,10 @@ const actions = {
     }
   },
   async login(ctx, email) {
-    const params = { email }
-    const response = await agent.get('/login/email', { params })
+    const response = await agent.get('/login/email', {
+      params: { email },
+      headers: { 'cache-control': 'no-cache' }
+    })
 
     return response.status === 200
   },
@@ -149,7 +151,8 @@ const actions = {
   async checkAttendence(ctx, { sessionSlug }) {
     const response = await agent.get(`/attendance/${sessionSlug}`, {
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'cache-control': 'no-cache'
       }
     })
     return response
