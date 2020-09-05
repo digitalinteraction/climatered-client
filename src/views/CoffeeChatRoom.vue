@@ -127,13 +127,16 @@ export default {
         }
         remoteStream.mediaStream.addTrack(remoteTrack, remoteStream.mediaStream)
         this.$set(this.remoteStreams, fromUser, remoteStream)
-        console.log(remoteStream)
       },
       (fromUser, s) => {
         if (this.remoteStreams[fromUser]) {
           this.remoteStreams[fromUser].muted = s.muted
         }
         this.$set(this.userState, fromUser, s)
+      },
+      fromUser => {
+        this.$delete(this.remoteStreams, fromUser)
+        this.$delete(this.userState, fromUser)
       }
     )
     const roomId = this.$route.params.room

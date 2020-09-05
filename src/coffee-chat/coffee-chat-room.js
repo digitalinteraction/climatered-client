@@ -6,16 +6,25 @@ export default class CoffeeChat {
   webRTC
   mediaStreamCb
   userDataCb
+  connectionLostCb
   userId
   currentRoom
   mediationState
 
-  constructor(socket, mediaStream, userId, mediaStreamTrackCb, userDataCb) {
+  constructor(
+    socket,
+    mediaStream,
+    userId,
+    mediaStreamTrackCb,
+    userDataCb,
+    connectionLostCb
+  ) {
     this.socket = socket
     this.mediaStream = mediaStream
     this.webRTC = new WebRTC(userId)
     this.mediaStreamTrackCb = mediaStreamTrackCb
     this.userDataCb = userDataCb
+    this.connectionLostCb = connectionLostCb
     this.userId = userId
     this.mediationState = {}
   }
@@ -37,6 +46,8 @@ export default class CoffeeChat {
 
     this.socket.bindEvent(this, 'user-joined', fromUser => {
       if (this.userId === fromUser) return
+      if (this.mediationState[fromUser] === 'ready')
+        this._cleanUpClosedUserConnection(fromUser)
       this.mediationState[fromUser] = 'acknowledged'
       this._setupUserListeners(fromUser)
       this.socket.emit('user-ack', this.currentRoom, this.userId, fromUser)
@@ -100,7 +111,6 @@ export default class CoffeeChat {
   }
 
   async _setupUserConnection(toUser) {
-    console.log('Setting up user connection:', toUser)
     if (this.webRTC.determineCaller(this.userId, toUser)) {
       const offer = await this.webRTC.createOffer(
         toUser,
@@ -135,8 +145,9 @@ export default class CoffeeChat {
   _cleanUpClosedUserConnection(toUser) {
     this.webRTC.close(toUser)
     delete this.mediationState[toUser]
-    this.socket.unbindEvent(`offer-${toUser}-${this.userId}`)
-    this.socket.unbindEvent(`answer-${toUser}-${this.userId}`)
-    this.socket.unbindEvent(`ice-${toUser}-${this.userId}`)
+    this.socket.unbindEvent(this, `offer-${toUser}-${this.userId}`)
+    this.socket.unbindEvent(this, `answer-${toUser}-${this.userId}`)
+    this.socket.unbindEvent(this, `ice-${toUser}-${this.userId}`)
+    this.connectionLostCb(toUser)
   }
 }

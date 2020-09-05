@@ -21,4 +21,14 @@ export default class CoffeeChatLobby {
     })
     this.socket.emit('leave-lobby')
   }
+
+  queryLobby(languagePrefs, topicPrefs) {
+    return new Promise(resolve => {
+      this.socket.bindEvent(this, 'lobby-count', count => {
+        this.socket.unbindEvent(this, 'lobby-count')
+        resolve(count)
+      })
+      this.socket.emit('query-lobby', languagePrefs, topicPrefs)
+    })
+  }
 }
