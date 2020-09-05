@@ -133,7 +133,8 @@ export default {
       return navigator.mediaDevices.getUserMedia({
         video: true,
         audio: {
-          echoCancellation: { exact: true }
+          echoCancellation: { exact: true },
+          autoGainControl: { exact: false }
         }
       })
     },
