@@ -12,10 +12,10 @@
           </router-link>
           <button
             v-if="isDev"
-            @click="forceActiveSessionState = !forceActiveSessionState"
+            @click="cycleStates()"
             class="button mx-3 is-modern is-small"
           >
-            Toggle State
+            Cycle States ({{ forcedState || 'auto' }})
           </button>
         </div>
       </div>
@@ -129,12 +129,16 @@
                 <h4 class="section-heading">
                   {{ $t('session.scheduleHeading') }}
                 </h4>
-                <!-- <Countdown /> -->
+                <Countdown
+                  v-if="sessionState === 'soon'"
+                  :session="session"
+                  :schedule-slot="slot"
+                />
                 <ScheduleSlotTime
                   :current-time="currentTime"
                   :schedule-slot="slot"
                   :is-padded="false"
-                  :force-active-session-state="forceActiveSessionState"
+                  :force-active-session-state="sessionState === 'present'"
                   class="is-large"
                 />
                 <div v-if="isRoom">
@@ -183,9 +187,11 @@
                 <div class="button-wrapper">
                   <a
                     :href="`mailto:${session.hostEmail}`"
-                    class="button has-icon is-modern is-small is-purple mt-3"
+                    class="button is-small is-fullwidth is-purple mt-3"
                   >
-                    <fa :icon="['fas', 'envelope']" class="icon fa-fw fa-xs" />
+                    <span class="icon">
+                      <fa :icon="['fas', 'envelope']" class="fa-fw fa-xs" />
+                    </span>
                     <span>{{ $t('session.contactHost') }}</span>
                   </a>
                 </div>
@@ -227,7 +233,7 @@ import SessionSpeakers from '@/components/session/SessionSpeakers.vue'
 import SessionActions from '@/components/session/SessionActions.vue'
 import SessionSidePanel from '@/components/session/SessionSidePanel.vue'
 
-// import Countdown from '@/components/Countdown.vue'
+import Countdown from '@/components/Countdown.vue'
 import OneToMany from '@/components/OneToMany.vue'
 import ManyToMany from '@/components/ManyToMany.vue'
 import AppWrapper from '@/components/AppWrapper.vue'
@@ -241,7 +247,7 @@ export default {
     SessionSpeakers,
     SessionActions,
     SessionSidePanel,
-    // Countdown,
+    Countdown,
     OneToMany,
     ManyToMany,
     AppWrapper,
@@ -252,6 +258,8 @@ export default {
   },
   data() {
     return {
+      forcedStateIndex: undefined,
+      availableStates: ['past', 'soon', 'present', 'future'],
       forceActiveSessionState: false,
       languageNotificationDismissed: false,
       currentTime: Date.now(),
@@ -263,6 +271,10 @@ export default {
     ...mapState('api', ['hasData', 'slots', 'speakers']),
     isDev() {
       return process.env.NODE_ENV === 'development'
+    },
+    forcedState() {
+      if (!this.isDev) return undefined
+      return this.availableStates[this.forcedStateIndex]
     },
     isTestSession() {
       return this.session && this.session.slug.includes('test')
@@ -306,7 +318,8 @@ export default {
         .filter(s => s)
     },
     sessionState() {
-      if (this.isTestSession || this.forceActiveSessionState) return 'present'
+      if (this.isTestSession) return 'present'
+      if (this.forcedState) return this.forcedState
 
       const start = new Date(this.slot.start).getTime()
       const end = new Date(this.slot.end).getTime()
@@ -343,6 +356,15 @@ export default {
   },
   destroyed() {
     this.$clock.unbind(this)
+  },
+  methods: {
+    cycleStates() {
+      if (this.forcedStateIndex < this.availableStates.length - 1) {
+        this.forcedStateIndex++
+      } else {
+        this.forcedStateIndex = -1
+      }
+    }
   }
 }
 </script>
