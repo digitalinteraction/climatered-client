@@ -68,4 +68,11 @@ export default {
     color: $grey-dark;
   }
 }
+
+.footer.is-grey {
+  background: $grey-lightest;
+  .content {
+    color: $grey-dark;
+  }
+}
 </style>

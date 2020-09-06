@@ -219,10 +219,19 @@ h4.section-heading {
   opacity: 0;
 }
 
-.is-modern {
-  &.select {
-    select {
-      border-radius: 8px;
-    }
+*[dir='rtl'] {
+  .ltr-only {
+    display: none;
   }
+}
+
+*[dir='ltr'] {
+  .rtl-only {
+    display: none;
+  }
+}
+
+.box.is-small {
+  max-width: $tablet;
+  margin: 0 auto;
 }

@@ -341,7 +341,9 @@ $tri-width: $tabbar-width / 2;
 }
 
 .app-page {
-  // ...
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
 }
 
 .app-header {

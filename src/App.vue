@@ -16,7 +16,9 @@ import {
   ROUTE_REGISTER,
   ROUTE_TERMS,
   ROUTE_PRIVACY,
-  ROUTE_ERROR
+  ROUTE_ERROR,
+  ROUTE_FAQS,
+  ROUTE_GUIDELINES
 } from './const'
 
 import ApiError from '@/components/ApiError.vue'
@@ -30,6 +32,8 @@ const noAuthRoutes = [
   ROUTE_REGISTER,
   ROUTE_TERMS,
   ROUTE_PRIVACY,
+  ROUTE_FAQS,
+  ROUTE_GUIDELINES,
   ROUTE_ERROR
 ]
 
@@ -43,8 +47,15 @@ export default {
   computed: {
     ...mapState('api', ['apiState'])
   },
+  async created() {
+    this.$socket.bindEvent(this, 'site-visitors', count => {
+      console.log('count')
+      this.$store.commit('api/siteVisitors', count)
+    })
+  },
   async mounted() {
     const { token } = localStorage
+
     if (token) {
       //
       // If there is a token stored, authenticate with it & fetch data
@@ -66,6 +77,9 @@ export default {
     }
 
     this.isReady = true
+  },
+  destroyed() {
+    this.$socket.unbindOwner(this)
   }
 }
 </script>

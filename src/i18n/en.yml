@@ -8,6 +8,7 @@ general:
   backTo: Back to {0}
   copy: Copy
   loading: Loading
+  genericError: Something went wrong, please try again
 
 atrium:
   title: Atrium
@@ -31,6 +32,8 @@ login:
   badEmail: Bad email
   doneText: Login code sent
   submitButton: Request login code
+  registerLabel: Not registered yet?
+  registerAction: Register here
 
 register:
   title: Register
@@ -57,24 +60,29 @@ register:
   consentText: I confirm that I have read and agree with the policies linked below
   termsLink: Terms and Conditions
   privacyLink: Privacy policy
-  genericError: Something went wrong, please try again
   doneText: |
     Thanks for registering!
     We've sent you an verification email.
     Click the link in that email to verify and see the conference schedule.
     If you don't see an email soon please check your spam folder.
+  loginLabel: Already registered?
+  loginAction: Log in here
 
 profile:
   title: Your profile
   emailText: Email
   localeText: Chosen language
   whenText: Logged in
+  registeredText: Registered
   nameText: Name
   countryText: Country
-  affiliationText: Country
+  affiliationText: Affiliation
   logoutButton: Log out
   deleteButton: Delete account
   deleteText: This is permenant, are you sure?
+  loadingText: Fetching profile
+  actionLabel: Actions
+  dangerLabel: Danger zone
 
 sessions:
   title: What's on
@@ -148,10 +156,14 @@ interpretHome:
   unavailableTitle: Your browser isn't supported
   unavailableBody: |
     It looks like your using an unsupported browser. Please swap to chrome (v42+), safari (13.1+) or firefox (v80+) and return to this page. If you're on iOS please upgrade to iOS version 13.5 or above.
+  welcome: Welcome back, {0}
+  chromeWarning: Please remember to use the latest version of chrome
+  exitAction: Exit to Atrium
 
 interpretSchedule:
   heading:
     session: Session
+    title: Title
     slot: Slot
     date: Date
     start: Start

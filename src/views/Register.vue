@@ -1,10 +1,9 @@
 <template>
   <UtilWrapper :pick-languages="false">
-    <router-link
+    <BackButton
       slot="back-button"
-      class="button is-text"
       :to="atriumRoute"
-      v-t="'atrium.returnTo'"
+      text-key="atrium.returnTo"
     />
 
     <div slot="content" class="register-page">
@@ -82,17 +81,27 @@
         <button class="delete" @click="done = false"></button>
         <span v-t="'register.doneText'" />
       </div>
+      <hr />
+      <p>
+        {{ $t('register.loginLabel') }}
+        <router-link
+          class="has-text-weight-bold"
+          :to="loginRoute"
+          v-t="'register.loginAction'"
+        />
+      </p>
     </div>
   </UtilWrapper>
 </template>
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
+import BackButton from '@/components/BackButton.vue'
 import TextField from '@/components/form/TextField.vue'
 import SelectField from '@/components/form/SelectField.vue'
 import CheckboxField from '@/components/form/CheckboxField.vue'
 
-import { ROUTE_ATRIUM } from '@/const'
+import { ROUTE_ATRIUM, ROUTE_LOGIN } from '@/const'
 import { overrideLocale } from '@/i18n'
 
 import countriesEn from '@/data/countries-en.json'
@@ -107,11 +116,18 @@ const countryOptions = Object.entries(countriesEn.countries).map(
 )
 
 export default {
-  components: { UtilWrapper, TextField, SelectField, CheckboxField },
+  components: {
+    UtilWrapper,
+    TextField,
+    SelectField,
+    CheckboxField,
+    BackButton
+  },
   data() {
     return {
       done: false,
       atriumRoute: { name: ROUTE_ATRIUM },
+      loginRoute: { name: ROUTE_LOGIN },
       registration: {
         name: '',
         email: '',

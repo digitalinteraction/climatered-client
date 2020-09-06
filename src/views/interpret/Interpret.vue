@@ -27,9 +27,11 @@
           <div class="columns">
             <div class="column is-three-fifths">
               <InterpretControls />
-              <div class="interpret-video">
-                <VideoLink v-if="videoLink" :link="videoLink" />
-              </div>
+              <component
+                v-if="helpContent"
+                :is="helpContent"
+                class="interpret-help content"
+              />
             </div>
             <div class="column">
               <InterpretPanel />
@@ -44,13 +46,23 @@
 <script>
 import { mapState } from 'vuex'
 import { ROUTE_INTERPRET_HOME } from '@/const'
-import { getTranslation, findLink } from '@/utils'
+import { getTranslation } from '@/utils'
 
 import InterpretWrapper from '@/components/interpret/InterpretWrapper.vue'
-import VideoLink from '@/components/VideoLink.vue'
 
 import InterpretControls from '@/components/interpret/InterpretControls.vue'
 import InterpretPanel from '@/components/interpret/InterpretPanel.vue'
+
+const content = {
+  en: () =>
+    import(/* webpackChunkName: "en" */ '@/content/interpret-help/en.mdx'),
+  fr: () =>
+    import(/* webpackChunkName: "fr" */ '@/content/interpret-help/fr.mdx'),
+  es: () =>
+    import(/* webpackChunkName: "es" */ '@/content/interpret-help/es.mdx'),
+  ar: () =>
+    import(/* webpackChunkName: "ar" */ '@/content/interpret-help/ar.mdx')
+}
 
 // import { ZoomMtg } from '@zoomus/websdk'
 
@@ -60,7 +72,6 @@ import InterpretPanel from '@/components/interpret/InterpretPanel.vue'
 export default {
   components: {
     InterpretWrapper,
-    VideoLink,
     InterpretControls,
     InterpretPanel
   },
@@ -91,8 +102,8 @@ export default {
         'en'
       ])
     },
-    videoLink() {
-      return findLink(this.session.links, 'video', this.floorLanguage)
+    helpContent() {
+      return content[this.$i18n.locale]
     }
   },
   mounted() {
@@ -169,5 +180,14 @@ export default {
   }
   .keyvalue-value {
   }
+}
+
+.interpret-help {
+  width: 100%;
+  min-height: 200px;
+  border: 2px dashed $blue;
+  background-color: lighten($blue, 40%);
+  border-radius: $radius-large;
+  padding: 2em;
 }
 </style>
