@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="grid-container">
-        <transition name="pop-in">
+        <transition-group name="pop-in">
           <div
             class="grid-item"
             v-for="(remoteStream, user) in remoteStreams"
@@ -83,7 +83,7 @@
               :muted="remoteStream.muted"
             />
           </div>
-        </transition>
+        </transition-group>
       </div>
       <div class="share-box has-text-white">
         <div
@@ -367,6 +367,8 @@ export default {
   width: 100%;
   height: 100%;
   display: grid;
+  // grid-template-columns: 50% 50%;
+  // grid-template-rows: 100% 100%;
   .grid-item {
     height: 100%;
     width: 100%;
