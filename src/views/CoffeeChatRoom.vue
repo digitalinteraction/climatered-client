@@ -65,7 +65,7 @@
               @click="retryCamera"
               v-if="userMediaError !== 'PermissionDeniedError'"
             >
-              Enable Camera & Mic
+              {{ $t('coffeechatroom.userMediaErrors.retryButtonText') }}
             </button>
           </h2>
         </div>
@@ -470,7 +470,7 @@ export default {
   transition: transform 1s ease-in-out;
 }
 .pop-in-leave-active {
-  transition: transform 1s ease-out;
+  transition: transform 0.5s ease-out;
 }
 
 .pop-in-enter,

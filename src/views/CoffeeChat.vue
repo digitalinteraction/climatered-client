@@ -6,20 +6,22 @@
           <div class="columns is-centered">
             <div class="column is-8 has-text-centered">
               <h3>
-                <span class="online-dot"></span>{{ peers }} Active Participants
+                <span class="online-dot"></span>{{ peers }}
+                {{ $t('coffeechat.filterResults') }}
+                {{ $t('coffeechat.readyBtn') }}
               </h3>
-              <h1 class="title has-text-white">Are you ready?</h1>
+              <h1 class="title has-text-white">
+                {{ $t('coffeechat.heading') }}
+              </h1>
               <h3 class="is-size-6">
-                We'll use the settings below to match you with another
-                Climate:Red attendee. Click the button below to video chat with
-                another attendee.
+                {{ $t('coffeechat.body') }}
               </h3>
             </div>
           </div>
           <div class="columns is-centered">
             <div class="filter-results column is-4 is-12-mobile has-text-right">
               <p>
-                Language(s):
+                {{ $t('coffeechat.filters.languageResults') }}:
                 <span
                   class="has-text-weight-bold"
                   v-for="(option, index) in selectedLanguages"
@@ -32,7 +34,7 @@
             </div>
             <div class="filter-results column is-4 is-12-mobile has-text-left">
               <p>
-                Theme(s):
+                {{ $t('coffeechat.filters.themeResults') }}:
                 <span
                   class="has-text-weight-bold"
                   v-for="(option, index) in selectedThemes"
@@ -44,7 +46,7 @@
                 <span
                   class="has-text-weight-bold"
                   v-if="selectedThemes.length == 0"
-                  >Any</span
+                  >{{ $t('coffeechat.filters.anyOption') }}</span
                 >
               </p>
             </div>
@@ -63,7 +65,7 @@
                     aria-controls="language-dropdown-menu"
                     @click="languageDropDownSelect()"
                   >
-                    <span>Select languages</span>
+                    <span>{{ $t('coffeechat.filters.languageSelector') }}</span>
                     <span class="icon is-small">
                       <i class="fas fa-angle-down" aria-hidden="true"></i>
                     </span>
@@ -100,13 +102,13 @@
                         class="button is-outlined is-small is-rounded clear-button"
                         @click="clearSelectedLanguages()"
                       >
-                        Clear
+                        {{ $t('coffeechat.filters.clear') }}
                       </button>
                       <button
                         class="button is-primary is-small is-rounded save-button"
                         @click="savePreferences()"
                       >
-                        Save
+                        {{ $t('coffeechat.filters.save') }}
                       </button>
                     </div>
                   </div>
@@ -126,7 +128,7 @@
                     aria-controls="themes-dropdown-menu"
                     @click="themesDropDownSelect()"
                   >
-                    <span>Select a theme (optional)</span>
+                    <span>{{ $t('coffeechat.filters.themeSelector') }}</span>
                     <span class="icon is-small">
                       <i class="fas fa-angle-down" aria-hidden="true"></i>
                     </span>
@@ -163,13 +165,13 @@
                         class="button is-outlined is-small is-rounded clear-button"
                         @click="clearSelectedThemes()"
                       >
-                        Clear
+                        {{ $t('coffeechat.filters.clear') }}
                       </button>
                       <button
                         class="button is-primary is-small is-rounded save-button"
                         @click="savePreferences()"
                       >
-                        Save
+                        {{ $t('coffeechat.filters.save') }}
                       </button>
                     </div>
                   </div>
