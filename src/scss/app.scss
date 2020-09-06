@@ -155,8 +155,14 @@
 }
 
 .button {
+  &.is-small {
+    height: 36px !important;
+  }
   &.is-static {
     padding: 0 1rem;
+    &.is-small {
+      height: 30px !important;
+    }
   }
   &.is-coral {
     background-color: $cc-coral;
