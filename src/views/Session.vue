@@ -383,7 +383,12 @@ export default {
       return this.isFuture
     },
     showSessionLinks() {
-      return this.isSoon || this.isPresent
+      if (this.isPresent) return true
+
+      const offset = 900000 // 15 minutes
+      const start = new Date(this.slot.start).getTime()
+
+      return this.isSoon && this.currentTime > start - offset
     }
   },
   mounted() {
