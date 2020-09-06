@@ -361,7 +361,7 @@ export default {
 
 <style lang="scss" scoped>
 .coffee-chat {
-  min-height: calc(100vh - calc(#{$navbar-height + 6rem}));
+  @include appPageFlexFillChild;
   background-color: $greyish;
   color: #ffffff;
   padding-top: 15vh;
