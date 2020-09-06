@@ -47,8 +47,15 @@ export default {
   computed: {
     ...mapState('api', ['apiState'])
   },
+  async created() {
+    this.$socket.bindEvent(this, 'site-visitors', count => {
+      console.log('count')
+      this.$store.commit('api/siteVisitors', count)
+    })
+  },
   async mounted() {
     const { token } = localStorage
+
     if (token) {
       //
       // If there is a token stored, authenticate with it & fetch data
@@ -70,6 +77,9 @@ export default {
     }
 
     this.isReady = true
+  },
+  destroyed() {
+    this.$socket.unbindOwner(this)
   }
 }
 </script>

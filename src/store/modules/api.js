@@ -10,7 +10,8 @@ const state = () => ({
   sessions: null,
   settings: null,
   apiState: 'init', // 'init' | 'active' | 'error'
-  user: null
+  user: null,
+  siteVisitors: 0
 })
 
 const agent = axios.create({
@@ -44,7 +45,9 @@ const mutations = {
     Object.assign(session, {
       attendance: parseInt(session.attendance) + parseInt(payload.change)
     })
-  }
+  },
+
+  siteVisitors: (state, siteVisitors) => Object.assign(state, { siteVisitors })
 }
 
 const actions = {
