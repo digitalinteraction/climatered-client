@@ -5,7 +5,10 @@
         <div class="box is-small">
           <h1 class="title" v-t="'profile.title'" />
 
-          <div class="notification is-warning" v-if="!profile && debounced">
+          <div
+            class="notification is-warning"
+            v-if="!loadedProfile && debounced"
+          >
             {{ $t('profile.loadingText') }}
           </div>
 
@@ -42,6 +45,13 @@
             </tbody>
           </table>
 
+          <div
+            v-if="loadedProfile && !profile"
+            class="notification is-warning is-light"
+          >
+            {{ $t('profile.translatorMessage') }}
+          </div>
+
           <p class="actions-label" v-t="'profile.actionLabel'" />
 
           <div class="buttons">
@@ -52,15 +62,17 @@
             />
           </div>
 
-          <hr />
+          <template v-if="profile">
+            <hr />
 
-          <p class="actions-label" v-t="'profile.dangerLabel'" />
+            <p class="actions-label" v-t="'profile.dangerLabel'" />
 
-          <button
-            class="button is-danger"
-            @click="deleteProfile"
-            v-t="'profile.deleteButton'"
-          />
+            <button
+              class="button is-danger"
+              @click="deleteProfile"
+              v-t="'profile.deleteButton'"
+            />
+          </template>
         </div>
       </section>
     </div>
@@ -97,7 +109,8 @@ export default {
   data() {
     return {
       profile: null,
-      debounced: false
+      debounced: false,
+      loadedProfile: false
     }
   },
   computed: {
@@ -112,7 +125,7 @@ export default {
       this.debounced = true
     }, 500)
     this.profile = await this.$store.dispatch('api/getProfile')
-    if (!this.profile) alert('Something went wrong')
+    this.loadedProfile = true
   },
   methods: {
     logout() {

@@ -81,6 +81,10 @@ profile:
   loadingText: Fetching profile
   actionLabel: Actions
   dangerLabel: Danger zone
+  translatorMessage: |
+    You are only a translator so do not have an atrium profile.
+    You can still register for the conference using the menu at the top,
+    then you can manage your profile here.
 
 sessions:
   title: What's on
