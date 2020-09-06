@@ -133,7 +133,7 @@
           :title="`${videoEnabled ? 'Enable Video' : 'Disable Video'}`"
         >
           <span class="video-button icon is-large has-text-white">
-            <fa :icon="`${videoEnabled ? 'video-slash' : 'video'}`" />
+            <fa :icon="`${videoEnabled ? 'video' : 'video-slash'}`" />
           </span>
         </button>
         <button class="button" @click="leave" title="Leave Chat">
@@ -200,6 +200,7 @@ export default {
           video: true,
           audio: true
         })
+        this.videoEnabled = true
       } catch (err) {
         //log to console first
         console.log(err) /* handle the error */
@@ -283,6 +284,17 @@ export default {
     },
     toggleCamera() {
       this.videoEnabled = !this.videoEnabled
+      console.log('localmediastream is', this.localMediaStream.active)
+      if (this.localMediaStream.active) {
+        let track = null
+        this.localMediaStream.getTracks().forEach(t => {
+          if (t.readyState == 'live' && t.kind === 'video') {
+            track = t
+            // console.log('trac', t)
+          }
+        })
+        track.enabled = this.videoEnabled
+      }
     },
     shareContactDetails() {
       this.contactDetails = {
@@ -343,7 +355,6 @@ export default {
 
   .info-text {
     padding-left: 1rem;
-    width: 90%;
     display: inline-block;
   }
 
