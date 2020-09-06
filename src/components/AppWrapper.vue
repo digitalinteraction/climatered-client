@@ -343,13 +343,9 @@ $tri-width: $tabbar-width / 2;
 .app-page {
   flex: 1;
   position: relative;
-  overflow-y: auto;
 }
 
 .app-header {
   z-index: 50;
-}
-
-.app-footer {
 }
 </style>
