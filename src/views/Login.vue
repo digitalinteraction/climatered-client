@@ -24,7 +24,7 @@
         />
         <div class="buttons">
           <button
-            class="button is-coral is-modern"
+            class="button is-coral"
             @click="submit"
             v-t="'login.submitButton'"
           />

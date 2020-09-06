@@ -44,8 +44,7 @@ $select-height: 36px;
   height: $select-height !important;
   select {
     height: $select-height !important;
-    padding: 5px 15px !important;
-    padding-inline-end: 25px !important;
+    padding: 5px 35px 5px 5px !important;
   }
 }
 </style>
