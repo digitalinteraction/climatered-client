@@ -7,6 +7,7 @@ general:
   comingSoon: Coming soon
   backTo: Back to {0}
   copy: Copy
+  loading: Loading
 
 atrium:
   title: Atrium
@@ -214,6 +215,13 @@ session:
   liveNow: Live now
   sessionEnded: Session ended
   interact: Interact
+  countdown:
+    hour: hour
+    hours: hours
+    minute: minute
+    minutes: minutes
+    second: second
+    seconds: seconds
 
 schedule:
   title: Schedule

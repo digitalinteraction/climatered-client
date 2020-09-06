@@ -1,12 +1,45 @@
 <template>
-  <div id="event-countdown" class="has-text-centered">
-    {{ msUntilStart | friendlyTime }}
+  <div
+    id="event-countdown"
+    class="columns is-gapless is-mobile is-centered has-text-centered"
+  >
+    <div class="column" v-if="!loading && countdownHours > 0">
+      <div class="countdown-value">{{ countdownHours }}</div>
+      <div class="countdown-label">
+        {{
+          countdownHours === 1
+            ? $t('session.countdown.hour')
+            : $t('session.countdown.hours')
+        }}
+      </div>
+    </div>
+    <div class="column" v-if="!loading && countdownMinutes > 0">
+      <div class="countdown-value">{{ countdownMinutes }}</div>
+      <div class="countdown-label">
+        {{
+          countdownMinutes === 1
+            ? $t('session.countdown.minute')
+            : $t('session.countdown.minutes')
+        }}
+      </div>
+    </div>
+    <div class="column" v-if="!loading">
+      <div class="countdown-value">{{ countdownSeconds }}</div>
+      <div class="countdown-label">
+        {{
+          countdownSeconds === 1
+            ? $t('session.countdown.second')
+            : $t('session.countdown.seconds')
+        }}
+      </div>
+    </div>
+    <div class="column" v-else>
+      <div class="countdown-label">{{ $t('general.loading') }}</div>
+    </div>
   </div>
 </template>
 
 <script>
-import countdown from 'countdown'
-
 export default {
   name: 'SessionCountdown',
   props: {
@@ -15,7 +48,10 @@ export default {
   },
   data() {
     return {
-      msUntilStart: this.timeUntilStart()
+      loading: true,
+      countdownHours: 0,
+      countdownMinutes: 0,
+      countdownSeconds: 0
     }
   },
   computed: {
@@ -38,16 +74,9 @@ export default {
       return this.$options.filters.localeDateTime(this.scheduleSlot.end)
     }
   },
-  filters: {
-    friendlyTime(timeInMs) {
-      const units = countdown.HOURS | countdown.MINUTES | countdown.SECONDS
-
-      return countdown(Date.now(), Date.now() + timeInMs, units).toString()
-    }
-  },
   mounted() {
     this.$clock.bind(this, () => {
-      this.msUntilStart = this.timeUntilStart()
+      this.timeUntilStart()
     })
   },
   destroyed() {
@@ -55,7 +84,21 @@ export default {
   },
   methods: {
     timeUntilStart() {
-      return new Date(this.scheduleSlot.start).getTime() - Date.now()
+      let remaining = new Date(this.scheduleSlot.start).getTime() - Date.now()
+
+      // Remaining hours
+      this.countdownHours = parseInt(remaining / 3600000)
+      remaining = remaining - this.countdownHours * 3600000
+
+      // Remaining minutes
+      this.countdownMinutes = parseInt(remaining / 60000)
+      remaining = remaining - this.countdownMinutes * 60000
+
+      // Remaining seconds
+      this.countdownSeconds = parseInt(remaining / 1000)
+      remaining = remaining - this.countdownSeconds * 1000
+
+      this.loading = false
     },
     addCal() {
       this.$ics.addsession(
@@ -80,8 +123,21 @@ export default {
 #event-countdown {
   border-radius: $radius;
   background: $cc-green;
-  color: white;
-  font-weight: bold;
-  padding: 15px;
+  padding: 0.75rem;
+
+  .countdown-value {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 2rem;
+    padding: 0 15px;
+  }
+
+  .countdown-label {
+    color: white;
+    font-size: 0.8em;
+    padding: 0 15px;
+    text-transform: uppercase;
+  }
 }
 </style>
