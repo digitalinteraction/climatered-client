@@ -195,9 +195,8 @@ export default {
   },
   methods: {
     async setupMedia() {
-      let stream = null
       try {
-        stream = await navigator.mediaDevices.getUserMedia({
+        this.localMediaStream = await navigator.mediaDevices.getUserMedia({
           video: true,
           audio: true
         })
@@ -233,7 +232,7 @@ export default {
           this.userMediaError = 'UnknownError'
         }
       }
-      if (stream === null) {
+      if (this.localMediaStream === null) {
         return
       }
       this.enterLocalVideo()
