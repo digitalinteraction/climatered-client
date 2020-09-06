@@ -62,8 +62,21 @@ $radius-small: 6px;
 
 // Sizes
 $size-6: 0.9rem;
+
 // Layout
 $tabbar-width: 5.5rem;
+
+// Controls
+.control .is-small {
+  &.select,
+  &.select select {
+    height: 36px;
+  }
+  &.input,
+  &.input input {
+    height: 36px;
+  }
+}
 
 @import '~bulma/sass/utilities/_all.sass';
 
