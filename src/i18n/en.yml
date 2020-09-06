@@ -154,10 +154,14 @@ interpretHome:
   unavailableTitle: Your browser isn't supported
   unavailableBody: |
     It looks like your using an unsupported browser. Please swap to chrome (v42+), safari (13.1+) or firefox (v80+) and return to this page. If you're on iOS please upgrade to iOS version 13.5 or above.
+  welcome: Welcome back, {0}
+  chromeWarning: Please remember to use the latest version of chrome
+  exitAction: Exit to Atrium
 
 interpretSchedule:
   heading:
     session: Session
+    title: Title
     slot: Slot
     date: Date
     start: Start
