@@ -1,22 +1,5 @@
 <template>
   <div class="session-sidepanel">
-    <!-- Session Links -->
-    <div class="sidepanel-section" v-if="hasNonVideoLinks">
-      <h3 class="sidepanel-heading " v-t="'session.linksHeading'" />
-      <div class="table-container">
-        <table class="table is-bordered">
-          <tr v-for="(link, i) in nonVideoLinks" :key="i">
-            <td class="table-heading-column">{{ link.type }}</td>
-            <td class="table-data">
-              <a :href="link.url" target="_blank">{{
-                link.title ? link.title : link.url
-              }}</a>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
     <!-- Session Show Poll -->
     <div
       v-if="slido && sessionState == 'present'"
@@ -27,17 +10,13 @@
       ]"
     >
       <h4 class="section-heading">
-        Live Q&A
+        {{ $t('session.interact') }}
       </h4>
       <div class="embedded" id="slido-wrapper">
         <div v-if="!showPoll">
-          <button
-            class="button is-modern is-coral is-small is-fullwidth"
-            @click="showPoll = true"
-          >
-            <!-- {{ $t('session.showPoll') }} -->
+          <a class="button is-coral is-fullwidth" @click="showPoll = true">
             {{ $t('session.joinLiveQandA') }}
-          </button>
+          </a>
         </div>
         <iframe
           v-else
@@ -56,6 +35,7 @@ import { findLink, parseSlidoLink, getTranslation } from '@/utils'
 import { mapState } from 'vuex'
 
 export default {
+  name: 'SessionInteractionPanel',
   components: {},
   props: {
     session: { type: Object, required: true },
@@ -95,19 +75,13 @@ export default {
     hasNonVideoLinks() {
       return !!this.nonVideoLinks.length > 0
     }
-  },
-  mounted() {},
-  destroyed() {},
-  methods: {}
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.session-sidepanel {
-  margin-bottom: 3em;
-}
-
 .sidepanel-section {
+  margin-bottom: 3em;
   &.slido-section {
     border-radius: 8px;
     overflow: hidden;
@@ -116,38 +90,24 @@ export default {
     }
     &.poll-visible {
       #slido-wrapper {
-        height: 573px;
+        background-color: white;
+        display: block;
+      }
+      &.poll-visible {
+        // background-color: #252525;
+        // padding-top: 30px;
+
+        // .section-heading {
+        //   display: none;
+        // }
+        #slido-wrapper {
+          border: 1px solid $border;
+          border-radius: 8px;
+          height: 573px;
+          overflow: hidden;
+        }
       }
     }
   }
-}
-
-.sidepanel-heading {
-  color: $cc-light-blue;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding-bottom: 0.5em;
-}
-
-.icon-size {
-  height: 1em;
-  width: 1em;
-}
-
-.table-container {
-  display: inline-block;
-  overflow: auto;
-}
-.table-heading-column {
-  background: $grey-lighter;
-}
-td {
-  font-weight: bold;
-  color: $cc-black;
-}
-
-.link-container {
-  width: 100%;
-  overflow-x: scroll;
 }
 </style>

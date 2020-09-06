@@ -1,7 +1,7 @@
 <template>
   <div :class="['schedule-slot-time', { 'is-padded': isPadded }]">
     <!-- NOW tag -->
-    <div class="state-tag present" v-if="isPresent">
+    <div class="state-tag present" v-if="isPresent && !onSessionPage">
       {{ $t('schedule.now') }}
     </div>
 
@@ -18,10 +18,10 @@
       <!-- <span>
         -
       </span> -->
-      <fa :icon="['fas', 'long-arrow-alt-right']" class="fa-fw fa-sm" />
+      <fa :icon="['fas', 'long-arrow-alt-right']" class="fa-xs" />
       <fa
         :icon="['fas', 'long-arrow-alt-right']"
-        class="fa-fw fa-sm fa-flip-horizontal"
+        class="fa-xs fa-flip-horizontal"
       />
       <span :title="new Date(scheduleSlot.end)">
         {{ scheduleSlot.end | localeTimeShort }}
@@ -41,6 +41,9 @@
 
 <script>
 import { getTimeZone } from '../../utils'
+
+// Constants
+import { ROUTE_SESSION } from '../../const'
 
 export default {
   name: 'ScheduleSlotTime',
@@ -69,6 +72,9 @@ export default {
     }
   },
   computed: {
+    onSessionPage() {
+      return this.$route.name === ROUTE_SESSION
+    },
     isPast() {
       return this.stateForSlot === 'past'
     },
@@ -103,8 +109,8 @@ export default {
   position: sticky;
   left: 0;
   right: 0;
-  top: 2.5em;
   z-index: 1;
+  top: $navbar-height + 2.5rem;
 
   &.is-padded {
     padding: 15px 40px;
@@ -122,7 +128,7 @@ export default {
     display: block;
     width: auto;
     min-width: 100%;
-    text-align: center;
+    // text-align: center;
   }
 
   .state-tag {
@@ -136,7 +142,7 @@ export default {
     text-transform: uppercase;
 
     &.present {
-      background-color: #e50354;
+      background-color: $cc-red;
       color: white;
     }
     &.past {
@@ -146,10 +152,10 @@ export default {
   }
 
   h3 {
-    color: #757a8a;
-    font-size: 1.1em;
+    color: $cc-black;
+    font-size: 1.3em;
     font-weight: $weight-bold;
-    line-height: 1.25rem;
+    line-height: 1.5rem;
   }
   h4 {
     color: #757a8a;

@@ -40,7 +40,7 @@
           <!-- Wrapper for slots -->
           <div class="slot-section-wrapper">
             <!-- Show past sessions button -->
-            <button
+            <a
               v-if="!searchActive && hasStarted"
               id="past-sessions-toggle"
               class="button is-small is-text"
@@ -51,7 +51,7 @@
                   ? $t('schedule.hidePastSessions')
                   : $t('schedule.showPastSessions')
               }}
-            </button>
+            </a>
 
             <!-- Loop and render slots -->
             <span
