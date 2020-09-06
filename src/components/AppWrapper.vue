@@ -69,21 +69,44 @@
                 <LanguageControl />
               </div>
               <!-- Interpret link if role is set -->
-              <router-link
-                class="navbar-item"
-                v-if="isTranslator"
-                :to="interpretRoute"
-              >
-                {{ $t('interpretHome.goto') }}
-              </router-link>
+              <div v-if="isTranslator" class="navbar-item">
+                <router-link
+                  class="button is-purple is-small"
+                  :to="interpretRoute"
+                >
+                  {{ $t('interpretHome.goto') }}
+                </router-link>
+              </div>
               <!-- Profile link -->
-              <router-link class="navbar-item" v-if="user" :to="profileRoute">
-                {{ user.sub }}
-              </router-link>
-              <!-- or Login button -->
-              <router-link class="navbar-item" v-if="!user" :to="loginRoute">
-                {{ $t('general.loginButton') }}
-              </router-link>
+              <div v-if="user" class="navbar-item">
+                <router-link
+                  class="button is-default is-small has-addons"
+                  :to="profileRoute"
+                >
+                  <span class="icon">
+                    <fa :icon="['fas', 'user']" />
+                  </span>
+                  <span>{{ user.sub }}</span>
+                </router-link>
+              </div>
+              <!-- Login button -->
+              <div v-if="!user" class="navbar-item">
+                <div class="buttons">
+                  <router-link
+                    class="button is-light is-small"
+                    :to="loginRoute"
+                  >
+                    {{ $t('general.loginButton') }}
+                  </router-link>
+                  <!-- Register button -->
+                  <router-link
+                    class="button is-coral is-small"
+                    :to="registerRoute"
+                  >
+                    {{ $t('general.registerButton') }}
+                  </router-link>
+                </div>
+              </div>
             </div>
           </div>
         </nav>
@@ -115,6 +138,7 @@ import {
   ROUTE_COFFEE_CHAT,
   ROUTE_HELP,
   ROUTE_LOGIN,
+  ROUTE_REGISTER,
   ROUTE_PROFILE,
   ROUTE_INTERPRET_HOME
 } from '../const'
@@ -176,6 +200,7 @@ export default {
     return {
       showingMenu: false,
       loginRoute: { name: ROUTE_LOGIN },
+      registerRoute: { name: ROUTE_REGISTER },
       atriumRoute: { name: ROUTE_ATRIUM },
       sessionsRoute: { name: ROUTE_SESSIONS },
       scheduleRoute: { name: ROUTE_SCHEDULE },
@@ -275,10 +300,6 @@ $tri-width: $tabbar-width / 2;
     &:before {
       border-width: $tri-height;
     }
-  }
-
-  .navbar-item {
-    // margin-inline-start: $navbar-height;
   }
 }
 
