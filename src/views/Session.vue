@@ -290,6 +290,7 @@ export default {
     },
     forcedState() {
       if (!this.isDev) return undefined
+      if (this.session.slug.includes('test')) return 'present'
       return this.availableStates[this.forcedStateIndex]
     },
     hasLinks() {
