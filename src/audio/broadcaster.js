@@ -60,6 +60,8 @@ export class AudioBroadcaster {
     })
     this.stream = stream
 
+    const chosenDevice = stream.getAudioTracks()[0].deviceId
+
     // Register our audio worklet
     await this.ctx.audioWorklet.addModule('/socket-record-processor.js')
 
@@ -91,6 +93,8 @@ export class AudioBroadcaster {
     this.source = source
 
     this.state = BroadcastState.active
+
+    return { chosenDevice }
   }
 
   handleData(arrayBuffer, inputRate, outputRate) {

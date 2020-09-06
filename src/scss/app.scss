@@ -28,7 +28,26 @@
 //
 // bulma RTL overrides
 //
+
 .navbar {
+  position: relative;
+
+  &.has-shadow {
+    box-shadow: 0 0 15px 15px rgba(0, 0, 0, 0.05);
+  }
+  &.has-border {
+    &:after {
+      content: '';
+      height: 1px;
+      background-color: $border;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+    }
+  }
+
   .navbar-menu {
     .navbar-start {
     }
@@ -50,12 +69,12 @@
   }
 }
 
-.buttons:not(.has-addons) {
-  .button:not(:last-child):not(.is-fullwidth) {
-    margin-right: unset;
-    margin-inline-end: 0.5rem;
-  }
-}
+// .buttons:not(.has-addons) {
+//   .button:not(:last-child):not(.is-fullwidth) {
+//     margin-right: unset;
+//     margin-inline-end: 0.5rem;
+//   }
+// }
 
 //
 // Custom tabs
@@ -130,9 +149,15 @@
 }
 
 // Custom buttons
+*[dir='rtl'] .icon:first-child:not(:last-child) {
+  margin-left: 0.375em !important;
+  margin-right: calc(-0.75em - 1px) !important;
+}
+
 .button {
-  display: flex;
-  padding: 0 2em;
+  &.is-small {
+    height: 36px !important;
+  }
   &.is-coral {
     background-color: $cc-coral;
     border-color: $cc-coral;
@@ -157,29 +182,6 @@
       background-color: darken($color: $cc-light-blue, $amount: 2);
     }
   }
-  &.is-modern {
-    border-radius: 8px;
-    padding: 1.4em 1.5em !important;
-    .icon svg {
-      fill: white;
-    }
-  }
-  &.has-icon {
-    padding-inline-start: 3em !important;
-    &:not(.is-fullwidth) {
-      .icon:first-child:not(:last-child) {
-        position: absolute;
-        top: 50%;
-        left: 2em;
-        transform: translateY(-50%);
-      }
-    }
-  }
-}
-
-*[dir='rtl'] .button.has-icon .icon:first-child:not(:last-child) {
-  left: auto;
-  right: 2em;
 }
 
 // Headings
@@ -192,6 +194,22 @@ h4.section-heading {
   text-transform: uppercase;
 }
 
+// Tags
+.tag:not(body) {
+  &.is-pink {
+    background-color: $cc-pink;
+    color: white;
+  }
+  &.is-coral {
+    background-color: $cc-coral;
+    color: white;
+  }
+  &.is-purple {
+    background-color: $cc-purple;
+    color: white;
+  }
+}
+
 // Animations
 .fade-enter-active,
 .fade-leave-active {
@@ -199,4 +217,21 @@ h4.section-heading {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+*[dir='rtl'] {
+  .ltr-only {
+    display: none;
+  }
+}
+
+*[dir='ltr'] {
+  .rtl-only {
+    display: none;
+  }
+}
+
+.box.is-small {
+  max-width: $tablet;
+  margin: 0 auto;
 }

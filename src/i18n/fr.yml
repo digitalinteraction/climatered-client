@@ -5,6 +5,7 @@ general:
   appName: Climate:Red
   pleaseSelect: Veuillez sélectionner
   comingSoon: Bientôt disponible
+  genericError: Une erreur s'est produite. Veuillez réessayer
 #
 # api:
 #   auth:
@@ -56,7 +57,6 @@ register:
   consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
   termsLink: Termes et conditions
   privacyLink: Politique de confidentialité
-  genericError: Une erreur s'est produite. Veuillez réessayer
   submitButton: Inscrivez
   doneText: Nous vous avons envoyé un e-mail de vérification.
 
@@ -65,12 +65,14 @@ profile:
   emailText: Votre adresse E-mail
   localeText: Langue choisie
   whenText: Connecté
+  # registeredText: Registered
   nameText: Nom
   countryText: Pays
   affiliationText: Affiliation
   logoutButton: Se déconnecter
   deleteButton: Supprimer le compte
   deleteText: C'est permanent, êtes-vous sûr?
+  # loadingText: Fetching profile
 
 sessions:
   title: Quoi de neuf
@@ -211,3 +213,6 @@ schedule:
     workshops: Ateliers
     title: Ateliers interactifs
     description: Participez à l'un des ateliers interactifs suivants
+
+faqs:
+  title: FAQ

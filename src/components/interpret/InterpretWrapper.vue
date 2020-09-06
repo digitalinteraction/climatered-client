@@ -5,7 +5,7 @@
         <router-link
           :to="atriumRoute"
           class="button is-text"
-          v-t="'atrium.returnTo'"
+          v-t="'interpretHome.exitAction'"
         />
       </div>
     </div>

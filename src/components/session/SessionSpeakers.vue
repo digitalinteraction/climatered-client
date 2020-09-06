@@ -8,7 +8,11 @@
       v-for="(speaker, i) in sessionSpeakers"
       :key="i"
     >
-      <SpeakerRow :speaker="speaker" />
+      <SpeakerRow
+        :speaker="speaker"
+        :is-interactive="isInteractive"
+        @click="$emit('update:currentSpeaker', speaker)"
+      />
     </div>
     <!-- Placeholders for consistent widths of flex items -->
     <div class="speaker-wrapper placeholder"></div>
@@ -35,6 +39,14 @@ export default {
     isPadded: {
       type: Boolean,
       default: false
+    },
+    isInteractive: {
+      type: Boolean,
+      default: false
+    },
+    currentSpeaker: {
+      type: Object,
+      required: false
     }
   },
   computed: {

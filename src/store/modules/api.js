@@ -10,7 +10,8 @@ const state = () => ({
   sessions: null,
   settings: null,
   apiState: 'init', // 'init' | 'active' | 'error'
-  user: null
+  user: null,
+  siteVisitors: 0
 })
 
 const agent = axios.create({
@@ -44,7 +45,9 @@ const mutations = {
     Object.assign(session, {
       attendance: parseInt(session.attendance) + parseInt(payload.change)
     })
-  }
+  },
+
+  siteVisitors: (state, siteVisitors) => Object.assign(state, { siteVisitors })
 }
 
 const actions = {
@@ -121,6 +124,16 @@ const actions = {
     })
 
     return response.status === 200
+  },
+  async getProfile() {
+    const response = await agent.get('/me')
+    if (response.status !== 200) return null
+    return response.data.user
+  },
+  async unregister() {
+    const response = await agent.delete('/me')
+    if (response.status !== 200) return false
+    return true
   },
   async registerAttendence(ctx, { sessionSlug }) {
     const response = await agent.post(`/attend/${sessionSlug}`, {

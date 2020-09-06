@@ -1,10 +1,9 @@
 <template>
   <UtilWrapper>
-    <router-link
+    <BackButton
       slot="back-button"
-      class="button is-text"
       :to="atriumRoute"
-      v-t="'atrium.returnTo'"
+      text-key="atrium.returnTo"
     />
     <div slot="content" class="login-page">
       <h1 class="title" v-t="'login.title'" />
@@ -25,11 +24,18 @@
         />
         <div class="buttons">
           <button
-            class="button is-primary"
+            class="button is-coral"
             @click="submit"
             v-t="'login.submitButton'"
           />
         </div>
+        <hr />
+        <p>
+          {{ $t('login.registerLabel') }}
+          <router-link class="has-text-weight-bold" :to="registerRoute">
+            {{ $t('login.registerAction') }}
+          </router-link>
+        </p>
       </div>
       <div class="notification is-success is-large" v-else>
         <button class="delete" @click="done = false"></button>
@@ -41,16 +47,18 @@
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
+import BackButton from '@/components/BackButton.vue'
 import TextField from '@/components/form/TextField.vue'
-import { ROUTE_ATRIUM } from '../const'
+import { ROUTE_ATRIUM, ROUTE_REGISTER } from '../const'
 
 export default {
-  components: { UtilWrapper, TextField },
+  components: { UtilWrapper, TextField, BackButton },
   data() {
     return {
       email: '',
       done: false,
       atriumRoute: { name: ROUTE_ATRIUM },
+      registerRoute: { name: ROUTE_REGISTER },
       hasError: false
     }
   },

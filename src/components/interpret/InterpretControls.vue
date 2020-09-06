@@ -14,7 +14,7 @@
           <div class="buttons is-centered">
             <button
               class="button is-text"
-              @click="fetchDevices"
+              @click="forceFetchDevices"
               :disabled="isLive"
               v-t="'interpret.refreshButton'"
             />
@@ -198,6 +198,10 @@ export default {
       }
     )
     this.fetchDevices()
+
+    for (const d of this.userDevices) {
+      console.log(d)
+    }
   },
   mounted() {
     this.$clock.bind(this, () => {
@@ -231,7 +235,8 @@ export default {
   methods: {
     async start() {
       try {
-        await this.broadcaster.start(this.chosenDevice)
+        const { chosenDevice } = await this.broadcaster.start(this.chosenDevice)
+        this.chosenDevice = chosenDevice
 
         await this.$store.dispatch('interpret/startLive')
       } catch (error) {
@@ -269,15 +274,35 @@ export default {
     rejectRequest() {
       this.$store.dispatch('interpret/respondToRequest', 'reject')
     },
+    async forceFetchDevices() {
+      //
+      // Request a stream and immediatly close it so we have permission
+      //
+      const s = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: false
+      })
+
+      setTimeout(() => {
+        s.getTracks().forEach(t => t.stop())
+      }, 300)
+
+      return this.fetchDevices()
+    },
     async fetchDevices() {
       const devices = await navigator.mediaDevices.enumerateDevices()
       const audioDevices = devices.filter(
-        d => d.kind === 'audioinput' && !d.label.match(/bluetooth/i)
+        d =>
+          d.kind === 'audioinput' &&
+          d.label !== '' &&
+          !d.label.match(/bluetooth/i)
       )
 
-      this.chosenDevice = (
-        audioDevices.find(d => d.id === 'default') ?? audioDevices[0]
-      ).deviceId
+      if (audioDevices.length > 0) {
+        this.chosenDevice = (
+          audioDevices.find(d => d.id === 'default') ?? audioDevices[0]
+        ).deviceId
+      }
 
       this.userDevices = audioDevices.map(d => ({
         value: d.deviceId,

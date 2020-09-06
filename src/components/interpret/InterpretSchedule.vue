@@ -4,6 +4,7 @@
       <thead>
         <tr>
           <th v-t="'interpretSchedule.heading.session'" />
+          <th v-t="'interpretSchedule.heading.title'" />
           <th v-t="'interpretSchedule.heading.slot'" />
           <th v-t="'interpretSchedule.heading.date'" />
           <th v-t="'interpretSchedule.heading.start'" />
@@ -15,15 +16,16 @@
       <tbody>
         <tr v-for="group in sessionsWithSlots" :key="group.session.id">
           <td>{{ group.session.id }}</td>
+          <td class="title-cell">{{ group.session.title.en }}</td>
           <td>{{ group.slot.id }}</td>
           <td>{{ group.slot.start | localeDate }}</td>
           <td>{{ group.slot.start | localeTime }}</td>
           <td>{{ group.slot.end | localeTime }}</td>
-          <td>{{ group.session.hostLanguage[0] }}</td>
+          <td class="floor-cell">{{ group.session.hostLanguage[0] }}</td>
           <td>
             <div class="buttons">
               <router-link
-                v-for="lang in group.session.hostLanguage.slice(1)"
+                v-for="lang in interpretLangs(group.session.hostLanguage)"
                 class="button is-link"
                 :key="lang"
                 :to="interpretRoute(group.session, lang)"
@@ -60,10 +62,14 @@ export default {
       )
     },
     sessionsWithSlots() {
-      return this.interpretedSessions.map(session => ({
+      const grouped = this.interpretedSessions.map(session => ({
         slot: this.slots.find(s => s.id === session.slot),
         session
       }))
+
+      grouped.sort((a, b) => a.slot.id.localeCompare(b.slot.id))
+
+      return grouped
     }
   },
   methods: {
@@ -72,6 +78,9 @@ export default {
         name: ROUTE_INTERPRET,
         params: { sessionSlug: session.slug, channel: language }
       }
+    },
+    interpretLangs(langs) {
+      return langs.slice(1).sort((a, b) => a.localeCompare(b))
     }
   }
 }
@@ -80,5 +89,15 @@ export default {
 <style lang="scss" scoped>
 .buttons .button {
   text-transform: uppercase;
+}
+
+.title-cell {
+  max-width: 300px;
+}
+
+.floor-cell {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: $size-5;
 }
 </style>

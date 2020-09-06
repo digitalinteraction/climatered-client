@@ -20,12 +20,11 @@
               : `${sessions.length} ${$t('schedule.workshops.workshops')}`
           }}
         </h3>
-        <button
+        <a
           v-if="!searchActive"
           @click="workshopsExpanded = !workshopsExpanded"
           :class="[
             'button',
-            'is-modern',
             'is-small',
             {
               'is-coral': !workshopsExpanded,
@@ -33,10 +32,14 @@
             }
           ]"
         >
-          {{
-            workshopsExpanded ? $t(`schedule.hideAll`) : $t(`schedule.showAll`)
-          }}
-        </button>
+          <span>
+            {{
+              workshopsExpanded
+                ? $t(`schedule.hideAll`)
+                : $t(`schedule.showAll`)
+            }}
+          </span>
+        </a>
       </div>
       <transition name="fade">
         <div v-if="isExpanded">

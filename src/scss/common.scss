@@ -2,14 +2,16 @@ $cc-red: #ef3340;
 $cc-coral: #ff6f61;
 $cc-purple: #6c63ff;
 $cc-electric-blue: #5508d3;
-$cc-green: #a9e5bb;
+$cc-green: #48c774;
 $cc-light-blue: #7692ff;
 $cc-dark-blue: #091540;
 $cc-black: #252525;
 
 $cc-lightestgrey: #f4f4f4;
 $cc-lightergrey: #e6e6e6;
+$cc-darkestgrey: #1e1e1e;
 $cc-bluegrey: #757a8a;
+$cc-pink: #e50354;
 
 $red: $cc-red;
 
@@ -51,6 +53,31 @@ $z-cookies: 50;
 $z-appwrapper-tabbar: 20;
 $z-sessions-tabs: 10;
 
+// Buttons
+$button-padding-horizontal: 1.5em !default;
+
+// Radius
+$radius: 8px;
+$radius-small: 6px;
+
+// Sizes
+$size-6: 0.9rem;
+
+// Layout
+$tabbar-width: 5.5rem;
+
+// Controls
+.control .is-small {
+  &.select,
+  &.select select {
+    height: 36px;
+  }
+  &.input,
+  &.input input {
+    height: 36px;
+  }
+}
+
 @import '~bulma/sass/utilities/_all.sass';
 
 @mixin insetInlineStart($value) {
@@ -69,4 +96,15 @@ $z-sessions-tabs: 10;
   &:dir(rtl) {
     left: $value;
   }
+}
+
+@mixin appPageFlexFillChild() {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
 }

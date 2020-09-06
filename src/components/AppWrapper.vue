@@ -4,8 +4,14 @@
       <div class="app-header-start">
         <!--
             Navigation bar
+            .has-shadow
+            .has-border
         -->
-        <nav class="navbar" role="navigation" aria-label="main navigation">
+        <nav
+          class="navbar has-border is-fixed-top"
+          role="navigation"
+          aria-label="main navigation"
+        >
           <div class="navbar-brand">
             <router-link :to="atriumRoute" class="navbar-item" active-class="">
               <img
@@ -63,45 +69,53 @@
                 <LanguageControl />
               </div>
               <!-- Interpret link if role is set -->
-              <router-link
-                class="navbar-item"
-                v-if="isTranslator"
-                :to="interpretRoute"
-              >
-                {{ $t('interpretHome.goto') }}
-              </router-link>
+              <div v-if="isTranslator" class="navbar-item">
+                <router-link
+                  class="button is-purple is-small"
+                  :to="interpretRoute"
+                >
+                  {{ $t('interpretHome.goto') }}
+                </router-link>
+              </div>
               <!-- Profile link -->
-              <router-link class="navbar-item" v-if="user" :to="profileRoute">
-                {{ user.sub }}
-              </router-link>
-              <!-- or Login button -->
-              <router-link class="navbar-item" v-if="!user" :to="loginRoute">
-                {{ $t('general.loginButton') }}
-              </router-link>
+              <div v-if="user" class="navbar-item">
+                <router-link
+                  class="button is-default is-small has-addons"
+                  :to="profileRoute"
+                >
+                  <span class="icon">
+                    <fa :icon="['fas', 'user']" />
+                  </span>
+                  <span>{{ user.sub }}</span>
+                </router-link>
+              </div>
+              <!-- Login button -->
+              <div v-if="!user" class="navbar-item">
+                <div class="buttons">
+                  <router-link
+                    class="button is-light is-small"
+                    :to="loginRoute"
+                  >
+                    {{ $t('general.loginButton') }}
+                  </router-link>
+                  <!-- Register button -->
+                  <router-link
+                    class="button is-coral is-small"
+                    :to="registerRoute"
+                  >
+                    {{ $t('general.registerButton') }}
+                  </router-link>
+                </div>
+              </div>
             </div>
           </div>
         </nav>
       </div>
     </div>
-    <!--
-      Side tabbar
-     -->
-    <div class="app-tabbar">
-      <router-link
-        v-for="item in currentNav"
-        :key="item.name"
-        :to="item.to"
-        :disabled="tabIsDisabled(item.name)"
-        class="tabbar-item"
-      >
-        <component :is="item.icon" class="tabbar-item-icon" />
-        <span class="tabbar-item-text">
-          {{
-            $t(tabIsActive(item.name) ? item.titleKey : 'general.comingSoon')
-          }}
-        </span>
-      </router-link>
-    </div>
+
+    <!-- Side tabs -->
+    <SideTabs :current-nav="currentNav" />
+
     <div class="app-page" v-if="hasData">
       <slot />
     </div>
@@ -115,6 +129,7 @@
 // adding nav, tabs and a <slot> for the page
 // and only displays <slot> when data has been fetched
 //
+import NavigationMixin from '@/mixins/NavigationMixin.js'
 
 import {
   ROUTE_ATRIUM,
@@ -123,6 +138,7 @@ import {
   ROUTE_COFFEE_CHAT,
   ROUTE_HELP,
   ROUTE_LOGIN,
+  ROUTE_REGISTER,
   ROUTE_PROFILE,
   ROUTE_INTERPRET_HOME
 } from '../const'
@@ -130,6 +146,7 @@ import {
 import { mapState } from 'vuex'
 
 import AppFooter from '@/components/AppFooter.vue'
+import SideTabs from '@/components/layout/SideTabs.vue'
 import LanguageControl from '@/components/form/LanguageControl.vue'
 
 import CoffeeChatIcon from '@/icons/coffee-chat.svg'
@@ -176,14 +193,14 @@ const nav = [
   }
 ]
 
-const publicTabs = new Set(['atrium', 'sessions'])
-
 export default {
-  components: { AppFooter, LanguageControl },
+  mixins: [NavigationMixin],
+  components: { AppFooter, SideTabs, LanguageControl },
   data() {
     return {
       showingMenu: false,
       loginRoute: { name: ROUTE_LOGIN },
+      registerRoute: { name: ROUTE_REGISTER },
       atriumRoute: { name: ROUTE_ATRIUM },
       sessionsRoute: { name: ROUTE_SESSIONS },
       scheduleRoute: { name: ROUTE_SCHEDULE },
@@ -196,9 +213,6 @@ export default {
   },
   computed: {
     ...mapState('api', ['user', 'settings', 'apiState']),
-    scheduleLive() {
-      return this.hasData && this.settings.scheduleLive
-    },
     hasData() {
       return this.apiState === 'active'
     },
@@ -219,44 +233,12 @@ export default {
       this.showingMenu = !this.showingMenu
       this.$refs.menuButton.classList.toggle('is-active', this.showingMenu)
       this.$refs.navbarMenu.classList.toggle('is-active', this.showingMenu)
-    },
-    /** Wether a tab should be shown or "coming-soon" */
-    tabIsActive(tabName) {
-      // The helpdesk is tied to its own setting
-      if (tabName === 'helpdesk') return this.settings?.enableHelpdesk
-
-      // The coffeechat is tied to its own setting
-      if (tabName === 'coffeechat') return this.settings?.enableCoffeechat
-
-      // If the schedule is live any other tab is enabled
-      // otherwise only public tabs are enabled
-      return this.scheduleLive || publicTabs.has(tabName)
-    },
-    /** Whether the current user can access a tab */
-    tabIsAllowed(tabName) {
-      return this.user || publicTabs.has(tabName)
-    },
-    tabIsDisabled(tabName) {
-      return !this.tabIsActive(tabName) || !this.tabIsAllowed(tabName)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$tabbar-width: 5.5rem;
-
-.app-wrapper {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-header {
-  border-bottom: 1px solid $border;
-}
-
 @mixin link {
   &[disabled] {
     color: $grey-light;
@@ -279,37 +261,12 @@ $tabbar-width: 5.5rem;
   }
 }
 
-.tabbar-item {
-  font-size: $size-7;
-  font-weight: bold;
-
+.app-wrapper {
+  position: relative;
+  // min-height: 100vh;
+  min-height: calc(100vh - #{$navbar-height});
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-  color: $white;
-
-  margin: 6px;
-  padding: 6px 0;
-  border-radius: $radius-large;
-
-  @include link;
-
-  &[disabled] {
-    color: #73788c;
-  }
-
-  .tabbar-item-text {
-    text-align: center;
-  }
-  .tabbar-item-icon {
-    height: 3rem;
-    width: 3rem;
-  }
-
-  &:not(:last-child) {
-    margin-bottom: 6px;
-  }
 }
 
 .navbar-item {
@@ -330,22 +287,20 @@ $tri-height: $navbar-height / 2;
 $tri-width: $tabbar-width / 2;
 
 .navbar-brand {
-  &:before {
-    content: '';
-    display: inline-block;
-    border-block-end: solid $tri-height $cc-coral;
-    border-inline-start: solid $tri-width $cc-coral;
-    border-inline-end: solid $tri-width $white;
-    border-block-start: solid $tri-height $white;
+  @include desktop {
+    &:before {
+      content: '';
+      display: inline-block;
+      border-block-end: solid $tri-height $cc-coral;
+      border-inline-start: solid $tri-width $cc-coral;
+      border-inline-end: solid $tri-width $white;
+      border-block-start: solid $tri-height $white;
+    }
   }
   @include touch {
     &:before {
       border-width: $tri-height;
     }
-  }
-
-  .navbar-item {
-    // margin-inline-start: $navbar-height;
   }
 }
 
@@ -380,39 +335,40 @@ $tri-width: $tabbar-width / 2;
   }
 }
 
-@include desktop {
-  .app-tabbar {
-    position: absolute;
-    top: $navbar-height;
-    bottom: 0;
-    width: $tabbar-width;
-    z-index: $z-appwrapper-tabbar;
+// This was a result of merging Rob's changes with Ed's changes (from Andy G)
+// @include desktop {
+//   .app-tabbar {
+//     position: absolute;
+//     top: $navbar-height;
+//     bottom: 0;
+//     width: $tabbar-width;
+//     z-index: $z-appwrapper-tabbar;
 
-    @include insetInlineStart(0);
+//     @include insetInlineStart(0);
 
-    // inset-inline-start: 0;
-    border-inline-end: 1px solid $black;
+//     // inset-inline-start: 0;
+//     border-inline-end: 1px solid $black;
 
-    display: flex;
-    flex-direction: column;
-  }
-  .app-page {
-    margin-inline-start: $tabbar-width;
-  }
-  .navbar-start {
-    display: none;
-  }
-}
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .app-page {
+//     margin-inline-start: $tabbar-width;
+//   }
+//   .navbar-start {
+//     display: none;
+//   }
+// }
 
-@include touch {
-  .app-tabbar {
-    display: none;
-  }
-}
-.app-tabbar {
-  background: #252525;
-  z-index: 2;
-}
+// @include touch {
+//   .app-tabbar {
+//     display: none;
+//   }
+// }
+// .app-tabbar {
+//   background: #252525;
+//   z-index: 2;
+// }
 
 @include touch {
   .ifrc-branding {
@@ -425,6 +381,7 @@ $tri-width: $tabbar-width / 2;
   position: relative;
 }
 
-.app-footer {
+.app-header {
+  z-index: 50;
 }
 </style>
