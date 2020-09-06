@@ -6,8 +6,69 @@
         v-if="Object.keys(remoteStreams).length == 0"
       >
         <h1 class="title has-text-white">
-          Waiting for your partner to join
+          {{ $t('coffeechatroom.waitingForPartner') }}
         </h1>
+        <div v-if="userMediaError">
+          <span class="icon is-small has-text-white">
+            <fa :icon="'video-slash'" />
+          </span>
+          <h2 class="subtitle has-text-white">
+            {{ $t('coffeechatroom.userMediaErrors.generalError') }}
+            <span v-if="userMediaError !== 'PermissionDeniedError'">, </span>
+            <span v-if="userMediaError == 'DevicesNotFoundError'">
+              {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
+            </span>
+            <span v-if="userMediaError == 'TrackStartError'">
+              {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
+            </span>
+            <span v-if="userMediaError == 'ConstraintNotSatisfiedError'">
+              {{
+                $t('coffeechatroom.userMediaErrors.constraintNotSatisfiedError')
+              }}
+            </span>
+            <span
+              v-if="
+                userMediaError == 'TypeError' ||
+                  userMediaError == 'UnknownError'
+              "
+            >
+              {{ $t('coffeechatroom.userMediaErrors.TypeError') }}
+            </span>
+            <div v-if="userMediaError == 'PermissionDeniedError'">
+              <div class="error-instruction-container">
+                <div v-if="browserType == 'safari'">
+                  <p>
+                    {{
+                      $t('coffeechatroom.userMediaErrors.instructions.safari')
+                    }}
+                  </p>
+                </div>
+                <div v-if="browserType == 'chrome'">
+                  <p>
+                    {{
+                      $t('coffeechatroom.userMediaErrors.instructions.chrome')
+                    }}
+                  </p>
+                </div>
+                <div v-if="browserType == 'firefox'">
+                  {{
+                    $t('coffeechatroom.userMediaErrors.instructions.firefox')
+                  }}
+                </div>
+                <div v-if="browserType == 'edge'">
+                  {{ $t('coffeechatroom.userMediaErrors.instructions.edge') }}
+                </div>
+              </div>
+            </div>
+            <button
+              class="button is-purple"
+              @click="retryCamera"
+              v-if="userMediaError !== 'PermissionDeniedError'"
+            >
+              Enable Camera & Mic
+            </button>
+          </h2>
+        </div>
       </div>
       <div class="grid-container">
         <transition name="pop-in">
@@ -34,7 +95,9 @@
           </span>
         </div>
         <div class="info-text" v-if="joiningInfoWindowActive">
-          <h3 class="is-size-5 has-text-weight-semibold">Joining Info</h3>
+          <h3 class="is-size-5 has-text-weight-semibold">
+            {{ $t('coffeechatroom.joiningInfo') }}
+          </h3>
           <p>{{ roomLink }}</p>
         </div>
       </div>
@@ -51,7 +114,7 @@
           @click="shareContactDetails"
           :disabled="contactDetails"
         >
-          Share Contact Details
+          {{ $t('coffeechatroom.shareContactDetails') }}
         </button>
       </div>
       <div class="call-controls buttons" v-if="showControls">
@@ -101,7 +164,10 @@ export default {
     timeLimit: { type: Number, default: 0 }
   },
   computed: {
-    ...mapState('api', ['user'])
+    ...mapState('api', ['user']),
+    browserType() {
+      return window.adapter.browserDetails.browser
+    }
   },
   data() {
     return {
@@ -114,40 +180,13 @@ export default {
       showControls: false,
       coffeeChat: null,
       roomLink: window.location,
-      joiningInfoWindowActive: false
+      joiningInfoWindowActive: false,
+      showNotification: false,
+      userMediaError: null
     }
   },
   async mounted() {
-    this.localMediaStream = await this.setupMedia()
-    this.enterLocalVideo()
-    this.coffeeChat = new CoffeeChatRoom(
-      this.$socket,
-      this.localMediaStream,
-      this.user.iat,
-      (fromUser, remoteTrack) => {
-        let remoteStream = {}
-        if (!this.remoteStreams[fromUser]) {
-          remoteStream.mediaStream = new MediaStream()
-          remoteStream.muted = false
-        } else {
-          remoteStream = this.remoteStreams[fromUser]
-        }
-        remoteStream.mediaStream.addTrack(remoteTrack, remoteStream.mediaStream)
-        this.$set(this.remoteStreams, fromUser, remoteStream)
-      },
-      (fromUser, s) => {
-        if (this.remoteStreams[fromUser]) {
-          this.remoteStreams[fromUser].muted = s.muted
-        }
-        this.$set(this.userState, fromUser, s)
-      },
-      fromUser => {
-        this.$delete(this.remoteStreams, fromUser)
-        this.$delete(this.userState, fromUser)
-      }
-    )
-    const roomId = this.$route.params.room
-    this.coffeeChat.joinRoom(roomId)
+    await this.setupMedia()
   },
   beforeDestroy() {
     if (this.coffeeChat !== null) {
@@ -155,15 +194,83 @@ export default {
     }
   },
   methods: {
-    setupMedia() {
-      return navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: {
-          autoGainControl: { exact: true },
-          echoCancellation: { exact: true },
-          noiseSuppression: { exact: true }
+    async setupMedia() {
+      let stream = null
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true
+        })
+      } catch (err) {
+        //log to console first
+        console.log(err) /* handle the error */
+        if (err.name == 'NotFoundError' || err.name == 'DevicesNotFoundError') {
+          //required track is missing
+          this.userMediaError = 'DevicesNotFoundError'
+        } else if (
+          err.name == 'NotReadableError' ||
+          err.name == 'TrackStartError'
+        ) {
+          //webcam or mic are already in use
+          this.userMediaError = 'TrackStartError'
+        } else if (
+          err.name == 'OverconstrainedError' ||
+          err.name == 'ConstraintNotSatisfiedError'
+        ) {
+          //constraints can not be satisfied by avb. devices
+          this.userMediaError = 'ConstraintNotSatisfiedError'
+        } else if (
+          err.name == 'NotAllowedError' ||
+          err.name == 'PermissionDeniedError'
+        ) {
+          //permission denied in browser
+          this.userMediaError = 'PermissionDeniedError'
+        } else if (err.name == 'TypeError' || err.name == 'TypeError') {
+          //empty constraints object
+          this.userMediaError = 'TypeError'
+        } else {
+          //other errors
+          this.userMediaError = 'UnknownError'
         }
-      })
+      }
+      if (stream === null) {
+        return
+      }
+      this.enterLocalVideo()
+      this.coffeeChat = new CoffeeChatRoom(
+        this.$socket,
+        this.localMediaStream,
+        this.user.iat,
+        (fromUser, remoteTrack) => {
+          let remoteStream = {}
+          if (!this.remoteStreams[fromUser]) {
+            remoteStream.mediaStream = new MediaStream()
+            remoteStream.muted = false
+          } else {
+            remoteStream = this.remoteStreams[fromUser]
+          }
+          remoteStream.mediaStream.addTrack(
+            remoteTrack,
+            remoteStream.mediaStream
+          )
+          this.$set(this.remoteStreams, fromUser, remoteStream)
+        },
+        (fromUser, s) => {
+          if (this.remoteStreams[fromUser]) {
+            this.remoteStreams[fromUser].muted = s.muted
+          }
+          this.$set(this.userState, fromUser, s)
+        },
+        fromUser => {
+          this.$delete(this.remoteStreams, fromUser)
+          this.$delete(this.userState, fromUser)
+        }
+      )
+      const roomId = this.$route.params.room
+      this.coffeeChat.joinRoom(roomId)
+    },
+    async retryCamera() {
+      await this.setupMedia()
     },
     enterLocalVideo() {
       this.showControls = true
@@ -202,6 +309,10 @@ export default {
   text-align: center;
   margin-top: 30vh;
   padding: 1rem;
+}
+
+.error-instruction-container {
+  padding: 3rem;
 }
 
 .share-box {

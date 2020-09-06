@@ -101,6 +101,21 @@ coffeechat:
 
 coffeechatroom:
   title: Coffee chat
+  waitingForPartner: Waiting for your partner to join
+  joiningInfo: Joining Info
+  shareContactDetails: Share Contact Details
+  userMediaErrors:
+    generalError: We're having trouble turning your webcam on
+    devicesNotFoundError: check that your webcam is plugged in
+    trackStartError: your webcam or mic are already in use in another application
+    constraintNotSatisfiedError: click the button below to retry
+    typeError: click the button below to retry
+    unknownError: click the button below to retry
+    instructions:
+      safari: Open Safari Preferences > Navigate to Websites > Go to Camera and Microphone tabs > Change access to Allow > Restart Safari
+      chrome: Click the camera blocked icon in your browser's address bar and then refresh the page
+      firefox: Click the camera blocked icon in your browser's address bar and click the cross to enable mic and camera then refresh the page
+      edge: Click the lock icon in your browser's address bar > Click 'Site Permissions' > Click Reset Permissions > Restart browser page
 
 help:
   title: Help

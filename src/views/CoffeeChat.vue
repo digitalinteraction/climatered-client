@@ -21,6 +21,7 @@
               <p>
                 Language(s):
                 <span
+                  class="has-text-weight-bold"
                   v-for="(option, index) in selectedLanguages"
                   :key="option.displayName"
                 >
@@ -33,13 +34,18 @@
               <p>
                 Theme(s):
                 <span
+                  class="has-text-weight-bold"
                   v-for="(option, index) in selectedThemes"
                   :key="option.displayName"
                 >
                   <span v-if="index != 0">, </span
                   >{{ $t(option.displayName) }}</span
                 >
-                <span v-if="selectedThemes.length == 0">Any</span>
+                <span
+                  class="has-text-weight-bold"
+                  v-if="selectedThemes.length == 0"
+                  >Any</span
+                >
               </p>
             </div>
           </div>
@@ -353,8 +359,7 @@ export default {
 
 <style lang="scss" scoped>
 .coffee-chat {
-  // min-height: calc(100vh - calc(#{$navbar-height} - 4rem));
-  min-height: 100vh;
+  min-height: calc(100vh - calc(#{$navbar-height + 6rem}));
   background-color: $greyish;
   color: #ffffff;
   padding-top: 15vh;
