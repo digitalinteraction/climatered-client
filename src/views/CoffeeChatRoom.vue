@@ -70,7 +70,13 @@
           </h2>
         </div>
       </div>
-      <div :class="`grid-container grid-item-count-${remoteStreamsLength}`">
+      <div
+        :class="
+          `grid-container grid-item-count-${
+            remoteStreamsLength < 8 ? remoteStreamsLength : 8
+          }`
+        "
+      >
         <div
           v-for="(remoteStream, user, i) in remoteStreams"
           :key="`media-${user}`"
@@ -159,6 +165,12 @@
     <a href="https://thinkactivelabs.co.uk" target="_blank">
       <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
     </a>
+    <div
+      class="notification share-popup has-text-light"
+      v-if="remoteStreamsLength > 8"
+    >
+      {{ $t('coffeechatroom.tooManyStreams') }}
+    </div>
   </AppWrapper>
 </template>
 
@@ -277,6 +289,42 @@ export default {
             remoteStream.mediaStream
           )
           this.$set(this.remoteStreams, fromUser, remoteStream)
+          this.$set(this.remoteStreams, fromUser + 'sdf', remoteStream)
+          this.$set(
+            this.remoteStreams,
+            fromUser + 'sfoisjdofisdof1',
+            remoteStream
+          )
+          this.$set(
+            this.remoteStreams,
+            fromUser + 'sfoisjdofisdof2',
+            remoteStream
+          )
+          this.$set(
+            this.remoteStreams,
+            fromUser + 'sfoisjdofisdof3',
+            remoteStream
+          )
+          this.$set(
+            this.remoteStreams,
+            fromUser + 'sfoisjdofisdof4',
+            remoteStream
+          )
+          this.$set(
+            this.remoteStreams,
+            fromUser + 'sfoisjdofisdof5',
+            remoteStream
+          )
+          this.$set(
+            this.remoteStreams,
+            fromUser + 'sfoisjdofisdof6',
+            remoteStream
+          )
+          this.$set(
+            this.remoteStreams,
+            fromUser + 'sfoisjfsdfdofisdof6',
+            remoteStream
+          )
         },
         (fromUser, s) => {
           if (this.remoteStreams[fromUser]) {
@@ -374,6 +422,7 @@ export default {
   padding: 1rem;
   border-radius: 0.75rem;
   max-width: 386px;
+  z-index: 10;
 
   @include mobile {
     z-index: 1;
@@ -606,6 +655,10 @@ export default {
   max-width: 35%;
   margin: auto;
   margin-top: 1.75rem;
+  z-index: 20;
+  @include mobile {
+    max-width: 80%;
+  }
 }
 
 .pop-in-enter-active {
