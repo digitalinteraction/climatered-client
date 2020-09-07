@@ -1,5 +1,5 @@
 <template>
-  <div class="select is-rounded" :class="selectClass">
+  <div :class="['select', selectClass]">
     <select
       :value="$i18n.locale"
       @input="onLocale"
@@ -37,3 +37,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+$select-height: 36px;
+.select {
+  height: $select-height !important;
+  select {
+    height: $select-height !important;
+    padding: 5px 35px 5px 5px !important;
+  }
+}
+</style>

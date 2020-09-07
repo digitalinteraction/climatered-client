@@ -1,187 +1,201 @@
 <template>
   <AppWrapper>
     <div class="coffee-chat">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-8 has-text-centered">
-            <h3>
-              <span class="online-dot"></span>{{ peers }} Active Participants
-            </h3>
-            <h1 class="title has-text-white">Are you ready?</h1>
-            <h3 class="is-size-5">
-              We'll use the settings below to match you with another Climate:Red
-              attendee. Click the button below to video chat with another
-              attendee.
-            </h3>
+      <section class="section">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8 has-text-centered">
+              <h3>
+                <span class="online-dot"></span>{{ peers }}
+                {{ $t('coffeechat.filterResults') }}
+                {{ $t('coffeechat.readyBtn') }}
+              </h3>
+              <h1 class="title has-text-white">
+                {{ $t('coffeechat.heading') }}
+              </h1>
+              <h3 class="is-size-6">
+                {{ $t('coffeechat.body') }}
+              </h3>
+            </div>
           </div>
-        </div>
-        <div class="columns is-centered">
-          <div class="column is-4 has-text-right">
-            <p>
-              Language(s):
-              <span
-                v-for="(option, index) in selectedLanguages"
-                :key="option.displayName"
-              >
-                <span v-if="index != 0">, </span
-                >{{ $t(option.displayName) }}</span
-              >
-            </p>
-          </div>
-          <div class="column is-4 has-text-left">
-            <p>
-              Theme(s):
-              <span
-                v-for="(option, index) in selectedThemes"
-                :key="option.displayName"
-              >
-                <span v-if="index != 0">, </span
-                >{{ $t(option.displayName) }}</span
-              >
-              <span v-if="selectedThemes.length == 0">Any</span>
-            </p>
-          </div>
-        </div>
-        <div class="columns is-centered is-multiline">
-          <div class="column is-4">
-            <div
-              id="language-selector"
-              class="dropdown has-text-left"
-              :class="{ 'is-active': filters.languages.isActive }"
-            >
-              <div class="dropdown-trigger">
-                <button
-                  class="button trigger-btn"
-                  aria-haspopup="true"
-                  aria-controls="language-dropdown-menu"
-                  @click="languageDropDownSelect()"
+          <div class="columns is-centered">
+            <div class="filter-results column is-4 is-12-mobile has-text-right">
+              <p>
+                {{ $t('coffeechat.filters.languageResults') }}:
+                <span
+                  class="has-text-weight-bold"
+                  v-for="(option, index) in selectedLanguages"
+                  :key="option.displayName"
                 >
-                  <span>Select languages</span>
-                  <span class="icon is-small">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </div>
+                  <span v-if="index != 0">, </span
+                  >{{ $t(option.displayName) }}</span
+                >
+              </p>
+            </div>
+            <div class="filter-results column is-4 is-12-mobile has-text-left">
+              <p>
+                {{ $t('coffeechat.filters.themeResults') }}:
+                <span
+                  class="has-text-weight-bold"
+                  v-for="(option, index) in selectedThemes"
+                  :key="option.displayName"
+                >
+                  <span v-if="index != 0">, </span
+                  >{{ $t(option.displayName) }}</span
+                >
+                <span
+                  class="has-text-weight-bold"
+                  v-if="selectedThemes.length == 0"
+                  >{{ $t('coffeechat.filters.anyOption') }}</span
+                >
+              </p>
+            </div>
+          </div>
+          <div class="columns is-centered is-multiline">
+            <div class="column is-4">
               <div
-                class="dropdown-menu"
-                id="language-dropdown-menu"
-                role="menu"
+                id="language-selector"
+                class="dropdown has-text-left"
+                :class="{ 'is-active': filters.languages.isActive }"
               >
-                <div class="dropdown-content">
-                  <div
-                    v-for="(item, key) in filters.languages.options"
-                    :key="item.displayName"
+                <div class="dropdown-trigger">
+                  <button
+                    class="button trigger-btn"
+                    aria-haspopup="true"
+                    aria-controls="language-dropdown-menu"
+                    @click="languageDropDownSelect()"
                   >
-                    <label class="checkbox">
-                      <div
-                        class="dropdown-item"
-                        :class="{
-                          selected: filters.languages.options[key].selected
-                        }"
-                      >
-                        <input
-                          type="checkbox"
-                          v-model="filters.languages.options[key].selected"
-                        />
-                        {{ $t(item.displayName) }}
-                      </div>
-                    </label>
-                  </div>
-                  <hr />
-                  <div class="buttons">
-                    <button
-                      class="button is-outlined is-small is-rounded clear-button"
-                      @click="clearSelectedLanguages()"
-                    >
-                      Clear
-                    </button>
-                    <button
-                      class="button is-primary is-small is-rounded save-button"
-                      @click="savePreferences()"
-                    >
-                      Save
-                    </button>
-                  </div>
+                    <span>{{ $t('coffeechat.filters.languageSelector') }}</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="column is-4">
-            <div
-              id="themes-selector"
-              class="dropdown has-text-left"
-              :class="{ 'is-active': filters.themes.isActive }"
-            >
-              <div class="dropdown-trigger">
-                <button
-                  class="button trigger-btn"
-                  aria-haspopup="true"
-                  aria-controls="themes-dropdown-menu"
-                  @click="themesDropDownSelect()"
+                <div
+                  class="dropdown-menu"
+                  id="language-dropdown-menu"
+                  role="menu"
                 >
-                  <span>Select a theme (optional)</span>
-                  <span class="icon is-small">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </div>
-              <div class="dropdown-menu" id="themes-dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                  <div
-                    v-for="(item, key) in filters.themes.options"
-                    :key="item.displayName"
-                  >
-                    <label class="checkbox">
-                      <div
-                        class="dropdown-item"
-                        :class="{
-                          selected: filters.themes.options[key].selected
-                        }"
+                  <div class="dropdown-content">
+                    <div
+                      v-for="(item, key) in filters.languages.options"
+                      :key="item.displayName"
+                    >
+                      <label class="checkbox">
+                        <div
+                          class="dropdown-item"
+                          :class="{
+                            selected: filters.languages.options[key].selected
+                          }"
+                        >
+                          <input
+                            type="checkbox"
+                            v-model="filters.languages.options[key].selected"
+                          />
+                          {{ $t(item.displayName) }}
+                        </div>
+                      </label>
+                    </div>
+                    <hr />
+                    <div class="buttons">
+                      <button
+                        class="button is-outlined is-small is-rounded clear-button"
+                        @click="clearSelectedLanguages()"
                       >
-                        <input
-                          type="checkbox"
-                          v-model="filters.themes.options[key].selected"
-                        />
-                        {{ $t(item.displayName) }}
-                      </div>
-                    </label>
-                  </div>
-                  <hr />
-                  <div class="buttons">
-                    <button
-                      class="button is-outlined is-small is-rounded clear-button"
-                      @click="clearSelectedThemes()"
-                    >
-                      Clear
-                    </button>
-                    <button
-                      class="button is-primary is-small is-rounded save-button"
-                      @click="savePreferences()"
-                    >
-                      Save
-                    </button>
+                        {{ $t('coffeechat.filters.clear') }}
+                      </button>
+                      <button
+                        class="button is-primary is-small is-rounded save-button"
+                        @click="savePreferences()"
+                      >
+                        {{ $t('coffeechat.filters.save') }}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="column is-12 has-text-centered ready-button-container">
-            <button
-              class="button is-primary is-info is-large"
-              @click="leave"
-              v-if="isWaiting"
-            >
-              <span class="icon rotate is-small">
-                <fa icon="globe" />
-              </span>
-              <span>{{ $t('coffeechat.waitingBtn') }}</span>
-            </button>
-            <button class="button is-primary is-large" @click="ready" v-else>
-              {{ $t('coffeechat.readyBtn') }}
-            </button>
+            <div class="column is-4">
+              <div
+                id="themes-selector"
+                class="dropdown has-text-left"
+                :class="{ 'is-active': filters.themes.isActive }"
+              >
+                <div class="dropdown-trigger">
+                  <button
+                    class="button trigger-btn"
+                    aria-haspopup="true"
+                    aria-controls="themes-dropdown-menu"
+                    @click="themesDropDownSelect()"
+                  >
+                    <span>{{ $t('coffeechat.filters.themeSelector') }}</span>
+                    <span class="icon is-small">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </button>
+                </div>
+                <div
+                  class="dropdown-menu"
+                  id="themes-dropdown-menu"
+                  role="menu"
+                >
+                  <div class="dropdown-content">
+                    <div
+                      v-for="(item, key) in filters.themes.options"
+                      :key="item.displayName"
+                    >
+                      <label class="checkbox">
+                        <div
+                          class="dropdown-item"
+                          :class="{
+                            selected: filters.themes.options[key].selected
+                          }"
+                        >
+                          <input
+                            type="checkbox"
+                            v-model="filters.themes.options[key].selected"
+                          />
+                          {{ $t(item.displayName) }}
+                        </div>
+                      </label>
+                    </div>
+                    <hr />
+                    <div class="buttons">
+                      <button
+                        class="button is-outlined is-small is-rounded clear-button"
+                        @click="clearSelectedThemes()"
+                      >
+                        {{ $t('coffeechat.filters.clear') }}
+                      </button>
+                      <button
+                        class="button is-primary is-small is-rounded save-button"
+                        @click="savePreferences()"
+                      >
+                        {{ $t('coffeechat.filters.save') }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column is-12 has-text-centered ready-button-container">
+              <button
+                class="button is-primary is-info is-large"
+                @click="leave"
+                v-if="isWaiting"
+              >
+                <span class="icon rotate is-small">
+                  <fa icon="globe" />
+                </span>
+                <span>{{ $t('coffeechat.waitingBtn') }}</span>
+              </button>
+              <button class="button is-primary is-large" @click="ready" v-else>
+                {{ $t('coffeechat.readyBtn') }}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   </AppWrapper>
 </template>
@@ -347,11 +361,13 @@ export default {
 
 <style lang="scss" scoped>
 .coffee-chat {
-  // min-height: calc(100vh - calc(#{$navbar-height} - 4rem));
-  min-height: 100vh;
+  @include appPageFlexFillChild;
   background-color: $greyish;
   color: #ffffff;
   padding-top: 15vh;
+  @include mobile {
+    padding-top: 5vh;
+  }
 }
 
 .online-dot {
@@ -442,7 +458,14 @@ export default {
 .ready-button-container {
   button {
     margin: auto;
+    @include mobile {
+      width: 100%;
+    }
   }
+}
+
+.filter-results {
+  text-align: left !important;
 }
 
 @keyframes navAnimOpen {

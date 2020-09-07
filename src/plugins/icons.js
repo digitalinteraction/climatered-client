@@ -46,7 +46,10 @@ import {
   faFire,
   faPhone,
   faVideo,
-  faVideoSlash
+  faVideoSlash,
+  faExternalLinkAlt,
+  faExclamationTriangle,
+  faCopy
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -96,7 +99,10 @@ library.add(
   faFire,
   faPhone,
   faVideo,
-  faVideoSlash
+  faVideoSlash,
+  faExternalLinkAlt,
+  faExclamationTriangle,
+  faCopy
 )
 
 //

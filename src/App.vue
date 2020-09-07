@@ -16,7 +16,9 @@ import {
   ROUTE_REGISTER,
   ROUTE_TERMS,
   ROUTE_PRIVACY,
-  ROUTE_ERROR
+  ROUTE_ERROR,
+  ROUTE_FAQS,
+  ROUTE_GUIDELINES
 } from './const'
 
 import ApiError from '@/components/ApiError.vue'
@@ -30,6 +32,8 @@ const noAuthRoutes = [
   ROUTE_REGISTER,
   ROUTE_TERMS,
   ROUTE_PRIVACY,
+  ROUTE_FAQS,
+  ROUTE_GUIDELINES,
   ROUTE_ERROR
 ]
 
@@ -43,8 +47,14 @@ export default {
   computed: {
     ...mapState('api', ['apiState'])
   },
+  async created() {
+    this.$socket.bindEvent(this, 'site-visitors', count => {
+      this.$store.commit('api/siteVisitors', count)
+    })
+  },
   async mounted() {
     const { token } = localStorage
+
     if (token) {
       //
       // If there is a token stored, authenticate with it & fetch data
@@ -66,27 +76,16 @@ export default {
     }
 
     this.isReady = true
+  },
+  destroyed() {
+    this.$socket.unbindOwner(this)
   }
 }
 </script>
 
 <style lang="scss">
-// @import '~bulma/sass/base/_all.sass';
-// @import '~bulma/sass/elements/_all.sass';
-// @import '~bulma/sass/form/_all.sass';
-// @import '~bulma/sass/helpers/_all.sass';
-// @import '~bulma/sass/layout/_all.sass';
 @import '~bulma/bulma.sass';
 @import '@/scss/app.scss';
-
-@include tablet {
-  #app {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
 
 .embedded {
   background-color: #fafafa;

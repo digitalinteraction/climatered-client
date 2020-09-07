@@ -35,6 +35,8 @@ export default class ApiSocket {
       if (localStorage[STORAGE_TOKEN]) {
         authenticateSocket(this.socket, localStorage[STORAGE_TOKEN])
       }
+
+      this.emit('online')
     })
 
     this.socket.on('user-error', ({ message = 'Something went wrong' }) => {

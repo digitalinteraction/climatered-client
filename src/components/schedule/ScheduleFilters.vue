@@ -5,20 +5,22 @@
       <div class="level-left">
         <div id="search-wrapper" class="level-item is-narrow">
           <div class="field has-addons">
-            <!-- Search input -->
-            <input
-              v-model="query"
-              @change="updateSearchQuery"
-              class="input is-small"
-              type="text"
-              :placeholder="`${$t(`schedule.search`)}`"
-            />
+            <p class="control">
+              <!-- Search input -->
+              <input
+                v-model="query"
+                @change="updateSearchQuery"
+                class="input is-small"
+                type="text"
+                :placeholder="`${$t(`schedule.search`)}`"
+              />
+            </p>
             <!-- Search button -->
-            <div class="control">
-              <a class="button is-small is-modern is-dark">
+            <p class="control">
+              <a class="button is-small is-dark">
                 <fa :icon="['fas', 'search']" />
               </a>
-            </div>
+            </p>
           </div>
         </div>
         <!-- Toggle filters -->
@@ -278,8 +280,8 @@ export default {
   },
   computed: {
     filterToggleClasses() {
-      let classes = ['button', 'is-small', 'is-modern']
-      classes.push(this.filtersVisible ? 'is-danger' : 'is-light')
+      let classes = ['button', 'is-small']
+      classes.push(this.filtersVisible ? 'is-danger' : 'is-default')
       return classes
     }
   },
@@ -300,9 +302,11 @@ export default {
 <style lang="scss" scoped>
 #schedule-filters {
   background-color: white;
+  padding: 1.5rem;
+  padding-top: 0;
   #controls {
     margin-bottom: 0;
-    padding: 1.5rem;
+    margin-top: 1.5rem;
     &.level {
       .level-item {
         margin: 0;
@@ -323,8 +327,7 @@ export default {
     }
   }
   #filters {
-    padding: 1.5rem;
-    padding-top: 0;
+    padding-top: 1.5rem;
   }
 
   width: 100%;
@@ -360,9 +363,5 @@ export default {
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  input[type='text'] {
-    box-shadow: none;
-    padding: 1.4em 1em;
-  }
 }
 </style>

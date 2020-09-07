@@ -1,10 +1,9 @@
 <template>
   <UtilWrapper>
-    <router-link
+    <BackButton
       slot="back-button"
-      class="button is-text"
       :to="atriumRoute"
-      v-t="'atrium.returnTo'"
+      text-key="atrium.returnTo"
     />
     <div slot="content">
       <div class="content">
@@ -25,6 +24,7 @@
 
 <script>
 import UtilWrapper from '@/components/UtilWrapper.vue'
+import BackButton from '@/components/BackButton.vue'
 import { ROUTE_ATRIUM, ROUTE_LOGIN } from '@/const'
 
 const errorKeys = {
@@ -32,7 +32,7 @@ const errorKeys = {
 }
 
 export default {
-  components: { UtilWrapper },
+  components: { UtilWrapper, BackButton },
   data() {
     return {
       message: this.$route.query.message ?? 'Something went wrong',

@@ -34,9 +34,12 @@ export default {
 }
 
 video {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
 }
 
 .is-rounded {

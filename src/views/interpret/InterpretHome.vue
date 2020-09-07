@@ -1,6 +1,6 @@
 <template>
   <InterpretWrapper>
-    <section class="hero is-primary">
+    <section class="hero is-info">
       <div class="hero-body">
         <div class="container">
           <h1 class="title" v-t="'interpretHome.title'" />
@@ -10,6 +10,12 @@
     </section>
     <section class="section" v-if="canInterpret">
       <div class="container">
+        <div class="content">
+          <p>{{ $t('interpretHome.welcome', [user.sub]) }}</p>
+        </div>
+        <div class="notification is-warning is-light">
+          <p class="is-size-5">{{ $t('interpretHome.chromeWarning') }}</p>
+        </div>
         <InterpretSchedule
           :slots="$store.state.api.slots"
           :sessions="$store.state.api.sessions"
@@ -35,6 +41,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import InterpretWrapper from '@/components/interpret/InterpretWrapper.vue'
 import InterpretSchedule from '@/components/interpret/InterpretSchedule.vue'
 import { AudioBroadcaster } from '@/audio'
@@ -47,6 +54,9 @@ export default {
       canInterpret: AudioBroadcaster.isSupported(),
       atriumRoute: { name: ROUTE_ATRIUM }
     }
+  },
+  computed: {
+    ...mapState('api', ['user'])
   }
 }
 </script>

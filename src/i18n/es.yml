@@ -5,6 +5,7 @@ general:
   appName: Climate:Red
   pleaseSelect: Por favor seleccionar
   comingSoon: Próximamente
+  genericError: Algo salió mal. Por favor, vuelva a intentarlo
 #
 # api:
 #   auth:
@@ -56,7 +57,6 @@ register:
   consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
   termsLink: Términos y Condiciones
   privacyLink: Política de privacidad
-  genericError: Algo salió mal. Por favor, vuelva a intentarlo
   submitButton: Registrarse
   doneText: Le hemos enviado un correo electrónico de verificación.
 
@@ -65,12 +65,14 @@ profile:
   emailText: Su Correo Electrónico
   localeText: Idioma seleccionado
   whenText: Sesión iniciada
+  # registeredText: Registered
   nameText: Nombre
   countryText: País
   affiliationText: Afiliación
   logoutButton: Cerrar sesión
   deleteButton: Eliminar cuenta
   deleteText: Esto es permanente, ¿está segura?
+  # loadingText: Fetching profile
 
 sessions:
   title: Que hay ahora
@@ -211,3 +213,6 @@ schedule:
     workshops: Talleres
     title: Talleres Interactivos
     description: Partícipe a uno de los talleres interactivos siguientes
+
+faqs:
+  title: FAQ
