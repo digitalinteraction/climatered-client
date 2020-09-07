@@ -38,10 +38,10 @@
                 <span
                   class="has-text-weight-bold"
                   v-for="(option, index) in selectedThemes"
-                  :key="option.displayName"
+                  :key="option.value"
                 >
                   <span v-if="index != 0">, </span
-                  >{{ $t(option.displayName) }}</span
+                  >{{ option.translationObject.title[$i18n.locale] }}</span
                 >
                 <span
                   class="has-text-weight-bold"
@@ -142,7 +142,7 @@
                   <div class="dropdown-content">
                     <div
                       v-for="(item, key) in filters.themes.options"
-                      :key="item.displayName"
+                      :key="item.value"
                     >
                       <label class="checkbox">
                         <div
@@ -155,7 +155,7 @@
                             type="checkbox"
                             v-model="filters.themes.options[key].selected"
                           />
-                          {{ $t(item.displayName) }}
+                          {{ item.translationObject.title[$i18n.locale] }}
                         </div>
                       </label>
                     </div>
@@ -204,9 +204,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import CoffeeChatLobby from '../coffee-chat/coffee-chat-lobby'
 import { ROUTE_COFFEE_CHAT_ROOM } from '../const'
+
 export default {
   components: { AppWrapper },
   data() {
@@ -241,28 +243,7 @@ export default {
         },
         themes: {
           isActive: false,
-          options: [
-            {
-              displayName: 'coffeechat.filters.themes.earlyWarningEarlyAction',
-              value: 'early-warn',
-              selected: false
-            },
-            {
-              displayName: 'coffeechat.filters.themes.conflict',
-              value: 'conflict',
-              selected: false
-            },
-            {
-              displayName: 'coffeechat.filters.themes.urban',
-              value: 'urban',
-              selected: false
-            },
-            {
-              displayName: 'coffeechat.filters.themes.climateSmartDdr',
-              value: 'climate-smart',
-              selected: false
-            }
-          ]
+          options: []
         }
       }
     }
@@ -274,9 +255,10 @@ export default {
         params: { room: roomId }
       })
     })
-    this.queryLobby()
+    this.queryLobby(), this.loadThemes()
   },
   computed: {
+    ...mapState('api', ['themes']),
     selectedLanguages() {
       return this.filters.languages.options.filter(o => o.selected == true)
     },
@@ -293,6 +275,15 @@ export default {
     }
   },
   methods: {
+    loadThemes() {
+      this.themes.forEach(t => {
+        this.filters.themes.options.push({
+          value: t.slug,
+          selected: false,
+          translationObject: t
+        })
+      })
+    },
     clearSelectedLanguages() {
       this.filters.languages.options.map(o => {
         o.selected = false

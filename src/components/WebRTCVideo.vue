@@ -34,12 +34,20 @@ export default {
 }
 
 video {
+  // object-fit: cover;
+  // position: absolute;
+  // min-width: 100%;
+  // min-height: 100%;
+  // width: auto;
+  // height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  vertical-align: middle;
+  transform: translate(-50%, -50%);
   position: absolute;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  top: 50%;
+  left: 50%;
 }
 
 .is-rounded {
