@@ -1,4 +1,3 @@
-// window.CONFIG = { API_URL: 'https://dev.climate.red/api/' }
 import moment from 'moment'
 import 'moment-timezone'
 

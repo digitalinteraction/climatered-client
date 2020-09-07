@@ -85,21 +85,8 @@ export default {
 </script>
 
 <style lang="scss">
-// @import '~bulma/sass/base/_all.sass';
-// @import '~bulma/sass/elements/_all.sass';
-// @import '~bulma/sass/form/_all.sass';
-// @import '~bulma/sass/helpers/_all.sass';
-// @import '~bulma/sass/layout/_all.sass';
 @import '~bulma/bulma.sass';
 @import '@/scss/app.scss';
-
-@include tablet {
-  #app {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
 
 .embedded {
   background-color: #fafafa;

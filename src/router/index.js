@@ -12,9 +12,9 @@ const Sessions = () =>
 const Schedule = () =>
   import(/* webpackChunkName: "attendee" */ '../views/Schedule.vue')
 const CoffeeChat = () =>
-  import(/* webpackChunkName: "attendee" */ '../views/CoffeeChat.vue')
+  import(/* webpackChunkName: "coffee" */ '../views/CoffeeChat.vue')
 const CoffeeChatRoom = () =>
-  import(/* webpackChunkName: "attendee" */ '../views/CoffeeChatRoom.vue')
+  import(/* webpackChunkName: "coffee" */ '../views/CoffeeChatRoom.vue')
 const Help = () =>
   import(/* webpackChunkName: "attendee" */ '../views/Help.vue')
 
