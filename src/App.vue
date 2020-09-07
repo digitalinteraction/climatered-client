@@ -49,7 +49,6 @@ export default {
   },
   async created() {
     this.$socket.bindEvent(this, 'site-visitors', count => {
-      console.log('count')
       this.$store.commit('api/siteVisitors', count)
     })
   },
