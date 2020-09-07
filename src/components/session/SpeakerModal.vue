@@ -84,6 +84,8 @@ export default {
 <style lang="scss" scoped>
 #speaker-modal {
   .modal-content {
+    border-radius: $radius;
+
     img.headshot {
       border-radius: 50%;
     }
