@@ -44,7 +44,16 @@ $select-height: 36px;
   height: $select-height !important;
   select {
     height: $select-height !important;
-    padding: 5px 35px 5px 5px !important;
+  }
+}
+*[dir='ltr'] {
+  .select select {
+    padding: 5px 15px 5px 10px;
+  }
+}
+*[dir='rtl'] {
+  .select select {
+    padding: 5px 35px 5px 0px;
   }
 }
 </style>
