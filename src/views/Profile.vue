@@ -5,13 +5,6 @@
         <div class="box is-small">
           <h1 class="title" v-t="'profile.title'" />
 
-          <div
-            class="notification is-warning"
-            v-if="!loadedProfile && debounced"
-          >
-            {{ $t('profile.loadingText') }}
-          </div>
-
           <table class="table" v-if="profile">
             <tbody>
               <tr>
@@ -45,10 +38,7 @@
             </tbody>
           </table>
 
-          <div
-            v-if="loadedProfile && !profile"
-            class="notification is-warning is-light"
-          >
+          <div v-if="!profile" class="notification is-warning is-light">
             {{ $t('profile.translatorMessage') }}
           </div>
 
@@ -85,13 +75,7 @@ import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import { STORAGE_TOKEN } from '@/const'
 import countriesEn from '@/data/countries-en.json'
-
-const languages = {
-  en: 'English',
-  fr: 'Français',
-  es: 'Español',
-  ar: 'عربى'
-}
+import languages from '@/data/languages.json'
 
 export default {
   components: { AppWrapper },
@@ -106,26 +90,12 @@ export default {
       return languages[value]
     }
   },
-  data() {
-    return {
-      profile: null,
-      debounced: false,
-      loadedProfile: false
-    }
-  },
   computed: {
-    ...mapState('api', ['user']),
+    ...mapState('api', ['user', 'profile']),
     countryName() {
       const upperCode = this.profile.country.toUpperCase()
       return (this.profile && countriesEn.countries[upperCode]) || upperCode
     }
-  },
-  async mounted() {
-    setTimeout(() => {
-      this.debounced = true
-    }, 500)
-    this.profile = await this.$store.dispatch('api/getProfile')
-    this.loadedProfile = true
   },
   methods: {
     logout() {

@@ -11,7 +11,8 @@ const state = () => ({
   settings: null,
   apiState: 'init', // 'init' | 'active' | 'error'
   user: null,
-  siteVisitors: 0
+  siteVisitors: 0,
+  profile: null
 })
 
 const agent = axios.create({
@@ -32,6 +33,7 @@ const mutations = {
   settings: (state, settings) => Object.assign(state, { settings }),
   apiState: (state, apiState) => Object.assign(state, { apiState }),
   user: (state, user) => Object.assign(state, { user }),
+  profile: (state, profile) => Object.assign(state, { profile }),
 
   speakers: (state, speakers) => Object.assign(state, { speakers }),
   themes: (state, themes) => Object.assign(state, { themes }),
@@ -61,6 +63,8 @@ const actions = {
       ...agent.defaults.headers,
       Authorization: `Bearer ${token}`
     }
+
+    dispatch('getProfile')
 
     commit('user', user)
     return dispatch('fetchData')
@@ -125,10 +129,10 @@ const actions = {
 
     return response.status === 200
   },
-  async getProfile() {
+  async getProfile({ commit }) {
     const response = await agent.get('/me')
     if (response.status !== 200) return null
-    return response.data.user
+    commit('profile', response.data.user)
   },
   async unregister() {
     const response = await agent.delete('/me')
