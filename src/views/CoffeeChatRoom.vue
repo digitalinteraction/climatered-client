@@ -99,18 +99,47 @@
             {{ $t('coffeechatroom.joiningInfo') }}
           </h3>
           <p>{{ roomLink }}</p>
+          <button
+            class="button is-outlined is-fullwidth"
+            @click="copyToClipboard(roomLink)"
+          >
+            <span class="icon">
+              <fa icon="copy" />
+            </span>
+            <span v-if="!showLinkCopied">{{
+              $t('coffeechatroom.copyJoinText')
+            }}</span>
+            <span v-if="showLinkCopied">{{
+              $t('coffeechatroom.copiedJoinInfo')
+            }}</span>
+          </button>
           <h3
             class="is-size-5 has-text-weight-semibold"
             v-if="peerContactDetails.length > 0"
           >
+            <hr />
             {{ $t('coffeechatroom.contactDetails') }}
           </h3>
-          <p v-for="(c, i) in peerContactDetails" :key="`cd-${i}`">
+          <div
+            class="columns is-multiline is-gapless"
+            v-for="(c, i) in peerContactDetails"
+            :key="`cd-${i}`"
+          >
+            <div class="column is-12">
+              <!-- <h3 class="has-text-weight-semibold">{{ $t('register.name.label') }}:</h3> -->
+              <p>{{ c.name }}</p>
+            </div>
+            <div class="column is-12">
+              <!-- <h3 class="has-text-weight-semibold">{{ $t('login.email.label') }}:</h3> -->
+              <a :href="`mailto:${c.email}`">{{ c.email }}</a>
+            </div>
+          </div>
+          <!-- <p v-for="(c, i) in peerContactDetails" :key="`cd-${i}`">
             <b class="is-size-7">{{ $t('register.name.label') }}:</b><br />
             {{ c.name }}<br />
             <b class="is-size-7">{{ $t('login.email.label') }}:</b><br />
             <a :href="`mailto:${c.email}`">{{ c.email }}</a>
-          </p>
+          </p> -->
         </div>
       </div>
       <div class="local-camera" v-if="localMediaStream">
@@ -167,6 +196,8 @@ import AppWrapper from '@/components/AppWrapper.vue'
 import WebRTCVideo from '@/components/WebRTCVideo.vue'
 import CoffeeChatRoom from '../coffee-chat/coffee-chat-room'
 import { ROUTE_COFFEE_CHAT } from '../const'
+import copy from 'copy-to-clipboard'
+
 export default {
   components: { AppWrapper, WebRTCVideo },
   props: {
@@ -196,7 +227,8 @@ export default {
       roomLink: window.location,
       joiningInfoWindowActive: false,
       showNotification: false,
-      userMediaError: null
+      userMediaError: null,
+      showLinkCopied: false
     }
   },
   async mounted() {
@@ -346,6 +378,13 @@ export default {
       const msg = this.$i18n.t('coffeechatroom.confirmLeaveText')
       if (!confirm(msg)) return
       this.$router.push({ name: ROUTE_COFFEE_CHAT })
+    },
+    copyToClipboard(link) {
+      copy(link)
+      this.showLinkCopied = true
+      setTimeout(() => {
+        this.showLinkCopied = false
+      }, 1000)
     }
   }
 }
@@ -390,8 +429,27 @@ export default {
   }
 
   .info-text {
-    padding-left: 1rem;
+    padding: 0 1rem;
     display: inline-block;
+    hr {
+      height: 0.5px;
+      margin: 1rem 0;
+    }
+    .button {
+      margin-top: 0.5rem;
+      color: white;
+      border-color: none;
+      border: none;
+      background-color: rgba($color: #000000, $alpha: 0);
+      margin-bottom: 0;
+      justify-content: start;
+    }
+    .button:active {
+      background-color: rgba($color: #ffffff, $alpha: 0.25);
+    }
+    .button:hover {
+      background-color: rgba($color: #ffffff, $alpha: 0.25);
+    }
   }
 
   .info-circle-icon {
@@ -472,6 +530,10 @@ export default {
   }
   .button:active {
     border-color: rgb(219, 219, 219);
+    background-color: rgba($color: #ffffff, $alpha: 0.25);
+  }
+  .button:hover {
+    background-color: rgba($color: #ffffff, $alpha: 0.25);
   }
   .leave-button {
     svg {

@@ -122,8 +122,10 @@ coffeechatroom:
   waitingForPartner: Waiting for your partner to join
   joiningInfo: Joining Info
   contactDetails: Contact Details
-  shareContactDetails: Share Contact Details
+  shareContactDetails: Share contact details
   confirmLeaveText: Are you sure you would like to leave this Coffee Chat?
+  copyJoinText: Copy Join Info
+  copiedJoinInfo: Copied Join Info!
   userMediaErrors:
     generalError: We're having trouble turning your webcam on
     devicesNotFoundError: check that your webcam is plugged in
