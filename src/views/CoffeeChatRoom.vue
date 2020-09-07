@@ -279,6 +279,11 @@ export default {
     },
     enterLocalVideo() {
       this.showControls = true
+      this.$gtag.event('started', {
+        event_category: 'coffee-chat',
+        event_label: 'User entered a coffee chat',
+        value: 0
+      })
     },
     toggleMute() {
       this.muted = !this.muted
@@ -305,6 +310,11 @@ export default {
       this.contactDetails = {
         email: this.user.sub
       }
+      this.$gtag.event('shared-contact', {
+        event_category: 'coffee-chat',
+        event_label: 'User shared contact details',
+        value: 0
+      })
       this.sendStateToPeers()
     },
     sendStateToPeers() {
