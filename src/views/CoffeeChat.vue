@@ -212,7 +212,6 @@ export default {
     return {
       peers: 0,
       isWaiting: false,
-      themeList: [],
       filters: {
         languages: {
           isActive: false,
