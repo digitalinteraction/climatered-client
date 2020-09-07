@@ -70,20 +70,21 @@
           </h2>
         </div>
       </div>
-      <div class="grid-container">
-        <transition-group name="pop-in">
-          <div
-            class="grid-item"
-            v-for="(remoteStream, user) in remoteStreams"
-            :key="`media-${user}`"
-          >
+      <div :class="`grid-container grid-item-count-${remoteStreamsLength}`">
+        <div
+          v-for="(remoteStream, user, i) in remoteStreams"
+          :key="`media-${user}`"
+          :class="`grid-item gi-${i}`"
+        >
+          <transition-group name="pop-in">
             <WebRTCVideo
-              class="remote-video remote-video-1"
+              class="remote-video"
+              :key="`rv-${i}`"
               :media-stream="remoteStream.mediaStream"
               :muted="remoteStream.muted"
             />
-          </div>
-        </transition-group>
+          </transition-group>
+        </div>
       </div>
       <div class="share-box has-text-white">
         <div
@@ -181,6 +182,9 @@ export default {
       return Object.keys(this.userState)
         .map(user => this.userState[user].contact)
         .filter(c => c)
+    },
+    remoteStreamsLength() {
+      return Object.keys(this.remoteStreams).length
     }
   },
   data() {
@@ -414,12 +418,113 @@ export default {
   width: 100%;
   height: 100%;
   display: grid;
-  // grid-template-columns: 50% 50%;
-  // grid-template-rows: 100% 100%;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  &.grid-item-count-1 {
+    grid-template-areas: 'gi-0';
+  }
+  &.grid-item-count-2 {
+    grid-template-areas: 'gi-0 gi-1';
+    @include mobile {
+      grid-template-areas:
+        'gi-0'
+        'gi-1';
+    }
+  }
+  &.grid-item-count-3 {
+    grid-template-areas:
+      'gi-0 gi-2'
+      'gi-1 gi-2';
+    @include mobile {
+      grid-template-areas:
+        'gi-2 gi-2'
+        'gi-0 gi-1';
+    }
+  }
+  &.grid-item-count-4 {
+    grid-template-areas:
+      'gi-0 gi-2'
+      'gi-1 gi-3';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3';
+    }
+  }
+  &.grid-item-count-5 {
+    grid-template-areas:
+      'gi-0 gi-2 gi-4'
+      'gi-1 gi-3 gi-4';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3'
+        'gi-4 gi-4';
+    }
+  }
+  &.grid-item-count-6 {
+    grid-template-areas:
+      'gi-0 gi-2 gi-4'
+      'gi-1 gi-3 gi-5';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3'
+        'gi-4 gi-5';
+    }
+  }
+  &.grid-item-count-7 {
+    grid-template-areas:
+      'gi-0 gi-2 gi-4 gi-6'
+      'gi-1 gi-3 gi-5 gi-6';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3'
+        'gi-4 gi-5'
+        'gi-6 gi-6';
+    }
+  }
+  &.grid-item-count-8 {
+    grid-template-areas:
+      'gi-0 gi-2 gi-4 gi-6'
+      'gi-1 gi-3 gi-5 gi-7';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3'
+        'gi-4 gi-5'
+        'gi-6 gi-7';
+    }
+  }
   .grid-item {
     height: 100%;
     width: 100%;
     overflow-y: hidden;
+    &.gi-0 {
+      grid-area: gi-0;
+    }
+    &.gi-1 {
+      grid-area: gi-1;
+    }
+    &.gi-2 {
+      grid-area: gi-2;
+    }
+    &.gi-3 {
+      grid-area: gi-3;
+    }
+    &.gi-4 {
+      grid-area: gi-4;
+    }
+    &.gi-5 {
+      grid-area: gi-5;
+    }
+    &.gi-6 {
+      grid-area: gi-6;
+    }
+    &.gi-7 {
+      grid-area: gi-7;
+    }
   }
 }
 
