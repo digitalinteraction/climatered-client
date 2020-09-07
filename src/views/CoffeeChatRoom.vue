@@ -192,6 +192,11 @@ export default {
     if (this.coffeeChat !== null) {
       this.coffeeChat.destroy()
     }
+    if (this.localMediaStream) {
+      this.localMediaStream.getTracks().forEach(t => {
+        t.stop()
+      })
+    }
   },
   methods: {
     async setupMedia() {
