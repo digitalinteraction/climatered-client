@@ -283,48 +283,13 @@ export default {
             remoteStream.muted = false
           } else {
             remoteStream = this.remoteStreams[fromUser]
+            this.sendStateToPeers()
           }
           remoteStream.mediaStream.addTrack(
             remoteTrack,
             remoteStream.mediaStream
           )
           this.$set(this.remoteStreams, fromUser, remoteStream)
-          this.$set(this.remoteStreams, fromUser + 'sdf', remoteStream)
-          this.$set(
-            this.remoteStreams,
-            fromUser + 'sfoisjdofisdof1',
-            remoteStream
-          )
-          this.$set(
-            this.remoteStreams,
-            fromUser + 'sfoisjdofisdof2',
-            remoteStream
-          )
-          this.$set(
-            this.remoteStreams,
-            fromUser + 'sfoisjdofisdof3',
-            remoteStream
-          )
-          this.$set(
-            this.remoteStreams,
-            fromUser + 'sfoisjdofisdof4',
-            remoteStream
-          )
-          this.$set(
-            this.remoteStreams,
-            fromUser + 'sfoisjdofisdof5',
-            remoteStream
-          )
-          this.$set(
-            this.remoteStreams,
-            fromUser + 'sfoisjdofisdof6',
-            remoteStream
-          )
-          this.$set(
-            this.remoteStreams,
-            fromUser + 'sfoisjfsdfdofisdof6',
-            remoteStream
-          )
         },
         (fromUser, s) => {
           if (this.remoteStreams[fromUser]) {
