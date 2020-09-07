@@ -283,7 +283,6 @@ export default {
             remoteStream.muted = false
           } else {
             remoteStream = this.remoteStreams[fromUser]
-            this.sendStateToPeers()
           }
           remoteStream.mediaStream.addTrack(
             remoteTrack,
