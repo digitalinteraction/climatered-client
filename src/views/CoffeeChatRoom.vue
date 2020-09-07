@@ -238,7 +238,6 @@ export default {
         this.videoEnabled = true
       } catch (err) {
         //log to console first
-        console.log(err) /* handle the error */
         if (err.name == 'NotFoundError' || err.name == 'DevicesNotFoundError') {
           //required track is missing
           this.userMediaError = 'DevicesNotFoundError'
@@ -295,7 +294,6 @@ export default {
           if (this.remoteStreams[fromUser]) {
             this.remoteStreams[fromUser].muted = s.muted
           }
-          console.log(this)
           const oldLen = this.peerContactDetails.length
           this.$set(this.userState, fromUser, s)
           if (this.peerContactDetails.length > oldLen)
@@ -329,7 +327,6 @@ export default {
     },
     toggleCamera() {
       this.videoEnabled = !this.videoEnabled
-      console.log('localmediastream is', this.localMediaStream.active)
       if (this.localMediaStream.active) {
         let track = null
         this.localMediaStream.getTracks().forEach(t => {
