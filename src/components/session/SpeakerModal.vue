@@ -1,12 +1,9 @@
 <template>
   <div id="speaker-modal">
     <!-- Modal wrapper -->
-    <div :class="['modal', { 'is-active': speaker }]">
+    <div :class="['modal', { 'is-active': visible }]">
       <!-- Modal background -->
-      <div
-        class="modal-background"
-        @click="$emit('update:speaker', undefined)"
-      ></div>
+      <div class="modal-background" @click="closeModal()"></div>
 
       <!-- Modal content -->
       <div class="modal-content" v-if="speaker">
@@ -32,7 +29,7 @@
               {{ localeBio }}
             </div>
             <a
-              @click="$emit('update:speaker', undefined)"
+              @click="closeModal()"
               class="button is-danger is-small is-pulled-right"
               aria-label="close"
             >
@@ -43,7 +40,7 @@
 
         <!-- Fixed close modal button -->
         <button
-          @click="$emit('update:speaker', undefined)"
+          @click="closeModal()"
           class="modal-close is-large"
           aria-label="close"
         >
@@ -56,18 +53,18 @@
 
 <script>
 import { pickCdn } from '@/utils'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'SpeakerModal',
-  props: {
-    speaker: {
-      type: Object,
-      required: false,
-      default: () => {
-        return undefined
-      }
-    }
-  },
   computed: {
+    ...mapGetters('modals', ['modalVisible', 'modalData', 'modalType']),
+    visible() {
+      return this.modalVisible && this.modalType === 'speaker'
+    },
+    speaker() {
+      return this.modalData
+    },
     localeRole() {
       return this.speaker.role[this.$i18n.locale]
     },
@@ -76,6 +73,11 @@ export default {
     },
     imageUrl() {
       return pickCdn() + this.speaker.headshot
+    }
+  },
+  methods: {
+    closeModal() {
+      this.$store.dispatch('modals/closeModal')
     }
   }
 }

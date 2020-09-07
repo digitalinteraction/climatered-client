@@ -29,7 +29,11 @@
     <SessionAttributes :session="session" @show-modal="$emit('show-modal')" />
 
     <!-- Speakers -->
-    <SessionSpeakers :session="session" :is-padded="true" />
+    <SessionSpeakers
+      :session="session"
+      :is-padded="true"
+      :is-interactive="true"
+    />
 
     <!-- Actions -->
     <SessionActions

@@ -4,6 +4,9 @@
     <!-- TODO: Add further details to modal and reenable click action -->
     <!-- <SessionAttributesModal :session.sync="modalSession" /> -->
 
+    <!-- Modal for displaying detailed information about a speaker -->
+    <SpeakerModal />
+
     <div class="schedule">
       <!-- Page header -->
       <SchedulePageHeader class="is-light">
@@ -115,6 +118,7 @@ import ScheduleFiltersMixins from '@/mixins/ScheduleFiltersMixins.js'
 
 // Components
 import AppWrapper from '@/components/AppWrapper.vue'
+import SpeakerModal from '@/components/session/SpeakerModal.vue'
 import ScheduleFilters from '@/components/schedule/ScheduleFilters.vue'
 import SchedulePageHeader from '@/components/schedule/SchedulePageHeader.vue'
 import ScheduleSectionHeader from '@/components/schedule/ScheduleSectionHeader.vue'
@@ -150,6 +154,7 @@ export default {
   mixins: [ScheduleFiltersMixins],
   components: {
     AppWrapper,
+    SpeakerModal,
     ScheduleFilters,
     SchedulePageHeader,
     ScheduleSectionHeader,

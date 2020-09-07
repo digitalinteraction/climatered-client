@@ -2,7 +2,7 @@
   <AppWrapper>
     <div class="session" v-if="session">
       <!-- Modal for displaying detailed information about a speaker -->
-      <SpeakerModal :speaker.sync="currentSpeaker" />
+      <SpeakerModal />
 
       <!-- Session navigation -->
       <div class="session-navigation is-clearfix">
@@ -160,7 +160,6 @@
                   :session="session"
                   :is-padded="false"
                   :is-interactive="true"
-                  :current-speaker.sync="currentSpeaker"
                 />
               </section>
 
@@ -278,7 +277,6 @@ export default {
       forcedStateIndex: -1,
       availableStates: ['future', 'soon', 'present', 'past'],
       forceActiveSessionState: false,
-      currentSpeaker: undefined,
       currentTime: Date.now(),
       scheduleRoute: { name: ROUTE_SCHEDULE }
     }
