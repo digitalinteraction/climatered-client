@@ -123,7 +123,17 @@ export default {
         this.broadcastState = newState
       },
       (arrayBuffer, sampleRate) => {
-        this.$socket.emitBinary('send-interpret', { arrayBuffer, sampleRate })
+        this.$socket.emitBinary(
+          'send-interpret',
+          { arrayBuffer, sampleRate },
+          async done => {
+            if (done !== true) {
+              await this.stop()
+              this.error = 'data-error'
+              alert('Something went wrong, please refresh and try again')
+            }
+          }
+        )
       }
     )
     this.fetchDevices()
