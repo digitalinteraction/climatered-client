@@ -1,5 +1,5 @@
 <template>
-  <AppWrapper>
+  <AppWrapper :show-footer="false">
     <div class="wrapper">
       <div
         class="joining-message"
@@ -166,6 +166,7 @@ import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import WebRTCVideo from '@/components/WebRTCVideo.vue'
 import CoffeeChatRoom from '../coffee-chat/coffee-chat-room'
+import { ROUTE_COFFEE_CHAT } from '../const'
 export default {
   components: { AppWrapper, WebRTCVideo },
   props: {
@@ -342,7 +343,9 @@ export default {
       })
     },
     leave() {
-      this.$router.go(-1)
+      const msg = this.$i18n.t('coffeechatroom.confirmLeaveText')
+      if (!confirm(msg)) return
+      this.$router.push({ name: ROUTE_COFFEE_CHAT })
     }
   }
 }

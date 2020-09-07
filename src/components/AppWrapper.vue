@@ -119,7 +119,7 @@
     <div class="app-page" v-if="hasData">
       <slot />
     </div>
-    <AppFooter class="app-footer" />
+    <AppFooter v-if="showFooter" class="app-footer" />
   </div>
 </template>
 
@@ -196,6 +196,9 @@ const nav = [
 export default {
   mixins: [NavigationMixin],
   components: { AppFooter, SideTabs, LanguageControl },
+  props: {
+    showFooter: { type: Boolean, default: true }
+  },
   data() {
     return {
       showingMenu: false,
