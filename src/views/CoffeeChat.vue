@@ -359,6 +359,9 @@ export default {
   background-color: $greyish;
   color: #ffffff;
   padding-top: 15vh;
+  background-image: url('/img/bg-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: top;
   @include mobile {
     padding-top: 5vh;
   }

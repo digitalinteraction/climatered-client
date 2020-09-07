@@ -480,6 +480,9 @@ export default {
   left: 0;
   right: 0;
   background-color: $greyish;
+  background-image: url('/img/bg-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: top;
 }
 
 .grid-container {
