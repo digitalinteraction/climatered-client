@@ -2,13 +2,11 @@
   <InterpretWrapper>
     <div class="interpret" v-if="session && slot">
       <div class="interpret-navbar">
-        <router-link
+        <BackButton
           :to="interpretHomeRoute"
-          class="button is-text"
-          active-class=""
-        >
-          {{ $t('general.backTo', [$t('interpretHome.title')]) }}
-        </router-link>
+          :text="$t('general.backTo', [$t('interpretHome.title')])"
+        />
+
         <span class="keyvalue">
           <span class="keyvalue-key" v-t="'interpret.sessionLabel'" />
           <span class="keyvalue-value">{{ localeSessionTitle }}</span>
@@ -48,6 +46,7 @@ import { mapState } from 'vuex'
 import { ROUTE_INTERPRET_HOME } from '@/const'
 import { getTranslation } from '@/utils'
 
+import BackButton from '@/components/BackButton.vue'
 import InterpretWrapper from '@/components/interpret/InterpretWrapper.vue'
 
 import InterpretControls from '@/components/interpret/InterpretControls.vue'
@@ -71,6 +70,7 @@ const content = {
 
 export default {
   components: {
+    BackButton,
     InterpretWrapper,
     InterpretControls,
     InterpretPanel

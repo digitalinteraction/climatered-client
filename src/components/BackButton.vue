@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="to" class="button is-text">
+  <router-link :to="to" class="button is-text" active-class="">
     <span class="icon ltr-only">
       <fa :icon="['fas', 'arrow-left']" />
     </span>
