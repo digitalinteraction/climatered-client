@@ -263,7 +263,8 @@ export default {
 
 .app-wrapper {
   position: relative;
-  min-height: 100vh;
+  // min-height: 100vh;
+  min-height: calc(100vh - #{$navbar-height});
   display: flex;
   flex-direction: column;
 }
@@ -333,6 +334,41 @@ $tri-width: $tabbar-width / 2;
     }
   }
 }
+
+// This was a result of merging Rob's changes with Ed's changes (from Andy G)
+// @include desktop {
+//   .app-tabbar {
+//     position: absolute;
+//     top: $navbar-height;
+//     bottom: 0;
+//     width: $tabbar-width;
+//     z-index: $z-appwrapper-tabbar;
+
+//     @include insetInlineStart(0);
+
+//     // inset-inline-start: 0;
+//     border-inline-end: 1px solid $black;
+
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .app-page {
+//     margin-inline-start: $tabbar-width;
+//   }
+//   .navbar-start {
+//     display: none;
+//   }
+// }
+
+// @include touch {
+//   .app-tabbar {
+//     display: none;
+//   }
+// }
+// .app-tabbar {
+//   background: #252525;
+//   z-index: 2;
+// }
 
 @include touch {
   .ifrc-branding {

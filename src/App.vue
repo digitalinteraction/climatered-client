@@ -95,7 +95,6 @@ export default {
 
 @include tablet {
   #app {
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

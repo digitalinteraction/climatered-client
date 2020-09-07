@@ -22,6 +22,7 @@ import {
   faPeopleArrows, // Connect
   faUsers, // Panel
   faMicrophone, // Speakers / Propose a speaker
+  faMicrophoneSlash,
   faPlus,
   faCalendarPlus,
   faSearch,
@@ -33,6 +34,7 @@ import {
   faSave,
   faCircle,
   faCubes,
+  faInfoCircle,
   faArrowLeft,
   faEnvelope,
   faUserPlus,
@@ -42,6 +44,9 @@ import {
   faCheck,
   faUser,
   faFire,
+  faPhone,
+  faVideo,
+  faVideoSlash,
   faExternalLinkAlt,
   faExclamationTriangle,
   faCopy
@@ -70,6 +75,7 @@ library.add(
   faPeopleArrows,
   faUsers,
   faMicrophone,
+  faMicrophoneSlash,
   faPlus,
   faCalendarPlus,
   faSearch,
@@ -81,6 +87,7 @@ library.add(
   faSave,
   faCircle,
   faCubes,
+  faInfoCircle,
   faArrowLeft,
   faEnvelope,
   faUserPlus,
@@ -90,6 +97,9 @@ library.add(
   faCheck,
   faUser,
   faFire,
+  faPhone,
+  faVideo,
+  faVideoSlash,
   faExternalLinkAlt,
   faExclamationTriangle,
   faCopy

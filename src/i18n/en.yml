@@ -97,6 +97,50 @@ sessions:
 
 coffeechat:
   title: Coffee chat
+  filterResults: Active Participants
+  heading: Are you ready?
+  body: We'll use the settings below to match you with another Climate:Red attendee. Click the button below to video chat with another attendee.
+  readyBtn: Ready
+  waitingBtn: Waiting
+  joiningBtn: Joining
+  filters:
+    languageResults: Language(s)
+    themeResults: Theme(s)
+    anyOption: Any
+    languageSelector: Select languages
+    themeSelector: Select themes
+    clear: Clear
+    save: Save
+    languages:
+      EN: English
+      FR: Française
+      ES: Español
+      AR: العربية
+    themes:
+      health: Health
+      earlyWarningEarlyAction: Early Warning Early Action
+      conflict: Conflict
+      urban: Urban
+      climateSmartDdr: Climate Smart DDR
+
+coffeechatroom:
+  title: Coffee chat
+  waitingForPartner: Waiting for your partner to join
+  joiningInfo: Joining Info
+  shareContactDetails: share contact details
+  userMediaErrors:
+    generalError: We're having trouble turning your webcam on
+    devicesNotFoundError: check that your webcam is plugged in
+    trackStartError: your webcam or mic are already in use in another application
+    constraintNotSatisfiedError: click the button below to retry
+    typeError: click the button below to retry
+    unknownError: click the button below to retry
+    retryButtonText: enable camera & mic
+    instructions:
+      safari: Open Safari Preferences > Navigate to Websites > Go to Camera and Microphone tabs > Change access to Allow > Restart Safari
+      chrome: Click the camera blocked icon in your browser's address bar and then refresh the page
+      firefox: Click the camera blocked icon in your browser's address bar and click the cross to enable mic and camera then refresh the page
+      edge: Click the lock icon in your browser's address bar > Click 'Site Permissions' > Click Reset Permissions > Restart browser page
 
 help:
   title: Help
@@ -150,7 +194,7 @@ cookies:
   rejectAction: Disable analytics
   content: |
     We use necessary cookies to make the site work.
-    We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits. 
+    We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits.
     You can change your preference by clicking {0} in the site footer.
 
 interpretHome:

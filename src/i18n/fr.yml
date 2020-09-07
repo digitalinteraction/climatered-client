@@ -83,6 +83,15 @@ sessions:
 
 coffeechat:
   title: Causerie Café
+  filters:
+    languages:
+      EN: English
+      FR: Française
+      ES: Español
+      AR: العربية
+
+coffeechatroom:
+  title: Causerie Café
 
 help:
   title: Aide
