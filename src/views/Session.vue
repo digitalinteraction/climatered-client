@@ -1,6 +1,6 @@
 <template>
   <AppWrapper>
-    <div class="session" v-if="session">
+    <div class="session" v-if="session && !redirecting">
       <!-- Modal for displaying detailed information about a speaker -->
       <SpeakerModal />
 
@@ -208,17 +208,19 @@
         </div>
       </div>
     </div>
-    <div v-else class="session-not-found">
-      <div class="buttons">
-        <BackButton
-          :to="scheduleRoute"
-          :text="$t('general.backTo', [$t('schedule.title')])"
-        />
-      </div>
-      <div class="box is-small">
-        <div slot="content" class="content">
-          <h1 v-t="'notFound.title'" />
-          <p v-t="'notFound.info'" />
+    <div>
+      <div v-if="!session && !redirecting" class="session-not-found">
+        <div class="buttons">
+          <BackButton
+            :to="scheduleRoute"
+            :text="$t('general.backTo', [$t('schedule.title')])"
+          />
+        </div>
+        <div class="box is-small">
+          <div slot="content" class="content">
+            <h1 v-t="'notFound.title'" />
+            <p v-t="'notFound.info'" />
+          </div>
         </div>
       </div>
     </div>
@@ -230,7 +232,7 @@ import marked from 'marked'
 import { mapState } from 'vuex'
 import { pickCdn } from '@/utils'
 
-import { ROUTE_SCHEDULE } from '@/const'
+import { ROUTE_SCHEDULE, ROUTE_SESSION } from '@/const'
 
 // Components
 import AppWrapper from '@/components/AppWrapper.vue'
@@ -272,8 +274,26 @@ export default {
   props: {
     sessionSlug: { type: String, required: true }
   },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      const proxyUrl = vm.session && vm.session.proxyUrl
+      if (proxyUrl) {
+        vm.redirecting = true
+        if (proxyUrl.startsWith('http')) {
+          document.location = proxyUrl
+        } else {
+          next({
+            name: ROUTE_SESSION,
+            params: { sessionSlug: proxyUrl },
+            replace: true
+          })
+        }
+      }
+    })
+  },
   data() {
     return {
+      redirecting: false,
       forcedStateIndex: -1,
       availableStates: ['future', 'soon', 'present', 'past'],
       forceActiveSessionState: false,

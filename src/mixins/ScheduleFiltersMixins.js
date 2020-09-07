@@ -1,6 +1,7 @@
 export default {
   methods: {
     applySearchQuery(sessions) {
+      const start = Date.now()
       let query = this.searchQuery
       if (!query || query.length === 0) {
         return sessions
@@ -19,23 +20,12 @@ export default {
             .toLowerCase()
             .includes(query)
 
-          for (const speaker of s.speakers) {
-            // TODO: Currently only searching by speaker slug e.g. 'prince-charles'
-            if (
-              speaker
-                .split('-')
-                .join(' ')
-                .toLowerCase()
-                .includes(
-                  query
-                    .toLowerCase()
-                    .split(' ')
-                    .join('')
-                )
-            ) {
-              speakerHasMatched = true
-            }
-          }
+          speakerHasMatched = s.speakers
+            .join('-')
+            .split('-')
+            .join(' ')
+            .toLowerCase()
+            .includes(query.toLowerCase())
 
           if (titleHasMatched || contentHasMatched || speakerHasMatched) {
             hasMatched = true
@@ -43,6 +33,8 @@ export default {
         }
         return hasMatched
       })
+      const end = Date.now()
+      console.log('time', parseInt(end) - parseInt(start))
       return sessions
     },
     applyFilters(sessions) {

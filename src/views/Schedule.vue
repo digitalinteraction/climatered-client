@@ -83,8 +83,8 @@
                   <div class="sessions-wrapper">
                     <!-- Main sessions -->
                     <SessionTile
-                      v-for="session in filteredSessionsForSlot(scheduleSlot)"
-                      :key="session.id"
+                      v-for="session in sessionsForSlot(scheduleSlot, false)"
+                      :key="session.slug"
                       :schedule-slot="scheduleSlot"
                       :slot-state="slotState(scheduleSlot)"
                       :session="session"
@@ -95,7 +95,7 @@
                     <ScheduleWorkshops
                       :schedule-slot="scheduleSlot"
                       :slot-state="slotState(scheduleSlot)"
-                      :sessions="filteredWorkshopsForSlot(scheduleSlot)"
+                      :sessions="sessionsForSlot(scheduleSlot, true)"
                       :search-active="searchActive"
                     />
                   </div>
@@ -218,19 +218,21 @@ export default {
         return d.date.getDate() === new Date(this.activeFilters.date).getDate()
       })
     },
-    filteredSlots() {
-      let ordered = this.slots
-      ordered = ordered.sort(function(a, b) {
-        return new Date(a.start) - new Date(b.start)
+    filteredSessions() {
+      let matchedSessions = this.sessions
+
+      // Filter sessions with hideFromSchedule
+      matchedSessions = matchedSessions.filter(s => {
+        return !s.hideFromSchedule
       })
-      ordered = ordered.filter(s => {
-        return (
-          this.filteredSessionsForSlot(s).length +
-            this.filteredWorkshopsForSlot(s).length >
-          0
-        )
-      })
-      return ordered
+
+      // Apply search query
+      matchedSessions = this.applySearchQuery(matchedSessions)
+
+      // Apply filters
+      matchedSessions = this.applyFilters(matchedSessions)
+
+      return matchedSessions
     }
   },
   methods: {
@@ -238,10 +240,7 @@ export default {
       this.modalSession = session
     },
     sessionIsWorkshop(session) {
-      if (workshopTypes.indexOf(session.type) !== -1) {
-        return true
-      }
-      return false
+      return workshopTypes.indexOf(session.type) !== -1
     },
     slotsForDate(date) {
       let ordered = this.slots
@@ -255,13 +254,6 @@ export default {
       })
       ordered = ordered.sort(function(a, b) {
         return new Date(a.start) - new Date(b.start)
-      })
-      ordered = ordered.filter(s => {
-        return (
-          this.filteredSessionsForSlot(s).length +
-            this.filteredWorkshopsForSlot(s).length >
-          0
-        )
       })
       return ordered
     },
@@ -277,52 +269,26 @@ export default {
     slotIsVisible(slot) {
       // Slot visibility is dependent on search and state
       return (
-        this.slotState(slot) !== 'past' ||
+        (this.sessionsForSlot(slot).length > 0 &&
+          this.slotState(slot) !== 'past') ||
         this.pastSessionsVisible ||
         this.searchActive
       )
     },
-    filteredWorkshopsForSlot(slot) {
-      let matchedSessions = this.sessions
-
-      // Filter sessions by slot
-      matchedSessions = matchedSessions.filter(s => {
-        return s.slot === slot.id
-      })
-
-      // Filter sessions for workshops
-      matchedSessions = matchedSessions.filter(s => {
-        return this.sessionIsWorkshop(s)
-      })
-
-      // Apply search query
-      matchedSessions = this.applySearchQuery(matchedSessions)
-
-      // Apply filters
-      matchedSessions = this.applyFilters(matchedSessions)
-
-      return matchedSessions
-    },
-    filteredSessionsForSlot(slot) {
-      let matchedSessions = this.sessions
-
-      // Filter sessions by slot
-      matchedSessions = matchedSessions.filter(s => {
-        return s.slot === slot.id
-      })
-
-      // Filter sessions for non-workshops
-      matchedSessions = matchedSessions.filter(s => {
-        return !this.sessionIsWorkshop(s)
-      })
-
-      // Apply search query
-      matchedSessions = this.applySearchQuery(matchedSessions)
-
-      // Apply filters
-      matchedSessions = this.applyFilters(matchedSessions)
-
-      return matchedSessions
+    sessionsForSlot(slot, workshops = undefined) {
+      return this.filteredSessions
+        .filter(s => {
+          return s.slot === slot.id
+        })
+        .filter(s => {
+          if (workshops) {
+            return this.sessionIsWorkshop(s)
+          } else if (!workshops) {
+            return !this.sessionIsWorkshop(s)
+          } else {
+            return true
+          }
+        })
     }
   }
 }
