@@ -126,6 +126,9 @@ coffeechatroom:
   confirmLeaveText: Are you sure you would like to leave this Coffee Chat?
   copyJoinText: Copy Join Info
   copiedJoinInfo: Copied Join Info!
+  tooManyStreams: |
+    Unfortunately we are unable to provide more than 8 video streams at the same time.
+    Please reduce the number of users in the room or turn off your video feeds to maintain call quality.
   userMediaErrors:
     generalError: We're having trouble turning your webcam on
     devicesNotFoundError: check that your webcam is plugged in
