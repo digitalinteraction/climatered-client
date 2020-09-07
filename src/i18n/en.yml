@@ -283,6 +283,18 @@ session:
     second: second
     seconds: seconds
 
+oneToMany:
+  label: Audio language
+  noVideo: No video to show
+  muteLabel: 'NOTE: To listen in another language, remember to mute the stream above'
+  stopped: stopped
+  playing: playing
+  buffering: buffering {0}
+  ready: ready to play
+  source: From video
+  start: Start
+  stop: Stop
+
 schedule:
   title: Schedule
   description: Browse the available sessions and plan your experience by adding reminders to your calendar.

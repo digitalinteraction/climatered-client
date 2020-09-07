@@ -98,13 +98,6 @@ export class AudioBroadcaster {
   }
 
   handleData(arrayBuffer, inputRate, outputRate) {
-    console.debug(
-      'AudioBroadcaster#handleData byteLength=%d inputRate=%d outputRate=%d',
-      arrayBuffer.byteLength,
-      inputRate,
-      outputRate
-    )
-
     const inputFloats = new Float32Array(arrayBuffer)
 
     const targetLength = resampledLength(
@@ -113,8 +106,22 @@ export class AudioBroadcaster {
       outputRate
     )
 
+    console.debug(
+      'AudioBroadcaster#handleData byteLength=%d inputRate=%d outputRate=%d outputLength=%d',
+      arrayBuffer.byteLength,
+      inputRate,
+      outputRate,
+      targetLength
+    )
+
     const outputFloats = new Float32Array(targetLength)
     resample(inputFloats, outputFloats)
+
+    // const ints = float32ToInt16(outputFloats)
+    console.debug(
+      'AudioBroadcaster#handleData outputLength=%d',
+      outputFloats.buffer.byteLength
+    )
 
     this.onData(arrayBuffer, outputRate)
   }
