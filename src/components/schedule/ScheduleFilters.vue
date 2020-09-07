@@ -9,7 +9,6 @@
               <!-- Search input -->
               <input
                 v-model="query"
-                @change="updateSearchQuery"
                 class="input is-small"
                 type="text"
                 :placeholder="`${$t(`schedule.search`)}`"
@@ -17,9 +16,9 @@
             </p>
             <!-- Search button -->
             <p class="control">
-              <a class="button is-small is-dark">
+              <button class="button is-small is-dark" @click="performSearch">
                 <fa :icon="['fas', 'search']" />
-              </a>
+              </button>
             </p>
           </div>
         </div>
@@ -267,7 +266,7 @@ export default {
   watch: {
     query: {
       handler() {
-        this.$emit('update:searchQuery', this.query)
+        this.performSearch()
       },
       deep: true
     },
@@ -286,7 +285,7 @@ export default {
     }
   },
   methods: {
-    updateSearchQuery() {
+    performSearch() {
       this.$emit('update:searchQuery', this.query)
     },
     toggleFilters() {
