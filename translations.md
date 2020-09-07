@@ -36,6 +36,7 @@
 - `profile.loadingText`
 - `profile.actionLabel`
 - `profile.dangerLabel`
+- `profile.translatorMessage`
 
 - `register.loginLabel`
 - `register.loginAction`

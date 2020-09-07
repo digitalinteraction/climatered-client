@@ -2,6 +2,7 @@ export const ROUTE_ATRIUM = 'Atrium'
 export const ROUTE_SESSIONS = 'Sessions'
 export const ROUTE_SCHEDULE = 'Schedule'
 export const ROUTE_COFFEE_CHAT = 'CoffeeChat'
+export const ROUTE_COFFEE_CHAT_ROOM = 'CoffeeChatRoom'
 export const ROUTE_HELP = 'Help'
 export const ROUTE_PROFILE = 'Profile'
 

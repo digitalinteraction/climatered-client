@@ -46,7 +46,8 @@ export default {
     },
     currentSpeaker: {
       type: Object,
-      required: false
+      required: false,
+      default: undefined
     }
   },
   computed: {

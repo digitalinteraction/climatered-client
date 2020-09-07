@@ -5,10 +5,6 @@
         <div class="box is-small">
           <h1 class="title" v-t="'profile.title'" />
 
-          <div class="notification is-warning" v-if="!profile && debounced">
-            {{ $t('profile.loadingText') }}
-          </div>
-
           <table class="table" v-if="profile">
             <tbody>
               <tr>
@@ -42,6 +38,10 @@
             </tbody>
           </table>
 
+          <div v-if="!profile" class="notification is-warning is-light">
+            {{ $t('profile.translatorMessage') }}
+          </div>
+
           <p class="actions-label" v-t="'profile.actionLabel'" />
 
           <div class="buttons">
@@ -52,15 +52,17 @@
             />
           </div>
 
-          <hr />
+          <template v-if="profile">
+            <hr />
 
-          <p class="actions-label" v-t="'profile.dangerLabel'" />
+            <p class="actions-label" v-t="'profile.dangerLabel'" />
 
-          <button
-            class="button is-danger"
-            @click="deleteProfile"
-            v-t="'profile.deleteButton'"
-          />
+            <button
+              class="button is-danger"
+              @click="deleteProfile"
+              v-t="'profile.deleteButton'"
+            />
+          </template>
         </div>
       </section>
     </div>
@@ -73,13 +75,7 @@ import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import { STORAGE_TOKEN } from '@/const'
 import countriesEn from '@/data/countries-en.json'
-
-const languages = {
-  en: 'English',
-  fr: 'Français',
-  es: 'Español',
-  ar: 'عربى'
-}
+import languages from '@/data/languages.json'
 
 export default {
   components: { AppWrapper },
@@ -94,25 +90,12 @@ export default {
       return languages[value]
     }
   },
-  data() {
-    return {
-      profile: null,
-      debounced: false
-    }
-  },
   computed: {
-    ...mapState('api', ['user']),
+    ...mapState('api', ['user', 'profile']),
     countryName() {
       const upperCode = this.profile.country.toUpperCase()
       return (this.profile && countriesEn.countries[upperCode]) || upperCode
     }
-  },
-  async mounted() {
-    setTimeout(() => {
-      this.debounced = true
-    }, 500)
-    this.profile = await this.$store.dispatch('api/getProfile')
-    if (!this.profile) alert('Something went wrong')
   },
   methods: {
     logout() {

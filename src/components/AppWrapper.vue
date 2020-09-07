@@ -46,8 +46,11 @@ export default {
 
 <style lang="scss" scoped>
 .app-wrapper {
+  // fall back to 100% on IE
+  min-height: calc(100% - #{$navbar-height});
+  min-height: calc(100vh - #{$navbar-height});
+
   position: relative;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }

@@ -12,7 +12,9 @@ const Sessions = () =>
 const Schedule = () =>
   import(/* webpackChunkName: "attendee" */ '../views/Schedule.vue')
 const CoffeeChat = () =>
-  import(/* webpackChunkName: "attendee" */ '../views/CoffeeChat.vue')
+  import(/* webpackChunkName: "coffee" */ '../views/CoffeeChat.vue')
+const CoffeeChatRoom = () =>
+  import(/* webpackChunkName: "coffee" */ '../views/CoffeeChatRoom.vue')
 const Help = () =>
   import(/* webpackChunkName: "attendee" */ '../views/Help.vue')
 
@@ -50,6 +52,7 @@ import {
   ROUTE_NOT_FOUND,
   ROUTE_SCHEDULE,
   ROUTE_COFFEE_CHAT,
+  ROUTE_COFFEE_CHAT_ROOM,
   ROUTE_HELP,
   ROUTE_PROFILE,
   ROUTE_TERMS,
@@ -96,6 +99,14 @@ const routes = [
     component: CoffeeChat,
     meta: {
       titleKey: 'coffeechat.title'
+    }
+  },
+  {
+    path: '/coffee/:room',
+    name: ROUTE_COFFEE_CHAT_ROOM,
+    component: CoffeeChatRoom,
+    meta: {
+      titleKey: 'coffeechatroom.title'
     }
   },
   {

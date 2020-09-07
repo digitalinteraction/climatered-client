@@ -99,6 +99,15 @@ session:
 
 coffeechat:
   title: دردشة حول فنجان قهوة
+  filters:
+    languages:
+      EN: English
+      FR: Française
+      ES: Español
+      AR: العربية
+
+coffeechatroom:
+  title: دردشة حول فنجان قهوة
 
 help:
   title: المساعدة

@@ -11,6 +11,7 @@ import Content from './plugins/content'
 import Analytics from './plugins/analytics'
 
 import './plugins/icons'
+import './plugins/landbot'
 
 Vue.config.productionTip = false
 

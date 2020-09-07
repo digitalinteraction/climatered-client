@@ -99,6 +99,15 @@ session:
 
 coffeechat:
   title: Conversaciones con café
+  filters:
+    languages:
+      EN: English
+      FR: Française
+      ES: Español
+      AR: العربية
+
+coffeechatroom:
+  title: Conversaciones con café
 
 help:
   title: Ayuda
@@ -149,7 +158,7 @@ cookies:
   rejectAction: Desactivar análisis de datos
   content: |
     Utilizamos las cookies necesarias para que el sitio funcione.
-    Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales. 
+    Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales.
     Puede cambiar su preferencia haciendo clic en {0} en el pie de página del sitio.
 
 schedule:
