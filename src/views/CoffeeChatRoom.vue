@@ -99,6 +99,18 @@
             {{ $t('coffeechatroom.joiningInfo') }}
           </h3>
           <p>{{ roomLink }}</p>
+          <h3
+            class="is-size-5 has-text-weight-semibold"
+            v-if="peerContactDetails.length > 0"
+          >
+            {{ $t('coffeechatroom.contactDetails') }}
+          </h3>
+          <p v-for="(c, i) in peerContactDetails" :key="`cd-${i}`">
+            <b class="is-size-7">{{ $t('register.name.label') }}:</b><br />
+            {{ c.name }}<br />
+            <b class="is-size-7">{{ $t('login.email.label') }}:</b><br />
+            <a :href="`mailto:${c.email}`">{{ c.email }}</a>
+          </p>
         </div>
       </div>
       <div class="local-camera" v-if="localMediaStream">
@@ -143,13 +155,9 @@
         </button>
       </div>
     </div>
-    <div
-      class="notification share-popup has-text-light"
-      v-if="showNotification"
-    >
-      <button class="delete"></button>
-      {{ contactDetails.email }}
-    </div>
+    <a href="https://thinkactivelabs.co.uk" target="_blank">
+      <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
+    </a>
   </AppWrapper>
 </template>
 
@@ -164,9 +172,14 @@ export default {
     timeLimit: { type: Number, default: 0 }
   },
   computed: {
-    ...mapState('api', ['user']),
+    ...mapState('api', ['user', 'profile']),
     browserType() {
       return window.adapter.browserDetails.browser
+    },
+    peerContactDetails() {
+      return Object.keys(this.userState)
+        .map(user => this.userState[user].contact)
+        .filter(c => c)
     }
   },
   data() {
@@ -264,11 +277,16 @@ export default {
           if (this.remoteStreams[fromUser]) {
             this.remoteStreams[fromUser].muted = s.muted
           }
+          console.log(this)
+          const oldLen = this.peerContactDetails.length
           this.$set(this.userState, fromUser, s)
+          if (this.peerContactDetails.length > oldLen)
+            this.joiningInfoWindowActive = true
         },
         fromUser => {
           this.$delete(this.remoteStreams, fromUser)
           this.$delete(this.userState, fromUser)
+          this.contactDetails = null
         }
       )
       const roomId = this.$route.params.room
@@ -300,7 +318,6 @@ export default {
         this.localMediaStream.getTracks().forEach(t => {
           if (t.readyState == 'live' && t.kind === 'video') {
             track = t
-            // console.log('trac', t)
           }
         })
         track.enabled = this.videoEnabled
@@ -308,7 +325,8 @@ export default {
     },
     shareContactDetails() {
       this.contactDetails = {
-        email: this.user.sub
+        email: this.user.sub,
+        name: this.profile.name
       }
       this.$gtag.event('shared-contact', {
         event_category: 'coffee-chat',
@@ -439,6 +457,7 @@ export default {
   padding: 0.5rem;
   width: 200px;
   margin-left: -100px;
+  z-index: 2;
   .button {
     height: 3.5rem;
     width: 3.5rem;
@@ -491,5 +510,15 @@ export default {
 .pop-in-enter,
 .pop-in-leave-to {
   transform: scale(0.25);
+}
+
+.ta-logo {
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  left: 10px;
+  @include mobile {
+    width: 150px;
+  }
 }
 </style>

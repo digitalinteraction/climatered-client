@@ -197,6 +197,9 @@
         </div>
       </section>
     </div>
+    <a href="https://thinkactivelabs.co.uk" target="_blank">
+      <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
+    </a>
   </AppWrapper>
 </template>
 
@@ -494,5 +497,12 @@ export default {
   to {
     transform: rotate(359deg);
   }
+}
+
+.ta-logo {
+  position: absolute;
+  z-index: 1000;
+  bottom: 10px;
+  left: 10px;
 }
 </style>
