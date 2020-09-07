@@ -289,6 +289,7 @@ export default {
             remoteStream.mediaStream
           )
           this.$set(this.remoteStreams, fromUser, remoteStream)
+          this.contactDetails = null
         },
         (fromUser, s) => {
           if (this.remoteStreams[fromUser]) {
@@ -303,7 +304,6 @@ export default {
         fromUser => {
           this.$delete(this.remoteStreams, fromUser)
           this.$delete(this.userState, fromUser)
-          this.contactDetails = null
         }
       )
       const roomId = this.$route.params.room
