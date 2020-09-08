@@ -41,17 +41,19 @@
 export default {
   props: {
     name: { type: String, required: true },
-    labelKey: { type: String, required: true },
+    labelKey: { type: String, default: null },
     value: { type: String, required: true },
     helpKey: { type: String, default: null },
     options: { type: Array, required: true },
     hasError: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
+    fullwidth: { type: Boolean, default: false }
   },
   computed: {
     selectClass() {
       return {
-        'is-danger': this.hasError
+        'is-danger': this.hasError,
+        'is-fullwidth': this.fullwidth
       }
     }
   },

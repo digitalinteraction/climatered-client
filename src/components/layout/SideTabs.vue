@@ -20,13 +20,7 @@ import NavigationMixin from '@/mixins/NavigationMixin.js'
 
 export default {
   name: 'SideTabs',
-  mixins: [NavigationMixin],
-  props: {
-    currentNav: {
-      type: Array,
-      required: true
-    }
-  }
+  mixins: [NavigationMixin]
 }
 </script>
 
@@ -47,37 +41,24 @@ export default {
   }
 }
 
-@include desktop {
-  .app-tabbar {
-    position: fixed;
-    top: $navbar-height;
-    bottom: 0;
-    width: $tabbar-width;
-    z-index: $z-appwrapper-tabbar;
+.app-tabbar {
+  background-color: #252525;
+  position: fixed;
+  top: $navbar-height;
+  bottom: 0;
+  width: $tabbar-width;
+  z-index: $z-appwrapper-tabbar;
 
-    @include insetInlineStart(0);
+  @include insetInlineStart(0);
 
-    display: flex;
-    flex-direction: column;
-  }
-  .app-page {
-    margin-inline-start: $tabbar-width;
-    flex: 1;
-  }
-  .navbar-start {
-    display: none;
-  }
+  display: flex;
+  flex-direction: column;
 }
 
 @include touch {
   .app-tabbar {
     display: none;
   }
-}
-.app-tabbar {
-  background: #111;
-  background-color: #252525;
-  z-index: 2;
 }
 
 .tabbar-item {
@@ -98,6 +79,7 @@ export default {
 
   &[disabled] {
     opacity: 0.3;
+    pointer-events: none;
   }
 
   .tabbar-item-text,

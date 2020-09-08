@@ -49,7 +49,9 @@ import {
   faVideoSlash,
   faExternalLinkAlt,
   faExclamationTriangle,
-  faCopy
+  faCopy,
+  faPlay,
+  faStop
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -102,7 +104,9 @@ library.add(
   faVideoSlash,
   faExternalLinkAlt,
   faExclamationTriangle,
-  faCopy
+  faCopy,
+  faPlay,
+  faStop
 )
 
 //

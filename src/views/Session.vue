@@ -1,8 +1,8 @@
 <template>
   <AppWrapper>
-    <div class="session" v-if="session">
+    <div class="session" v-if="session && !redirecting">
       <!-- Modal for displaying detailed information about a speaker -->
-      <SpeakerModal :speaker.sync="currentSpeaker" />
+      <SpeakerModal />
 
       <!-- Session navigation -->
       <div class="session-navigation is-clearfix">
@@ -160,7 +160,6 @@
                   :session="session"
                   :is-padded="false"
                   :is-interactive="true"
-                  :current-speaker.sync="currentSpeaker"
                 />
               </section>
 
@@ -209,17 +208,19 @@
         </div>
       </div>
     </div>
-    <div v-else class="session-not-found">
-      <div class="buttons">
-        <BackButton
-          :to="scheduleRoute"
-          :text="$t('general.backTo', [$t('schedule.title')])"
-        />
-      </div>
-      <div class="box is-small">
-        <div slot="content" class="content">
-          <h1 v-t="'notFound.title'" />
-          <p v-t="'notFound.info'" />
+    <div>
+      <div v-if="!session && !redirecting" class="session-not-found">
+        <div class="buttons">
+          <BackButton
+            :to="scheduleRoute"
+            :text="$t('general.backTo', [$t('schedule.title')])"
+          />
+        </div>
+        <div class="box is-small">
+          <div slot="content" class="content">
+            <h1 v-t="'notFound.title'" />
+            <p v-t="'notFound.info'" />
+          </div>
         </div>
       </div>
     </div>
@@ -231,7 +232,7 @@ import marked from 'marked'
 import { mapState } from 'vuex'
 import { pickCdn } from '@/utils'
 
-import { ROUTE_SCHEDULE } from '@/const'
+import { ROUTE_SCHEDULE, ROUTE_SESSION } from '@/const'
 
 // Components
 import AppWrapper from '@/components/AppWrapper.vue'
@@ -273,12 +274,29 @@ export default {
   props: {
     sessionSlug: { type: String, required: true }
   },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      const proxyUrl = vm.session && vm.session.proxyUrl
+      if (proxyUrl) {
+        vm.redirecting = true
+        if (proxyUrl.startsWith('http')) {
+          document.location = proxyUrl
+        } else {
+          next({
+            name: ROUTE_SESSION,
+            params: { sessionSlug: proxyUrl },
+            replace: true
+          })
+        }
+      }
+    })
+  },
   data() {
     return {
+      redirecting: false,
       forcedStateIndex: -1,
       availableStates: ['future', 'soon', 'present', 'past'],
       forceActiveSessionState: false,
-      currentSpeaker: undefined,
       currentTime: Date.now(),
       scheduleRoute: { name: ROUTE_SCHEDULE }
     }
@@ -289,8 +307,8 @@ export default {
       return process.env.NODE_ENV === 'development'
     },
     forcedState() {
-      if (!this.isDev) return undefined
       if (/test/i.test(this.sessionSlug)) return 'present'
+      if (!this.isDev) return undefined
       return this.availableStates[this.forcedStateIndex]
     },
     hasLinks() {
@@ -384,7 +402,12 @@ export default {
       return this.isFuture
     },
     showSessionLinks() {
-      return this.isSoon || this.isPresent
+      if (this.isPresent) return true
+
+      const offset = 900000 // 15 minutes
+      const start = new Date(this.slot.start).getTime()
+
+      return this.isSoon && this.currentTime > start - offset
     }
   },
   mounted() {
