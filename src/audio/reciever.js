@@ -1,14 +1,7 @@
 import Vue from 'vue'
-import { resample, resampledLength } from './resample'
+import { resample, resampledLength, int16ToFloat32 } from './resample'
 
-import {
-  AUDIO_BUFFER_SIZE,
-  AUDIO_TRANSPORT_RATE,
-  AUDIO_PLAYBACK_RATE,
-  AUDIO_LOW_LEVEL,
-  AUDIO_RESET_LEVEL,
-  AUDIO_HIGH_LEVEL
-} from '@/const'
+import { AUDIO_PLAYBACK_RATE, AUDIO_LOW_LEVEL, AUDIO_HIGH_LEVEL } from '@/const'
 
 export const RecieverState = {
   inactive: 'inactive',
@@ -21,7 +14,11 @@ export const RecieverState = {
 //
 export class AudioReciever extends Vue {
   _state = RecieverState.inactive
-  playbackRate = AUDIO_PLAYBACK_RATE
+  stats = {}
+
+  get playbackRate() {
+    return this.ctx.sampleRate
+  }
 
   static isSupported() {
     return Boolean(AudioContext)
@@ -32,29 +29,40 @@ export class AudioReciever extends Vue {
   }
   set state(newState) {
     this._state = newState
-    this.$emit('state', newState)
+    this.setStats({ state: newState })
   }
 
   setup() {
     console.debug('AudioReciever#setup')
 
     this.ctx = new AudioContext({
-      sampleRate: AUDIO_TRANSPORT_RATE
+      sampleRate: AUDIO_PLAYBACK_RATE
     })
 
     this.buffers = []
     this.nextPacket = 1
+
+    this.stats = {
+      state: null,
+      bufferSize: 0,
+      input: null,
+      output: null
+    }
+
+    this.state = RecieverState.inactive
+  }
+
+  play() {
     this.state = RecieverState.buffering
 
-    //
-    // Prefil the audio buffer so a mouse click directly starts audio
-    //
-    for (let i = 0; i <= AUDIO_LOW_LEVEL; i++) {
-      this.push({
-        arrayBuffer: new Float32Array(AUDIO_BUFFER_SIZE).buffer,
-        sampleRate: AUDIO_TRANSPORT_RATE
-      })
+    if (this.buffers.length > AUDIO_LOW_LEVEL) {
+      this.state = RecieverState.playing
+      this.unqueueBuffer()
     }
+  }
+
+  stop() {
+    this.state = RecieverState.inactive
   }
 
   teardown() {
@@ -69,16 +77,21 @@ export class AudioReciever extends Vue {
   async push(data) {
     const { arrayBuffer, sampleRate } = data
 
-    console.debug(
-      'AudioReciever#push byteLength=%d',
-      data.arrayBuffer.byteLength
-    )
+    if (!this.ctx) return
 
-    if (this.state === RecieverState.inactive || !this.ctx) return
+    const inputInts = new Int16Array(arrayBuffer)
+    const inputFloats = int16ToFloat32(inputInts)
 
-    const inputFloats = new Float32Array(arrayBuffer)
     const targetLength = resampledLength(
       inputFloats.length,
+      sampleRate,
+      this.playbackRate
+    )
+
+    console.debug(
+      'AudioReciever#push intsLength=%d floatsLength=%d inputRate=%d outputRate=%d',
+      arrayBuffer.byteLength,
+      inputFloats.buffer.byteLength,
       sampleRate,
       this.playbackRate
     )
@@ -97,17 +110,26 @@ export class AudioReciever extends Vue {
       buffer: audioBuffer
     })
 
-    this.$emit('buffer-size', this.buffers.length)
+    this.setStats({
+      input: {
+        byteLength: data.arrayBuffer.byteLength,
+        sampleRate: sampleRate
+      },
+      output: {
+        byteLength: outputFloats.buffer.byteLength,
+        samples: outputFloats.length,
+        sampleRate: this.playbackRate
+      },
+      bufferSize: this.buffers.length
+    })
+  }
 
-    if (
-      this.state === RecieverState.buffering &&
-      this.buffers.length > AUDIO_LOW_LEVEL
-    ) {
-      this.state = RecieverState.playing
-      this.unqueueBuffer()
-    } else if (this.state !== RecieverState.playing) {
-      this.state = RecieverState.buffering
+  setStats(partial) {
+    this.stats = {
+      ...this.stats,
+      ...partial
     }
+    this.$emit('stats', this.stats)
   }
 
   unqueueBuffer() {
@@ -124,7 +146,7 @@ export class AudioReciever extends Vue {
       return
     }
 
-    if (this.buffers.length < AUDIO_RESET_LEVEL) {
+    if (this.state === RecieverState.playing && this.buffers.length < 1) {
       this.state = RecieverState.buffering
       return
     }
@@ -145,7 +167,9 @@ export class AudioReciever extends Vue {
 
     this.buffers = rest
 
-    this.$emit('buffer-size', this.buffers.length)
+    this.setStats({
+      bufferSize: this.buffers.length
+    })
   }
 
   /**

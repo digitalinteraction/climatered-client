@@ -53,7 +53,9 @@ import {
   faCopy,
   faUserFriends,
   faLeaf,
-  faHashtag
+  faHashtag,
+  faPlay,
+  faStop
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -109,7 +111,9 @@ library.add(
   faCopy,
   faUserFriends,
   faLeaf,
-  faHashtag
+  faHashtag,
+  faPlay,
+  faStop
 )
 
 //

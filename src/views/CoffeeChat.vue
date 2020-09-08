@@ -1,5 +1,5 @@
 <template>
-  <AppWrapper>
+  <AppWrapper :show-footer="false">
     <div class="coffee-chat">
       <section class="section">
         <div class="container">
@@ -13,7 +13,7 @@
               <h1 class="title has-text-white">
                 {{ $t('coffeechat.heading') }}
               </h1>
-              <h3 class="is-size-6">
+              <h3 class="is-size-5">
                 {{ $t('coffeechat.body') }}
               </h3>
             </div>
@@ -38,10 +38,10 @@
                 <span
                   class="has-text-weight-bold"
                   v-for="(option, index) in selectedThemes"
-                  :key="option.displayName"
+                  :key="option.value"
                 >
                   <span v-if="index != 0">, </span
-                  >{{ $t(option.displayName) }}</span
+                  >{{ option.translationObject.title[$i18n.locale] }}</span
                 >
                 <span
                   class="has-text-weight-bold"
@@ -140,24 +140,26 @@
                   role="menu"
                 >
                   <div class="dropdown-content">
-                    <div
-                      v-for="(item, key) in filters.themes.options"
-                      :key="item.displayName"
-                    >
-                      <label class="checkbox">
-                        <div
-                          class="dropdown-item"
-                          :class="{
-                            selected: filters.themes.options[key].selected
-                          }"
-                        >
-                          <input
-                            type="checkbox"
-                            v-model="filters.themes.options[key].selected"
-                          />
-                          {{ $t(item.displayName) }}
-                        </div>
-                      </label>
+                    <div class="scroll-container">
+                      <div
+                        v-for="(item, key) in filters.themes.options"
+                        :key="item.value"
+                      >
+                        <label class="checkbox">
+                          <div
+                            class="dropdown-item"
+                            :class="{
+                              selected: filters.themes.options[key].selected
+                            }"
+                          >
+                            <input
+                              type="checkbox"
+                              v-model="filters.themes.options[key].selected"
+                            />
+                            {{ item.translationObject.title[$i18n.locale] }}
+                          </div>
+                        </label>
+                      </div>
                     </div>
                     <hr />
                     <div class="buttons">
@@ -197,13 +199,18 @@
         </div>
       </section>
     </div>
+    <!-- <a href="https://thinkactivelabs.co.uk" target="_blank">
+      <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
+    </a> -->
   </AppWrapper>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import CoffeeChatLobby from '../coffee-chat/coffee-chat-lobby'
 import { ROUTE_COFFEE_CHAT_ROOM } from '../const'
+
 export default {
   components: { AppWrapper },
   data() {
@@ -238,28 +245,7 @@ export default {
         },
         themes: {
           isActive: false,
-          options: [
-            {
-              displayName: 'coffeechat.filters.themes.earlyWarningEarlyAction',
-              value: 'early-warn',
-              selected: false
-            },
-            {
-              displayName: 'coffeechat.filters.themes.conflict',
-              value: 'conflict',
-              selected: false
-            },
-            {
-              displayName: 'coffeechat.filters.themes.urban',
-              value: 'urban',
-              selected: false
-            },
-            {
-              displayName: 'coffeechat.filters.themes.climateSmartDdr',
-              value: 'climate-smart',
-              selected: false
-            }
-          ]
+          options: []
         }
       }
     }
@@ -271,9 +257,10 @@ export default {
         params: { room: roomId }
       })
     })
-    this.queryLobby()
+    this.queryLobby(), this.loadThemes()
   },
   computed: {
+    ...mapState('api', ['themes']),
     selectedLanguages() {
       return this.filters.languages.options.filter(o => o.selected == true)
     },
@@ -290,6 +277,15 @@ export default {
     }
   },
   methods: {
+    loadThemes() {
+      this.themes.forEach(t => {
+        this.filters.themes.options.push({
+          value: t.slug,
+          selected: false,
+          translationObject: t
+        })
+      })
+    },
     clearSelectedLanguages() {
       this.filters.languages.options.map(o => {
         o.selected = false
@@ -365,6 +361,9 @@ export default {
   background-color: $greyish;
   color: #ffffff;
   padding-top: 15vh;
+  background-image: url('/img/bg-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: top;
   @include mobile {
     padding-top: 5vh;
   }
@@ -397,6 +396,11 @@ export default {
     .dropdown-content {
       font-weight: bold;
       border-radius: 0px 0px 4px 4px;
+      .scroll-container {
+        max-height: 15vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
       .selected {
         color: $cc-coral;
       }
@@ -494,5 +498,11 @@ export default {
   to {
     transform: rotate(359deg);
   }
+}
+
+.ta-logo {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
 </style>

@@ -20,20 +20,6 @@
             />
           </div>
         </Stack>
-        <!-- <details>
-          <summary>
-            <span
-              class="controls-label is-toggle"
-              v-t="'interpret.testLabel'"
-            />
-          </summary>
-          <p>
-            Nullam id dolor id nibh ultricies vehicula ut id elit. Maecenas sed
-            diam eget risus varius blandit sit amet non magna. Morbi leo risus,
-            porta ac consectetur ac, vestibulum at eros. Maecenas faucibus
-            mollis interdum. Donec sed odio dui.
-          </p>
-        </details> -->
       </div>
       <div class="column">
         <Stack
@@ -74,63 +60,6 @@
           </button>
         </Stack>
       </div>
-      <!-- <div class="column">
-        <Stack direction="vertical" gap="regular" align="start">
-          <div>
-            <p class="controls-label">
-              {{ $t('interpret.takeoverActionLabel') }}
-            </p>
-            <div class="buttons">
-              <button
-                class="button is-small"
-                @click="plusOne"
-                :disabled="!canRequestTakeover"
-              >
-                {{ $tc('interpret.plusMins', 1) }}
-              </button>
-              <button
-                class="button is-small"
-                @click="plusThree"
-                :disabled="!canRequestTakeover"
-              >
-                {{ $tc('interpret.plusMins', 3) }}
-              </button>
-              <button
-                class="button is-small"
-                @click="plusFive"
-                :disabled="!canRequestTakeover"
-              >
-                {{ $tc('interpret.plusMins', 5) }}
-              </button>
-            </div>
-          </div>
-          <div>
-            <p class="controls-label">
-              {{ $t('interpret.takeoverStatusLabel') }}
-            </p>
-            <p>
-              <template v-if="!request">
-                <span class="tag is-light is-info">No requests</span>
-              </template>
-
-              <template v-if="isLive && request && request.status == 'pending'">
-                <span class="tag is-warning is-info">Request pending</span>
-              </template>
-
-              <template v-if="!isLive && request">
-                <div class="buttons">
-                  <button class="button is-success" @click="acceptRequest">
-                    Accept
-                  </button>
-                  <button class="button is-danger" @click="rejectRequest">
-                    Reject
-                  </button>
-                </div>
-              </template>
-            </p>
-          </div> 
-        </Stack>
-      </div>-->
     </div>
   </div>
 </template>
@@ -194,7 +123,17 @@ export default {
         this.broadcastState = newState
       },
       (arrayBuffer, sampleRate) => {
-        this.$socket.emitBinary('send-interpret', { arrayBuffer, sampleRate })
+        this.$socket.emitBinary(
+          'send-interpret',
+          { arrayBuffer, sampleRate },
+          async done => {
+            if (done !== true) {
+              await this.stop()
+              this.error = 'data-error'
+              alert('Something went wrong, please refresh and try again')
+            }
+          }
+        )
       }
     )
     this.fetchDevices()
@@ -235,8 +174,7 @@ export default {
   methods: {
     async start() {
       try {
-        const { chosenDevice } = await this.broadcaster.start(this.chosenDevice)
-        this.chosenDevice = chosenDevice
+        await this.broadcaster.start(this.chosenDevice)
 
         await this.$store.dispatch('interpret/startLive')
       } catch (error) {
@@ -298,7 +236,7 @@ export default {
           !d.label.match(/bluetooth/i)
       )
 
-      if (audioDevices.length > 0) {
+      if (audioDevices.length > 0 && !this.chosenDevice) {
         this.chosenDevice = (
           audioDevices.find(d => d.id === 'default') ?? audioDevices[0]
         ).deviceId
@@ -348,7 +286,7 @@ export default {
   width: 0.8em;
   height: 0.8em;
   border-radius: 999px;
-  background: #eb0000;
+  background: red;
   margin-inline-end: 0.2em;
 }
 </style>

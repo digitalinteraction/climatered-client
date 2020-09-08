@@ -311,8 +311,8 @@ export default {
       return process.env.NODE_ENV === 'development'
     },
     forcedState() {
-      if (!this.isDev) return undefined
       if (/test/i.test(this.sessionSlug)) return 'present'
+      if (!this.isDev) return undefined
       return this.availableStates[this.forcedStateIndex]
     },
     hasLinks() {

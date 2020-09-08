@@ -1,6 +1,6 @@
 {
   "name": "ifrc-vconf-gui",
-  "version": "0.23.0",
+  "version": "0.26.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

@@ -1,5 +1,5 @@
 import { AUDIO_TRANSPORT_RATE } from '@/const'
-import { resample, resampledLength } from './resample'
+import { resample, resampledLength, float32ToInt16 } from './resample'
 
 export const BroadcastState = {
   active: 'active',
@@ -77,7 +77,7 @@ export class AudioBroadcaster {
       if (event.data.type === 'ondata') {
         this.handleData(
           event.data.buffer,
-          this.getTrackRate(),
+          this.ctx.sampleRate,
           AUDIO_TRANSPORT_RATE
         )
       }
@@ -98,13 +98,6 @@ export class AudioBroadcaster {
   }
 
   handleData(arrayBuffer, inputRate, outputRate) {
-    console.debug(
-      'AudioBroadcaster#handleData byteLength=%d inputRate=%d outputRate=%d',
-      arrayBuffer.byteLength,
-      inputRate,
-      outputRate
-    )
-
     const inputFloats = new Float32Array(arrayBuffer)
 
     const targetLength = resampledLength(
@@ -113,10 +106,25 @@ export class AudioBroadcaster {
       outputRate
     )
 
+    console.debug(
+      'AudioBroadcaster#handleData byteLength=%d inputRate=%d outputRate=%d outputLength=%d',
+      arrayBuffer.byteLength,
+      inputRate,
+      outputRate,
+      targetLength
+    )
+
     const outputFloats = new Float32Array(targetLength)
     resample(inputFloats, outputFloats)
 
-    this.onData(arrayBuffer, outputRate)
+    const ints = float32ToInt16(outputFloats)
+    console.debug(
+      'AudioBroadcaster#handleData floatLength=%d intLength',
+      outputFloats.buffer.byteLength,
+      ints.buffer.byteLength
+    )
+
+    this.onData(ints.buffer, outputRate)
   }
 
   async stop() {

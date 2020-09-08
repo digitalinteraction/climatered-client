@@ -1,6 +1,10 @@
 <template>
-  <div id="webRTCVideoWrapper" :class="{ 'is-rounded': isLocalVideo }">
-    <video ref="webrtc-video" autoplay />
+  <div id="webRTCVideoWrapper">
+    <video
+      ref="webrtc-video"
+      :class="{ 'is-rounded': isLocalVideo }"
+      autoplay
+    />
     <span
       class="mute-button icon is-large has-text-white"
       v-if="muted && !isLocalVideo"
@@ -34,12 +38,20 @@ export default {
 }
 
 video {
+  // object-fit: cover;
+  // position: absolute;
+  // min-width: 100%;
+  // min-height: 100%;
+  // width: auto;
+  // height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  vertical-align: middle;
+  transform: translate(-50%, -50%);
   position: absolute;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  top: 50%;
+  left: 50%;
 }
 
 .is-rounded {
@@ -50,8 +62,9 @@ video {
 .mute-button {
   position: absolute;
   left: 1rem;
-  bottom: 1rem;
+  bottom: 3.5rem;
   border-radius: 2rem;
   background-color: $danger;
+  z-index: 2;
 }
 </style>
