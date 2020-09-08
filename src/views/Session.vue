@@ -46,6 +46,10 @@
         <div class="columns">
           <!-- Main column -->
           <div class="column column-main">
+            <!-- Cover image -->
+            <section v-if="hasCoverImage" class="is-hidden-desktop">
+              <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
+            </section>
             <div class="session-headings">
               <!-- Type -->
               <SessionType
@@ -111,7 +115,7 @@
               </section>
 
               <!-- Cover image -->
-              <section v-if="hasCoverImage">
+              <section v-if="hasCoverImage" class="is-hidden-touch">
                 <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
               </section>
 
@@ -469,7 +473,7 @@ $page-max-width: 1500px;
       padding: 0;
       &.column-main {
         flex-grow: 1;
-        flex-basis: 540px;
+        flex-basis: 440px;
       }
       &.column-side {
         border-inline-start: 1px solid $border;
@@ -477,6 +481,10 @@ $page-max-width: 1500px;
         flex-grow: 0;
         flex-shrink: 1;
         position: relative;
+        @include touch {
+          flex-shrink: 0;
+          flex-basis: 100%;
+        }
       }
     }
   }
@@ -568,6 +576,14 @@ section#cover-image {
   img {
     max-height: 200px;
     max-width: 100%;
+  }
+}
+
+.column-main {
+  #cover-image {
+    max-height: 120px;
+    max-width: 240px;
+    padding: 1.5em 1.5em 0 1.5em;
   }
 }
 
