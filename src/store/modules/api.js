@@ -40,6 +40,11 @@ const getters = {
       s.slot = state.slots.find(s2 => s2.slug === s.slot)
     })
 
+    // Filter sessions with hideFromSchedule
+    featuredSessions = featuredSessions.filter(s => {
+      return !s.hideFromSchedule
+    })
+
     // Filter out old sessions
     featuredSessions = featuredSessions.filter(s => {
       if (!s.slot) return false
