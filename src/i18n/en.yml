@@ -123,6 +123,7 @@ coffeechatroom:
   joiningInfo: Joining Info
   contactDetails: Contact Details
   shareContactDetails: Share contact details
+  sharedContactDetails: Shared!
   confirmLeaveText: Are you sure you would like to leave this Coffee Chat?
   copyJoinText: Copy Join Info
   copiedJoinInfo: Copied Join Info!

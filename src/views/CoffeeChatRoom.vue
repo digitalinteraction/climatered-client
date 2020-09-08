@@ -5,9 +5,6 @@
         class="joining-message"
         v-if="Object.keys(remoteStreams).length == 0"
       >
-        <div class="loading-animation">
-          <LottieAnimation :animation-data="animationData" :loop="true" />
-        </div>
         <h1 class="title has-text-white">
           {{ $t('coffeechatroom.waitingForPartner') }}
         </h1>
@@ -136,20 +133,20 @@
             :key="`cd-${i}`"
           >
             <div class="column is-12">
-              <!-- <h3 class="has-text-weight-semibold">{{ $t('register.name.label') }}:</h3> -->
+              <h3 class="has-text-weight-semibold">
+                {{ $t('register.name.label') }}:
+              </h3>
               <p>{{ c.name }}</p>
             </div>
             <div class="column is-12">
-              <!-- <h3 class="has-text-weight-semibold">{{ $t('login.email.label') }}:</h3> -->
-              <a :href="`mailto:${c.email}`">{{ c.email }}</a>
+              <h3 class="has-text-weight-semibold">
+                {{ $t('login.email.label') }}:
+              </h3>
+              <a class="has-text-white" :href="`mailto:${c.email}`">{{
+                c.email
+              }}</a>
             </div>
           </div>
-          <!-- <p v-for="(c, i) in peerContactDetails" :key="`cd-${i}`">
-            <b class="is-size-7">{{ $t('register.name.label') }}:</b><br />
-            {{ c.name }}<br />
-            <b class="is-size-7">{{ $t('login.email.label') }}:</b><br />
-            <a :href="`mailto:${c.email}`">{{ c.email }}</a>
-          </p> -->
         </div>
       </div>
       <div class="local-camera" v-if="localMediaStream">
@@ -165,7 +162,12 @@
           @click="shareContactDetails"
           :disabled="contactDetails"
         >
-          {{ $t('coffeechatroom.shareContactDetails') }}
+          <p v-if="!sharedContactDetails">
+            {{ $t('coffeechatroom.shareContactDetails') }}
+          </p>
+          <p v-if="sharedContactDetails">
+            {{ $t('coffeechatroom.sharedContactDetails') }}
+          </p>
         </button>
       </div>
       <div class="call-controls buttons" v-if="showControls">
@@ -202,6 +204,12 @@
       v-if="remoteStreamsLength > 8"
     >
       {{ $t('coffeechatroom.tooManyStreams') }}
+    </div>
+    <div
+      class="loading-animation"
+      v-if="Object.keys(remoteStreams).length == 0"
+    >
+      <LottieAnimation :animation-data="animationData" :loop="true" />
     </div>
   </AppWrapper>
 </template>
@@ -250,7 +258,8 @@ export default {
       showNotification: false,
       userMediaError: null,
       showLinkCopied: false,
-      animationData: loadingAnimationData
+      animationData: loadingAnimationData,
+      sharedContactDetails: false
     }
   },
   async mounted() {
@@ -390,6 +399,11 @@ export default {
         value: 0
       })
       this.sendStateToPeers()
+      this.sharedContactDetails = true
+
+      setTimeout(() => {
+        this.sharedContactDetails = false
+      }, 1500)
     },
     sendStateToPeers() {
       this.coffeeChat.sendUserData({
@@ -416,17 +430,29 @@ export default {
 .joining-message {
   width: 100%;
   text-align: center;
-  margin-top: 15vh;
+  margin-top: 30vh;
   padding: 1rem;
+  @include mobile {
+    margin-top: 15vh;
+  }
+}
 
-  .loading-animation {
-    height: 300px;
-    padding: 2rem;
+.loading-animation {
+  height: 45vh;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  @include mobile {
+    height: 35vh;
   }
 }
 
 .error-instruction-container {
   padding: 3rem;
+  @include mobile {
+    padding: 1rem;
+  }
 }
 
 .share-box {
