@@ -26,7 +26,7 @@ export default {
 <style lang="scss" scoped>
 @include desktop {
   .atrium-video {
-    margin: 3em -2em;
+    margin: 3em -1em;
   }
 }
 </style>
