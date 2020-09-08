@@ -139,12 +139,12 @@ export default {
         )
       }
 
-      // const remaining = countdown(
-      //   Date.now() + timeInMs,
-      //   Date.now(),
-      //   countdown.HOURS | countdown.MINUTES
-      // ).toString()
-      const remaining = countdown(Date.now(), Date.now() + timeInMs).toString()
+      const remaining = countdown(
+        Date.now() + timeInMs,
+        Date.now(),
+        countdown.HOURS | countdown.MINUTES
+      ).toString()
+
       return remaining
     },
     primaryAction() {
