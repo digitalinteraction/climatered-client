@@ -12,7 +12,8 @@ const state = () => ({
   apiState: 'init', // 'init' | 'active' | 'error'
   user: null,
   siteVisitors: 0,
-  profile: null
+  profile: null,
+  carbon: null
 })
 
 const agent = axios.create({
@@ -24,7 +25,47 @@ const getters = {
   track: state => slug => state.tracks.find(s => s.slug === slug),
   type: state => slug => state.types.find(s => s.slug === slug),
   session: state => slug => state.sessions.find(s => s.slug === slug),
-  slot: state => slug => state.slots.find(s => s.slug === slug)
+  slot: state => slug => state.slots.find(s => s.slug === slug),
+
+  featuredSessions: state => {
+    let featuredSessions = JSON.parse(JSON.stringify(state.sessions))
+
+    // Filter out non-featured sessions
+    featuredSessions = featuredSessions.filter(s => {
+      return s.isFeatured || process.env.NODE_ENV === 'development'
+    })
+
+    // Populate slot value
+    featuredSessions.forEach(s => {
+      s.slot = state.slots.find(s2 => s2.slug === s.slot)
+    })
+
+    // Filter sessions with hideFromSchedule
+    featuredSessions = featuredSessions.filter(s => {
+      return !s.hideFromSchedule
+    })
+
+    // Filter out old sessions
+    featuredSessions = featuredSessions.filter(s => {
+      if (!s.slot) return false
+      return new Date(s.slot.start).getTime() > Date.now()
+    })
+
+    // Sort by slot time
+    featuredSessions = featuredSessions.sort((a, b) => {
+      return new Date(a.slot.start) - new Date(b.slot.start)
+    })
+
+    let skip = 0
+    const limit = 3
+
+    if (process.env.NODE_ENV === 'development') {
+      skip = 0
+    }
+
+    // Return sessions
+    return featuredSessions.splice(skip, limit)
+  }
 }
 
 const mutations = {
@@ -47,6 +88,10 @@ const mutations = {
     Object.assign(session, {
       attendance: parseInt(session.attendance) + parseInt(payload.change)
     })
+  },
+
+  updateCarbonData: (state, carbon) => {
+    Object.assign(state, { carbon })
   },
 
   siteVisitors: (state, siteVisitors) => Object.assign(state, { siteVisitors })
@@ -176,6 +221,21 @@ const actions = {
       }
     })
     return response
+  },
+  async fetchCarbonData(ctx) {
+    const response = await agent.get('/carbon', {
+      headers: {
+        'content-type': 'application/json',
+        'cache-control': 'no-cache'
+      },
+      params: {
+        n: Date.now()
+      }
+    })
+
+    if (response.status === 200) {
+      ctx.commit('updateCarbonData', response.data)
+    }
   }
 }
 

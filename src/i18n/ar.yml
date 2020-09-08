@@ -6,19 +6,15 @@ general:
   pleaseSelect: يرجى التحديد
   comingSoon: قريبا
   genericError: حدث خطأ ما. أعد المحاولة من فضلك
-#
-# api:
-#   auth:
-#     general: 'Bad auth'
-#     jwtExpired: 'JWT expired'
-#
+  backTo: الرجوع إلى {x}
+
 atrium:
   title: الملتقى الرئيسي
   or: أو
   sessionsButton: شاهد ماذا يحدث !
   returnTo: العودة إلى الملتقى الرئيسي
-  # heroTitle: Virtual Climate Summit 2020
-  # heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
+  heroTitle: قمة المناخ الإفتراضية 2020
+  heroSubtitle: 9 سبتمبر/أيلول الساعة 12 ظهراَ - 10 سبتمبر/أيلول الساعة 5:00 مساءَ
   heading: مرحبًا بك في القمة العالمية الرقمية لتغير المناخ!
   sponsorHeading: شركاء
 
@@ -82,15 +78,20 @@ sessions:
     sessions: جلسات
 
 session:
-  title:
-  speakerHeading: مكبرات الصوت
-  hostHeading:
-  infoHeading:
-  linksHeading:
-  showPoll:
-  seeMore:
-  seeLess:
-  noInterpret:
+  title: عرض الجلسة
+  speakerHeading: المتحدث
+  hostHeading: مضيف الجلسة
+  infoHeading: معلومات عن الجلسة
+  linksHeading: الرابط الإلكتروني
+  showPoll: تفعيل استطلاع الرأي
+  seeMore: الاطلاع على المزيد
+  seeLess: الإطلاع بنسبة أقل
+  noInterpret: متصفحك لا يدعم خدمة الترجمة، نعتذر منك!
+  joinLiveQandA: انضم لحلقة الأسئلة و الأجوبة المباشرة
+  linksWillBeAvailable: رابط الجلسة سيكون متاحا قبل 15 دقيقة من موعد بدء الجلسة
+  sessionWillBeHostedIn: سيتم استضافة الجلسة من قبل
+  interestRegisteredConfirmation: تم تسجيل طلبكم !
+  personInterested: عدد الأشخاص المهتمين
   scheduleHeading: البرنامج
   actionsHeading: الاجراءات
   hostedByHeading: مضيف الجلسة
@@ -99,7 +100,20 @@ session:
 
 coffeechat:
   title: دردشة حول فنجان قهوة
+  filterResults: الحضور النشط
+  heading: هل أنت مستعد!
+  body: سنستخدم الاعدادات السابقة لنطابقك مع أحد المشاركين ضمن قمة المناخ-الأحمر. قم بالضغط على الزر أدناه لتبدأ محادثة عبر الفيديو مع أحد المشاركين
+  readyBtn: مستعد
+  waitingBtn: قيد الإنتظار
+  joiningBtn: انضم
   filters:
+    languageResults: اللغات
+    themeResults: الموضوعات
+    anyOption: الكل
+    languageSelector: تحديد اللغة
+    themeSelector: اختيار الموضوع
+    clear: حذق
+    save: حفظ
     languages:
       EN: English
       FR: Française
@@ -108,6 +122,27 @@ coffeechat:
 
 coffeechatroom:
   title: دردشة حول فنجان قهوة
+  waitingForPartner: انتظر انضمام المشارك الآخر
+  joiningInfo: معلومات الانضمام
+  # contactDetails: _
+  shareContactDetails: مشاركة معلومات التواصل
+  # confirmLeaveText: _
+  # copyJoinText: _
+  # copiedJoinInfo: _
+  # tooManyStreams: _
+  userMediaErrors:
+    generalError: لديك مشكلة في تشغيل كاميرا الويب الخاصة بك
+    devicesNotFoundError: تحقق من توصيل كاميرا الويب الخاصة بك
+    trackStartError: الكاميرا أو الميكروفون الخاص بك قيد الاستخدام من قبل تطبيق أخر
+    constraintNotSatisfiedError: انقر فوق الزر أدناه لإعادة المحاولة
+    typeError: انقر فوق الزر أدناه لإعادة المحاولة
+    unknownError: انقر فوق الزر أدناه لإعادة المحاولة
+    retryButtonText: تفعيل الكاميرا والميكروفون
+    instructions:
+      safari: افتح خصائص Safari> انتقل إلى مواقع الويب> انتقل إلى علامتي التبويب الكاميرا والميكروفون> تفعيل قابلية الوصول إلى السماح> إعادة تشغيل Safari
+      chrome: انقر فوق رمز حظر الكاميرا في شريط العنوان بمتصفح الانترنت الخاص بك ثم قم بتحديث الصفحة
+      firefox: انقر فوق رمز حظر الكاميرا في شريط العنوان بمتصفح الانترنت الخاص بك ثم قم بالنقر على تفعيل الكاميرا والميكروفون ومن ثم قم بتحديث الصفحة
+      edge: انقر فوق رمز القفل في شريط عناوين المتصفح> انقر فوق "أذونات الموقع"> انقر فوق إعادة تعيين الأذونات> إعادة تشغيل صفحة المتصفح
 
 help:
   title: المساعدة
@@ -210,12 +245,19 @@ schedule:
     viewSession: مشاهدة الجلسة
     joinSession: الانضمام إلى الجلسة
     previewSession: معاينة الجلسة
-    registerInterest:
+    registerInterest: سجل الاهتمامات
+    registerInterestSubject: التسجيل - مهتم بجلسة المناخ
+    registerInterestBody: أنا مهتم بجلستكم في قمة المناخ
   workshops:
     workshop: ورشة عمل
     workshops: ورشات العمل
     title: ورشات العمل التفاعلية
     description: شارك بإحدى ورش العمل التفاعلية التالية
+
+errors:
+  title: حدث خطأ
+  general: حدث خطأ غير متوقع ، يرجى المحاولة مرة أخرى
+  loginExpired: انتهت صلاحية رمز تسجيل الدخول الخاص بك ، وهي صالحة لمدة 30 دقيقة من وقت طلبك. يرجى المحاولة مرة أخرى أدناه.
 
 faqs:
   title: أسئلة وأجوبة

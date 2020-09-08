@@ -53,3 +53,11 @@
 - `oneToMany.source` - From video
 - `oneToMany.start` - Start
 - `oneToMany.stop` - Stop
+
+- onlineNow: Online now
+- tonnesOfCarbonSaved: Tonnes of carbon saved
+- featuredSesions: Featured sessions
+- exploreAllSessions: Explore all sessions
+- liveIn: 'Live in {0}'
+- social: Social
+- tweetWith: 'Tweet with {0}'

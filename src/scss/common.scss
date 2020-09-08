@@ -13,6 +13,8 @@ $cc-darkestgrey: #1e1e1e;
 $cc-bluegrey: #757a8a;
 $cc-pink: #e50354;
 
+$cc-twitter: #1da1f2;
+
 $red: $cc-red;
 
 $primary: $cc-red;
@@ -65,6 +67,10 @@ $size-6: 0.9rem;
 
 // Layout
 $tabbar-width: 5.5rem;
+
+// Box
+$box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.02),
+  0 0px 0 1px rgba(10, 10, 10, 0.01);
 
 // Controls
 .control .is-small {

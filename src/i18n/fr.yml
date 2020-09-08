@@ -6,19 +6,15 @@ general:
   pleaseSelect: Veuillez sélectionner
   comingSoon: Bientôt disponible
   genericError: Une erreur s'est produite. Veuillez réessayer
-#
-# api:
-#   auth:
-#     general: 'Bad auth'
-#     jwtExpired: 'JWT expired'
-#
+  backTo: Retour à {0}
+
 atrium:
   title: Atrium
   or: ou
   sessionsButton: Voyez ce qui se passe!
   returnTo: Retourner à l’Atrium
-  # heroTitle: Virtual Climate Summit 2020
-  # heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
+  heroTitle: Sommet Virtuel sur le Climat 2020
+  heroSubtitle: 9 sept, 12h00 - 10 sept, 19h00 CEST
   heading: Bienvenue à notre sommet mondial numérique sur le changement climatique!
   sponsorHeading: Partenaires
 
@@ -83,7 +79,20 @@ sessions:
 
 coffeechat:
   title: Causerie Café
+  filterResults: Participants actifs
+  heading: Êtes-vous prêt(e)?
+  body: Nous utiliserons les paramètres ci-dessous pour vous faire correspondre avec un autre participant de Climate:Red. Cliquez sur le bouton ci-dessous pour dialoguer en vidéo avec un autre participant.
+  readyBtn: Prêt
+  waitingBtn: En attente
+  joiningBtn: En adhésion
   filters:
+    languageResults: Langue(s)
+    themeResults: Thème(s)
+    anyOption: Tout
+    languageSelector: Sélectionner une ou plusieurs  langue(s)
+    themeSelector: Sélectionner un ou plusieurs thème(s)
+    clear: Effacer
+    save: Sauvegarder
     languages:
       EN: English
       FR: Française
@@ -92,6 +101,27 @@ coffeechat:
 
 coffeechatroom:
   title: Causerie Café
+  waitingForPartner: En attendant l'arrivée de votre partenaire
+  joiningInfo: Informations sur l'adhésion
+  # contactDetails: _
+  shareContactDetails: partager les coordonnées
+  # confirmLeaveText: _
+  # copyJoinText: _
+  # copiedJoinInfo: _
+  # tooManyStreams: _
+  userMediaErrors:
+    generalError: nous avons du mal à allumer votre webcam
+    devicesNotFoundError: vérifiez que votre webcam soit bien branchée
+    trackStartError: votre webcam ou votre micro sont déjà utilisés dans une autre application
+    constraintNotSatisfiedError: cliquez sur le bouton ci-dessous pour réessayer
+    typeError: cliquez sur le bouton ci-dessous pour réessayer
+    unknownError: cliquez sur le bouton ci-dessous pour réessayer
+    retryButtonText: activer la caméra et le micro
+    instructions:
+      safari: Ouvrir les préférences de Safari > Naviguer vers les sites Web > Aller aux onglets Appareil photo et Microphone > Modifier l'accès à 'Autoriser' > Redémarrer Safari
+      chrome: Cliquez sur l'icône de caméra verrouillée s'affichant dans la barre d'adresse de votre navigateur, puis actualisez la page
+      firefox: Cliquez sur l'icône de caméra verrouillée dans la barre d'adresse de votre navigateur et cliquez sur la croix pour activer le micro et la caméra, puis actualisez la page
+      edge: Cliquez sur l'icône cadenas dans la barre d'adresse de votre navigateur > Cliquez sur "Paramètres de site" > Cliquez sur "Réinitialiser les autorisations" > Actualisez la page du navigateur
 
 help:
   title: Aide
@@ -149,15 +179,20 @@ cookies:
     Vous pouvez modifier vos préférences en cliquant sur {0} dans le pied de page du site.
 
 session:
-  title:
-  speakerHeading:
-  hostHeading:
-  infoHeading:
-  linksHeading:
-  showPoll:
-  seeMore:
-  seeLess:
-  noInterpret:
+  title: Voir la session
+  speakerHeading: Intervenants
+  hostHeading: Hôtes
+  infoHeading: Information sur la session
+  linksHeading: Liens
+  showPoll: Autoriser un sondage
+  seeMore: Voir plus
+  seeLess: Voir moins
+  noInterpret: Votre navigateur ne prend pas en charge l'interprétation, désolé !
+  joinLiveQandA: Participez aux questions-réponses en direct
+  linksWillBeAvailable: Les liens des sessions seront disponibles 15 minutes avant l'heure de lancement.
+  sessionWillBeHostedIn: Cette sessions aura lieu à
+  interestRegisteredConfirmation: Votre intérêt a bien été enregistré!
+  personInterested: '{0} personnes intéressée'
   scheduleHeading: Programme
   actionsHeading: Actions
   hostedByHeading: Présenté par
@@ -210,12 +245,19 @@ schedule:
     viewSession: Voir la session
     joinSession: Joindre la session
     previewSession: Prévisualiser la session
-    registerInterest:
+    registerInterest: Enregistrer un intérêt
+    registerInterestSubject: Enregistrer un intérêt dans la session climate:red
+    registerInterestBody: Je suis intéressé(e) par votre session climate:red - "{0}"
   workshops:
     workshop: Atelier
     workshops: Ateliers
     title: Ateliers interactifs
     description: Participez à l'un des ateliers interactifs suivants
+
+errors:
+  title: Quelque chose n'a pas marché
+  general: Une erreur inattendue s'est produite, veuillez réessayer.
+  loginExpired: Votre code de connexion a expiré, il dure 30 minutes à partir du moment où vous en demandez un. Veuillez réessayer ci-dessous.
 
 faqs:
   title: FAQ

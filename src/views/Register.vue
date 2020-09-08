@@ -67,6 +67,9 @@
             <li>
               <a href="/privacy" target="_blank" v-t="'register.privacyLink'" />
             </li>
+            <li>
+              <a href="/guidelines" target="_blank" v-t="'guidelines.title'" />
+            </li>
           </ul>
         </div>
         <div class="buttons">

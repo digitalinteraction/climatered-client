@@ -1,10 +1,18 @@
 <template>
   <span>
-    <div :class="['session-actions', { 'is-fullwidth': isFullwidth }]">
+    <div
+      :class="[
+        'session-actions',
+        { 'is-fullwidth': isFullwidth, 'is-minimal': isMinimal }
+      ]"
+    >
       <div class="flex-spacer"></div>
 
       <!-- Register interest button -->
-      <div class="button-wrapper" v-if="onSessionPage">
+      <div
+        v-if="enabledActions.indexOf('register') !== -1"
+        class="button-wrapper"
+      >
         <div class="buttons has-addons">
           <a
             @click="toggleInterest"
@@ -38,7 +46,10 @@
       </div>
 
       <!-- Add to calendar button -->
-      <div class="button-wrapper">
+      <div
+        v-if="enabledActions.indexOf('calendar') !== -1"
+        class="button-wrapper"
+      >
         <div class="buttons has-addons">
           <a
             :href="calendarLink"
@@ -49,15 +60,15 @@
             <span class="icon">
               <fa :icon="['fas', 'calendar-plus']" class="fa-fw fa-xs" />
             </span>
-            <span>{{ $t('schedule.addToCalendar') }}</span>
+            <span v-if="!isMinimal">{{ $t('schedule.addToCalendar') }}</span>
           </a>
         </div>
       </div>
 
       <!-- View/join/preview session button -->
-      <div v-if="!onSessionPage" class="button-wrapper">
+      <div v-if="enabledActions.indexOf('view') !== -1" class="button-wrapper">
         <router-link
-          :to="session | sessionRoute"
+          :to="sessionRoute"
           :class="[
             'button',
             'is-small',
@@ -65,7 +76,13 @@
             ...primaryActionClasses
           ]"
         >
-          {{ $t(primaryAction) }}
+          <span v-if="!isMinimal">{{ $t(primaryAction) }}</span>
+          <span class="icon rtl-only">
+            <fa :icon="['fas', 'arrow-left']" class="fa-fw fa-xs" />
+          </span>
+          <span class="icon ltr-only">
+            <fa :icon="['fas', 'arrow-right']" class="fa-fw fa-xs" />
+          </span>
         </router-link>
       </div>
     </div>
@@ -91,17 +108,17 @@ export default {
   name: 'SessionActions',
   mixins: [CalendarMixin],
   props: {
-    scheduleSlot: { type: Object, required: true },
     session: { type: Object, required: true },
     sessionState: { type: String, required: true },
     sessionLayout: { type: String, required: false, default: 'unknown' },
-    isFullwidth: { type: Boolean, default: false }
-  },
-  filters: {
-    sessionRoute: s => ({
-      name: ROUTE_SESSION,
-      params: { sessionSlug: s.slug }
-    })
+    isFullwidth: { type: Boolean, default: false },
+    isMinimal: { type: Boolean, default: false },
+    enabledActions: {
+      type: Array,
+      default: () => {
+        return ['calendar', 'view', 'register']
+      }
+    }
   },
   mounted() {
     if (this.onSessionPage) {
@@ -118,6 +135,12 @@ export default {
     }
   },
   computed: {
+    sessionRoute() {
+      return {
+        name: ROUTE_SESSION,
+        params: { sessionSlug: this.session.slug }
+      }
+    },
     localeTitle() {
       return this.session.title[this.$i18n.locale]
     },
@@ -253,6 +276,15 @@ export default {
       flex-grow: 1;
       flex-basis: 100%;
       margin-inline-start: 0;
+    }
+  }
+
+  &.is-minimal {
+    .button {
+      .icon {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+      }
     }
   }
 

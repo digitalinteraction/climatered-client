@@ -19,6 +19,13 @@ atrium:
   heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
   heading: Welcome to our global, digital climate change summit!
   sponsorHeading: Partners
+  onlineNow: Online now
+  kilogramsOfCarbonSaved: Kilograms of carbon saved
+  featuredSesions: Featured sessions
+  exploreAllSessions: Explore all sessions
+  liveIn: 'Live in {0}'
+  social: Social
+  tweetWith: 'Tweet with {0}'
 
 login:
   title: Login
@@ -80,7 +87,6 @@ profile:
   logoutButton: Log out
   deleteButton: Delete account
   deleteText: This is permenant, are you sure?
-  loadingText: Fetching profile
   actionLabel: Actions
   dangerLabel: Danger zone
   translatorMessage: |
