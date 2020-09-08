@@ -55,7 +55,7 @@
 - `oneToMany.stop` - Stop
 
 - onlineNow: Online now
-- tonnesOfCarbonSaved: Tonnes of carbon saved
+- kilogramsOfCarbonSaved: Kilograms of carbon saved
 - featuredSesions: Featured sessions
 - exploreAllSessions: Explore all sessions
 - liveIn: 'Live in {0}'
