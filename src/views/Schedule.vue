@@ -80,7 +80,7 @@
                   </div>
 
                   <!-- Sessions -->
-                  <div class="sessions-wrapper">
+                  <div class="box sessions-wrapper">
                     <!-- Main sessions -->
                     <SessionTile
                       v-for="session in sessionsForSlot(scheduleSlot, false)"
@@ -165,11 +165,9 @@ export default {
   },
   mounted() {
     this.$clock.bind(this, () => {
-      if (this.isDev && this.$route.query.time) {
-        this.currentTime = parseInt(this.$route.query.time)
-      } else {
-        this.currentTime = Date.now()
-      }
+      this.currentTime = this.$route.query.time
+        ? parseInt(this.$route.query.time)
+        : Date.now()
     })
   },
   destroyed() {
@@ -269,10 +267,10 @@ export default {
     slotIsVisible(slot) {
       // Slot visibility is dependent on search and state
       return (
-        (this.sessionsForSlot(slot).length > 0 &&
-          this.slotState(slot) !== 'past') ||
-        this.pastSessionsVisible ||
-        this.searchActive
+        this.sessionsForSlot(slot).length > 0 &&
+        (this.slotState(slot) !== 'past' ||
+          this.pastSessionsVisible ||
+          this.searchActive)
       )
     },
     sessionsForSlot(slot, workshops = undefined) {
@@ -281,12 +279,13 @@ export default {
           return s.slot === slot.id
         })
         .filter(s => {
+          if (typeof workshops == 'undefined') {
+            return true
+          }
           if (workshops) {
             return this.sessionIsWorkshop(s)
-          } else if (!workshops) {
-            return !this.sessionIsWorkshop(s)
           } else {
-            return true
+            return !this.sessionIsWorkshop(s)
           }
         })
     }
@@ -367,9 +366,11 @@ export default {
 .sessions-wrapper {
   background-color: white;
   border-radius: 8px;
+  box-shadow: $box-shadow;
   flex-grow: 1;
   margin-top: 20px;
   max-width: 960px;
+  padding: 0;
 
   @include mobile {
     margin: 0px 1.5em;

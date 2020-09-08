@@ -174,6 +174,7 @@
                   :session-state="sessionState"
                   :session-layout="sessionLayout"
                   :is-fullwidth="true"
+                  :enabled-actions="['calendar', 'register']"
                 />
               </section>
 
@@ -281,6 +282,7 @@ export default {
         vm.redirecting = true
         if (proxyUrl.startsWith('http')) {
           document.location = proxyUrl
+          vm.redirecting = false
         } else {
           next({
             name: ROUTE_SESSION,
@@ -288,6 +290,8 @@ export default {
             replace: true
           })
         }
+      } else {
+        vm.redirecting = false
       }
     })
   },
@@ -412,11 +416,9 @@ export default {
   },
   mounted() {
     this.$clock.bind(this, () => {
-      if (this.isDev && this.$route.query.time) {
-        this.currentTime = parseInt(this.$route.query.time)
-      } else {
-        this.currentTime = Date.now()
-      }
+      this.currentTime = this.$route.query.time
+        ? parseInt(this.$route.query.time)
+        : Date.now()
     })
   },
   destroyed() {
@@ -482,7 +484,7 @@ $page-max-width: 1500px;
   .session-wrapper {
     background-color: white;
     border-radius: $radius-large;
-    box-shadow: 0 0 15px 15px rgba($color: black, $alpha: 0.02);
+    box-shadow: $box-shadow;
     max-width: $page-max-width;
     margin: 0 auto;
     .session-headings {
