@@ -264,7 +264,11 @@ export default {
     async setupMedia() {
       try {
         this.localMediaStream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: {
+            facingMode: {
+              ideal: 'user'
+            }
+          },
           audio: true
         })
         this.videoEnabled = true

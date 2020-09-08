@@ -504,5 +504,6 @@ export default {
   position: absolute;
   bottom: 10px;
   left: 10px;
+  max-width: 135px;
 }
 </style>
