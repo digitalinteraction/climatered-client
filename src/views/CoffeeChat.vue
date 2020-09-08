@@ -415,7 +415,7 @@ export default {
     padding-top: 0px;
     .dropdown-content {
       font-weight: bold;
-      border-radius: 0px 0px 4px 4px;
+      border-radius: 0px 0px 8px 8px;
       .scroll-container {
         max-height: 15vh;
         overflow-x: hidden;
@@ -446,7 +446,7 @@ export default {
   }
   .dropdown-trigger {
     button {
-      border-radius: 4px 4px 0px 0px;
+      border-radius: 8px 8px 0px 0px;
     }
   }
 }

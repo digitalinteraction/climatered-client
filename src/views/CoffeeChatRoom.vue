@@ -8,6 +8,7 @@
         <h1 class="title has-text-white">
           {{ $t('coffeechatroom.waitingForPartner') }}
         </h1>
+        <lottie :options="defaultOptions" :height="400" :width="400" />
         <div v-if="userMediaError">
           <span class="icon is-small has-text-white">
             <fa :icon="'video-slash'" />
@@ -210,9 +211,11 @@ import WebRTCVideo from '@/components/WebRTCVideo.vue'
 import CoffeeChatRoom from '../coffee-chat/coffee-chat-room'
 import { ROUTE_COFFEE_CHAT } from '../const'
 import copy from 'copy-to-clipboard'
+import Lottie from 'vue-lottie'
+import * as animationData from '../icons/coffee-chat-loader.json'
 
 export default {
-  components: { AppWrapper, WebRTCVideo },
+  components: { AppWrapper, WebRTCVideo, Lottie },
   props: {
     timeLimit: { type: Number, default: 0 }
   },
@@ -244,7 +247,10 @@ export default {
       joiningInfoWindowActive: false,
       showNotification: false,
       userMediaError: null,
-      showLinkCopied: false
+      showLinkCopied: false,
+      defaultOptions: {
+        animationData: animationData
+      }
     }
   },
   async mounted() {
@@ -452,6 +458,9 @@ export default {
     hr {
       height: 0.5px;
       margin: 1rem 0;
+    }
+    p {
+      word-break: break-all;
     }
     .button {
       margin-top: 0.5rem;
