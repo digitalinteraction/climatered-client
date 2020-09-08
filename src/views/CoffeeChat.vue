@@ -13,7 +13,7 @@
               <h1 class="title has-text-white">
                 {{ $t('coffeechat.heading') }}
               </h1>
-              <h3 class="is-size-6">
+              <h3 class="is-size-5">
                 {{ $t('coffeechat.body') }}
               </h3>
             </div>
