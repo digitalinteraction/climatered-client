@@ -136,7 +136,7 @@ coffeechatroom:
     constraintNotSatisfiedError: click the button below to retry
     typeError: click the button below to retry
     unknownError: click the button below to retry
-    retryButtonText: enable camera & mic
+    retryButtonText: Enable Camera & Mic
     instructions:
       safari: Open Safari Preferences > Navigate to Websites > Go to Camera and Microphone tabs > Change access to Allow > Restart Safari
       chrome: Click the camera blocked icon in your browser's address bar and then refresh the page

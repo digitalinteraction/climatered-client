@@ -129,6 +129,7 @@ export default class WebRTC {
 
   _listenForPeerConnectionClosed(peerConnection, cb) {
     peerConnection.addEventListener('connectionstatechange', () => {
+      console.log('WEBRTC connection state:', peerConnection.connectionState)
       switch (peerConnection.connectionState) {
         case 'disconnected':
         case 'failed':
