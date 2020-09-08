@@ -1,5 +1,5 @@
 <template>
-  <div :class="['select', selectClass]">
+  <div :class="['select']">
     <select
       :value="$i18n.locale"
       @input="onLocale"
@@ -40,20 +40,10 @@ export default {
 
 <style lang="scss" scoped>
 $select-height: 36px;
-.select {
+$select-lineheight: 20px;
+.select,
+.select select {
   height: $select-height !important;
-  select {
-    height: $select-height !important;
-  }
-}
-*[dir='ltr'] {
-  .select select {
-    padding: 5px 15px 5px 10px;
-  }
-}
-*[dir='rtl'] {
-  .select select {
-    padding: 5px 35px 5px 0px;
-  }
+  line-height: $select-lineheight !important;
 }
 </style>
