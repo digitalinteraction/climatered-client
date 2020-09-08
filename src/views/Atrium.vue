@@ -68,16 +68,33 @@
             <!-- Carbon saved -->
             <div
               class="box atrium-widget is-purple"
-              v-if="typeof carbonSaved !== 'undefined'"
+              v-if="carbon && carbon.carbonNotEmitted"
             >
               <h1 class="title">
                 <fa :icon="['fas', 'leaf']" class="fa-fw" />
-                {{ carbonSaved }}
+                {{ carbon.carbonNotEmitted }}
               </h1>
               <h3 class="subtitle">
                 {{ $t('atrium.tonnesOfCarbonSaved') }}
               </h3>
             </div>
+
+            <!-- Social -->
+            <a
+              class="box atrium-widget is-twitter"
+              href="https://twitter.com/search?q=%23climatered"
+              target="_blank"
+            >
+              <h1 class="title has-text-white">
+                <fa :icon="['fab', 'twitter']" class="fa-fw" />
+                <span class="text">
+                  {{ $t('atrium.social') }}
+                </span>
+              </h1>
+              <h3 class="subtitle">
+                {{ $t('atrium.tweetWith', ['#climatered']) }}
+              </h3>
+            </a>
 
             <!-- Featured sessions -->
             <div class="box atrium-widget" v-if="featuredSessions.length > 0">
@@ -101,23 +118,6 @@
                 {{ $t('atrium.exploreAllSessions') }}
               </router-link>
             </div>
-
-            <!-- Social -->
-            <a
-              class="box atrium-widget is-twitter"
-              href="https://twitter.com/search?q=%23climatered"
-              target="_blank"
-            >
-              <h1 class="title has-text-white">
-                <fa :icon="['fab', 'twitter']" class="fa-fw" />
-                <span class="text">
-                  {{ $t('atrium.social') }}
-                </span>
-              </h1>
-              <h3 class="subtitle">
-                {{ $t('atrium.tweetWith', ['#climatered']) }}
-              </h3>
-            </a>
           </div>
         </div>
         <section>
@@ -199,6 +199,8 @@ const sponsors = [
 export default {
   components: { AppWrapper, SessionTileMini, VideoEmbed },
   mounted() {
+    this.getCarbonData()
+
     this.$clock.bind(this, () => {
       this.currentTime = this.$route.query.time
         ? parseInt(this.$route.query.time)
@@ -211,7 +213,6 @@ export default {
   data() {
     return {
       currentTime: Date.now(),
-      carbonSaved: undefined,
       loginRoute: { name: ROUTE_LOGIN },
       registerRoute: { name: ROUTE_REGISTER },
       sponsors,
@@ -219,7 +220,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('api', ['user', 'settings', 'siteVisitors']),
+    ...mapState('api', ['user', 'settings', 'siteVisitors', 'carbon']),
     ...mapGetters('api', ['featuredSessions']),
     currentContent() {
       const chosenContent = this.user ? activeContent : content
@@ -232,6 +233,11 @@ export default {
       return {
         name: this.settings?.scheduleLive ? ROUTE_SCHEDULE : ROUTE_SESSIONS
       }
+    }
+  },
+  methods: {
+    getCarbonData() {
+      this.$store.dispatch('api/fetchCarbonData')
     }
   }
 }

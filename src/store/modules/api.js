@@ -12,7 +12,8 @@ const state = () => ({
   apiState: 'init', // 'init' | 'active' | 'error'
   user: null,
   siteVisitors: 0,
-  profile: null
+  profile: null,
+  carbon: null
 })
 
 const agent = axios.create({
@@ -31,7 +32,7 @@ const getters = {
 
     // Filter out non-featured sessions
     featuredSessions = featuredSessions.filter(s => {
-      return s.isFeatured
+      return s.isFeatured || process.env.NODE_ENV === 'development'
     })
 
     // Populate slot value
@@ -50,8 +51,15 @@ const getters = {
       return new Date(a.slot.start) - new Date(b.slot.start)
     })
 
-    // Return first three
-    return featuredSessions.splice(0, 3)
+    let skip = 0
+    const limit = 3
+
+    if (process.env.NODE_ENV === 'development') {
+      skip = 0
+    }
+
+    // Return sessions
+    return featuredSessions.splice(skip, limit)
   }
 }
 
@@ -75,6 +83,10 @@ const mutations = {
     Object.assign(session, {
       attendance: parseInt(session.attendance) + parseInt(payload.change)
     })
+  },
+
+  updateCarbonData: (state, carbon) => {
+    Object.assign(state, { carbon })
   },
 
   siteVisitors: (state, siteVisitors) => Object.assign(state, { siteVisitors })
@@ -204,6 +216,25 @@ const actions = {
       }
     })
     return response
+  },
+  async fetchCarbonData(ctx) {
+    const response = await agent.get('/carbon', {
+      headers: {
+        'content-type': 'application/json',
+        'cache-control': 'no-cache'
+      },
+      params: {
+        n: Date.now()
+      }
+    })
+
+    if (response.status === 200) {
+      ctx.commit('updateCarbonData', {
+        totalDistance: 2000,
+        carbonNotEmitted: 3245
+      })
+      // ctx.commit('updateCarbonData', response.data)
+    }
   }
 }
 
