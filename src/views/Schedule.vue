@@ -311,8 +311,6 @@ export default {
 
   .slot-section-wrapper {
     background-color: $cc-lightestgrey;
-    padding-bottom: 20px;
-    padding-top: 20px;
 
     .slot-section {
       margin-bottom: 20px;
