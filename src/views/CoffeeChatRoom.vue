@@ -6,7 +6,7 @@
         v-if="Object.keys(remoteStreams).length == 0"
       >
         <h1 class="title has-text-white">
-          {{ $t('coffeechatroom.waitingForPartner') }}
+          {{ $t('coffeechatroom.waitingForPartner') }}...
         </h1>
         <div v-if="userMediaError">
           <span class="icon is-small has-text-white">
@@ -170,7 +170,8 @@
             }}
           </span>
           <span class="share-button-icon">
-            <fa icon="envelope" class="fa-lg" />
+            <fa icon="envelope" class="fa-lg" v-if="!sharedContactDetails" />
+            <span v-else>{{ $t('coffeechatroom.sharedContactDetails') }} </span>
           </span>
         </button>
       </div>
