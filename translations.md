@@ -42,3 +42,14 @@
 - `register.loginAction`
 - `register.infoText`
 - `register.doneText`
+
+- `oneToMany.label` - Audio language
+- `oneToMany.noVideo` - No video to show
+- `oneToMany.muteLabel` - 'NOTE: To listen in another language, remember to mute the stream above'
+- `oneToMany.stopped` - stopped
+- `oneToMany.playing` - playing
+- `oneToMany.buffering` - buffering {0}
+- `oneToMany.ready` - ready to play
+- `oneToMany.source` - From video
+- `oneToMany.start` - Start
+- `oneToMany.stop` - Stop

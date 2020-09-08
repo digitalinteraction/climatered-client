@@ -1,5 +1,5 @@
 <template>
-  <AppWrapper>
+  <AppWrapper :show-footer="false">
     <div class="coffee-chat">
       <section class="section">
         <div class="container">
@@ -13,7 +13,7 @@
               <h1 class="title has-text-white">
                 {{ $t('coffeechat.heading') }}
               </h1>
-              <h3 class="is-size-6">
+              <h3 class="is-size-5">
                 {{ $t('coffeechat.body') }}
               </h3>
             </div>
@@ -140,24 +140,26 @@
                   role="menu"
                 >
                   <div class="dropdown-content">
-                    <div
-                      v-for="(item, key) in filters.themes.options"
-                      :key="item.value"
-                    >
-                      <label class="checkbox">
-                        <div
-                          class="dropdown-item"
-                          :class="{
-                            selected: filters.themes.options[key].selected
-                          }"
-                        >
-                          <input
-                            type="checkbox"
-                            v-model="filters.themes.options[key].selected"
-                          />
-                          {{ item.translationObject.title[$i18n.locale] }}
-                        </div>
-                      </label>
+                    <div class="scroll-container">
+                      <div
+                        v-for="(item, key) in filters.themes.options"
+                        :key="item.value"
+                      >
+                        <label class="checkbox">
+                          <div
+                            class="dropdown-item"
+                            :class="{
+                              selected: filters.themes.options[key].selected
+                            }"
+                          >
+                            <input
+                              type="checkbox"
+                              v-model="filters.themes.options[key].selected"
+                            />
+                            {{ item.translationObject.title[$i18n.locale] }}
+                          </div>
+                        </label>
+                      </div>
                     </div>
                     <hr />
                     <div class="buttons">
@@ -359,6 +361,9 @@ export default {
   background-color: $greyish;
   color: #ffffff;
   padding-top: 15vh;
+  background-image: url('/img/bg-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: top;
   @include mobile {
     padding-top: 5vh;
   }
@@ -391,6 +396,11 @@ export default {
     .dropdown-content {
       font-weight: bold;
       border-radius: 0px 0px 4px 4px;
+      .scroll-container {
+        max-height: 15vh;
+        overflow-x: hidden;
+        overflow-y: scroll;
+      }
       .selected {
         color: $cc-coral;
       }
@@ -492,7 +502,6 @@ export default {
 
 .ta-logo {
   position: absolute;
-  z-index: 1000;
   bottom: 10px;
   left: 10px;
 }

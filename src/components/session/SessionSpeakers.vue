@@ -11,7 +11,7 @@
       <SpeakerRow
         :speaker="speaker"
         :is-interactive="isInteractive"
-        @click="$emit('update:currentSpeaker', speaker)"
+        @click="showSpeakerModal(speaker)"
       />
     </div>
     <!-- Placeholders for consistent widths of flex items -->
@@ -43,11 +43,6 @@ export default {
     isInteractive: {
       type: Boolean,
       default: false
-    },
-    currentSpeaker: {
-      type: Object,
-      required: false,
-      default: undefined
     }
   },
   computed: {
@@ -56,6 +51,14 @@ export default {
       return this.session.speakers
         .map(slug => this.speakers.find(s => s.slug === slug))
         .filter(s => s)
+    }
+  },
+  methods: {
+    showSpeakerModal(speaker) {
+      this.$store.dispatch('modals/showModal', {
+        type: 'speaker',
+        data: speaker
+      })
     }
   }
 }

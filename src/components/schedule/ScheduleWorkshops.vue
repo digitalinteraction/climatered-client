@@ -45,7 +45,7 @@
         <div v-if="isExpanded">
           <SessionTile
             v-for="session in sessions"
-            :key="session.id"
+            :key="session.slug"
             :schedule-slot="scheduleSlot"
             :session="session"
             :session-state="slotState"
