@@ -80,7 +80,7 @@
                   </div>
 
                   <!-- Sessions -->
-                  <div class="sessions-wrapper">
+                  <div class="box sessions-wrapper">
                     <!-- Main sessions -->
                     <SessionTile
                       v-for="session in sessionsForSlot(scheduleSlot, false)"
@@ -165,11 +165,9 @@ export default {
   },
   mounted() {
     this.$clock.bind(this, () => {
-      if (this.isDev && this.$route.query.time) {
-        this.currentTime = parseInt(this.$route.query.time)
-      } else {
-        this.currentTime = Date.now()
-      }
+      this.currentTime = this.$route.query.time
+        ? parseInt(this.$route.query.time)
+        : Date.now()
     })
   },
   destroyed() {
@@ -313,8 +311,6 @@ export default {
 
   .slot-section-wrapper {
     background-color: $cc-lightestgrey;
-    padding-bottom: 20px;
-    padding-top: 20px;
 
     .slot-section {
       margin-bottom: 20px;
@@ -368,9 +364,11 @@ export default {
 .sessions-wrapper {
   background-color: white;
   border-radius: 8px;
+  box-shadow: $box-shadow;
   flex-grow: 1;
   margin-top: 20px;
   max-width: 960px;
+  padding: 0;
 
   @include mobile {
     margin: 0px 1.5em;

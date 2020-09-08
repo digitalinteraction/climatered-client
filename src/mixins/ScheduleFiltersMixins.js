@@ -1,40 +1,52 @@
+const hasMatch = (value, query) => {
+  return value.toLowerCase().includes(query.toLowerCase())
+}
+
 export default {
   methods: {
     applySearchQuery(sessions) {
-      const start = Date.now()
       let query = this.searchQuery
       if (!query || query.length === 0) {
         return sessions
       }
-      query = query.toLowerCase()
 
       sessions = sessions.filter(s => {
-        let hasMatched = false
+        let titleHasMatched = false
         for (const languageCode in s.title) {
-          let titleHasMatched = false
-          let contentHasMatched = false
-          let speakerHasMatched = false
-
-          titleHasMatched = s.title[languageCode].toLowerCase().includes(query)
-          contentHasMatched = s.content[languageCode]
-            .toLowerCase()
-            .includes(query)
-
-          speakerHasMatched = s.speakers
-            .join('-')
-            .split('-')
-            .join(' ')
-            .toLowerCase()
-            .includes(query.toLowerCase())
-
-          if (titleHasMatched || contentHasMatched || speakerHasMatched) {
-            hasMatched = true
+          if (hasMatch(s.title[languageCode], query)) {
+            titleHasMatched = true
           }
         }
-        return hasMatched
+        let contentHasMatched = false
+        for (const languageCode in s.content) {
+          if (hasMatch(s.content[languageCode], query)) {
+            contentHasMatched = true
+          }
+        }
+        let hostNameHasMatched = false
+        if (hasMatch(s.hostName, query)) {
+          hostNameHasMatched = true
+        }
+        let hostOrganisationHasMatched = false
+        for (const languageCode in s.hostOrganisation) {
+          if (hasMatch(s.hostOrganisation[languageCode], query)) {
+            hostOrganisationHasMatched = true
+          }
+        }
+        let speakerHasMatched = false
+        for (const speaker of s.speakers) {
+          if (hasMatch(speaker.split('-').join(' '), query)) {
+            speakerHasMatched = true
+          }
+        }
+        return (
+          titleHasMatched ||
+          contentHasMatched ||
+          speakerHasMatched ||
+          hostNameHasMatched ||
+          hostOrganisationHasMatched
+        )
       })
-      const end = Date.now()
-      console.log('time', parseInt(end) - parseInt(start))
       return sessions
     },
     applyFilters(sessions) {

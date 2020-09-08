@@ -46,6 +46,10 @@
         <div class="columns">
           <!-- Main column -->
           <div class="column column-main">
+            <!-- Cover image -->
+            <section v-if="hasCoverImage" class="is-hidden-desktop">
+              <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
+            </section>
             <div class="session-headings">
               <!-- Type -->
               <SessionType
@@ -111,7 +115,7 @@
               </section>
 
               <!-- Cover image -->
-              <section v-if="hasCoverImage">
+              <section v-if="hasCoverImage" class="is-hidden-touch">
                 <img id="cover-image" :src="coverImageUrl" alt="Cover image" />
               </section>
 
@@ -174,6 +178,7 @@
                   :session-state="sessionState"
                   :session-layout="sessionLayout"
                   :is-fullwidth="true"
+                  :enabled-actions="['calendar', 'register']"
                 />
               </section>
 
@@ -278,8 +283,8 @@ export default {
     next(vm => {
       const proxyUrl = vm.session && vm.session.proxyUrl
       if (proxyUrl) {
-        vm.redirecting = true
         if (proxyUrl.startsWith('http')) {
+          vm.redirecting = true
           document.location = proxyUrl
         } else {
           next({
@@ -288,6 +293,8 @@ export default {
             replace: true
           })
         }
+      } else {
+        vm.redirecting = false
       }
     })
   },
@@ -412,11 +419,9 @@ export default {
   },
   mounted() {
     this.$clock.bind(this, () => {
-      if (this.isDev && this.$route.query.time) {
-        this.currentTime = parseInt(this.$route.query.time)
-      } else {
-        this.currentTime = Date.now()
-      }
+      this.currentTime = this.$route.query.time
+        ? parseInt(this.$route.query.time)
+        : Date.now()
     })
   },
   destroyed() {
@@ -467,7 +472,7 @@ $page-max-width: 1500px;
       padding: 0;
       &.column-main {
         flex-grow: 1;
-        flex-basis: 540px;
+        flex-basis: 440px;
       }
       &.column-side {
         border-inline-start: 1px solid $border;
@@ -475,6 +480,10 @@ $page-max-width: 1500px;
         flex-grow: 0;
         flex-shrink: 1;
         position: relative;
+        @include touch {
+          flex-shrink: 0;
+          flex-basis: 100%;
+        }
       }
     }
   }
@@ -482,7 +491,7 @@ $page-max-width: 1500px;
   .session-wrapper {
     background-color: white;
     border-radius: $radius-large;
-    box-shadow: 0 0 15px 15px rgba($color: black, $alpha: 0.02);
+    box-shadow: $box-shadow;
     max-width: $page-max-width;
     margin: 0 auto;
     .session-headings {
@@ -566,6 +575,14 @@ section#cover-image {
   img {
     max-height: 200px;
     max-width: 100%;
+  }
+}
+
+.column-main {
+  #cover-image {
+    max-height: 120px;
+    max-width: 240px;
+    padding: 1.5em 1.5em 0 1.5em;
   }
 }
 

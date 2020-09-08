@@ -4,7 +4,7 @@
     <SessionType :session="session" />
 
     <!-- Title -->
-    <router-link :to="session | sessionRoute">
+    <router-link :to="sessionRoute">
       <h2 class="session-title">
         <span class="text">
           {{ localeTitle }}
@@ -40,13 +40,14 @@
       :schedule-slot="scheduleSlot"
       :session="session"
       :session-state="sessionState"
+      :enabled-actions="['calendar', 'view']"
     />
   </div>
 </template>
 
 <script>
-// Constants
-import { ROUTE_SESSION } from '../const'
+// Mixins
+import SessionTileMixin from '@/mixins/SessionTileMixin.js'
 
 // Components
 import SessionType from '@/components/session/SessionType.vue'
@@ -56,6 +57,7 @@ import SessionActions from '@/components/session/SessionActions.vue'
 
 export default {
   name: 'SessionTile',
+  mixins: [SessionTileMixin],
   components: {
     SessionType,
     SessionAttributes,
@@ -64,30 +66,7 @@ export default {
   },
   props: {
     scheduleSlot: { type: Object, required: true },
-    session: { type: Object, required: true },
     sessionState: { type: String, required: true }
-  },
-  filters: {
-    trim: function(value, length) {
-      if (value.length < length) return value
-      return `${value.substring(0, length)}...`
-    },
-    sessionRoute: s => ({
-      name: ROUTE_SESSION,
-      params: { sessionSlug: s.slug }
-    })
-  },
-  computed: {
-    localeTitle() {
-      return this.session.title[this.$i18n.locale]
-    },
-    localeContent() {
-      let content = this.session.content[this.$i18n.locale]
-      return content
-    },
-    localeHostOrganisation() {
-      return this.session.hostOrganisation[this.$i18n.locale]
-    }
   }
 }
 </script>
@@ -117,25 +96,10 @@ $inner-pad: 0.4rem 0.7rem;
     color: #222;
     max-width: 800px;
     font-size: $size-5;
-    font-weight: 900;
+    font-weight: $weight-bold;
     line-height: 20px;
     position: relative;
     padding: 10px 0px;
-
-    .text {
-      font-weight: $weight-bold;
-    }
-    .icon {
-      position: absolute;
-      top: 0;
-      left: -50px;
-      height: 40px;
-      width: 40px;
-      svg.session-icon {
-        height: 40px;
-        width: 40px;
-      }
-    }
 
     &:hover .text {
       text-decoration: underline;

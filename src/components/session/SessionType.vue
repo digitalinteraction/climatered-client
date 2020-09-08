@@ -1,6 +1,6 @@
 <template>
   <h3 class="session-tile-type">
-    <p
+    <span
       :class="['icon-and-text', 'is-official']"
       v-if="session.isOfficial"
       :title="localeType"
@@ -11,13 +11,13 @@
       <span class="text">
         {{ $t('schedule.redCrossRedCrescentMembersOnly') }}
       </span>
-    </p>
-    <p :class="['icon-and-text']" v-else>
+    </span>
+    <span :class="['icon-and-text']" v-else>
       <span class="icon" :title="localeType">
         <fa :icon="typeFaIcon" class="fa-sm fa-fw" />
       </span>
       <span class="text"> {{ localeType }}</span>
-    </p>
+    </span>
   </h3>
 </template>
 
