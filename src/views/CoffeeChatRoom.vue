@@ -162,12 +162,16 @@
           @click="shareContactDetails"
           :disabled="contactDetails"
         >
-          <p v-if="!sharedContactDetails">
-            {{ $t('coffeechatroom.shareContactDetails') }}
-          </p>
-          <p v-if="sharedContactDetails">
-            {{ $t('coffeechatroom.sharedContactDetails') }}
-          </p>
+          <span class="share-button-text">
+            {{
+              sharedContactDetails
+                ? $t('coffeechatroom.sharedContactDetails')
+                : $t('coffeechatroom.shareContactDetails')
+            }}
+          </span>
+          <span class="share-button-icon">
+            <fa icon="envelope" class="fa-lg" />
+          </span>
         </button>
       </div>
       <div class="call-controls buttons" v-if="showControls">
@@ -649,6 +653,11 @@ export default {
   right: 2rem;
   width: 16rem;
   height: 12rem;
+  .share-button {
+    .share-button-icon {
+      display: none;
+    }
+  }
   @include mobile {
     width: 35%;
     height: 30%;
@@ -659,7 +668,12 @@ export default {
     // top: 0.5rem;
     // right: 0.5rem;
     .share-button {
-      display: none;
+      .share-button-text {
+        display: none;
+      }
+      .share-button-icon {
+        display: inline;
+      }
     }
   }
 }
