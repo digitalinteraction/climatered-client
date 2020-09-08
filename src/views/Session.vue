@@ -283,10 +283,9 @@ export default {
     next(vm => {
       const proxyUrl = vm.session && vm.session.proxyUrl
       if (proxyUrl) {
-        vm.redirecting = true
         if (proxyUrl.startsWith('http')) {
+          vm.redirecting = true
           document.location = proxyUrl
-          vm.redirecting = false
         } else {
           next({
             name: ROUTE_SESSION,
