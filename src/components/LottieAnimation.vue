@@ -7,7 +7,7 @@ import lottie from 'lottie-web'
 
 export default {
   props: {
-    animationData: { type: String, default: '' },
+    animationData: { type: Object, required: true },
     loop: { type: Boolean, default: false },
     autoPlay: { type: Boolean, default: true }
   },
