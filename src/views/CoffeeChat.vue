@@ -215,9 +215,9 @@
         </div>
       </section>
     </div>
-    <!-- <a href="https://thinkactivelabs.co.uk" target="_blank">
-      <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
-    </a> -->
+    <a href="https://thinkactivelabs.co.uk" target="_blank">
+      <img class="ta-logo" src="/img/poweredby-ta.svg" />
+    </a>
   </AppWrapper>
 </template>
 
@@ -374,6 +374,7 @@ export default {
 <style lang="scss" scoped>
 .coffee-chat {
   @include appPageFlexFillChild;
+  overflow: scroll;
   background-color: $greyish;
   color: #ffffff;
   padding-top: 15vh;
