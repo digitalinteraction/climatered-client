@@ -199,9 +199,9 @@
         </div>
       </section>
     </div>
-    <a href="https://thinkactivelabs.co.uk" target="_blank">
+    <!-- <a href="https://thinkactivelabs.co.uk" target="_blank">
       <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
-    </a>
+    </a> -->
   </AppWrapper>
 </template>
 

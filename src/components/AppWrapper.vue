@@ -34,7 +34,9 @@ import SideTabs from '@/components/layout/SideTabs.vue'
 
 export default {
   components: { AppFooter, NavBar, SideTabs, vue100vh },
-  showFooter: { type: Boolean, default: true },
+  props: {
+    showFooter: { type: Boolean, default: true }
+  },
   computed: {
     ...mapState('api', ['user', 'settings', 'apiState']),
     hasData() {

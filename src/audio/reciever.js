@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { resample, resampledLength } from './resample'
+import { resample, resampledLength, int16ToFloat32 } from './resample'
 
 import { AUDIO_PLAYBACK_RATE, AUDIO_LOW_LEVEL, AUDIO_HIGH_LEVEL } from '@/const'
 
@@ -77,22 +77,21 @@ export class AudioReciever extends Vue {
   async push(data) {
     const { arrayBuffer, sampleRate } = data
 
-    console.debug(
-      'AudioReciever#push byteLength=%d inputRate=%d outputRate=%d',
-      data.arrayBuffer.byteLength,
+    if (!this.ctx) return
+
+    const inputInts = new Int16Array(arrayBuffer)
+    const inputFloats = int16ToFloat32(inputInts)
+
+    const targetLength = resampledLength(
+      inputFloats.length,
       sampleRate,
       this.playbackRate
     )
 
-    if (!this.ctx) return
-
-    // const inputInts = new Int16Array(arrayBuffer)
-    // const inputFloats = int16ToFloat32(inputInts)
-
-    const inputFloats = new Float32Array(arrayBuffer)
-
-    const targetLength = resampledLength(
-      inputFloats.length,
+    console.debug(
+      'AudioReciever#push intsLength=%d floatsLength=%d inputRate=%d outputRate=%d',
+      arrayBuffer.byteLength,
+      inputFloats.buffer.byteLength,
       sampleRate,
       this.playbackRate
     )
