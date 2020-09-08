@@ -5,7 +5,7 @@
     </div>
 
     <div
-      v-if="sessionState === 'future' && timeUntilLive"
+      v-if="['soon', 'future'].includes(sessionState) && timeUntilLive"
       class="tag is-small is-grey"
     >
       {{ $t('atrium.liveIn', [timeUntilLive]) }}
@@ -139,11 +139,12 @@ export default {
         )
       }
 
-      const remaining = countdown(
-        Date.now() + timeInMs,
-        Date.now(),
-        countdown.HOURS | countdown.MINUTES
-      ).toString()
+      // const remaining = countdown(
+      //   Date.now() + timeInMs,
+      //   Date.now(),
+      //   countdown.HOURS | countdown.MINUTES
+      // ).toString()
+      const remaining = countdown(Date.now(), Date.now() + timeInMs).toString()
       return remaining
     },
     primaryAction() {
