@@ -1,5 +1,5 @@
 <template>
-  <AppWrapper>
+  <AppWrapper :show-footer="false">
     <div class="wrapper">
       <div
         class="joining-message"
@@ -70,20 +70,27 @@
           </h2>
         </div>
       </div>
-      <div class="grid-container">
-        <transition-group name="pop-in">
-          <div
-            class="grid-item"
-            v-for="(remoteStream, user) in remoteStreams"
-            :key="`media-${user}`"
-          >
+      <div
+        :class="
+          `grid-container grid-item-count-${
+            remoteStreamsLength < 8 ? remoteStreamsLength : 8
+          }`
+        "
+      >
+        <div
+          v-for="(remoteStream, user, i) in remoteStreams"
+          :key="`media-${user}`"
+          :class="`grid-item gi-${i}`"
+        >
+          <transition-group name="pop-in">
             <WebRTCVideo
-              class="remote-video remote-video-1"
+              class="remote-video"
+              :key="`rv-${i}`"
               :media-stream="remoteStream.mediaStream"
               :muted="remoteStream.muted"
             />
-          </div>
-        </transition-group>
+          </transition-group>
+        </div>
       </div>
       <div class="share-box has-text-white">
         <div
@@ -99,6 +106,47 @@
             {{ $t('coffeechatroom.joiningInfo') }}
           </h3>
           <p>{{ roomLink }}</p>
+          <button
+            class="button is-outlined is-fullwidth"
+            @click="copyToClipboard(roomLink)"
+          >
+            <span class="icon">
+              <fa icon="copy" />
+            </span>
+            <span v-if="!showLinkCopied">{{
+              $t('coffeechatroom.copyJoinText')
+            }}</span>
+            <span v-if="showLinkCopied">{{
+              $t('coffeechatroom.copiedJoinInfo')
+            }}</span>
+          </button>
+          <h3
+            class="is-size-5 has-text-weight-semibold"
+            v-if="peerContactDetails.length > 0"
+          >
+            <hr />
+            {{ $t('coffeechatroom.contactDetails') }}
+          </h3>
+          <div
+            class="columns is-multiline is-gapless"
+            v-for="(c, i) in peerContactDetails"
+            :key="`cd-${i}`"
+          >
+            <div class="column is-12">
+              <!-- <h3 class="has-text-weight-semibold">{{ $t('register.name.label') }}:</h3> -->
+              <p>{{ c.name }}</p>
+            </div>
+            <div class="column is-12">
+              <!-- <h3 class="has-text-weight-semibold">{{ $t('login.email.label') }}:</h3> -->
+              <a :href="`mailto:${c.email}`">{{ c.email }}</a>
+            </div>
+          </div>
+          <!-- <p v-for="(c, i) in peerContactDetails" :key="`cd-${i}`">
+            <b class="is-size-7">{{ $t('register.name.label') }}:</b><br />
+            {{ c.name }}<br />
+            <b class="is-size-7">{{ $t('login.email.label') }}:</b><br />
+            <a :href="`mailto:${c.email}`">{{ c.email }}</a>
+          </p> -->
         </div>
       </div>
       <div class="local-camera" v-if="localMediaStream">
@@ -143,12 +191,14 @@
         </button>
       </div>
     </div>
+    <a href="https://thinkactivelabs.co.uk" target="_blank">
+      <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
+    </a>
     <div
       class="notification share-popup has-text-light"
-      v-if="showNotification"
+      v-if="remoteStreamsLength > 8"
     >
-      <button class="delete"></button>
-      {{ contactDetails.email }}
+      {{ $t('coffeechatroom.tooManyStreams') }}
     </div>
   </AppWrapper>
 </template>
@@ -158,15 +208,26 @@ import { mapState } from 'vuex'
 import AppWrapper from '@/components/AppWrapper.vue'
 import WebRTCVideo from '@/components/WebRTCVideo.vue'
 import CoffeeChatRoom from '../coffee-chat/coffee-chat-room'
+import { ROUTE_COFFEE_CHAT } from '../const'
+import copy from 'copy-to-clipboard'
+
 export default {
   components: { AppWrapper, WebRTCVideo },
   props: {
     timeLimit: { type: Number, default: 0 }
   },
   computed: {
-    ...mapState('api', ['user']),
+    ...mapState('api', ['user', 'profile']),
     browserType() {
       return window.adapter.browserDetails.browser
+    },
+    peerContactDetails() {
+      return Object.keys(this.userState)
+        .map(user => this.userState[user].contact)
+        .filter(c => c)
+    },
+    remoteStreamsLength() {
+      return Object.keys(this.remoteStreams).length
     }
   },
   data() {
@@ -182,7 +243,8 @@ export default {
       roomLink: window.location,
       joiningInfoWindowActive: false,
       showNotification: false,
-      userMediaError: null
+      userMediaError: null,
+      showLinkCopied: false
     }
   },
   async mounted() {
@@ -191,6 +253,11 @@ export default {
   beforeDestroy() {
     if (this.coffeeChat !== null) {
       this.coffeeChat.destroy()
+    }
+    if (this.localMediaStream) {
+      this.localMediaStream.getTracks().forEach(t => {
+        t.stop()
+      })
     }
   },
   methods: {
@@ -203,7 +270,6 @@ export default {
         this.videoEnabled = true
       } catch (err) {
         //log to console first
-        console.log(err) /* handle the error */
         if (err.name == 'NotFoundError' || err.name == 'DevicesNotFoundError') {
           //required track is missing
           this.userMediaError = 'DevicesNotFoundError'
@@ -254,12 +320,16 @@ export default {
             remoteStream.mediaStream
           )
           this.$set(this.remoteStreams, fromUser, remoteStream)
+          this.contactDetails = null
         },
         (fromUser, s) => {
           if (this.remoteStreams[fromUser]) {
             this.remoteStreams[fromUser].muted = s.muted
           }
+          const oldLen = this.peerContactDetails.length
           this.$set(this.userState, fromUser, s)
+          if (this.peerContactDetails.length > oldLen)
+            this.joiningInfoWindowActive = true
         },
         fromUser => {
           this.$delete(this.remoteStreams, fromUser)
@@ -274,6 +344,11 @@ export default {
     },
     enterLocalVideo() {
       this.showControls = true
+      this.$gtag.event('started', {
+        event_category: 'coffee-chat',
+        event_label: 'User entered a coffee chat',
+        value: 0
+      })
     },
     toggleMute() {
       this.muted = !this.muted
@@ -284,13 +359,11 @@ export default {
     },
     toggleCamera() {
       this.videoEnabled = !this.videoEnabled
-      console.log('localmediastream is', this.localMediaStream.active)
       if (this.localMediaStream.active) {
         let track = null
         this.localMediaStream.getTracks().forEach(t => {
           if (t.readyState == 'live' && t.kind === 'video') {
             track = t
-            // console.log('trac', t)
           }
         })
         track.enabled = this.videoEnabled
@@ -298,8 +371,14 @@ export default {
     },
     shareContactDetails() {
       this.contactDetails = {
-        email: this.user.sub
+        email: this.user.sub,
+        name: this.profile.name
       }
+      this.$gtag.event('shared-contact', {
+        event_category: 'coffee-chat',
+        event_label: 'User shared contact details',
+        value: 0
+      })
       this.sendStateToPeers()
     },
     sendStateToPeers() {
@@ -309,7 +388,16 @@ export default {
       })
     },
     leave() {
-      this.$router.go(-1)
+      const msg = this.$i18n.t('coffeechatroom.confirmLeaveText')
+      if (!confirm(msg)) return
+      this.$router.push({ name: ROUTE_COFFEE_CHAT })
+    },
+    copyToClipboard(link) {
+      copy(link)
+      this.showLinkCopied = true
+      setTimeout(() => {
+        this.showLinkCopied = false
+      }, 1000)
     }
   }
 }
@@ -334,6 +422,7 @@ export default {
   padding: 1rem;
   border-radius: 0.75rem;
   max-width: 386px;
+  z-index: 10;
 
   @include mobile {
     z-index: 1;
@@ -354,8 +443,27 @@ export default {
   }
 
   .info-text {
-    padding-left: 1rem;
+    padding: 0 1rem;
     display: inline-block;
+    hr {
+      height: 0.5px;
+      margin: 1rem 0;
+    }
+    .button {
+      margin-top: 0.5rem;
+      color: white;
+      border-color: none;
+      border: none;
+      background-color: rgba($color: #000000, $alpha: 0);
+      margin-bottom: 0;
+      justify-content: start;
+    }
+    .button:active {
+      background-color: rgba($color: #ffffff, $alpha: 0.25);
+    }
+    .button:hover {
+      background-color: rgba($color: #ffffff, $alpha: 0.25);
+    }
   }
 
   .info-circle-icon {
@@ -372,18 +480,122 @@ export default {
   left: 0;
   right: 0;
   background-color: $greyish;
+  background-image: url('/img/bg-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: top;
 }
 
 .grid-container {
   width: 100%;
   height: 100%;
   display: grid;
-  // grid-template-columns: 50% 50%;
-  // grid-template-rows: 100% 100%;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  &.grid-item-count-1 {
+    grid-template-areas: 'gi-0';
+  }
+  &.grid-item-count-2 {
+    grid-template-areas: 'gi-0 gi-1';
+    @include mobile {
+      grid-template-areas:
+        'gi-0'
+        'gi-1';
+    }
+  }
+  &.grid-item-count-3 {
+    grid-template-areas:
+      'gi-0 gi-2'
+      'gi-1 gi-2';
+    @include mobile {
+      grid-template-areas:
+        'gi-2 gi-2'
+        'gi-0 gi-1';
+    }
+  }
+  &.grid-item-count-4 {
+    grid-template-areas:
+      'gi-0 gi-2'
+      'gi-1 gi-3';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3';
+    }
+  }
+  &.grid-item-count-5 {
+    grid-template-areas:
+      'gi-0 gi-2 gi-4'
+      'gi-1 gi-3 gi-4';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3'
+        'gi-4 gi-4';
+    }
+  }
+  &.grid-item-count-6 {
+    grid-template-areas:
+      'gi-0 gi-2 gi-4'
+      'gi-1 gi-3 gi-5';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3'
+        'gi-4 gi-5';
+    }
+  }
+  &.grid-item-count-7 {
+    grid-template-areas:
+      'gi-0 gi-2 gi-4 gi-6'
+      'gi-1 gi-3 gi-5 gi-6';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3'
+        'gi-4 gi-5'
+        'gi-6 gi-6';
+    }
+  }
+  &.grid-item-count-8 {
+    grid-template-areas:
+      'gi-0 gi-2 gi-4 gi-6'
+      'gi-1 gi-3 gi-5 gi-7';
+    @include mobile {
+      grid-template-areas:
+        'gi-0 gi-1'
+        'gi-2 gi-3'
+        'gi-4 gi-5'
+        'gi-6 gi-7';
+    }
+  }
   .grid-item {
     height: 100%;
     width: 100%;
     overflow-y: hidden;
+    &.gi-0 {
+      grid-area: gi-0;
+    }
+    &.gi-1 {
+      grid-area: gi-1;
+    }
+    &.gi-2 {
+      grid-area: gi-2;
+    }
+    &.gi-3 {
+      grid-area: gi-3;
+    }
+    &.gi-4 {
+      grid-area: gi-4;
+    }
+    &.gi-5 {
+      grid-area: gi-5;
+    }
+    &.gi-6 {
+      grid-area: gi-6;
+    }
+    &.gi-7 {
+      grid-area: gi-7;
+    }
   }
 }
 
@@ -424,6 +636,7 @@ export default {
   padding: 0.5rem;
   width: 200px;
   margin-left: -100px;
+  z-index: 2;
   .button {
     height: 3.5rem;
     width: 3.5rem;
@@ -435,6 +648,10 @@ export default {
   }
   .button:active {
     border-color: rgb(219, 219, 219);
+    background-color: rgba($color: #ffffff, $alpha: 0.25);
+  }
+  .button:hover {
+    background-color: rgba($color: #ffffff, $alpha: 0.25);
   }
   .leave-button {
     svg {
@@ -464,6 +681,10 @@ export default {
   max-width: 35%;
   margin: auto;
   margin-top: 1.75rem;
+  z-index: 20;
+  @include mobile {
+    max-width: 80%;
+  }
 }
 
 .pop-in-enter-active {
@@ -476,5 +697,15 @@ export default {
 .pop-in-enter,
 .pop-in-leave-to {
   transform: scale(0.25);
+}
+
+.ta-logo {
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  left: 10px;
+  @include mobile {
+    width: 150px;
+  }
 }
 </style>

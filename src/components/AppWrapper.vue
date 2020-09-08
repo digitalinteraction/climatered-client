@@ -14,9 +14,7 @@
     <div class="app-page" v-if="hasData">
       <slot />
     </div>
-
-    <!-- Footer -->
-    <AppFooter class="app-footer" />
+    <AppFooter v-if="showFooter" class="app-footer" />
   </div>
 </template>
 
@@ -35,6 +33,7 @@ import SideTabs from '@/components/layout/SideTabs.vue'
 
 export default {
   components: { AppFooter, NavBar, SideTabs },
+  showFooter: { type: Boolean, default: true },
   computed: {
     ...mapState('api', ['user', 'settings', 'apiState']),
     hasData() {
