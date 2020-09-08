@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // Import brands ~ https://fontawesome.com/icons?d=gallery&s=brands
 //
 import {
-  faYoutube // Introduction / Ignite talks
+  faYoutube, // Introduction / Ignite talks
+  faTwitter
 } from '@fortawesome/free-brands-svg-icons'
 
 //
@@ -49,7 +50,10 @@ import {
   faVideoSlash,
   faExternalLinkAlt,
   faExclamationTriangle,
-  faCopy
+  faCopy,
+  faUserFriends,
+  faLeaf,
+  faHashtag
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -60,7 +64,7 @@ import {
 //
 // Add brand icons
 //
-library.add(faYoutube)
+library.add(faYoutube, faTwitter)
 
 //
 // Add solid icons
@@ -102,7 +106,10 @@ library.add(
   faVideoSlash,
   faExternalLinkAlt,
   faExclamationTriangle,
-  faCopy
+  faCopy,
+  faUserFriends,
+  faLeaf,
+  faHashtag
 )
 
 //
