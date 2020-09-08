@@ -51,7 +51,9 @@ import {
   faExclamationTriangle,
   faCopy,
   faPlay,
-  faStop
+  faStop,
+  faAngleDown,
+  faAngleUp
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -106,7 +108,9 @@ library.add(
   faExclamationTriangle,
   faCopy,
   faPlay,
-  faStop
+  faStop,
+  faAngleDown,
+  faAngleUp
 )
 
 //

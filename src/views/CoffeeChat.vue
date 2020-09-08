@@ -65,9 +65,20 @@
                     aria-controls="language-dropdown-menu"
                     @click="languageDropDownSelect()"
                   >
-                    <span>{{ $t('coffeechat.filters.languageSelector') }}</span>
-                    <span class="icon is-small">
-                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    <span class="text">{{
+                      $t('coffeechat.filters.languageSelector')
+                    }}</span>
+                    <span
+                      class="icon is-small"
+                      v-if="!filters.languages.isActive"
+                    >
+                      <fa icon="angle-down" />
+                    </span>
+                    <span
+                      class="icon is-small"
+                      v-if="filters.languages.isActive"
+                    >
+                      <fa icon="angle-up" />
                     </span>
                   </button>
                 </div>
@@ -128,9 +139,14 @@
                     aria-controls="themes-dropdown-menu"
                     @click="themesDropDownSelect()"
                   >
-                    <span>{{ $t('coffeechat.filters.themeSelector') }}</span>
-                    <span class="icon is-small">
-                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    <span class="text">{{
+                      $t('coffeechat.filters.themeSelector')
+                    }}</span>
+                    <span class="icon is-small" v-if="!filters.themes.isActive">
+                      <fa icon="angle-down" />
+                    </span>
+                    <span class="icon is-small" v-if="filters.themes.isActive">
+                      <fa icon="angle-up" />
                     </span>
                   </button>
                 </div>
@@ -388,6 +404,10 @@ export default {
     }
     .button {
       width: 100%;
+      .text {
+        width: 100%;
+        text-align: start;
+      }
     }
   }
   .dropdown-menu {
