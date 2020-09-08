@@ -75,7 +75,7 @@
                 {{ parseInt(carbon.carbonNotEmitted) }}
               </h1>
               <h3 class="subtitle">
-                {{ $t('atrium.tonnesOfCarbonSaved') }}
+                {{ $t('atrium.kilogramsOfCarbonSaved') }}
               </h3>
             </div>
 
