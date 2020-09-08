@@ -103,11 +103,7 @@ export default {
       return 'unknown'
     },
     timeUntilLive() {
-      const supportedCountdownLanguages = ['en', 'fr']
-      if (
-        !this.scheduleSlot ||
-        !supportedCountdownLanguages.includes(this.$i18n.locale)
-      ) {
+      if (!this.scheduleSlot) {
         return undefined
       }
       const timeInMs =
@@ -120,6 +116,26 @@ export default {
           ' et ',
           ', ',
           'maintenant'
+        )
+      }
+
+      if (this.$i18n.locale === 'es') {
+        countdown.setLabels(
+          ' | | minuto| hora| | | | | | | |',
+          ' | | minutos| horas| | | | | | | |',
+          ' y ',
+          ', ',
+          'ahora'
+        )
+      }
+
+      if (this.$i18n.locale === 'ar') {
+        countdown.setLabels(
+          ' | | دقيقة| ساعة| | | | | | | |',
+          ' | | الدقائق| ساعات| | | | | | | |',
+          ' و ',
+          ', ',
+          'الآن'
         )
       }
 
