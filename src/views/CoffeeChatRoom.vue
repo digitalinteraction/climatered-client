@@ -5,10 +5,12 @@
         class="joining-message"
         v-if="Object.keys(remoteStreams).length == 0"
       >
+        <div class="loading-animation">
+          <LottieAnimation :animation-data="animationData" :loop="true" />
+        </div>
         <h1 class="title has-text-white">
           {{ $t('coffeechatroom.waitingForPartner') }}
         </h1>
-        <lottie :options="defaultOptions" :height="400" :width="400" />
         <div v-if="userMediaError">
           <span class="icon is-small has-text-white">
             <fa :icon="'video-slash'" />
@@ -216,11 +218,11 @@ import WebRTCVideo from '@/components/WebRTCVideo.vue'
 import CoffeeChatRoom from '../coffee-chat/coffee-chat-room'
 import { ROUTE_COFFEE_CHAT } from '../const'
 import copy from 'copy-to-clipboard'
-import Lottie from 'vue-lottie'
-import * as animationData from '../icons/coffee-chat-loader.json'
+import LottieAnimation from '@/components/LottieAnimation.vue'
+import loadingAnimationData from '@/icons/coffee-chat-loader.json'
 
 export default {
-  components: { AppWrapper, WebRTCVideo, Lottie },
+  components: { AppWrapper, WebRTCVideo, LottieAnimation },
   props: {
     timeLimit: { type: Number, default: 0 }
   },
@@ -253,9 +255,7 @@ export default {
       showNotification: false,
       userMediaError: null,
       showLinkCopied: false,
-      defaultOptions: {
-        animationData: animationData
-      }
+      animationData: loadingAnimationData
     }
   },
   async mounted() {
@@ -421,8 +421,13 @@ export default {
 .joining-message {
   width: 100%;
   text-align: center;
-  margin-top: 30vh;
+  margin-top: 15vh;
   padding: 1rem;
+
+  .loading-animation {
+    height: 300px;
+    padding: 2rem;
+  }
 }
 
 .error-instruction-container {
