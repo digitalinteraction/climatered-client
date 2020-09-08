@@ -229,11 +229,7 @@ const actions = {
     })
 
     if (response.status === 200) {
-      ctx.commit('updateCarbonData', {
-        totalDistance: 2000,
-        carbonNotEmitted: 3245
-      })
-      // ctx.commit('updateCarbonData', response.data)
+      ctx.commit('updateCarbonData', response.data)
     }
   }
 }

@@ -72,7 +72,7 @@
             >
               <h1 class="title">
                 <fa :icon="['fas', 'leaf']" class="fa-fw" />
-                {{ carbon.carbonNotEmitted }}
+                {{ parseInt(carbon.carbonNotEmitted) }}
               </h1>
               <h3 class="subtitle">
                 {{ $t('atrium.tonnesOfCarbonSaved') }}
