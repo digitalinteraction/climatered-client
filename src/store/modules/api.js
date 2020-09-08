@@ -24,7 +24,35 @@ const getters = {
   track: state => slug => state.tracks.find(s => s.slug === slug),
   type: state => slug => state.types.find(s => s.slug === slug),
   session: state => slug => state.sessions.find(s => s.slug === slug),
-  slot: state => slug => state.slots.find(s => s.slug === slug)
+  slot: state => slug => state.slots.find(s => s.slug === slug),
+
+  featuredSessions: state => {
+    let featuredSessions = JSON.parse(JSON.stringify(state.sessions))
+
+    // Filter out non-featured sessions
+    featuredSessions = featuredSessions.filter(s => {
+      return s.isFeatured
+    })
+
+    // Populate slot value
+    featuredSessions.forEach(s => {
+      s.slot = state.slots.find(s2 => s2.slug === s.slot)
+    })
+
+    // Filter out old sessions
+    featuredSessions = featuredSessions.filter(s => {
+      if (!s.slot) return false
+      return new Date(s.slot.start).getTime() > Date.now()
+    })
+
+    // Sort by slot time
+    featuredSessions = featuredSessions.sort((a, b) => {
+      return new Date(a.slot.start) - new Date(b.slot.start)
+    })
+
+    // Return first three
+    return featuredSessions.splice(0, 3)
+  }
 }
 
 const mutations = {
