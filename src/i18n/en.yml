@@ -125,7 +125,9 @@ coffeechat:
 
 coffeechatroom:
   title: Coffee chat
-  waitingForPartner: Waiting for your partner to join
+  waitingForPartner: Waiting for your partner to join...
+  partnerTimeout: Looks like we could connect you with partner. Please leave and try again
+  leave: Leave room
   joiningInfo: Joining Info
   contactDetails: Contact Details
   shareContactDetails: Share contact details

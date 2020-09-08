@@ -6,8 +6,16 @@
         v-if="Object.keys(remoteStreams).length == 0 && !userMediaError"
       >
         <h1 class="title has-text-white">
-          {{ $t('coffeechatroom.waitingForPartner') }}...
+          {{ $t('coffeechatroom.waitingForPartner') }}
         </h1>
+        <h2 class="subtitle has-text-white" v-if="partnerTimeout">
+          {{ $t('coffeechatroom.partnerTimeout') }}<br />
+        </h2>
+        <p>
+          <button class="button is-purple" @click="leave" v-if="partnerTimeout">
+            {{ $t('coffeechatroom.leave') }}
+          </button>
+        </p>
       </div>
       <div class="joining-message" v-else>
         <h1 class="title has-text-white">
@@ -259,7 +267,8 @@ export default {
       userMediaError: null,
       showLinkCopied: false,
       animationData: loadingAnimationData,
-      sharedContactDetails: false
+      sharedContactDetails: false,
+      partnerTimeout: false
     }
   },
   async mounted() {
@@ -357,6 +366,9 @@ export default {
       )
       const roomId = this.$route.params.room
       this.coffeeChat.joinRoom(roomId)
+      setTimeout(() => {
+        this.partnerTimeout = true
+      }, 60000)
     },
     async retryCamera() {
       await this.setupMedia()
@@ -428,6 +440,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .joining-message {
+  position: relative;
+  z-index: 5;
   width: 100%;
   text-align: center;
   margin-top: 30vh;
