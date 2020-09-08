@@ -502,8 +502,8 @@ export default {
 
 .ta-logo {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 1rem;
+  left: 1rem;
   max-width: 135px;
 }
 </style>

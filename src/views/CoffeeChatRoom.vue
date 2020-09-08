@@ -705,11 +705,9 @@ export default {
 
 .ta-logo {
   position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  max-width: 135px;
   z-index: 1;
-  bottom: 10px;
-  left: 10px;
-  @include mobile {
-    width: 150px;
-  }
 }
 </style>
