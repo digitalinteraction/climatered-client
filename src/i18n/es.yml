@@ -6,19 +6,15 @@ general:
   pleaseSelect: Por favor seleccionar
   comingSoon: Próximamente
   genericError: Algo salió mal. Por favor, vuelva a intentarlo
-#
-# api:
-#   auth:
-#     general: 'Bad auth'
-#     jwtExpired: 'JWT expired'
-#
+  backTo: Volver a {0}
+
 atrium:
   title: Entrada
   or: o
   sessionsButton: ¡Mira lo que pasa!
   returnTo: Regresar a la Entrada
-  # heroTitle: Virtual Climate Summit 2020
-  # heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
+  heroTitle: Cumbre Climática Virtual 2020
+  heroSubtitle: 9 de Sept, 12h00, 19h00 CEST
   heading: ¡Bienvenido a nuestra cumbre mundial digital sobre cambio climático!
   sponsorHeading: Asociados
 
@@ -82,15 +78,20 @@ sessions:
     sessions: Sesiones
 
 session:
-  title:
-  speakerHeading:
-  hostHeading:
-  infoHeading:
-  linksHeading:
-  showPoll:
-  seeMore:
-  seeLess:
-  noInterpret:
+  title: Ver la sesión
+  speakerHeading: Intervenants
+  hostHeading: Hôtes
+  infoHeading: Información sobre la sesión
+  linksHeading: Enlaces
+  showPoll: Autorizar sondaje
+  seeMore: Ver más
+  seeLess: Ver menos
+  noInterpret: Su navegador no soporta su interpretación, ¡lo siento!
+  joinLiveQandA: ¡Participa a preguntas y respuestas en vivo!
+  linksWillBeAvailable: Los enlaces a la sesión estarán disponible 15 minutos antes de la hora de inicio.
+  sessionWillBeHostedIn: Esta sesión se realizará en
+  interestRegisteredConfirmation: ¡Su interés ha sido registrado!
+  personInterested: '{0} personas interesadas '
   scheduleHeading: Calendario
   actionsHeading: Acciones
   hostedByHeading: Presentado por
@@ -98,8 +99,21 @@ session:
   sessionOnlyAvailableIn: Favor de notar que esta sesión solo estará disponible en
 
 coffeechat:
-  title: Conversaciones con café
+  title: Charlas de Cafe
+  filterResults: Participantes activos
+  heading: ¿Estás listo(a)?
+  body: Utilizaremos la configuración siguiente para emparejarlo(a) con otro participante de Climate:Red. Haga clic en el botón de abajo para hacer una videollamada con el otro participante.
+  readyBtn: Listo
+  waitingBtn: En espera
+  joiningBtn: Conexión en proceso
   filters:
+    languageResults: Lenguaje(s)
+    themeResults: Tema(s)
+    anyOption: Cualquiera
+    languageSelector: Seleccione uno o más lenguaje(s)
+    themeSelector: Seleccione uno o más tema(s)
+    clear: Borrar
+    save: Salvar
     languages:
       EN: English
       FR: Française
@@ -107,7 +121,28 @@ coffeechat:
       AR: العربية
 
 coffeechatroom:
-  title: Conversaciones con café
+  title: Charlas de café
+  waitingForPartner: Esperando a que tu pareja se una
+  joiningInfo: Información de conexión
+  # contactDetails: _
+  shareContactDetails: compartir detalles de contacto
+  # confirmLeaveText: _
+  # copyJoinText: _
+  # copiedJoinInfo: _
+  # tooManyStreams: _
+  userMediaErrors:
+    generalError: Estamos teniendo problemas para encender tu webcam
+    devicesNotFoundError: verifique que su webcam esté conectada
+    trackStartError: su webcam o micrófono ya están en uso en otra aplicación
+    constraintNotSatisfiedError: haga clic en el botón de abajo para reintentar
+    typeError: haga clic en el botón de abajo para reintentar
+    unknownError: haga clic en el botón de abajo para reintentar
+    retryButtonText: habilitar cámara y micrófono
+    instructions:
+      safari: Abrir Preferencias de Safari > Navegar a Sitios Web > Ir a las pestañas de Cámara y Micrófono >  Modificar acceso a "Permitir" > Reiniciar Safari
+      chrome: Haga clic en el ícono de cámara bloqueada en la barra de direcciones de su navegador, y luego actualice la página
+      firefox: Haga clic en el ícono de cámara bloqueada en la barra de direcciones de su navegador y haga clic en la cruz para habilitar el micrófono y la cámara, luego actualice la página
+      edge: Haga clic en el ícono de candado en la barra de direcciones de su navegador > Haga clic en "Permisos de sitio" > Haga clic en "Restablecer permisos" > Actualice la página de su navegador
 
 help:
   title: Ayuda
@@ -210,12 +245,19 @@ schedule:
     viewSession: Ver la sesión
     joinSession: Sumarse a la sesión
     previewSession: Previsualizar sesión
-    registerInterest:
+    registerInterest: Registre su interés
+    registerInterestSubject: Registre un interés en la sesión climate:red
+    registerInterestBody: Estoy interesado en su sesión climate:red -"{0}"
   workshops:
     workshop: Tallere
     workshops: Talleres
     title: Talleres Interactivos
     description: Partícipe a uno de los talleres interactivos siguientes
+
+errors:
+  title: Algo salió mal
+  general: Ocurrió un error inesperado, inténtelo de nuevo.
+  loginExpired: Su código de acceso a la sesión ha expirado,  dura 30 minutos desde que solicita uno. Por favor probar de nuevo.
 
 faqs:
   title: FAQ
