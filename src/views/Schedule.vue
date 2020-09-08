@@ -269,10 +269,10 @@ export default {
     slotIsVisible(slot) {
       // Slot visibility is dependent on search and state
       return (
-        (this.sessionsForSlot(slot).length > 0 &&
-          this.slotState(slot) !== 'past') ||
-        this.pastSessionsVisible ||
-        this.searchActive
+        this.sessionsForSlot(slot).length > 0 &&
+        (this.slotState(slot) !== 'past' ||
+          this.pastSessionsVisible ||
+          this.searchActive)
       )
     },
     sessionsForSlot(slot, workshops = undefined) {
@@ -281,12 +281,13 @@ export default {
           return s.slot === slot.id
         })
         .filter(s => {
+          if (typeof workshops == 'undefined') {
+            return true
+          }
           if (workshops) {
             return this.sessionIsWorkshop(s)
-          } else if (!workshops) {
-            return !this.sessionIsWorkshop(s)
           } else {
-            return true
+            return !this.sessionIsWorkshop(s)
           }
         })
     }
