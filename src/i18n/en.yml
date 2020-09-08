@@ -80,7 +80,6 @@ profile:
   logoutButton: Log out
   deleteButton: Delete account
   deleteText: This is permenant, are you sure?
-  loadingText: Fetching profile
   actionLabel: Actions
   dangerLabel: Danger zone
   translatorMessage: |
