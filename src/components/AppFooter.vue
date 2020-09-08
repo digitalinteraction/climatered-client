@@ -34,12 +34,16 @@ const footerLinks = [
     route: { name: ROUTE_PRIVACY }
   },
   {
+    key: 'guidelines.title',
+    route: { name: ROUTE_GUIDELINES }
+  },
+  {
     key: 'faqs.title',
     route: { name: ROUTE_FAQS }
   }
 ]
 
-import { ROUTE_PRIVACY, ROUTE_FAQS } from '../const'
+import { ROUTE_PRIVACY, ROUTE_FAQS, ROUTE_GUIDELINES } from '../const'
 import { CookieEvents } from '@/components/CookiePopup.vue'
 
 export default {
