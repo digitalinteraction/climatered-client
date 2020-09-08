@@ -58,7 +58,7 @@
             <div class="box atrium-widget is-coral">
               <h1 class="title">
                 <fa :icon="['fas', 'user-friends']" class="fa-fw" />
-                {{ siteVisitors }}
+                {{ parseInt(siteVisitors) | formatNumber }}
               </h1>
               <h3 class="subtitle">
                 {{ $t('atrium.onlineNow') }}
@@ -72,7 +72,7 @@
             >
               <h1 class="title">
                 <fa :icon="['fas', 'leaf']" class="fa-fw" />
-                {{ parseInt(carbon.carbonNotEmitted) }}
+                {{ parseInt(carbon.carbonNotEmitted) | formatNumber }}
               </h1>
               <h3 class="subtitle">
                 {{ $t('atrium.kilogramsOfCarbonSaved') }}
@@ -209,6 +209,11 @@ export default {
   },
   destroyed() {
     this.$clock.unbind(this)
+  },
+  filters: {
+    formatNumber(number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
   },
   data() {
     return {
