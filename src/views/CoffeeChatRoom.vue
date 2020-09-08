@@ -1,209 +1,205 @@
 <template>
   <AppWrapper :show-footer="false">
-    <vue100vh :css="{ height: '80rvh' }">
-      <div class="wrapper">
-        <div
-          class="joining-message"
-          v-if="Object.keys(remoteStreams).length == 0"
-        >
-          <h1 class="title has-text-white">
-            {{ $t('coffeechatroom.waitingForPartner') }}
-          </h1>
-          <div v-if="userMediaError">
-            <span class="icon is-small has-text-white">
-              <fa :icon="'video-slash'" />
+    <div class="wrapper">
+      <div
+        class="joining-message"
+        v-if="Object.keys(remoteStreams).length == 0"
+      >
+        <h1 class="title has-text-white">
+          {{ $t('coffeechatroom.waitingForPartner') }}
+        </h1>
+        <div v-if="userMediaError">
+          <span class="icon is-small has-text-white">
+            <fa :icon="'video-slash'" />
+          </span>
+          <h2 class="subtitle has-text-white">
+            {{ $t('coffeechatroom.userMediaErrors.generalError') }}
+            <span v-if="userMediaError !== 'PermissionDeniedError'">, </span>
+            <span v-if="userMediaError == 'DevicesNotFoundError'">
+              {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
             </span>
-            <h2 class="subtitle has-text-white">
-              {{ $t('coffeechatroom.userMediaErrors.generalError') }}
-              <span v-if="userMediaError !== 'PermissionDeniedError'">, </span>
-              <span v-if="userMediaError == 'DevicesNotFoundError'">
-                {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
-              </span>
-              <span v-if="userMediaError == 'TrackStartError'">
-                {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
-              </span>
-              <span v-if="userMediaError == 'ConstraintNotSatisfiedError'">
-                {{
-                  $t(
-                    'coffeechatroom.userMediaErrors.constraintNotSatisfiedError'
-                  )
-                }}
-              </span>
-              <span
-                v-if="
-                  userMediaError == 'TypeError' ||
-                    userMediaError == 'UnknownError'
-                "
-              >
-                {{ $t('coffeechatroom.userMediaErrors.TypeError') }}
-              </span>
-              <div v-if="userMediaError == 'PermissionDeniedError'">
-                <div class="error-instruction-container">
-                  <div v-if="browserType == 'safari'">
-                    <p>
-                      {{
-                        $t('coffeechatroom.userMediaErrors.instructions.safari')
-                      }}
-                    </p>
-                  </div>
-                  <div v-if="browserType == 'chrome'">
-                    <p>
-                      {{
-                        $t('coffeechatroom.userMediaErrors.instructions.chrome')
-                      }}
-                    </p>
-                  </div>
-                  <div v-if="browserType == 'firefox'">
+            <span v-if="userMediaError == 'TrackStartError'">
+              {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
+            </span>
+            <span v-if="userMediaError == 'ConstraintNotSatisfiedError'">
+              {{
+                $t('coffeechatroom.userMediaErrors.constraintNotSatisfiedError')
+              }}
+            </span>
+            <span
+              v-if="
+                userMediaError == 'TypeError' ||
+                  userMediaError == 'UnknownError'
+              "
+            >
+              {{ $t('coffeechatroom.userMediaErrors.TypeError') }}
+            </span>
+            <div v-if="userMediaError == 'PermissionDeniedError'">
+              <div class="error-instruction-container">
+                <div v-if="browserType == 'safari'">
+                  <p>
                     {{
-                      $t('coffeechatroom.userMediaErrors.instructions.firefox')
+                      $t('coffeechatroom.userMediaErrors.instructions.safari')
                     }}
-                  </div>
-                  <div v-if="browserType == 'edge'">
-                    {{ $t('coffeechatroom.userMediaErrors.instructions.edge') }}
-                  </div>
+                  </p>
+                </div>
+                <div v-if="browserType == 'chrome'">
+                  <p>
+                    {{
+                      $t('coffeechatroom.userMediaErrors.instructions.chrome')
+                    }}
+                  </p>
+                </div>
+                <div v-if="browserType == 'firefox'">
+                  {{
+                    $t('coffeechatroom.userMediaErrors.instructions.firefox')
+                  }}
+                </div>
+                <div v-if="browserType == 'edge'">
+                  {{ $t('coffeechatroom.userMediaErrors.instructions.edge') }}
                 </div>
               </div>
-              <button
-                class="button is-purple"
-                @click="retryCamera"
-                v-if="userMediaError !== 'PermissionDeniedError'"
-              >
-                {{ $t('coffeechatroom.userMediaErrors.retryButtonText') }}
-              </button>
-            </h2>
-          </div>
+            </div>
+            <button
+              class="button is-purple"
+              @click="retryCamera"
+              v-if="userMediaError !== 'PermissionDeniedError'"
+            >
+              {{ $t('coffeechatroom.userMediaErrors.retryButtonText') }}
+            </button>
+          </h2>
         </div>
+      </div>
+      <div
+        :class="
+          `grid-container grid-item-count-${
+            remoteStreamsLength < 8 ? remoteStreamsLength : 8
+          }`
+        "
+      >
         <div
-          :class="
-            `grid-container grid-item-count-${
-              remoteStreamsLength < 8 ? remoteStreamsLength : 8
-            }`
-          "
+          v-for="(remoteStream, user, i) in remoteStreams"
+          :key="`media-${user}`"
+          :class="`grid-item gi-${i}`"
         >
-          <div
-            v-for="(remoteStream, user, i) in remoteStreams"
-            :key="`media-${user}`"
-            :class="`grid-item gi-${i}`"
-          >
-            <transition-group name="pop-in">
-              <WebRTCVideo
-                class="remote-video"
-                :key="`rv-${i}`"
-                :media-stream="remoteStream.mediaStream"
-                :muted="remoteStream.muted"
-              />
-            </transition-group>
-          </div>
+          <transition-group name="pop-in">
+            <WebRTCVideo
+              class="remote-video"
+              :key="`rv-${i}`"
+              :media-stream="remoteStream.mediaStream"
+              :muted="remoteStream.muted"
+            />
+          </transition-group>
         </div>
-        <div class="share-box has-text-white">
-          <div
-            class="info-button has-text-centered"
-            @click="joiningInfoWindowActive = !joiningInfoWindowActive"
+      </div>
+      <div class="share-box has-text-white">
+        <div
+          class="info-button has-text-centered"
+          @click="joiningInfoWindowActive = !joiningInfoWindowActive"
+        >
+          <span class="icon">
+            <fa icon="info-circle" class="info-circle-icon" />
+          </span>
+        </div>
+        <div class="info-text" v-if="joiningInfoWindowActive">
+          <h3 class="is-size-5 has-text-weight-semibold">
+            {{ $t('coffeechatroom.joiningInfo') }}
+          </h3>
+          <p>{{ roomLink }}</p>
+          <button
+            class="button is-outlined is-fullwidth"
+            @click="copyToClipboard(roomLink)"
           >
             <span class="icon">
-              <fa icon="info-circle" class="info-circle-icon" />
+              <fa icon="copy" />
             </span>
-          </div>
-          <div class="info-text" v-if="joiningInfoWindowActive">
-            <h3 class="is-size-5 has-text-weight-semibold">
-              {{ $t('coffeechatroom.joiningInfo') }}
-            </h3>
-            <p>{{ roomLink }}</p>
-            <button
-              class="button is-outlined is-fullwidth"
-              @click="copyToClipboard(roomLink)"
-            >
-              <span class="icon">
-                <fa icon="copy" />
-              </span>
-              <span v-if="!showLinkCopied">{{
-                $t('coffeechatroom.copyJoinText')
-              }}</span>
-              <span v-if="showLinkCopied">{{
-                $t('coffeechatroom.copiedJoinInfo')
-              }}</span>
-            </button>
-            <h3
-              class="is-size-5 has-text-weight-semibold"
-              v-if="peerContactDetails.length > 0"
-            >
-              <hr />
-              {{ $t('coffeechatroom.contactDetails') }}
-            </h3>
-            <div
-              class="columns is-multiline is-gapless"
-              v-for="(c, i) in peerContactDetails"
-              :key="`cd-${i}`"
-            >
-              <div class="column is-12">
-                <!-- <h3 class="has-text-weight-semibold">{{ $t('register.name.label') }}:</h3> -->
-                <p>{{ c.name }}</p>
-              </div>
-              <div class="column is-12">
-                <!-- <h3 class="has-text-weight-semibold">{{ $t('login.email.label') }}:</h3> -->
-                <a :href="`mailto:${c.email}`">{{ c.email }}</a>
-              </div>
+            <span v-if="!showLinkCopied">{{
+              $t('coffeechatroom.copyJoinText')
+            }}</span>
+            <span v-if="showLinkCopied">{{
+              $t('coffeechatroom.copiedJoinInfo')
+            }}</span>
+          </button>
+          <h3
+            class="is-size-5 has-text-weight-semibold"
+            v-if="peerContactDetails.length > 0"
+          >
+            <hr />
+            {{ $t('coffeechatroom.contactDetails') }}
+          </h3>
+          <div
+            class="columns is-multiline is-gapless"
+            v-for="(c, i) in peerContactDetails"
+            :key="`cd-${i}`"
+          >
+            <div class="column is-12">
+              <!-- <h3 class="has-text-weight-semibold">{{ $t('register.name.label') }}:</h3> -->
+              <p>{{ c.name }}</p>
             </div>
-            <!-- <p v-for="(c, i) in peerContactDetails" :key="`cd-${i}`">
-              <b class="is-size-7">{{ $t('register.name.label') }}:</b><br />
-              {{ c.name }}<br />
-              <b class="is-size-7">{{ $t('login.email.label') }}:</b><br />
+            <div class="column is-12">
+              <!-- <h3 class="has-text-weight-semibold">{{ $t('login.email.label') }}:</h3> -->
               <a :href="`mailto:${c.email}`">{{ c.email }}</a>
-            </p> -->
+            </div>
           </div>
-        </div>
-        <div class="local-camera" v-if="localMediaStream">
-          <transition name="pop-in">
-            <WebRTCVideo
-              :media-stream="localMediaStream"
-              :muted="true"
-              :is-local-video="true"
-            />
-          </transition>
-          <button
-            class="button share-button is-purple"
-            @click="shareContactDetails"
-            :disabled="contactDetails"
-          >
-            {{ $t('coffeechatroom.shareContactDetails') }}
-          </button>
-        </div>
-        <div class="call-controls buttons" v-if="showControls">
-          <button
-            class="button"
-            @click="toggleMute"
-            :title="`${muted ? 'Unmute Mic' : 'Mute Mic'}`"
-          >
-            <span class="mute-button icon is-large has-text-white">
-              <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
-            </span>
-          </button>
-          <button
-            class="button"
-            @click="toggleCamera"
-            :title="`${videoEnabled ? 'Enable Video' : 'Disable Video'}`"
-          >
-            <span class="video-button icon is-large has-text-white">
-              <fa :icon="`${videoEnabled ? 'video' : 'video-slash'}`" />
-            </span>
-          </button>
-          <button class="button" @click="leave" title="Leave Chat">
-            <span class="leave-button icon is-large has-text-white">
-              <fa icon="phone" />
-            </span>
-          </button>
+          <!-- <p v-for="(c, i) in peerContactDetails" :key="`cd-${i}`">
+            <b class="is-size-7">{{ $t('register.name.label') }}:</b><br />
+            {{ c.name }}<br />
+            <b class="is-size-7">{{ $t('login.email.label') }}:</b><br />
+            <a :href="`mailto:${c.email}`">{{ c.email }}</a>
+          </p> -->
         </div>
       </div>
-      <a href="https://thinkactivelabs.co.uk" target="_blank">
-        <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
-      </a>
-      <div
-        class="notification share-popup has-text-light"
-        v-if="remoteStreamsLength > 8"
-      >
-        {{ $t('coffeechatroom.tooManyStreams') }}
+      <div class="local-camera" v-if="localMediaStream">
+        <transition name="pop-in">
+          <WebRTCVideo
+            :media-stream="localMediaStream"
+            :muted="true"
+            :is-local-video="true"
+          />
+        </transition>
+        <button
+          class="button share-button is-purple"
+          @click="shareContactDetails"
+          :disabled="contactDetails"
+        >
+          {{ $t('coffeechatroom.shareContactDetails') }}
+        </button>
       </div>
-    </vue100vh>
+      <div class="call-controls buttons" v-if="showControls">
+        <button
+          class="button"
+          @click="toggleMute"
+          :title="`${muted ? 'Unmute Mic' : 'Mute Mic'}`"
+        >
+          <span class="mute-button icon is-large has-text-white">
+            <fa :icon="`${muted ? 'microphone-slash' : 'microphone'}`" />
+          </span>
+        </button>
+        <button
+          class="button"
+          @click="toggleCamera"
+          :title="`${videoEnabled ? 'Enable Video' : 'Disable Video'}`"
+        >
+          <span class="video-button icon is-large has-text-white">
+            <fa :icon="`${videoEnabled ? 'video' : 'video-slash'}`" />
+          </span>
+        </button>
+        <button class="button" @click="leave" title="Leave Chat">
+          <span class="leave-button icon is-large has-text-white">
+            <fa icon="phone" />
+          </span>
+        </button>
+      </div>
+    </div>
+    <a href="https://thinkactivelabs.co.uk" target="_blank">
+      <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
+    </a>
+    <div
+      class="notification share-popup has-text-light"
+      v-if="remoteStreamsLength > 8"
+    >
+      {{ $t('coffeechatroom.tooManyStreams') }}
+    </div>
   </AppWrapper>
 </template>
 
@@ -214,10 +210,9 @@ import WebRTCVideo from '@/components/WebRTCVideo.vue'
 import CoffeeChatRoom from '../coffee-chat/coffee-chat-room'
 import { ROUTE_COFFEE_CHAT } from '../const'
 import copy from 'copy-to-clipboard'
-import vue100vh from 'vue-100vh'
 
 export default {
-  components: { AppWrapper, WebRTCVideo, vue100vh },
+  components: { AppWrapper, WebRTCVideo },
   props: {
     timeLimit: { type: Number, default: 0 }
   },
