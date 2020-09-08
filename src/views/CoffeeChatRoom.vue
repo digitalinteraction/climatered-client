@@ -2,73 +2,68 @@
   <AppWrapper :show-footer="false">
     <div class="wrapper">
       <div
-        class="joining-message"
-        v-if="Object.keys(remoteStreams).length == 0"
+        class="joining-message waiting-message"
+        v-if="Object.keys(remoteStreams).length == 0 && !userMediaError"
       >
         <h1 class="title has-text-white">
           {{ $t('coffeechatroom.waitingForPartner') }}
         </h1>
-        <div v-if="userMediaError">
-          <span class="icon is-small has-text-white">
-            <fa :icon="'video-slash'" />
+      </div>
+      <div class="joining-message" v-else>
+        <h1 class="title has-text-white">
+          {{ $t('coffeechatroom.userMediaErrors.generalError') }}
+        </h1>
+        <span class="icon is-small has-text-white">
+          <fa :icon="'video-slash'" />
+        </span>
+        <h2 class="subtitle has-text-white">
+          <span v-if="userMediaError !== 'PermissionDeniedError'">, </span>
+          <span v-if="userMediaError == 'DevicesNotFoundError'">
+            {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
           </span>
-          <h2 class="subtitle has-text-white">
-            {{ $t('coffeechatroom.userMediaErrors.generalError') }}
-            <span v-if="userMediaError !== 'PermissionDeniedError'">, </span>
-            <span v-if="userMediaError == 'DevicesNotFoundError'">
-              {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
-            </span>
-            <span v-if="userMediaError == 'TrackStartError'">
-              {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
-            </span>
-            <span v-if="userMediaError == 'ConstraintNotSatisfiedError'">
-              {{
-                $t('coffeechatroom.userMediaErrors.constraintNotSatisfiedError')
-              }}
-            </span>
-            <span
-              v-if="
-                userMediaError == 'TypeError' ||
-                  userMediaError == 'UnknownError'
-              "
-            >
-              {{ $t('coffeechatroom.userMediaErrors.TypeError') }}
-            </span>
-            <div v-if="userMediaError == 'PermissionDeniedError'">
-              <div class="error-instruction-container">
-                <div v-if="browserType == 'safari'">
-                  <p>
-                    {{
-                      $t('coffeechatroom.userMediaErrors.instructions.safari')
-                    }}
-                  </p>
-                </div>
-                <div v-if="browserType == 'chrome'">
-                  <p>
-                    {{
-                      $t('coffeechatroom.userMediaErrors.instructions.chrome')
-                    }}
-                  </p>
-                </div>
-                <div v-if="browserType == 'firefox'">
-                  {{
-                    $t('coffeechatroom.userMediaErrors.instructions.firefox')
-                  }}
-                </div>
-                <div v-if="browserType == 'edge'">
-                  {{ $t('coffeechatroom.userMediaErrors.instructions.edge') }}
-                </div>
+          <span v-if="userMediaError == 'TrackStartError'">
+            {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
+          </span>
+          <span v-if="userMediaError == 'ConstraintNotSatisfiedError'">
+            {{
+              $t('coffeechatroom.userMediaErrors.constraintNotSatisfiedError')
+            }}
+          </span>
+          <span
+            v-if="
+              userMediaError == 'TypeError' || userMediaError == 'UnknownError'
+            "
+          >
+            {{ $t('coffeechatroom.userMediaErrors.TypeError') }}
+          </span>
+          <div v-if="userMediaError == 'PermissionDeniedError'">
+            <div class="error-instruction-container">
+              <div v-if="browserType == 'safari'">
+                <p>
+                  {{ $t('coffeechatroom.userMediaErrors.instructions.safari') }}
+                </p>
+              </div>
+              <div v-if="browserType == 'chrome'">
+                <p>
+                  {{ $t('coffeechatroom.userMediaErrors.instructions.chrome') }}
+                </p>
+              </div>
+              <div v-if="browserType == 'firefox'">
+                {{ $t('coffeechatroom.userMediaErrors.instructions.firefox') }}
+              </div>
+              <div v-if="browserType == 'edge'">
+                {{ $t('coffeechatroom.userMediaErrors.instructions.edge') }}
               </div>
             </div>
-            <button
-              class="button is-purple"
-              @click="retryCamera"
-              v-if="userMediaError !== 'PermissionDeniedError'"
-            >
-              {{ $t('coffeechatroom.userMediaErrors.retryButtonText') }}
-            </button>
-          </h2>
-        </div>
+          </div>
+          <button
+            class="button is-purple"
+            @click="retryCamera"
+            v-if="userMediaError !== 'PermissionDeniedError'"
+          >
+            {{ $t('coffeechatroom.userMediaErrors.retryButtonText') }}
+          </button>
+        </h2>
       </div>
       <div
         :class="
@@ -436,8 +431,13 @@ export default {
   text-align: center;
   margin-top: 30vh;
   padding: 1rem;
-  @include mobile {
-    margin-top: 15vh;
+  &.waiting-message {
+    margin-top: 40vh;
+  }
+  &:not(.waiting-message) {
+    @include mobile {
+      margin-top: 15vh;
+    }
   }
 }
 
