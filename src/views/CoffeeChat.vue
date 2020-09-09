@@ -292,6 +292,9 @@ export default {
       }
     }
   },
+  beforeDestroy() {
+    this.leave()
+  },
   methods: {
     loadThemes() {
       this.themes.forEach(t => {
@@ -342,7 +345,9 @@ export default {
       this.isWaiting = true
     },
     leave() {
-      this.coffeeChatLobby.leaveLobby()
+      if (this.coffeeChatLobby) {
+        this.coffeeChatLobby.leaveLobby()
+      }
       this.isWaiting = false
     },
     async queryLobby() {
