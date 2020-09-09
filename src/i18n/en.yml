@@ -125,10 +125,13 @@ coffeechat:
 
 coffeechatroom:
   title: Coffee chat
-  waitingForPartner: Waiting for your partner to join
+  waitingForPartner: Waiting for your partner to join...
+  partnerTimeout: Looks like we could connect you with partner. Please leave and try again
+  leave: Leave room
   joiningInfo: Joining Info
   contactDetails: Contact Details
   shareContactDetails: Share contact details
+  sharedContactDetails: Shared!
   confirmLeaveText: Are you sure you would like to leave this Coffee Chat?
   copyJoinText: Copy Join Info
   copiedJoinInfo: Copied Join Info!
@@ -142,7 +145,7 @@ coffeechatroom:
     constraintNotSatisfiedError: click the button below to retry
     typeError: click the button below to retry
     unknownError: click the button below to retry
-    retryButtonText: enable camera & mic
+    retryButtonText: Enable Camera & Mic
     instructions:
       safari: Open Safari Preferences > Navigate to Websites > Go to Camera and Microphone tabs > Change access to Allow > Restart Safari
       chrome: Click the camera blocked icon in your browser's address bar and then refresh the page

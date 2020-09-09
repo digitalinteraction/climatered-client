@@ -55,7 +55,9 @@ import {
   faLeaf,
   faHashtag,
   faPlay,
-  faStop
+  faStop,
+  faAngleDown,
+  faAngleUp
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -113,7 +115,9 @@ library.add(
   faLeaf,
   faHashtag,
   faPlay,
-  faStop
+  faStop,
+  faAngleDown,
+  faAngleUp
 )
 
 //

@@ -65,9 +65,20 @@
                     aria-controls="language-dropdown-menu"
                     @click="languageDropDownSelect()"
                   >
-                    <span>{{ $t('coffeechat.filters.languageSelector') }}</span>
-                    <span class="icon is-small">
-                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    <span class="text">{{
+                      $t('coffeechat.filters.languageSelector')
+                    }}</span>
+                    <span
+                      class="icon is-small"
+                      v-if="!filters.languages.isActive"
+                    >
+                      <fa icon="angle-down" />
+                    </span>
+                    <span
+                      class="icon is-small"
+                      v-if="filters.languages.isActive"
+                    >
+                      <fa icon="angle-up" />
                     </span>
                   </button>
                 </div>
@@ -128,9 +139,14 @@
                     aria-controls="themes-dropdown-menu"
                     @click="themesDropDownSelect()"
                   >
-                    <span>{{ $t('coffeechat.filters.themeSelector') }}</span>
-                    <span class="icon is-small">
-                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    <span class="text">{{
+                      $t('coffeechat.filters.themeSelector')
+                    }}</span>
+                    <span class="icon is-small" v-if="!filters.themes.isActive">
+                      <fa icon="angle-down" />
+                    </span>
+                    <span class="icon is-small" v-if="filters.themes.isActive">
+                      <fa icon="angle-up" />
                     </span>
                   </button>
                 </div>
@@ -199,9 +215,9 @@
         </div>
       </section>
     </div>
-    <!-- <a href="https://thinkactivelabs.co.uk" target="_blank">
-      <img class="ta-logo" src="/img/poweredby-ta.svg" width="200" />
-    </a> -->
+    <a href="https://thinkactivelabs.co.uk" target="_blank">
+      <img class="ta-logo" src="/img/poweredby-ta.svg" />
+    </a>
   </AppWrapper>
 </template>
 
@@ -358,6 +374,7 @@ export default {
 <style lang="scss" scoped>
 .coffee-chat {
   @include appPageFlexFillChild;
+  overflow: scroll;
   background-color: $greyish;
   color: #ffffff;
   padding-top: 15vh;
@@ -388,6 +405,10 @@ export default {
     }
     .button {
       width: 100%;
+      .text {
+        width: 100%;
+        text-align: start;
+      }
     }
   }
   .dropdown-menu {
@@ -395,7 +416,7 @@ export default {
     padding-top: 0px;
     .dropdown-content {
       font-weight: bold;
-      border-radius: 0px 0px 4px 4px;
+      border-radius: 0px 0px 8px 8px;
       .scroll-container {
         max-height: 15vh;
         overflow-x: hidden;
@@ -426,7 +447,7 @@ export default {
   }
   .dropdown-trigger {
     button {
-      border-radius: 4px 4px 0px 0px;
+      border-radius: 8px 8px 0px 0px;
     }
   }
 }
@@ -502,7 +523,8 @@ export default {
 
 .ta-logo {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 1rem;
+  left: 1rem;
+  max-width: 135px;
 }
 </style>

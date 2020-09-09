@@ -4,6 +4,7 @@
       ref="webrtc-video"
       :class="{ 'is-rounded': isLocalVideo }"
       autoplay
+      playsinline
     />
     <span
       class="mute-button icon is-large has-text-white"

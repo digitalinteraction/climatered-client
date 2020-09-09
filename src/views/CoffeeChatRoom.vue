@@ -2,73 +2,76 @@
   <AppWrapper :show-footer="false">
     <div class="wrapper">
       <div
-        class="joining-message"
-        v-if="Object.keys(remoteStreams).length == 0"
+        class="joining-message waiting-message"
+        v-if="Object.keys(remoteStreams).length == 0 && !userMediaError"
       >
         <h1 class="title has-text-white">
           {{ $t('coffeechatroom.waitingForPartner') }}
         </h1>
-        <div v-if="userMediaError">
-          <span class="icon is-small has-text-white">
-            <fa :icon="'video-slash'" />
+        <h2 class="subtitle has-text-white" v-if="partnerTimeout">
+          {{ $t('coffeechatroom.partnerTimeout') }}<br />
+        </h2>
+        <p>
+          <button class="button is-purple" @click="leave" v-if="partnerTimeout">
+            {{ $t('coffeechatroom.leave') }}
+          </button>
+        </p>
+      </div>
+      <div class="joining-message" v-else>
+        <h1 class="title has-text-white">
+          {{ $t('coffeechatroom.userMediaErrors.generalError') }}
+        </h1>
+        <span class="icon is-small has-text-white">
+          <fa :icon="'video-slash'" />
+        </span>
+        <h2 class="subtitle has-text-white">
+          <span v-if="userMediaError !== 'PermissionDeniedError'">, </span>
+          <span v-if="userMediaError == 'DevicesNotFoundError'">
+            {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
           </span>
-          <h2 class="subtitle has-text-white">
-            {{ $t('coffeechatroom.userMediaErrors.generalError') }}
-            <span v-if="userMediaError !== 'PermissionDeniedError'">, </span>
-            <span v-if="userMediaError == 'DevicesNotFoundError'">
-              {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
-            </span>
-            <span v-if="userMediaError == 'TrackStartError'">
-              {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
-            </span>
-            <span v-if="userMediaError == 'ConstraintNotSatisfiedError'">
-              {{
-                $t('coffeechatroom.userMediaErrors.constraintNotSatisfiedError')
-              }}
-            </span>
-            <span
-              v-if="
-                userMediaError == 'TypeError' ||
-                  userMediaError == 'UnknownError'
-              "
-            >
-              {{ $t('coffeechatroom.userMediaErrors.TypeError') }}
-            </span>
-            <div v-if="userMediaError == 'PermissionDeniedError'">
-              <div class="error-instruction-container">
-                <div v-if="browserType == 'safari'">
-                  <p>
-                    {{
-                      $t('coffeechatroom.userMediaErrors.instructions.safari')
-                    }}
-                  </p>
-                </div>
-                <div v-if="browserType == 'chrome'">
-                  <p>
-                    {{
-                      $t('coffeechatroom.userMediaErrors.instructions.chrome')
-                    }}
-                  </p>
-                </div>
-                <div v-if="browserType == 'firefox'">
-                  {{
-                    $t('coffeechatroom.userMediaErrors.instructions.firefox')
-                  }}
-                </div>
-                <div v-if="browserType == 'edge'">
-                  {{ $t('coffeechatroom.userMediaErrors.instructions.edge') }}
-                </div>
+          <span v-if="userMediaError == 'TrackStartError'">
+            {{ $t('coffeechatroom.userMediaErrors.devicesNotFoundError') }}
+          </span>
+          <span v-if="userMediaError == 'ConstraintNotSatisfiedError'">
+            {{
+              $t('coffeechatroom.userMediaErrors.constraintNotSatisfiedError')
+            }}
+          </span>
+          <span
+            v-if="
+              userMediaError == 'TypeError' || userMediaError == 'UnknownError'
+            "
+          >
+            {{ $t('coffeechatroom.userMediaErrors.TypeError') }}
+          </span>
+          <div v-if="userMediaError == 'PermissionDeniedError'">
+            <div class="error-instruction-container">
+              <div v-if="browserType == 'safari'">
+                <p>
+                  {{ $t('coffeechatroom.userMediaErrors.instructions.safari') }}
+                </p>
+              </div>
+              <div v-if="browserType == 'chrome'">
+                <p>
+                  {{ $t('coffeechatroom.userMediaErrors.instructions.chrome') }}
+                </p>
+              </div>
+              <div v-if="browserType == 'firefox'">
+                {{ $t('coffeechatroom.userMediaErrors.instructions.firefox') }}
+              </div>
+              <div v-if="browserType == 'edge'">
+                {{ $t('coffeechatroom.userMediaErrors.instructions.edge') }}
               </div>
             </div>
-            <button
-              class="button is-purple"
-              @click="retryCamera"
-              v-if="userMediaError !== 'PermissionDeniedError'"
-            >
-              {{ $t('coffeechatroom.userMediaErrors.retryButtonText') }}
-            </button>
-          </h2>
-        </div>
+          </div>
+          <button
+            class="button is-purple"
+            @click="retryCamera"
+            v-if="userMediaError !== 'PermissionDeniedError'"
+          >
+            {{ $t('coffeechatroom.userMediaErrors.retryButtonText') }}
+          </button>
+        </h2>
       </div>
       <div
         :class="
@@ -133,20 +136,20 @@
             :key="`cd-${i}`"
           >
             <div class="column is-12">
-              <!-- <h3 class="has-text-weight-semibold">{{ $t('register.name.label') }}:</h3> -->
+              <h3 class="has-text-weight-semibold">
+                {{ $t('register.name.label') }}:
+              </h3>
               <p>{{ c.name }}</p>
             </div>
             <div class="column is-12">
-              <!-- <h3 class="has-text-weight-semibold">{{ $t('login.email.label') }}:</h3> -->
-              <a :href="`mailto:${c.email}`">{{ c.email }}</a>
+              <h3 class="has-text-weight-semibold">
+                {{ $t('login.email.label') }}:
+              </h3>
+              <a class="has-text-white" :href="`mailto:${c.email}`">{{
+                c.email
+              }}</a>
             </div>
           </div>
-          <!-- <p v-for="(c, i) in peerContactDetails" :key="`cd-${i}`">
-            <b class="is-size-7">{{ $t('register.name.label') }}:</b><br />
-            {{ c.name }}<br />
-            <b class="is-size-7">{{ $t('login.email.label') }}:</b><br />
-            <a :href="`mailto:${c.email}`">{{ c.email }}</a>
-          </p> -->
         </div>
       </div>
       <div class="local-camera" v-if="localMediaStream">
@@ -162,7 +165,17 @@
           @click="shareContactDetails"
           :disabled="contactDetails"
         >
-          {{ $t('coffeechatroom.shareContactDetails') }}
+          <span class="share-button-text">
+            {{
+              sharedContactDetails
+                ? $t('coffeechatroom.sharedContactDetails')
+                : $t('coffeechatroom.shareContactDetails')
+            }}
+          </span>
+          <span class="share-button-icon">
+            <fa icon="envelope" class="fa-lg" v-if="!sharedContactDetails" />
+            <span v-else>{{ $t('coffeechatroom.sharedContactDetails') }} </span>
+          </span>
         </button>
       </div>
       <div class="call-controls buttons" v-if="showControls">
@@ -200,6 +213,12 @@
     >
       {{ $t('coffeechatroom.tooManyStreams') }}
     </div>
+    <div
+      class="loading-animation"
+      v-if="Object.keys(remoteStreams).length == 0"
+    >
+      <LottieAnimation :animation-data="animationData" :loop="true" />
+    </div>
   </AppWrapper>
 </template>
 
@@ -210,9 +229,11 @@ import WebRTCVideo from '@/components/WebRTCVideo.vue'
 import CoffeeChatRoom from '../coffee-chat/coffee-chat-room'
 import { ROUTE_COFFEE_CHAT } from '../const'
 import copy from 'copy-to-clipboard'
+import LottieAnimation from '@/components/LottieAnimation.vue'
+import loadingAnimationData from '@/icons/coffee-chat-loader.json'
 
 export default {
-  components: { AppWrapper, WebRTCVideo },
+  components: { AppWrapper, WebRTCVideo, LottieAnimation },
   props: {
     timeLimit: { type: Number, default: 0 }
   },
@@ -244,7 +265,10 @@ export default {
       joiningInfoWindowActive: false,
       showNotification: false,
       userMediaError: null,
-      showLinkCopied: false
+      showLinkCopied: false,
+      animationData: loadingAnimationData,
+      sharedContactDetails: false,
+      partnerTimeout: false
     }
   },
   async mounted() {
@@ -264,7 +288,11 @@ export default {
     async setupMedia() {
       try {
         this.localMediaStream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: {
+            facingMode: {
+              ideal: 'user'
+            }
+          },
           audio: true
         })
         this.videoEnabled = true
@@ -338,6 +366,9 @@ export default {
       )
       const roomId = this.$route.params.room
       this.coffeeChat.joinRoom(roomId)
+      setTimeout(() => {
+        this.partnerTimeout = true
+      }, 60000)
     },
     async retryCamera() {
       await this.setupMedia()
@@ -380,6 +411,11 @@ export default {
         value: 0
       })
       this.sendStateToPeers()
+      this.sharedContactDetails = true
+
+      setTimeout(() => {
+        this.sharedContactDetails = false
+      }, 1500)
     },
     sendStateToPeers() {
       this.coffeeChat.sendUserData({
@@ -404,14 +440,38 @@ export default {
 </script>
 <style lang="scss" scoped>
 .joining-message {
+  position: relative;
+  z-index: 5;
   width: 100%;
   text-align: center;
   margin-top: 30vh;
   padding: 1rem;
+  &.waiting-message {
+    margin-top: 40vh;
+  }
+  &:not(.waiting-message) {
+    @include mobile {
+      margin-top: 15vh;
+    }
+  }
+}
+
+.loading-animation {
+  height: 45vh;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  @include mobile {
+    height: 35vh;
+  }
 }
 
 .error-instruction-container {
   padding: 3rem;
+  @include mobile {
+    padding: 1rem;
+  }
 }
 
 .share-box {
@@ -448,6 +508,9 @@ export default {
     hr {
       height: 0.5px;
       margin: 1rem 0;
+    }
+    p {
+      word-break: break-all;
     }
     .button {
       margin-top: 0.5rem;
@@ -605,6 +668,11 @@ export default {
   right: 2rem;
   width: 16rem;
   height: 12rem;
+  .share-button {
+    .share-button-icon {
+      display: none;
+    }
+  }
   @include mobile {
     width: 35%;
     height: 30%;
@@ -615,7 +683,12 @@ export default {
     // top: 0.5rem;
     // right: 0.5rem;
     .share-button {
-      display: none;
+      .share-button-text {
+        display: none;
+      }
+      .share-button-icon {
+        display: inline;
+      }
     }
   }
 }
@@ -701,11 +774,9 @@ export default {
 
 .ta-logo {
   position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  max-width: 135px;
   z-index: 1;
-  bottom: 10px;
-  left: 10px;
-  @include mobile {
-    width: 150px;
-  }
 }
 </style>

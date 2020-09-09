@@ -1,5 +1,5 @@
 <template>
-  <div class="app-wrapper">
+  <vue100vh class="app-wrapper" :css="{ minHeight: 'calc(100rvh - 3.5rem)' }">
     <div class="app-header">
       <div class="app-header-start">
         <!-- Nav bar -->
@@ -15,7 +15,7 @@
       <slot />
     </div>
     <AppFooter v-if="showFooter" class="app-footer" />
-  </div>
+  </vue100vh>
 </template>
 
 <script>
@@ -25,6 +25,7 @@
 // and only displays <slot> when data has been fetched
 //
 import { mapState } from 'vuex'
+import vue100vh from 'vue-100vh'
 
 import AppFooter from '@/components/AppFooter.vue'
 
@@ -32,7 +33,7 @@ import NavBar from '@/components/layout/NavBar.vue'
 import SideTabs from '@/components/layout/SideTabs.vue'
 
 export default {
-  components: { AppFooter, NavBar, SideTabs },
+  components: { AppFooter, NavBar, SideTabs, vue100vh },
   props: {
     showFooter: { type: Boolean, default: true }
   },
