@@ -214,6 +214,13 @@ export default {
         this.reciever.setup()
 
         this.$socket.emit('join-channel', this.session.id, channel)
+
+        // Emit a gtag event
+        this.$gtag.event(`join-${this.session.id}-${channel}`, {
+          event_category: 'interpret',
+          event_label: 'Joined interpretation channel',
+          value: 0
+        })
       }
     },
     leaveChannel(channel) {
@@ -230,6 +237,13 @@ export default {
         // Reset the liveness
         this.broadcastIsLive = false
         this.stats = null
+
+        // Emit a gtag event
+        this.$gtag.event(`leave-${this.session.id}-${channel}`, {
+          event_category: 'interpret',
+          event_label: 'Leave interpretation channel',
+          value: 0
+        })
       }
     },
     onChannel(newChannel) {
