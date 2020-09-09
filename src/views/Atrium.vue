@@ -72,10 +72,10 @@
             >
               <h1 class="title">
                 <fa :icon="['fas', 'leaf']" class="fa-fw" />
-                {{ parseInt(carbon.carbonNotEmitted) | formatNumber }}
+                {{ parseInt(carbon.carbonNotEmitted / 1000) | formatNumber }}
               </h1>
               <h3 class="subtitle">
-                {{ $t('atrium.kilogramsOfCarbonSaved') }}
+                {{ $t('atrium.tonnesOfCarbonSaved') }}
               </h3>
             </div>
 
