@@ -65,7 +65,7 @@
               <SessionLocaleWarning :session="session" />
 
               <!-- Session component -->
-              <div class="session-component" v-if="sessionState == 'present'">
+              <div class="session-component" v-if="isPast || isPresent">
                 <!-- Auditorium -->
                 <div v-if="isAuditorium" class="auditorium">
                   <OneToMany :session="session" :session-slot="slot" />
