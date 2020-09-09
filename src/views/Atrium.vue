@@ -72,10 +72,10 @@
             >
               <h1 class="title">
                 <fa :icon="['fas', 'leaf']" class="fa-fw" />
-                {{ parseInt(carbon.carbonNotEmitted) | formatNumber }}
+                ~{{ parseInt(carbon.carbonNotEmitted / 1000) | formatNumber }}
               </h1>
               <h3 class="subtitle">
-                {{ $t('atrium.kilogramsOfCarbonSaved') }}
+                {{ $t('atrium.tonnesOfCarbonSaved') }}
               </h3>
             </div>
 
@@ -97,7 +97,10 @@
             </a>
 
             <!-- Featured sessions -->
-            <div class="box atrium-widget" v-if="featuredSessions.length > 0">
+            <div
+              class="box atrium-widget"
+              v-if="user && featuredSessions.length > 0"
+            >
               <h3 class="subtitle has-text-coral">
                 {{ $t('atrium.featuredSesions') }}
               </h3>

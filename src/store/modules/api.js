@@ -155,6 +155,13 @@ const actions = {
       commit('apiState', 'error')
     }
   },
+  async fetchSessions({ commit }) {
+    const response = await agent.get('/schedule/sessions')
+
+    if (response.status >= 400) return
+
+    commit('sessions', response.data.sessions)
+  },
   async login(ctx, email) {
     const response = await agent.get('/login/email', {
       params: { email, n: Date.now() },

@@ -189,6 +189,7 @@ export default {
 
     this.$socket.bindEvent(this, 'channel-data', async data => {
       await this.reciever.push(data)
+      this.broadcastIsLive = true
     })
     this.$socket.bindEvent(this, 'channel-started', () => {
       this.broadcastIsLive = true
