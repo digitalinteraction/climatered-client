@@ -16,9 +16,10 @@ export default class CoffeeChatLobby {
   }
 
   leaveLobby() {
-    this.socket.bindEvent(this, 'left-lobby', () => {
-      console.log('left lobby')
-    })
+    // this.socket.bindEvent(this, 'left-lobby', () => {
+    //   console.log('left lobby')
+    // })
+    this.socket.unbindEvent(this, 'room-found')
     this.socket.emit('leave-lobby')
   }
 
