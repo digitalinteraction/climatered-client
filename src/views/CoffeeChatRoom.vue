@@ -17,7 +17,7 @@
           </button>
         </p>
       </div>
-      <div class="joining-message" v-else>
+      <div class="joining-message" v-else-if="userMediaError">
         <h1 class="title has-text-white">
           {{ $t('coffeechatroom.userMediaErrors.generalError') }}
         </h1>
