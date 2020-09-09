@@ -67,7 +67,7 @@ export default {
         session
       }))
 
-      grouped.sort((a, b) => a.slot.id.localeCompare(b.slot.id))
+      grouped.sort((a, b) => a.slot.start.localeCompare(b.slot.start))
 
       return grouped
     }
