@@ -41,7 +41,8 @@ export default {
   components: { ApiError, CookiePopup },
   data() {
     return {
-      isReady: false
+      isReady: false,
+      timerId: null
     }
   },
   computed: {
@@ -75,10 +76,17 @@ export default {
       }
     }
 
+    const scheduleTick = Math.round((3 + Math.random() * 4) * 60 * 1000)
+    this.timerId = setInterval(
+      () => this.$store.dispatch('api/fetchSessions'),
+      scheduleTick
+    )
+
     this.isReady = true
   },
   destroyed() {
     this.$socket.unbindOwner(this)
+    if (this.timerId) clearInterval(this.timerId)
   }
 }
 </script>
