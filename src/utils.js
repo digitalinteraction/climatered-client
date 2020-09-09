@@ -11,6 +11,13 @@ export function findLink(links, type, language) {
   )
 }
 
+function isYoutubeDomain(url) {
+  return (
+    url.hostname.endsWith('youtube.com') ||
+    url.hostname.endsWith('youtube-nocookie.com')
+  )
+}
+
 // https://youtu.be/U3LFI2mI8Y0
 // https://www.youtube.com/watch?v=U3LFI2mI8Y0
 export function parseYouTubeLink(link) {
@@ -23,7 +30,7 @@ export function parseYouTubeLink(link) {
     }
   }
 
-  if (url.hostname.endsWith('youtube.com') && url.searchParams.has('v')) {
+  if (isYoutubeDomain(url) && url.searchParams.has('v')) {
     return {
       url: link.url,
       id: url.searchParams.get('v')
@@ -38,7 +45,7 @@ export function parseYouTubeChannel(link) {
   let url = new URL(link.url)
 
   if (
-    url.hostname.endsWith('youtube.com') &&
+    isYoutubeDomain(url) &&
     url.pathname === '/embed/live_stream' &&
     url.searchParams.has('channel')
   ) {
