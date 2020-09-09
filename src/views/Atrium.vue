@@ -97,7 +97,10 @@
             </a>
 
             <!-- Featured sessions -->
-            <div class="box atrium-widget" v-if="featuredSessions.length > 0">
+            <div
+              class="box atrium-widget"
+              v-if="user && featuredSessions.length > 0"
+            >
               <h3 class="subtitle has-text-coral">
                 {{ $t('atrium.featuredSesions') }}
               </h3>
