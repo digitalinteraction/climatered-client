@@ -199,6 +199,21 @@ session:
   contactHost: Contacter l’hôte
   sessionOnlyAvailableIn: Veuillez noter que cette session n’est disponible qu’en
 
+oneToMany:
+  label: Langue audio
+  noVideo: Aucune vidéo disponible
+  muteLabel: 'A noter: pour écouter une autre langue, n’oubliez pas de mettre en sourdine le flux ci-dessus'
+  stopped: arrêté
+  playing: en jouant
+  buffering: chargement {0}
+  ready: prêt à jouer
+  source: De la vidéo
+  start: Début
+  stop: Arrêtez
+
+videoEmbed:
+  noLive: La diffusion en direct est actuellement indisponible, veuillez revenir plus tard.
+
 schedule:
   title: Programme
   description: Explorez les sessions disponibles et planifiez votre expérience en ajoutant des rappels à votre calendrier.

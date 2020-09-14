@@ -5,12 +5,13 @@
         v-if="videoLink"
         :video-link="videoLink"
         :muted="!isSourceAudio"
+        :disable-livestreams="conferenceIsOver"
       />
       <div class="notification is-warning is-light" v-else>
         {{ $t('oneToMany.noVideo') }}
       </div>
 
-      <div class="audio-channel" v-if="session.enableTranslation">
+      <div class="audio-channel" v-if="interpretationEnabled">
         <div class="columns" v-if="canInterpret">
           <div class="column">
             <p
@@ -168,6 +169,12 @@ export default {
         this.stats.bufferSize > 0 &&
         this.stats.state !== RecieverState.inactive
       )
+    },
+    conferenceIsOver() {
+      return this.$store.state.api.settings.conferenceIsOver
+    },
+    interpretationEnabled() {
+      return this.session.enableTranslation && !this.conferenceIsOver
     }
   },
   mounted() {

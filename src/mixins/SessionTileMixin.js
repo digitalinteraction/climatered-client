@@ -27,6 +27,9 @@ export default {
         name: ROUTE_SESSION,
         params: { sessionSlug: this.session.slug }
       }
+    },
+    conferenceIsOver() {
+      return this.$store.state.api.settings.conferenceIsOver
     }
   }
 }

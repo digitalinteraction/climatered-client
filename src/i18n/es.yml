@@ -199,6 +199,21 @@ cookies:
     Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales.
     Puede cambiar su preferencia haciendo clic en {0} en el pie de página del sitio.
 
+oneToMany:
+  label: Idioma de audio
+  noVideo: No hay video disponible
+  muteLabel: 'NOTA: para escuchar en otro idioma, recuerde silenciar la transmisión arriba'
+  stopped: parado
+  playing: reproduciendo
+  buffering: cargando {0}
+  ready: preparado para reproducir
+  source: Desde el vídeo
+  start: Comienzo
+  stop: Pare
+
+videoEmbed:
+  noLive: The live stream is currently unavailable, please check back later.
+
 schedule:
   title: Programa
   description: Explore las sesiones disponibles y planifique su experiencia agregando recordatorios a su calendario.

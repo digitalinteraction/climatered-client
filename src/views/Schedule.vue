@@ -44,7 +44,7 @@
           <div class="slot-section-wrapper">
             <!-- Show past sessions button -->
             <a
-              v-if="!searchActive && hasStarted"
+              v-if="!searchActive && hasStarted && !conferenceIsOver"
               id="past-sessions-toggle"
               class="button is-small is-text"
               @click="pastSessionsVisible = !pastSessionsVisible"
@@ -65,7 +65,9 @@
                 v-if="slotIsVisible(scheduleSlot)"
                 :class="[
                   'slot-section',
-                  searchActive ? '' : slotState(scheduleSlot)
+                  searchActive || conferenceIsOver
+                    ? ''
+                    : slotState(scheduleSlot)
                 ]"
               >
                 <div class="columns">
@@ -231,6 +233,9 @@ export default {
       matchedSessions = this.applyFilters(matchedSessions)
 
       return matchedSessions
+    },
+    conferenceIsOver() {
+      return this.$store.state.api.settings.conferenceIsOver
     }
   },
   methods: {
@@ -269,6 +274,7 @@ export default {
       return (
         this.sessionsForSlot(slot).length > 0 &&
         (this.slotState(slot) !== 'past' ||
+          this.conferenceIsOver ||
           this.pastSessionsVisible ||
           this.searchActive)
       )

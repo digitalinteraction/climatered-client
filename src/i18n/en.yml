@@ -306,6 +306,9 @@ oneToMany:
   start: Start
   stop: Stop
 
+videoEmbed:
+  noLive: The live stream is currently unavailable, please check back later.
+
 schedule:
   title: Schedule
   description: Browse the available sessions and plan your experience by adding reminders to your calendar.
