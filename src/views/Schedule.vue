@@ -57,7 +57,7 @@
             </a>
 
             <!-- Loop and render slots -->
-            <span
+            <div
               v-for="scheduleSlot in slotsForDate(date.date)"
               :key="scheduleSlot.id"
             >
@@ -103,7 +103,7 @@
                   </div>
                 </div>
               </section>
-            </span>
+            </div>
           </div>
         </section>
       </div>
@@ -306,20 +306,15 @@ export default {
 }
 
 .date-section {
-  &:not(:first-child) {
-    margin-top: 30px;
-  }
-
   #past-sessions-toggle {
     margin: 20px;
-    margin-top: 0;
   }
 
   .slot-section-wrapper {
     background-color: $cc-lightestgrey;
 
     .slot-section {
-      margin-bottom: 20px;
+      padding-bottom: 20px;
       position: relative;
 
       &.past {
