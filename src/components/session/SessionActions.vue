@@ -47,7 +47,7 @@
 
       <!-- Add to calendar button -->
       <div
-        v-if="enabledActions.indexOf('calendar') !== -1"
+        v-if="!isPast && enabledActions.indexOf('calendar') !== -1"
         class="button-wrapper"
       >
         <div class="buttons has-addons">
