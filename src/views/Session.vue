@@ -422,7 +422,7 @@ export default {
       return this.isSoon && this.currentTime > start - offset
     },
     loginRequired() {
-      return !this.user || this.session.isPublic === true
+      return !this.user && this.session.isPublic !== true
     }
   },
   mounted() {
