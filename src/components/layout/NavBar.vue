@@ -32,13 +32,14 @@
           :key="item.name"
           :to="item.to"
           :disabled="tabIsDisabled(item.name)"
+          :title="$t(item.titleKey)"
           class="navbar-item"
         >
           <component :is="item.icon" class="navbar-item-icon" />
           <span class="navbar-item-text">
             {{ $t(item.titleKey) }}
             <template v-if="!tabIsActive(item.name)">
-              {{ '– ' + $t('general.comingSoon') }}
+              {{ '– ' + $t(disabledKey) }}
             </template>
           </span>
         </router-link>

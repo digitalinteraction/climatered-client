@@ -88,11 +88,19 @@ export default {
       }
 
       return this.nav.filter(item => !filterOut.has(item.name))
+    },
+    disabledKey() {
+      return this.conferenceIsOver()
+        ? 'general.unavailable'
+        : 'general.comingSoon'
     }
   },
   methods: {
     scheduleLive() {
-      return this.hasData && this.settings.scheduleLive
+      return Boolean(this.settings?.scheduleLive)
+    },
+    conferenceIsOver() {
+      return Boolean(this.settings?.conferenceIsOver)
     },
     /** Wether a tab should be shown or "coming-soon" */
     tabIsActive(tabName) {
@@ -104,11 +112,13 @@ export default {
 
       // If the schedule is live any other tab is enabled
       // otherwise only public tabs are enabled
-      return this.scheduleLive || publicTabs.has(tabName)
+      return this.scheduleLive() || publicTabs.has(tabName)
     },
     /** Whether the current user can access a tab */
     tabIsAllowed(tabName) {
-      return this.user || publicTabs.has(tabName)
+      return (
+        Boolean(this.user) || this.conferenceIsOver() || publicTabs.has(tabName)
+      )
     },
     tabIsDisabled(tabName) {
       return !this.tabIsActive(tabName) || !this.tabIsAllowed(tabName)

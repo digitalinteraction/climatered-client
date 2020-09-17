@@ -5,6 +5,7 @@ general:
   appName: Climate:Red
   pleaseSelect: Please select
   comingSoon: Coming soon
+  unavailable: Unavailable
   backTo: Back to {0}
   copy: Copy
   loading: Loading

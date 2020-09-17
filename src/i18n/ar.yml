@@ -5,6 +5,7 @@ general:
   appName: Climate:Red
   pleaseSelect: يرجى التحديد
   comingSoon: قريبا
+  unavailable: غير متوفره
   genericError: حدث خطأ ما. أعد المحاولة من فضلك
   backTo: الرجوع إلى {x}
 

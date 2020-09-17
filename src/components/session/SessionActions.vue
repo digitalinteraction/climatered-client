@@ -177,7 +177,7 @@ export default {
     },
     primaryActionClasses() {
       return {
-        'is-success': this.isPresent
+        'is-success': this.isPresent || this.isPast
       }
     },
     primaryAction() {

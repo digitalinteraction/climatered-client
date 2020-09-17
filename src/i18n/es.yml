@@ -5,6 +5,7 @@ general:
   appName: Climate:Red
   pleaseSelect: Por favor seleccionar
   comingSoon: Próximamente
+  unavailable: Indisponible
   genericError: Algo salió mal. Por favor, vuelva a intentarlo
   backTo: Volver a {0}
 

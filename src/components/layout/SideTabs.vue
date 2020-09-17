@@ -5,11 +5,12 @@
       :key="item.name"
       :to="item.to"
       :disabled="tabIsDisabled(item.name)"
+      :title="$t(item.titleKey)"
       class="tabbar-item"
     >
       <component :is="item.icon" class="tabbar-item-icon" />
       <span class="tabbar-item-text">
-        {{ $t(tabIsActive(item.name) ? item.titleKey : 'general.comingSoon') }}
+        {{ $t(tabIsActive(item.name) ? item.titleKey : disabledKey) }}
       </span>
     </router-link>
   </div>

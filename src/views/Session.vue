@@ -64,8 +64,11 @@
               <!-- Locale warning -->
               <SessionLocaleWarning :session="session" />
 
+              <!-- No auth component -->
+              <PrivateSessionMessage v-if="loginRequired" :session="session" />
+
               <!-- Session component -->
-              <div class="session-component" v-if="isPast || isPresent">
+              <div class="session-component" v-else-if="isPast || isPresent">
                 <!-- Auditorium -->
                 <div v-if="isAuditorium" class="auditorium">
                   <OneToMany :session="session" :session-slot="slot" />
@@ -253,6 +256,7 @@ import SessionActions from '@/components/session/SessionActions.vue'
 import SessionInteractionPanel from '@/components/session/SessionInteractionPanel.vue'
 import SessionLocaleWarning from '@/components/session/SessionLocaleWarning.vue'
 import SessionCountdown from '@/components/session/SessionCountdown.vue'
+import PrivateSessionMessage from '@/components/session/PrivateSessionMessage.vue'
 
 import OneToMany from '@/components/OneToMany.vue'
 import ManyToMany from '@/components/ManyToMany.vue'
@@ -272,6 +276,7 @@ export default {
     SessionInteractionPanel,
     SessionLocaleWarning,
     SessionCountdown,
+    PrivateSessionMessage,
     OneToMany,
     ManyToMany,
     BackButton
@@ -309,7 +314,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('api', ['hasData', 'slots', 'speakers']),
+    ...mapState('api', ['hasData', 'slots', 'speakers', 'user']),
     isDev() {
       return process.env.NODE_ENV === 'development'
     },
@@ -415,6 +420,9 @@ export default {
       const start = new Date(this.slot.start).getTime()
 
       return this.isSoon && this.currentTime > start - offset
+    },
+    loginRequired() {
+      return !this.user || this.session.isPublic === true
     }
   },
   mounted() {
