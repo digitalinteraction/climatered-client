@@ -17,6 +17,16 @@ atrium:
   heroSubtitle: 9 سبتمبر/أيلول الساعة 12 ظهراَ - 10 سبتمبر/أيلول الساعة 5:00 مساءَ
   heading: مرحبًا بك في القمة العالمية الرقمية لتغير المناخ!
   sponsorHeading: شركاء
+  onlineNow: مباشر الآن
+  # kilogramsOfCarbonSaved: التقليل من انبعاثات الكربون
+  # tonnesOfCarbonSaved: التقليل من انبعاثات الكربون
+  featuredSesions: Sessions vedettes
+  exploreAllSessions: Explore all sessions
+  liveIn: '{0} مباشر خلال'
+  social: المشاركة ضمن صفحات التواصل الإجتماعي
+  tweetWith: 'تغريدة مع {0}'
+  # conferenceOver: |
+  #   _
 
 login:
   title: تسجيل الدخول
@@ -130,6 +140,9 @@ coffeechatroom:
   # copyJoinText: _
   # copiedJoinInfo: _
   # tooManyStreams: _
+  partnerTimeout: بإنتظار دخول شريكك، إذا لم يتم  دخوله/ها خلال فترة وجيزة يمكنك المغادرة والمحولة مجددا!
+  leave: مغادرة الغرفة
+  sharedContactDetails: مشاركة!
   userMediaErrors:
     generalError: لديك مشكلة في تشغيل كاميرا الويب الخاصة بك
     devicesNotFoundError: تحقق من توصيل كاميرا الويب الخاصة بك
@@ -263,6 +276,7 @@ schedule:
     registerInterest: سجل الاهتمامات
     registerInterestSubject: التسجيل - مهتم بجلسة المناخ
     registerInterestBody: أنا مهتم بجلستكم في قمة المناخ
+    interestRegistered: المسجلين المهتمين
   workshops:
     workshop: ورشة عمل
     workshops: ورشات العمل

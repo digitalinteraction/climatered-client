@@ -27,6 +27,8 @@ atrium:
   liveIn: 'Live in {0}'
   social: Social
   tweetWith: 'Tweet with {0}'
+  conferenceOver: |
+    Climate:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
 login:
   title: Login
@@ -293,6 +295,9 @@ session:
     minutes: minutes
     second: second
     seconds: seconds
+  privateLabel: Private session
+  privateBody: |
+    This is a private session for attendees of the conference, please sign up or log in below then reload this page.
 
 oneToMany:
   label: Audio language

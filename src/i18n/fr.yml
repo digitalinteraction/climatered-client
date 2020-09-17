@@ -17,6 +17,16 @@ atrium:
   heroSubtitle: 9 sept, 12h00 - 10 sept, 19h00 CEST
   heading: Bienvenue à notre sommet mondial numérique sur le changement climatique!
   sponsorHeading: Partenaires
+  onlineNow: En ligne maintenant
+  # kilogramsOfCarbonSaved: Des kilogrammes de CO₂ économisés
+  # tonnesOfCarbonSaved: Des kilogrammes de CO₂ économisés
+  featuredSesions: Sessions vedettes
+  exploreAllSessions: Explore all sessions
+  liveIn: 'En ligne dans {0}'
+  social: Social
+  tweetWith: 'Tweeter avec {0}'
+  # conferenceOver: |
+  #   _
 
 login:
   title: Connexion
@@ -109,6 +119,9 @@ coffeechatroom:
   # copyJoinText: _
   # copiedJoinInfo: _
   # tooManyStreams: _
+  partnerTimeout: Il semble que nous n’ayons pas pu vous mettre en relation avec un partenaire. Veuillez quitter et réessayer
+  leave: Quitter la salle
+  sharedContactDetails: Partager!
   userMediaErrors:
     generalError: nous avons du mal à allumer votre webcam
     devicesNotFoundError: vérifiez que votre webcam soit bien branchée
@@ -263,6 +276,7 @@ schedule:
     registerInterest: Enregistrer un intérêt
     registerInterestSubject: Enregistrer un intérêt dans la session climate:red
     registerInterestBody: Je suis intéressé(e) par votre session climate:red - "{0}"
+    interestRegistered: Intérêts enregistrés
   workshops:
     workshop: Atelier
     workshops: Ateliers
