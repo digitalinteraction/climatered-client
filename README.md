@@ -1,9 +1,15 @@
-# gui
+# ifrc-vconf-gui
 
-A prototype user interface for the ifrc's virtual conference, designed to:
+This repo is a Vue.js web app written in JavaScript, Scss and HTML
+and communicates with [the backend](https://github.com/digitalinteraction/climatered-api).
 
-- House the public-facing schedule
-- Provide all information needed to attend the conference and get in and out of events and sessions
+This is the frontend for [climate.red](https://climate.red) and features the following:
+
+- An atrium for the conference, a homepage with stats and links to get about
+- Session previews before the schedule is live
+- A chronological schedule for the conference with temporal aspects
+- WebRTC-based coffeechat matched based on the conference's topics
+- Real-time interpretation during live events
 
 <!-- toc-head -->
 
