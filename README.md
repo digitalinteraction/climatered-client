@@ -1,6 +1,22 @@
-# ifrc-vconf-gui
+# Climate:Red | GUI
 
-This repo is a Vue.js web app written in JavaScript, Scss and HTML
+## About
+
+Climate:Red was a international virtual conference run between the [Open Lab at Newcastle University](http://openlab.ncl.ac.uk) and the [IFRC](https://ifrc.org/).
+It was a 36-hour continuous multi-timezone, multi-lingual conference with official and user-submitted sessions around the subject of Climage Change.
+This code is open source except where explicitly stated in the [LICENCE](/LICENCE).
+
+**The team:**
+
+- Rob Anderson - Lead Engineer
+- Tom Nappey - Lead Design and Coordinator
+- Tom Feltwell - Chatbot Engineer
+- Simon Bowen - Project Coordinator
+- Andy Garbett - Coffeechat Engineer
+- Gerrad Wilkinson - Coffeechat Engineer
+
+This repository is the frontend website that powered Climate:Red experience that everyone saw.
+It is written in JavaScript, Scss and HTML
 and communicates with [the backend](https://github.com/digitalinteraction/climatered-api).
 
 This is the frontend for [climate.red](https://climate.red) and features the following:
