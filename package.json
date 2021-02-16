@@ -25,7 +25,7 @@
     "jwt-decode": "^2.2.0",
     "ky": "^0.20.0",
     "lottie-web": "^5.7.3",
-    "marked": "^1.1.1",
+    "marked": "^2.0.0",
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
     "ms": "^2.1.2",
