@@ -10,5 +10,5 @@ docker build \
   --build-arg API_URL=$API_URL \
   --build-arg CDN_REMOTE=$CDN_REMOTE \
   -f static.Dockerfile \
-  -t ghcr.io/digitalinteraction/climate-red-static:1.0.0 \
+  -t ghcr.io/digitalinteraction/climate-red-static:$VERSION \
   .
