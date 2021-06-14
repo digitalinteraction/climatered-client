@@ -55,7 +55,7 @@
           <!-- Right column -->
           <div class="column is-one-third">
             <!-- Site visitors -->
-            <div class="box atrium-widget is-coral">
+            <div v-if="showSiteVisitors" class="box atrium-widget is-coral">
               <h1 class="title">
                 <fa :icon="['fas', 'user-friends']" class="fa-fw" />
                 {{ parseInt(siteVisitors) | formatNumber }}
@@ -151,6 +151,7 @@ import {
   ROUTE_REGISTER,
   ROUTE_SCHEDULE
 } from '../const'
+import { isStaticSite } from '../utils'
 
 import AppWrapper from '@/components/AppWrapper.vue'
 import VideoEmbed from '@/components/VideoEmbed.vue'
@@ -241,10 +242,14 @@ export default {
       return {
         name: this.settings?.scheduleLive ? ROUTE_SCHEDULE : ROUTE_SESSIONS
       }
+    },
+    showSiteVisitors() {
+      return !isStaticSite()
     }
   },
   methods: {
     getCarbonData() {
+      if (isStaticSite()) return
       this.$store.dispatch('api/fetchCarbonData')
     }
   }

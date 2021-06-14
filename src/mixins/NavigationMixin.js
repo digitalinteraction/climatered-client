@@ -75,13 +75,10 @@ export default {
   },
   computed: {
     ...mapState('api', ['user', 'settings', 'apiState']),
-    isTranslator() {
-      return this.user?.user_roles.includes('translator')
-    },
     currentNav() {
       const filterOut = new Set()
 
-      if (this.scheduleLive) {
+      if (this.scheduleLive()) {
         filterOut.add('sessions')
       } else {
         filterOut.add('schedule')

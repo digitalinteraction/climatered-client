@@ -126,6 +126,16 @@ export function pickCdn() {
   return trailingSlash(window.CONFIG?.CDN_URL ?? 'https://edit.climate.red/')
 }
 
+export function isStaticSite() {
+  return true
+  // return Boolean(window.CONFIG?.IS_STATIC ?? false)
+}
+
+export function getApiUrl(path) {
+  const url = new URL(path, pickApi())
+  return url.toString() + (isStaticSite() ? '.json' : '')
+}
+
 export function getTranslation(translation, tryList) {
   for (let locale of tryList) {
     if (translation[locale]) return translation[locale]

@@ -1,4 +1,4 @@
-import { pickApi } from '../utils'
+import { pickApi, isStaticSite } from '../utils'
 import { STORAGE_TOKEN } from '../const'
 import SocketClient from 'socket.io-client'
 
@@ -102,7 +102,17 @@ export default class ApiSocket {
   }
 }
 
-export const sharedSocket = new ApiSocket()
+class NonSocket {
+  emit() {}
+  emitBinary() {}
+  async emitAndWait() {}
+  bindEvent() {}
+  unbindEvent() {}
+  unbindOwner() {}
+  handleEvent() {}
+}
+
+export const sharedSocket = isStaticSite() ? new NonSocket() : new ApiSocket()
 
 export function authenticateSocket(socket, token) {
   socket.emit('auth', token)
