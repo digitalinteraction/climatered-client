@@ -1,6 +1,14 @@
 import moment from 'moment'
 import 'moment-timezone'
 
+const {
+  API_URL = 'http://localhost:3000/',
+  CDN_URL = 'https://edit.climate.red/',
+  IS_STATIC = false,
+  GA_TOKEN = null,
+  BUILD_NAME = null
+} = window.config ?? {}
+
 export function findLink(links, type, language) {
   const matches = links.filter(l => l.type === type)
 
@@ -118,17 +126,16 @@ const noTrailingSlash = str => str.replace(/\/*$/, '')
 
 /** Get the url of the API to use, always has a trailing slash */
 export function pickApi() {
-  return noTrailingSlash(window.CONFIG?.API_URL ?? 'http://localhost:3000/')
+  return noTrailingSlash(API_URL)
 }
 
 /** Get the url of the CDN to use, always has a trailing slash */
 export function pickCdn() {
-  return noTrailingSlash(window.CONFIG?.CDN_URL ?? 'https://edit.climate.red/')
+  return noTrailingSlash(CDN_URL)
 }
 
 export function isStaticSite() {
-  return true
-  // return Boolean(window.CONFIG?.IS_STATIC ?? false)
+  return Boolean(IS_STATIC)
 }
 
 export function getApiUrl(path) {
@@ -157,5 +164,9 @@ export function getTimeZone(abbr = false) {
 }
 
 export function getGaToken() {
-  return window.CONFIG?.GA_TOKEN ?? null
+  return GA_TOKEN
+}
+
+export function getBuildName() {
+  return BUILD_NAME ?? 'v' + process.env.VUE_APP_VERSION
 }

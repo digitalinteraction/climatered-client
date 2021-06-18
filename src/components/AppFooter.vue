@@ -44,13 +44,13 @@ const footerLinks = [
 ]
 
 import { ROUTE_PRIVACY, ROUTE_FAQS, ROUTE_GUIDELINES } from '../const'
+import { getBuildName } from '../utils'
 import { CookieEvents } from '@/components/CookiePopup.vue'
 
 export default {
   data() {
     const appName = process.env.VUE_APP_NAME
-    const appVersion =
-      window.CONFIG?.BUILD_NAME || 'v' + process.env.VUE_APP_VERSION
+    const appVersion = getBuildName()
     return { appName, appVersion, footerLinks }
   },
   methods: {
