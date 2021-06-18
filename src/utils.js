@@ -168,5 +168,5 @@ export function getGaToken() {
 }
 
 export function getBuildName() {
-  return BUILD_NAME ?? 'v' + process.env.VUE_APP_VERSION
+  return BUILD_NAME || 'v' + process.env.VUE_APP_VERSION
 }
