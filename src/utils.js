@@ -7,7 +7,7 @@ const {
   IS_STATIC = false,
   GA_TOKEN = null,
   BUILD_NAME = null
-} = window.config ?? {}
+} = window.CONFIG ?? {}
 
 export function findLink(links, type, language) {
   const matches = links.filter(l => l.type === type)
