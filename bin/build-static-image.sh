@@ -2,6 +2,8 @@
 
 if [ -f ".env.static.local" ]
 then
+  # Source the .env
+  # should be formatted `export KEY=value` to work with "source"
   source .env.static.local
 fi
 
