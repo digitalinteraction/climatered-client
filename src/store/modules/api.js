@@ -158,6 +158,8 @@ const actions = {
     }
   },
   async fetchSessions({ commit }) {
+    if (isStaticSite()) return
+
     const response = await agent.get('/schedule/sessions')
 
     if (response.status >= 400) return
@@ -184,6 +186,8 @@ const actions = {
     return response.status === 200
   },
   async getProfile({ commit }) {
+    if (isStaticSite()) return null
+
     const response = await agent.get('/me')
     if (response.status !== 200) return null
     commit('profile', response.data.user)
