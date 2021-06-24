@@ -112,7 +112,7 @@
 </template>
 
 <script>
-import { getTimeZone } from '../utils'
+import { getTimeZone, isStaticSite } from '../utils'
 import { mapState } from 'vuex'
 
 // Mixins
@@ -225,6 +225,13 @@ export default {
       matchedSessions = matchedSessions.filter(s => {
         return !s.hideFromSchedule
       })
+
+      // Filter private sessions when static
+      if (isStaticSite()) {
+        matchedSessions = matchedSessions.filter(s => {
+          return s.isPublic
+        })
+      }
 
       // Apply search query
       matchedSessions = this.applySearchQuery(matchedSessions)

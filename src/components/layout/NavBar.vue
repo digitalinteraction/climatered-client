@@ -10,7 +10,7 @@
         <img src="/img/brand-new.svg" alt="Home" width="160" height="28" />
       </router-link>
 
-      <!-- Menu button (burger) -->
+      <!-- Menu Burger -->
       <a
         role="button"
         class="navbar-burger burger"
@@ -25,6 +25,7 @@
         <span aria-hidden="true"></span>
       </a>
     </div>
+
     <div :class="['navbar-menu', { 'is-active': showingMenu }]">
       <div class="navbar-start">
         <router-link
@@ -44,6 +45,7 @@
           </span>
         </router-link>
       </div>
+
       <div class="navbar-end">
         <div class="navbar-item ifrc-branding">
           <img
@@ -56,14 +58,16 @@
         <div class="navbar-item">
           <LanguageControl />
         </div>
+
         <!-- Interpret link if role is set -->
-        <div v-if="isTranslator" class="navbar-item">
+        <div v-if="showInterpret" class="navbar-item">
           <router-link class="button is-purple is-small" :to="interpretRoute">
             {{ $t('interpretHome.goto') }}
           </router-link>
         </div>
+
         <!-- Profile link -->
-        <div v-if="user" class="navbar-item">
+        <div v-if="showProfile" class="navbar-item">
           <router-link
             class="button is-default is-small has-addons"
             :to="profileRoute"
@@ -74,12 +78,15 @@
             <span>{{ user.sub }}</span>
           </router-link>
         </div>
-        <!-- Login button -->
-        <div v-if="!user" class="navbar-item">
+
+        <!-- Auth buttons -->
+        <div v-if="showAuth" class="navbar-item">
           <div class="buttons">
+            <!-- Login button -->
             <router-link class="button is-light is-small" :to="loginRoute">
               {{ $t('general.loginButton') }}
             </router-link>
+
             <!-- Register button -->
             <router-link class="button is-coral is-small" :to="registerRoute">
               {{ $t('general.registerButton') }}
@@ -92,10 +99,8 @@
 </template>
 
 <script>
-// Mixins
+import { isStaticSite } from '@/utils'
 import NavigationMixin from '@/mixins/NavigationMixin.js'
-
-// Components
 import LanguageControl from '@/components/form/LanguageControl.vue'
 
 export default {
@@ -105,6 +110,20 @@ export default {
   data() {
     return {
       showingMenu: false
+    }
+  },
+  computed: {
+    isLiveWebsite() {
+      return !isStaticSite()
+    },
+    showInterpret() {
+      return this.isLiveWebsite && this.user?.user_roles.includes('translator')
+    },
+    showAuth() {
+      return this.isLiveWebsite && !this.user
+    },
+    showProfile() {
+      return this.isLiveWebsite && !!this.user
     }
   },
   methods: {

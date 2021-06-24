@@ -1,6 +1,14 @@
 import moment from 'moment'
 import 'moment-timezone'
 
+const {
+  API_URL = 'http://localhost:3000/',
+  CDN_URL = 'https://edit.climate.red/',
+  IS_STATIC = false,
+  GA_TOKEN = null,
+  BUILD_NAME = null
+} = window.CONFIG ?? {}
+
 export function findLink(links, type, language) {
   const matches = links.filter(l => l.type === type)
 
@@ -114,16 +122,25 @@ export function slotState(slot) {
   return 'active'
 }
 
-const trailingSlash = str => str.replace(/\/*$/, '/')
+const noTrailingSlash = str => str.replace(/\/*$/, '')
 
 /** Get the url of the API to use, always has a trailing slash */
 export function pickApi() {
-  return trailingSlash(window.CONFIG?.API_URL ?? 'http://localhost:3000/')
+  return noTrailingSlash(API_URL)
 }
 
 /** Get the url of the CDN to use, always has a trailing slash */
 export function pickCdn() {
-  return trailingSlash(window.CONFIG?.CDN_URL ?? 'https://edit.climate.red/')
+  return noTrailingSlash(CDN_URL)
+}
+
+export function isStaticSite() {
+  return Boolean(IS_STATIC)
+}
+
+export function getApiUrl(path) {
+  const url = new URL(path, pickApi())
+  return url.toString() + (isStaticSite() ? '.json' : '')
 }
 
 export function getTranslation(translation, tryList) {
@@ -147,5 +164,9 @@ export function getTimeZone(abbr = false) {
 }
 
 export function getGaToken() {
-  return window.CONFIG?.GA_TOKEN ?? null
+  return GA_TOKEN
+}
+
+export function getBuildName() {
+  return BUILD_NAME || 'v' + process.env.VUE_APP_VERSION
 }

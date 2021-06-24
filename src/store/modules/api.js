@@ -2,7 +2,7 @@ import axios from 'axios'
 import jwtDecode from 'jwt-decode'
 
 import { setLocale } from '@/i18n'
-import { pickApi } from '@/utils'
+import { pickApi, isStaticSite } from '@/utils'
 import { authenticateSocket } from '../../plugins/sockets.js'
 
 const state = () => ({
@@ -17,7 +17,7 @@ const state = () => ({
 })
 
 const agent = axios.create({
-  baseURL: pickApi(),
+  baseURL: isStaticSite() ? '/api/' : pickApi(),
   validateStatus: code => code < 500
 })
 
@@ -116,15 +116,17 @@ const actions = {
   },
   async fetchData({ commit }) {
     try {
-      const responses = await Promise.all([
-        agent.get('/schedule/slots'),
-        agent.get('/schedule/sessions'),
-        agent.get('/schedule/settings'),
+      const postfix = isStaticSite() ? '.json' : ''
 
-        agent.get('/schedule/speakers'),
-        agent.get('/schedule/themes'),
-        agent.get('/schedule/tracks'),
-        agent.get('/schedule/types')
+      const responses = await Promise.all([
+        agent.get('/schedule/slots' + postfix),
+        agent.get('/schedule/sessions' + postfix),
+        agent.get('/schedule/settings' + postfix),
+
+        agent.get('/schedule/speakers' + postfix),
+        agent.get('/schedule/themes' + postfix),
+        agent.get('/schedule/tracks' + postfix),
+        agent.get('/schedule/types' + postfix)
       ])
 
       for (const response of responses) {
@@ -156,6 +158,8 @@ const actions = {
     }
   },
   async fetchSessions({ commit }) {
+    if (isStaticSite()) return
+
     const response = await agent.get('/schedule/sessions')
 
     if (response.status >= 400) return
@@ -182,6 +186,8 @@ const actions = {
     return response.status === 200
   },
   async getProfile({ commit }) {
+    if (isStaticSite()) return null
+
     const response = await agent.get('/me')
     if (response.status !== 200) return null
     commit('profile', response.data.user)

@@ -52,6 +52,7 @@
       >
         <div class="buttons has-addons">
           <a
+            v-if="calendarLink"
             :href="calendarLink"
             target="_blank"
             @click="trackCalendar"
@@ -94,7 +95,7 @@
 </template>
 
 <script>
-import { pickApi } from '@/utils'
+import { isStaticSite, getApiUrl } from '@/utils'
 
 // Constants
 import { ROUTE_SESSION } from '../../const'
@@ -155,7 +156,8 @@ export default {
       return `mailto:${emailRecipient}?cc=${emailCCRecipient}&subject=${emailSubject}&body=${emailBody}`
     },
     calendarLink() {
-      return `${pickApi()}schedule/ics/${this.session.slug}`
+      if (isStaticSite()) return null
+      return getApiUrl(`schedule/ics/${this.session.slug}`)
     },
     onSessionPage() {
       return this.$route.name === ROUTE_SESSION
