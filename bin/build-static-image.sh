@@ -14,3 +14,5 @@ docker build \
   -f static.Dockerfile \
   -t ghcr.io/digitalinteraction/climate-red-static:$VERSION \
   .
+
+docker push ghcr.io/digitalinteraction/climate-red-static:$VERSION
