@@ -10,20 +10,18 @@ import { Store } from 'vuex'
 
 import { EnvRecord } from '../plugins/env-plugin'
 import { MetricsPlugin } from '../plugins/metrics-plugin'
+import { SocketIoPlugin } from '../plugins/socketio-plugin'
 import { lib } from '@openlab/deconf-ui-toolkit'
+import { StoreState } from '../store/module'
 
 declare module 'vue/types/vue' {
-  // declare your own store states
-  interface State {
-    name: string
-  }
-
   // provide typings for `this.$store`
   interface Vue {
-    $store: Store<State>
+    $store: Store<StoreState>
     $env: EnvRecord
     $dev: lib.DevPlugin
     $temporal: lib.TemporalPlugin
     $metrics: MetricsPlugin
+    $io: SocketIoPlugin
   }
 }

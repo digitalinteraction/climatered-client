@@ -69,12 +69,12 @@ module.exports = {
         .loader('markdown-loader')
         .end()
 
-    // Use the slim socket.io in production
+    // Use the minified socket.io in production
     config.resolve.alias.set(
       'socket.io-client',
       process.env.NODE_ENV === 'development'
         ? 'socket.io-client'
-        : 'socket.io-client/dist/socket.io.slim.js'
+        : 'socket.io-client/dist/socket.io.min.js'
     )
   },
 }

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const fs = require('fs')
 const path = require('path')
 const yaml = require('yaml')
@@ -8,7 +10,7 @@ const dot = require('dot-prop')
 async function loadYaml(filename) {
   return fs.promises
     .readFile(path.join(__dirname, '../src/i18n', filename), 'utf8')
-    .then(d => yaml.parse(d))
+    .then((d) => yaml.parse(d))
 }
 
 function flattenKeys(object, history = []) {
@@ -37,17 +39,19 @@ function removeAllowListed(array) {
   const allowlist = [
     /^interpret\./i,
     /^interpretHome\./i,
-    /^interpretSchedule\./i
+    /^interpretSchedule\./i,
   ]
 
-  return array.filter(key => allowlist.every(regex => regex.test(key) == false))
+  return array.filter((key) =>
+    allowlist.every((regex) => regex.test(key) == false)
+  )
 }
 
 async function main() {
   try {
     const input = ['en.yml', 'fr.yml', 'es.yml', 'ar.yml']
 
-    const task = input.map(async function*(filename) {
+    const task = input.map(async function* (filename) {
       const yaml = await loadYaml(filename)
       const keys = flattenKeys(yaml)
       const keySet = new Set(keys)
@@ -72,15 +76,15 @@ async function main() {
     })
 
     // Load up and get en out of them first
-    const [en] = await Promise.all(task.map(t => t.next()))
+    const [en] = await Promise.all(task.map((t) => t.next()))
 
     // Then get flattened keys
-    const keyResult = await Promise.all(task.map(t => t.next(en.value)))
+    const keyResult = await Promise.all(task.map((t) => t.next(en.value)))
 
     // Then run to completion
-    const allKeys = new Set(keyResult.map(it => it.value).flat())
+    const allKeys = new Set(keyResult.map((it) => it.value).flat())
 
-    await task.forEach(it => it.next(allKeys))
+    await task.forEach((it) => it.next(allKeys))
   } catch (error) {
     console.error(error)
     process.exit(1)

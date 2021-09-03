@@ -378,3 +378,123 @@ errors:
 
 faqs:
   title: FAQs
+
+#
+# V2
+#
+
+deconf:
+  appLayout:
+    atrium: Atrium
+    whatsOn: Whats On
+    schedule: Schedule
+    coffeeChat: Coffee Chat
+    helpDesk: Help Desk
+
+  sideTabs:
+    unavailable: Unavailable
+
+  apiError:
+    title: Something went wrong
+    content: We're having a bit of trouble, try refresing or coming back later.
+    retry: 'Retrying in {0}'
+
+  appLoading:
+    message: Loading...
+
+  scheduleBlock:
+    workshopTitle: Interactive workshops
+    workshopDescription: Participate in one of the following interactive workshops.
+    showWorkshops: Show all
+    hideWorkshops: Hide all
+    workshops: 'None | 1 workshop | {n} workshops'
+
+  general:
+    hours: hours | hour | hours
+    minutes: minutes | minute | minutes
+    seconds: seconds | second | seconds
+
+  miniSession:
+    view: View
+    live: Live!
+
+  featuredSessions:
+    title: Featured Sessions
+    action: View Schedule
+
+  scheduleFilters:
+    query: Search
+    showFilters: Show filters
+    hideFilters: Hide filters
+    clearFilters: Clear filters
+    dateFilter: Date
+    typeFilter: Type
+    trackFilter: Track
+    themeFilter: Theme
+    recordedFilter: Is Recorded
+    offLabel: All
+    'yes': 'Yes'
+    'no': 'No'
+
+  attendanceSection:
+    loading: Fetching attendance
+    processing: Processing
+    registered: You are registered for this session
+    full: This session is full
+    spacesLeft: '{0}/{1} seats remaining.'
+    registerButton: Register now
+    unregisterButton: Release my seat
+
+  timeSlot:
+    past: Past
+    live: Live
+
+  joinSession:
+    future: Preview session
+    present: Join session
+    past: View session
+
+  sessionAttributes:
+    isRecorded: Recorded
+    notRecorded: Not recorded
+
+  addToCalendar:
+    action: Add to calendar
+
+  sessionLink:
+    copy: copy
+    copied: copied
+
+  sessionState:
+    liveNow: Live Now
+    sessionOver: Session over
+    interest: 'no interest | someone is interest | {n} people are interested'
+
+  sessionEmbed:
+    openTeams: Open Teams meeting
+    openZoom: Open Zoom meeting
+    openHubs: Open Mozilla Hub
+    openSpatial: Open Spatial Chat
+    noEmbed: 'Something went wrong, there is nothing to show here'
+
+  languageWarning:
+    message: 'Please note this session is only available in {0}'
+
+  navigationBar:
+    profile: Your profile
+    login: Login
+    interpret: Interpret mode
+    register: Register!
+    unavailable: ' (Unavailable)'
+
+ifrc:
+  general:
+    backToAtrium: Back to Atrium
+  footer:
+    appName: PlanetRed
+    privacy: Privacy
+    privacyUrl: /privacy
+    guidelines: Community Guidelines
+    guidelinesUrl: /guidelines
+    terms: Terms & Conditions
+    termsUrl: /terms
