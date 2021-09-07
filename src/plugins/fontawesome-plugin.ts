@@ -10,7 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 //
 // Import solids ~ https://fontawesome.com/icons?d=gallery&s=solid
 //
-import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import {
+  faArrowRight,
+  faArrowLeft,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons'
 
 //
 // Import regulars ~ https://fontawesome.com/icons?d=gallery&s=regular
@@ -21,7 +25,7 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 // Apply icons
 // prettier-ignore
 //
-library.add(faArrowRight, faArrowLeft)
+library.add(faArrowRight, faArrowLeft, faUser)
 
 export class FontAwesomePlugin {
   static install(Vue: typeof _Vue): void {

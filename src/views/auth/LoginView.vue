@@ -1,16 +1,46 @@
 <template>
   <BrandedUtilLayout>
-    <div slot="main">
+    <div class="loginView" slot="main">
+      <h1 class="title">{{ $t('ifrc.login.title') }}</h1>
       <div class="content">
-        <h1>Log in</h1>
+        <p>{{ $t('ifrc.login.infoText') }}</p>
+      </div>
+      <div class="notification is-success" v-if="state === 'success'">
+        <button class="delete" @click="state = 'pending'"></button>
+        <p>{{ $t('ifrc.login.doneText') }}</p>
+      </div>
+      <div class="notification is-danger" v-if="state === 'error'">
+        <p>{{ $t('ifrc.login.badEmail') }}</p>
+      </div>
+      <div class="loginView-form" v-if="state !== 'success'">
+        <TextField
+          name="email"
+          type="email"
+          :label="$t('ifrc.login.email.label')"
+          :placeholder="$t('ifrc.login.email.placeholder')"
+          :help="$t('ifrc.login.email.help')"
+          :has-error="state === 'error'"
+          :disabled="state === 'working'"
+          v-model="email"
+          @enter="submit"
+        />
+        <div class="buttons">
+          <button
+            class="button is-primary"
+            @click="submit"
+            :disabled="state === 'working'"
+          >
+            {{ $t('ifrc.login.submitButton') }}
+          </button>
+        </div>
+      </div>
+      <hr />
+      <div class="content">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          {{ $t('ifrc.login.registerLabel') }}
+          <router-link :to="registerRoute">
+            {{ $t('ifrc.login.registerAction') }}
+          </router-link>
         </p>
       </div>
     </div>
@@ -20,8 +50,36 @@
 <script lang="ts">
 import Vue from 'vue'
 import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
+import { lib, TextField } from '@openlab/deconf-ui-toolkit'
+import { Location } from 'vue-router'
+import { pause } from '@/lib/module'
+
+interface Data {
+  email: string
+  state: 'pending' | 'working' | 'error' | 'success'
+}
 
 export default Vue.extend({
-  components: { BrandedUtilLayout },
+  components: { BrandedUtilLayout, TextField },
+  data(): Data {
+    return {
+      email: '',
+      state: 'pending',
+    }
+  },
+  computed: {
+    registerRoute(): Location {
+      return { name: lib.Routes.Register }
+    },
+  },
+  methods: {
+    async submit() {
+      this.state = 'working'
+      const success = await this.$store.dispatch('api/login', this.email)
+      await pause(300)
+
+      this.state = success ? 'success' : 'error'
+    },
+  },
 })
 </script>

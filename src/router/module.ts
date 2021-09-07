@@ -11,6 +11,7 @@ import HelpDeskView from '../views/main/HelpDeskView.vue'
 
 import LoginView from '../views/auth/LoginView.vue'
 import RegisterView from '../views/auth/RegisterView.vue'
+import TokenCapture from '../views/auth/TokenCapture.vue'
 
 import TermsView from '../views/pages/TermsView.vue'
 import PrivacyView from '../views/pages/PrivacyView.vue'
@@ -65,6 +66,11 @@ const routes: Array<RouteConfig> = [
     path: '/register',
     name: lib.Routes.Register,
     component: RegisterView,
+  },
+  {
+    path: '/_auth',
+    name: lib.Routes.TokenCapture,
+    component: TokenCapture,
   },
 
   //
