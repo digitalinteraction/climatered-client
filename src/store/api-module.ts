@@ -6,7 +6,8 @@ import {
   lib,
 } from '@openlab/deconf-ui-toolkit'
 
-import { env } from '../plugins/env-plugin'
+import { env } from '@/plugins/env-plugin'
+import { LocalisedContent } from '@/lib/api-types'
 
 export function apiModule(): ApiModule {
   const agent = ky.extend({
@@ -113,6 +114,17 @@ export function apiModule(): ApiModule {
           .json<{ sessions: string[] }>()
 
         commit('userSessions', data.sessions)
+      },
+
+      //
+      // Content
+      //
+      async fetchContent(ctx, slug: string) {
+        const data = await agent
+          .get(`content/${slug}`)
+          .json<{ content: LocalisedContent }>()
+          .catch(() => null)
+        return data?.content
       },
     },
   }
