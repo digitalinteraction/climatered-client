@@ -17,6 +17,7 @@ import {
   faChevronRight,
   faLeaf,
   faSync,
+  faTerminal,
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -28,7 +29,8 @@ import {
 // Apply icons
 // prettier-ignore
 //
-library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronRight, faLeaf, faSync)
+library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronRight,
+  faLeaf, faSync, faTerminal)
 
 export class FontAwesomePlugin {
   static install(Vue: typeof _Vue): void {

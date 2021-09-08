@@ -5,7 +5,7 @@
     </ApiError>
     <router-view v-else-if="apiState === 'ready'" />
     <AppLoading v-else />
-    <DevControl :dev-plugin="$dev" />
+    <DevControl :dev-plugin="$dev" :force-enable="isDev" />
   </div>
 </template>
 
@@ -23,6 +23,7 @@ import { Location } from 'vue-router'
 
 import PageFooter from './components/PageFooter.vue'
 import { TOKEN_STORAGE_KEY } from './lib/module'
+import { env } from './plugins/env-plugin'
 
 interface Data {
   timerId: null | number
@@ -40,6 +41,9 @@ export default Vue.extend({
     },
     homeRoute(): Location {
       return { name: Routes.Atrium }
+    },
+    isDev(): boolean {
+      return process.env.NODE_ENV === 'development'
     },
   },
   async mounted(): Promise<void> {
