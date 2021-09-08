@@ -5,15 +5,15 @@ import router from './router/module'
 import store from './store/module'
 import i18n from './i18n/module'
 
-import { lib } from '@openlab/deconf-ui-toolkit'
+import { DevPlugin, TemporalPlugin } from '@openlab/deconf-ui-toolkit'
 
 import { EnvPlugin } from './plugins/env-plugin'
 import { FontAwesomePlugin } from './plugins/fontawesome-plugin'
 import { MetricsPlugin } from './plugins/metrics-plugin'
 import { SocketIoPlugin } from './plugins/socketio-plugin'
 
-Vue.use(lib.TemporalPlugin)
-Vue.use(lib.DevPlugin)
+Vue.use(TemporalPlugin)
+Vue.use(DevPlugin)
 Vue.use(EnvPlugin)
 Vue.use(FontAwesomePlugin)
 Vue.use(MetricsPlugin)

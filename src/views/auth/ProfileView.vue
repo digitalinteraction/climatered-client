@@ -33,6 +33,10 @@
             <th>{{ $t('ifrc.profile.countryText') }}</th>
             <td>{{ profileCountry }}</td>
           </tr>
+          <tr>
+            <th>{{ $t('ifrc.profile.marketingText') }}</th>
+            <td>{{ profileMarketing }}</td>
+          </tr>
         </tbody>
       </table>
 
@@ -64,10 +68,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
-import { AuthToken, Registration } from '@openlab/deconf-shared'
+import { AuthToken } from '@openlab/deconf-shared'
 import languageData from '@/data/languages.json'
 import countryData from '@/data/countries-en.json'
-import { TOKEN_STORAGE_KEY } from '@/lib/module'
+import { TOKEN_STORAGE_KEY, UserData } from '@/lib/module'
+import { mapApiState } from '@openlab/deconf-ui-toolkit'
+import { TranslateResult } from 'vue-i18n'
 
 interface FullAuthToken extends AuthToken {
   iat: number
@@ -77,12 +83,7 @@ interface FullAuthToken extends AuthToken {
 export default Vue.extend({
   components: { BrandedUtilLayout },
   computed: {
-    user(): FullAuthToken | null {
-      return this.$store.getters['api/user']
-    },
-    profile(): Registration | null {
-      return this.$store.getters['api/profile']
-    },
+    ...mapApiState('api', ['user', 'profile']),
     userLanguage(): string {
       if (!this.user) return 'Unknown'
       return languageData[this.user.user_lang] ?? 'Unknown'
@@ -92,11 +93,18 @@ export default Vue.extend({
     },
     loggedInDate(): string {
       if (!this.user) return 'Unknown'
-      return new Date(this.user.iat).toLocaleString()
+      return new Date((this.user as FullAuthToken).iat).toLocaleString()
     },
     profileCountry(): string {
       if (!this.profile) return 'Unknown'
       return countryData.countries[this.profile.country]
+    },
+    profileMarketing(): TranslateResult {
+      if (!this.profile) return 'Unknown'
+      const userData = this.profile.userData as UserData
+      return userData.marketing
+        ? this.$t('ifrc.general.yes')
+        : this.$t('ifrc.general.no')
     },
   },
   mounted() {

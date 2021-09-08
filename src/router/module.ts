@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { Route, RouteConfig } from 'vue-router'
 
-import { lib } from '@openlab/deconf-ui-toolkit'
+import { Routes } from '@openlab/deconf-ui-toolkit'
 
 import AtriumView from '../views/main/AtriumView.vue'
 import WhatsOnView from '../views/main/WhatsOnView.vue'
@@ -34,7 +34,7 @@ const routes: Array<RouteConfig> = [
   //
   {
     path: '/atrium',
-    name: lib.Routes.Atrium,
+    name: Routes.Atrium,
     component: AtriumView,
     // meta: {
     //   title: 'ifrc.atrium.title'
@@ -42,7 +42,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/whats-on',
-    name: lib.Routes.WhatsOn,
+    name: Routes.WhatsOn,
     component: WhatsOnView,
     // meta: {
     //   title: 'ifrc.whatsOn.title'
@@ -50,7 +50,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/schedule',
-    name: lib.Routes.Schedule,
+    name: Routes.Schedule,
     component: ScheduleView,
     // meta: {
     //   title: 'ifrc.schedule.title'
@@ -58,7 +58,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/coffee',
-    name: lib.Routes.CoffeeChatLobby,
+    name: Routes.CoffeeChatLobby,
     component: CoffeeLobbyView,
     // meta: {
     //   title: 'ifrc.coffeeChat.title'
@@ -66,7 +66,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/help',
-    name: lib.Routes.HelpDesk,
+    name: Routes.HelpDesk,
     component: HelpDeskView,
     // meta: {
     //   title: 'ifrc.helpDesk.title'
@@ -78,7 +78,7 @@ const routes: Array<RouteConfig> = [
   //
   {
     path: '/login',
-    name: lib.Routes.Login,
+    name: Routes.Login,
     component: LoginView,
     meta: {
       title: 'ifrc.login.title',
@@ -86,7 +86,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/register',
-    name: lib.Routes.Register,
+    name: Routes.Register,
     component: RegisterView,
     meta: {
       title: 'ifrc.register.title',
@@ -94,7 +94,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/profile',
-    name: lib.Routes.Profile,
+    name: Routes.Profile,
     component: ProfileView,
     meta: {
       title: 'ifrc.profile.title',
@@ -102,7 +102,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/_auth',
-    name: lib.Routes.TokenCapture,
+    name: Routes.TokenCapture,
     component: TokenCaptureView,
   },
 
@@ -111,29 +111,29 @@ const routes: Array<RouteConfig> = [
   //
   {
     path: '/terms',
-    name: lib.Routes.Terms,
+    name: Routes.Terms,
     component: TermsView,
   },
   {
     path: '/privacy',
-    name: lib.Routes.Privacy,
+    name: Routes.Privacy,
     component: PrivacyView,
   },
   {
     path: '/guidelines',
-    name: lib.Routes.Guidelines,
+    name: Routes.Guidelines,
     component: GuidelinesView,
   },
 ]
 
 const protectedRoutes = new Set<string>([
-  lib.Routes.Profile,
-  lib.Routes.Session,
-  lib.Routes.InterpretHome,
-  lib.Routes.InterpretSession,
-  lib.Routes.HelpDesk,
-  lib.Routes.CoffeeChatLobby,
-  lib.Routes.CoffeeChatRoom,
+  Routes.Profile,
+  Routes.Session,
+  Routes.InterpretHome,
+  Routes.InterpretSession,
+  Routes.HelpDesk,
+  Routes.CoffeeChatLobby,
+  Routes.CoffeeChatRoom,
 ])
 
 function getRouteTitle(route: Route): string {
@@ -188,7 +188,7 @@ router.beforeEach((to, from, next) => {
   const loggedIn = Boolean(localStorage.getItem(TOKEN_STORAGE_KEY))
 
   if (!loggedIn && to.name && protectedRoutes.has(to.name)) {
-    next({ name: lib.Routes.Atrium })
+    next({ name: Routes.Atrium })
   } else {
     next()
   }

@@ -1,14 +1,18 @@
 import ky from 'ky'
 import {
-  ApiModule,
-  ApiState,
+  ApiStoreModule,
   createApiStoreModule,
-  lib,
+  decodeJwt,
+  deepSeal,
 } from '@openlab/deconf-ui-toolkit'
 
 import { env } from '@/plugins/env-plugin'
-import { LocalisedContent } from '@/lib/api-types'
-import { TOKEN_STORAGE_KEY } from '@/lib/constants'
+import { TOKEN_STORAGE_KEY, LocalisedContent } from '@/lib/module'
+import {
+  CarbonCalculation,
+  Registration,
+  SessionAttendance,
+} from '@openlab/deconf-shared'
 
 function requestMiddleware(request: Request) {
   const token = localStorage.getItem(TOKEN_STORAGE_KEY)
@@ -17,7 +21,11 @@ function requestMiddleware(request: Request) {
   }
 }
 
-export function apiModule(): ApiModule {
+interface ProfileResponse {
+  registration: Registration
+}
+
+export function apiModule(): ApiStoreModule {
   const agent = ky.extend({
     prefixUrl: env.SERVER_URL,
     throwHttpErrors: false,
@@ -30,7 +38,7 @@ export function apiModule(): ApiModule {
     ...createApiStoreModule(),
     actions: {
       authenticate({ commit, dispatch }, token: string) {
-        const user = lib.decodeJwt(token)
+        const user = decodeJwt(token)
         commit('user', user)
 
         dispatch('fetchUserAttendance')
@@ -42,12 +50,10 @@ export function apiModule(): ApiModule {
         try {
           const data = await agent.get('schedule').json()
           commit('schedule', data)
-          commit('state', ApiState.ready)
           return true
         } catch (error) {
           console.error(error)
           commit('schedule', null)
-          commit('state', ApiState.error)
           return false
         }
       },
@@ -78,14 +84,11 @@ export function apiModule(): ApiModule {
 
       async fetchProfile({ commit }) {
         try {
-          const { profile } = await agent
+          const { registration } = await agent
             .get('auth/me')
-            .json<lib.ProfileResponse>()
+            .json<ProfileResponse>()
 
-          commit('profile', {
-            ...profile,
-            created: new Date(profile.created),
-          })
+          commit('profile', registration)
         } catch (error) {
           console.error(error)
           commit('profile', null)
@@ -97,16 +100,30 @@ export function apiModule(): ApiModule {
       },
 
       //
+      // Carbon
+      //
+      async fetchCarbon({ commit }) {
+        try {
+          const carbon = await agent.get('carbon').json<CarbonCalculation>()
+
+          commit('carbon', carbon)
+        } catch (error) {
+          console.error(error)
+          commit('carbon', null)
+        }
+      },
+
+      //
       // Attendance
       //
 
       async fetchSessionAttendance(ctx, sessionId: string) {
         const data = await agent
           .get(`attendance/${sessionId}`)
-          .json<lib.SessionAttendance>()
+          .json<SessionAttendance>()
 
         // TODO: investigate int/string on the count
-        return lib.deepSeal(data)
+        return deepSeal(data)
       },
 
       async attend({ dispatch }, sessionId: string) {
@@ -135,6 +152,7 @@ export function apiModule(): ApiModule {
           .get(`content/${slug}`)
           .json<{ content: LocalisedContent }>()
           .catch(() => null)
+
         return data?.content
       },
     },

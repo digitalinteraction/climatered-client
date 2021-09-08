@@ -2,7 +2,7 @@
   <AppLayout :app-settings="settings" :user="user" :routes="routes">
     <img slot="brandA" src="/brand.svg" width="160" height="28" />
     <img slot="brandB" src="/openlab.svg" width="110" height="28" />
-    <router-link slot="brandC" to="/atrium">
+    <router-link slot="brandC" :to="atriumRoute">
       <img slot="brandC" src="/square-brand.svg" width="64" height="64" />
     </router-link>
     <div slot="main" class="brandedMain">
@@ -16,72 +16,34 @@
 import Vue from 'vue'
 
 import {
-  AtriumIcon,
-  CoffeeChatIcon,
-  HelpDeskIcon,
-  lib,
-  ScheduleIcon,
-  WhatsOnIcon,
+  mapApiState,
   AppLayout,
+  AppRoute,
+  getDefaultRoutes,
+  Routes,
 } from '@openlab/deconf-ui-toolkit'
 import PageFooter from './PageFooter.vue'
-
-function generateRoutes(
-  settings: lib.ConfigSettings | null,
-  loggedIn: boolean,
-  t: (key: string) => string
-): lib.AppRoute[] {
-  if (!settings) return []
-
-  return [
-    {
-      title: t('deconf.appLayout.atrium'),
-      name: lib.Routes.Atrium,
-      icon: AtriumIcon,
-      enabled: settings.atrium.enabled,
-    },
-    {
-      title: t('deconf.appLayout.whatsOn'),
-      name: lib.Routes.WhatsOn,
-      icon: WhatsOnIcon,
-      enabled: settings.whatsOn.enabled,
-    },
-    {
-      title: t('deconf.appLayout.schedule'),
-      name: lib.Routes.Schedule,
-      icon: ScheduleIcon,
-      enabled: settings.schedule.enabled,
-    },
-    {
-      title: t('deconf.appLayout.coffeeChat'),
-      name: lib.Routes.CoffeeChatLobby,
-      icon: CoffeeChatIcon,
-      enabled: settings.coffeeChat.enabled,
-    },
-    {
-      title: t('deconf.appLayout.helpDesk'),
-      name: lib.Routes.HelpDesk,
-      icon: HelpDeskIcon,
-      enabled: settings.helpDesk.enabled,
-    },
-  ]
-}
+import { ConferenceConfig } from '@openlab/deconf-shared'
+import { Location } from 'vue-router'
 
 export default Vue.extend({
   components: { AppLayout, PageFooter },
   computed: {
-    settings(): lib.ConfigSettings | null {
-      return this.$store.getters['api/settings']
+    ...mapApiState('api', ['schedule', 'user']),
+    settings(): ConferenceConfig | null {
+      return this.schedule?.settings ?? null
     },
-    user(): lib.AuthToken | null {
-      return this.$store.getters['api/user']
-    },
-    routes(): lib.AppRoute[] {
-      return generateRoutes(
-        this.$store.getters['api/settings'],
-        Boolean(this.$store.getters['api/user']),
+    routes(): AppRoute[] {
+      if (!this.settings) return []
+
+      return getDefaultRoutes(
+        this.user,
+        this.settings,
         (key) => this.$t(key) as string
       )
+    },
+    atriumRoute(): Location {
+      return { name: Routes.Atrium }
     },
   },
 })

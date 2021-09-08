@@ -50,7 +50,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
-import { lib, TextField } from '@openlab/deconf-ui-toolkit'
+import { Routes, TextField } from '@openlab/deconf-ui-toolkit'
 import { Location } from 'vue-router'
 import { pause } from '@/lib/module'
 
@@ -69,7 +69,7 @@ export default Vue.extend({
   },
   computed: {
     registerRoute(): Location {
-      return { name: lib.Routes.Register }
+      return { name: Routes.Register }
     },
   },
   methods: {

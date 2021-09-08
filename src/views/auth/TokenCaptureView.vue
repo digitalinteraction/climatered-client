@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { lib } from '@openlab/deconf-ui-toolkit'
+import { Routes } from '@openlab/deconf-ui-toolkit'
 import { TOKEN_STORAGE_KEY } from '@/lib/module'
 
 export default Vue.extend({
@@ -25,7 +25,7 @@ export default Vue.extend({
       await this.$store.dispatch('api/authenticate', authToken)
 
       this.$router.replace({
-        name: lib.Routes.Atrium,
+        name: Routes.Atrium,
       })
     },
   },

@@ -1,9 +1,9 @@
 import {
   createMetricsStoreModule,
-  MetricsModule,
+  MetricsStoreModule,
 } from '@openlab/deconf-ui-toolkit'
 
-export function metricsModule(): MetricsModule {
+export function metricsModule(): MetricsStoreModule {
   return {
     ...createMetricsStoreModule(),
     actions: {

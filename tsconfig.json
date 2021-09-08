@@ -16,7 +16,7 @@
       "@/*": ["src/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "typeRoots": ["./node_modules/@types", "./src/@types"]
+    "typeRoots": ["./src/@types", "./node_modules/@types"]
   },
   "include": [
     "src/**/*.yml",

@@ -13,12 +13,12 @@
 import Vue from 'vue'
 import {
   ApiError,
-  ApiState,
   AppLoading,
   DevControl,
-  lib,
+  mapApiState,
+  Routes,
 } from '@openlab/deconf-ui-toolkit'
-import { ConfigSettings } from '@openlab/deconf-shared'
+import { ConferenceConfig } from '@openlab/deconf-shared'
 import { Location } from 'vue-router'
 
 import PageFooter from './components/PageFooter.vue'
@@ -34,14 +34,12 @@ export default Vue.extend({
     return { timerId: null }
   },
   computed: {
-    apiState(): ApiState {
-      return this.$store.state.api.apiState
-    },
-    settings(): ConfigSettings {
-      return this.$store.getters['api/settings']
+    ...mapApiState('api', ['apiState', 'schedule']),
+    settings(): ConferenceConfig | null {
+      return this.schedule?.settings ?? null
     },
     homeRoute(): Location {
-      return { name: lib.Routes.Atrium }
+      return { name: Routes.Atrium }
     },
   },
   async mounted(): Promise<void> {

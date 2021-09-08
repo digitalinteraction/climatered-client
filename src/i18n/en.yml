@@ -11,26 +11,6 @@ general:
   loading: Loading
   genericError: Something went wrong, please try again
 
-atrium:
-  title: Atrium
-  or: or
-  sessionsButton: See what's on!
-  returnTo: Back to atrium
-  heroTitle: Virtual Climate Summit 2020
-  heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
-  heading: Welcome to our global, digital climate change summit!
-  sponsorHeading: Partners
-  onlineNow: Online now
-  kilogramsOfCarbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
-  tonnesOfCarbonSaved: Tonnes of CO₂ saved by hosting climate.red virtually
-  featuredSesions: Featured sessions
-  exploreAllSessions: Explore all sessions
-  liveIn: 'Live in {0}'
-  social: Social
-  tweetWith: 'Tweet with {0}'
-  conferenceOver: |
-    Climate:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
-
 sessions:
   title: What's on
   tabs:
@@ -429,6 +409,8 @@ ifrc:
     backToAtrium: Back to Atrium
     notSelected: (Please select)
     genericError: Something went wrong, please try again
+    'yes': 'Yes'
+    'no': 'No'
 
   login:
     title: Login
@@ -486,11 +468,33 @@ ifrc:
     nameText: Name
     countryText: Country
     affiliationText: Affiliation
+    # marketingText: Marketing
     logoutButton: Log out
     deleteButton: Delete account
     deleteText: This is permenant, are you sure?
     actionLabel: Actions
     dangerLabel: Danger zone
+
+  atrium:
+    title: Atrium
+    # or: or
+    sessionsButton: See what's on!
+    # returnTo: Back to atrium
+    # heroTitle: Virtual Climate Summit 2020
+    # heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
+    # heading: Welcome to our global, digital climate change summit!
+    sponsorHeading: Partners
+    onlineNow: Online now
+    kilogramsOfCarbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
+    # tonnesOfCarbonSaved: Tonnes of CO₂ saved by hosting climate.red virtually
+    # featuredSesions: Featured sessions
+    # exploreAllSessions: Explore all sessions
+    # liveIn: 'Live in {0}'
+    twitterTitle: Social
+    twitterSubtitle: 'Tweet with #PlanetRed'
+    twitterUrl: 'https://twitter.com'
+    # conferenceOver: |
+    #   Climate:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:
     appName: PlanetRed

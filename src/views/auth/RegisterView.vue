@@ -10,7 +10,7 @@
         <p>{{ $t('ifrc.register.doneText') }}</p>
       </div>
       <div class="notification is-danger" v-if="isError">
-        <p>{{ $t('ifrc.login.badRegistration') }}</p>
+        <p>{{ $t('ifrc.general.genericError') }}</p>
       </div>
       <div class="registerView-form" v-if="state !== 'success'">
         <TextField
@@ -71,6 +71,9 @@
           :has-error="errors.consent"
           :disabled="isWorking"
         />
+        <!--
+          TODO: checkbox field for marketing
+        -->
         <div class="content">
           <ul>
             <li>
@@ -116,44 +119,32 @@ import {
   TextField,
   SelectField,
   CheckboxField,
+  deepSeal,
+  Routes,
 } from '@openlab/deconf-ui-toolkit'
-import { pause, RegisterRequest } from '@/lib/module'
+import { pause } from '@/lib/module'
 import countryData from '@/data/countries-en.json'
 import languageData from '@/data/languages.json'
-import { lib } from '@openlab/deconf-ui-toolkit'
+import { RegisterRequest } from '@openlab/deconf-shared'
 
-const countryOptions = lib.deepSeal(
+const countryOptions = deepSeal(
   Object.entries(countryData.countries).map(([value, text]) => ({
     value,
     text,
   }))
 )
 
-const languageOptions = lib.deepSeal(
+const languageOptions = deepSeal(
   Object.entries(languageData).map(([value, text]) => ({ value, text }))
 )
-
-type Boolify<T extends unknown> = {
-  [k in keyof T]: boolean
-}
-
-type Registration = RegisterRequest & {
-  consent: boolean
-}
-
-interface Data {
-  state: 'pending' | 'working' | 'success' | 'error'
-  registration: Registration
-  errors: Boolify<Registration>
-  languageOptions: unknown
-  countryOptions: unknown
-}
 
 function isEmail(input: string) {
   return /.+@.+/.test(input)
 }
 
-function createRegistration(locale: string): Registration {
+type RegBody = ReturnType<typeof createRegistration>
+
+function createRegistration(locale: string) {
   return {
     name: '',
     email: '',
@@ -161,9 +152,13 @@ function createRegistration(locale: string): Registration {
     language: locale,
     affiliation: '',
     consent: false,
+    marketing: false,
   }
 }
-function createErrors(): Boolify<Registration> {
+
+type RegErrors = ReturnType<typeof createErrors>
+
+function createErrors() {
   return {
     name: false,
     email: false,
@@ -171,7 +166,16 @@ function createErrors(): Boolify<Registration> {
     language: false,
     affiliation: false,
     consent: false,
+    marketing: false,
   }
+}
+
+interface Data {
+  state: 'pending' | 'working' | 'success' | 'error'
+  registration: RegBody
+  errors: RegErrors
+  languageOptions: unknown
+  countryOptions: unknown
 }
 
 export default Vue.extend({
@@ -199,17 +203,17 @@ export default Vue.extend({
       return this.state === 'error'
     },
     termsHref(): string {
-      return this.$router.resolve({ name: lib.Routes.Terms }).href
+      return this.$router.resolve({ name: Routes.Terms }).href
     },
     privacyHref(): string {
-      return this.$router.resolve({ name: lib.Routes.Privacy }).href
+      return this.$router.resolve({ name: Routes.Privacy }).href
     },
     loginRoute(): Location {
-      return { name: lib.Routes.Login }
+      return { name: Routes.Login }
     },
     hasFormErrors(): boolean {
       for (const key in this.errors) {
-        if (this.errors[key as keyof Registration]) return true
+        if (this.errors[key as keyof RegErrors]) return true
       }
       return false
     },
@@ -229,14 +233,24 @@ export default Vue.extend({
       this.state = 'working'
       await pause(300)
 
-      const body = { ...this.registration, consent: undefined }
-      const success = await this.$store.dispatch('api/register', body)
+      // const body = { ...this.registration, consent: undefined }
+      const registration: RegisterRequest = {
+        name: this.registration.name,
+        email: this.registration.email,
+        language: this.registration.language,
+        country: this.registration.country,
+        affiliation: this.registration.affiliation,
+        userData: {
+          marketing: this.registration.marketing,
+        },
+      }
+      const success = await this.$store.dispatch('api/register', registration)
 
       this.state = success ? 'success' : 'error'
 
       // TODO: metrics
     },
-    findErrors(reg: Registration) {
+    findErrors(reg: RegBody) {
       const errors = createErrors()
       const langSet = new Set(Object.keys(languageData))
 
