@@ -22,6 +22,7 @@ import { ConfigSettings } from '@openlab/deconf-shared'
 import { Location } from 'vue-router'
 
 import PageFooter from './components/PageFooter.vue'
+import { TOKEN_STORAGE_KEY } from './lib/module'
 
 interface Data {
   timerId: null | number
@@ -44,7 +45,7 @@ export default Vue.extend({
     },
   },
   async mounted(): Promise<void> {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem(TOKEN_STORAGE_KEY)
 
     this.$temporal.setup()
 

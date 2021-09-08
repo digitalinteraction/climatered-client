@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import VueRouter, { /*Route,*/ RouteConfig } from 'vue-router'
+import VueRouter, { Route, RouteConfig } from 'vue-router'
 
 import { lib } from '@openlab/deconf-ui-toolkit'
 
@@ -11,11 +11,15 @@ import HelpDeskView from '../views/main/HelpDeskView.vue'
 
 import LoginView from '../views/auth/LoginView.vue'
 import RegisterView from '../views/auth/RegisterView.vue'
-import TokenCapture from '../views/auth/TokenCapture.vue'
+import TokenCaptureView from '../views/auth/TokenCaptureView.vue'
+import ProfileView from '../views/auth/ProfileView.vue'
 
 import TermsView from '../views/pages/TermsView.vue'
 import PrivacyView from '../views/pages/PrivacyView.vue'
 import GuidelinesView from '../views/pages/GuidelinesView.vue'
+
+import i18n from '../i18n/module'
+import { TOKEN_STORAGE_KEY } from '@/lib/constants'
 
 Vue.use(VueRouter)
 
@@ -32,26 +36,41 @@ const routes: Array<RouteConfig> = [
     path: '/atrium',
     name: lib.Routes.Atrium,
     component: AtriumView,
+    // meta: {
+    //   title: 'ifrc.atrium.title'
+    // }
   },
   {
     path: '/whats-on',
     name: lib.Routes.WhatsOn,
     component: WhatsOnView,
+    // meta: {
+    //   title: 'ifrc.whatsOn.title'
+    // }
   },
   {
     path: '/schedule',
     name: lib.Routes.Schedule,
     component: ScheduleView,
+    // meta: {
+    //   title: 'ifrc.schedule.title'
+    // }
   },
   {
     path: '/coffee',
     name: lib.Routes.CoffeeChatLobby,
     component: CoffeeLobbyView,
+    // meta: {
+    //   title: 'ifrc.coffeeChat.title'
+    // }
   },
   {
     path: '/help',
     name: lib.Routes.HelpDesk,
     component: HelpDeskView,
+    // meta: {
+    //   title: 'ifrc.helpDesk.title'
+    // }
   },
 
   //
@@ -61,16 +80,30 @@ const routes: Array<RouteConfig> = [
     path: '/login',
     name: lib.Routes.Login,
     component: LoginView,
+    meta: {
+      title: 'ifrc.login.title',
+    },
   },
   {
     path: '/register',
     name: lib.Routes.Register,
     component: RegisterView,
+    meta: {
+      title: 'ifrc.register.title',
+    },
+  },
+  {
+    path: '/profile',
+    name: lib.Routes.Profile,
+    component: ProfileView,
+    meta: {
+      title: 'ifrc.profile.title',
+    },
   },
   {
     path: '/_auth',
     name: lib.Routes.TokenCapture,
-    component: TokenCapture,
+    component: TokenCaptureView,
   },
 
   //
@@ -93,12 +126,72 @@ const routes: Array<RouteConfig> = [
   },
 ]
 
-// TODO: scroll behaviour
+const protectedRoutes = new Set<string>([
+  lib.Routes.Profile,
+  lib.Routes.Session,
+  lib.Routes.InterpretHome,
+  lib.Routes.InterpretSession,
+  lib.Routes.HelpDesk,
+  lib.Routes.CoffeeChatLobby,
+  lib.Routes.CoffeeChatRoom,
+])
+
+function getRouteTitle(route: Route): string {
+  const match = [...route.matched].reverse().find((r) => r.meta.title)
+
+  const appName = i18n.t('ifrc.general.appName') as string
+
+  if (match) {
+    const pageName = i18n.t(match?.meta.title)
+    return [pageName, appName].join(' | ')
+  }
+
+  return appName
+}
+
+// 5.25rem into pixels ($navbar-height + tabbar height)
+const SCROLL_OFFSET = 80
+
+interface PagePosition {
+  x: number
+  y: number
+}
+
+function scrollBehavior(
+  to: Route,
+  from: Route,
+  savedPosition: PagePosition | void
+) {
+  // If they clicked on a hash, scroll to that, but under the nav bar
+  if (to.hash) {
+    return {
+      selector: to.hash,
+      offset: { x: 0, y: SCROLL_OFFSET },
+    }
+  }
+
+  if (savedPosition) return savedPosition
+
+  return { x: 0, y: 0 }
+}
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  scrollBehavior,
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = getRouteTitle(to)
+
+  const loggedIn = Boolean(localStorage.getItem(TOKEN_STORAGE_KEY))
+
+  if (!loggedIn && to.name && protectedRoutes.has(to.name)) {
+    next({ name: lib.Routes.Atrium })
+  } else {
+    next()
+  }
 })
 
 export default router

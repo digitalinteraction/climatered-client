@@ -29,58 +29,6 @@ atrium:
   # conferenceOver: |
   #   _
 
-login:
-  title: Ingreso
-  infoText: Después de registrarse, le enviaremos un correo electrónico de confirmación. El correo electrónico tendrá un enlace que le conectará. El enlace caducará después de 30 minutos. Si no lo recibe, verifique su carpeta de correo no deseado.
-  email:
-    label: Correo Electrónico
-    placeholder: por ejemplo, geoff@example.com
-    help: La dirección de correo electrónico con la que se registró en la conferencia
-  submitButton: Solicitar código de inicio de sesión
-  doneText: Código de inicio de sesión enviado
-  badEmail: Correo electrónico malo
-
-register:
-  title: Registrarse
-  infoText: 'Registrarse para el clima: ROJA'
-  name:
-    label: Nombre completo
-    placeholder: por ejemplo, Dan Howard
-    help: Su nombre completo
-  email:
-    label: dirección de correo electrónico
-    placeholder: por ejemplo, dan@example.com
-    help: Usarás tu correo electrónico para iniciar sesión en la cumbre virtual
-  language:
-    label: idioma
-    help: Este será su idioma preferido para la conferencia
-  country:
-    label: País
-    help: Para que podamos ver el alcance de la conferencia
-  affiliation:
-    label: Su afiliación
-    placeholder: por ejemplo, un miembro del personal de la FICR
-    help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
-  consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
-  termsLink: Términos y Condiciones
-  privacyLink: Política de privacidad
-  submitButton: Registrarse
-  doneText: Le hemos enviado un correo electrónico de verificación.
-
-profile:
-  title: Tu perfil
-  emailText: Su Correo Electrónico
-  localeText: Idioma seleccionado
-  whenText: Sesión iniciada
-  # registeredText: Registered
-  nameText: Nombre
-  countryText: País
-  affiliationText: Afiliación
-  logoutButton: Cerrar sesión
-  deleteButton: Eliminar cuenta
-  deleteText: Esto es permanente, ¿está segura?
-  # loadingText: Fetching profile
-
 sessions:
   title: Que hay ahora
   tabs:
@@ -291,3 +239,88 @@ errors:
 
 faqs:
   title: FAQ
+
+#
+# v2 - deconf
+#
+deconf: {}
+
+#
+# v2 - IFRC
+#
+ifrc:
+  general:
+    # appName: PlanetRed
+    # backToAtrium: Back to Atrium
+    # notSelected: (Please select)
+    # genericError: Something went wrong, please try again
+
+  login:
+    title: Ingreso
+    infoText: >
+      Después de registrarse, le enviaremos un correo electrónico de confirmación. El correo electrónico tendrá un enlace que le conectará. El enlace caducará después de 30 minutos. Si no lo recibe, verifique su carpeta de correo no deseado.
+    email:
+      label: Correo Electrónico
+      placeholder: por ejemplo, dan@example.com
+      help: La dirección de correo electrónico con la que se registró en la conferencia
+    badEmail: Correo electrónico malo
+    doneText: Código de inicio de sesión enviado
+    submitButton: Solicitar código de inicio de sesión
+    # registerLabel: Not registered yet?
+    # registerAction: Register here
+
+  register:
+    title: Registrarse
+    infoText: >
+      Registrarse para el Climate:Red
+    name:
+      label: Nombre completo
+      placeholder: por ejemplo, Dan Howard
+      help: Su nombre completo
+    email:
+      label: dirección de correo electrónico
+      placeholder: por ejemplo, dan@example.com
+      help: Usarás tu correo electrónico para iniciar sesión en la cumbre virtual
+    language:
+      label: idioma
+      help: Este será su idioma preferido para la conferencia
+    country:
+      label: País
+      help: Para que podamos ver el alcance de la conferencia
+    affiliation:
+      label: Su afiliación
+      placeholder: por ejemplo, un miembro del personal de la FICR
+      help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
+    submitButton: Registrarse
+    consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
+    termsLink: Términos y Condiciones
+    privacyLink: Política de privacidad
+    doneText: >
+      Le hemos enviado un correo electrónico de verificación.
+    # loginLabel: Already registered?
+    # loginAction: Log in here
+
+  profile:
+    title: Tu perfil
+    emailText: Su Correo Electrónico
+    localeText: Idioma seleccionado
+    whenText: Sesión iniciada
+    # registeredText: Registered
+    nameText: Nombre
+    countryText: País
+    affiliationText: Afiliación
+    logoutButton: Cerrar sesión
+    deleteButton: Eliminar cuenta
+    deleteText: Esto es permanente, ¿está segura?
+    # actionLabel: Actions
+    # dangerLabel: Danger zone
+    # translatorMessage: >
+
+  footer:
+    # appName: PlanetRed
+    # privacy: Privacy
+    # privacyUrl: /privacy
+    # guidelines: Community Guidelines
+    # guidelinesUrl: /guidelines
+    # terms: Terms & Conditions
+    # termsUrl: /terms

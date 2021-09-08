@@ -79,6 +79,8 @@ export default Vue.extend({
       await pause(300)
 
       this.state = success ? 'success' : 'error'
+
+      // TODO: metrics
     },
   },
 })

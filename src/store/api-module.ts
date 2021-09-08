@@ -8,18 +8,21 @@ import {
 
 import { env } from '@/plugins/env-plugin'
 import { LocalisedContent } from '@/lib/api-types'
+import { TOKEN_STORAGE_KEY } from '@/lib/constants'
+
+function requestMiddleware(request: Request) {
+  const token = localStorage.getItem(TOKEN_STORAGE_KEY)
+  if (token) {
+    request.headers.set('Authorization', `Bearer ${token}`)
+  }
+}
 
 export function apiModule(): ApiModule {
   const agent = ky.extend({
     prefixUrl: env.SERVER_URL,
+    throwHttpErrors: false,
     hooks: {
-      beforeRequest: [
-        (request) => {
-          if (localStorage.token) {
-            request.headers.set('Authorization', `Bearer ${localStorage.token}`)
-          }
-        },
-      ],
+      beforeRequest: [requestMiddleware],
     },
   })
 
@@ -54,27 +57,35 @@ export function apiModule(): ApiModule {
       //
       async login(ctx, email: string) {
         const response = await agent.post('auth/login', {
-          throwHttpErrors: false,
           json: { email },
         })
 
         return response.ok
       },
 
-      async register() {
-        // TODO
+      async register(ctx, registration: unknown) {
+        const response = await agent.post('auth/register', {
+          json: registration,
+        })
+
+        return response.ok
       },
 
       async unregister() {
-        // TODO
+        const response = await agent.delete('auth/me')
+        return response.ok
       },
 
       async fetchProfile({ commit }) {
         try {
-          const response = await agent
+          const { profile } = await agent
             .get('auth/me')
             .json<lib.ProfileResponse>()
-          commit('profile', lib.deepSeal(response.profile))
+
+          commit('profile', {
+            ...profile,
+            created: new Date(profile.created),
+          })
         } catch (error) {
           console.error(error)
           commit('profile', null)

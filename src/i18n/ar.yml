@@ -29,58 +29,6 @@ atrium:
   # conferenceOver: |
   #   _
 
-login:
-  title: تسجيل الدخول
-  infoText: بعد التسجيل ، سوف نرسل لك رسالة تأكيد بالبريد الإلكتروني. سيكون في البريد الإلكتروني رابط ، والذي سيسجل دخولك. ستنتهي صلاحية الرابط بعد 30 دقيقة. إذا لم تتلق أي شيء ، فيرجى التحقق من ملف الرسائل الغير مرغوب بها.
-  email:
-    label: البريد الإلكتروني
-    placeholder: ''
-    help: عنوان البريد الإلكتروني الذي سجلت به في المؤتمر
-  submitButton: طلب رمز تسجيل الدخول
-  doneText: تم إرسال رمز تسجيل الدخول
-  badEmail: البريد الإلكتروني غير جيد
-
-register:
-  title: تسجيل
-  infoText: التسجيل لمؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ
-  name:
-    label: الاسم الكامل
-    placeholder: ''
-    help: اسمك الكامل
-  email:
-    label: عنوان البريد الالكتروني
-    placeholder: ''
-    help: ستستخدم بريدك الإلكتروني لتسجيل الدخول إلى المؤتمر
-  language:
-    label: لغة
-    help: ستكون هذه هي لغتك المفضلة للمؤتمر
-  country:
-    label: البلد
-    help: حتى نتمكن من رؤية مدى تغطية المؤتمر
-  affiliation:
-    label: جهة الانتساب
-    placeholder: على سبيل المثال، موظف الاتحاد الدولي للصليب الأحمر والهلال الأحمر
-    help: 'جهة الانتماء (على سبيل المثال: موظف/متطوع/عضو مجلس إدارة/عضو جمعية وطنية/الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر/اللجنة الدولية للصليب الأحمر/المركز المرجعي، أو غير ذلك )'
-  consentText: أؤكد أنني قد قرأت وأوافق على السياسات الموجودة في الرابط أدناه
-  termsLink: الأحكام والشروط
-  privacyLink: سياسة الخصوصية
-  submitButton: تسجيل
-  doneText: لقد أرسلنا إليك بريدًا إلكترونيًا للتحقق
-
-profile:
-  title: ملفك الشخصي
-  emailText: بريدك الالكتروني
-  localeText: اللغة المختارة
-  whenText: تسجيل الدخول
-  # registeredText: Registered
-  nameText: الإسم
-  countryText: البلد
-  affiliationText: جهة الانتساب
-  logoutButton: تسجيل الخروج
-  deleteButton: حذف الحساب
-  deleteText: هذا دائم، هل أنت متأكد؟
-  # loadingText: Fetching profile
-
 sessions:
   title: ماذا يحدث
   tabs:
@@ -291,3 +239,87 @@ errors:
 
 faqs:
   title: أسئلة وأجوبة
+
+#
+# v2 - Deconf
+#
+deconf: {}
+
+#
+# v2 - IFRC
+#
+ifrc:
+  general:
+    # appName: PlanetRed
+    # backToAtrium: Back to Atrium
+    # notSelected: (Please select)
+    # genericError: Something went wrong, please try again
+
+  login:
+    title: تسجيل الدخول
+    infoText: >
+      بعد التسجيل ، سوف نرسل لك رسالة تأكيد بالبريد الإلكتروني. سيكون في البريد الإلكتروني رابط ، والذي سيسجل دخولك. ستنتهي صلاحية الرابط بعد 30 دقيقة. إذا لم تتلق أي شيء ، فيرجى التحقق من ملف الرسائل الغير مرغوب بها.
+    email:
+      label: البريد الإلكتروني
+      placeholder: e.g. dan@example.com
+      help: عنوان البريد الإلكتروني الذي سجلت به في المؤتمر
+    badEmail: البريد الإلكتروني غير جيد
+    doneText: تم إرسال رمز تسجيل الدخول
+    submitButton: طلب رمز تسجيل الدخول
+    # registerLabel: Not registered yet?
+    # registerAction: Register here
+
+  register:
+    title: تسجيل
+    infoText: >
+      التسجيل لمؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ
+    name:
+      label: الاسم الكامل
+      # placeholder: e.g. Dan Howard
+      help: اسمك الكامل
+    email:
+      label: عنوان البريد الالكتروني
+      # placeholder: e.g. dan@example.com
+      help: ستستخدم بريدك الإلكتروني لتسجيل الدخول إلى المؤتمر
+    language:
+      label: لغة
+      help: ستكون هذه هي لغتك المفضلة للمؤتمر
+    country:
+      label: البلد
+      help: حتى نتمكن من رؤية مدى تغطية المؤتمر
+    affiliation:
+      label: جهة الانتساب
+      placeholder: على سبيل المثال، موظف الاتحاد الدولي للصليب الأحمر والهلال الأحمر
+      help: 'جهة الانتماء (على سبيل المثال: موظف/متطوع/عضو مجلس إدارة/عضو جمعية وطنية/الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر/اللجنة الدولية للصليب الأحمر/المركز المرجعي، أو غير ذلك )'
+    submitButton: تسجيل
+    consentText: أؤكد أنني قد قرأت وأوافق على السياسات الموجودة في الرابط أدناه
+    termsLink: الأحكام والشروط
+    privacyLink: سياسة الخصوصية
+    doneText: >
+      لقد أرسلنا إليك بريدًا إلكترونيًا للتحقق
+    # loginLabel: Already registered?
+    # loginAction: Log in here
+
+  profile:
+    title: ملفك الشخصي
+    emailText: بريدك الالكتروني
+    localeText: اللغة المختارة
+    whenText: تسجيل الدخول
+    # registeredText: Registered
+    nameText: الإسم
+    countryText: البلد
+    affiliationText: جهة الانتساب
+    logoutButton: تسجيل الخروج
+    deleteButton: حذف الحساب
+    deleteText: هذا دائم، هل أنت متأكد؟
+    # actionLabel: Actions
+    # dangerLabel: Danger zone
+
+  footer:
+    # appName: PlanetRed
+    # privacy: Privacy
+    # privacyUrl: /privacy
+    # guidelines: Community Guidelines
+    # guidelinesUrl: /guidelines
+    # terms: Terms & Conditions
+    # termsUrl: /terms
