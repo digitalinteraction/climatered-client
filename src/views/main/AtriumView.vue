@@ -10,7 +10,7 @@
         <ColorWidget
           kind="primary"
           v-if="showSiteVisitors"
-          :title="`${siteVisitors || '...'}`"
+          :title="`${siteVisitors === null ? '...' : siteVisitors}`"
           :subtitle="$t('ifrc.atrium.onlineNow')"
           :icon="['fas', 'user']"
         />

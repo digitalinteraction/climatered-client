@@ -47,16 +47,16 @@ export default Vue.extend({
 
     this.$temporal.setup()
 
+    // Listen for site-visitors and update vuex
+    this.$io.socket.on('site-visitors', (count: number) => {
+      this.$store.commit('metrics/siteVisitors', count)
+    })
+
     if (token) {
       await this.$store.dispatch('api/authenticate', token)
     } else {
       await this.$store.dispatch('api/fetchData')
     }
-
-    // Listen for site-visitors and update vuex
-    this.$io.socket.on('site-visitors', (count: number) => {
-      this.$store.commit('metrics/siteVisitors', count)
-    })
 
     // TODO: check for allow-listed routes or go to /atrium
 

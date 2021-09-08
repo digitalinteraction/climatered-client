@@ -9,26 +9,6 @@ general:
   genericError: Algo salió mal. Por favor, vuelva a intentarlo
   backTo: Volver a {0}
 
-atrium:
-  title: Entrada
-  or: o
-  sessionsButton: ¡Mira lo que pasa!
-  returnTo: Regresar a la Entrada
-  heroTitle: Cumbre Climática Virtual 2020
-  heroSubtitle: 9 de Sept, 12h00, 19h00 CEST
-  heading: ¡Bienvenido a nuestra cumbre mundial digital sobre cambio climático!
-  sponsorHeading: Asociados
-  onlineNow: En línea ahora
-  # kilogramsOfCarbonSaved: Kilogramos de CO₂ ahorrados
-  # tonnesOfCarbonSaved: Kilogramos de CO₂ ahorrados
-  featuredSesions: Sesiones destacadas
-  exploreAllSessions: Explore all sessions
-  liveIn: 'En vivo en {0}'
-  social: Social
-  tweetWith: 'Tuitear con {0}'
-  # conferenceOver: |
-  #   _
-
 sessions:
   title: Que hay ahora
   tabs:
@@ -315,6 +295,18 @@ ifrc:
     # actionLabel: Actions
     # dangerLabel: Danger zone
     # translatorMessage: >
+
+  atrium:
+    title: Entrada
+    sponsorHeading: Asociados
+    onlineNow: En línea ahora
+    carbonSaved: Kilogramos de CO₂ ahorrados
+    featuredSesions: Sesiones destacadas
+    # twitterTitle: Social
+    twitterSubtitle: 'Tuitear con #PlanetRed'
+    # twitterUrl: 'https://twitter.com'
+    # conferenceOver: |
+    #   _
 
   footer:
     # appName: PlanetRed

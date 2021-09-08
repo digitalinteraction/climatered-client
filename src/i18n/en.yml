@@ -477,23 +477,13 @@ ifrc:
 
   atrium:
     title: Atrium
-    # or: or
-    sessionsButton: See what's on!
-    # returnTo: Back to atrium
-    # heroTitle: Virtual Climate Summit 2020
-    # heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
-    # heading: Welcome to our global, digital climate change summit!
     sponsorHeading: Partners
     onlineNow: Online now
-    kilogramsOfCarbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
-    # tonnesOfCarbonSaved: Tonnes of CO₂ saved by hosting climate.red virtually
-    # featuredSesions: Featured sessions
-    # exploreAllSessions: Explore all sessions
-    # liveIn: 'Live in {0}'
+    carbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
     twitterTitle: Social
     twitterSubtitle: 'Tweet with #PlanetRed'
     twitterUrl: 'https://twitter.com'
-    # conferenceOver: |
+    # conferenceOver: >
     #   Climate:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:

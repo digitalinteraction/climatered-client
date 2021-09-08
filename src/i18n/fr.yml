@@ -9,26 +9,6 @@ general:
   genericError: Une erreur s'est produite. Veuillez réessayer
   backTo: Retour à {0}
 
-atrium:
-  title: Atrium
-  or: ou
-  sessionsButton: Voyez ce qui se passe!
-  returnTo: Retourner à l’Atrium
-  heroTitle: Sommet Virtuel sur le Climat 2020
-  heroSubtitle: 9 sept, 12h00 - 10 sept, 19h00 CEST
-  heading: Bienvenue à notre sommet mondial numérique sur le changement climatique!
-  sponsorHeading: Partenaires
-  onlineNow: En ligne maintenant
-  # kilogramsOfCarbonSaved: Des kilogrammes de CO₂ économisés
-  # tonnesOfCarbonSaved: Des kilogrammes de CO₂ économisés
-  featuredSesions: Sessions vedettes
-  exploreAllSessions: Explore all sessions
-  liveIn: 'En ligne dans {0}'
-  social: Social
-  tweetWith: 'Tweeter avec {0}'
-  # conferenceOver: |
-  #   _
-
 sessions:
   title: Quoi de neuf
   tabs:
@@ -314,6 +294,17 @@ ifrc:
     deleteText: C'est permanent, êtes-vous sûr?
     # actionLabel: Actions
     # dangerLabel: Danger zone
+
+  atrium:
+    title: Atrium
+    sponsorHeading: Partenaires
+    onlineNow: En ligne maintenant
+    carbonSaved: Des kilogrammes de CO₂ économisés
+    # twitterTitle: Social
+    twitterSubtitle: 'Tweeter avec #PlanetRed'
+    # twitterUrl: 'https://twitter.com'
+    # conferenceOver: >
+    #   -
 
   footer:
     # appName: PlanetRed

@@ -9,26 +9,6 @@ general:
   genericError: حدث خطأ ما. أعد المحاولة من فضلك
   backTo: الرجوع إلى {x}
 
-atrium:
-  title: الملتقى الرئيسي
-  or: أو
-  sessionsButton: شاهد ماذا يحدث !
-  returnTo: العودة إلى الملتقى الرئيسي
-  heroTitle: قمة المناخ الإفتراضية 2020
-  heroSubtitle: 9 سبتمبر/أيلول الساعة 12 ظهراَ - 10 سبتمبر/أيلول الساعة 5:00 مساءَ
-  heading: مرحبًا بك في القمة العالمية الرقمية لتغير المناخ!
-  sponsorHeading: شركاء
-  onlineNow: مباشر الآن
-  # kilogramsOfCarbonSaved: التقليل من انبعاثات الكربون
-  # tonnesOfCarbonSaved: التقليل من انبعاثات الكربون
-  featuredSesions: Sessions vedettes
-  exploreAllSessions: Explore all sessions
-  liveIn: '{0} مباشر خلال'
-  social: المشاركة ضمن صفحات التواصل الإجتماعي
-  tweetWith: 'تغريدة مع {0}'
-  # conferenceOver: |
-  #   _
-
 sessions:
   title: ماذا يحدث
   tabs:
@@ -314,6 +294,17 @@ ifrc:
     deleteText: هذا دائم، هل أنت متأكد؟
     # actionLabel: Actions
     # dangerLabel: Danger zone
+
+  atrium:
+    title: الملتقى الرئيسي
+    sponsorHeading: شركاء
+    onlineNow: مباشر الآن
+    carbonSaved: التقليل من انبعاثات الكربون
+    # twitterTitle: Social
+    twitterSubtitle: 'تغريدة مع #PlanetRed'
+    twitterUrl: 'https://twitter.com'
+    # conferenceOver: |
+    #   _
 
   footer:
     # appName: PlanetRed
