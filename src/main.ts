@@ -11,6 +11,7 @@ import { EnvPlugin } from './plugins/env-plugin'
 import { FontAwesomePlugin } from './plugins/fontawesome-plugin'
 import { MetricsPlugin } from './plugins/metrics-plugin'
 import { SocketIoPlugin } from './plugins/socketio-plugin'
+import { IfrcDeconfPlugin } from './plugins/deconf-plugin'
 
 Vue.use(TemporalPlugin)
 Vue.use(DevPlugin)
@@ -18,6 +19,7 @@ Vue.use(EnvPlugin)
 Vue.use(FontAwesomePlugin)
 Vue.use(MetricsPlugin)
 Vue.use(SocketIoPlugin)
+Vue.use(IfrcDeconfPlugin)
 
 Vue.config.productionTip = false
 

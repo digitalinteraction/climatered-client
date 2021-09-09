@@ -18,7 +18,7 @@ export default Vue.extend({
       if (!hash || !hash.startsWith('#')) return
 
       const params = new URLSearchParams(hash.slice(1))
-      const authToken = params.get(StorageKey.AuthToken)
+      const authToken = params.get('token')
       if (!authToken) return
 
       localStorage.setItem(StorageKey.AuthToken, authToken)

@@ -143,3 +143,11 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style lang="scss">
+.profileView-heading {
+  font-weight: bold;
+  font-size: $size-5;
+  margin-bottom: 0.3em;
+}
+</style>

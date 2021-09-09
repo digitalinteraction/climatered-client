@@ -169,7 +169,7 @@ function scrollBehavior(
   savedPosition: PagePosition | void
 ) {
   // If they clicked on a hash, scroll to that, but under the nav bar
-  if (to.hash) {
+  if (to.hash && to.name !== Routes.TokenCapture) {
     return {
       selector: to.hash,
       offset: { x: 0, y: SCROLL_OFFSET },

@@ -60,9 +60,9 @@ export default Vue.extend({
 
     if (token) {
       await this.$store.dispatch('api/authenticate', token)
-      // Vue.nextTick(() => {
-      if (this.user) setLocale(this.user.user_lang)
-      // })
+      if (this.user) {
+        setLocale(this.user.user_lang)
+      }
     } else {
       await this.$store.dispatch('api/fetchData')
     }

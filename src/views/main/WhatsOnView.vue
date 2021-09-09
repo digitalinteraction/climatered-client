@@ -27,7 +27,6 @@
             :session="session"
             :schedule="schedule"
             :config="scheduleConfig"
-            @track-ical="trackIcal"
           />
         </SessionBoard>
       </div>
@@ -95,9 +94,6 @@ export default Vue.extend({
         const json = JSON.stringify(filters)
         localStorage.setItem(StorageKey.WhatsOnFilters, json)
       })
-    },
-    trackIcal(session: Session) {
-      // ...
     },
   },
 })

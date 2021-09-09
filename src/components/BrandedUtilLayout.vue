@@ -6,6 +6,8 @@
       {{ $t('ifrc.general.backToAtrium') }}
     </BackButton>
 
+    <LanguageControl slot="languageControl" />
+
     <slot slot="main" />
 
     <PageFooter slot="footer" />
@@ -18,10 +20,11 @@ import { Location } from 'vue-router'
 
 import { UtilLayout, BackButton, Routes } from '@openlab/deconf-ui-toolkit'
 import PageFooter from './PageFooter.vue'
+import LanguageControl from './LanguageControl.vue'
 import BrandA from '../branding/BrandA.vue'
 
 export default Vue.extend({
-  components: { UtilLayout, BackButton, PageFooter, BrandA },
+  components: { UtilLayout, BackButton, PageFooter, BrandA, LanguageControl },
   computed: {
     atriumRoute(): Location {
       return { name: Routes.Atrium }
