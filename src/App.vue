@@ -23,7 +23,6 @@ import { Location } from 'vue-router'
 
 import PageFooter from './components/PageFooter.vue'
 import { TOKEN_STORAGE_KEY } from './lib/module'
-import { env } from './plugins/env-plugin'
 
 interface Data {
   timerId: null | number
