@@ -1,9 +1,10 @@
 <template>
   <AppLayout :app-settings="settings" :user="user" :routes="routes">
-    <img slot="brandA" src="/brand.svg" width="160" height="28" />
-    <img slot="brandB" src="/openlab.svg" width="110" height="28" />
+    <BrandA slot="brandA" />
+    <BrandB slot="brandB" />
+    <LanguageControl slot="languageControl" />
     <router-link slot="brandC" :to="atriumRoute">
-      <img slot="brandC" src="/square-brand.svg" width="64" height="64" />
+      <BrandC slot="brandC" />
     </router-link>
     <div slot="main" class="brandedMain">
       <slot name="main" />
@@ -26,8 +27,20 @@ import PageFooter from './PageFooter.vue'
 import { ConferenceConfig } from '@openlab/deconf-shared'
 import { Location } from 'vue-router'
 
+import BrandA from '../branding/BrandA.vue'
+import BrandB from '../branding/BrandB.vue'
+import BrandC from '../branding/BrandC.vue'
+import LanguageControl from '../components/LanguageControl.vue'
+
 export default Vue.extend({
-  components: { AppLayout, PageFooter },
+  components: {
+    AppLayout,
+    PageFooter,
+    BrandA,
+    BrandB,
+    BrandC,
+    LanguageControl,
+  },
   computed: {
     ...mapApiState('api', ['schedule', 'user']),
     settings(): ConferenceConfig | null {

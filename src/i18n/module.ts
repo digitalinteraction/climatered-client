@@ -13,4 +13,15 @@ const i18n = new VueI18n({
   messages: { en, fr, es, ar },
 })
 
+const rtlLocales = new Set(['ar'])
+
+export function setLocale(newLocale: string): void {
+  console.log('setLocale %o', newLocale)
+  i18n.locale = newLocale
+
+  const html = document.documentElement
+  html.setAttribute('lang', newLocale)
+  html.setAttribute('dir', rtlLocales.has(newLocale) ? 'rtl' : 'ltr')
+}
+
 export default i18n

@@ -1,6 +1,6 @@
 <template>
   <UtilLayout :home-route="atriumRoute">
-    <img slot="brand" src="/brand.svg" width="160" height="28" />
+    <BrandA slot="brand" />
 
     <BackButton slot="back-button" :to="atriumRoute">
       {{ $t('ifrc.general.backToAtrium') }}
@@ -18,9 +18,10 @@ import { Location } from 'vue-router'
 
 import { UtilLayout, BackButton, Routes } from '@openlab/deconf-ui-toolkit'
 import PageFooter from './PageFooter.vue'
+import BrandA from '../branding/BrandA.vue'
 
 export default Vue.extend({
-  components: { UtilLayout, BackButton, PageFooter },
+  components: { UtilLayout, BackButton, PageFooter, BrandA },
   computed: {
     atriumRoute(): Location {
       return { name: Routes.Atrium }
