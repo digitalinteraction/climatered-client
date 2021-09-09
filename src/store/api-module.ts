@@ -36,9 +36,6 @@ export function apiModule(): ApiStoreModule {
 
   return {
     ...createApiStoreModule(),
-    getters: {
-      calendarLink: () => () => ``,
-    },
     actions: {
       authenticate({ commit, dispatch }, token: string) {
         const user = decodeJwt(token)
@@ -51,12 +48,7 @@ export function apiModule(): ApiStoreModule {
 
       async fetchData({ commit }) {
         try {
-          const data = await agent.get('schedule').json<any>()
-
-          // TODO: make this hack unneeded
-          Object.defineProperty(data, 'sessionTypes', {
-            get: () => data.types,
-          })
+          const data = await agent.get('schedule').json()
 
           commit('schedule', data)
           return true

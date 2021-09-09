@@ -121,7 +121,7 @@ export default Vue.extend({
   padding: 1.5rem;
 }
 
-.sessionTile-actions .joinSession {
+.whatsOnView .sessionTile-actions .joinSession {
   display: none;
 }
 </style>

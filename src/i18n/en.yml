@@ -486,6 +486,13 @@ ifrc:
     # conferenceOver: >
     #   Climate:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
+  schedule:
+    title: Schedule
+    allSessions: All
+    userSessions: User
+    hidePast: Hide previous sessions
+    showPast: Show previous sessions
+
   footer:
     appName: PlanetRed
     privacy: Privacy

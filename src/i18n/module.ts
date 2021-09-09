@@ -16,7 +16,6 @@ const i18n = new VueI18n({
 const rtlLocales = new Set(['ar'])
 
 export function setLocale(newLocale: string): void {
-  console.log('setLocale %o', newLocale)
   i18n.locale = newLocale
 
   const html = document.documentElement

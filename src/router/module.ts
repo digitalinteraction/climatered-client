@@ -130,6 +130,14 @@ const routes: Array<RouteConfig> = [
     name: Routes.Faqs,
     component: FaqsView,
   },
+
+  //
+  // Interpret
+  //
+  {
+    path: '/interpret',
+    name: Routes.InterpretHome,
+  },
 ]
 
 const protectedRoutes = new Set<string>([
