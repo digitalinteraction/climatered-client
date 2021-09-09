@@ -1,6 +1,6 @@
 <template>
   <BrandedAppLayout>
-    <section class="section" slot="main">
+    <section class="section">
       <div class="container">
         <p>Schedule</p>
       </div>

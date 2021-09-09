@@ -18,19 +18,24 @@ import {
   faLeaf,
   faSync,
   faTerminal,
+  faCodeBranch,
+  faTags,
+  faGlobe,
+  faSave,
+  faCalendarPlus,
 } from '@fortawesome/free-solid-svg-icons'
 
 //
 // Import regulars ~ https://fontawesome.com/icons?d=gallery&s=regular
 //
-// import {  } from '@fortawesome/free-regular-svg-icons'
+// TODO: remove in future
+import { faCircle } from '@fortawesome/free-regular-svg-icons'
 
 //
 // Apply icons
 // prettier-ignore
 //
-library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronRight,
-  faLeaf, faSync, faTerminal)
+library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, faCircle)
 
 export class FontAwesomePlugin {
   static install(Vue: typeof _Vue): void {

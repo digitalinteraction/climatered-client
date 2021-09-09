@@ -1,6 +1,6 @@
 <template>
   <BrandedUtilLayout>
-    <div class="profileView" slot="main">
+    <div class="profileView">
       <h1 class="title">{{ $t('ifrc.profile.title') }}</h1>
 
       <table class="table" v-if="profile">
@@ -71,7 +71,7 @@ import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
 import { AuthToken } from '@openlab/deconf-shared'
 import languageData from '@/data/languages.json'
 import countryData from '@/data/countries-en.json'
-import { TOKEN_STORAGE_KEY, UserData } from '@/lib/module'
+import { StorageKey, UserData } from '@/lib/module'
 import { mapApiState } from '@openlab/deconf-ui-toolkit'
 import { TranslateResult } from 'vue-i18n'
 
@@ -114,7 +114,7 @@ export default Vue.extend({
     logout() {
       // TODO: metrics
 
-      localStorage.removeItem(TOKEN_STORAGE_KEY)
+      localStorage.removeItem(StorageKey.AuthToken)
 
       Vue.nextTick(() => {
         window.location.reload()
@@ -131,7 +131,7 @@ export default Vue.extend({
         return
       }
 
-      localStorage.removeItem(TOKEN_STORAGE_KEY)
+      localStorage.removeItem(StorageKey.AuthToken)
 
       // TODO: metrics
       // IDEA: metrics for if they confirm or not?

@@ -309,8 +309,6 @@ ifrc:
   footer:
     # appName: PlanetRed
     # privacy: Privacy
-    # privacyUrl: /privacy
     # guidelines: Community Guidelines
-    # guidelinesUrl: /guidelines
     # terms: Terms & Conditions
-    # termsUrl: /terms
+    # faqs: FAQs

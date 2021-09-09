@@ -1,7 +1,7 @@
 <template>
   <BrandedUtilLayout>
     <div>
-      <ApiContent slug="guidelines" />
+      <ApiContent slug="faqs" />
     </div>
   </BrandedUtilLayout>
 </template>

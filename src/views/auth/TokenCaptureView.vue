@@ -7,7 +7,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Routes } from '@openlab/deconf-ui-toolkit'
-import { TOKEN_STORAGE_KEY } from '@/lib/module'
+import { StorageKey } from '@/lib/module'
 
 export default Vue.extend({
   mounted() {
@@ -18,10 +18,10 @@ export default Vue.extend({
       if (!hash || !hash.startsWith('#')) return
 
       const params = new URLSearchParams(hash.slice(1))
-      const authToken = params.get(TOKEN_STORAGE_KEY)
+      const authToken = params.get(StorageKey.AuthToken)
       if (!authToken) return
 
-      localStorage.setItem(TOKEN_STORAGE_KEY, authToken)
+      localStorage.setItem(StorageKey.AuthToken, authToken)
       await this.$store.dispatch('api/authenticate', authToken)
 
       this.$router.replace({

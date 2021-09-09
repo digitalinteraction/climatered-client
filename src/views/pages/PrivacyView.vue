@@ -1,6 +1,6 @@
 <template>
   <BrandedUtilLayout>
-    <div slot="main">
+    <div>
       <ApiContent slug="privacy" />
     </div>
   </BrandedUtilLayout>

@@ -22,6 +22,7 @@
 </template>
 
 <script lang="ts">
+import { Routes } from '@openlab/deconf-ui-toolkit'
 import Vue from 'vue'
 import { TranslateResult } from 'vue-i18n'
 
@@ -46,15 +47,19 @@ export default Vue.extend({
       footerLinks: [
         {
           title: this.$t('ifrc.footer.privacy'),
-          url: this.$t('ifrc.footer.privacyUrl'),
+          url: this.$router.resolve({ name: Routes.Privacy }).href,
         },
         {
           title: this.$t('ifrc.footer.terms'),
-          url: this.$t('ifrc.footer.termsUrl'),
+          url: this.$router.resolve({ name: Routes.Terms }).href,
         },
         {
           title: this.$t('ifrc.footer.guidelines'),
-          url: this.$t('ifrc.footer.guidelinesUrl'),
+          url: this.$router.resolve({ name: Routes.Guidelines }).href,
+        },
+        {
+          title: this.$t('ifrc.footer.faqs'),
+          url: this.$router.resolve({ name: Routes.Faqs }).href,
         },
       ],
     }

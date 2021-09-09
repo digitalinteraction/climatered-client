@@ -1,6 +1,6 @@
 <template>
   <BrandedUtilLayout>
-    <div class="loginView" slot="main">
+    <div class="loginView">
       <h1 class="title">{{ $t('ifrc.login.title') }}</h1>
       <div class="content">
         <p>{{ $t('ifrc.login.infoText') }}</p>

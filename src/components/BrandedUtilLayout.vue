@@ -2,11 +2,11 @@
   <UtilLayout :home-route="atriumRoute">
     <BrandA slot="brand" />
 
-    <BackButton slot="back-button" :to="atriumRoute">
+    <BackButton slot="backButton" :to="atriumRoute">
       {{ $t('ifrc.general.backToAtrium') }}
     </BackButton>
 
-    <slot name="main" slot="main" />
+    <slot slot="main" />
 
     <PageFooter slot="footer" />
   </UtilLayout>

@@ -7,7 +7,7 @@ import {
 } from '@openlab/deconf-ui-toolkit'
 
 import { env } from '@/plugins/env-plugin'
-import { TOKEN_STORAGE_KEY, LocalisedContent } from '@/lib/module'
+import { StorageKey, LocalisedContent } from '@/lib/module'
 import {
   CarbonCalculation,
   Registration,
@@ -15,7 +15,7 @@ import {
 } from '@openlab/deconf-shared'
 
 function requestMiddleware(request: Request) {
-  const token = localStorage.getItem(TOKEN_STORAGE_KEY)
+  const token = localStorage.getItem(StorageKey.AuthToken)
   if (token) {
     request.headers.set('Authorization', `Bearer ${token}`)
   }
@@ -36,6 +36,9 @@ export function apiModule(): ApiStoreModule {
 
   return {
     ...createApiStoreModule(),
+    getters: {
+      calendarLink: () => () => ``,
+    },
     actions: {
       authenticate({ commit, dispatch }, token: string) {
         const user = decodeJwt(token)
@@ -48,7 +51,13 @@ export function apiModule(): ApiStoreModule {
 
       async fetchData({ commit }) {
         try {
-          const data = await agent.get('schedule').json()
+          const data = await agent.get('schedule').json<any>()
+
+          // TODO: make this hack unneeded
+          Object.defineProperty(data, 'sessionTypes', {
+            get: () => data.types,
+          })
+
           commit('schedule', data)
           return true
         } catch (error) {

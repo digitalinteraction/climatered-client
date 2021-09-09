@@ -1,6 +1,6 @@
 <template>
   <BrandedAppLayout class="atriumView">
-    <AtriumLayout slot="main" v-if="settings">
+    <AtriumLayout v-if="settings">
       <BoxContent slot="left">
         <div class="atriumView-content">
           <ApiContent :slug="contentSlug" />

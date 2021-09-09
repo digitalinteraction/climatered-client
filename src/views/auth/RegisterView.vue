@@ -1,6 +1,6 @@
 <template>
   <BrandedUtilLayout>
-    <div class="registerView" slot="main">
+    <div class="registerView">
       <h1 class="title">{{ $t('ifrc.register.title') }}</h1>
       <div class="content">
         <p>{{ $t('ifrc.register.infoText') }}</p>

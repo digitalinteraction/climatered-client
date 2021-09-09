@@ -17,9 +17,10 @@ import ProfileView from '../views/auth/ProfileView.vue'
 import TermsView from '../views/pages/TermsView.vue'
 import PrivacyView from '../views/pages/PrivacyView.vue'
 import GuidelinesView from '../views/pages/GuidelinesView.vue'
+import FaqsView from '../views/pages/FaqsView.vue'
 
 import i18n from '../i18n/module'
-import { TOKEN_STORAGE_KEY } from '@/lib/constants'
+import { StorageKey } from '@/lib/constants'
 
 Vue.use(VueRouter)
 
@@ -124,6 +125,11 @@ const routes: Array<RouteConfig> = [
     name: Routes.Guidelines,
     component: GuidelinesView,
   },
+  {
+    path: '/faqs',
+    name: Routes.Faqs,
+    component: FaqsView,
+  },
 ]
 
 const protectedRoutes = new Set<string>([
@@ -185,7 +191,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   document.title = getRouteTitle(to)
 
-  const loggedIn = Boolean(localStorage.getItem(TOKEN_STORAGE_KEY))
+  const loggedIn = Boolean(localStorage.getItem(StorageKey.AuthToken))
 
   if (!loggedIn && to.name && protectedRoutes.has(to.name)) {
     next({ name: Routes.Atrium })

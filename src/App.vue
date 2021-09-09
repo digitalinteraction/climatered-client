@@ -23,7 +23,7 @@ import { ConferenceConfig } from '@openlab/deconf-shared'
 import { Location } from 'vue-router'
 
 import PageFooter from './components/PageFooter.vue'
-import { TOKEN_STORAGE_KEY } from './lib/module'
+import { StorageKey } from './lib/module'
 import BrandA from './branding/BrandA.vue'
 import { setLocale } from './i18n/module'
 
@@ -49,7 +49,7 @@ export default Vue.extend({
     },
   },
   async mounted(): Promise<void> {
-    const token = localStorage.getItem(TOKEN_STORAGE_KEY)
+    const token = localStorage.getItem(StorageKey.AuthToken)
 
     this.$temporal.setup()
 

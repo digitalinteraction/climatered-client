@@ -7,7 +7,7 @@
       <BrandC slot="brandC" />
     </router-link>
     <div slot="main" class="brandedMain">
-      <slot name="main" />
+      <slot />
       <PageFooter />
     </div>
   </AppLayout>
