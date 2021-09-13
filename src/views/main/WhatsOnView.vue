@@ -122,7 +122,8 @@ export default Vue.extend({
   padding: 1.5rem;
 }
 
-.whatsOnView .sessionTile-actions .joinSession {
+// TODO: move to deconf as a configuration
+.whatsOnView .sessionTile-actions {
   display: none;
 }
 </style>
