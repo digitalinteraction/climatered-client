@@ -8,6 +8,7 @@ import WhatsOnView from '../views/main/WhatsOnView.vue'
 import ScheduleView from '../views/main/ScheduleView.vue'
 import CoffeeLobbyView from '../views/main/CoffeeLobbyView.vue'
 import HelpDeskView from '../views/main/HelpDeskView.vue'
+import SessionView from '../views/main/SessionView.vue'
 
 import LoginView from '../views/auth/LoginView.vue'
 import RegisterView from '../views/auth/RegisterView.vue'
@@ -71,6 +72,15 @@ const routes: Array<RouteConfig> = [
     component: HelpDeskView,
     // meta: {
     //   title: 'ifrc.helpDesk.title'
+    // }
+  },
+  {
+    path: '/session/:sessionId',
+    name: Routes.Session,
+    component: SessionView,
+    props: true,
+    // meta: {
+    //   title: 'ifrc.session.title'
     // }
   },
 

@@ -4,6 +4,7 @@ import {
   createApiStoreModule,
   decodeJwt,
   deepSeal,
+  SessionAttendance,
 } from '@openlab/deconf-ui-toolkit'
 
 import { env } from '@/plugins/env-plugin'
@@ -11,7 +12,7 @@ import { StorageKey, LocalisedContent } from '@/lib/module'
 import {
   CarbonCalculation,
   Registration,
-  SessionAttendance,
+  SessionLink,
 } from '@openlab/deconf-shared'
 
 function requestMiddleware(request: Request) {
@@ -117,6 +118,15 @@ export function apiModule(): ApiStoreModule {
       //
       // Attendance
       //
+
+      async fetchLinks(ctx, sessionId: string) {
+        const data = await agent
+          .get(`schedule/${sessionId}/links`)
+          .json<{ links: SessionLink[] }>()
+
+        // TODO: remove .links for next beta
+        return deepSeal(data.links)
+      },
 
       async fetchSessionAttendance(ctx, sessionId: string) {
         const data = await agent

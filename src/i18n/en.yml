@@ -400,18 +400,12 @@ deconf:
     register: Register!
     unavailable: ' (Unavailable)'
 
-#
-# IFRC section
-#
-ifrc:
-  general:
-    appName: PlanetRed
-    backToAtrium: Back to Atrium
-    notSelected: (Please select)
-    genericError: Something went wrong, please try again
-    'yes': 'Yes'
-    'no': 'No'
+  # TODO: new
+  whatsOn:
+    title: What's On
+    infoText: Browse the Schedule before release day
 
+  # TODO: moved from "ifrc"
   login:
     title: Login
     infoText: >
@@ -427,6 +421,62 @@ ifrc:
     submitButton: Request login code
     registerLabel: Not registered yet?
     registerAction: Register here
+
+  # TODO:
+  # - moved from "ifrc"
+  # - marketingText is new
+  profile:
+    title: Your profile
+    emailText: Email
+    localeText: Chosen language
+    whenText: Logged in
+    registeredText: Registered
+    nameText: Name
+    countryText: Country
+    affiliationText: Affiliation
+    marketingText: Marketing
+    logoutButton: Log out
+    deleteButton: Delete account
+    deleteText: This is permenant, are you sure?
+    actionLabel: Actions
+    dangerLabel: Danger zone
+
+  # TODO:
+  # - moved from "ifrc"
+  schedule:
+    title: Schedule
+    allSessions: All
+    userSessions: User
+    hidePast: Hide previous sessions
+    showPast: Show previous sessions
+
+  # TODO:
+  # - moved from v1
+  session:
+    slot: Schedule
+    countdown: Countdown
+    links: Links
+    linkPreview: The session links will be available 15 minutes before the start time
+    actions: Actions
+    logIn: Log in to attend this session
+    speakers: Speakers
+    zoomLink: Zoom Room
+    teamsLink: Teams Meeting
+    miroLink: Miro Board
+    generalLink: Link
+    backButton: Back to Schedule
+
+#
+# IFRC section
+#
+ifrc:
+  general:
+    appName: PlanetRed
+    backToAtrium: Back to Atrium
+    notSelected: (Please select)
+    genericError: Something went wrong, please try again
+    'yes': 'Yes'
+    'no': 'No'
 
   register:
     title: Register
@@ -459,22 +509,6 @@ ifrc:
     loginLabel: Already registered?
     loginAction: Log in here
 
-  profile:
-    title: Your profile
-    emailText: Email
-    localeText: Chosen language
-    whenText: Logged in
-    registeredText: Registered
-    nameText: Name
-    countryText: Country
-    affiliationText: Affiliation
-    # marketingText: Marketing
-    logoutButton: Log out
-    deleteButton: Delete account
-    deleteText: This is permenant, are you sure?
-    actionLabel: Actions
-    dangerLabel: Danger zone
-
   atrium:
     title: Atrium
     sponsorHeading: Partners
@@ -485,13 +519,6 @@ ifrc:
     twitterUrl: 'https://twitter.com'
     # conferenceOver: >
     #   Climate:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
-
-  schedule:
-    title: Schedule
-    allSessions: All
-    userSessions: User
-    hidePast: Hide previous sessions
-    showPast: Show previous sessions
 
   footer:
     appName: PlanetRed
