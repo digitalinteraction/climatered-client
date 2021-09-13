@@ -4,7 +4,8 @@ $family-sans-serif: system-ui -apple-system, BlinkMacSystemFont, 'Segoe UI',
 
 $primary: #5724f0;
 
-@import '~bulma/sass/utilities/_all.sass';
+// @import '~bulma/sass/utilities/_all.sass';
+@import '~@openlab/deconf-ui-toolkit/dist/common.scss';
 
 //
 // LEGACY mixins

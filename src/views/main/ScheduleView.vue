@@ -22,6 +22,7 @@
           :tracks="schedule.tracks"
           :themes="schedule.themes"
           :filters="filters"
+          :enabledFilters="enabledFilters"
           @filter="onFilter"
         />
       </div>
@@ -113,6 +114,7 @@ interface Data {
   filters: ScheduleFilterRecord
   viewModeOptions: SelectOption[]
   scheduleConfig: ScheduleConfig
+  enabledFilters: Array<keyof ScheduleFilterRecord>
 }
 
 export default Vue.extend({
@@ -135,6 +137,7 @@ export default Vue.extend({
         tileHeader: ['type'],
         tileAttributes: ['themes', 'recorded', 'languages'],
       },
+      enabledFilters: ['query', 'sessionType', 'theme', 'date', 'isRecorded'],
     }
   },
   computed: {
@@ -172,6 +175,19 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+.scheduleView {
+  flex: 1; // Fill AppLayout
+  background: $background;
+
+  .scheduleBlock-slot {
+    top: calc(#{$navbar-height} + 42px);
+  }
+
+  // TODO: move to deconf
+  .scheduleBlock-sessions {
+    margin-bottom: 0;
+  }
+}
 .scheduleView-header {
   padding: $block-spacing;
   background-color: $white;
@@ -180,5 +196,10 @@ export default Vue.extend({
 .scheduleView-toggleHistory {
   background: $background;
   padding: $block-spacing 0;
+}
+
+// TODO: move to deconf
+.scheduleView-blocks:last-child {
+  padding-bottom: $block-spacing * 5;
 }
 </style>

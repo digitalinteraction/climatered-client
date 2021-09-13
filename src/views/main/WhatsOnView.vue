@@ -100,6 +100,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+.whatsOnView {
+  flex: 1; // Fill AppLayout
+  background: $background;
+}
 .whatsOnView-header {
   padding: $block-spacing;
   background-color: $white;
@@ -111,12 +115,9 @@ export default Vue.extend({
   font-size: $size-3;
   font-weight: bold;
 }
-.whatsOnView-sessions {
-  background: $background;
-}
 
 // TODO: update SessionBoard component
-.sessionBoard {
+.whatsOnView .sessionBoard {
   margin: 0;
   padding: 1.5rem;
 }

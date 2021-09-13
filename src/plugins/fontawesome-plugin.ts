@@ -14,6 +14,7 @@ import {
   faArrowRight,
   faArrowLeft,
   faUser,
+  faChevronLeft,
   faChevronRight,
   faLeaf,
   faSync,
@@ -25,6 +26,7 @@ import {
   faCalendarPlus,
   faLongArrowAltRight,
   faLongArrowAltLeft,
+  faClock,
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -37,7 +39,7 @@ import { faCircle } from '@fortawesome/free-regular-svg-icons'
 // Apply icons
 // prettier-ignore
 //
-library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, faCircle, faLongArrowAltRight, faLongArrowAltLeft,)
+library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronLeft, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, faCircle, faLongArrowAltRight, faLongArrowAltLeft,faClock)
 
 export class FontAwesomePlugin {
   static install(Vue: typeof _Vue): void {
