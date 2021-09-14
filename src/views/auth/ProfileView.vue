@@ -38,6 +38,7 @@ export default Vue.extend({
     ...mapApiState('api', ['user', 'profile']),
     fields(): ProfileField[] {
       if (!this.user || !this.profile) return []
+
       return [
         {
           label: this.$t('deconf.profile.ifrc.nameText'),
@@ -57,7 +58,7 @@ export default Vue.extend({
         },
         {
           label: this.$t('deconf.profile.ifrc.whenText'),
-          value: new Date((this.user as FullAuthToken).iat).toLocaleString(),
+          value: this.iatToString((this.user as FullAuthToken).iat),
         },
         {
           label: this.$t('deconf.profile.ifrc.affiliationText'),
@@ -80,6 +81,15 @@ export default Vue.extend({
     this.$store.dispatch('api/fetchProfile')
   },
   methods: {
+    iatToString(iat: number) {
+      const date = new Date(iat * 1000)
+      date.setMinutes(
+        date.getMinutes() + date.getTimezoneOffset(),
+        date.getSeconds(),
+        date.getMilliseconds()
+      )
+      return date.toLocaleString()
+    },
     boolToString(value: boolean) {
       return value ? this.$t('ifrc.general.yes') : this.$t('ifrc.general.no')
     },
