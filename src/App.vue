@@ -103,4 +103,8 @@ export default Vue.extend({
   margin-inline-start: calc(-0.75em - 1px);
   margin-inline-end: 0.375em;
 }
+
+.devControl .devControl-block:first-child {
+  display: none;
+}
 </style>
