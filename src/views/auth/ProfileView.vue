@@ -40,35 +40,35 @@ export default Vue.extend({
       if (!this.user || !this.profile) return []
       return [
         {
-          label: this.$t('deconf.profile.nameText'),
+          label: this.$t('deconf.profile.ifrc.nameText'),
           value: this.profile.name,
         },
         {
-          label: this.$t('deconf.profile.emailText'),
+          label: this.$t('deconf.profile.ifrc.emailText'),
           value: this.profile.email,
         },
         {
-          label: this.$t('deconf.profile.localeText'),
+          label: this.$t('deconf.profile.ifrc.localeText'),
           value: languageData[this.user.user_lang],
         },
         {
-          label: this.$t('deconf.profile.registeredText'),
+          label: this.$t('deconf.profile.ifrc.registeredText'),
           value: this.profile.created.toLocaleString(),
         },
         {
-          label: this.$t('deconf.profile.whenText'),
+          label: this.$t('deconf.profile.ifrc.whenText'),
           value: new Date((this.user as FullAuthToken).iat).toLocaleString(),
         },
         {
-          label: this.$t('deconf.profile.affiliationText'),
+          label: this.$t('deconf.profile.ifrc.affiliationText'),
           value: this.profile.affiliation,
         },
         {
-          label: this.$t('deconf.profile.countryText'),
+          label: this.$t('deconf.profile.ifrc.countryText'),
           value: countryData.countries[this.profile.country],
         },
         {
-          label: this.$t('deconf.profile.marketingText'),
+          label: this.$t('deconf.profile.ifrc.marketingText'),
           value: this.boolToString(
             (this.profile.userData as UserData).marketing
           ),

@@ -1,3 +1,237 @@
+#
+# v2 - Deconf
+#
+deconf:
+  appLayout:
+    atrium: Atrium
+    whatsOn: Whats On
+    schedule: Schedule
+    coffeeChat: Coffee Chat
+    helpDesk: Help Desk
+
+  sideTabs:
+    unavailable: Unavailable
+
+  apiError:
+    title: Something went wrong
+    content: We're having a bit of trouble, try refresing or coming back later.
+    retry: 'Retrying in {0}'
+
+  appLoading:
+    message: Loading...
+
+  scheduleBlock:
+    workshopTitle: Interactive workshops
+    workshopDescription: Participate in one of the following interactive workshops.
+    showWorkshops: Show all
+    hideWorkshops: Hide all
+    workshops: 'None | 1 workshop | {n} workshops'
+
+  general:
+    hours: hours | hour | hours
+    minutes: minutes | minute | minutes
+    seconds: seconds | second | seconds
+    genericError: Something went wrong, please try again
+
+  miniSession:
+    view: View
+    live: Live
+
+  featuredSessions:
+    title: Featured Sessions
+    action: View Schedule
+
+  scheduleFilters:
+    query: Search
+    showFilters: Show filters
+    hideFilters: Hide filters
+    clearFilters: Clear filters
+    dateFilter: Date
+    typeFilter: Type
+    trackFilter: Track
+    themeFilter: Theme
+    recordedFilter: Is Recorded
+    offLabel: All
+    'yes': 'Yes'
+    'no': 'No'
+
+  attendanceSection:
+    loading: Fetching attendance
+    processing: Processing
+    registered: You are registered for this session
+    full: This session is full
+    spacesLeft: '{0}/{1} seats remaining.'
+    registerButton: Register now
+    unregisterButton: Release my seat
+
+  timeSlot:
+    past: Past
+    live: Live
+
+  joinSession:
+    future: Preview session
+    present: Join session
+    past: View session
+
+  sessionAttributes:
+    isRecorded: Recorded
+    notRecorded: Not recorded
+
+  addToCalendar:
+    action: Add to calendar
+
+  sessionLink:
+    copy: copy
+    copied: copied
+
+  sessionState:
+    liveNow: Live Now
+    sessionOver: Session over
+    interest: 'no interest | 1 person is attending | {n} people are attending'
+
+  sessionEmbed:
+    openTeams: Open Teams meeting
+    openZoom: Open Zoom meeting
+    openHubs: Open Mozilla Hub
+    openSpatial: Open Spatial Chat
+    noEmbed: Something went wrong, there is nothing to show here
+
+  languageWarning:
+    message: 'Please note this session is only available in {0}'
+
+  navigationBar:
+    profile: Your profile
+    login: Login
+    interpret: Interpret mode
+    register: Register
+    unavailable: ' (Unavailable)'
+
+  # TODO: new
+  whatsOn:
+    title: What's On
+    infoText: Browse the Schedule before release day
+
+  # TODO: moved from "ifrc"
+  login:
+    title: Login
+    infoText: >
+      We'll send you an email to confirm who you are. The email will
+      have a link in it which will log you in. It will expire after 30
+      minutes. If you don't recieve anything check your spam folder.
+    email:
+      label: Email
+      placeholder: e.g. dan@example.com
+      help: The email address you registered to the conference with
+    badEmail: Bad email
+    doneText: Login code sent
+    submitButton: Request login code
+    registerLabel: Not registered yet?
+    registerAction: Register here
+
+  profile:
+    title: Your profile
+    actionLabel: Actions
+    logoutButton: Log out
+    dangerLabel: Danger zone
+    deleteButton: Delete account
+    deleteText: This is permenant, are you sure?
+    ifrc:
+      emailText: Email
+      localeText: Chosen language
+      whenText: Logged in
+      registeredText: Registered
+      nameText: Name
+      countryText: Country
+      affiliationText: Affiliation
+      marketingText: Marketing
+
+  schedule:
+    title: Schedule
+    description: Browse the available sessions and plan your experience by adding reminders to your calendar.
+    allSessions: All
+    userSessions: User
+    hidePast: Hide previous sessions
+    showPast: Show previous sessions
+    noResults: Nothing matched your query
+
+  session:
+    slot: Schedule
+    countdown: Countdown
+    links: Links
+    linkPreview: The session links will be available 15 minutes before the start time
+    actions: Actions
+    logIn: Log in to attend this session
+    speakers: Speakers
+    zoomLink: Zoom Room
+    teamsLink: Teams Meeting
+    miroLink: Miro Board
+    generalLink: Link
+    backButton: Back to Schedule
+
+#
+# IFRC section
+#
+ifrc:
+  general:
+    appName: PlanetRed
+    backToAtrium: Back to Atrium
+    notSelected: (Please select)
+    genericError: Something went wrong, please try again
+    'yes': 'Yes'
+    'no': 'No'
+
+  register:
+    title: Register
+    infoText: >
+      Use this form to register for Climate:Red
+    name:
+      label: Full name
+      placeholder: e.g. Dan Howard
+      help: Your full name
+    email:
+      label: Your email address
+      placeholder: e.g. dan@example.com
+      help: You will use your email to log in to the virtual summit
+    language:
+      label: Language
+      help: We'll put the conference in this language for you
+    country:
+      label: Country
+      help: So we can see the reach of the conference
+    affiliation:
+      label: Your affiliation
+      placeholder: e.g. IFRC staff member
+      help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
+    submitButton: Register
+    consentText: I confirm that I have read and agree with the policies linked below
+    termsLink: Terms and Conditions
+    privacyLink: Privacy policy
+    doneText: >
+      Thanks for registering! We've sent you an verification email. Click the link in that email to verify and see the conference schedule. If you don't see an email soon please check your spam folder.
+    loginLabel: Already registered?
+    loginAction: Log in here
+
+  atrium:
+    title: Atrium
+    sponsorHeading: Partners
+    onlineNow: Online now
+    carbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
+    twitterTitle: Social
+    twitterSubtitle: 'Tweet with #PlanetRed'
+    twitterUrl: 'https://twitter.com'
+    conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+
+  footer:
+    appName: PlanetRed
+    privacy: Privacy
+    guidelines: Community Guidelines
+    terms: Terms & Conditions
+    faqs: FAQs
+
+#
+# ============================== OLD ==============================
+#
+
 general:
   message: 'Hello, world'
   loginButton: Log in
@@ -173,46 +407,6 @@ interpret:
   deviceLabel: Pick a device
   refreshButton: Refresh devices
 
-session:
-  title: View Session
-  speakerHeading: Speakers
-  hostHeading: Host
-  infoHeading: Session info
-  linksHeading: Links
-  showPoll: Enable poll
-  seeMore: See more
-  seeLess: See less
-  noInterpret: Your browser doesn't support interpretation, sorry!
-  countdownHeading: Countdown
-  scheduleHeading: Schedule
-  actionsHeading: Actions
-  hostedByHeading: Hosted by
-  contactHost: Contact Host
-  sessionOnlyAvailableIn: Please note this session is only available in
-  joinLiveQandA: Join live Q&A
-  linksWillBeAvailable: The session links will be available 15 minutes before the start time
-  sessionWillBeHostedIn: This session will be hosted in
-  interestRegisteredConfirmation: Your interest has been registered!
-  personInterested: '{0} person interested'
-  peopleInterested: '{0} people interested'
-  person: '{0} person'
-  people: '{0} people'
-  interestedInSession: interested in the session
-  inTheAudience: in the audience
-  liveNow: Live now
-  sessionEnded: Session ended
-  interact: Interact
-  countdown:
-    hour: hour
-    hours: hours
-    minute: minute
-    minutes: minutes
-    second: second
-    seconds: seconds
-  privateLabel: Private session
-  privateBody: |
-    This is a private session for attendees of the conference, please sign up or log in below then reload this page.
-
 oneToMany:
   label: Audio language
   noVideo: No video to show
@@ -291,238 +485,3 @@ errors:
 
 faqs:
   title: FAQs
-
-#
-# V2
-#
-
-deconf:
-  appLayout:
-    atrium: Atrium
-    whatsOn: Whats On
-    schedule: Schedule
-    coffeeChat: Coffee Chat
-    helpDesk: Help Desk
-
-  sideTabs:
-    unavailable: Unavailable
-
-  apiError:
-    title: Something went wrong
-    content: We're having a bit of trouble, try refresing or coming back later.
-    retry: 'Retrying in {0}'
-
-  appLoading:
-    message: Loading...
-
-  scheduleBlock:
-    workshopTitle: Interactive workshops
-    workshopDescription: Participate in one of the following interactive workshops.
-    showWorkshops: Show all
-    hideWorkshops: Hide all
-    workshops: 'None | 1 workshop | {n} workshops'
-
-  general:
-    hours: hours | hour | hours
-    minutes: minutes | minute | minutes
-    seconds: seconds | second | seconds
-
-  miniSession:
-    view: View
-    live: Live!
-
-  featuredSessions:
-    title: Featured Sessions
-    action: View Schedule
-
-  scheduleFilters:
-    query: Search
-    showFilters: Show filters
-    hideFilters: Hide filters
-    clearFilters: Clear filters
-    dateFilter: Date
-    typeFilter: Type
-    trackFilter: Track
-    themeFilter: Theme
-    recordedFilter: Is Recorded
-    offLabel: All
-    'yes': 'Yes'
-    'no': 'No'
-
-  attendanceSection:
-    loading: Fetching attendance
-    processing: Processing
-    registered: You are registered for this session
-    full: This session is full
-    spacesLeft: '{0}/{1} seats remaining.'
-    registerButton: Register now
-    unregisterButton: Release my seat
-
-  timeSlot:
-    past: Past
-    live: Live
-
-  joinSession:
-    future: Preview session
-    present: Join session
-    past: View session
-
-  sessionAttributes:
-    isRecorded: Recorded
-    notRecorded: Not recorded
-
-  addToCalendar:
-    action: Add to calendar
-
-  sessionLink:
-    copy: copy
-    copied: copied
-
-  sessionState:
-    liveNow: Live Now
-    sessionOver: Session over
-    interest: 'no interest | someone is interest | {n} people are interested'
-
-  sessionEmbed:
-    openTeams: Open Teams meeting
-    openZoom: Open Zoom meeting
-    openHubs: Open Mozilla Hub
-    openSpatial: Open Spatial Chat
-    noEmbed: 'Something went wrong, there is nothing to show here'
-
-  languageWarning:
-    message: 'Please note this session is only available in {0}'
-
-  navigationBar:
-    profile: Your profile
-    login: Login
-    interpret: Interpret mode
-    register: Register!
-    unavailable: ' (Unavailable)'
-
-  # TODO: new
-  whatsOn:
-    title: What's On
-    infoText: Browse the Schedule before release day
-
-  # TODO: moved from "ifrc"
-  login:
-    title: Login
-    infoText: >
-      We'll send you an email to confirm who you are. The email will
-      have a link in it which will log you in. It will expire after 30
-      minutes. If you don't recieve anything check your spam folder.
-    email:
-      label: Email
-      placeholder: e.g. dan@example.com
-      help: The email address you registered to the conference with
-    badEmail: Bad email
-    doneText: Login code sent
-    submitButton: Request login code
-    registerLabel: Not registered yet?
-    registerAction: Register here
-
-  # TODO:
-  # - moved from "ifrc"
-  # - marketingText is new
-  profile:
-    title: Your profile
-    emailText: Email
-    localeText: Chosen language
-    whenText: Logged in
-    registeredText: Registered
-    nameText: Name
-    countryText: Country
-    affiliationText: Affiliation
-    marketingText: Marketing
-    logoutButton: Log out
-    deleteButton: Delete account
-    deleteText: This is permenant, are you sure?
-    actionLabel: Actions
-    dangerLabel: Danger zone
-
-  # TODO:
-  # - moved from "ifrc"
-  schedule:
-    title: Schedule
-    allSessions: All
-    userSessions: User
-    hidePast: Hide previous sessions
-    showPast: Show previous sessions
-
-  # TODO:
-  # - moved from v1
-  session:
-    slot: Schedule
-    countdown: Countdown
-    links: Links
-    linkPreview: The session links will be available 15 minutes before the start time
-    actions: Actions
-    logIn: Log in to attend this session
-    speakers: Speakers
-    zoomLink: Zoom Room
-    teamsLink: Teams Meeting
-    miroLink: Miro Board
-    generalLink: Link
-    backButton: Back to Schedule
-
-#
-# IFRC section
-#
-ifrc:
-  general:
-    appName: PlanetRed
-    backToAtrium: Back to Atrium
-    notSelected: (Please select)
-    genericError: Something went wrong, please try again
-    'yes': 'Yes'
-    'no': 'No'
-
-  register:
-    title: Register
-    infoText: >
-      Use this form to register for Climate:Red
-    name:
-      label: Full name
-      placeholder: e.g. Dan Howard
-      help: Your full name
-    email:
-      label: Your email address
-      placeholder: e.g. dan@example.com
-      help: You will use your email to log in to the virtual summit
-    language:
-      label: Language
-      help: We'll put the conference in this language for you
-    country:
-      label: Country
-      help: So we can see the reach of the conference
-    affiliation:
-      label: Your affiliation
-      placeholder: e.g. IFRC staff member
-      help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
-    submitButton: Register
-    consentText: I confirm that I have read and agree with the policies linked below
-    termsLink: Terms and Conditions
-    privacyLink: Privacy policy
-    doneText: >
-      Thanks for registering! We've sent you an verification email. Click the link in that email to verify and see the conference schedule. If you don't see an email soon please check your spam folder.
-    loginLabel: Already registered?
-    loginAction: Log in here
-
-  atrium:
-    title: Atrium
-    sponsorHeading: Partners
-    onlineNow: Online now
-    carbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
-    twitterTitle: Social
-    twitterSubtitle: 'Tweet with #PlanetRed'
-    twitterUrl: 'https://twitter.com'
-    # conferenceOver: >
-    #   Climate:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
-
-  footer:
-    appName: PlanetRed
-    privacy: Privacy
-    guidelines: Community Guidelines
-    terms: Terms & Conditions
-    faqs: FAQs
