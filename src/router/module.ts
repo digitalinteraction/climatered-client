@@ -92,7 +92,7 @@ const routes: Array<RouteConfig> = [
     name: Routes.Login,
     component: LoginView,
     meta: {
-      title: 'ifrc.login.title',
+      title: 'deconf.login.title',
     },
   },
   {
@@ -108,7 +108,7 @@ const routes: Array<RouteConfig> = [
     name: Routes.Profile,
     component: ProfileView,
     meta: {
-      title: 'ifrc.profile.title',
+      title: 'deconf.profile.title',
     },
   },
   {
@@ -152,7 +152,7 @@ const routes: Array<RouteConfig> = [
 
 const protectedRoutes = new Set<string>([
   Routes.Profile,
-  Routes.Session,
+  // Routes.Session,
   Routes.InterpretHome,
   Routes.InterpretSession,
   Routes.HelpDesk,

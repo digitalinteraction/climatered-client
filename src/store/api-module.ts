@@ -22,6 +22,12 @@ function requestMiddleware(request: Request) {
   }
 }
 
+function errorHandler(error: unknown) {
+  // TODO: metrics? - can anything meaningful be gleamed here?
+  console.error(error)
+  return null
+}
+
 interface ProfileResponse {
   registration: Registration
 }
@@ -29,7 +35,6 @@ interface ProfileResponse {
 export function apiModule(): ApiStoreModule {
   const agent = ky.extend({
     prefixUrl: env.SERVER_URL,
-    throwHttpErrors: false,
     hooks: {
       beforeRequest: [requestMiddleware],
     },
@@ -120,39 +125,53 @@ export function apiModule(): ApiStoreModule {
       //
 
       async fetchLinks(ctx, sessionId: string) {
-        const data = await agent
+        const result = await agent
           .get(`schedule/${sessionId}/links`)
           .json<{ links: SessionLink[] }>()
+          .catch(errorHandler)
 
-        // TODO: remove .links for next beta
-        return deepSeal(data.links)
+        return deepSeal(result)
       },
 
       async fetchSessionAttendance(ctx, sessionId: string) {
-        const data = await agent
+        const result = await agent
           .get(`attendance/${sessionId}`)
           .json<SessionAttendance>()
+          .catch(errorHandler)
 
         // TODO: investigate int/string on the count
-        return deepSeal(data)
+        return deepSeal(result)
       },
 
       async attend({ dispatch }, sessionId: string) {
-        await agent.post(`attendance/${sessionId}/attend`)
+        const result = await agent
+          .post(`attendance/${sessionId}/attend`)
+          .catch(errorHandler)
+
         dispatch('fetchUserAttendance')
+
+        return deepSeal(result)
       },
 
       async unattend({ dispatch }, sessionId: string) {
-        await agent.post(`attendance/${sessionId}/unattend`)
+        const result = await agent
+          .post(`attendance/${sessionId}/unattend`)
+          .catch(errorHandler)
+
         dispatch('fetchUserAttendance')
+
+        return deepSeal(result)
       },
 
       async fetchUserAttendance({ commit }) {
-        const data = await agent
+        const result = await agent
           .get('attendance/me')
           .json<{ sessions: string[] }>()
+          .catch(errorHandler)
 
-        commit('userSessions', data.sessions)
+        if (result) commit('userSessions', result.sessions)
+
+        return deepSeal(result)
       },
 
       //
@@ -162,9 +181,9 @@ export function apiModule(): ApiStoreModule {
         const data = await agent
           .get(`content/${slug}`)
           .json<{ content: LocalisedContent }>()
-          .catch(() => null)
+          .catch(errorHandler)
 
-        return data?.content
+        return data ? deepSeal(data.content) : null
       },
     },
   }

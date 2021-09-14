@@ -45,7 +45,7 @@ export default Vue.extend({
         },
         {
           label: this.$t('deconf.profile.emailText'),
-          value: languageData[this.user.user_lang],
+          value: this.profile.email,
         },
         {
           label: this.$t('deconf.profile.localeText'),
