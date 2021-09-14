@@ -200,12 +200,14 @@ ifrc:
       help: 'جهة الانتماء (على سبيل المثال: موظف/متطوع/عضو مجلس إدارة/عضو جمعية وطنية/الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر/اللجنة الدولية للصليب الأحمر/المركز المرجعي، أو غير ذلك )'
     submitButton: تسجيل
     consentText: أؤكد أنني قد قرأت وأوافق على السياسات الموجودة في الرابط أدناه
+    #marketingText: I consent to marketing emails from XYZ
     termsLink: الأحكام والشروط
     privacyLink: سياسة الخصوصية
     doneText: >
       لقد أرسلنا إليك بريدًا إلكترونيًا للتحقق
-    # loginLabel: Already registered?
-    # loginAction: Log in here
+    #loginLabel: Already registered?
+    #loginAction: Log in here
+    #genericError: Please check your submission and try again.
 
   atrium:
     title: الملتقى الرئيسي

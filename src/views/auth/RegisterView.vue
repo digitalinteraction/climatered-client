@@ -10,7 +10,7 @@
         <p>{{ $t('ifrc.register.doneText') }}</p>
       </div>
       <div class="notification is-danger" v-if="isError">
-        <p>{{ $t('ifrc.general.genericError') }}</p>
+        <p>{{ $t('ifrc.register.genericError') }}</p>
       </div>
       <div class="registerView-form" v-if="state !== 'success'">
         <TextField
@@ -71,9 +71,6 @@
           :has-error="errors.consent"
           :disabled="isWorking"
         />
-        <!--
-          TODO: checkbox field for marketing
-        -->
         <div class="content">
           <ul>
             <li>
@@ -88,6 +85,13 @@
             </li>
           </ul>
         </div>
+        <CheckboxField
+          name="marketing"
+          v-model="registration.marketing"
+          :text="$t('ifrc.register.marketingText')"
+          :has-error="errors.marketing"
+          :disabled="isWorking"
+        />
         <div class="buttons">
           <button
             class="button is-primary"
@@ -233,7 +237,6 @@ export default Vue.extend({
       this.state = 'working'
       await pause(300)
 
-      // const body = { ...this.registration, consent: undefined }
       const registration: RegisterRequest = {
         name: this.registration.name,
         email: this.registration.email,

@@ -200,12 +200,14 @@ ifrc:
       help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
     submitButton: Inscrivez
     consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
+    #marketingText: I consent to marketing emails from XYZ
     termsLink: Termes et conditions
     privacyLink: Politique de confidentialité
     doneText: >
       Nous vous avons envoyé un e-mail de vérification.
     #loginLabel: Already registered?
     #loginAction: Log in here
+    #genericError: Please check your submission and try again.
 
   atrium:
     title: Atrium

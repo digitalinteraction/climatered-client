@@ -200,12 +200,14 @@ ifrc:
       help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
     submitButton: Registrarse
     consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
+    #marketingText: I consent to marketing emails from XYZ
     termsLink: Términos y Condiciones
     privacyLink: Política de privacidad
     doneText: >
       Le hemos enviado un correo electrónico de verificación.
-    # loginLabel: Already registered?
-    # loginAction: Log in here
+    #loginLabel: Already registered?
+    #loginAction: Log in here
+    #genericError: Please check your submission and try again.
 
   atrium:
     title: Entrada

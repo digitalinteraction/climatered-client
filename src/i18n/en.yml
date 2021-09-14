@@ -204,12 +204,14 @@ ifrc:
       help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
     submitButton: Register
     consentText: I confirm that I have read and agree with the policies linked below
+    marketingText: I consent to marketing emails from XYZ
     termsLink: Terms and Conditions
     privacyLink: Privacy policy
     doneText: >
       Thanks for registering! We've sent you an verification email. Click the link in that email to verify and see the conference schedule. If you don't see an email soon please check your spam folder.
     loginLabel: Already registered?
     loginAction: Log in here
+    genericError: Please check your submission and try again.
 
   atrium:
     title: Atrium
