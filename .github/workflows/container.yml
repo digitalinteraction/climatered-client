@@ -1,19 +1,22 @@
 #
-# refs:
-# - https://github.com/marketplace/actions/build-and-push-docker-images
-# - https://help.github.com/en/actions/language-and-framework-guides/publishing-docker-images
-# - https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token
+# A GitHub workflow to build a container for each semantically versioned tag (i.e. vX.Y.Z).
+#
+# help:
+# - tagging info: https://github.com/docker/build-push-action/blob/v2/docs/advanced/tags-labels.md
+# - original gist: https://gist.github.com/robb-j/049217ca8cecf4e214b8b82123f7371b
 #
 
-name: Publish docker image
+name: 'Build Versioned Container'
 
-on: [pull_request]
+on:
+  push:
+    tags: [v*.*.*]
 
 env:
   REGISTRY: ghcr.io/digitalinteraction/climatered-client
 
 jobs:
-  publish:
+  build_container:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,7 +29,7 @@ jobs:
           images: |
             ${{ env.REGISTRY }}
           tags: |
-            type=sha
+            type=semver,pattern={{version}}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
