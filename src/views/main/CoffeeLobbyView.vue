@@ -1,8 +1,11 @@
 <template>
   <BrandedAppLayout>
-    <section class="section">
+    <section class="section" style="flex: 1">
       <div class="container">
-        <p>Coffee Lobby</p>
+        <div class="content">
+          <h1>Coffee Chat</h1>
+          <blockquote>Coming soon</blockquote>
+        </div>
       </div>
     </section>
   </BrandedAppLayout>
