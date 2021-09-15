@@ -94,9 +94,6 @@ export default Vue.extend({
 <style lang="scss">
 @import '~@openlab/deconf-ui-toolkit/dist/theme.scss';
 
-// TODO: add to deconf-ui-toolkit
-@import '~bulma/sass/elements/box.sass';
-
 .button .icon:first-child:not(:last-child) {
   margin-left: unset;
   margin-right: unset;
