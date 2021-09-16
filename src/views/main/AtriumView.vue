@@ -43,7 +43,7 @@ import {
   mapMetricsState,
 } from '@openlab/deconf-ui-toolkit'
 import ApiContent from '@/components/ApiContent.vue'
-import { ConferenceConfig } from '@openlab/deconf-shared/dist/conference'
+import { ConferenceConfig } from '@openlab/deconf-shared'
 
 export default Vue.extend({
   components: {

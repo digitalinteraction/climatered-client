@@ -25,7 +25,7 @@ import {
   ScheduleView,
 } from '@openlab/deconf-ui-toolkit'
 import { StorageKey } from '@/lib/constants'
-import { Session } from '@openlab/deconf-shared/dist/conference'
+import { Session } from '@openlab/deconf-shared'
 
 interface Data {
   filtersKey: string
