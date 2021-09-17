@@ -121,8 +121,8 @@ deconf:
     badEmail: Mauvais e-mail
     doneText: Código de inicio de sesión enviado
     submitButton: Demander un code de connexion
-    # registerLabel: Not registered yet?
-    # registerAction: Register here
+    #registerLabel: Not registered yet?
+    #registerAction: Register here
 
   profile:
     title: Votre profil

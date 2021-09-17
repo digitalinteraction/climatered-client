@@ -121,8 +121,8 @@ deconf:
     badEmail: البريد الإلكتروني غير جيد
     doneText: تم إرسال رمز تسجيل الدخول
     submitButton: طلب رمز تسجيل الدخول
-    registerLabel: Not registered yet?
-    registerAction: Register here
+    #registerLabel: Not registered yet?
+    #registerAction: Register here
 
   profile:
     title: ملفك الشخصي
