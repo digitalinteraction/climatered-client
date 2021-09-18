@@ -27,19 +27,32 @@ import {
   faLongArrowAltRight,
   faLongArrowAltLeft,
   faClock,
+  faSearch,
+  faTimes,
+  faVideo,
+  faCircle as fasCircle,
+  faExclamationTriangle,
+  faFire,
+  faUserPlus,
+  faGamepad,
+  faComments,
+  faMicrophone,
+  faObjectGroup,
+  faMapMarkerAlt,
+  faPodcast,
 } from '@fortawesome/free-solid-svg-icons'
 
 //
 // Import regulars ~ https://fontawesome.com/icons?d=gallery&s=regular
 //
 // TODO: remove in future
-import { faCircle } from '@fortawesome/free-regular-svg-icons'
+import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
 
 //
 // Apply icons
 // prettier-ignore
 //
-library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronLeft, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, faCircle, faLongArrowAltRight, faLongArrowAltLeft,faClock)
+library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronLeft, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, farCircle, faLongArrowAltRight, faLongArrowAltLeft, faClock, faSearch, faTimes, faVideo, fasCircle, faExclamationTriangle, faFire, faUserPlus, faGamepad, faComments, faMicrophone, faObjectGroup, faMapMarkerAlt, faPodcast,)
 
 export class FontAwesomePlugin {
   static install(Vue: typeof _Vue): void {
