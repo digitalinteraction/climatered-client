@@ -6,6 +6,7 @@ import {
   deepSeal,
   SessionAttendance,
 } from '@openlab/deconf-ui-toolkit'
+import { pause } from '@openlab/deconf-ui-toolkit'
 
 import { env } from '@/plugins/env-plugin'
 import { StorageKey, LocalisedContent } from '@/lib/module'
@@ -14,6 +15,8 @@ import {
   Registration,
   SessionLink,
 } from '@openlab/deconf-shared'
+
+const API_DELAY = 300
 
 function requestMiddleware(request: Request) {
   const token = localStorage.getItem(StorageKey.AuthToken)
@@ -73,6 +76,8 @@ export function apiModule(): ApiStoreModule {
           json: { email },
         })
 
+        await pause(API_DELAY)
+
         return response.ok
       },
 
@@ -81,11 +86,14 @@ export function apiModule(): ApiStoreModule {
           json: registration,
         })
 
+        await pause(API_DELAY)
+
         return response.ok
       },
 
       async unregister() {
         const response = await agent.delete('auth/me')
+        await pause(API_DELAY)
         return response.ok
       },
 
@@ -150,6 +158,8 @@ export function apiModule(): ApiStoreModule {
 
         dispatch('fetchUserAttendance')
 
+        await pause(API_DELAY)
+
         return deepSeal(result)
       },
 
@@ -159,6 +169,8 @@ export function apiModule(): ApiStoreModule {
           .catch(errorHandler)
 
         dispatch('fetchUserAttendance')
+
+        await pause(API_DELAY)
 
         return deepSeal(result)
       },
