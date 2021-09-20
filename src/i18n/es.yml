@@ -3,108 +3,108 @@
 #
 deconf:
   appLayout:
-    atrium: Atrium
-    whatsOn: Whats On
-    schedule: Schedule
-    coffeeChat: Coffee Chat
-    helpDesk: Help Desk
+    atrium: Entrada
+    #whatsOn: Whats On
+    schedule: Programa
+    coffeeChat: Charlas de Cafe
+    helpDesk: Ayuda
 
   sideTabs:
-    unavailable: Unavailable
+    unavailable: Indisponible
 
   apiError:
-    title: Something went wrong
-    content: We're having a bit of trouble, try refresing or coming back later.
-    retry: 'Retrying in {0}'
+    #title: Something went wrong
+    #content: We're having a bit of trouble, try refresing or coming back later.
+    #retry: 'Retrying in {0}'
 
   appLoading:
-    message: Loading...
+    #message: Loading...
 
   scheduleBlock:
-    workshopTitle: Interactive workshops
-    workshopDescription: Participate in one of the following interactive workshops.
-    showWorkshops: Show all
-    hideWorkshops: Hide all
-    workshops: 'None | 1 workshop | {n} workshops'
+    workshopTitle: Talleres Interactivos
+    workshopDescription: Partícipe a uno de los talleres interactivos siguientes
+    #showWorkshops: Show all
+    #hideWorkshops: Hide all
+    #workshops: 'None | 1 tallere | {n} talleres'
 
   general:
-    hours: hours | hour | hours
-    minutes: minutes | minute | minutes
-    seconds: seconds | second | seconds
-    genericError: Something went wrong, please try again
+    hours: horas | hora | horas
+    minutes: minutos | minuto | minutos
+    seconds: segundos | segundo | segundos
+    genericError: Algo salió mal. Por favor, vuelva a intentarlo
 
   miniSession:
-    view: View
-    live: Live
+    #view: View
+    #live: Live
 
   featuredSessions:
-    title: Featured Sessions
-    action: View Schedule
+    title: Sesiones destacadas
+    #action: Explore Sessions
 
   scheduleFilters:
-    query: Search
-    showFilters: Show filters
-    hideFilters: Hide filters
-    clearFilters: Clear filters
-    dateFilter: Date
-    typeFilter: Type
-    trackFilter: Track
-    themeFilter: Theme
-    recordedFilter: Is Recorded
-    offLabel: All
-    'yes': 'Yes'
+    query: Buscar
+    showFilters: Mostrar filtros
+    hideFilters: Ocultar filtros
+    #clearFilters: Clear filters
+    #dateFilter: Date
+    #typeFilter: Type
+    #trackFilter: Track
+    #themeFilter: Theme
+    #recordedFilter: Is Recorded
+    offLabel: Todos
+    'yes': 'sí'
     'no': 'No'
 
   attendanceSection:
-    loading: Fetching attendance
-    processing: Processing
-    registered: You are registered for this session
-    full: This session is full
-    spacesLeft: '{0}/{1} seats remaining.'
-    registerButton: Register now
-    unregisterButton: Release my seat
+    #loading: Fetching attendance
+    #processing: Processing
+    #registered: You are registered for this session
+    #full: This session is full
+    #spacesLeft: '{0}/{1} seats remaining.'
+    #registerButton: Register now
+    #unregisterButton: Release my seat
 
   timeSlot:
-    past: Past
-    live: Live
+    #past: Precedentemente
+    #live: Live
 
   joinSession:
-    future: Preview session
-    present: Join session
-    past: View session
+    future: Previsualizar sesión
+    present: Sumarse a la sesión
+    past: Ver la sesión
 
   sessionAttributes:
-    isRecorded: Recorded
-    notRecorded: Not recorded
+    isRecorded: Será grabado
+    notRecorded: No grabado
 
   addToCalendar:
-    action: Add to calendar
+    #action: Add to calendar
 
   sessionLink:
-    copy: copy
-    copied: copied
+    copy: dupdo
+    #copied: copied
 
   sessionState:
-    liveNow: Live Now
-    sessionOver: Session over
-    interest: 'no interest | 1 person is attending | {n} people are attending'
+    #liveNow: Live Now
+    #sessionOver: Session over
+    #interest: 'no interest | 1 person is attending | {n} people are attending'
 
   sessionEmbed:
-    openTeams: Open Teams meeting
-    openZoom: Open Zoom meeting
-    openHubs: Open Mozilla Hub
-    openSpatial: Open Spatial Chat
-    noEmbed: Something went wrong, there is nothing to show here
+    #openTeams: Open Teams meeting
+    #openZoom: Open Zoom meeting
+    #openHubs: Open Mozilla Hub
+    #openSpatial: Open Spatial Chat
+    #noEmbed: Something went wrong, there is nothing to show here
 
   languageWarning:
-    message: 'Please note this session is only available in {0}'
+    #message: 'Please note this session is only available in {0}'
 
   navigationBar:
-    profile: Your profile
-    login: Login
-    interpret: Interpret mode
-    register: Register
-    unavailable: ' (Unavailable)'
+    profile: Tu perfil
+    login: Iniciar sesión
+    #interpret: Interpret mode
+    register: Registrarse
+    unavailable: ' (Indisponible)'
 
   whatsOn:
     title: What's On
@@ -126,9 +126,9 @@ deconf:
 
   profile:
     title: Tu perfil
-    # actionLabel: Actions
+    actionLabel: Comportamiento
     logoutButton: Cerrar sesión
-    # dangerLabel: Danger zone
+    dangerLabel: Zona peligrosa
     deleteButton: Eliminar cuenta
     deleteText: Esto es permanente, ¿está segura?
     ifrc:
@@ -152,29 +152,29 @@ deconf:
 
   session:
     slot: Calendario
-    countdown: Countdown # new
+    #countdown: Countdown
     links: Enlaces
     linkPreview: Los enlaces a la sesión estarán disponible 15 minutos antes de la hora de inicio.
     actions: Acciones
-    logIn: Log in to attend this session # new
+    #logIn: Log in to attend this session
     speakers: Intervenants
-    zoomLink: Zoom Room # new
-    teamsLink: Teams Meeting # new
-    miroLink: Miro Board # new
-    generalLink: Link # new
-    backButton: Back to Schedule # new
+    #zoomLink: Zoom Room
+    #teamsLink: Teams Meeting
+    #miroLink: Miro Board
+    #generalLink: Link
+    backButton: Volver a Programa
 
 #
 # v2 - IFRC
 #
 ifrc:
   general:
-    #appName: PlanetRed
-    #backToAtrium: Back to Atrium
-    #notSelected: (Please select)
-    #genericError: Something went wrong, please try again
-    #'yes': 'Yes'
-    #'no': 'No'
+    appName: PlanetRed
+    #backToAtrium: Regresar a la Entrada
+    notSelected: (Por favor seleccionar)
+    genericError: Algo salió mal. Por favor, vuelva a intentarlo
+    'yes': 'sí'
+    'no': 'No'
 
   register:
     title: Registrarse
@@ -203,8 +203,6 @@ ifrc:
     #marketingText: I consent to marketing emails from XYZ
     termsLink: Términos y Condiciones
     privacyLink: Política de privacidad
-    doneText: >
-      Le hemos enviado un correo electrónico de verificación.
     #loginLabel: Already registered?
     #loginAction: Log in here
     #genericError: Please check your submission and try again.
@@ -220,156 +218,8 @@ ifrc:
     #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:
-    #appName: PlanetRed
-    #privacy: Privacy
-    #guidelines: Community Guidelines
-    #terms: Terms & Conditions
-    #faqs: FAQs
-#
-# ============================== OLD ==============================
-#
-
-general:
-  message: 'Hola Mundo'
-  loginButton: Iniciar sesión
-  registerButton: ¡Regístrate ahora!
-  appName: Climate:Red
-  pleaseSelect: Por favor seleccionar
-  comingSoon: Próximamente
-  unavailable: Indisponible
-  genericError: Algo salió mal. Por favor, vuelva a intentarlo
-  backTo: Volver a {0}
-
-sessions:
-  title: Que hay ahora
-  tabs:
-    plenary: Los oradores
-    panel: Mesas redondas
-    sessions: Sesiones
-
-coffeechat:
-  title: Charlas de Cafe
-  filterResults: Participantes activos
-  heading: ¿Estás listo(a)?
-  body: Utilizaremos la configuración siguiente para emparejarlo(a) con otro participante de Climate:Red. Haga clic en el botón de abajo para hacer una videollamada con el otro participante.
-  readyBtn: Listo
-  waitingBtn: En espera
-  joiningBtn: Conexión en proceso
-  filters:
-    languageResults: Lenguaje(s)
-    themeResults: Tema(s)
-    anyOption: Cualquiera
-    languageSelector: Seleccione uno o más lenguaje(s)
-    themeSelector: Seleccione uno o más tema(s)
-    clear: Borrar
-    save: Salvar
-    languages:
-      EN: English
-      FR: Française
-      ES: Español
-      AR: العربية
-
-coffeechatroom:
-  title: Charlas de café
-  waitingForPartner: Esperando a que tu pareja se una
-  joiningInfo: Información de conexión
-  # contactDetails: _
-  shareContactDetails: compartir detalles de contacto
-  # confirmLeaveText: _
-  # copyJoinText: _
-  # copiedJoinInfo: _
-  # tooManyStreams: _
-  partnerTimeout: Parece que no hemos podido conectarlo con otra persona. Por favor salga y vuelva a intentarlo
-  leave: Salir de la sala
-  sharedContactDetails: ¡Compartido!
-  userMediaErrors:
-    generalError: Estamos teniendo problemas para encender tu webcam
-    devicesNotFoundError: verifique que su webcam esté conectada
-    trackStartError: su webcam o micrófono ya están en uso en otra aplicación
-    constraintNotSatisfiedError: haga clic en el botón de abajo para reintentar
-    typeError: haga clic en el botón de abajo para reintentar
-    unknownError: haga clic en el botón de abajo para reintentar
-    retryButtonText: habilitar cámara y micrófono
-    instructions:
-      safari: Abrir Preferencias de Safari > Navegar a Sitios Web > Ir a las pestañas de Cámara y Micrófono >  Modificar acceso a "Permitir" > Reiniciar Safari
-      chrome: Haga clic en el ícono de cámara bloqueada en la barra de direcciones de su navegador, y luego actualice la página
-      firefox: Haga clic en el ícono de cámara bloqueada en la barra de direcciones de su navegador y haga clic en la cruz para habilitar el micrófono y la cámara, luego actualice la página
-      edge: Haga clic en el ícono de candado en la barra de direcciones de su navegador > Haga clic en "Permisos de sitio" > Haga clic en "Restablecer permisos" > Actualice la página de su navegador
-
-help:
-  title: Ayuda
-
-notFound:
-  title: Página no encontrada
-  info: No pudimos encontrar la página que estaba buscando, verifique el enlace en el que hizo clic o regrese al atrio.
-
-terms:
-  title: Términos
-
-guidelines:
-  title: Directrices
-
-privacy:
-  title: Privacidad
-
-sessionCard:
-  hostedBy: Organizado por
-
-data:
-  type:
-    ignite-talk: Sesión de tormenta de ideas
-    games: Juegos de aprendizaje y diálogo
-    panel: Paneles y Debates
-    workshop: Seminarios
-    virtual-tour: Visitas Virtuales
-    plenary: Nota clave
-    speaker: _
-    fishbowl: Fishbowls- Peceras
-  track:
-    act: Acción
-    empower: Habilitación
-    influence: Influencia
-    transform: Transformación
-  interaction:
-    interactive: Interactivo
-    view: No interactivo
-  recorded:
-    true: Será grabado
-    false: No grabado
-  devices:
-    all: Todos
-    desktop: Solo computadoras
-    mobile: Solo Móvil
-
-cookies:
-  title: Cookies
-  popupTitle: Nuestro uso de las cookies
-  acceptAction: Permitir análisis de datos
-  rejectAction: Desactivar análisis de datos
-  content: |
-    Utilizamos las cookies necesarias para que el sitio funcione.
-    Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales.
-    Puede cambiar su preferencia haciendo clic en {0} en el pie de página del sitio.
-
-oneToMany:
-  label: Idioma de audio
-  noVideo: No hay video disponible
-  muteLabel: 'NOTA: para escuchar en otro idioma, recuerde silenciar la transmisión arriba'
-  stopped: parado
-  playing: reproduciendo
-  buffering: cargando {0}
-  ready: preparado para reproducir
-  source: Desde el vídeo
-  start: Comienzo
-  stop: Pare
-
-videoEmbed:
-  noLive: The live stream is currently unavailable, please check back later.
-
-errors:
-  title: Algo salió mal
-  general: Ocurrió un error inesperado, inténtelo de nuevo.
-  loginExpired: Su código de acceso a la sesión ha expirado,  dura 30 minutos desde que solicita uno. Por favor probar de nuevo.
-
-faqs:
-  title: FAQ
+    appName: PlanetRed
+    privacy: Privacidad
+    guidelines: Directrices
+    terms: Términos
+    faqs: FAQ

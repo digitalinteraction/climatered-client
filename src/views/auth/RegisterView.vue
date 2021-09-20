@@ -7,7 +7,7 @@
       </div>
       <div class="notification is-success" v-if="isSuccess">
         <button class="delete" @click="state = 'pending'"></button>
-        <p>{{ $t('ifrc.register.doneText') }}</p>
+        <ApiContent slug="registered" />
       </div>
       <div class="notification is-danger" v-if="isError">
         <p>{{ $t('ifrc.register.genericError') }}</p>
@@ -119,6 +119,7 @@
 import Vue from 'vue'
 import { Location } from 'vue-router'
 import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
+import ApiContent from '@/components/ApiContent.vue'
 import {
   TextField,
   SelectField,
@@ -183,10 +184,18 @@ interface Data {
 }
 
 export default Vue.extend({
-  components: { BrandedUtilLayout, TextField, SelectField, CheckboxField },
+  components: {
+    BrandedUtilLayout,
+    TextField,
+    SelectField,
+    CheckboxField,
+    ApiContent,
+  },
   data(): Data {
+    console.log(this.$route.query.state)
+
     return {
-      state: 'pending',
+      state: (this.$route.query.state as 'pending') ?? 'pending',
       registration: createRegistration(this.$i18n.locale),
       errors: createErrors(),
       languageOptions: languageOptions,

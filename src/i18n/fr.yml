@@ -2,114 +2,103 @@
 # v2 - Deconf
 #
 deconf:
-  appLayout:
-    atrium: Atrium
-    whatsOn: Whats On
-    schedule: Schedule
-    coffeeChat: Coffee Chat
-    helpDesk: Help Desk
-
-  sideTabs:
-    unavailable: Unavailable
-
   apiError:
-    title: Something went wrong
-    content: We're having a bit of trouble, try refresing or coming back later.
-    retry: 'Retrying in {0}'
+    #title: Something went wrong
+    #content: We're having a bit of trouble, try refresing or coming back later.
+    #retry: 'Retrying in {0}'
 
   appLoading:
-    message: Loading...
+    message: Chargement...
 
   scheduleBlock:
-    workshopTitle: Interactive workshops
-    workshopDescription: Participate in one of the following interactive workshops.
-    showWorkshops: Show all
-    hideWorkshops: Hide all
-    workshops: 'None | 1 workshop | {n} workshops'
+    workshopTitle: Ateliers interactifs
+    workshopDescription: Participez à l'un des ateliers interactifs suivants
+    #showWorkshops: Show all
+    #hideWorkshops: Hide all
+    workshops: 'Rien | 1 atelier | {n} ateliers'
 
   general:
-    hours: hours | hour | hours
+    hours: heures | heure | heures
     minutes: minutes | minute | minutes
     seconds: seconds | second | seconds
-    genericError: Something went wrong, please try again
+    genericError: Une erreur s'est produite. Veuillez réessayer
 
   miniSession:
-    view: View
-    live: Live
+    #view: View
+    #live: Live
 
   featuredSessions:
-    title: Featured Sessions
-    action: View Schedule
+    title: Sessions vedettes
+    #action: View Schedule
 
   scheduleFilters:
-    query: Search
-    showFilters: Show filters
-    hideFilters: Hide filters
-    clearFilters: Clear filters
-    dateFilter: Date
-    typeFilter: Type
-    trackFilter: Track
-    themeFilter: Theme
-    recordedFilter: Is Recorded
-    offLabel: All
-    'yes': 'Yes'
-    'no': 'No'
+    query: Chercher
+    showFilters: Afficher les filtres
+    hideFilters: Masquer les filtres
+    #clearFilters: Clear filters
+    #dateFilter: Date
+    #typeFilter: Type
+    #trackFilter: Track
+    #themeFilter: Theme
+    #recordedFilter: Is Recorded
+    offLabel: Tout
+    'yes': 'Oui'
+    'no': 'Non'
 
   attendanceSection:
-    loading: Fetching attendance
-    processing: Processing
-    registered: You are registered for this session
-    full: This session is full
-    spacesLeft: '{0}/{1} seats remaining.'
-    registerButton: Register now
-    unregisterButton: Release my seat
+    #loading: Fetching attendance
+    #processing: Processing
+    #registered: You are registered for this session
+    #full: This session is full
+    #spacesLeft: '{0}/{1} seats remaining.'
+    #registerButton: Register now
+    #unregisterButton: Release my seat
 
   timeSlot:
-    past: Past
-    live: Live
+    #past: Past
+    #live: Live
 
   joinSession:
-    future: Preview session
-    present: Join session
-    past: View session
+    future: Prévisualiser la session
+    present: Joindre la session
+    past: Voir la session
 
   sessionAttributes:
-    isRecorded: Recorded
-    notRecorded: Not recorded
+    isRecorded: Sera enregistré
+    notRecorded: Non enregistré
 
   addToCalendar:
-    action: Add to calendar
+    #action: Add to calendar
 
   sessionLink:
-    copy: copy
-    copied: copied
+    #copy: copy
+    #copied: copied
 
   sessionState:
-    liveNow: Live Now
-    sessionOver: Session over
-    interest: 'no interest | 1 person is attending | {n} people are attending'
+    #liveNow: Live Now
+    #sessionOver: Session over
+    #interest: 'no interest | 1 person is attending | {n} people are attending'
 
   sessionEmbed:
-    openTeams: Open Teams meeting
-    openZoom: Open Zoom meeting
-    openHubs: Open Mozilla Hub
-    openSpatial: Open Spatial Chat
-    noEmbed: Something went wrong, there is nothing to show here
+    #openTeams: Open Teams meeting
+    #openZoom: Open Zoom meeting
+    #openHubs: Open Mozilla Hub
+    #openSpatial: Open Spatial Chat
+    #noEmbed: Something went wrong, there is nothing to show here
 
   languageWarning:
-    message: 'Please note this session is only available in {0}'
+    #message: 'Please note this session is only available in {0}'
 
   navigationBar:
-    profile: Your profile
-    login: Login
-    interpret: Interpret mode
-    register: Register
-    unavailable: ' (Unavailable)'
+    profile: Votre profil
+    login: Connexion
+    #interpret: Interpret mode
+    register: Inscrivez
+    unavailable: ' (Indisponible)'
 
-  # TODO: new
   whatsOn:
-    title: What's On
-    infoText: Browse the Schedule before release day
+    #title: What's On
+    #infoText: Browse the Schedule before release day
 
   login:
     title: Connexion
@@ -126,9 +115,9 @@ deconf:
 
   profile:
     title: Votre profil
-    #actionLabel: Actions
+    actionLabel: Actions
     logoutButton: Se déconnecter
-    #dangerLabel: Danger zone
+    dangerLabel: Zone dangereuse
     deleteButton: Supprimer le compte
     deleteText: C'est permanent, êtes-vous sûr?
     ifrc:
@@ -145,36 +134,36 @@ deconf:
     title: Programme
     description: Explorez les sessions disponibles et planifiez votre expérience en ajoutant des rappels à votre calendrier.
     allSessions: Tous
-    #userSessions: User # new
+    #userSessions: User
     hidePast: Cacher les sessions passées
     showPast: Montrer les sessions passées
-    #noResults: Nothing matched your query # new
+    #noResults: Nothing matched your query
 
   session:
     slot: Programme
-    countdown: Countdown # new
+    #countdown: Countdown
     links: Liens
     linkPreview: Les liens des sessions seront disponibles 15 minutes avant l'heure de lancement.
     actions: Actions
-    logIn: Log in to attend this session # new
+    #logIn: Log in to attend this session
     speakers: Intervenants
-    zoomLink: Zoom Room # new
-    teamsLink: Teams Meeting # new
-    miroLink: Miro Board # new
-    generalLink: Link # new
-    backButton: Back to Schedule # new
+    #zoomLink: Zoom Room
+    #teamsLink: Teams Meeting
+    #miroLink: Miro Board
+    #generalLink: Link
+    #backButton: Back to Schedule
 
 #
 # v2 - IFRC
 #
 ifrc:
   general:
-    #appName: PlanetRed
-    #backToAtrium: Back to Atrium
-    #notSelected: (Please select)
-    #genericError: Something went wrong, please try again
-    #'yes': 'Yes'
-    #'no': 'No'
+    appName: PlanetRed
+    backToAtrium: Retourner à l’Atrium
+    notSelected: (Veuillez sélectionner)
+    genericError: Une erreur s'est produite. Veuillez réessayer
+    'yes': Oui
+    'no': Non
 
   register:
     title: Inscrivez
@@ -203,8 +192,6 @@ ifrc:
     #marketingText: I consent to marketing emails from XYZ
     termsLink: Termes et conditions
     privacyLink: Politique de confidentialité
-    doneText: >
-      Nous vous avons envoyé un e-mail de vérification.
     #loginLabel: Already registered?
     #loginAction: Log in here
     #genericError: Please check your submission and try again.
@@ -215,161 +202,13 @@ ifrc:
     onlineNow: En ligne maintenant
     carbonSaved: Des kilogrammes de CO₂ économisés
     #twitterTitle: Social
-    twitterSubtitle: 'Tweeter avec #PlanetRed'
+    #twitterSubtitle: 'Tweeter avec #PlanetRed'
     #twitterUrl: 'https://twitter.com'
     #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:
-    #appName: PlanetRed
-    #privacy: Privacy
-    #guidelines: Community Guidelines
-    #terms: Terms & Conditions
-    #faqs: FAQs
-#
-# ============================== OLD ==============================
-#
-
-general:
-  message: Bonjour le monde
-  loginButton: Se connecter
-  registerButton: Inscrivez-vous dès maintenant!
-  appName: Climate:Red
-  pleaseSelect: Veuillez sélectionner
-  comingSoon: Bientôt disponible
-  unavailable: Indisponible
-  genericError: Une erreur s'est produite. Veuillez réessayer
-  backTo: Retour à {0}
-
-sessions:
-  title: Quoi de neuf
-  tabs:
-    plenary: Les intervenants
-    panel: Tables rondes
-    sessions: Séances
-
-coffeechat:
-  title: Causerie Café
-  filterResults: Participants actifs
-  heading: Êtes-vous prêt(e)?
-  body: Nous utiliserons les paramètres ci-dessous pour vous faire correspondre avec un autre participant de Climate:Red. Cliquez sur le bouton ci-dessous pour dialoguer en vidéo avec un autre participant.
-  readyBtn: Prêt
-  waitingBtn: En attente
-  joiningBtn: En adhésion
-  filters:
-    languageResults: Langue(s)
-    themeResults: Thème(s)
-    anyOption: Tout
-    languageSelector: Sélectionner une ou plusieurs  langue(s)
-    themeSelector: Sélectionner un ou plusieurs thème(s)
-    clear: Effacer
-    save: Sauvegarder
-    languages:
-      EN: English
-      FR: Française
-      ES: Español
-      AR: العربية
-
-coffeechatroom:
-  title: Causerie Café
-  waitingForPartner: En attendant l'arrivée de votre partenaire
-  joiningInfo: Informations sur l'adhésion
-  # contactDetails: _
-  shareContactDetails: partager les coordonnées
-  # confirmLeaveText: _
-  # copyJoinText: _
-  # copiedJoinInfo: _
-  # tooManyStreams: _
-  partnerTimeout: Il semble que nous n’ayons pas pu vous mettre en relation avec un partenaire. Veuillez quitter et réessayer
-  leave: Quitter la salle
-  sharedContactDetails: Partager!
-  userMediaErrors:
-    generalError: nous avons du mal à allumer votre webcam
-    devicesNotFoundError: vérifiez que votre webcam soit bien branchée
-    trackStartError: votre webcam ou votre micro sont déjà utilisés dans une autre application
-    constraintNotSatisfiedError: cliquez sur le bouton ci-dessous pour réessayer
-    typeError: cliquez sur le bouton ci-dessous pour réessayer
-    unknownError: cliquez sur le bouton ci-dessous pour réessayer
-    retryButtonText: activer la caméra et le micro
-    instructions:
-      safari: Ouvrir les préférences de Safari > Naviguer vers les sites Web > Aller aux onglets Appareil photo et Microphone > Modifier l'accès à 'Autoriser' > Redémarrer Safari
-      chrome: Cliquez sur l'icône de caméra verrouillée s'affichant dans la barre d'adresse de votre navigateur, puis actualisez la page
-      firefox: Cliquez sur l'icône de caméra verrouillée dans la barre d'adresse de votre navigateur et cliquez sur la croix pour activer le micro et la caméra, puis actualisez la page
-      edge: Cliquez sur l'icône cadenas dans la barre d'adresse de votre navigateur > Cliquez sur "Paramètres de site" > Cliquez sur "Réinitialiser les autorisations" > Actualisez la page du navigateur
-
-help:
-  title: Aide
-
-notFound:
-  title: Page introuvable
-  info: Nous n'avons pas trouvé la page que vous recherchiez, veuillez vérifier le lien sur lequel vous avez cliqué ou retourner à l'atrium.
-
-terms:
-  title: Termes
-
-guidelines:
-  title: Directives
-
-privacy:
-  title: Confidentialité
-
-sessionCard:
-  hostedBy: Organisée par
-
-data:
-  type:
-    ignite-talk: Présentations Ignite
-    games: Jeux d’apprentissage et de dialogue
-    panel: Tables rondes et discussions
-    workshop: Ateliers
-    virtual-tour: Visites virtuelles
-    plenary: Liminaire
-    speaker: _
-    fishbowl: Bocal à poisson
-  track:
-    act: Agir
-    empower: Donner les moyens d’agir
-    influence: Influencer
-    transform: Transformer
-  interaction:
-    interactive: Intéractif
-    view: Non intéractif
-  recorded:
-    true: Sera enregistré
-    false: Non enregistré
-  devices:
-    all: Tous
-    desktop: Ordinateur seulement
-    mobile: Mobile seulement
-
-cookies:
-  title: Cookies
-  popupTitle: Notre utilisation des cookies
-  acceptAction: Autoriser l'analyse des donnés
-  rejectAction: Désactiver l'analyse des données
-  content: |
-    Nous utilisons les cookies nécessaires au bon fonctionnement du site.
-    Nous aimerions pouvoir les analyser afin de voir comment les gens vivent le sommet Climate:RED et ainsi nous assurer que nous pouvons améliorer les futures conférences et sommets virtuels.
-    Vous pouvez modifier vos préférences en cliquant sur {0} dans le pied de page du site.
-
-oneToMany:
-  label: Langue audio
-  noVideo: Aucune vidéo disponible
-  muteLabel: 'A noter: pour écouter une autre langue, n’oubliez pas de mettre en sourdine le flux ci-dessus'
-  stopped: arrêté
-  playing: en jouant
-  buffering: chargement {0}
-  ready: prêt à jouer
-  source: De la vidéo
-  start: Début
-  stop: Arrêtez
-
-videoEmbed:
-  noLive: La diffusion en direct est actuellement indisponible, veuillez revenir plus tard.
-
-errors:
-  title: Quelque chose n'a pas marché
-  general: Une erreur inattendue s'est produite, veuillez réessayer.
-  loginExpired: Votre code de connexion a expiré, il dure 30 minutes à partir du moment où vous en demandez un. Veuillez réessayer ci-dessous.
-
-faqs:
-  title: FAQ
+    appName: PlanetRed
+    privacy: Confidentialité
+    guidelines: Directives
+    terms: Termes
+    faqs: FAQ

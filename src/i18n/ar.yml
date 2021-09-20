@@ -3,112 +3,112 @@
 #
 deconf:
   appLayout:
-    atrium: Atrium
-    whatsOn: Whats On
-    schedule: Schedule
-    coffeeChat: Coffee Chat
-    helpDesk: Help Desk
+    atrium: الملتقى الرئيسي
+    #whatsOn: Whats On
+    schedule: جدول المواعيد
+    coffeeChat: دردشة حول فنجان قهوة
+    helpDesk: المساعدة
 
   sideTabs:
-    unavailable: Unavailable
+    unavailable: غير متوفره
 
   apiError:
-    title: Something went wrong
-    content: We're having a bit of trouble, try refresing or coming back later.
-    retry: 'Retrying in {0}'
+    #title: Something went wrong
+    #content: We're having a bit of trouble, try refresing or coming back later.
+    #retry: 'Retrying in {0}'
 
   appLoading:
     message: Loading...
 
   scheduleBlock:
-    workshopTitle: Interactive workshops
-    workshopDescription: Participate in one of the following interactive workshops.
-    showWorkshops: Show all
-    hideWorkshops: Hide all
-    workshops: 'None | 1 workshop | {n} workshops'
+    workshopTitle: ورشات العمل التفاعلية
+    workshopDescription: شارك بإحدى ورش العمل التفاعلية التالية
+    showWorkshops: إظهار الكل
+    hideWorkshops: إخفاء الكل
+    #workshops: 'None | 1 workshop | {n} workshops'
 
   general:
-    hours: hours | hour | hours
-    minutes: minutes | minute | minutes
-    seconds: seconds | second | seconds
-    genericError: Something went wrong, please try again
+    #hours: hours | hour | hours
+    #minutes: minutes | minute | minutes
+    #seconds: seconds | second | seconds
+    genericError: حدث خطأ ما. أعد المحاولة من فضلك
 
   miniSession:
-    view: View
-    live: Live
+    #view: View
+    #live: Live
 
   featuredSessions:
-    title: Featured Sessions
-    action: View Schedule
+    #title: Featured Sessions
+    #action: View Schedule
 
   scheduleFilters:
-    query: Search
-    showFilters: Show filters
-    hideFilters: Hide filters
-    clearFilters: Clear filters
-    dateFilter: Date
-    typeFilter: Type
-    trackFilter: Track
-    themeFilter: Theme
-    recordedFilter: Is Recorded
-    offLabel: All
-    'yes': 'Yes'
-    'no': 'No'
+    query: بحث
+    showFilters: اظهر الفلاتر
+    #hideFilters: Hide filters
+    #clearFilters: Clear filters
+    #dateFilter: Date
+    #typeFilter: Type
+    #trackFilter: Track
+    #themeFilter: Theme
+    #recordedFilter: Is Recorded
+    #offLabel: All
+    'yes': نعم
+    'no': لا
 
   attendanceSection:
-    loading: Fetching attendance
-    processing: Processing
-    registered: You are registered for this session
-    full: This session is full
-    spacesLeft: '{0}/{1} seats remaining.'
-    registerButton: Register now
-    unregisterButton: Release my seat
+    #loading: Fetching attendance
+    #processing: Processing
+    #registered: You are registered for this session
+    #full: This session is full
+    #spacesLeft: '{0}/{1} seats remaining.'
+    #registerButton: Register now
+    #unregisterButton: Release my seat
 
   timeSlot:
-    past: Past
-    live: Live
+    #past: Past
+    #live: Live
 
   joinSession:
-    future: Preview session
-    present: Join session
-    past: View session
+    future: معاينة الجلسة
+    present: الانضمام إلى الجلسة
+    past: مشاهدة الجلسة
 
   sessionAttributes:
-    isRecorded: Recorded
-    notRecorded: Not recorded
+    isRecorded: التسجيل سيكون متاحاَ
+    notRecorded: غير مسجلة
 
   addToCalendar:
-    action: Add to calendar
+    #action: Add to calendar
 
   sessionLink:
-    copy: copy
-    copied: copied
+    #copy: copy
+    #copied: copied
 
   sessionState:
-    liveNow: Live Now
-    sessionOver: Session over
-    interest: 'no interest | 1 person is attending | {n} people are attending'
+    #liveNow: Live Now
+    #sessionOver: Session over
+    #interest: 'no interest | 1 person is attending | {n} people are attending'
 
   sessionEmbed:
-    openTeams: Open Teams meeting
-    openZoom: Open Zoom meeting
-    openHubs: Open Mozilla Hub
-    openSpatial: Open Spatial Chat
-    noEmbed: Something went wrong, there is nothing to show here
+    #openTeams: Open Teams meeting
+    #openZoom: Open Zoom meeting
+    #openHubs: Open Mozilla Hub
+    #openSpatial: Open Spatial Chat
+    #noEmbed: Something went wrong, there is nothing to show here
 
   languageWarning:
-    message: 'Please note this session is only available in {0}'
+    #message: 'Please note this session is only available in {0}'
 
   navigationBar:
-    profile: Your profile
-    login: Login
-    interpret: Interpret mode
-    register: Register
-    unavailable: ' (Unavailable)'
+    profile: ملفك الشخصي
+    login: تسجيل الدخول
+    #interpret: Interpret mode
+    register: تسجيل
+    #unavailable: ' (Unavailable)'
 
   whatsOn:
-    title: What's On
-    infoText: Browse the Schedule before release day
+    #title: What's On
+    #infoText: Browse the Schedule before release day
 
   login:
     title: تسجيل الدخول
@@ -116,19 +116,19 @@ deconf:
       بعد التسجيل ، سوف نرسل لك رسالة تأكيد بالبريد الإلكتروني. سيكون في البريد الإلكتروني رابط ، والذي سيسجل دخولك. ستنتهي صلاحية الرابط بعد 30 دقيقة. إذا لم تتلق أي شيء ، فيرجى التحقق من ملف الرسائل الغير مرغوب بها.
     email:
       label: البريد الإلكتروني
-      placeholder: e.g. dan@example.com
+      #placeholder: e.g. dan@example.com
       help: عنوان البريد الإلكتروني الذي سجلت به في المؤتمر
     badEmail: البريد الإلكتروني غير جيد
     doneText: تم إرسال رمز تسجيل الدخول
     submitButton: طلب رمز تسجيل الدخول
-    #registerLabel: Not registered yet?
-    #registerAction: Register here
+    registerLabel: لم يتم تسجيلة بعد؟
+    registerAction: سجل هنا
 
   profile:
     title: ملفك الشخصي
-    #actionLabel: Actions
+    actionLabel: أجراءات
     logoutButton: تسجيل الخروج
-    #dangerLabel: Danger zone
+    dangerLabel: منطقة الخطر
     deleteButton: حذف الحساب
     deleteText: هذا دائم، هل أنت متأكد؟
     ifrc:
@@ -145,36 +145,36 @@ deconf:
     title: جدول المواعيد
     description: تصفح الجلسات المتاحة وقم بوضع خطة لتجربتك عن طريق إضافة تذكير إلى التقويم الخاص بك.
     allSessions: الكل
-    #userSessions: User
+    userSessions: المستعمل
     hidePast: إخفاء الجلسات القديمة
     showPast: إظهار الجلسات السابقة
     #noResults: Nothing matched your query
 
   session:
     slot: البرنامج
-    countdown: Countdown # new
+    #countdown: Countdown
     links: الرابط الإلكتروني
     linkPreview: رابط الجلسة سيكون متاحا قبل 15 دقيقة من موعد بدء الجلسة
     actions: الاجراءات
-    logIn: Log in to attend this session # new
+    #logIn: Log in to attend this session
     speakers: المتحدث
-    zoomLink: Zoom Room # new
-    teamsLink: Teams Meeting # new
-    miroLink: Miro Board # new
-    generalLink: Link # new
-    backButton: Back to Schedule # new
+    #zoomLink: Zoom Room
+    #teamsLink: Teams Meeting
+    #miroLink: Miro Board
+    #generalLink: Link
+    #backButton: Back to Schedule
 
 #
 # v2 - IFRC
 #
 ifrc:
   general:
-    #appName: PlanetRed
-    #backToAtrium: Back to Atrium
-    #notSelected: (Please select)
+    appName: PlanetRed
+    backToAtrium: العودة إلى الملتقى الرئيسي
+    notSelected: (يرجى التحديد)
     #genericError: Something went wrong, please try again
-    #'yes': 'Yes'
-    #'no': 'No'
+    'yes': نعم
+    'no': لا
 
   register:
     title: تسجيل
@@ -182,11 +182,11 @@ ifrc:
       التسجيل لمؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ
     name:
       label: الاسم الكامل
-      # placeholder: e.g. Dan Howard
+      #placeholder: e.g. Dan Howard
       help: اسمك الكامل
     email:
       label: عنوان البريد الالكتروني
-      # placeholder: e.g. dan@example.com
+      #placeholder: e.g. dan@example.com
       help: ستستخدم بريدك الإلكتروني لتسجيل الدخول إلى المؤتمر
     language:
       label: لغة
@@ -203,8 +203,6 @@ ifrc:
     #marketingText: I consent to marketing emails from XYZ
     termsLink: الأحكام والشروط
     privacyLink: سياسة الخصوصية
-    doneText: >
-      لقد أرسلنا إليك بريدًا إلكترونيًا للتحقق
     #loginLabel: Already registered?
     #loginAction: Log in here
     #genericError: Please check your submission and try again.
@@ -215,161 +213,13 @@ ifrc:
     onlineNow: مباشر الآن
     carbonSaved: التقليل من انبعاثات الكربون
     #twitterTitle: Social
-    twitterSubtitle: 'تغريدة مع #PlanetRed'
-    twitterUrl: 'https://twitter.com'
+    #twitterSubtitle: 'تغريدة مع #PlanetRed'
+    #twitterUrl: 'https://twitter.com'
     #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:
-    #appName: PlanetRed
-    #privacy: Privacy
-    #guidelines: Community Guidelines
-    #terms: Terms & Conditions
-    #faqs: FAQs
-#
-# ============================== OLD ==============================
-#
-
-general:
-  message: مرحبا بالعالم
-  loginButton: تسجيل الدخول
-  registerButton: سجل الان!
-  appName: Climate:Red
-  pleaseSelect: يرجى التحديد
-  comingSoon: قريبا
-  unavailable: غير متوفره
-  genericError: حدث خطأ ما. أعد المحاولة من فضلك
-  backTo: الرجوع إلى {x}
-
-sessions:
-  title: ماذا يحدث
-  tabs:
-    plenary: المتحدثون
-    panel: حلقات نقاش
-    sessions: جلسات
-
-coffeechat:
-  title: دردشة حول فنجان قهوة
-  filterResults: الحضور النشط
-  heading: هل أنت مستعد!
-  body: سنستخدم الاعدادات السابقة لنطابقك مع أحد المشاركين ضمن قمة المناخ-الأحمر. قم بالضغط على الزر أدناه لتبدأ محادثة عبر الفيديو مع أحد المشاركين
-  readyBtn: مستعد
-  waitingBtn: قيد الإنتظار
-  joiningBtn: انضم
-  filters:
-    languageResults: اللغات
-    themeResults: الموضوعات
-    anyOption: الكل
-    languageSelector: تحديد اللغة
-    themeSelector: اختيار الموضوع
-    clear: حذق
-    save: حفظ
-    languages:
-      EN: English
-      FR: Française
-      ES: Español
-      AR: العربية
-
-coffeechatroom:
-  title: دردشة حول فنجان قهوة
-  waitingForPartner: انتظر انضمام المشارك الآخر
-  joiningInfo: معلومات الانضمام
-  # contactDetails: _
-  shareContactDetails: مشاركة معلومات التواصل
-  # confirmLeaveText: _
-  # copyJoinText: _
-  # copiedJoinInfo: _
-  # tooManyStreams: _
-  partnerTimeout: بإنتظار دخول شريكك، إذا لم يتم  دخوله/ها خلال فترة وجيزة يمكنك المغادرة والمحولة مجددا!
-  leave: مغادرة الغرفة
-  sharedContactDetails: مشاركة!
-  userMediaErrors:
-    generalError: لديك مشكلة في تشغيل كاميرا الويب الخاصة بك
-    devicesNotFoundError: تحقق من توصيل كاميرا الويب الخاصة بك
-    trackStartError: الكاميرا أو الميكروفون الخاص بك قيد الاستخدام من قبل تطبيق أخر
-    constraintNotSatisfiedError: انقر فوق الزر أدناه لإعادة المحاولة
-    typeError: انقر فوق الزر أدناه لإعادة المحاولة
-    unknownError: انقر فوق الزر أدناه لإعادة المحاولة
-    retryButtonText: تفعيل الكاميرا والميكروفون
-    instructions:
-      safari: افتح خصائص Safari> انتقل إلى مواقع الويب> انتقل إلى علامتي التبويب الكاميرا والميكروفون> تفعيل قابلية الوصول إلى السماح> إعادة تشغيل Safari
-      chrome: انقر فوق رمز حظر الكاميرا في شريط العنوان بمتصفح الانترنت الخاص بك ثم قم بتحديث الصفحة
-      firefox: انقر فوق رمز حظر الكاميرا في شريط العنوان بمتصفح الانترنت الخاص بك ثم قم بالنقر على تفعيل الكاميرا والميكروفون ومن ثم قم بتحديث الصفحة
-      edge: انقر فوق رمز القفل في شريط عناوين المتصفح> انقر فوق "أذونات الموقع"> انقر فوق إعادة تعيين الأذونات> إعادة تشغيل صفحة المتصفح
-
-help:
-  title: المساعدة
-
-notFound:
-  title: الصفحة غير موجودة
-  info: لم نتمكن من العثور على الصفحة التي كنت تبحث عنها، يرجى التحقق من الرابط الذي نقرت عليه أو العودة إلى الملتقى الرئيسي.
-
-terms:
-  title: الشروط
-
-guidelines:
-  title: المبادئ التوجيهية
-
-privacy:
-  title: الخصوصية
-
-sessionCard:
-  hostedBy: المقدم بواسطة
-
-data:
-  type:
-    ignite-talk: جلسة لطرح الأفكار
-    games: ألعاب للتعلم و الحوار
-    panel: أفرقة خبراء ونقاشات
-    workshop: حلقات عملية
-    virtual-tour: جولات افتراضية
-    plenary: الكلمة الرئيسية
-    speaker: _
-    fishbowl: حل المشاكل أسلوب الحلقتين
-  track:
-    act: العمل
-    empower: التمكين
-    influence: التأثير
-    transform: التحويل
-  interaction:
-    interactive: التفاعلية
-    view: غير تفاعلي
-  recorded:
-    true: التسجيل سيكون متاحاَ
-    false: غير مسجلة
-  devices:
-    all: الكل
-    desktop: عبر جهاز الحاسوب فقط
-    mobile: عبر الأجهزة المحمول فقط
-
-cookies:
-  title: ملفات تعريف الارتباط
-  popupTitle: استخدامنا لملفات تعريف الارتباط
-  acceptAction: السماح بتفعيل أدوات التحليل
-  rejectAction: إلغاء تفعيل أدوات التحليل
-  content: |
-    نحن نستخدم ملفات تعريف الارتباط الضرورية لتشغيل الموقع بشكل صحيح
-    نود استخدام التحليلات لمعرفة تجارب الناس في مؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ و لضمان قدرتنا على تحسين المؤتمرات الافتراضية ومؤتمرات القمة المستقبلية
-    يمكنك تغيير تفضيلات ملفات تعريف الارتباط الخاصة بك من خلال النقر{0} في تذييل هذا الموقع
-
-oneToMany:
-  label: لغة الصوت
-  noVideo: لا يوجد فيديو متاح
-  muteLabel: 'ملاحظة: أذا أردت الاستماع الى الترجمة بلغة أخرى، تذكر أن تقوم بكتم صوت البث أعلاه '
-  stopped: ايقاف
-  playing: تشغيل
-  buffering: '{0} التحميل'
-  ready: جاهز للتشغيل
-  source: من الفيديو
-  start: ابدأ
-  stop: إيقاف
-
-videoEmbed:
-  noLive: البث المباشر غير متاح حاليًا ، يرجى إعادة التحقق لاحقًا.
-
-errors:
-  title: حدث خطأ
-  general: حدث خطأ غير متوقع ، يرجى المحاولة مرة أخرى
-  loginExpired: انتهت صلاحية رمز تسجيل الدخول الخاص بك ، وهي صالحة لمدة 30 دقيقة من وقت طلبك. يرجى المحاولة مرة أخرى أدناه.
-
-faqs:
-  title: أسئلة وأجوبة
+    appName: PlanetRed
+    privacy: الخصوصية
+    guidelines: المبادئ التوجيهية
+    terms: الشروط
+    faqs: أسئلة وأجوبة

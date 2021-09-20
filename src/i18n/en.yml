@@ -4,7 +4,7 @@
 deconf:
   appLayout:
     atrium: Atrium
-    whatsOn: Whats On
+    whatsOn: What's On
     schedule: Schedule
     coffeeChat: Coffee Chat
     helpDesk: Help Desk
@@ -39,7 +39,7 @@ deconf:
 
   featuredSessions:
     title: Featured Sessions
-    action: View Schedule
+    action: Explore Sessions
 
   scheduleFilters:
     query: Search
@@ -204,11 +204,9 @@ ifrc:
       help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
     submitButton: Register
     consentText: I confirm that I have read and agree with the policies linked below
-    marketingText: I consent to marketing emails from XYZ
+    marketingText: I consent to marketing emails from Solferino Academy
     termsLink: Terms and Conditions
     privacyLink: Privacy policy
-    doneText: >
-      Thanks for registering! We've sent you an verification email. Click the link in that email to verify and see the conference schedule. If you don't see an email soon please check your spam folder.
     loginLabel: Already registered?
     loginAction: Log in here
     genericError: Please check your submission and try again.
@@ -229,261 +227,260 @@ ifrc:
     guidelines: Community Guidelines
     terms: Terms & Conditions
     faqs: FAQs
-
 #
 # ============================== OLD ==============================
 #
 
-general:
-  message: 'Hello, world'
-  loginButton: Log in
-  registerButton: Register Now!
-  appName: Climate:Red
-  pleaseSelect: Please select
-  comingSoon: Coming soon
-  unavailable: Unavailable
-  backTo: Back to {0}
-  copy: Copy
-  loading: Loading
-  genericError: Something went wrong, please try again
+# general:
+#   message: 'Hello, world'
+#   loginButton: Log in
+#   registerButton: Register Now!
+#   appName: Climate:Red
+#   pleaseSelect: Please select
+#   comingSoon: Coming soon
+#   unavailable: Unavailable
+#   backTo: Back to {0}
+#   copy: Copy
+#   loading: Loading
+#   genericError: Something went wrong, please try again
 
-sessions:
-  title: What's on
-  tabs:
-    plenary: Speakers
-    panel: Panels
-    sessions: Sessions
+# sessions:
+#   title: What's on
+#   tabs:
+#     plenary: Speakers
+#     panel: Panels
+#     sessions: Sessions
 
-coffeechat:
-  title: Coffee chat
-  filterResults: Active Participants
-  heading: Are you ready?
-  body: We'll use the settings below to match you with another Climate:Red attendee. Click the button below to video chat with another attendee.
-  readyBtn: Ready
-  waitingBtn: Waiting
-  joiningBtn: Joining
-  filters:
-    languageResults: Language(s)
-    themeResults: Theme(s)
-    anyOption: Any
-    languageSelector: Select languages
-    themeSelector: Select themes
-    clear: Clear
-    save: Save
-    languages:
-      EN: English
-      FR: Française
-      ES: Español
-      AR: العربية
+# coffeechat:
+#   title: Coffee chat
+#   filterResults: Active Participants
+#   heading: Are you ready?
+#   body: We'll use the settings below to match you with another Climate:Red attendee. Click the button below to video chat with another attendee.
+#   readyBtn: Ready
+#   waitingBtn: Waiting
+#   joiningBtn: Joining
+#   filters:
+#     languageResults: Language(s)
+#     themeResults: Theme(s)
+#     anyOption: Any
+#     languageSelector: Select languages
+#     themeSelector: Select themes
+#     clear: Clear
+#     save: Save
+#     languages:
+#       EN: English
+#       FR: Française
+#       ES: Español
+#       AR: العربية
 
-coffeechatroom:
-  title: Coffee chat
-  waitingForPartner: Waiting for your partner to join...
-  partnerTimeout: Looks like we could connect you with partner. Please leave and try again
-  leave: Leave room
-  joiningInfo: Joining Info
-  contactDetails: Contact Details
-  shareContactDetails: Share contact details
-  sharedContactDetails: Shared!
-  confirmLeaveText: Are you sure you would like to leave this Coffee Chat?
-  copyJoinText: Copy Join Info
-  copiedJoinInfo: Copied Join Info!
-  tooManyStreams: |
-    Unfortunately we are unable to provide more than 8 video streams at the same time.
-    Please reduce the number of users in the room or turn off your video feeds to maintain call quality.
-  userMediaErrors:
-    generalError: We're having trouble turning your webcam on
-    devicesNotFoundError: check that your webcam is plugged in
-    trackStartError: your webcam or mic are already in use in another application
-    constraintNotSatisfiedError: click the button below to retry
-    typeError: click the button below to retry
-    unknownError: click the button below to retry
-    retryButtonText: Enable Camera & Mic
-    instructions:
-      safari: Open Safari Preferences > Navigate to Websites > Go to Camera and Microphone tabs > Change access to Allow > Restart Safari
-      chrome: Click the camera blocked icon in your browser's address bar and then refresh the page
-      firefox: Click the camera blocked icon in your browser's address bar and click the cross to enable mic and camera then refresh the page
-      edge: Click the lock icon in your browser's address bar > Click 'Site Permissions' > Click Reset Permissions > Restart browser page
+# coffeechatroom:
+#   title: Coffee chat
+#   waitingForPartner: Waiting for your partner to join...
+#   partnerTimeout: Looks like we could connect you with partner. Please leave and try again
+#   leave: Leave room
+#   joiningInfo: Joining Info
+#   contactDetails: Contact Details
+#   shareContactDetails: Share contact details
+#   sharedContactDetails: Shared!
+#   confirmLeaveText: Are you sure you would like to leave this Coffee Chat?
+#   copyJoinText: Copy Join Info
+#   copiedJoinInfo: Copied Join Info!
+#   tooManyStreams: |
+#     Unfortunately we are unable to provide more than 8 video streams at the same time.
+#     Please reduce the number of users in the room or turn off your video feeds to maintain call quality.
+#   userMediaErrors:
+#     generalError: We're having trouble turning your webcam on
+#     devicesNotFoundError: check that your webcam is plugged in
+#     trackStartError: your webcam or mic are already in use in another application
+#     constraintNotSatisfiedError: click the button below to retry
+#     typeError: click the button below to retry
+#     unknownError: click the button below to retry
+#     retryButtonText: Enable Camera & Mic
+#     instructions:
+#       safari: Open Safari Preferences > Navigate to Websites > Go to Camera and Microphone tabs > Change access to Allow > Restart Safari
+#       chrome: Click the camera blocked icon in your browser's address bar and then refresh the page
+#       firefox: Click the camera blocked icon in your browser's address bar and click the cross to enable mic and camera then refresh the page
+#       edge: Click the lock icon in your browser's address bar > Click 'Site Permissions' > Click Reset Permissions > Restart browser page
 
-help:
-  title: Help
+# help:
+#   title: Help
 
-notFound:
-  title: Page not found
-  info: We couldn't find the page you were looking for, please check the link you clicked or go back to the atrium.
+# notFound:
+#   title: Page not found
+#   info: We couldn't find the page you were looking for, please check the link you clicked or go back to the atrium.
 
-# terms:
-#   title: Terms
+# # terms:
+# #   title: Terms
 
-# guidelines:
-#   title: Guidelines
+# # guidelines:
+# #   title: Guidelines
 
-# privacy:
-#   title: Privacy
+# # privacy:
+# #   title: Privacy
 
-# sessionCard:
-#   hostedBy: Hosted by
+# # sessionCard:
+# #   hostedBy: Hosted by
 
-data:
-  type:
-    ignite-talk: Ignite talk
-    games: Games
-    panel: Panel
-    workshop: Workshop
-    virtual-tour: Virtual tour
-    plenary: Keynote
-    speaker: Speaker
-    fishbowl: Fishbowl
-  track:
-    act: Act
-    empower: Empower
-    influence: Influence
-    transform: Transform
-  interaction:
-    interactive: Interactive
-    view: View Only
-  recorded:
-    true: Recorded
-    false: Not Recorded
-  devices:
-    all: All
-    desktop: Desktop
-    mobile: Mobile
+# data:
+#   type:
+#     ignite-talk: Ignite talk
+#     games: Games
+#     panel: Panel
+#     workshop: Workshop
+#     virtual-tour: Virtual tour
+#     plenary: Keynote
+#     speaker: Speaker
+#     fishbowl: Fishbowl
+#   track:
+#     act: Act
+#     empower: Empower
+#     influence: Influence
+#     transform: Transform
+#   interaction:
+#     interactive: Interactive
+#     view: View Only
+#   recorded:
+#     true: Recorded
+#     false: Not Recorded
+#   devices:
+#     all: All
+#     desktop: Desktop
+#     mobile: Mobile
 
-cookies:
-  title: Cookies
-  popupTitle: Our use of cookies
-  acceptAction: Allow analytics
-  rejectAction: Disable analytics
-  content: |
-    We use necessary cookies to make the site work.
-    We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits.
-    You can change your preference by clicking {0} in the site footer.
+# cookies:
+#   title: Cookies
+#   popupTitle: Our use of cookies
+#   acceptAction: Allow analytics
+#   rejectAction: Disable analytics
+#   content: |
+#     We use necessary cookies to make the site work.
+#     We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits.
+#     You can change your preference by clicking {0} in the site footer.
 
-interpretHome:
-  title: Interpretation
-  subtitle: Use this page to navigate the session's you're assigned to interpret for
-  goto: Interpret mode
-  unavailableTitle: Your browser isn't supported
-  unavailableBody: |
-    It looks like your using an unsupported browser. Please swap to chrome (v42+), safari (13.1+) or firefox (v80+) and return to this page. If you're on iOS please upgrade to iOS version 13.5 or above.
-  welcome: Welcome back, {0}
-  chromeWarning: Please remember to use the latest version of chrome
-  exitAction: Exit to Atrium
+# interpretHome:
+#   title: Interpretation
+#   subtitle: Use this page to navigate the session's you're assigned to interpret for
+#   goto: Interpret mode
+#   unavailableTitle: Your browser isn't supported
+#   unavailableBody: |
+#     It looks like your using an unsupported browser. Please swap to chrome (v42+), safari (13.1+) or firefox (v80+) and return to this page. If you're on iOS please upgrade to iOS version 13.5 or above.
+#   welcome: Welcome back, {0}
+#   chromeWarning: Please remember to use the latest version of chrome
+#   exitAction: Exit to Atrium
 
-interpretSchedule:
-  heading:
-    session: Session
-    title: Title
-    slot: Slot
-    date: Date
-    start: Start
-    end: End
-    language: Floor language
-    actions: Interpret
+# interpretSchedule:
+#   heading:
+#     session: Session
+#     title: Title
+#     slot: Slot
+#     date: Date
+#     start: Start
+#     end: End
+#     language: Floor language
+#     actions: Interpret
 
-interpret:
-  title: Interpreting session
-  sessionLabel: 'Session title:'
-  floorLabel: 'Floor language:'
-  outputLabel: 'Output language:'
-  live: You are live
-  testLabel: Test mic
-  startAction: Go Live
-  stopAction: Disconnect
-  takeoverAction: Takeover
-  takeoverConfirm: Are you sure you want to takeover?
-  takeoverActionLabel: Request takeover
-  takeoverStatusLabel: status
-  plusMins: now | 1 min | {count} mins
-  noResponse: No response
-  acceptedBy: Accepted by {0}
-  onlineLabel: Online now
-  isLive: '{0} is live'
-  confirmLeave: 'You are live broadcasting, are you sure?'
-  sendMessage:
-    placeholder: Send a message
-    action: Send
-  isSelf: (you)
-  messagesLabel: Messages
-  deviceLabel: Pick a device
-  refreshButton: Refresh devices
+# interpret:
+#   title: Interpreting session
+#   sessionLabel: 'Session title:'
+#   floorLabel: 'Floor language:'
+#   outputLabel: 'Output language:'
+#   live: You are live
+#   testLabel: Test mic
+#   startAction: Go Live
+#   stopAction: Disconnect
+#   takeoverAction: Takeover
+#   takeoverConfirm: Are you sure you want to takeover?
+#   takeoverActionLabel: Request takeover
+#   takeoverStatusLabel: status
+#   plusMins: now | 1 min | {count} mins
+#   noResponse: No response
+#   acceptedBy: Accepted by {0}
+#   onlineLabel: Online now
+#   isLive: '{0} is live'
+#   confirmLeave: 'You are live broadcasting, are you sure?'
+#   sendMessage:
+#     placeholder: Send a message
+#     action: Send
+#   isSelf: (you)
+#   messagesLabel: Messages
+#   deviceLabel: Pick a device
+#   refreshButton: Refresh devices
 
-oneToMany:
-  label: Audio language
-  noVideo: No video to show
-  muteLabel: 'NOTE: To listen in another language, remember to mute the stream above'
-  stopped: stopped
-  playing: playing
-  buffering: buffering {0}
-  ready: ready to play
-  source: From video
-  start: Start
-  stop: Stop
+# oneToMany:
+#   label: Audio language
+#   noVideo: No video to show
+#   muteLabel: 'NOTE: To listen in another language, remember to mute the stream above'
+#   stopped: stopped
+#   playing: playing
+#   buffering: buffering {0}
+#   ready: ready to play
+#   source: From video
+#   start: Start
+#   stop: Stop
 
-videoEmbed:
-  noLive: The live stream is currently unavailable, please check back later.
+# videoEmbed:
+#   noLive: The live stream is currently unavailable, please check back later.
 
-schedule:
-  title: Schedule
-  description: Browse the available sessions and plan your experience by adding reminders to your calendar.
-  close: Close
-  past: Past
-  now: Now
-  present: Present
-  future: Future
-  addToCalendar: Add to Calendar
-  showAll: Show all
-  hideAll: Hide all
-  hidePastSessions: Hide past sessions
-  showPastSessions: Show past sessions
-  dates:
-    ninth: 9 September
-    tenth: 10 September
-  search: Search
-  showingResultsFor: 'Showing results for "{0}"'
-  redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
-  filters:
-    all: All
-    showFilters: Show Filters
-    clearFilters: Clear Filters
-    date: Date
-    track: Track
-    interactivity:
-      interactivity: Interactivity
-      interactive: Interactive
-      nonInteractive: Non-interactive
-    platform:
-      platform: Platform
-      zoom: Zoom
-    device:
-      device: Device
-      desktopOnly: Desktop only
-      mobileOnly: Mobile only
-    recorded:
-      recorded: Recorded
-      willBeRecorded: Will be recorded
-      notRecorded: Not recorded
-  attributes:
-    sessionAttributes: Session attributes
-  actions:
-    viewSession: View session
-    joinSession: Join session
-    previewSession: Preview session
-    registerInterest: Register interest
-    interestRegistered: Interest registered
-    registerInterestSubject: Register interest in climate:red session
-    registerInterestBody: I am interested in your climate:red session - "{0}"
-  workshops:
-    workshop: Workshop
-    workshops: Workshops
-    title: Interactive workshops
-    description: Participate in one of the following interactive workshops.
+# schedule:
+#   title: Schedule
+#   description: Browse the available sessions and plan your experience by adding reminders to your calendar.
+#   close: Close
+#   past: Past
+#   now: Now
+#   present: Present
+#   future: Future
+#   addToCalendar: Add to Calendar
+#   showAll: Show all
+#   hideAll: Hide all
+#   hidePastSessions: Hide past sessions
+#   showPastSessions: Show past sessions
+#   dates:
+#     ninth: 9 September
+#     tenth: 10 September
+#   search: Search
+#   showingResultsFor: 'Showing results for "{0}"'
+#   redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
+#   filters:
+#     all: All
+#     showFilters: Show Filters
+#     clearFilters: Clear Filters
+#     date: Date
+#     track: Track
+#     interactivity:
+#       interactivity: Interactivity
+#       interactive: Interactive
+#       nonInteractive: Non-interactive
+#     platform:
+#       platform: Platform
+#       zoom: Zoom
+#     device:
+#       device: Device
+#       desktopOnly: Desktop only
+#       mobileOnly: Mobile only
+#     recorded:
+#       recorded: Recorded
+#       willBeRecorded: Will be recorded
+#       notRecorded: Not recorded
+#   attributes:
+#     sessionAttributes: Session attributes
+#   actions:
+#     viewSession: View session
+#     joinSession: Join session
+#     previewSession: Preview session
+#     registerInterest: Register interest
+#     interestRegistered: Interest registered
+#     registerInterestSubject: Register interest in climate:red session
+#     registerInterestBody: I am interested in your climate:red session - "{0}"
+#   workshops:
+#     workshop: Workshop
+#     workshops: Workshops
+#     title: Interactive workshops
+#     description: Participate in one of the following interactive workshops.
 
-errors:
-  title: Something went wrong
-  general: An unexpected error occured, please try again.
-  loginExpired: Your login code has expired, they last for 30 minutes from when you request one. Please try again below.
+# errors:
+#   title: Something went wrong
+#   general: An unexpected error occured, please try again.
+#   loginExpired: Your login code has expired, they last for 30 minutes from when you request one. Please try again below.
 
-faqs:
-  title: FAQs
+# faqs:
+#   title: FAQs
