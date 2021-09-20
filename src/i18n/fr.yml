@@ -2,6 +2,16 @@
 # v2 - Deconf
 #
 deconf:
+  appLayout:
+    atrium: Atrium
+    #whatsOn: What's On
+    schedule: Programme
+    coffeeChat: Causerie Café
+    helpDesk: Aide
+
+  sideTabs:
+    unavailable: Indisponible
+
   apiError:
     #title: Something went wrong
     #content: We're having a bit of trouble, try refresing or coming back later.
