@@ -27,6 +27,11 @@
           :href="$t('ifrc.atrium.twitterUrl')"
           :icon="['fab', 'twitter']"
         />
+        <FeaturedSessions
+          v-if="featuredSessions.length > 0"
+          :featured="featuredSessions"
+          :current-date="scheduleDate"
+        />
       </div>
     </AtriumLayout>
   </BrandedAppLayout>
@@ -39,11 +44,18 @@ import {
   AtriumLayout,
   BoxContent,
   ColorWidget,
+  FeaturedSessions,
   mapApiState,
   mapMetricsState,
 } from '@openlab/deconf-ui-toolkit'
 import ApiContent from '@/components/ApiContent.vue'
-import { ConferenceConfig } from '@openlab/deconf-shared'
+import { ConferenceConfig, Session, SessionSlot } from '@openlab/deconf-shared'
+
+// TODO: import type when available
+interface SessionAndSlot {
+  session: Session
+  slot: SessionSlot
+}
 
 export default Vue.extend({
   components: {
@@ -52,6 +64,7 @@ export default Vue.extend({
     ColorWidget,
     BoxContent,
     ApiContent,
+    FeaturedSessions,
   },
   computed: {
     ...mapApiState('api', ['schedule', 'user', 'carbon']),
@@ -71,6 +84,30 @@ export default Vue.extend({
       return Math.floor(this.carbon.carbonNotEmitted / 1000)
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    },
+    scheduleDate(): Date {
+      return this.$dev.scheduleDate ?? this.$temporal.date
+    },
+    featuredSessions(): SessionAndSlot[] {
+      if (!this.schedule) return []
+
+      const now = this.scheduleDate.getTime()
+      const inAWeek = now + 7 * 24 * 60 * 60 * 1000
+      const slotMap = new Map(this.schedule.slots.map((s) => [s.id, s]))
+
+      return this.schedule.sessions
+        .filter((session) => Boolean(session.slot) && session.isFeatured)
+        .map((session) => ({
+          slot: slotMap.get(session.slot as string) as SessionSlot,
+          session: session,
+        }))
+        .filter(
+          (group) =>
+            Boolean(group.slot) &&
+            group.slot.end.getTime() > now &&
+            group.slot.start.getTime() < inAWeek
+        )
+        .sort((a, b) => a.slot?.start.getTime() - b.slot?.start.getTime())
     },
   },
   mounted() {
