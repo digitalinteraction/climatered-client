@@ -1,12 +1,17 @@
 <template>
-  <AppLayout :app-settings="settings" :user="user" :routes="routes">
+  <AppLayout
+    :app-settings="settings"
+    :user="user"
+    :routes="routes"
+    class="brandedAppLayout"
+  >
     <BrandA slot="brandA" />
-    <BrandB slot="brandB" />
+    <!-- <BrandB slot="brandB" /> -->
     <LanguageControl slot="languageControl" />
     <router-link slot="brandC" :to="atriumRoute">
-      <BrandC slot="brandC" />
+      <BrandC />
     </router-link>
-    <div slot="main" class="brandedMain">
+    <div slot="main" class="brandedAppLayout-main">
       <slot />
       <PageFooter />
     </div>
@@ -28,16 +33,33 @@ import { ConferenceConfig } from '@openlab/deconf-shared'
 import { Location } from 'vue-router'
 
 import BrandA from '../branding/BrandA.vue'
-import BrandB from '../branding/BrandB.vue'
+// import BrandB from '../branding/BrandB.vue'
 import BrandC from '../branding/BrandC.vue'
 import LanguageControl from '../components/LanguageControl.vue'
+
+import AtriumIcon from '../icons/AtriumIcon.vue'
+import CoffeeIcon from '../icons/CoffeeIcon.vue'
+import HelpDeskIcon from '../icons/HelpDeskIcon.vue'
+import ScheduleIcon from '../icons/ScheduleIcon.vue'
+
+// TODO:
+// - improve SideTabs variables and remove hacks below
+// - update #getDefaultRoutes to not include icons
+
+const iconMap: Record<string, Vue.Component | undefined> = {
+  [Routes.Atrium]: AtriumIcon,
+  [Routes.CoffeeChatLobby]: CoffeeIcon,
+  [Routes.HelpDesk]: HelpDeskIcon,
+  [Routes.Schedule]: ScheduleIcon,
+  [Routes.WhatsOn]: ScheduleIcon,
+}
 
 export default Vue.extend({
   components: {
     AppLayout,
     PageFooter,
     BrandA,
-    BrandB,
+    // BrandB,
     BrandC,
     LanguageControl,
   },
@@ -49,11 +71,17 @@ export default Vue.extend({
     routes(): AppRoute[] {
       if (!this.settings) return []
 
-      return getDefaultRoutes(
+      const routes = getDefaultRoutes(
         this.user,
         this.settings,
         (key) => this.$t(key) as string
       )
+
+      for (const r of routes) {
+        r.icon = iconMap[r.name] ?? r.icon
+      }
+
+      return routes
     },
     atriumRoute(): Location {
       return { name: Routes.Atrium }
@@ -63,14 +91,25 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.brandedMain {
+.brandedAppLayout {
+  .sideTabs-tab.is-active {
+    background: $white-ter;
+  }
+  .sideTabs {
+    border-inline-end: 1px solid $border;
+  }
+  .atriumLayout {
+    background-image: url(/img/background.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-top: 7em;
+  }
+}
+.brandedAppLayout-main {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   align-items: stretch;
-}
-.brandedMain-slot {
-  flex: 1;
 }
 </style>

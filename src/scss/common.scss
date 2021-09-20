@@ -2,7 +2,11 @@ $family-sans-serif: system-ui -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
   'Segoe UI Symbol';
 
-$primary: #5724f0;
+$primary: #ef3340;
+
+$sideTabs-background: white;
+$sideTabs-color: black;
+$sideTabs-active: $primary;
 
 // @import '~bulma/sass/utilities/_all.sass';
 @import '~@openlab/deconf-ui-toolkit/dist/common.scss';

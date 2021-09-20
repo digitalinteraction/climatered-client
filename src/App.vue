@@ -104,4 +104,28 @@ export default Vue.extend({
 .devControl .devControl-block:first-child {
   display: none;
 }
+
+//
+// Deconf hacks
+//
+.colorWidget {
+  background-color: $white !important;
+  .colorWidget-title {
+    color: $black !important;
+  }
+  .colorWidget-subtitle {
+    font-weight: 400;
+    color: $black !important;
+  }
+
+  &.is-primary svg {
+    color: $primary;
+  }
+  &.is-secondary svg {
+    color: $secondary;
+  }
+  &.is-twitter svg {
+    color: $twitter-blue;
+  }
+}
 </style>
