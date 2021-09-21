@@ -32,6 +32,8 @@ interface Data {
   sessions: Session[] | null
 }
 
+const typeBlocklist = new Set(['unknown', 'coffee-time'])
+
 export default Vue.extend({
   components: { BrandedAppLayout, WhatsOnView },
   data(): Data {
@@ -40,7 +42,7 @@ export default Vue.extend({
       enabledFilters: ['query', 'sessionType', 'theme'],
       config: {
         tileHeader: ['type'],
-        tileAttributes: ['themes', 'languages', 'recorded'],
+        tileAttributes: ['languages'],
       },
       sessions: null,
     }
@@ -51,7 +53,7 @@ export default Vue.extend({
       if (!this.sessions || !this.schedule) return []
 
       // Chance to apply custom filters
-      return this.sessions
+      return this.sessions.filter((s) => !typeBlocklist.has(s.type))
     },
     slotState(): SlotState {
       return 'future'
