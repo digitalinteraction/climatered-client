@@ -13,6 +13,7 @@ import { StorageKey, LocalisedContent } from '@/lib/module'
 import {
   CarbonCalculation,
   Registration,
+  Session,
   SessionLink,
 } from '@openlab/deconf-shared'
 
@@ -66,6 +67,14 @@ export function apiModule(): ApiStoreModule {
           commit('schedule', null)
           return false
         }
+      },
+      async fetchWhatsOn() {
+        const response = await agent
+          .get('schedule/whats-on')
+          .json<{ sessions: Session[] }>()
+          .catch(errorHandler)
+
+        return response?.sessions
       },
 
       //
@@ -131,7 +140,6 @@ export function apiModule(): ApiStoreModule {
       //
       // Attendance
       //
-
       async fetchLinks(ctx, sessionId: string) {
         const result = await agent
           .get(`schedule/${sessionId}/links`)

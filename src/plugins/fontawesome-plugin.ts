@@ -26,7 +26,6 @@ import {
   faCalendarPlus,
   faLongArrowAltRight,
   faLongArrowAltLeft,
-  faClock,
   faSearch,
   faTimes,
   faVideo,
@@ -40,6 +39,12 @@ import {
   faObjectGroup,
   faMapMarkerAlt,
   faPodcast,
+  faFastBackward,
+  faBackward,
+  faStop,
+  faPlay,
+  faForward,
+  faFastForward,
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -52,7 +57,7 @@ import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
 // Apply icons
 // prettier-ignore
 //
-library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronLeft, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, farCircle, faLongArrowAltRight, faLongArrowAltLeft, faClock, faSearch, faTimes, faVideo, fasCircle, faExclamationTriangle, faFire, faUserPlus, faGamepad, faComments, faMicrophone, faObjectGroup, faMapMarkerAlt, faPodcast,)
+library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronLeft, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, farCircle, faLongArrowAltRight, faLongArrowAltLeft, faSearch, faTimes, faVideo, fasCircle, faExclamationTriangle, faFire, faUserPlus, faGamepad, faComments, faMicrophone, faObjectGroup, faMapMarkerAlt, faPodcast,faFastBackward, faBackward, faStop, faPlay, faForward, faFastForward)
 
 export class FontAwesomePlugin {
   static install(Vue: typeof _Vue): void {

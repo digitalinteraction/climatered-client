@@ -29,6 +29,7 @@ interface Data {
   filtersKey: string
   enabledFilters: (keyof ScheduleFilterRecord)[]
   config: ScheduleConfig
+  sessions: Session[] | null
 }
 
 export default Vue.extend({
@@ -41,18 +42,27 @@ export default Vue.extend({
         tileHeader: ['type'],
         tileAttributes: ['themes', 'languages', 'recorded'],
       },
+      sessions: null,
     }
   },
   computed: {
     ...mapApiState('api', ['schedule']),
     filteredSessions(): Session[] {
-      if (!this.schedule) return []
+      if (!this.sessions || !this.schedule) return []
 
       // Chance to apply custom filters
-      return this.schedule.sessions
+      return this.sessions
     },
     slotState(): SlotState {
       return 'future'
+    },
+  },
+  mounted() {
+    this.fetchData()
+  },
+  methods: {
+    async fetchData() {
+      this.sessions = await this.$store.dispatch('api/fetchWhatsOn')
     },
   },
 })
