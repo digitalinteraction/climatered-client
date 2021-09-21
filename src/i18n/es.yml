@@ -1,293 +1,225 @@
-general:
-  message: 'Hola Mundo'
-  loginButton: Iniciar sesión
-  registerButton: ¡Regístrate ahora!
-  appName: Climate:Red
-  pleaseSelect: Por favor seleccionar
-  comingSoon: Próximamente
-  unavailable: Indisponible
-  genericError: Algo salió mal. Por favor, vuelva a intentarlo
-  backTo: Volver a {0}
+#
+# v2 - Deconf
+#
+deconf:
+  appLayout:
+    atrium: Entrada
+    #whatsOn: Whats On
+    schedule: Programa
+    coffeeChat: Charlas de Cafe
+    helpDesk: Ayuda
 
-atrium:
-  title: Entrada
-  or: o
-  sessionsButton: ¡Mira lo que pasa!
-  returnTo: Regresar a la Entrada
-  heroTitle: Cumbre Climática Virtual 2020
-  heroSubtitle: 9 de Sept, 12h00, 19h00 CEST
-  heading: ¡Bienvenido a nuestra cumbre mundial digital sobre cambio climático!
-  sponsorHeading: Asociados
-  onlineNow: En línea ahora
-  # kilogramsOfCarbonSaved: Kilogramos de CO₂ ahorrados
-  # tonnesOfCarbonSaved: Kilogramos de CO₂ ahorrados
-  featuredSesions: Sesiones destacadas
-  exploreAllSessions: Explore all sessions
-  liveIn: 'En vivo en {0}'
-  social: Social
-  tweetWith: 'Tuitear con {0}'
-  # conferenceOver: |
-  #   _
+  sideTabs:
+    unavailable: Indisponible
 
-login:
-  title: Ingreso
-  infoText: Después de registrarse, le enviaremos un correo electrónico de confirmación. El correo electrónico tendrá un enlace que le conectará. El enlace caducará después de 30 minutos. Si no lo recibe, verifique su carpeta de correo no deseado.
-  email:
-    label: Correo Electrónico
-    placeholder: por ejemplo, geoff@example.com
-    help: La dirección de correo electrónico con la que se registró en la conferencia
-  submitButton: Solicitar código de inicio de sesión
-  doneText: Código de inicio de sesión enviado
-  badEmail: Correo electrónico malo
+  apiError:
+    #title: Something went wrong
+    #content: We're having a bit of trouble, try refresing or coming back later.
+    #retry: 'Retrying in {0}'
 
-register:
-  title: Registrarse
-  infoText: 'Registrarse para el clima: ROJA'
-  name:
-    label: Nombre completo
-    placeholder: por ejemplo, Dan Howard
-    help: Su nombre completo
-  email:
-    label: dirección de correo electrónico
-    placeholder: por ejemplo, dan@example.com
-    help: Usarás tu correo electrónico para iniciar sesión en la cumbre virtual
-  language:
-    label: idioma
-    help: Este será su idioma preferido para la conferencia
-  country:
-    label: País
-    help: Para que podamos ver el alcance de la conferencia
-  affiliation:
-    label: Su afiliación
-    placeholder: por ejemplo, un miembro del personal de la FICR
-    help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
-  consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
-  termsLink: Términos y Condiciones
-  privacyLink: Política de privacidad
-  submitButton: Registrarse
-  doneText: Le hemos enviado un correo electrónico de verificación.
+  appLoading:
+    #message: Loading...
 
-profile:
-  title: Tu perfil
-  emailText: Su Correo Electrónico
-  localeText: Idioma seleccionado
-  whenText: Sesión iniciada
-  # registeredText: Registered
-  nameText: Nombre
-  countryText: País
-  affiliationText: Afiliación
-  logoutButton: Cerrar sesión
-  deleteButton: Eliminar cuenta
-  deleteText: Esto es permanente, ¿está segura?
-  # loadingText: Fetching profile
+  scheduleBlock:
+    workshopTitle: Talleres Interactivos
+    workshopDescription: Partícipe a uno de los talleres interactivos siguientes
+    #showWorkshops: Show all
+    #hideWorkshops: Hide all
+    #workshops: 'None | 1 tallere | {n} talleres'
 
-sessions:
-  title: Que hay ahora
-  tabs:
-    plenary: Los oradores
-    panel: Mesas redondas
-    sessions: Sesiones
+  general:
+    hours: horas | hora | horas
+    minutes: minutos | minuto | minutos
+    seconds: segundos | segundo | segundos
+    genericError: Algo salió mal. Por favor, vuelva a intentarlo
 
-session:
-  title: Ver la sesión
-  speakerHeading: Intervenants
-  hostHeading: Hôtes
-  infoHeading: Información sobre la sesión
-  linksHeading: Enlaces
-  showPoll: Autorizar sondaje
-  seeMore: Ver más
-  seeLess: Ver menos
-  noInterpret: Su navegador no soporta su interpretación, ¡lo siento!
-  joinLiveQandA: ¡Participa a preguntas y respuestas en vivo!
-  linksWillBeAvailable: Los enlaces a la sesión estarán disponible 15 minutos antes de la hora de inicio.
-  sessionWillBeHostedIn: Esta sesión se realizará en
-  interestRegisteredConfirmation: ¡Su interés ha sido registrado!
-  personInterested: '{0} personas interesadas '
-  scheduleHeading: Calendario
-  actionsHeading: Acciones
-  hostedByHeading: Presentado por
-  contactHost: Contactar el anfitrión
-  sessionOnlyAvailableIn: Favor de notar que esta sesión solo estará disponible en
+  miniSession:
+    #view: View
+    #live: Live
 
-coffeechat:
-  title: Charlas de Cafe
-  filterResults: Participantes activos
-  heading: ¿Estás listo(a)?
-  body: Utilizaremos la configuración siguiente para emparejarlo(a) con otro participante de Climate:Red. Haga clic en el botón de abajo para hacer una videollamada con el otro participante.
-  readyBtn: Listo
-  waitingBtn: En espera
-  joiningBtn: Conexión en proceso
-  filters:
-    languageResults: Lenguaje(s)
-    themeResults: Tema(s)
-    anyOption: Cualquiera
-    languageSelector: Seleccione uno o más lenguaje(s)
-    themeSelector: Seleccione uno o más tema(s)
-    clear: Borrar
-    save: Salvar
-    languages:
-      EN: English
-      FR: Française
-      ES: Español
-      AR: العربية
+  featuredSessions:
+    title: Sesiones destacadas
+    #action: Explore Sessions
 
-coffeechatroom:
-  title: Charlas de café
-  waitingForPartner: Esperando a que tu pareja se una
-  joiningInfo: Información de conexión
-  # contactDetails: _
-  shareContactDetails: compartir detalles de contacto
-  # confirmLeaveText: _
-  # copyJoinText: _
-  # copiedJoinInfo: _
-  # tooManyStreams: _
-  partnerTimeout: Parece que no hemos podido conectarlo con otra persona. Por favor salga y vuelva a intentarlo
-  leave: Salir de la sala
-  sharedContactDetails: ¡Compartido!
-  userMediaErrors:
-    generalError: Estamos teniendo problemas para encender tu webcam
-    devicesNotFoundError: verifique que su webcam esté conectada
-    trackStartError: su webcam o micrófono ya están en uso en otra aplicación
-    constraintNotSatisfiedError: haga clic en el botón de abajo para reintentar
-    typeError: haga clic en el botón de abajo para reintentar
-    unknownError: haga clic en el botón de abajo para reintentar
-    retryButtonText: habilitar cámara y micrófono
-    instructions:
-      safari: Abrir Preferencias de Safari > Navegar a Sitios Web > Ir a las pestañas de Cámara y Micrófono >  Modificar acceso a "Permitir" > Reiniciar Safari
-      chrome: Haga clic en el ícono de cámara bloqueada en la barra de direcciones de su navegador, y luego actualice la página
-      firefox: Haga clic en el ícono de cámara bloqueada en la barra de direcciones de su navegador y haga clic en la cruz para habilitar el micrófono y la cámara, luego actualice la página
-      edge: Haga clic en el ícono de candado en la barra de direcciones de su navegador > Haga clic en "Permisos de sitio" > Haga clic en "Restablecer permisos" > Actualice la página de su navegador
-
-help:
-  title: Ayuda
-
-notFound:
-  title: Página no encontrada
-  info: No pudimos encontrar la página que estaba buscando, verifique el enlace en el que hizo clic o regrese al atrio.
-
-terms:
-  title: Términos
-
-guidelines:
-  title: Directrices
-
-privacy:
-  title: Privacidad
-
-sessionCard:
-  hostedBy: Organizado por
-
-data:
-  type:
-    ignite-talk: Sesión de tormenta de ideas
-    games: Juegos de aprendizaje y diálogo
-    panel: Paneles y Debates
-    workshop: Seminarios
-    virtual-tour: Visitas Virtuales
-    plenary: Nota clave
-    speaker: _
-    fishbowl: Fishbowls- Peceras
-  track:
-    act: Acción
-    empower: Habilitación
-    influence: Influencia
-    transform: Transformación
-  interaction:
-    interactive: Interactivo
-    view: No interactivo
-  recorded:
-    true: Será grabado
-    false: No grabado
-  devices:
-    all: Todos
-    desktop: Solo computadoras
-    mobile: Solo Móvil
-
-cookies:
-  title: Cookies
-  popupTitle: Nuestro uso de las cookies
-  acceptAction: Permitir análisis de datos
-  rejectAction: Desactivar análisis de datos
-  content: |
-    Utilizamos las cookies necesarias para que el sitio funcione.
-    Nos gustaría analizar  cómo la gente experimenta la cumbre de Climate:RED y para asegurarnos de que podemos mejorar las futuras conferencias y cumbres virtuales.
-    Puede cambiar su preferencia haciendo clic en {0} en el pie de página del sitio.
-
-oneToMany:
-  label: Idioma de audio
-  noVideo: No hay video disponible
-  muteLabel: 'NOTA: para escuchar en otro idioma, recuerde silenciar la transmisión arriba'
-  stopped: parado
-  playing: reproduciendo
-  buffering: cargando {0}
-  ready: preparado para reproducir
-  source: Desde el vídeo
-  start: Comienzo
-  stop: Pare
-
-videoEmbed:
-  noLive: The live stream is currently unavailable, please check back later.
-
-schedule:
-  title: Programa
-  description: Explore las sesiones disponibles y planifique su experiencia agregando recordatorios a su calendario.
-  close: Cerrar
-  past: Precedentemente
-  now: Ahora
-  present: Ahora
-  future: Próximamente
-  addToCalendar: Añadir al calendario
-  showAll: Mostrar todo
-  hideAll: Esconder todo
-  hidePastSessions: Esconder las sesiones pasadas
-  showPastSessions: Mostrar las sesiones pasadas
-  dates:
-    ninth: 9 septembre
-    tenth: 10 septembre
-  search: Búsqueda
-  showingResultsFor: 'Resultados para "{0}"'
-  redCrossRedCrescentMembersOnly: Solo miembros de la Cruz Roja y de la Media Luna Roja
-  filters:
-    all: Todas
+  scheduleFilters:
+    query: Buscar
     showFilters: Mostrar filtros
-    clearFilters: Esconder filtros
-    date: Fecha
-    track: Vertiente
-    interactivity:
-      interactivity: Interactividad
-      interactive: Interactivo
-      nonInteractive: No interactivo
-    platform:
-      platform: Plataforma
-      zoom: Zoom
-    device:
-      device: Dispositivo
-      desktopOnly: Solo computadoras
-      mobileOnly: Solo Móvil
-    recorded:
-      recorded: Grabado
-      willBeRecorded: Será grabado
-      notRecorded: No grabado
-  attributes:
-    sessionAttributes: Atributos de sesión
-  actions:
-    viewSession: Ver la sesión
-    joinSession: Sumarse a la sesión
-    previewSession: Previsualizar sesión
-    registerInterest: Registre su interés
-    registerInterestSubject: Registre un interés en la sesión climate:red
-    registerInterestBody: Estoy interesado en su sesión climate:red - "{0}"
-    interestRegistered: Interés registrado
-  workshops:
-    workshop: Tallere
-    workshops: Talleres
-    title: Talleres Interactivos
-    description: Partícipe a uno de los talleres interactivos siguientes
+    hideFilters: Ocultar filtros
+    #clearFilters: Clear filters
+    #dateFilter: Date
+    #typeFilter: Type
+    #trackFilter: Track
+    #themeFilter: Theme
+    #recordedFilter: Is Recorded
+    offLabel: Todos
+    'yes': 'sí'
+    'no': 'No'
 
-errors:
-  title: Algo salió mal
-  general: Ocurrió un error inesperado, inténtelo de nuevo.
-  loginExpired: Su código de acceso a la sesión ha expirado,  dura 30 minutos desde que solicita uno. Por favor probar de nuevo.
+  attendanceSection:
+    #loading: Fetching attendance
+    #processing: Processing
+    #registered: You are registered for this session
+    #full: This session is full
+    #spacesLeft: '{0}/{1} seats remaining.'
+    #registerButton: Register now
+    #unregisterButton: Release my seat
 
-faqs:
-  title: FAQ
+  timeSlot:
+    #past: Precedentemente
+    #live: Live
+
+  joinSession:
+    future: Previsualizar sesión
+    present: Sumarse a la sesión
+    past: Ver la sesión
+
+  sessionAttributes:
+    isRecorded: Será grabado
+    notRecorded: No grabado
+
+  addToCalendar:
+    #action: Add to calendar
+
+  sessionLink:
+    copy: dupdo
+    #copied: copied
+
+  sessionState:
+    #liveNow: Live Now
+    #sessionOver: Session over
+    #interest: 'no interest | 1 person is attending | {n} people are attending'
+
+  sessionEmbed:
+    #openTeams: Open Teams meeting
+    #openZoom: Open Zoom meeting
+    #openHubs: Open Mozilla Hub
+    #openSpatial: Open Spatial Chat
+    #noEmbed: Something went wrong, there is nothing to show here
+
+  languageWarning:
+    #message: 'Please note this session is only available in {0}'
+
+  navigationBar:
+    profile: Tu perfil
+    login: Iniciar sesión
+    #interpret: Interpret mode
+    register: Registrarse
+    unavailable: ' (Indisponible)'
+
+  whatsOn:
+    title: What's On
+    infoText: Browse the Schedule before release day
+
+  login:
+    title: Ingreso
+    infoText: >
+      Después de registrarse, le enviaremos un correo electrónico de confirmación. El correo electrónico tendrá un enlace que le conectará. El enlace caducará después de 30 minutos. Si no lo recibe, verifique su carpeta de correo no deseado.
+    email:
+      label: Correo Electrónico
+      placeholder: por ejemplo, dan@example.com
+      help: La dirección de correo electrónico con la que se registró en la conferencia
+    badEmail: Correo electrónico malo
+    doneText: Código de inicio de sesión enviado
+    submitButton: Solicitar código de inicio de sesión
+    #registerLabel: Not registered yet?
+    #registerAction: Register here
+
+  profile:
+    title: Tu perfil
+    actionLabel: Comportamiento
+    logoutButton: Cerrar sesión
+    dangerLabel: Zona peligrosa
+    deleteButton: Eliminar cuenta
+    deleteText: Esto es permanente, ¿está segura?
+    ifrc:
+      emailText: Su Correo Electrónico
+      localeText: Idioma seleccionado
+      whenText: Sesión iniciada
+      # registeredText: Registered
+      nameText: Nombre
+      countryText: País
+      affiliationText: Afiliación
+      #marketingText: Marketing
+
+  schedule:
+    title: Programa
+    description: Explore las sesiones disponibles y planifique su experiencia agregando recordatorios a su calendario.
+    #allSessions: All
+    #userSessions: User
+    hidePast: Esconder las sesiones pasadas
+    showPast: Mostrar las sesiones pasadas
+    #noResults: Nothing matched your query
+
+  session:
+    slot: Calendario
+    #countdown: Countdown
+    links: Enlaces
+    linkPreview: Los enlaces a la sesión estarán disponible 15 minutos antes de la hora de inicio.
+    actions: Acciones
+    #logIn: Log in to attend this session
+    speakers: Intervenants
+    #zoomLink: Zoom Room
+    #teamsLink: Teams Meeting
+    #miroLink: Miro Board
+    #generalLink: Link
+    backButton: Volver a Programa
+
+#
+# v2 - IFRC
+#
+ifrc:
+  general:
+    appName: PlanetRed
+    #backToAtrium: Regresar a la Entrada
+    notSelected: (Por favor seleccionar)
+    genericError: Algo salió mal. Por favor, vuelva a intentarlo
+    'yes': 'sí'
+    'no': 'No'
+
+  register:
+    title: Registrarse
+    infoText: >
+      Registrarse para el Climate:Red
+    name:
+      label: Nombre completo
+      placeholder: por ejemplo, Dan Howard
+      help: Su nombre completo
+    email:
+      label: dirección de correo electrónico
+      placeholder: por ejemplo, dan@example.com
+      help: Usarás tu correo electrónico para iniciar sesión en la cumbre virtual
+    language:
+      label: idioma
+      help: Este será su idioma preferido para la conferencia
+    country:
+      label: País
+      help: Para que podamos ver el alcance de la conferencia
+    affiliation:
+      label: Su afiliación
+      placeholder: por ejemplo, un miembro del personal de la FICR
+      help: Afiliación con el MICR (por ejemplo, personal / voluntario / miembro de la junta / miembro de la sociedad nacional / FICR / CICR / centro de referencia; o ninguno)
+    submitButton: Registrarse
+    consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
+    #marketingText: I consent to marketing emails from XYZ
+    termsLink: Términos y Condiciones
+    privacyLink: Política de privacidad
+    #loginLabel: Already registered?
+    #loginAction: Log in here
+    #genericError: Please check your submission and try again.
+
+  atrium:
+    title: Entrada
+    sponsorHeading: Asociados
+    onlineNow: En línea ahora
+    carbonSaved: Kilogramos de CO₂ ahorrados
+    #twitterTitle: Social
+    #twitterSubtitle: 'Tuitear con #PlanetRed'
+    #twitterUrl: 'https://twitter.com'
+    #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+
+  footer:
+    appName: PlanetRed
+    privacy: Privacidad
+    guidelines: Directrices
+    terms: Términos
+    faqs: FAQ

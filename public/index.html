@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <link rel="icon" href="<%= BASE_URL %>favicon.png" />
-    <link rel="stylesheet" href="https://use.typekit.net/mli7qnv.css" />
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <!-- <link rel="stylesheet" href="https://use.typekit.net/mli7qnv.css" /> -->
+    <!-- <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> -->
     <title>Climate:Red | Virtual Climate Summit 2020</title>
     <meta
       content="Climate:Red | Virtual Climate Summit 2020"
@@ -21,8 +21,10 @@
       content="Climate change affects everyone, everywhere - therefore no person, country or time zone is excluded from the virtual Climate:Red Summit, organised by the network of the International Federation of Red Cross and Red Crescent and open for everyone to join."
       property="og:description"
     />
+    <!-- Load configuration script -->
+    <script src="<%= BASE_URL %>config.js"></script>
   </head>
-  <body class="has-navbar-fixed-top">
+  <body>
     <noscript>
       <strong
         >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work

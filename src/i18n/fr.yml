@@ -1,293 +1,224 @@
-general:
-  message: Bonjour le monde
-  loginButton: Se connecter
-  registerButton: Inscrivez-vous dès maintenant!
-  appName: Climate:Red
-  pleaseSelect: Veuillez sélectionner
-  comingSoon: Bientôt disponible
-  unavailable: Indisponible
-  genericError: Une erreur s'est produite. Veuillez réessayer
-  backTo: Retour à {0}
+#
+# v2 - Deconf
+#
+deconf:
+  appLayout:
+    atrium: Atrium
+    #whatsOn: What's On
+    schedule: Programme
+    coffeeChat: Causerie Café
+    helpDesk: Aide
 
-atrium:
-  title: Atrium
-  or: ou
-  sessionsButton: Voyez ce qui se passe!
-  returnTo: Retourner à l’Atrium
-  heroTitle: Sommet Virtuel sur le Climat 2020
-  heroSubtitle: 9 sept, 12h00 - 10 sept, 19h00 CEST
-  heading: Bienvenue à notre sommet mondial numérique sur le changement climatique!
-  sponsorHeading: Partenaires
-  onlineNow: En ligne maintenant
-  # kilogramsOfCarbonSaved: Des kilogrammes de CO₂ économisés
-  # tonnesOfCarbonSaved: Des kilogrammes de CO₂ économisés
-  featuredSesions: Sessions vedettes
-  exploreAllSessions: Explore all sessions
-  liveIn: 'En ligne dans {0}'
-  social: Social
-  tweetWith: 'Tweeter avec {0}'
-  # conferenceOver: |
-  #   _
+  sideTabs:
+    unavailable: Indisponible
 
-login:
-  title: Connexion
-  infoText: Après votre inscription, nous vous enverrons un email de confirmation. L'e-mail contiendra un lien qui vous connectera. Le lien expirera au bout de 30 minutes. Si vous ne recevez rien, veuillez vérifier votre dossier “Courriers indésirables”.
-  email:
-    label: Adresse E-mail
-    placeholder: 'par exemple: geoff@example.com'
-    help: L'adresse e-mail avec laquelle vous vous êtes inscrit à la conférence
-  submitButton: Demander un code de connexion
-  doneText: Código de inicio de sesión enviado
-  badEmail: Mauvais e-mail
+  apiError:
+    #title: Something went wrong
+    #content: We're having a bit of trouble, try refresing or coming back later.
+    #retry: 'Retrying in {0}'
 
-register:
-  title: Inscrivez
-  infoText: Inscrivez-vous à Climate:Red
-  name:
-    label: Nom complet
-    placeholder: 'par exemple: Dan Howard'
-    help: Votre nom complet
-  email:
-    label: l'adresse email
-    placeholder: 'par exemple: dan@example.com'
-    help: Vous utiliserez votre e-mail pour vous connecter à la conférence
-  language:
-    label: Langue
-    help: Ce sera votre langue principale pour la conférence
-  country:
-    label: Pays
-    help: Pour que nous puissions voir la portée de la conférence
-  affiliation:
-    label: Votre affiliation
-    placeholder: 'par exemple: Membre du personnel de la FICR'
-    help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
-  consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
-  termsLink: Termes et conditions
-  privacyLink: Politique de confidentialité
-  submitButton: Inscrivez
-  doneText: Nous vous avons envoyé un e-mail de vérification.
+  appLoading:
+    message: Chargement...
 
-profile:
-  title: Votre profil
-  emailText: Votre adresse E-mail
-  localeText: Langue choisie
-  whenText: Connecté
-  # registeredText: Registered
-  nameText: Nom
-  countryText: Pays
-  affiliationText: Affiliation
-  logoutButton: Se déconnecter
-  deleteButton: Supprimer le compte
-  deleteText: C'est permanent, êtes-vous sûr?
-  # loadingText: Fetching profile
+  scheduleBlock:
+    workshopTitle: Ateliers interactifs
+    workshopDescription: Participez à l'un des ateliers interactifs suivants
+    #showWorkshops: Show all
+    #hideWorkshops: Hide all
+    workshops: 'Rien | 1 atelier | {n} ateliers'
 
-sessions:
-  title: Quoi de neuf
-  tabs:
-    plenary: Les intervenants
-    panel: Tables rondes
-    sessions: Séances
+  general:
+    hours: heures | heure | heures
+    minutes: minutes | minute | minutes
+    seconds: seconds | second | seconds
+    genericError: Une erreur s'est produite. Veuillez réessayer
 
-coffeechat:
-  title: Causerie Café
-  filterResults: Participants actifs
-  heading: Êtes-vous prêt(e)?
-  body: Nous utiliserons les paramètres ci-dessous pour vous faire correspondre avec un autre participant de Climate:Red. Cliquez sur le bouton ci-dessous pour dialoguer en vidéo avec un autre participant.
-  readyBtn: Prêt
-  waitingBtn: En attente
-  joiningBtn: En adhésion
-  filters:
-    languageResults: Langue(s)
-    themeResults: Thème(s)
-    anyOption: Tout
-    languageSelector: Sélectionner une ou plusieurs  langue(s)
-    themeSelector: Sélectionner un ou plusieurs thème(s)
-    clear: Effacer
-    save: Sauvegarder
-    languages:
-      EN: English
-      FR: Française
-      ES: Español
-      AR: العربية
+  miniSession:
+    #view: View
+    #live: Live
 
-coffeechatroom:
-  title: Causerie Café
-  waitingForPartner: En attendant l'arrivée de votre partenaire
-  joiningInfo: Informations sur l'adhésion
-  # contactDetails: _
-  shareContactDetails: partager les coordonnées
-  # confirmLeaveText: _
-  # copyJoinText: _
-  # copiedJoinInfo: _
-  # tooManyStreams: _
-  partnerTimeout: Il semble que nous n’ayons pas pu vous mettre en relation avec un partenaire. Veuillez quitter et réessayer
-  leave: Quitter la salle
-  sharedContactDetails: Partager!
-  userMediaErrors:
-    generalError: nous avons du mal à allumer votre webcam
-    devicesNotFoundError: vérifiez que votre webcam soit bien branchée
-    trackStartError: votre webcam ou votre micro sont déjà utilisés dans une autre application
-    constraintNotSatisfiedError: cliquez sur le bouton ci-dessous pour réessayer
-    typeError: cliquez sur le bouton ci-dessous pour réessayer
-    unknownError: cliquez sur le bouton ci-dessous pour réessayer
-    retryButtonText: activer la caméra et le micro
-    instructions:
-      safari: Ouvrir les préférences de Safari > Naviguer vers les sites Web > Aller aux onglets Appareil photo et Microphone > Modifier l'accès à 'Autoriser' > Redémarrer Safari
-      chrome: Cliquez sur l'icône de caméra verrouillée s'affichant dans la barre d'adresse de votre navigateur, puis actualisez la page
-      firefox: Cliquez sur l'icône de caméra verrouillée dans la barre d'adresse de votre navigateur et cliquez sur la croix pour activer le micro et la caméra, puis actualisez la page
-      edge: Cliquez sur l'icône cadenas dans la barre d'adresse de votre navigateur > Cliquez sur "Paramètres de site" > Cliquez sur "Réinitialiser les autorisations" > Actualisez la page du navigateur
+  featuredSessions:
+    title: Sessions vedettes
+    #action: View Schedule
 
-help:
-  title: Aide
+  scheduleFilters:
+    query: Chercher
+    showFilters: Afficher les filtres
+    hideFilters: Masquer les filtres
+    #clearFilters: Clear filters
+    #dateFilter: Date
+    #typeFilter: Type
+    #trackFilter: Track
+    #themeFilter: Theme
+    #recordedFilter: Is Recorded
+    offLabel: Tout
+    'yes': 'Oui'
+    'no': 'Non'
 
-notFound:
-  title: Page introuvable
-  info: Nous n'avons pas trouvé la page que vous recherchiez, veuillez vérifier le lien sur lequel vous avez cliqué ou retourner à l'atrium.
+  attendanceSection:
+    #loading: Fetching attendance
+    #processing: Processing
+    #registered: You are registered for this session
+    #full: This session is full
+    #spacesLeft: '{0}/{1} seats remaining.'
+    #registerButton: Register now
+    #unregisterButton: Release my seat
 
-terms:
-  title: Termes
+  timeSlot:
+    #past: Past
+    #live: Live
 
-guidelines:
-  title: Directives
+  joinSession:
+    future: Prévisualiser la session
+    present: Joindre la session
+    past: Voir la session
 
-privacy:
-  title: Confidentialité
+  sessionAttributes:
+    isRecorded: Sera enregistré
+    notRecorded: Non enregistré
 
-sessionCard:
-  hostedBy: Organisée par
+  addToCalendar:
+    #action: Add to calendar
 
-data:
-  type:
-    ignite-talk: Présentations Ignite
-    games: Jeux d’apprentissage et de dialogue
-    panel: Tables rondes et discussions
-    workshop: Ateliers
-    virtual-tour: Visites virtuelles
-    plenary: Liminaire
-    speaker: _
-    fishbowl: Bocal à poisson
-  track:
-    act: Agir
-    empower: Donner les moyens d’agir
-    influence: Influencer
-    transform: Transformer
-  interaction:
-    interactive: Intéractif
-    view: Non intéractif
-  recorded:
-    true: Sera enregistré
-    false: Non enregistré
-  devices:
-    all: Tous
-    desktop: Ordinateur seulement
-    mobile: Mobile seulement
+  sessionLink:
+    #copy: copy
+    #copied: copied
 
-cookies:
-  title: Cookies
-  popupTitle: Notre utilisation des cookies
-  acceptAction: Autoriser l'analyse des donnés
-  rejectAction: Désactiver l'analyse des données
-  content: |
-    Nous utilisons les cookies nécessaires au bon fonctionnement du site.
-    Nous aimerions pouvoir les analyser afin de voir comment les gens vivent le sommet Climate:RED et ainsi nous assurer que nous pouvons améliorer les futures conférences et sommets virtuels.
-    Vous pouvez modifier vos préférences en cliquant sur {0} dans le pied de page du site.
+  sessionState:
+    #liveNow: Live Now
+    #sessionOver: Session over
+    #interest: 'no interest | 1 person is attending | {n} people are attending'
 
-session:
-  title: Voir la session
-  speakerHeading: Intervenants
-  hostHeading: Hôtes
-  infoHeading: Information sur la session
-  linksHeading: Liens
-  showPoll: Autoriser un sondage
-  seeMore: Voir plus
-  seeLess: Voir moins
-  noInterpret: Votre navigateur ne prend pas en charge l'interprétation, désolé !
-  joinLiveQandA: Participez aux questions-réponses en direct
-  linksWillBeAvailable: Les liens des sessions seront disponibles 15 minutes avant l'heure de lancement.
-  sessionWillBeHostedIn: Cette sessions aura lieu à
-  interestRegisteredConfirmation: Votre intérêt a bien été enregistré!
-  personInterested: '{0} personnes intéressée'
-  scheduleHeading: Programme
-  actionsHeading: Actions
-  hostedByHeading: Présenté par
-  contactHost: Contacter l’hôte
-  sessionOnlyAvailableIn: Veuillez noter que cette session n’est disponible qu’en
+  sessionEmbed:
+    #openTeams: Open Teams meeting
+    #openZoom: Open Zoom meeting
+    #openHubs: Open Mozilla Hub
+    #openSpatial: Open Spatial Chat
+    #noEmbed: Something went wrong, there is nothing to show here
 
-oneToMany:
-  label: Langue audio
-  noVideo: Aucune vidéo disponible
-  muteLabel: 'A noter: pour écouter une autre langue, n’oubliez pas de mettre en sourdine le flux ci-dessus'
-  stopped: arrêté
-  playing: en jouant
-  buffering: chargement {0}
-  ready: prêt à jouer
-  source: De la vidéo
-  start: Début
-  stop: Arrêtez
+  languageWarning:
+    #message: 'Please note this session is only available in {0}'
 
-videoEmbed:
-  noLive: La diffusion en direct est actuellement indisponible, veuillez revenir plus tard.
+  navigationBar:
+    profile: Votre profil
+    login: Connexion
+    #interpret: Interpret mode
+    register: Inscrivez
+    unavailable: ' (Indisponible)'
 
-schedule:
-  title: Programme
-  description: Explorez les sessions disponibles et planifiez votre expérience en ajoutant des rappels à votre calendrier.
-  close: Fermer
-  past: Précédemment
-  now: Maintenant
-  present: Maintenant
-  future: À venir
-  addToCalendar: Ajouter au calendrier
-  showAll: Tout montrer
-  hideAll: Tout cacher
-  hidePastSessions: Cacher les sessions passées
-  showPastSessions: Montrer les sessions passées
-  dates:
-    ninth: 9 septembre
-    tenth: 10 septembre
-  search: Recherche
-  showingResultsFor: Montrer les résultats pour "{0}"
-  redCrossRedCrescentMembersOnly: Membres de la Croix-Rouge et du Croissant-Rouge uniquement
-  filters:
-    all: Tous
-    showFilters: Montrer les filtres
-    clearFilters: Cacher les filtres
-    date: Date
-    track: Axe
-    interactivity:
-      interactivity: Intéractivité
-      interactive: Intéractif
-      nonInteractive: Non intéractif
-    platform:
-      platform: Plateforme
-      zoom: Zoom
-    device:
-      device: Dispositif
-      desktopOnly: Ordinateur seulement
-      mobileOnly: Mobile seulement
-    recorded:
-      recorded: Enregistré
-      willBeRecorded: Sera enregistré
-      notRecorded: Non enregistré
-  attributes:
-    sessionAttributes: Attributs de session
-  actions:
-    viewSession: Voir la session
-    joinSession: Joindre la session
-    previewSession: Prévisualiser la session
-    registerInterest: Enregistrer un intérêt
-    registerInterestSubject: Enregistrer un intérêt dans la session climate:red
-    registerInterestBody: Je suis intéressé(e) par votre session climate:red - "{0}"
-    interestRegistered: Intérêts enregistrés
-  workshops:
-    workshop: Atelier
-    workshops: Ateliers
-    title: Ateliers interactifs
-    description: Participez à l'un des ateliers interactifs suivants
+  whatsOn:
+    #title: What's On
+    #infoText: Browse the Schedule before release day
 
-errors:
-  title: Quelque chose n'a pas marché
-  general: Une erreur inattendue s'est produite, veuillez réessayer.
-  loginExpired: Votre code de connexion a expiré, il dure 30 minutes à partir du moment où vous en demandez un. Veuillez réessayer ci-dessous.
+  login:
+    title: Connexion
+    infoText: Après votre inscription, nous vous enverrons un email de confirmation. L'e-mail contiendra un lien qui vous connectera. Le lien expirera au bout de 30 minutes. Si vous ne recevez rien, veuillez vérifier votre dossier "Courriers indésirables".
+    email:
+      label: Adresse E-mail
+      placeholder: 'par exemple: geoff@example.com'
+      help: L'adresse e-mail avec laquelle vous vous êtes inscrit à la conférence
+    badEmail: Mauvais e-mail
+    doneText: Código de inicio de sesión enviado
+    submitButton: Demander un code de connexion
+    #registerLabel: Not registered yet?
+    #registerAction: Register here
 
-faqs:
-  title: FAQ
+  profile:
+    title: Votre profil
+    actionLabel: Actions
+    logoutButton: Se déconnecter
+    dangerLabel: Zone dangereuse
+    deleteButton: Supprimer le compte
+    deleteText: C'est permanent, êtes-vous sûr?
+    ifrc:
+      emailText: Votre adresse E-mail
+      localeText: Langue choisie
+      whenText: Connecté
+      # registeredText: Registered
+      nameText: Nom
+      countryText: Pays
+      affiliationText: Affiliation
+      #marketingText: Marketing
+
+  schedule:
+    title: Programme
+    description: Explorez les sessions disponibles et planifiez votre expérience en ajoutant des rappels à votre calendrier.
+    #allSessions: Tous
+    #userSessions: User
+    hidePast: Cacher les sessions passées
+    showPast: Montrer les sessions passées
+    #noResults: Nothing matched your query
+
+  session:
+    slot: Programme
+    #countdown: Countdown
+    links: Liens
+    linkPreview: Les liens des sessions seront disponibles 15 minutes avant l'heure de lancement.
+    actions: Actions
+    #logIn: Log in to attend this session
+    speakers: Intervenants
+    #zoomLink: Zoom Room
+    #teamsLink: Teams Meeting
+    #miroLink: Miro Board
+    #generalLink: Link
+    #backButton: Back to Schedule
+
+#
+# v2 - IFRC
+#
+ifrc:
+  general:
+    appName: PlanetRed
+    backToAtrium: Retourner à l’Atrium
+    notSelected: (Veuillez sélectionner)
+    genericError: Une erreur s'est produite. Veuillez réessayer
+    'yes': Oui
+    'no': Non
+
+  register:
+    title: Inscrivez
+    infoText: >
+      Inscrivez-vous à Climate:Red
+    name:
+      label: Nom complet
+      placeholder: 'par exemple: Dan Howard'
+      help: Votre nom complet
+    email:
+      label: l'adresse email
+      placeholder: 'par exemple: dan@example.com'
+      help: Vous utiliserez votre e-mail pour vous connecter à la conférence
+    language:
+      label: Langue
+      help: Ce sera votre langue principale pour la conférence
+    country:
+      label: Pays
+      help: Pour que nous puissions voir la portée de la conférence
+    affiliation:
+      label: Votre affiliation
+      placeholder: 'par exemple: Membre du personnel de la FICR'
+      help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
+    submitButton: Inscrivez
+    consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
+    #marketingText: I consent to marketing emails from XYZ
+    termsLink: Termes et conditions
+    privacyLink: Politique de confidentialité
+    #loginLabel: Already registered?
+    #loginAction: Log in here
+    #genericError: Please check your submission and try again.
+
+  atrium:
+    title: Atrium
+    sponsorHeading: Partenaires
+    onlineNow: En ligne maintenant
+    carbonSaved: Des kilogrammes de CO₂ économisés
+    #twitterTitle: Social
+    #twitterSubtitle: 'Tweeter avec #PlanetRed'
+    #twitterUrl: 'https://twitter.com'
+    #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+
+  footer:
+    appName: PlanetRed
+    privacy: Confidentialité
+    guidelines: Directives
+    terms: Termes
+    faqs: FAQ

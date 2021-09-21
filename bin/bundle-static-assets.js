@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const axios = require('axios').default
 const fs = require('fs/promises')
 const path = require('path')
@@ -23,8 +25,8 @@ async function downloadFromAPI(authToken, apiUrl) {
   const agent = axios.create({
     baseURL: apiUrl,
     headers: {
-      authorization: `bearer ${authToken}`
-    }
+      authorization: `bearer ${authToken}`,
+    },
   })
 
   const dataset = [
@@ -34,7 +36,7 @@ async function downloadFromAPI(authToken, apiUrl) {
     { slug: 'schedule/speakers' },
     { slug: 'schedule/themes' },
     { slug: 'schedule/tracks' },
-    { slug: 'schedule/types' }
+    { slug: 'schedule/types' },
   ]
 
   for (const item of dataset) {
@@ -74,14 +76,14 @@ async function main() {
   const [
     authToken,
     apiUrl = 'http://localhost:3000/',
-    cdnRemote = 'git@github.com:digitalinteraction/climatered-schedule.git'
+    cdnRemote = 'git@github.com:digitalinteraction/climatered-schedule.git',
   ] = process.argv.slice(2)
 
   await downloadFromAPI(authToken, apiUrl)
   await downloadFromCDN(cdnRemote)
 }
 
-main(...process.argv.slice(2)).catch(error => {
+main(...process.argv.slice(2)).catch((error) => {
   console.error(error.message)
   console.error(error.stack)
   process.exit(1)

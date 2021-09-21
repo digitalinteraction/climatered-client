@@ -1,124 +1,131 @@
 <template>
   <div id="app">
-    <ApiError v-if="apiState === 'error'" />
-    <router-view v-else-if="isReady" />
-    <CookiePopup />
+    <ApiError v-if="apiState === 'error'" :home-route="homeRoute">
+      <BrandA slot="brand" />
+      <PageFooter slot="footer" />
+    </ApiError>
+    <router-view v-else-if="apiState === 'ready'" />
+    <AppLoading v-else />
+    <DevControl :dev-plugin="$dev" :force-enable="isDev" />
   </div>
 </template>
 
-<script>
-import { mapState } from 'vuex'
-
+<script lang="ts">
+import Vue from 'vue'
 import {
-  ROUTE_ATRIUM,
-  ROUTE_TOKEN_CAPTURE,
-  ROUTE_LOGIN,
-  ROUTE_REGISTER,
-  ROUTE_TERMS,
-  ROUTE_PRIVACY,
-  ROUTE_ERROR,
-  ROUTE_FAQS,
-  ROUTE_GUIDELINES,
-  ROUTE_SCHEDULE,
-  ROUTE_SESSION
-} from './const'
+  ApiError,
+  AppLoading,
+  DevControl,
+  mapApiState,
+  Routes,
+} from '@openlab/deconf-ui-toolkit'
+import { ConferenceConfig } from '@openlab/deconf-shared'
+import { Location } from 'vue-router'
 
-import ApiError from '@/components/ApiError.vue'
-import CookiePopup from '@/components/CookiePopup.vue'
+import PageFooter from './components/PageFooter.vue'
+import { StorageKey } from './lib/module'
+import BrandA from './branding/BrandA.vue'
+import { setLocale } from './i18n/module'
 
-// Routes that can be visited without being logged in
-const noAuthRoutes = [
-  ROUTE_ATRIUM,
-  ROUTE_TOKEN_CAPTURE,
-  ROUTE_LOGIN,
-  ROUTE_REGISTER,
-  ROUTE_TERMS,
-  ROUTE_PRIVACY,
-  ROUTE_FAQS,
-  ROUTE_GUIDELINES,
-  ROUTE_ERROR,
-  ROUTE_SCHEDULE,
-  ROUTE_SESSION
-]
+interface Data {
+  timerId: null | number
+}
 
-export default {
-  components: { ApiError, CookiePopup },
-  data() {
-    return {
-      isReady: false,
-      timerId: null
-    }
+export default Vue.extend({
+  components: { ApiError, AppLoading, DevControl, PageFooter, BrandA },
+  data(): Data {
+    return { timerId: null }
   },
   computed: {
-    ...mapState('api', ['apiState'])
+    ...mapApiState('api', ['apiState', 'schedule', 'user']),
+    settings(): ConferenceConfig | null {
+      return this.schedule?.settings ?? null
+    },
+    homeRoute(): Location {
+      return { name: Routes.Atrium }
+    },
+    isDev(): boolean {
+      return process.env.NODE_ENV === 'development'
+    },
   },
-  async created() {
-    this.$socket.bindEvent(this, 'site-visitors', count => {
-      this.$store.commit('api/siteVisitors', count)
+  async mounted(): Promise<void> {
+    const token = localStorage.getItem(StorageKey.AuthToken)
+
+    this.$temporal.setup()
+
+    // Listen for site-visitors and update vuex
+    this.$io.socket.on('site-visitors', (count: number) => {
+      this.$store.commit('metrics/siteVisitors', count)
     })
-  },
-  async mounted() {
-    const { token } = localStorage
 
     if (token) {
-      //
-      // If there is a token stored, authenticate with it & fetch data
-      //
-      await this.$store.dispatch('api/authenticate', {
-        socket: this.$socket,
-        token
-      })
-    } else {
-      // If there isn't a token, still fetch data (should we await this?)
-      await this.$store.dispatch('api/fetchData')
-
-      //
-      // If there isn't a token and it isn't a whitelisted route, go to the atrium
-      //
-      if (!noAuthRoutes.includes(this.$route.name)) {
-        this.$router.replace({ name: ROUTE_ATRIUM })
+      await this.$store.dispatch('api/authenticate', token)
+      if (this.user) {
+        setLocale(this.user.user_lang)
       }
+    } else {
+      await this.$store.dispatch('api/fetchData')
     }
 
-    const scheduleTick = Math.round((3 + Math.random() * 4) * 60 * 1000)
-    this.timerId = setInterval(
-      () => this.$store.dispatch('api/fetchSessions'),
-      scheduleTick
-    )
+    // TODO: check for allow-listed routes or go to /atrium
 
-    this.isReady = true
+    this.timerId = setInterval(
+      () => this.$store.dispatch('api/fetchData'),
+      this.randomTick()
+    )
   },
-  destroyed() {
-    this.$socket.unbindOwner(this)
-    if (this.timerId) clearInterval(this.timerId)
-  }
-}
+  destroyed(): void {
+    this.$temporal.teardown()
+    this.$io.teardown()
+
+    if (this.timerId) {
+      clearInterval(this.timerId)
+      this.timerId = null
+    }
+  },
+  methods: {
+    randomTick(): number {
+      return Math.round((3 + Math.random() * 4) * 60 * 1000)
+    },
+  },
+})
 </script>
 
 <style lang="scss">
-@import '~bulma/bulma.sass';
-@import '@/scss/app.scss';
+@import '~@openlab/deconf-ui-toolkit/dist/theme.scss';
 
-.embedded {
-  background-color: #fafafa;
-  border-radius: $radius;
-  overflow: hidden;
-  position: relative;
+.button .icon:first-child:not(:last-child) {
+  margin-left: unset;
+  margin-right: unset;
+  margin-inline-start: calc(-0.75em - 1px);
+  margin-inline-end: 0.375em;
+}
 
-  > iframe {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+.devControl .devControl-block:first-child {
+  display: none;
+}
+
+//
+// Deconf hacks
+//
+.colorWidget {
+  background-color: $white !important;
+  .colorWidget-title {
+    color: $black !important;
   }
-}
+  .colorWidget-subtitle {
+    font-weight: 400;
+    color: $black !important;
+  }
 
-.button {
-  font-weight: 600;
-}
-
-.label:not(:last-child) {
-  margin-bottom: 0.1em;
+  &.is-primary svg {
+    color: $primary;
+  }
+  &.is-secondary svg {
+    color: $secondary;
+  }
+  &.is-twitter svg {
+    color: $twitter-blue;
+  }
 }
 </style>

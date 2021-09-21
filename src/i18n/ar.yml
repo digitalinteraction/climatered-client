@@ -1,293 +1,225 @@
-general:
-  message: مرحبا بالعالم
-  loginButton: تسجيل الدخول
-  registerButton: سجل الان!
-  appName: Climate:Red
-  pleaseSelect: يرجى التحديد
-  comingSoon: قريبا
-  unavailable: غير متوفره
-  genericError: حدث خطأ ما. أعد المحاولة من فضلك
-  backTo: الرجوع إلى {x}
+#
+# v2 - Deconf
+#
+deconf:
+  appLayout:
+    atrium: الملتقى الرئيسي
+    #whatsOn: Whats On
+    schedule: جدول المواعيد
+    coffeeChat: دردشة حول فنجان قهوة
+    helpDesk: المساعدة
 
-atrium:
-  title: الملتقى الرئيسي
-  or: أو
-  sessionsButton: شاهد ماذا يحدث !
-  returnTo: العودة إلى الملتقى الرئيسي
-  heroTitle: قمة المناخ الإفتراضية 2020
-  heroSubtitle: 9 سبتمبر/أيلول الساعة 12 ظهراَ - 10 سبتمبر/أيلول الساعة 5:00 مساءَ
-  heading: مرحبًا بك في القمة العالمية الرقمية لتغير المناخ!
-  sponsorHeading: شركاء
-  onlineNow: مباشر الآن
-  # kilogramsOfCarbonSaved: التقليل من انبعاثات الكربون
-  # tonnesOfCarbonSaved: التقليل من انبعاثات الكربون
-  featuredSesions: Sessions vedettes
-  exploreAllSessions: Explore all sessions
-  liveIn: '{0} مباشر خلال'
-  social: المشاركة ضمن صفحات التواصل الإجتماعي
-  tweetWith: 'تغريدة مع {0}'
-  # conferenceOver: |
-  #   _
+  sideTabs:
+    unavailable: غير متوفره
 
-login:
-  title: تسجيل الدخول
-  infoText: بعد التسجيل ، سوف نرسل لك رسالة تأكيد بالبريد الإلكتروني. سيكون في البريد الإلكتروني رابط ، والذي سيسجل دخولك. ستنتهي صلاحية الرابط بعد 30 دقيقة. إذا لم تتلق أي شيء ، فيرجى التحقق من ملف الرسائل الغير مرغوب بها.
-  email:
-    label: البريد الإلكتروني
-    placeholder: ''
-    help: عنوان البريد الإلكتروني الذي سجلت به في المؤتمر
-  submitButton: طلب رمز تسجيل الدخول
-  doneText: تم إرسال رمز تسجيل الدخول
-  badEmail: البريد الإلكتروني غير جيد
+  apiError:
+    #title: Something went wrong
+    #content: We're having a bit of trouble, try refresing or coming back later.
+    #retry: 'Retrying in {0}'
 
-register:
-  title: تسجيل
-  infoText: التسجيل لمؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ
-  name:
-    label: الاسم الكامل
-    placeholder: ''
-    help: اسمك الكامل
-  email:
-    label: عنوان البريد الالكتروني
-    placeholder: ''
-    help: ستستخدم بريدك الإلكتروني لتسجيل الدخول إلى المؤتمر
-  language:
-    label: لغة
-    help: ستكون هذه هي لغتك المفضلة للمؤتمر
-  country:
-    label: البلد
-    help: حتى نتمكن من رؤية مدى تغطية المؤتمر
-  affiliation:
-    label: جهة الانتساب
-    placeholder: على سبيل المثال، موظف الاتحاد الدولي للصليب الأحمر والهلال الأحمر
-    help: 'جهة الانتماء (على سبيل المثال: موظف/متطوع/عضو مجلس إدارة/عضو جمعية وطنية/الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر/اللجنة الدولية للصليب الأحمر/المركز المرجعي، أو غير ذلك )'
-  consentText: أؤكد أنني قد قرأت وأوافق على السياسات الموجودة في الرابط أدناه
-  termsLink: الأحكام والشروط
-  privacyLink: سياسة الخصوصية
-  submitButton: تسجيل
-  doneText: لقد أرسلنا إليك بريدًا إلكترونيًا للتحقق
+  appLoading:
+    message: Loading...
 
-profile:
-  title: ملفك الشخصي
-  emailText: بريدك الالكتروني
-  localeText: اللغة المختارة
-  whenText: تسجيل الدخول
-  # registeredText: Registered
-  nameText: الإسم
-  countryText: البلد
-  affiliationText: جهة الانتساب
-  logoutButton: تسجيل الخروج
-  deleteButton: حذف الحساب
-  deleteText: هذا دائم، هل أنت متأكد؟
-  # loadingText: Fetching profile
+  scheduleBlock:
+    workshopTitle: ورشات العمل التفاعلية
+    workshopDescription: شارك بإحدى ورش العمل التفاعلية التالية
+    showWorkshops: إظهار الكل
+    hideWorkshops: إخفاء الكل
+    #workshops: 'None | 1 workshop | {n} workshops'
 
-sessions:
-  title: ماذا يحدث
-  tabs:
-    plenary: المتحدثون
-    panel: حلقات نقاش
-    sessions: جلسات
+  general:
+    #hours: hours | hour | hours
+    #minutes: minutes | minute | minutes
+    #seconds: seconds | second | seconds
+    genericError: حدث خطأ ما. أعد المحاولة من فضلك
 
-session:
-  title: عرض الجلسة
-  speakerHeading: المتحدث
-  hostHeading: مضيف الجلسة
-  infoHeading: معلومات عن الجلسة
-  linksHeading: الرابط الإلكتروني
-  showPoll: تفعيل استطلاع الرأي
-  seeMore: الاطلاع على المزيد
-  seeLess: الإطلاع بنسبة أقل
-  noInterpret: متصفحك لا يدعم خدمة الترجمة، نعتذر منك!
-  joinLiveQandA: انضم لحلقة الأسئلة و الأجوبة المباشرة
-  linksWillBeAvailable: رابط الجلسة سيكون متاحا قبل 15 دقيقة من موعد بدء الجلسة
-  sessionWillBeHostedIn: سيتم استضافة الجلسة من قبل
-  interestRegisteredConfirmation: تم تسجيل طلبكم !
-  personInterested: عدد الأشخاص المهتمين
-  scheduleHeading: البرنامج
-  actionsHeading: الاجراءات
-  hostedByHeading: مضيف الجلسة
-  contactHost: التواصل مع مضيف الجلسة
-  sessionOnlyAvailableIn: يرجى ملاحظة أن الجلسة متاحة فقط ضمن
+  miniSession:
+    #view: View
+    #live: Live
 
-coffeechat:
-  title: دردشة حول فنجان قهوة
-  filterResults: الحضور النشط
-  heading: هل أنت مستعد!
-  body: سنستخدم الاعدادات السابقة لنطابقك مع أحد المشاركين ضمن قمة المناخ-الأحمر. قم بالضغط على الزر أدناه لتبدأ محادثة عبر الفيديو مع أحد المشاركين
-  readyBtn: مستعد
-  waitingBtn: قيد الإنتظار
-  joiningBtn: انضم
-  filters:
-    languageResults: اللغات
-    themeResults: الموضوعات
-    anyOption: الكل
-    languageSelector: تحديد اللغة
-    themeSelector: اختيار الموضوع
-    clear: حذق
-    save: حفظ
-    languages:
-      EN: English
-      FR: Française
-      ES: Español
-      AR: العربية
+  featuredSessions:
+    #title: Featured Sessions
+    #action: View Schedule
 
-coffeechatroom:
-  title: دردشة حول فنجان قهوة
-  waitingForPartner: انتظر انضمام المشارك الآخر
-  joiningInfo: معلومات الانضمام
-  # contactDetails: _
-  shareContactDetails: مشاركة معلومات التواصل
-  # confirmLeaveText: _
-  # copyJoinText: _
-  # copiedJoinInfo: _
-  # tooManyStreams: _
-  partnerTimeout: بإنتظار دخول شريكك، إذا لم يتم  دخوله/ها خلال فترة وجيزة يمكنك المغادرة والمحولة مجددا!
-  leave: مغادرة الغرفة
-  sharedContactDetails: مشاركة!
-  userMediaErrors:
-    generalError: لديك مشكلة في تشغيل كاميرا الويب الخاصة بك
-    devicesNotFoundError: تحقق من توصيل كاميرا الويب الخاصة بك
-    trackStartError: الكاميرا أو الميكروفون الخاص بك قيد الاستخدام من قبل تطبيق أخر
-    constraintNotSatisfiedError: انقر فوق الزر أدناه لإعادة المحاولة
-    typeError: انقر فوق الزر أدناه لإعادة المحاولة
-    unknownError: انقر فوق الزر أدناه لإعادة المحاولة
-    retryButtonText: تفعيل الكاميرا والميكروفون
-    instructions:
-      safari: افتح خصائص Safari> انتقل إلى مواقع الويب> انتقل إلى علامتي التبويب الكاميرا والميكروفون> تفعيل قابلية الوصول إلى السماح> إعادة تشغيل Safari
-      chrome: انقر فوق رمز حظر الكاميرا في شريط العنوان بمتصفح الانترنت الخاص بك ثم قم بتحديث الصفحة
-      firefox: انقر فوق رمز حظر الكاميرا في شريط العنوان بمتصفح الانترنت الخاص بك ثم قم بالنقر على تفعيل الكاميرا والميكروفون ومن ثم قم بتحديث الصفحة
-      edge: انقر فوق رمز القفل في شريط عناوين المتصفح> انقر فوق "أذونات الموقع"> انقر فوق إعادة تعيين الأذونات> إعادة تشغيل صفحة المتصفح
+  scheduleFilters:
+    query: بحث
+    showFilters: اظهر الفلاتر
+    #hideFilters: Hide filters
+    #clearFilters: Clear filters
+    #dateFilter: Date
+    #typeFilter: Type
+    #trackFilter: Track
+    #themeFilter: Theme
+    #recordedFilter: Is Recorded
+    #offLabel: All
+    'yes': نعم
+    'no': لا
 
-help:
-  title: المساعدة
+  attendanceSection:
+    #loading: Fetching attendance
+    #processing: Processing
+    #registered: You are registered for this session
+    #full: This session is full
+    #spacesLeft: '{0}/{1} seats remaining.'
+    #registerButton: Register now
+    #unregisterButton: Release my seat
 
-notFound:
-  title: الصفحة غير موجودة
-  info: لم نتمكن من العثور على الصفحة التي كنت تبحث عنها، يرجى التحقق من الرابط الذي نقرت عليه أو العودة إلى الملتقى الرئيسي.
+  timeSlot:
+    #past: Past
+    #live: Live
 
-terms:
-  title: الشروط
+  joinSession:
+    future: معاينة الجلسة
+    present: الانضمام إلى الجلسة
+    past: مشاهدة الجلسة
 
-guidelines:
-  title: المبادئ التوجيهية
+  sessionAttributes:
+    isRecorded: التسجيل سيكون متاحاَ
+    notRecorded: غير مسجلة
 
-privacy:
-  title: الخصوصية
+  addToCalendar:
+    #action: Add to calendar
 
-sessionCard:
-  hostedBy: المقدم بواسطة
+  sessionLink:
+    #copy: copy
+    #copied: copied
 
-data:
-  type:
-    ignite-talk: جلسة لطرح الأفكار
-    games: ألعاب للتعلم و الحوار
-    panel: أفرقة خبراء ونقاشات
-    workshop: حلقات عملية
-    virtual-tour: جولات افتراضية
-    plenary: الكلمة الرئيسية
-    speaker: _
-    fishbowl: حل المشاكل أسلوب الحلقتين
-  track:
-    act: العمل
-    empower: التمكين
-    influence: التأثير
-    transform: التحويل
-  interaction:
-    interactive: التفاعلية
-    view: غير تفاعلي
-  recorded:
-    true: التسجيل سيكون متاحاَ
-    false: غير مسجلة
-  devices:
-    all: الكل
-    desktop: عبر جهاز الحاسوب فقط
-    mobile: عبر الأجهزة المحمول فقط
+  sessionState:
+    #liveNow: Live Now
+    #sessionOver: Session over
+    #interest: 'no interest | 1 person is attending | {n} people are attending'
 
-cookies:
-  title: ملفات تعريف الارتباط
-  popupTitle: استخدامنا لملفات تعريف الارتباط
-  acceptAction: السماح بتفعيل أدوات التحليل
-  rejectAction: إلغاء تفعيل أدوات التحليل
-  content: |
-    نحن نستخدم ملفات تعريف الارتباط الضرورية لتشغيل الموقع بشكل صحيح
-    نود استخدام التحليلات لمعرفة تجارب الناس في مؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ و لضمان قدرتنا على تحسين المؤتمرات الافتراضية ومؤتمرات القمة المستقبلية
-    يمكنك تغيير تفضيلات ملفات تعريف الارتباط الخاصة بك من خلال النقر{0} في تذييل هذا الموقع
+  sessionEmbed:
+    #openTeams: Open Teams meeting
+    #openZoom: Open Zoom meeting
+    #openHubs: Open Mozilla Hub
+    #openSpatial: Open Spatial Chat
+    #noEmbed: Something went wrong, there is nothing to show here
 
-oneToMany:
-  label: لغة الصوت
-  noVideo: لا يوجد فيديو متاح
-  muteLabel: 'ملاحظة: أذا أردت الاستماع الى الترجمة بلغة أخرى، تذكر أن تقوم بكتم صوت البث أعلاه '
-  stopped: ايقاف
-  playing: تشغيل
-  buffering: '{0} التحميل'
-  ready: جاهز للتشغيل
-  source: من الفيديو
-  start: ابدأ
-  stop: إيقاف
+  languageWarning:
+    #message: 'Please note this session is only available in {0}'
 
-videoEmbed:
-  noLive: البث المباشر غير متاح حاليًا ، يرجى إعادة التحقق لاحقًا.
+  navigationBar:
+    profile: ملفك الشخصي
+    login: تسجيل الدخول
+    #interpret: Interpret mode
+    register: تسجيل
+    #unavailable: ' (Unavailable)'
 
-schedule:
-  title: جدول المواعيد
-  description: تصفح الجلسات المتاحة وقم بوضع خطة لتجربتك عن طريق إضافة تذكير إلى التقويم الخاص بك.
-  close: إغلاق
-  past: الماضي
-  now: الآن
-  present: حالي
-  future: المستقبل
-  addToCalendar: إضافة إلى الجدول الزمني
-  showAll: إظهار الكل
-  hideAll: إخفاء الكل
-  hidePastSessions: إخفاء الجلسات القديمة
-  showPastSessions: إظهار الجلسات السابقة
-  dates:
-    ninth: 9 سبتمبر
-    tenth: سبتمبر 10
-  search: بحث
-  showingResultsFor: '"{0}"عرض النتائج ل'
-  redCrossRedCrescentMembersOnly: أعضاء الصليب الأحمر والهلال الأحمر فقط
-  filters:
-    all: الكل
-    showFilters: اظهار الفلاتر
-    clearFilters: إخفاء الفلاتر
-    date: التاريخ
-    track: مسار
-    interactivity:
-      interactivity: التفاعل
-      interactive: التفاعلية
-      nonInteractive: غير تفاعلي
-    platform:
-      platform: المنصة
-      zoom: Zoom
-    device:
-      device: الجهاز
-      desktopOnly: عبر جهاز الحاسوب فقط
-      mobileOnly: عبر الأجهزة المحمول فقط
-    recorded:
-      recorded: التسجيل
-      willBeRecorded: التسجيل سيكون متاحاَ
-      notRecorded: غير مسجلة
-  attributes:
-    sessionAttributes: خصائص الجلسة
-  actions:
-    viewSession: مشاهدة الجلسة
-    joinSession: الانضمام إلى الجلسة
-    previewSession: معاينة الجلسة
-    registerInterest: سجل الاهتمامات
-    registerInterestSubject: التسجيل - مهتم بجلسة المناخ
-    registerInterestBody: أنا مهتم بجلستكم في قمة المناخ
-    interestRegistered: المسجلين المهتمين
-  workshops:
-    workshop: ورشة عمل
-    workshops: ورشات العمل
-    title: ورشات العمل التفاعلية
-    description: شارك بإحدى ورش العمل التفاعلية التالية
+  whatsOn:
+    #title: What's On
+    #infoText: Browse the Schedule before release day
 
-errors:
-  title: حدث خطأ
-  general: حدث خطأ غير متوقع ، يرجى المحاولة مرة أخرى
-  loginExpired: انتهت صلاحية رمز تسجيل الدخول الخاص بك ، وهي صالحة لمدة 30 دقيقة من وقت طلبك. يرجى المحاولة مرة أخرى أدناه.
+  login:
+    title: تسجيل الدخول
+    infoText: >
+      بعد التسجيل ، سوف نرسل لك رسالة تأكيد بالبريد الإلكتروني. سيكون في البريد الإلكتروني رابط ، والذي سيسجل دخولك. ستنتهي صلاحية الرابط بعد 30 دقيقة. إذا لم تتلق أي شيء ، فيرجى التحقق من ملف الرسائل الغير مرغوب بها.
+    email:
+      label: البريد الإلكتروني
+      #placeholder: e.g. dan@example.com
+      help: عنوان البريد الإلكتروني الذي سجلت به في المؤتمر
+    badEmail: البريد الإلكتروني غير جيد
+    doneText: تم إرسال رمز تسجيل الدخول
+    submitButton: طلب رمز تسجيل الدخول
+    registerLabel: لم يتم تسجيلة بعد؟
+    registerAction: سجل هنا
 
-faqs:
-  title: أسئلة وأجوبة
+  profile:
+    title: ملفك الشخصي
+    actionLabel: أجراءات
+    logoutButton: تسجيل الخروج
+    dangerLabel: منطقة الخطر
+    deleteButton: حذف الحساب
+    deleteText: هذا دائم، هل أنت متأكد؟
+    ifrc:
+      emailText: بريدك الالكتروني
+      localeText: اللغة المختارة
+      whenText: تسجيل الدخول
+      #registeredText: Registered
+      nameText: الإسم
+      countryText: البلد
+      affiliationText: جهة الانتساب
+      #marketingText: Marketing
+
+  schedule:
+    title: جدول المواعيد
+    description: تصفح الجلسات المتاحة وقم بوضع خطة لتجربتك عن طريق إضافة تذكير إلى التقويم الخاص بك.
+    #allSessions: الكل
+    #userSessions: المستعمل
+    hidePast: إخفاء الجلسات القديمة
+    showPast: إظهار الجلسات السابقة
+    #noResults: Nothing matched your query
+
+  session:
+    slot: البرنامج
+    #countdown: Countdown
+    links: الرابط الإلكتروني
+    linkPreview: رابط الجلسة سيكون متاحا قبل 15 دقيقة من موعد بدء الجلسة
+    actions: الاجراءات
+    #logIn: Log in to attend this session
+    speakers: المتحدث
+    #zoomLink: Zoom Room
+    #teamsLink: Teams Meeting
+    #miroLink: Miro Board
+    #generalLink: Link
+    #backButton: Back to Schedule
+
+#
+# v2 - IFRC
+#
+ifrc:
+  general:
+    appName: PlanetRed
+    backToAtrium: العودة إلى الملتقى الرئيسي
+    notSelected: (يرجى التحديد)
+    #genericError: Something went wrong, please try again
+    'yes': نعم
+    'no': لا
+
+  register:
+    title: تسجيل
+    infoText: >
+      التسجيل لمؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ
+    name:
+      label: الاسم الكامل
+      #placeholder: e.g. Dan Howard
+      help: اسمك الكامل
+    email:
+      label: عنوان البريد الالكتروني
+      #placeholder: e.g. dan@example.com
+      help: ستستخدم بريدك الإلكتروني لتسجيل الدخول إلى المؤتمر
+    language:
+      label: لغة
+      help: ستكون هذه هي لغتك المفضلة للمؤتمر
+    country:
+      label: البلد
+      help: حتى نتمكن من رؤية مدى تغطية المؤتمر
+    affiliation:
+      label: جهة الانتساب
+      placeholder: على سبيل المثال، موظف الاتحاد الدولي للصليب الأحمر والهلال الأحمر
+      help: 'جهة الانتماء (على سبيل المثال: موظف/متطوع/عضو مجلس إدارة/عضو جمعية وطنية/الاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر/اللجنة الدولية للصليب الأحمر/المركز المرجعي، أو غير ذلك )'
+    submitButton: تسجيل
+    consentText: أؤكد أنني قد قرأت وأوافق على السياسات الموجودة في الرابط أدناه
+    #marketingText: I consent to marketing emails from XYZ
+    termsLink: الأحكام والشروط
+    privacyLink: سياسة الخصوصية
+    #loginLabel: Already registered?
+    #loginAction: Log in here
+    #genericError: Please check your submission and try again.
+
+  atrium:
+    title: الملتقى الرئيسي
+    sponsorHeading: شركاء
+    onlineNow: مباشر الآن
+    carbonSaved: التقليل من انبعاثات الكربون
+    #twitterTitle: Social
+    #twitterSubtitle: 'تغريدة مع #PlanetRed'
+    #twitterUrl: 'https://twitter.com'
+    #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+
+  footer:
+    appName: PlanetRed
+    privacy: الخصوصية
+    guidelines: المبادئ التوجيهية
+    terms: الشروط
+    faqs: أسئلة وأجوبة

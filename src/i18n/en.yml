@@ -1,380 +1,486 @@
-general:
-  message: 'Hello, world'
-  loginButton: Log in
-  registerButton: Register Now!
-  appName: Climate:Red
-  pleaseSelect: Please select
-  comingSoon: Coming soon
-  unavailable: Unavailable
-  backTo: Back to {0}
-  copy: Copy
-  loading: Loading
-  genericError: Something went wrong, please try again
+#
+# v2 - Deconf
+#
+deconf:
+  appLayout:
+    atrium: Atrium
+    whatsOn: What's On
+    schedule: Schedule
+    coffeeChat: Coffee Chat
+    helpDesk: Help Desk
 
-atrium:
-  title: Atrium
-  or: or
-  sessionsButton: See what's on!
-  returnTo: Back to atrium
-  heroTitle: Virtual Climate Summit 2020
-  heroSubtitle: Sept 9, 12:00PM – Sept 10 19:00PM CEST
-  heading: Welcome to our global, digital climate change summit!
-  sponsorHeading: Partners
-  onlineNow: Online now
-  kilogramsOfCarbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
-  tonnesOfCarbonSaved: Tonnes of CO₂ saved by hosting climate.red virtually
-  featuredSesions: Featured sessions
-  exploreAllSessions: Explore all sessions
-  liveIn: 'Live in {0}'
-  social: Social
-  tweetWith: 'Tweet with {0}'
-  conferenceOver: |
-    Climate:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+  sideTabs:
+    unavailable: Unavailable
 
-login:
-  title: Login
-  infoText: We'll send you an email to confirm who you are. The email will
-    have a link in it which will log you in. It will expire after 30
-    minutes. If you don't recieve anything check your spam folder.
-  email:
-    label: Email
-    placeholder: e.g. geoff@example.com
-    help: The email address you registered to the conference with
-  badEmail: Bad email
-  doneText: Login code sent
-  submitButton: Request login code
-  registerLabel: Not registered yet?
-  registerAction: Register here
+  apiError:
+    title: Something went wrong
+    content: We're having a bit of trouble, try refresing or coming back later.
+    retry: 'Retrying in {0}'
 
-register:
-  title: Register
-  infoText: Use this form to register for Climate:Red
-  name:
-    label: Full name
-    placeholder: e.g. Dan Howard
-    help: Your full name
-  email:
-    label: Your email address
-    placeholder: e.g. dan@example.com
-    help: You will use your email to log in to the virtual summit
-  language:
-    label: Language
-    help: We'll put the conference in this language for you
-  country:
-    label: Country
-    help: So we can see the reach of the conference
-  affiliation:
-    label: Your affiliation
-    placeholder: e.g. IFRC staff member
-    help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
-  submitButton: Register
-  consentText: I confirm that I have read and agree with the policies linked below
-  termsLink: Terms and Conditions
-  privacyLink: Privacy policy
-  doneText: |
-    Thanks for registering!
-    We've sent you an verification email.
-    Click the link in that email to verify and see the conference schedule.
-    If you don't see an email soon please check your spam folder.
-  loginLabel: Already registered?
-  loginAction: Log in here
+  appLoading:
+    message: Loading...
 
-profile:
-  title: Your profile
-  emailText: Email
-  localeText: Chosen language
-  whenText: Logged in
-  registeredText: Registered
-  nameText: Name
-  countryText: Country
-  affiliationText: Affiliation
-  logoutButton: Log out
-  deleteButton: Delete account
-  deleteText: This is permenant, are you sure?
-  actionLabel: Actions
-  dangerLabel: Danger zone
-  translatorMessage: |
-    You are only a translator so do not have an atrium profile.
-    You can still register for the conference using the menu at the top,
-    then you can manage your profile here.
+  scheduleBlock:
+    workshopTitle: Interactive workshops
+    workshopDescription: Participate in one of the following interactive workshops.
+    showWorkshops: Show all
+    hideWorkshops: Hide all
+    workshops: 'None | 1 workshop | {n} workshops'
 
-sessions:
-  title: What's on
-  tabs:
-    plenary: Speakers
-    panel: Panels
-    sessions: Sessions
+  general:
+    hours: hours | hour | hours
+    minutes: minutes | minute | minutes
+    seconds: seconds | second | seconds
+    genericError: Something went wrong, please try again
 
-coffeechat:
-  title: Coffee chat
-  filterResults: Active Participants
-  heading: Are you ready?
-  body: We'll use the settings below to match you with another Climate:Red attendee. Click the button below to video chat with another attendee.
-  readyBtn: Ready
-  waitingBtn: Waiting
-  joiningBtn: Joining
-  filters:
-    languageResults: Language(s)
-    themeResults: Theme(s)
-    anyOption: Any
-    languageSelector: Select languages
-    themeSelector: Select themes
-    clear: Clear
-    save: Save
-    languages:
-      EN: English
-      FR: Française
-      ES: Español
-      AR: العربية
+  miniSession:
+    view: View
+    live: Live
 
-coffeechatroom:
-  title: Coffee chat
-  waitingForPartner: Waiting for your partner to join...
-  partnerTimeout: Looks like we could connect you with partner. Please leave and try again
-  leave: Leave room
-  joiningInfo: Joining Info
-  contactDetails: Contact Details
-  shareContactDetails: Share contact details
-  sharedContactDetails: Shared!
-  confirmLeaveText: Are you sure you would like to leave this Coffee Chat?
-  copyJoinText: Copy Join Info
-  copiedJoinInfo: Copied Join Info!
-  tooManyStreams: |
-    Unfortunately we are unable to provide more than 8 video streams at the same time.
-    Please reduce the number of users in the room or turn off your video feeds to maintain call quality.
-  userMediaErrors:
-    generalError: We're having trouble turning your webcam on
-    devicesNotFoundError: check that your webcam is plugged in
-    trackStartError: your webcam or mic are already in use in another application
-    constraintNotSatisfiedError: click the button below to retry
-    typeError: click the button below to retry
-    unknownError: click the button below to retry
-    retryButtonText: Enable Camera & Mic
-    instructions:
-      safari: Open Safari Preferences > Navigate to Websites > Go to Camera and Microphone tabs > Change access to Allow > Restart Safari
-      chrome: Click the camera blocked icon in your browser's address bar and then refresh the page
-      firefox: Click the camera blocked icon in your browser's address bar and click the cross to enable mic and camera then refresh the page
-      edge: Click the lock icon in your browser's address bar > Click 'Site Permissions' > Click Reset Permissions > Restart browser page
+  featuredSessions:
+    title: Featured Sessions
+    action: Explore Sessions
 
-help:
-  title: Help
+  scheduleFilters:
+    query: Search
+    showFilters: Show filters
+    hideFilters: Hide filters
+    clearFilters: Clear filters
+    dateFilter: Date
+    typeFilter: Type
+    trackFilter: Track
+    themeFilter: Theme
+    recordedFilter: Is Recorded
+    offLabel: All
+    'yes': 'Yes'
+    'no': 'No'
 
-notFound:
-  title: Page not found
-  info: We couldn't find the page you were looking for, please check the link you clicked or go back to the atrium.
+  attendanceSection:
+    loading: Fetching attendance
+    processing: Processing
+    registered: You are registered for this session
+    full: This session is full
+    spacesLeft: '{0}/{1} seats remaining.'
+    registerButton: Register now
+    unregisterButton: Release my seat
 
-terms:
-  title: Terms
+  timeSlot:
+    past: Past
+    live: Live
 
-guidelines:
-  title: Guidelines
+  joinSession:
+    future: Preview session
+    present: Join session
+    past: View session
 
-privacy:
-  title: Privacy
+  sessionAttributes:
+    isRecorded: Recorded
+    notRecorded: Not recorded
 
-sessionCard:
-  hostedBy: Hosted by
+  addToCalendar:
+    action: Add to calendar
 
-data:
-  type:
-    ignite-talk: Ignite talk
-    games: Games
-    panel: Panel
-    workshop: Workshop
-    virtual-tour: Virtual tour
-    plenary: Keynote
-    speaker: Speaker
-    fishbowl: Fishbowl
-  track:
-    act: Act
-    empower: Empower
-    influence: Influence
-    transform: Transform
-  interaction:
-    interactive: Interactive
-    view: View Only
-  recorded:
-    true: Recorded
-    false: Not Recorded
-  devices:
-    all: All
-    desktop: Desktop
-    mobile: Mobile
+  sessionLink:
+    copy: copy
+    copied: copied
 
-cookies:
-  title: Cookies
-  popupTitle: Our use of cookies
-  acceptAction: Allow analytics
-  rejectAction: Disable analytics
-  content: |
-    We use necessary cookies to make the site work.
-    We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits.
-    You can change your preference by clicking {0} in the site footer.
+  sessionState:
+    liveNow: Live Now
+    sessionOver: Session over
+    interest: 'no interest | 1 person is attending | {n} people are attending'
 
-interpretHome:
-  title: Interpretation
-  subtitle: Use this page to navigate the session's you're assigned to interpret for
-  goto: Interpret mode
-  unavailableTitle: Your browser isn't supported
-  unavailableBody: |
-    It looks like your using an unsupported browser. Please swap to chrome (v42+), safari (13.1+) or firefox (v80+) and return to this page. If you're on iOS please upgrade to iOS version 13.5 or above.
-  welcome: Welcome back, {0}
-  chromeWarning: Please remember to use the latest version of chrome
-  exitAction: Exit to Atrium
+  sessionEmbed:
+    openTeams: Open Teams meeting
+    openZoom: Open Zoom meeting
+    openHubs: Open Mozilla Hub
+    openSpatial: Open Spatial Chat
+    noEmbed: Something went wrong, there is nothing to show here
 
-interpretSchedule:
-  heading:
-    session: Session
-    title: Title
-    slot: Slot
-    date: Date
-    start: Start
-    end: End
-    language: Floor language
-    actions: Interpret
+  languageWarning:
+    message: 'Please note this session is only available in {0}'
 
-interpret:
-  title: Interpreting session
-  sessionLabel: 'Session title:'
-  floorLabel: 'Floor language:'
-  outputLabel: 'Output language:'
-  live: You are live
-  testLabel: Test mic
-  startAction: Go Live
-  stopAction: Disconnect
-  takeoverAction: Takeover
-  takeoverConfirm: Are you sure you want to takeover?
-  takeoverActionLabel: Request takeover
-  takeoverStatusLabel: status
-  plusMins: now | 1 min | {count} mins
-  noResponse: No response
-  acceptedBy: Accepted by {0}
-  onlineLabel: Online now
-  isLive: '{0} is live'
-  confirmLeave: 'You are live broadcasting, are you sure?'
-  sendMessage:
-    placeholder: Send a message
-    action: Send
-  isSelf: (you)
-  messagesLabel: Messages
-  deviceLabel: Pick a device
-  refreshButton: Refresh devices
+  navigationBar:
+    profile: Your profile
+    login: Login
+    interpret: Interpret mode
+    register: Register
+    unavailable: ' (Unavailable)'
 
-session:
-  title: View Session
-  speakerHeading: Speakers
-  hostHeading: Host
-  infoHeading: Session info
-  linksHeading: Links
-  showPoll: Enable poll
-  seeMore: See more
-  seeLess: See less
-  noInterpret: Your browser doesn't support interpretation, sorry!
-  countdownHeading: Countdown
-  scheduleHeading: Schedule
-  actionsHeading: Actions
-  hostedByHeading: Hosted by
-  contactHost: Contact Host
-  sessionOnlyAvailableIn: Please note this session is only available in
-  joinLiveQandA: Join live Q&A
-  linksWillBeAvailable: The session links will be available 15 minutes before the start time
-  sessionWillBeHostedIn: This session will be hosted in
-  interestRegisteredConfirmation: Your interest has been registered!
-  personInterested: '{0} person interested'
-  peopleInterested: '{0} people interested'
-  person: '{0} person'
-  people: '{0} people'
-  interestedInSession: interested in the session
-  inTheAudience: in the audience
-  liveNow: Live now
-  sessionEnded: Session ended
-  interact: Interact
-  countdown:
-    hour: hour
-    hours: hours
-    minute: minute
-    minutes: minutes
-    second: second
-    seconds: seconds
-  privateLabel: Private session
-  privateBody: |
-    This is a private session for attendees of the conference, please sign up or log in below then reload this page.
+  # TODO: new
+  whatsOn:
+    title: What's On
+    infoText: Browse the Schedule before release day
 
-oneToMany:
-  label: Audio language
-  noVideo: No video to show
-  muteLabel: 'NOTE: To listen in another language, remember to mute the stream above'
-  stopped: stopped
-  playing: playing
-  buffering: buffering {0}
-  ready: ready to play
-  source: From video
-  start: Start
-  stop: Stop
+  # TODO: moved from "ifrc"
+  login:
+    title: Login
+    infoText: >
+      We'll send you an email to confirm who you are. The email will
+      have a link in it which will log you in. It will expire after 30
+      minutes. If you don't recieve anything check your spam folder.
+    email:
+      label: Email
+      placeholder: e.g. dan@example.com
+      help: The email address you registered to the conference with
+    badEmail: Bad email
+    doneText: Login code sent
+    submitButton: Request login code
+    registerLabel: Not registered yet?
+    registerAction: Register here
 
-videoEmbed:
-  noLive: The live stream is currently unavailable, please check back later.
+  profile:
+    title: Your profile
+    actionLabel: Actions
+    logoutButton: Log out
+    dangerLabel: Danger zone
+    deleteButton: Delete account
+    deleteText: This is permenant, are you sure?
+    ifrc:
+      emailText: Email
+      localeText: Chosen language
+      whenText: Logged in
+      registeredText: Registered
+      nameText: Name
+      countryText: Country
+      affiliationText: Affiliation
+      marketingText: Marketing
 
-schedule:
-  title: Schedule
-  description: Browse the available sessions and plan your experience by adding reminders to your calendar.
-  close: Close
-  past: Past
-  now: Now
-  present: Present
-  future: Future
-  addToCalendar: Add to Calendar
-  showAll: Show all
-  hideAll: Hide all
-  hidePastSessions: Hide past sessions
-  showPastSessions: Show past sessions
-  dates:
-    ninth: 9 September
-    tenth: 10 September
-  search: Search
-  showingResultsFor: 'Showing results for "{0}"'
-  redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
-  filters:
-    all: All
-    showFilters: Show Filters
-    clearFilters: Clear Filters
-    date: Date
-    track: Track
-    interactivity:
-      interactivity: Interactivity
-      interactive: Interactive
-      nonInteractive: Non-interactive
-    platform:
-      platform: Platform
-      zoom: Zoom
-    device:
-      device: Device
-      desktopOnly: Desktop only
-      mobileOnly: Mobile only
-    recorded:
-      recorded: Recorded
-      willBeRecorded: Will be recorded
-      notRecorded: Not recorded
-  attributes:
-    sessionAttributes: Session attributes
-  actions:
-    viewSession: View session
-    joinSession: Join session
-    previewSession: Preview session
-    registerInterest: Register interest
-    interestRegistered: Interest registered
-    registerInterestSubject: Register interest in climate:red session
-    registerInterestBody: I am interested in your climate:red session - "{0}"
-  workshops:
-    workshop: Workshop
-    workshops: Workshops
-    title: Interactive workshops
-    description: Participate in one of the following interactive workshops.
+  schedule:
+    title: Schedule
+    description: Browse the available sessions and plan your experience by adding reminders to your calendar.
+    allSessions: All sessions
+    userSessions: Your sessions
+    hidePast: Hide previous sessions
+    showPast: Show previous sessions
+    noResults: Nothing matched your query
 
-errors:
-  title: Something went wrong
-  general: An unexpected error occured, please try again.
-  loginExpired: Your login code has expired, they last for 30 minutes from when you request one. Please try again below.
+  session:
+    slot: Schedule
+    countdown: Countdown
+    links: Links
+    linkPreview: The session links will be available 15 minutes before the start time
+    actions: Actions
+    logIn: Log in to attend this session
+    speakers: Speakers
+    zoomLink: Zoom Room
+    teamsLink: Teams Meeting
+    miroLink: Miro Board
+    generalLink: Link
+    backButton: Back to Schedule
 
-faqs:
-  title: FAQs
+#
+# IFRC section
+#
+ifrc:
+  general:
+    appName: PlanetRed
+    backToAtrium: Back to Atrium
+    notSelected: (Please select)
+    genericError: Something went wrong, please try again
+    'yes': 'Yes'
+    'no': 'No'
+
+  register:
+    title: Register
+    infoText: >
+      Use this form to register for Climate:Red
+    name:
+      label: Full name
+      placeholder: e.g. Dan Howard
+      help: Your full name
+    email:
+      label: Your email address
+      placeholder: e.g. dan@example.com
+      help: You will use your email to log in to the virtual summit
+    language:
+      label: Language
+      help: We'll put the conference in this language for you
+    country:
+      label: Country
+      help: So we can see the reach of the conference
+    affiliation:
+      label: Your affiliation
+      placeholder: e.g. IFRC staff member
+      help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
+    submitButton: Register
+    consentText: I confirm that I have read and agree with the policies linked below
+    marketingText: I consent to marketing emails from Solferino Academy
+    termsLink: Terms and Conditions
+    privacyLink: Privacy policy
+    loginLabel: Already registered?
+    loginAction: Log in here
+    genericError: Please check your submission and try again.
+
+  atrium:
+    title: Atrium
+    sponsorHeading: Partners
+    onlineNow: Online now
+    carbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
+    twitterTitle: Social
+    twitterSubtitle: 'Tweet with #PlanetRed'
+    twitterUrl: 'https://twitter.com'
+    conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+
+  footer:
+    appName: PlanetRed
+    privacy: Privacy
+    guidelines: Community Guidelines
+    terms: Terms & Conditions
+    faqs: FAQs
+#
+# ============================== OLD ==============================
+#
+
+# general:
+#   message: 'Hello, world'
+#   loginButton: Log in
+#   registerButton: Register Now!
+#   appName: Climate:Red
+#   pleaseSelect: Please select
+#   comingSoon: Coming soon
+#   unavailable: Unavailable
+#   backTo: Back to {0}
+#   copy: Copy
+#   loading: Loading
+#   genericError: Something went wrong, please try again
+
+# sessions:
+#   title: What's on
+#   tabs:
+#     plenary: Speakers
+#     panel: Panels
+#     sessions: Sessions
+
+# coffeechat:
+#   title: Coffee chat
+#   filterResults: Active Participants
+#   heading: Are you ready?
+#   body: We'll use the settings below to match you with another Climate:Red attendee. Click the button below to video chat with another attendee.
+#   readyBtn: Ready
+#   waitingBtn: Waiting
+#   joiningBtn: Joining
+#   filters:
+#     languageResults: Language(s)
+#     themeResults: Theme(s)
+#     anyOption: Any
+#     languageSelector: Select languages
+#     themeSelector: Select themes
+#     clear: Clear
+#     save: Save
+#     languages:
+#       EN: English
+#       FR: Française
+#       ES: Español
+#       AR: العربية
+
+# coffeechatroom:
+#   title: Coffee chat
+#   waitingForPartner: Waiting for your partner to join...
+#   partnerTimeout: Looks like we could connect you with partner. Please leave and try again
+#   leave: Leave room
+#   joiningInfo: Joining Info
+#   contactDetails: Contact Details
+#   shareContactDetails: Share contact details
+#   sharedContactDetails: Shared!
+#   confirmLeaveText: Are you sure you would like to leave this Coffee Chat?
+#   copyJoinText: Copy Join Info
+#   copiedJoinInfo: Copied Join Info!
+#   tooManyStreams: |
+#     Unfortunately we are unable to provide more than 8 video streams at the same time.
+#     Please reduce the number of users in the room or turn off your video feeds to maintain call quality.
+#   userMediaErrors:
+#     generalError: We're having trouble turning your webcam on
+#     devicesNotFoundError: check that your webcam is plugged in
+#     trackStartError: your webcam or mic are already in use in another application
+#     constraintNotSatisfiedError: click the button below to retry
+#     typeError: click the button below to retry
+#     unknownError: click the button below to retry
+#     retryButtonText: Enable Camera & Mic
+#     instructions:
+#       safari: Open Safari Preferences > Navigate to Websites > Go to Camera and Microphone tabs > Change access to Allow > Restart Safari
+#       chrome: Click the camera blocked icon in your browser's address bar and then refresh the page
+#       firefox: Click the camera blocked icon in your browser's address bar and click the cross to enable mic and camera then refresh the page
+#       edge: Click the lock icon in your browser's address bar > Click 'Site Permissions' > Click Reset Permissions > Restart browser page
+
+# help:
+#   title: Help
+
+# notFound:
+#   title: Page not found
+#   info: We couldn't find the page you were looking for, please check the link you clicked or go back to the atrium.
+
+# # terms:
+# #   title: Terms
+
+# # guidelines:
+# #   title: Guidelines
+
+# # privacy:
+# #   title: Privacy
+
+# # sessionCard:
+# #   hostedBy: Hosted by
+
+# data:
+#   type:
+#     ignite-talk: Ignite talk
+#     games: Games
+#     panel: Panel
+#     workshop: Workshop
+#     virtual-tour: Virtual tour
+#     plenary: Keynote
+#     speaker: Speaker
+#     fishbowl: Fishbowl
+#   track:
+#     act: Act
+#     empower: Empower
+#     influence: Influence
+#     transform: Transform
+#   interaction:
+#     interactive: Interactive
+#     view: View Only
+#   recorded:
+#     true: Recorded
+#     false: Not Recorded
+#   devices:
+#     all: All
+#     desktop: Desktop
+#     mobile: Mobile
+
+# cookies:
+#   title: Cookies
+#   popupTitle: Our use of cookies
+#   acceptAction: Allow analytics
+#   rejectAction: Disable analytics
+#   content: |
+#     We use necessary cookies to make the site work.
+#     We'd like to use analytics to see how people experience the Climate:RED summit and to ensure that we can improve future virtual conferences and summits.
+#     You can change your preference by clicking {0} in the site footer.
+
+# interpretHome:
+#   title: Interpretation
+#   subtitle: Use this page to navigate the session's you're assigned to interpret for
+#   goto: Interpret mode
+#   unavailableTitle: Your browser isn't supported
+#   unavailableBody: |
+#     It looks like your using an unsupported browser. Please swap to chrome (v42+), safari (13.1+) or firefox (v80+) and return to this page. If you're on iOS please upgrade to iOS version 13.5 or above.
+#   welcome: Welcome back, {0}
+#   chromeWarning: Please remember to use the latest version of chrome
+#   exitAction: Exit to Atrium
+
+# interpretSchedule:
+#   heading:
+#     session: Session
+#     title: Title
+#     slot: Slot
+#     date: Date
+#     start: Start
+#     end: End
+#     language: Floor language
+#     actions: Interpret
+
+# interpret:
+#   title: Interpreting session
+#   sessionLabel: 'Session title:'
+#   floorLabel: 'Floor language:'
+#   outputLabel: 'Output language:'
+#   live: You are live
+#   testLabel: Test mic
+#   startAction: Go Live
+#   stopAction: Disconnect
+#   takeoverAction: Takeover
+#   takeoverConfirm: Are you sure you want to takeover?
+#   takeoverActionLabel: Request takeover
+#   takeoverStatusLabel: status
+#   plusMins: now | 1 min | {count} mins
+#   noResponse: No response
+#   acceptedBy: Accepted by {0}
+#   onlineLabel: Online now
+#   isLive: '{0} is live'
+#   confirmLeave: 'You are live broadcasting, are you sure?'
+#   sendMessage:
+#     placeholder: Send a message
+#     action: Send
+#   isSelf: (you)
+#   messagesLabel: Messages
+#   deviceLabel: Pick a device
+#   refreshButton: Refresh devices
+
+# oneToMany:
+#   label: Audio language
+#   noVideo: No video to show
+#   muteLabel: 'NOTE: To listen in another language, remember to mute the stream above'
+#   stopped: stopped
+#   playing: playing
+#   buffering: buffering {0}
+#   ready: ready to play
+#   source: From video
+#   start: Start
+#   stop: Stop
+
+# videoEmbed:
+#   noLive: The live stream is currently unavailable, please check back later.
+
+# schedule:
+#   title: Schedule
+#   description: Browse the available sessions and plan your experience by adding reminders to your calendar.
+#   close: Close
+#   past: Past
+#   now: Now
+#   present: Present
+#   future: Future
+#   addToCalendar: Add to Calendar
+#   showAll: Show all
+#   hideAll: Hide all
+#   hidePastSessions: Hide past sessions
+#   showPastSessions: Show past sessions
+#   dates:
+#     ninth: 9 September
+#     tenth: 10 September
+#   search: Search
+#   showingResultsFor: 'Showing results for "{0}"'
+#   redCrossRedCrescentMembersOnly: Red Cross Red Crescent Members Only
+#   filters:
+#     all: All
+#     showFilters: Show Filters
+#     clearFilters: Clear Filters
+#     date: Date
+#     track: Track
+#     interactivity:
+#       interactivity: Interactivity
+#       interactive: Interactive
+#       nonInteractive: Non-interactive
+#     platform:
+#       platform: Platform
+#       zoom: Zoom
+#     device:
+#       device: Device
+#       desktopOnly: Desktop only
+#       mobileOnly: Mobile only
+#     recorded:
+#       recorded: Recorded
+#       willBeRecorded: Will be recorded
+#       notRecorded: Not recorded
+#   attributes:
+#     sessionAttributes: Session attributes
+#   actions:
+#     viewSession: View session
+#     joinSession: Join session
+#     previewSession: Preview session
+#     registerInterest: Register interest
+#     interestRegistered: Interest registered
+#     registerInterestSubject: Register interest in climate:red session
+#     registerInterestBody: I am interested in your climate:red session - "{0}"
+#   workshops:
+#     workshop: Workshop
+#     workshops: Workshops
+#     title: Interactive workshops
+#     description: Participate in one of the following interactive workshops.
+
+# errors:
+#   title: Something went wrong
+#   general: An unexpected error occured, please try again.
+#   loginExpired: Your login code has expired, they last for 30 minutes from when you request one. Please try again below.
+
+# faqs:
+#   title: FAQs
