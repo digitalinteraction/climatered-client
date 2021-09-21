@@ -7,9 +7,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
     "lint": "vue-cli-service lint",
-    "postversion": "git push --follow-tags",
+    "preversion": "npm run lint && npm run build",
     "readme-toc": "md-toc -i",
-    "report": "vue-cli-service build --modern --report-json && webpack-bundle-analyzer dist/report.json"
+    "report": "vue-cli-service build --modern --report-json && webpack-bundle-analyzer dist/report.json",
+    "release": "npm run preversion && standard-version",
+    "release:beta": "npm run preversion && standard-version --prerelease=beta"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
