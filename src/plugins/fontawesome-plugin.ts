@@ -45,6 +45,7 @@ import {
   faPlay,
   faForward,
   faFastForward,
+  faUsers,
 } from '@fortawesome/free-solid-svg-icons'
 
 //
@@ -57,7 +58,7 @@ import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
 // Apply icons
 // prettier-ignore
 //
-library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronLeft, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, farCircle, faLongArrowAltRight, faLongArrowAltLeft, faSearch, faTimes, faVideo, fasCircle, faExclamationTriangle, faFire, faUserPlus, faGamepad, faComments, faMicrophone, faObjectGroup, faMapMarkerAlt, faPodcast,faFastBackward, faBackward, faStop, faPlay, faForward, faFastForward)
+library.add(faArrowRight, faArrowLeft, faUser, faTwitter, faChevronLeft, faChevronRight, faLeaf, faSync, faTerminal, faCodeBranch, faTags, faGlobe, faSave, faCalendarPlus, farCircle, faLongArrowAltRight, faLongArrowAltLeft, faSearch, faTimes, faVideo, fasCircle, faExclamationTriangle, faFire, faUserPlus, faGamepad, faComments, faMicrophone, faObjectGroup, faMapMarkerAlt, faPodcast,faFastBackward, faBackward, faStop, faPlay, faForward, faFastForward, faUsers)
 
 export class FontAwesomePlugin {
   static install(Vue: typeof _Vue): void {
