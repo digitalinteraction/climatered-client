@@ -144,8 +144,8 @@ deconf:
   schedule:
     title: جدول المواعيد
     description: تصفح الجلسات المتاحة وقم بوضع خطة لتجربتك عن طريق إضافة تذكير إلى التقويم الخاص بك.
-    allSessions: الكل
-    userSessions: المستعمل
+    #allSessions: الكل
+    #userSessions: المستعمل
     hidePast: إخفاء الجلسات القديمة
     showPast: إظهار الجلسات السابقة
     #noResults: Nothing matched your query

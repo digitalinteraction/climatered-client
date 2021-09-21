@@ -144,7 +144,7 @@ deconf:
   schedule:
     title: Programa
     description: Explore las sesiones disponibles y planifique su experiencia agregando recordatorios a su calendario.
-    allSessions: All
+    #allSessions: All
     #userSessions: User
     hidePast: Esconder las sesiones pasadas
     showPast: Mostrar las sesiones pasadas

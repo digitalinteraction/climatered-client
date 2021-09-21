@@ -10,7 +10,9 @@
       :schedule-date="scheduleDate"
       :enabled-filters="enabledFilters"
       :is-during-conference="isDuringConference"
-    />
+    >
+      <p slot="infoText">{{ $t('deconf.schedule.description') }}</p>
+    </ScheduleView>
   </BrandedAppLayout>
 </template>
 

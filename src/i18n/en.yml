@@ -148,8 +148,8 @@ deconf:
   schedule:
     title: Schedule
     description: Browse the available sessions and plan your experience by adding reminders to your calendar.
-    allSessions: All
-    userSessions: User
+    allSessions: All sessions
+    userSessions: Your sessions
     hidePast: Hide previous sessions
     showPast: Show previous sessions
     noResults: Nothing matched your query
