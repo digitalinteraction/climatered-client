@@ -1,6 +1,7 @@
 import _Vue from 'vue'
 import io, { Socket } from 'socket.io-client'
 import { env } from './env-plugin'
+import { StorageKey } from '@/lib/module'
 
 export class SocketIoPlugin {
   socket: Socket
@@ -35,7 +36,17 @@ export class SocketIoPlugin {
     this.socket.on('apiError', (error: unknown) => {
       console.error('Socket API Error', error)
     })
+
+    // Share the sockets for other top-level code to user
     SocketIoPlugin.sharedSocket = this.socket
+
+    // Emit auth on connection
+    this.socket.on('connect', () => {
+      const token = localStorage.getItem(StorageKey.AuthToken)
+      if (token) {
+        this.socket.emit('auth', token)
+      }
+    })
   }
 
   teardown(): void {
