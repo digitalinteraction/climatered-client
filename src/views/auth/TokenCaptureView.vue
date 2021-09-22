@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Routes } from '@openlab/deconf-ui-toolkit'
+import { createLoginFinishEvent, Routes } from '@openlab/deconf-ui-toolkit'
 import { StorageKey } from '@/lib/module'
 import { setLocale } from '@/i18n/module'
 import { AuthToken } from '@openlab/deconf-shared'
@@ -25,6 +25,8 @@ export default Vue.extend({
 
       localStorage.setItem(StorageKey.AuthToken, authToken)
       await this.$store.dispatch('api/authenticate', authToken)
+
+      this.$metrics.track(createLoginFinishEvent())
 
       const user: AuthToken = this.$store.state.api.user
       if (user) setLocale(user.user_lang)

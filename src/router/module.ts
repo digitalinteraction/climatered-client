@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { Route, RouteConfig } from 'vue-router'
 
-import { Routes } from '@openlab/deconf-ui-toolkit'
+import { createPageViewEvent, Routes } from '@openlab/deconf-ui-toolkit'
 
 import AtriumView from '../views/main/AtriumView.vue'
 import WhatsOnView from '../views/main/WhatsOnView.vue'
@@ -21,7 +21,8 @@ import GuidelinesView from '../views/pages/GuidelinesView.vue'
 import FaqsView from '../views/pages/FaqsView.vue'
 
 import i18n from '../i18n/module'
-import { StorageKey } from '@/lib/constants'
+import { StorageKey } from '../lib/constants'
+import { MetricsPlugin } from '../plugins/metrics-plugin'
 
 Vue.use(VueRouter)
 
@@ -210,6 +211,8 @@ router.beforeEach((to, from, next) => {
   document.title = getRouteTitle(to)
 
   const loggedIn = Boolean(localStorage.getItem(StorageKey.AuthToken))
+
+  MetricsPlugin.track(createPageViewEvent(to.name ?? to.path, to.params))
 
   if (!loggedIn && to.name && protectedRoutes.has(to.name)) {
     next({ name: Routes.Atrium })

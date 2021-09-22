@@ -19,5 +19,6 @@ declare module 'vue/types/vue' {
     $temporal: TemporalPlugin
     $metrics: MetricsPlugin
     $io: SocketIoPlugin
+    // $deconf: DeconfPlugin
   }
 }

@@ -67,8 +67,6 @@ export default Vue.extend({
       await this.$store.dispatch('api/fetchData')
     }
 
-    // TODO: check for allow-listed routes or go to /atrium
-
     this.timerId = setInterval(
       () => this.$store.dispatch('api/fetchData'),
       this.randomTick()

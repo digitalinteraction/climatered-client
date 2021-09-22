@@ -20,13 +20,15 @@
           :subtitle="$t('ifrc.atrium.carbonSaved')"
           :icon="['fas', 'leaf']"
         />
-        <ColorWidget
-          kind="twitter"
-          :title="$t('ifrc.atrium.twitterTitle')"
-          :subtitle="$t('ifrc.atrium.twitterSubtitle')"
-          :href="$t('ifrc.atrium.twitterUrl')"
-          :icon="['fab', 'twitter']"
-        />
+        <div @click="widgetAction($event, 'twitter')">
+          <ColorWidget
+            kind="twitter"
+            :title="$t('ifrc.atrium.twitterTitle')"
+            :subtitle="$t('ifrc.atrium.twitterSubtitle')"
+            :href="$t('ifrc.atrium.twitterUrl')"
+            :icon="['fab', 'twitter']"
+          />
+        </div>
         <FeaturedSessions
           v-if="featuredSessions.length > 0"
           :featured="featuredSessions"
@@ -44,6 +46,7 @@ import {
   AtriumLayout,
   BoxContent,
   ColorWidget,
+  createAtriumWidgetEvent,
   FeaturedSessions,
   mapApiState,
   mapMetricsState,
@@ -112,6 +115,19 @@ export default Vue.extend({
   },
   mounted() {
     this.$store.dispatch('api/fetchCarbon')
+  },
+  methods: {
+    widgetAction(event: Event, kind: string) {
+      event.preventDefault()
+
+      this.$metrics.track(createAtriumWidgetEvent(kind))
+
+      window.open(
+        this.$t('ifrc.atrium.twitterUrl') as string,
+        '_blank',
+        'noopener'
+      )
+    },
   },
 })
 </script>

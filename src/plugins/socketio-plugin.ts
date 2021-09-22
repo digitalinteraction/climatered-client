@@ -5,6 +5,8 @@ import { env } from './env-plugin'
 export class SocketIoPlugin {
   socket: Socket
 
+  static sharedSocket: Socket | null = null
+
   static install(Vue: typeof _Vue): void {
     Vue.prototype.$io = new SocketIoPlugin(env.SERVER_URL)
   }
@@ -28,6 +30,12 @@ export class SocketIoPlugin {
       path: pathname,
       transports: ['websocket'],
     })
+
+    // Listen for errors and log them
+    this.socket.on('apiError', (error: unknown) => {
+      console.error('Socket API Error', error)
+    })
+    SocketIoPlugin.sharedSocket = this.socket
   }
 
   teardown(): void {
