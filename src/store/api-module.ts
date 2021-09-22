@@ -205,6 +205,18 @@ export function apiModule(): ApiStoreModule {
 
         return data ? deepSeal(data.content) : null
       },
+
+      //
+      // Metrics
+      //
+      async fetchMetrics() {
+        const data = await agent
+          .get('metrics')
+          .json<{ events: unknown[] }>()
+          .catch(errorHandler)
+
+        return data ? data.events : null
+      },
     },
   }
 }

@@ -3,23 +3,6 @@ import VueRouter, { Route, RouteConfig } from 'vue-router'
 
 import { createPageViewEvent, Routes } from '@openlab/deconf-ui-toolkit'
 
-import AtriumView from '../views/main/AtriumView.vue'
-import WhatsOnView from '../views/main/WhatsOnView.vue'
-import ScheduleView from '../views/main/ScheduleView.vue'
-import CoffeeLobbyView from '../views/main/CoffeeLobbyView.vue'
-import HelpDeskView from '../views/main/HelpDeskView.vue'
-import SessionView from '../views/main/SessionView.vue'
-
-import LoginView from '../views/auth/LoginView.vue'
-import RegisterView from '../views/auth/RegisterView.vue'
-import TokenCaptureView from '../views/auth/TokenCaptureView.vue'
-import ProfileView from '../views/auth/ProfileView.vue'
-
-import TermsView from '../views/pages/TermsView.vue'
-import PrivacyView from '../views/pages/PrivacyView.vue'
-import GuidelinesView from '../views/pages/GuidelinesView.vue'
-import FaqsView from '../views/pages/FaqsView.vue'
-
 import i18n from '../i18n/module'
 import { StorageKey } from '../lib/constants'
 import { MetricsPlugin } from '../plugins/metrics-plugin'
@@ -38,7 +21,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/atrium',
     name: Routes.Atrium,
-    component: AtriumView,
+    component: () =>
+      import(
+        /* webpackChunkName: "core" */
+        '../views/main/AtriumView.vue'
+      ),
     // meta: {
     //   title: 'ifrc.atrium.title'
     // }
@@ -46,7 +33,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/whats-on',
     name: Routes.WhatsOn,
-    component: WhatsOnView,
+    component: () =>
+      import(
+        /* webpackChunkName: "sessions" */
+        '../views/main/WhatsOnView.vue'
+      ),
     // meta: {
     //   title: 'ifrc.whatsOn.title'
     // }
@@ -54,7 +45,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/schedule',
     name: Routes.Schedule,
-    component: ScheduleView,
+    component: () =>
+      import(
+        /* webpackChunkName: "sessions" */
+        '../views/main/ScheduleView.vue'
+      ),
     // meta: {
     //   title: 'ifrc.schedule.title'
     // }
@@ -62,7 +57,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/coffee',
     name: Routes.CoffeeChatLobby,
-    component: CoffeeLobbyView,
+    component: () =>
+      import(
+        /* webpackChunkName: "coffee" */
+        '../views/main/CoffeeLobbyView.vue'
+      ),
     // meta: {
     //   title: 'ifrc.coffeeChat.title'
     // }
@@ -70,7 +69,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/help',
     name: Routes.HelpDesk,
-    component: HelpDeskView,
+    component: () =>
+      import(
+        /* webpackChunkName: "help" */
+        '../views/main/HelpDeskView.vue'
+      ),
     // meta: {
     //   title: 'ifrc.helpDesk.title'
     // }
@@ -78,7 +81,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/session/:sessionId',
     name: Routes.Session,
-    component: SessionView,
+    component: () =>
+      import(
+        /* webpackChunkName: "sessions" */
+        '../views/main/SessionView.vue'
+      ),
     props: true,
     // meta: {
     //   title: 'ifrc.session.title'
@@ -91,7 +98,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/login',
     name: Routes.Login,
-    component: LoginView,
+    component: () =>
+      import(
+        /* webpackChunkName: "auth" */
+        '../views/auth/LoginView.vue'
+      ),
     meta: {
       title: 'deconf.login.title',
     },
@@ -99,7 +110,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/register',
     name: Routes.Register,
-    component: RegisterView,
+    component: () =>
+      import(
+        /* webpackChunkName: "auth" */
+        '../views/auth/RegisterView.vue'
+      ),
     meta: {
       title: 'ifrc.register.title',
     },
@@ -107,7 +122,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/profile',
     name: Routes.Profile,
-    component: ProfileView,
+    component: () =>
+      import(
+        /* webpackChunkName: "auth" */
+        '../views/auth/ProfileView.vue'
+      ),
     meta: {
       title: 'deconf.profile.title',
     },
@@ -115,7 +134,11 @@ const routes: Array<RouteConfig> = [
   {
     path: '/_auth',
     name: Routes.TokenCapture,
-    component: TokenCaptureView,
+    component: () =>
+      import(
+        /* webpackChunkName: "core" */
+        '../views/auth/TokenCaptureView.vue'
+      ),
   },
 
   //
@@ -124,22 +147,38 @@ const routes: Array<RouteConfig> = [
   {
     path: '/terms',
     name: Routes.Terms,
-    component: TermsView,
+    component: () =>
+      import(
+        /* webpackChunkName: "pages" */
+        '../views/pages/TermsView.vue'
+      ),
   },
   {
     path: '/privacy',
     name: Routes.Privacy,
-    component: PrivacyView,
+    component: () =>
+      import(
+        /* webpackChunkName: "pages" */
+        '../views/pages/PrivacyView.vue'
+      ),
   },
   {
     path: '/guidelines',
     name: Routes.Guidelines,
-    component: GuidelinesView,
+    component: () =>
+      import(
+        /* webpackChunkName: "pages" */
+        '../views/pages/GuidelinesView.vue'
+      ),
   },
   {
     path: '/faqs',
     name: Routes.Faqs,
-    component: FaqsView,
+    component: () =>
+      import(
+        /* webpackChunkName: "pages" */
+        '../views/pages/FaqsView.vue'
+      ),
   },
 
   //
@@ -148,6 +187,19 @@ const routes: Array<RouteConfig> = [
   {
     path: '/interpret',
     name: Routes.InterpretHome,
+  },
+
+  //
+  // Metrics
+  //
+  {
+    path: '/metrics',
+    name: 'METRICS',
+    component: () =>
+      import(
+        /* webpackChunkName: "metrics" */
+        '../views/metrics/AnalyseView.vue'
+      ),
   },
 ]
 
