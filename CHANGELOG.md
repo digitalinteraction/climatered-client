@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.1](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-09-22)
+
+
+### Features
+
+* add metrics tracking events and errors through the app and $deconf interface ([1d3de14](https://github.com/digitalinteraction/climatered-client/commit/1d3de143e4d13928afaa069910a7228024737068))
+
+
+### Bug Fixes
+
+* **i18n:** add twitter hashtag ([9d4757b](https://github.com/digitalinteraction/climatered-client/commit/9d4757bd9a9450ccc2cd98925d9896bc03f3362c))
+
 ## [2.0.0-beta.0](https://github.com/digitalinteraction/climatered-client/compare/v1.2.0...v2.0.0-beta.0) (2021-09-21)
 
 
