@@ -217,8 +217,8 @@ ifrc:
     onlineNow: Online now
     carbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
     twitterTitle: Social
-    twitterSubtitle: 'Tweet with #PlanetRed'
-    twitterUrl: 'https://twitter.com'
+    twitterSubtitle: 'Tweet with #PlanetRedSummit'
+    twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
     conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:
