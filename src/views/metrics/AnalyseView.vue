@@ -28,6 +28,11 @@
           <button class="button is-static">End Date</button>
           <DateInput v-model="endDate" />
         </div>
+        <button class="button is-danger is-light" @click="stopDateFilter">
+          <span class="icon">
+            <fa :icon="['fas', 'times']" />
+          </span>
+        </button>
       </Stack>
       <div class="buttons" v-else>
         <button class="button is-primary is-light" @click="startDateFilter">
@@ -153,6 +158,10 @@ export default Vue.extend({
 
       this.endDate = new Date()
       this.endDate.setHours(24)
+    },
+    stopDateFilter() {
+      this.startDate = null
+      this.endDate = null
     },
     hydrate(e: MetricsRecord) {
       e.created = new Date(e.created)
