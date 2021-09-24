@@ -58,6 +58,7 @@ import {
   SelectOption,
   SegmentControl,
   Stack,
+  Routes,
 } from '@openlab/deconf-ui-toolkit'
 import DateInput from '@/components/DateInput.vue'
 
@@ -77,6 +78,16 @@ interface Data {
   endDate: Date | null
 }
 
+function mapIncrease(map: Map<string, number>, key: string, change = 1) {
+  map.set(key, (map.get(key) ?? 0) + change)
+}
+
+function sortMap(map: Map<string, number>) {
+  return [...map.entries()].sort((a, b) => b[1] - a[1])
+}
+
+const knownRoutes = new Set(Object.values(Routes))
+
 export default Vue.extend({
   components: { IfrcUtilLayout, SegmentControl, DateInput, Stack },
   data(): Data {
@@ -85,8 +96,7 @@ export default Vue.extend({
       report: 'pages',
       reportOptions: [
         { value: 'pages', text: 'Page Views' },
-        { value: 'some', text: 'Some' },
-        { value: 'another', text: 'Another' },
+        { value: 'atriumWidgets', text: 'Atrium Widgets' },
       ],
       startDate: null,
       endDate: null,
@@ -113,19 +123,33 @@ export default Vue.extend({
 
         for (const event of this.filteredEvents) {
           if (event.eventName !== 'general/pageView') continue
-          const r = this.$router.resolve({
-            name: event.payload.routeName,
-            params: event.payload.params,
-          })
-          routes.set(r.href, (routes.get(r.href) ?? 0) + 1)
+          let href = event.payload.routeName
+          if (knownRoutes.has(href)) {
+            href = this.$router.resolve({
+              name: event.payload.routeName,
+              params: event.payload.params,
+            }).href
+          }
+          mapIncrease(routes, href, 1)
         }
 
-        const entries = [...routes.entries()].sort((a, b) => b[1] - a[1])
-
-        for (const [route, count] of entries) {
+        for (const [route, count] of sortMap(routes)) {
           message.push(`${route} (${count})`)
         }
       }
+
+      if (this.report === 'atriumWidgets') {
+        const actions = new Map<string, number>()
+        for (const event of this.filteredEvents) {
+          if (event.eventName !== 'atrium/widget') continue
+          mapIncrease(actions, event.payload.widget)
+        }
+
+        for (const [action, count] of sortMap(actions)) {
+          message.push(`${action} (${count})`)
+        }
+      }
+
       return message.join('\n')
     },
   },
