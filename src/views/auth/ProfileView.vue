@@ -78,9 +78,13 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.$store.dispatch('api/fetchProfile')
+    this.fetchProfile()
   },
   methods: {
+    async fetchProfile() {
+      await this.$store.dispatch('api/fetchProfile')
+      if (!this.profile) this.logout()
+    },
     iatToString(iat: number) {
       const date = new Date(iat * 1000)
       date.setMinutes(
