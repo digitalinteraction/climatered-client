@@ -1,5 +1,5 @@
 <template>
-  <BrandedAppLayout class="atriumView">
+  <IfrcAppLayout class="atriumView">
     <AtriumLayout v-if="settings">
       <BoxContent slot="left">
         <div class="atriumView-content">
@@ -36,12 +36,12 @@
         />
       </div>
     </AtriumLayout>
-  </BrandedAppLayout>
+  </IfrcAppLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedAppLayout from '@/components/BrandedAppLayout.vue'
+import IfrcAppLayout from '@/components/IfrcAppLayout.vue'
 import {
   AtriumLayout,
   BoxContent,
@@ -62,7 +62,7 @@ interface SessionAndSlot {
 
 export default Vue.extend({
   components: {
-    BrandedAppLayout,
+    IfrcAppLayout,
     AtriumLayout,
     ColorWidget,
     BoxContent,

@@ -3,7 +3,7 @@
     :app-settings="settings"
     :user="user"
     :routes="routes"
-    class="brandedAppLayout"
+    class="IfrcAppLayout"
   >
     <BrandA slot="brandA" />
     <!-- <BrandB slot="brandB" /> -->
@@ -11,7 +11,7 @@
     <router-link slot="brandC" :to="atriumRoute">
       <BrandC />
     </router-link>
-    <div slot="main" class="brandedAppLayout-main">
+    <div slot="main" class="IfrcAppLayout-main">
       <slot />
       <PageFooter />
     </div>
@@ -91,7 +91,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.brandedAppLayout {
+.IfrcAppLayout {
   .sideTabs-tab.is-active {
     background: $white-ter;
   }
@@ -105,7 +105,7 @@ export default Vue.extend({
     padding-top: 7em;
   }
 }
-.brandedAppLayout-main {
+.IfrcAppLayout-main {
   flex: 1;
   display: flex;
   flex-direction: column;

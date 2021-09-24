@@ -1,17 +1,17 @@
 <template>
-  <BrandedUtilLayout>
+  <IfrcUtilLayout>
     <div>
       <ApiContent slug="terms" />
     </div>
-  </BrandedUtilLayout>
+  </IfrcUtilLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
+import IfrcUtilLayout from '@/components/IfrcUtilLayout.vue'
 import ApiContent from '@/components/ApiContent.vue'
 
 export default Vue.extend({
-  components: { BrandedUtilLayout, ApiContent },
+  components: { IfrcUtilLayout, ApiContent },
 })
 </script>

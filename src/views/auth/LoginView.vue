@@ -1,21 +1,21 @@
 <template>
-  <BrandedUtilLayout>
+  <IfrcUtilLayout>
     <LoginView api-module="api">
       <ApiContent slug="login" slot="infoText" />
       <p slot="doneText">
         {{ $t('deconf.login.doneText') }}
       </p>
     </LoginView>
-  </BrandedUtilLayout>
+  </IfrcUtilLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
+import IfrcUtilLayout from '@/components/IfrcUtilLayout.vue'
 import ApiContent from '@/components/ApiContent.vue'
 import { LoginView } from '@openlab/deconf-ui-toolkit'
 
 export default Vue.extend({
-  components: { BrandedUtilLayout, LoginView, ApiContent },
+  components: { IfrcUtilLayout, LoginView, ApiContent },
 })
 </script>

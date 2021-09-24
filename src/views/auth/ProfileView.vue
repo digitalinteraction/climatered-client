@@ -1,5 +1,5 @@
 <template>
-  <BrandedUtilLayout>
+  <IfrcUtilLayout>
     <ProfileView
       v-if="user && profile"
       api-module="api"
@@ -7,12 +7,12 @@
       @logout="logout"
       @unregister="unregister"
     />
-  </BrandedUtilLayout>
+  </IfrcUtilLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
+import IfrcUtilLayout from '@/components/IfrcUtilLayout.vue'
 import { AuthToken } from '@openlab/deconf-shared'
 import languageData from '@/data/languages.json'
 import countryData from '@/data/countries-en.json'
@@ -33,7 +33,7 @@ interface ProfileField {
 }
 
 export default Vue.extend({
-  components: { BrandedUtilLayout, ProfileView },
+  components: { IfrcUtilLayout, ProfileView },
   computed: {
     ...mapApiState('api', ['user', 'profile']),
     fields(): ProfileField[] {

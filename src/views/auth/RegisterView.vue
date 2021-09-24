@@ -1,5 +1,5 @@
 <template>
-  <BrandedUtilLayout>
+  <IfrcUtilLayout>
     <div class="registerView">
       <h1 class="title">{{ $t('ifrc.register.title') }}</h1>
       <div class="content">
@@ -112,13 +112,13 @@
         </div>
       </div>
     </div>
-  </BrandedUtilLayout>
+  </IfrcUtilLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { Location } from 'vue-router'
-import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
+import IfrcUtilLayout from '@/components/IfrcUtilLayout.vue'
 import ApiContent from '@/components/ApiContent.vue'
 import {
   TextField,
@@ -185,7 +185,7 @@ interface Data {
 
 export default Vue.extend({
   components: {
-    BrandedUtilLayout,
+    IfrcUtilLayout,
     TextField,
     SelectField,
     CheckboxField,

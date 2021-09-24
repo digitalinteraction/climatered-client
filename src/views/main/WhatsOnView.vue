@@ -1,5 +1,5 @@
 <template>
-  <BrandedAppLayout>
+  <IfrcAppLayout>
     <WhatsOnView
       v-if="schedule"
       :schedule="schedule"
@@ -9,12 +9,12 @@
       :config="config"
       :slot-state="slotState"
     />
-  </BrandedAppLayout>
+  </IfrcAppLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedAppLayout from '@/components/BrandedAppLayout.vue'
+import IfrcAppLayout from '@/components/IfrcAppLayout.vue'
 import {
   mapApiState,
   ScheduleConfig,
@@ -35,7 +35,7 @@ interface Data {
 const typeBlocklist = new Set(['unknown', 'coffee-time'])
 
 export default Vue.extend({
-  components: { BrandedAppLayout, WhatsOnView },
+  components: { IfrcAppLayout, WhatsOnView },
   data(): Data {
     return {
       filtersKey: StorageKey.WhatsOnFilters,

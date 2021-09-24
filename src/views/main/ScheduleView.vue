@@ -1,5 +1,5 @@
 <template>
-  <BrandedAppLayout>
+  <IfrcAppLayout>
     <ScheduleView
       v-if="schedule"
       :schedule="schedule"
@@ -13,12 +13,12 @@
     >
       <p slot="infoText">{{ $t('deconf.schedule.description') }}</p>
     </ScheduleView>
-  </BrandedAppLayout>
+  </IfrcAppLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedAppLayout from '@/components/BrandedAppLayout.vue'
+import IfrcAppLayout from '@/components/IfrcAppLayout.vue'
 import {
   FullSchedule,
   isDuringConference,
@@ -39,7 +39,7 @@ interface Data {
 }
 
 export default Vue.extend({
-  components: { BrandedAppLayout, ScheduleView },
+  components: { IfrcAppLayout, ScheduleView },
   data(): Data {
     return {
       filtersKey: StorageKey.ScheduleFilters,

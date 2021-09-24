@@ -1,12 +1,12 @@
 <template>
-  <BrandedAppLayout>
+  <IfrcAppLayout>
     <div class="helpdesk" ref="root"></div>
-  </BrandedAppLayout>
+  </IfrcAppLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedAppLayout from '@/components/BrandedAppLayout.vue'
+import IfrcAppLayout from '@/components/IfrcAppLayout.vue'
 
 const SCRIPT_SRC = 'https://static.landbot.io/landbot-3/landbot-3.0.0.js'
 
@@ -36,7 +36,7 @@ interface Data {
 const landbotWindow = window as LandbotWindow
 
 export default Vue.extend({
-  components: { BrandedAppLayout },
+  components: { IfrcAppLayout },
   data(): Data {
     return {
       frameInstace: null,

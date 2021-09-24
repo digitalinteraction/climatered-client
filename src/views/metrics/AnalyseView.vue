@@ -1,5 +1,5 @@
 <template>
-  <BrandedUtilLayout>
+  <IfrcUtilLayout>
     <h1 class="title">Metrics</h1>
     <p v-if="!authenticated" class="notification is-danger">
       You must be logged in to view this page
@@ -47,12 +47,12 @@
       -->
       <pre v-html="reportMessage"></pre>
     </template>
-  </BrandedUtilLayout>
+  </IfrcUtilLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedUtilLayout from '@/components/BrandedUtilLayout.vue'
+import IfrcUtilLayout from '@/components/IfrcUtilLayout.vue'
 import {
   mapApiState,
   SelectOption,
@@ -78,7 +78,7 @@ interface Data {
 }
 
 export default Vue.extend({
-  components: { BrandedUtilLayout, SegmentControl, DateInput, Stack },
+  components: { IfrcUtilLayout, SegmentControl, DateInput, Stack },
   data(): Data {
     return {
       events: [],

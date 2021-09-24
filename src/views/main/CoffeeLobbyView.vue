@@ -1,5 +1,5 @@
 <template>
-  <BrandedAppLayout>
+  <IfrcAppLayout>
     <section class="section" style="flex: 1">
       <div class="container">
         <div class="content">
@@ -8,14 +8,14 @@
         </div>
       </div>
     </section>
-  </BrandedAppLayout>
+  </IfrcAppLayout>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import BrandedAppLayout from '@/components/BrandedAppLayout.vue'
+import IfrcAppLayout from '@/components/IfrcAppLayout.vue'
 
 export default Vue.extend({
-  components: { BrandedAppLayout },
+  components: { IfrcAppLayout },
 })
 </script>
