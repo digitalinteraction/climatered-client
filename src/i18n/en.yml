@@ -231,6 +231,16 @@ ifrc:
   notFound:
     title: Page not found
     info: We couldn't find the page you were looking for, please check the link you clicked or go back to the atrium.
+
+  serverError:
+    unknown:
+      title: Something went wrong
+      info: An unknown error occured, please try again. If the problem persists, please contact us.
+      email: contact@planetredsummit.com
+    alreadyVerified:
+      title: You have already verified
+      info: You can only use a verification magic link once, please login using the button below.
+      logIn: Log in
 #
 # ============================== OLD ==============================
 #

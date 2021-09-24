@@ -203,8 +203,26 @@ const routes: Array<RouteConfig> = [
   },
 
   //
-  // Not found
+  // Errors
   //
+  {
+    path: '/error/:errorCode',
+    props: true,
+    name: Routes.Error,
+    component: () =>
+      import(
+        /* webpackChunkName: "core" */
+        '../views/pages/ApiErrorView.vue'
+      ),
+  },
+  {
+    path: '/error',
+    component: () =>
+      import(
+        /* webpackChunkName: "core" */
+        '../views/pages/ApiErrorView.vue'
+      ),
+  },
   {
     path: '*',
     name: Routes.NotFound,
