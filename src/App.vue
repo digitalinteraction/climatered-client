@@ -107,13 +107,20 @@ export default Vue.extend({
 // Deconf hacks
 //
 .colorWidget {
-  background-color: $white !important;
-  .colorWidget-title {
-    color: $black !important;
-  }
-  .colorWidget-subtitle {
-    font-weight: 400;
-    color: $black !important;
+  &.is-primary,
+  &.is-secondary,
+  &.is-twitter,
+  &.is-login {
+    background-color: $white;
+
+    .colorWidget-title {
+      color: $black;
+    }
+
+    .colorWidget-subtitle {
+      font-weight: 400;
+      color: $black;
+    }
   }
 
   &.is-primary svg {
@@ -124,6 +131,16 @@ export default Vue.extend({
   }
   &.is-twitter svg {
     color: $twitter-blue;
+  }
+  &.is-login svg {
+    color: $link;
+  }
+  &.is-register {
+    background: $primary;
+    color: $white;
+    .colorWidget-title {
+      color: $white;
+    }
   }
 }
 </style>

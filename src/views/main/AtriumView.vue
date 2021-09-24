@@ -6,7 +6,29 @@
           <ApiContent :slug="contentSlug" />
         </div>
       </BoxContent>
-      <div slot="right">
+      <Stack slot="right" direction="vertical" gap="medium" align="stretch">
+        <template v-if="!user">
+          <div @click="widgetAction($event, 'register')">
+            <ColorWidget
+              kind="custom"
+              class="is-register"
+              :title="$t('ifrc.register.title')"
+              subtitle=""
+              :icon="['fas', 'edit']"
+              :href="registerHref"
+            />
+          </div>
+          <div @click="widgetAction($event, 'login')">
+            <ColorWidget
+              kind="custom"
+              class="is-login"
+              :title="$t('deconf.login.title')"
+              subtitle=""
+              :icon="['fas', 'envelope']"
+              :href="loginHref"
+            />
+          </div>
+        </template>
         <ColorWidget
           kind="primary"
           v-if="showSiteVisitors"
@@ -34,7 +56,7 @@
           :featured="featuredSessions"
           :current-date="scheduleDate"
         />
-      </div>
+      </Stack>
     </AtriumLayout>
   </IfrcAppLayout>
 </template>
@@ -50,6 +72,8 @@ import {
   FeaturedSessions,
   mapApiState,
   mapMetricsState,
+  Routes,
+  Stack,
 } from '@openlab/deconf-ui-toolkit'
 import ApiContent from '@/components/ApiContent.vue'
 import { ConferenceConfig, Session, SessionSlot } from '@openlab/deconf-shared'
@@ -68,6 +92,7 @@ export default Vue.extend({
     BoxContent,
     ApiContent,
     FeaturedSessions,
+    Stack,
   },
   computed: {
     ...mapApiState('api', ['schedule', 'user', 'carbon']),
@@ -112,6 +137,12 @@ export default Vue.extend({
         )
         .sort((a, b) => a.slot?.start.getTime() - b.slot?.start.getTime())
     },
+    loginHref(): string {
+      return this.$router.resolve({ name: Routes.Login }).href
+    },
+    registerHref(): string {
+      return this.$router.resolve({ name: Routes.Register }).href
+    },
   },
   mounted() {
     this.$store.dispatch('api/fetchCarbon')
@@ -122,11 +153,16 @@ export default Vue.extend({
 
       this.$metrics.track(createAtriumWidgetEvent(kind))
 
-      window.open(
-        this.$t('ifrc.atrium.twitterUrl') as string,
-        '_blank',
-        'noopener'
-      )
+      if (kind === 'twitter') {
+        const url = this.$t('ifrc.atrium.twitterUrl') as string
+        window.open(url, '_blank', 'noopener')
+      }
+      if (kind === 'login') {
+        this.$router.push({ name: Routes.Login })
+      }
+      if (kind === 'register') {
+        this.$router.push({ name: Routes.Register })
+      }
     },
   },
 })
