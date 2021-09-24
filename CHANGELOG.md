@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.2](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2021-09-24)
+
+
+### Features
+
+* add DateInput helper component ([839ea92](https://github.com/digitalinteraction/climatered-client/commit/839ea92fe8e06c613f48f908baf00ee10f63e155))
+* add i18n page titles ([3512b24](https://github.com/digitalinteraction/climatered-client/commit/3512b24eac8f92ade0921f23b3f7d8ba4b043e2c))
+* add Log in & Register to Atrium widgets when not signed in ([d788f27](https://github.com/digitalinteraction/climatered-client/commit/d788f27572a48592fce90f6d6cc93a70f1730f43))
+* add NotFound view and integrate with SessionView ([d65ecd0](https://github.com/digitalinteraction/climatered-client/commit/d65ecd03cd8d6ddb776b7ae22ebdadbaa4516e26))
+* add routable error messages ([df658c2](https://github.com/digitalinteraction/climatered-client/commit/df658c2e4c89482606131706fe5c5f6c037f8ae2))
+* **metrics:** add atirum widget report ([e68eb8c](https://github.com/digitalinteraction/climatered-client/commit/e68eb8cd4811a1bb2df330e9a8a0d6f91164e668))
+* **metrics:** add button to top date filter ([8223367](https://github.com/digitalinteraction/climatered-client/commit/8223367ca6ac604010aa23901f32b767b1a09d85))
+
+
+### Bug Fixes
+
+* add "days" translation ([5c48a3e](https://github.com/digitalinteraction/climatered-client/commit/5c48a3ef4be138b2e5fa2dfe2265ac80c10cd876))
+* **profile:** perform a logout if a profile is not found ([eeef150](https://github.com/digitalinteraction/climatered-client/commit/eeef1502af32fd223e70eb23ed6ad05bc633de81))
+* set theme-color ([b526dd7](https://github.com/digitalinteraction/climatered-client/commit/b526dd7e59b7cdd401fffdf76de51efb6b732d59))
+* sockets are now authenticated on connection ([62f4a2a](https://github.com/digitalinteraction/climatered-client/commit/62f4a2a3be80a568f90571d3e3e09d5104139bf0))
+
 ## [2.0.0-beta.1](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2021-09-22)
 
 
