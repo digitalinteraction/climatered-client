@@ -201,6 +201,19 @@ const routes: Array<RouteConfig> = [
         '../views/metrics/AnalyseView.vue'
       ),
   },
+
+  //
+  // Not found
+  //
+  {
+    path: '*',
+    name: Routes.NotFound,
+    component: () =>
+      import(
+        /* webpackChunkName: "core" */
+        '../views/pages/NotFoundView.vue'
+      ),
+  },
 ]
 
 const protectedRoutes = new Set<string>([

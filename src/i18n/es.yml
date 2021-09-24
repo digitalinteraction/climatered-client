@@ -223,3 +223,7 @@ ifrc:
     guidelines: Directrices
     terms: Términos
     faqs: FAQ
+
+  notFound:
+    title: Página no encontrada
+    info: No pudimos encontrar la página que estaba buscando, verifique el enlace en el que hizo clic o regrese al atrio.

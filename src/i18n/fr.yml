@@ -222,3 +222,7 @@ ifrc:
     guidelines: Directives
     terms: Termes
     faqs: FAQ
+
+  notFound:
+    title: Page introuvable
+    info: Nous n'avons pas trouvé la page que vous recherchiez, veuillez vérifier le lien sur lequel vous avez cliqué ou retourner à l'atrium.

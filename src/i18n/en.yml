@@ -227,6 +227,10 @@ ifrc:
     guidelines: Community Guidelines
     terms: Terms & Conditions
     faqs: FAQs
+
+  notFound:
+    title: Page not found
+    info: We couldn't find the page you were looking for, please check the link you clicked or go back to the atrium.
 #
 # ============================== OLD ==============================
 #

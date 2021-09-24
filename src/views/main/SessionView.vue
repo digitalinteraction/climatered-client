@@ -1,5 +1,5 @@
 <template>
-  <BrandedAppLayout>
+  <BrandedAppLayout v-if="session">
     <SessionView
       v-if="schedule && session"
       api-module="api"
@@ -13,6 +13,7 @@
       </BackButton>
     </SessionView>
   </BrandedAppLayout>
+  <NotFoundView v-else />
 </template>
 
 <script lang="ts">
@@ -24,11 +25,12 @@ import {
   Routes,
 } from '@openlab/deconf-ui-toolkit'
 import BrandedAppLayout from '../../components/BrandedAppLayout.vue'
+import NotFoundView from '../../views/pages/NotFoundView.vue'
 import Vue from 'vue'
 import { Location } from 'vue-router'
 
 export default Vue.extend({
-  components: { BrandedAppLayout, SessionView, BackButton },
+  components: { BrandedAppLayout, SessionView, BackButton, NotFoundView },
   props: {
     sessionId: { type: String, required: true },
   },
