@@ -26,9 +26,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "core" */
         '../views/main/AtriumView.vue'
       ),
-    // meta: {
-    //   title: 'ifrc.atrium.title'
-    // }
+    meta: {
+      title: 'deconf.appLayout.atrium',
+    },
   },
   {
     path: '/whats-on',
@@ -38,9 +38,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "sessions" */
         '../views/main/WhatsOnView.vue'
       ),
-    // meta: {
-    //   title: 'ifrc.whatsOn.title'
-    // }
+    meta: {
+      title: 'deconf.appLayout.whatsOn',
+    },
   },
   {
     path: '/schedule',
@@ -50,9 +50,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "sessions" */
         '../views/main/ScheduleView.vue'
       ),
-    // meta: {
-    //   title: 'ifrc.schedule.title'
-    // }
+    meta: {
+      title: 'deconf.appLayout.schedule',
+    },
   },
   {
     path: '/coffee',
@@ -62,9 +62,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "coffee" */
         '../views/main/CoffeeLobbyView.vue'
       ),
-    // meta: {
-    //   title: 'ifrc.coffeeChat.title'
-    // }
+    meta: {
+      title: 'deconf.appLayout.coffeeChat',
+    },
   },
   {
     path: '/help',
@@ -74,9 +74,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "help" */
         '../views/main/HelpDeskView.vue'
       ),
-    // meta: {
-    //   title: 'ifrc.helpDesk.title'
-    // }
+    meta: {
+      title: 'deconf.appLayout.helpDesk',
+    },
   },
   {
     path: '/session/:sessionId',
@@ -87,9 +87,9 @@ const routes: Array<RouteConfig> = [
         '../views/main/SessionView.vue'
       ),
     props: true,
-    // meta: {
-    //   title: 'ifrc.session.title'
-    // }
+    meta: {
+      title: 'deconf.session.title',
+    },
   },
 
   //
@@ -152,6 +152,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "pages" */
         '../views/pages/TermsView.vue'
       ),
+    meta: {
+      title: 'ifrc.footer.terms',
+    },
   },
   {
     path: '/privacy',
@@ -161,6 +164,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "pages" */
         '../views/pages/PrivacyView.vue'
       ),
+    meta: {
+      title: 'ifrc.footer.privacy',
+    },
   },
   {
     path: '/guidelines',
@@ -170,6 +176,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "pages" */
         '../views/pages/GuidelinesView.vue'
       ),
+    meta: {
+      title: 'ifrc.footer.guidelines',
+    },
   },
   {
     path: '/faqs',
@@ -179,6 +188,9 @@ const routes: Array<RouteConfig> = [
         /* webpackChunkName: "pages" */
         '../views/pages/FaqsView.vue'
       ),
+    meta: {
+      title: 'ifrc.footer.faqs',
+    },
   },
 
   //
@@ -187,6 +199,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/interpret',
     name: Routes.InterpretHome,
+    // TODO: Implement interpretation
   },
 
   //
@@ -194,7 +207,7 @@ const routes: Array<RouteConfig> = [
   //
   {
     path: '/metrics',
-    name: 'METRICS',
+    name: 'Metrics',
     component: () =>
       import(
         /* webpackChunkName: "metrics" */

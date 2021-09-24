@@ -129,7 +129,7 @@ deconf:
     registerAction: Register here
 
   profile:
-    title: Your profile
+    title: Your Profile
     actionLabel: Actions
     logoutButton: Log out
     dangerLabel: Danger zone
@@ -155,6 +155,7 @@ deconf:
     noResults: Nothing matched your query
 
   session:
+    title: View Session
     slot: Schedule
     countdown: Countdown
     links: Links
