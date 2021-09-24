@@ -28,6 +28,7 @@ deconf:
     #workshops: 'None | 1 workshop | {n} workshops'
 
   general:
+    #days: days | day | days
     #hours: hours | hour | hours
     #minutes: minutes | minute | minutes
     #seconds: seconds | second | seconds

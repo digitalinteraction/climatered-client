@@ -28,6 +28,7 @@ deconf:
     workshops: 'Rien | 1 atelier | {n} ateliers'
 
   general:
+    days: jours | jour | jours
     hours: heures | heure | heures
     minutes: minutes | minute | minutes
     seconds: seconds | second | seconds

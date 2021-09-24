@@ -28,6 +28,7 @@ deconf:
     #workshops: 'None | 1 tallere | {n} talleres'
 
   general:
+    days: dias | día | dias
     hours: horas | hora | horas
     minutes: minutos | minuto | minutos
     seconds: segundos | segundo | segundos
