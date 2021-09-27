@@ -40,6 +40,7 @@ import LanguageControl from '../components/LanguageControl.vue'
 import AtriumIcon from '../icons/AtriumIcon.vue'
 import CoffeeIcon from '../icons/CoffeeIcon.vue'
 import HelpDeskIcon from '../icons/HelpDeskIcon.vue'
+import WhatsOnIcon from '../icons/WhatsOnIcon.vue'
 import ScheduleIcon from '../icons/ScheduleIcon.vue'
 
 // TODO:
@@ -51,7 +52,7 @@ const iconMap: Record<string, Vue.Component | undefined> = {
   [Routes.CoffeeChatLobby]: CoffeeIcon,
   [Routes.HelpDesk]: HelpDeskIcon,
   [Routes.Schedule]: ScheduleIcon,
-  [Routes.WhatsOn]: ScheduleIcon,
+  [Routes.WhatsOn]: WhatsOnIcon,
 }
 
 export default Vue.extend({
