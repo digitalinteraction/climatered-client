@@ -8,6 +8,7 @@ export class MetricsPlugin {
     Vue.prototype.$metrics = new MetricsPlugin()
 
     Vue.config.errorHandler = function (error, vm, info) {
+      console.error(error)
       MetricsPlugin.error({
         name: error.name,
         message: error.message,

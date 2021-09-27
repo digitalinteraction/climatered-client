@@ -3,10 +3,10 @@ import Vuex from 'vuex'
 
 import { apiModule } from './api-module'
 import { metricsModule } from './metrics-module'
+import { interpretModule } from './interpret-module'
 
 import {
   ApiModuleState,
-  createInterpretStoreModule,
   InterpretModuleState,
   MetricsModuleState,
 } from '@openlab/deconf-ui-toolkit'
@@ -22,7 +22,7 @@ export interface StoreState {
 export default new Vuex.Store({
   modules: {
     api: apiModule(),
-    interpret: createInterpretStoreModule(),
+    interpret: interpretModule(),
     metrics: metricsModule(),
   },
 })

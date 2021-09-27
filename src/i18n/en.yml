@@ -268,27 +268,37 @@ ifrc:
     sessionLabel: Session title
     floorLabel: Floor language
     outputLabel: Output language
+    confirmLeave: There is a live broadcast, are you sure?
     # live: You are live
     # testLabel: Test mic
-    # startAction: Go Live
-    # stopAction: Disconnect
-    # takeoverAction: Takeover
-    # takeoverConfirm: Are you sure you want to takeover?
+
     # takeoverActionLabel: Request takeover
     # takeoverStatusLabel: status
     # plusMins: now | 1 min | {count} mins
     # noResponse: No response
     # acceptedBy: Accepted by {0}
-    # onlineLabel: Online now
-    # isLive: '{0} is live'
-    # confirmLeave: 'You are live broadcasting, are you sure?'
+    #
+    #
     # sendMessage:
-    #   placeholder: Send a message
-    #   action: Send
+    #
+    #
     # isSelf: (you)
-    # messagesLabel: Messages
-    # deviceLabel: Pick a device
-    # refreshButton: Refresh devices
+
+  interpretControls:
+    deviceLabel: Pick a device
+    refreshButton: Refresh devices
+    start: Go Live
+    stop: Disconnect
+    liveMessage: '{0} is live'
+    takeoverAction: Takeover
+    takeoverConfirm: Are you sure you want to takeover?
+    liveLabel: You are live
+
+  interpretPanel:
+    onlineLabel: Online now
+    messagesLabel: Messages
+    messagePlaceholder: Send a message
+    messageAction: Send
 #
 # ============================== OLD ==============================
 #
