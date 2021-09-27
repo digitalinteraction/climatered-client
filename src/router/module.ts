@@ -199,7 +199,21 @@ const routes: Array<RouteConfig> = [
   {
     path: '/interpret',
     name: Routes.InterpretHome,
-    // TODO: Implement interpretation
+    component: () =>
+      import(
+        /* webpackChunkName: "interpret" */
+        '../views/interpret/InterpreterScheduleView.vue'
+      ),
+  },
+  {
+    path: '/interpret/:sessionId/:channel',
+    name: Routes.InterpretSession,
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "interpret" */
+        '../views/interpret/InterpreterBoothView.vue'
+      ),
   },
 
   //

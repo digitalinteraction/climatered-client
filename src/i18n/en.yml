@@ -243,6 +243,52 @@ ifrc:
       title: You have already verified
       info: You can only use a verification magic link once, please login using the button below.
       logIn: Log in
+
+  interpretSchedule:
+    title: Interpretation
+    subtitle: Use this page to navigate the session's you're assigned to interpret for
+    session: Session
+    sessionTitle: Title
+    date: Date
+    start: Start
+    end: End
+    language: Floor language
+    actions: Interpret
+    unsupportedTitle: Your browser isn't supported
+    unsupportedInfo: >
+      It looks like your using an unsupported browser.
+      Please swap to chrome (v42+), safari (13.1+) or firefox (v80+)
+      and return to this page.
+      If you are on iOS please upgrade to iOS version 13.5 or above.
+    chromeWarning: Please remember to use the latest version of chrome
+
+  interpretBooth:
+    title: Interpret Booth
+    backButton: Back to Schedule
+    sessionLabel: 'Session title:'
+    floorLabel: 'Floor language:'
+    outputLabel: 'Output language:'
+    live: You are live
+    testLabel: Test mic
+    startAction: Go Live
+    stopAction: Disconnect
+    takeoverAction: Takeover
+    takeoverConfirm: Are you sure you want to takeover?
+    takeoverActionLabel: Request takeover
+    takeoverStatusLabel: status
+    plusMins: now | 1 min | {count} mins
+    noResponse: No response
+    acceptedBy: Accepted by {0}
+    onlineLabel: Online now
+    isLive: '{0} is live'
+    confirmLeave: 'You are live broadcasting, are you sure?'
+    sendMessage:
+      placeholder: Send a message
+      action: Send
+    isSelf: (you)
+    messagesLabel: Messages
+    deviceLabel: Pick a device
+    refreshButton: Refresh devices
 #
 # ============================== OLD ==============================
 #
