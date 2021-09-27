@@ -43,7 +43,7 @@
         <tbody>
           <tr v-for="group in interpretedSessions" :key="group.session.id">
             <td>{{ group.session.id }}</td>
-            <td class="title-cell">{{ group.session.title.en }}</td>
+            <td class="title-cell">{{ getTitle(group.session) }}</td>
             <td>{{ getLocaleDate(group.slot.start) }}</td>
             <td>{{ getLocaleTime(group.slot.start) }}</td>
             <td>{{ getLocaleDate(group.slot.end) }}</td>
@@ -70,6 +70,7 @@ import Vue from 'vue'
 import IfrcUtilLayout from '@/components/IfrcUtilLayout.vue'
 import {
   AudioBroadcaster,
+  localiseFromObject,
   mapApiState,
   Routes,
 } from '@openlab/deconf-ui-toolkit'
@@ -126,6 +127,9 @@ export default Vue.extend({
     },
     getLanguages(session: Session) {
       return session.hostLanguages.slice(1).sort((a, b) => a.localeCompare(b))
+    },
+    getTitle(session: Session) {
+      return localiseFromObject(this.$i18n.locale, session.title)
     },
     getFloorLanguage(session: Session) {
       return session.hostLanguages[0]

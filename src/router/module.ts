@@ -202,7 +202,7 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(
         /* webpackChunkName: "interpret" */
-        '../views/interpret/InterpreterScheduleView.vue'
+        '../views/interpret/InterpretScheduleView.vue'
       ),
   },
   {
@@ -212,7 +212,7 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(
         /* webpackChunkName: "interpret" */
-        '../views/interpret/InterpreterBoothView.vue'
+        '../views/interpret/InterpretBoothView.vue'
       ),
   },
 
