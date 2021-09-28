@@ -129,6 +129,13 @@ export function interpretModule(): InterpretStoreModule {
         commit('stopInterpret')
         SocketIoPlugin.sharedSocket?.emit('stopInterpret', booth)
       },
+
+      joinChannel(ctx, booth: InterpretBooth) {
+        SocketIoPlugin.sharedSocket?.emit('joinChannel', booth)
+      },
+      leaveChannel(ctx, booth: InterpretBooth) {
+        SocketIoPlugin.sharedSocket?.emit('leaveChannel', booth)
+      },
     },
   }
 }

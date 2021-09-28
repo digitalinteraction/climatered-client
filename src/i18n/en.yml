@@ -269,20 +269,6 @@ ifrc:
     floorLabel: Floor language
     outputLabel: Output language
     confirmLeave: There is a live broadcast, are you sure?
-    # live: You are live
-    # testLabel: Test mic
-
-    # takeoverActionLabel: Request takeover
-    # takeoverStatusLabel: status
-    # plusMins: now | 1 min | {count} mins
-    # noResponse: No response
-    # acceptedBy: Accepted by {0}
-    #
-    #
-    # sendMessage:
-    #
-    #
-    # isSelf: (you)
 
   interpretControls:
     deviceLabel: Pick a device
@@ -299,6 +285,19 @@ ifrc:
     messagesLabel: Messages
     messagePlaceholder: Send a message
     messageAction: Send
+
+  channelControl:
+    channel: Audio language # oneToMany.label
+    muteLabel: 'NOTE: To listen in another language, remember to mute the stream above' # oneToMany.muteLabel
+    source: From video # oneToMany.source
+    start: Start # oneToMany.start
+    stop: Stop # oneToMany.stop
+    isOnline: Channel is live
+    isOffline: Channel is offline
+    stopped: stopped
+    playing: playing
+    buffering: buffering {0}
+    ready: ready to play
 #
 # ============================== OLD ==============================
 #

@@ -11,26 +11,40 @@
       <BackButton slot="backButton" :to="backRoute">
         {{ $t('deconf.session.backButton') }}
       </BackButton>
+      <ChannelControl
+        slot="afterEmbed"
+        :channels="channels"
+        :sessionId="sessionId"
+        v-if="showChannelControl"
+      />
     </SessionView>
   </IfrcAppLayout>
   <NotFoundView v-else />
 </template>
 
 <script lang="ts">
-import { Session } from '@openlab/deconf-shared'
+import { Session, SessionSlot } from '@openlab/deconf-shared'
 import {
   mapApiState,
   SessionView,
   BackButton,
   Routes,
+  getSlotState,
 } from '@openlab/deconf-ui-toolkit'
 import IfrcAppLayout from '../../components/IfrcAppLayout.vue'
+import ChannelControl from '../../components/ChannelControl.vue'
 import NotFoundView from '../../views/pages/NotFoundView.vue'
 import Vue from 'vue'
 import { Location } from 'vue-router'
 
 export default Vue.extend({
-  components: { IfrcAppLayout, SessionView, BackButton, NotFoundView },
+  components: {
+    IfrcAppLayout,
+    ChannelControl,
+    SessionView,
+    BackButton,
+    NotFoundView,
+  },
   props: {
     sessionId: { type: String, required: true },
   },
@@ -40,12 +54,38 @@ export default Vue.extend({
       if (!this.schedule) return null
       return this.schedule.sessions.find((s) => s.id === this.sessionId) ?? null
     },
+    sessionSlot(): SessionSlot | null {
+      const { schedule, session } = this
+      if (!schedule || !session) return null
+      return schedule.slots.find((s) => s.id === session.slot) ?? null
+    },
     scheduleDate(): Date {
       return this.$dev.scheduleDate ?? this.$temporal.date
     },
     backRoute(): Location {
       return { name: Routes.Schedule }
     },
+    showChannelControl(): boolean {
+      if (!this.session || !this.sessionSlot) return false
+      if (!this.session.enableInterpretation) return false
+
+      const state = getSlotState(
+        this.scheduleDate,
+        this.sessionSlot.start,
+        this.sessionSlot.end
+      )
+      return state === 'present'
+    },
+    channels(): string[] {
+      if (!this.session) return []
+      return this.session.hostLanguages.slice(1)
+    },
   },
 })
 </script>
+
+<style lang="scss">
+.channelControl {
+  margin-bottom: 1rem;
+}
+</style>
