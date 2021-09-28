@@ -4,10 +4,15 @@ import {
   getResampledLength,
 } from '@openlab/deconf-ui-toolkit'
 
+//
 // TODO: move correct logic back to deconf
+//
 
+type WebkitWindow = typeof window & { webkitAudioContext?: AudioContext }
 function getAudioContext(): typeof AudioContext | null {
-  return window.AudioContext || (window as any).webkitAudioContext || null
+  return (
+    window.AudioContext || (window as WebkitWindow).webkitAudioContext || null
+  )
 }
 
 export enum BroadcasterState {
@@ -24,7 +29,7 @@ interface OnData {
 }
 
 interface OnDebug {
-  (...args: any[]): void
+  (...args: unknown[]): void
 }
 
 export interface AudioBroadcasterOptions {
@@ -39,7 +44,7 @@ export interface AudioBroadcasterOptions {
 }
 
 export class AudioBroadcaster {
-  static isSupported() {
+  static isSupported(): boolean {
     return Boolean(getAudioContext())
   }
 
@@ -49,10 +54,10 @@ export class AudioBroadcaster {
   private ctx: null | AudioContext = null
   private source: null | MediaStreamAudioSourceNode = null
 
-  get state() {
+  get state(): BroadcasterState {
     return this._state
   }
-  set state(newState) {
+  set state(newState: BroadcasterState) {
     this._state = newState
     this.emitChange()
   }
@@ -65,7 +70,9 @@ export class AudioBroadcaster {
 
   constructor(public options: AudioBroadcasterOptions) {}
 
-  async start(previousDeviceId: string | undefined) {
+  async start(
+    previousDeviceId: string | undefined
+  ): Promise<{ chosenDevice?: string }> {
     if (this.state === BroadcasterState.active) {
       throw new Error('Already started')
     }
@@ -82,16 +89,13 @@ export class AudioBroadcaster {
         deviceId: { ideal: previousDeviceId },
         sampleRate: { ideal: this.options.audioTransportRate },
         echoCancellation: { ideal: true },
-        noiseSuppression: { ideal: true },
-      } as any,
+        // noiseSuppression: { ideal: true },
+      },
     })
     // TODO: what if the user manually closes the stream?
 
     // TODO: what happens if sampleRate is not set
-    const {
-      deviceId: chosenDevice,
-      // sampleRate = this.options.audioTransportRate,
-    } = this.stream.getAudioTracks()[0].getSettings()
+    const { deviceId } = this.stream.getAudioTracks()[0].getSettings()
     const { sampleRate } = this.ctx
 
     // Register the user's audio worklet
@@ -129,7 +133,7 @@ export class AudioBroadcaster {
 
     this.state = BroadcasterState.active
 
-    return { chosenDevice }
+    return { chosenDevice: deviceId }
   }
   stop(): void {
     if (this.state !== BroadcasterState.active) {
@@ -153,7 +157,11 @@ export class AudioBroadcaster {
     }
   }
 
-  handleData(arrayBuffer: ArrayBuffer, inputRate: number, outputRate: number) {
+  handleData(
+    arrayBuffer: ArrayBuffer,
+    inputRate: number,
+    outputRate: number
+  ): void {
     const inputFloats = new Float32Array(arrayBuffer)
     const targetLength = getResampledLength(
       inputFloats.length,
@@ -174,7 +182,7 @@ export class AudioBroadcaster {
 
     this.options.onData(float32ToInt16(outputFloats).buffer, outputRate)
   }
-  handleStreamError(error: Error) {
+  handleStreamError(error: Error): void {
     switch (error.name) {
       case 'NotFoundError':
         alert('No microphones found')
