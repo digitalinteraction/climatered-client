@@ -12,6 +12,10 @@ export class SocketIoPlugin {
     Vue.prototype.$io = new SocketIoPlugin(env.SERVER_URL)
   }
 
+  static authenticate(token: string): void {
+    this.sharedSocket?.emit('auth', token)
+  }
+
   constructor(serverUrl: string) {
     // Concat the path onto the server url, e.g.
     // "/api/socket.io"
@@ -44,7 +48,7 @@ export class SocketIoPlugin {
     this.socket.on('connect', () => {
       const token = localStorage.getItem(StorageKey.AuthToken)
       if (token) {
-        this.socket.emit('auth', token)
+        SocketIoPlugin.authenticate(token)
       }
     })
   }

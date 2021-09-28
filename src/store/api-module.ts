@@ -16,6 +16,7 @@ import {
   Session,
   SessionLink,
 } from '@openlab/deconf-shared'
+import { SocketIoPlugin } from '@/plugins/socketio-plugin'
 
 const API_DELAY = 300
 
@@ -50,6 +51,8 @@ export function apiModule(): ApiStoreModule {
       authenticate({ commit, dispatch }, token: string) {
         const user = decodeJwt(token)
         commit('user', user)
+
+        SocketIoPlugin.authenticate(token)
 
         dispatch('fetchUserAttendance')
 
