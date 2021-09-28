@@ -1,3 +1,3 @@
 <template>
-  <img src="/img/square-brand.png" width="64" height="63" />
+  <img src="/img/square-brand.svg" width="64" height="64" />
 </template>
