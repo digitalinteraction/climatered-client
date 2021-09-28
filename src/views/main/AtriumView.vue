@@ -169,6 +169,15 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+.atriumView {
+  .atriumLayout {
+    background-image: url(/img/background.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-top: 7em;
+    flex: 1;
+  }
+}
 .atriumView-content {
   min-height: 500px;
 }
