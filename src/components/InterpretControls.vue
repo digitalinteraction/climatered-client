@@ -155,7 +155,7 @@ export default Vue.extend({
       onChange: (change) => {
         this.broadcastState = change.state
       },
-      onData: (data, sampleRate) => {
+      onData: (data) => {
         this.$store.dispatch('interpret/sendAudio', data)
       },
       onDebug: (...args) => {
