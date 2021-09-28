@@ -176,6 +176,7 @@ export default Vue.extend({
     background-repeat: no-repeat;
     padding-top: 7em;
     flex: 1;
+    overflow-x: hidden;
   }
 }
 .atriumView-content {
