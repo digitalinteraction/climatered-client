@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.3](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2021-09-28)
+
+
+### Features
+
+* add ChannelControl prototype ([714fe1f](https://github.com/digitalinteraction/climatered-client/commit/714fe1fa9d076dd05995d0b9528522f2317fe2a4))
+* add interpretation prototype ([bc697e0](https://github.com/digitalinteraction/climatered-client/commit/bc697e03ef3f1a639f7024302eab75f81f065320))
+* add InterpreterScheduleView with links to available booths ([eee943a](https://github.com/digitalinteraction/climatered-client/commit/eee943a906b9b3494c60dd67037926d99a532b85))
+* add WhatsOnIcon and normalise SVG ([a0fca37](https://github.com/digitalinteraction/climatered-client/commit/a0fca37369ade46de60764e595cb8947685b2fa7))
+
+
+### Bug Fixes
+
+* fix AtriumView to now fill the page vertically ([f3e387e](https://github.com/digitalinteraction/climatered-client/commit/f3e387ebac714e151f4b02d29d1f4c8f24385b28))
+* fix sockets not being authenticated upon logging in ([fe9235d](https://github.com/digitalinteraction/climatered-client/commit/fe9235d47dec2fb4472e4d4db9c1632dcf9bd9b0))
+
 ## [2.0.0-beta.2](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2021-09-24)
 
 
