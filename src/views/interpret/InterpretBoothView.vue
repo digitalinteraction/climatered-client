@@ -37,13 +37,6 @@
           />
         </div>
       </div>
-      <!--
-        Debug
-       -->
-      <details>
-        <summary>debug</summary>
-        <pre v-html="$store.state.interpret"></pre>
-      </details>
     </div>
   </IfrcUtilLayout>
 </template>
