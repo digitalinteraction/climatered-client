@@ -115,7 +115,7 @@ export default Vue.extend({
         }))
         .filter((g) => Boolean(g.slot))
 
-      grouped.sort((a, b) => b.slot.start.getTime() - a.slot.start.getTime())
+      grouped.sort((a, b) => a.slot.start.getTime() - b.slot.start.getTime())
 
       return grouped
     },
