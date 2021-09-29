@@ -48,15 +48,17 @@
             <td>{{ getLocaleTime(group.slot.start) }}</td>
             <td>{{ getLocaleDate(group.slot.end) }}</td>
             <td class="floor-cell">{{ getFloorLanguage(group.session) }}</td>
-            <td class="buttons">
-              <router-link
-                v-for="lang in getLanguages(group.session)"
-                class="button is-link"
-                :key="lang"
-                :to="getBoothRoute(group.session, lang)"
-              >
-                {{ lang }}
-              </router-link>
+            <td>
+              <div class="buttons">
+                <router-link
+                  v-for="lang in getLanguages(group.session)"
+                  class="button is-link"
+                  :key="lang"
+                  :to="getBoothRoute(group.session, lang)"
+                >
+                  {{ lang }}
+                </router-link>
+              </div>
             </td>
           </tr>
         </tbody>
