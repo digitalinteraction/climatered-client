@@ -170,13 +170,20 @@ export default Vue.extend({
 
 <style lang="scss">
 .atriumView {
-  .atriumLayout {
-    background-image: url(/img/background.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    padding-top: 7em;
-    flex: 1;
-    overflow-x: hidden;
+  @include mobile {
+    .atriumLayout {
+      padding-top: 3em;
+    }
+  }
+  @include tablet {
+    .atriumLayout {
+      background-image: url(/img/background.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      padding-top: 7em;
+      flex: 1;
+      overflow-x: hidden;
+    }
   }
 }
 .atriumView-content {
