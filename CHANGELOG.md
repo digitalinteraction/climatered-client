@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.4](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2021-09-29)
+
+
+### Features
+
+* **interpret:** add help content ([1942428](https://github.com/digitalinteraction/climatered-client/commit/1942428ccc20d09a5bd943c34ee60fc1dc21d3a9))
+
+
+### Bug Fixes
+
+* **atrium:** fix horizontal scrolling on mobile ([fa6f97b](https://github.com/digitalinteraction/climatered-client/commit/fa6f97b2e5c7f0e14db402775a0431ac374179ba))
+* **atrium:** only show 3 featured sessions ([87cf156](https://github.com/digitalinteraction/climatered-client/commit/87cf1567615a0901085592282716981a0fc4f689))
+* **atrium:** reduce padding and tweak ([174498d](https://github.com/digitalinteraction/climatered-client/commit/174498dabaebbc8bed61b8e04dc3e7ff9f4647ef))
+* **atrium:** twitter widget text is white on hover ([a0dcf19](https://github.com/digitalinteraction/climatered-client/commit/a0dcf1989850afd71486fbbd7f31bcbdc941e202))
+* **deps:** upgrade deconf-ui to 2.0.0-beta.20 ([533b7c5](https://github.com/digitalinteraction/climatered-client/commit/533b7c576d1816a7fe1c14bfd60bff7240396ac5))
+* **help:** simplify and secure landbot by using an iframe directly ([31cf7ba](https://github.com/digitalinteraction/climatered-client/commit/31cf7bac2b9db7cdb0030cc94683ee2c13e51394))
+* **interpret:** align schedule buttons in the table ([7d223bc](https://github.com/digitalinteraction/climatered-client/commit/7d223bc21928b06319013fb234ab7f826e9a31b4))
+* **interpret:** remove debug section ([6210cd5](https://github.com/digitalinteraction/climatered-client/commit/6210cd5fe4808431bac18c1b28c28af4fee02876))
+* **interpret:** show earliest sessions first ([a029886](https://github.com/digitalinteraction/climatered-client/commit/a029886da9a9865a7bd709372a79abec4ca5d799))
+* make links red ([d2fed1d](https://github.com/digitalinteraction/climatered-client/commit/d2fed1d6b4861a478e2a783dd9152e89d2a7d685))
+* **session-view:** show interpret controls after a session ([4cd289b](https://github.com/digitalinteraction/climatered-client/commit/4cd289bbf3c4ed38ab2b29f8a908abb15d37b0f7))
+* update branding ([383a580](https://github.com/digitalinteraction/climatered-client/commit/383a5802b413e53d0fc6689f2c902c42716c15e2))
+
 ## [2.0.0-beta.3](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2021-09-28)
 
 
