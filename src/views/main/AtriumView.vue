@@ -136,6 +136,7 @@ export default Vue.extend({
             group.slot.start.getTime() < inAWeek
         )
         .sort((a, b) => a.slot?.start.getTime() - b.slot?.start.getTime())
+        .slice(0, 3)
     },
     loginHref(): string {
       return this.$router.resolve({ name: Routes.Login }).href
