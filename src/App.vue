@@ -132,6 +132,12 @@ export default Vue.extend({
   &.is-twitter svg {
     color: $twitter-blue;
   }
+  &.is-twitter:hover {
+    .colorWidget-title,
+    .colorWidget-subtitle {
+      color: $white;
+    }
+  }
   &.is-login svg {
     color: $link;
   }
