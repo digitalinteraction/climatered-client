@@ -27,7 +27,10 @@
         <div class="column is-three-fifths">
           <InterpretControls :booth="booth" />
 
-          <!-- TODO: <ApiContent slug="interpret" /> -->
+          <details class="interpretBooth-help">
+            <summary>Show help</summary>
+            <ApiContent slug="interpret-help" />
+          </details>
         </div>
         <div class="column">
           <InterpretPanel
@@ -46,6 +49,7 @@ import Vue from 'vue'
 import IfrcUtilLayout from '@/components/IfrcUtilLayout.vue'
 import InterpretPanel from '@/components/InterpretPanel.vue'
 import InterpretControls from '@/components/InterpretControls.vue'
+import ApiContent from '@/components/ApiContent.vue'
 import {
   BackButton,
   localiseFromObject,
@@ -56,7 +60,13 @@ import { InterpretBooth, Interpreter, Session } from '@openlab/deconf-shared'
 import { mapInterpretState } from '@/store/interpret-module'
 
 export default Vue.extend({
-  components: { IfrcUtilLayout, BackButton, InterpretPanel, InterpretControls },
+  components: {
+    IfrcUtilLayout,
+    BackButton,
+    InterpretPanel,
+    InterpretControls,
+    ApiContent,
+  },
   props: {
     sessionId: { type: String, required: true },
     channel: { type: String, required: true },
@@ -204,6 +214,21 @@ export default Vue.extend({
 .interpreterBooth {
   .table {
     margin-bottom: 5rem;
+  }
+}
+.interpretBooth-help {
+  margin-top: 2rem;
+  padding: 1em;
+  border: 2px dashed $border;
+  border-radius: 6px;
+  background-color: $white-bis;
+
+  > summary {
+    cursor: pointer;
+  }
+
+  &[open] > summary {
+    margin-bottom: 1em;
   }
 }
 </style>
