@@ -74,7 +74,7 @@ export default Vue.extend({
         this.sessionSlot.start,
         this.sessionSlot.end
       )
-      return state === 'present'
+      return state === 'present' || state === 'past'
     },
     channels(): string[] {
       if (!this.session) return []
