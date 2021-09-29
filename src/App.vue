@@ -149,4 +149,9 @@ export default Vue.extend({
     }
   }
 }
+.content {
+  a {
+    font-weight: bold;
+  }
+}
 </style>
