@@ -56,10 +56,6 @@ export default Vue.extend({
           url: this.$router.resolve({ name: Routes.Privacy, query }).href,
         },
         {
-          title: this.$t('ifrc.footer.terms'),
-          url: this.$router.resolve({ name: Routes.Terms, query }).href,
-        },
-        {
           title: this.$t('ifrc.footer.guidelines'),
           url: this.$router.resolve({ name: Routes.Guidelines, query }).href,
         },
