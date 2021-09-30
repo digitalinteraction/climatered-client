@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.5](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2021-09-30)
+
+
+### Bug Fixes
+
+* add channel-control i18n ([79764a8](https://github.com/digitalinteraction/climatered-client/commit/79764a80e7de42db4342042c7e772b8471f3956f))
+* add contact page, open footer/reg pages in the same language, register sets dir=rtl for ar ([6c7fc98](https://github.com/digitalinteraction/climatered-client/commit/6c7fc983ae789294057fa7f34b44393548158996))
+* add official IFRC colours ([f1c392b](https://github.com/digitalinteraction/climatered-client/commit/f1c392b5f750f396b1e5431c7d3c22dbc4be8523))
+* **atrium:** stop mobile x-overflow ([6c24f97](https://github.com/digitalinteraction/climatered-client/commit/6c24f97987c948008f22fb5f592a79d0f64f7767))
+* improve api-module reliability ([81687d9](https://github.com/digitalinteraction/climatered-client/commit/81687d95ae3f2c25de68802b590a7f3fbbd11635))
+* register to point to guidelines ([acfe8d3](https://github.com/digitalinteraction/climatered-client/commit/acfe8d39e6fa0a25a05892f1ad61e88291b6b298))
+* remove terms from footer ([21acf09](https://github.com/digitalinteraction/climatered-client/commit/21acf0977426325b28ea846ac4ef68d04ee8825e))
+* set font to noto sans ([31535bd](https://github.com/digitalinteraction/climatered-client/commit/31535bd1cc2f718bc28814a0ae10fb4f4a19cd17))
+* tweak colours ([1954d06](https://github.com/digitalinteraction/climatered-client/commit/1954d06774f9933c57d70112122d64f4d4f87d1a))
+* tweak colours ([49521c8](https://github.com/digitalinteraction/climatered-client/commit/49521c847ad796c0464a7bac15ec9a70517c9238))
+* update es i18n ([a29b9af](https://github.com/digitalinteraction/climatered-client/commit/a29b9aff6d9664d52d8cce1165502b78e993031a))
+* update fr i18n ([62db65d](https://github.com/digitalinteraction/climatered-client/commit/62db65d11634cbbaa267cdff0250e2e978ef915b))
+* update i18n ([11d8919](https://github.com/digitalinteraction/climatered-client/commit/11d8919257176cfdabe030916647b13b023b734e))
+* update i18n ([9402172](https://github.com/digitalinteraction/climatered-client/commit/9402172287ec08d00cf178cf2432b2f266ce6ee7))
+* update index.html copy ([42fafe7](https://github.com/digitalinteraction/climatered-client/commit/42fafe75789637a726fa1e176ba97e739e34c36f))
+* update opengraph ([6aa654f](https://github.com/digitalinteraction/climatered-client/commit/6aa654f729605bd399876c0b48f43e867f9162a4))
+
 ## [2.0.0-beta.4](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2021-09-29)
 
 
