@@ -62,7 +62,7 @@ deconf:
     registered: قمت بالتسجيل في هذه الجلسة
     full: لا يوجد مقاعد متاحة قي هذه الجلسة
     spacesLeft: 'يتبقى {0} /  من أصل {1} من المقاعد'
-    registerButton: التسجيل الان 
+    registerButton: التسجيل الان
     unregisterButton: إلغاء الاشتراك
 
   timeSlot:
@@ -95,12 +95,10 @@ deconf:
     openZoom: فتح منصة Zoom
     openHubs: فتح تبويب متصفح Mozilla
     openSpatial: المشاركة بمحادثة خاصة
-    noEmbed: حدث خطأ ما، للا يوجد شيء لعرضه هنا 
+    noEmbed: حدث خطأ ما، للا يوجد شيء لعرضه هنا
 
   languageWarning:
-    message: {يرجى الملاحظة أن هذه الجلسة متاحة فقط في {0'
-
-
+    message: '{يرجى الملاحظة أن هذه الجلسة متاحة فقط في {0'
 
   navigationBar:
     profile: ملفك الشخصي
