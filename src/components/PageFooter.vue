@@ -30,13 +30,14 @@ import { TranslateResult } from 'vue-i18n'
 // TODO: move to deconf-ui-toolkit
 //
 
+interface Link {
+  title: TranslateResult
+  url: TranslateResult
+}
+
 interface Data {
   appName: TranslateResult
   appVersion: string
-  footerLinks: Array<{
-    title: TranslateResult
-    url: TranslateResult
-  }>
 }
 
 export default Vue.extend({
@@ -44,25 +45,30 @@ export default Vue.extend({
     return {
       appName: this.$t('ifrc.footer.appName'),
       appVersion: this.$env.BUILD_NAME ?? `v${process.env.VUE_APP_VERSION}`,
-      footerLinks: [
+    }
+  },
+  computed: {
+    footerLinks(): Link[] {
+      const query = { locale: this.$i18n.locale }
+      return [
         {
           title: this.$t('ifrc.footer.privacy'),
-          url: this.$router.resolve({ name: Routes.Privacy }).href,
+          url: this.$router.resolve({ name: Routes.Privacy, query }).href,
         },
         {
           title: this.$t('ifrc.footer.terms'),
-          url: this.$router.resolve({ name: Routes.Terms }).href,
+          url: this.$router.resolve({ name: Routes.Terms, query }).href,
         },
         {
           title: this.$t('ifrc.footer.guidelines'),
-          url: this.$router.resolve({ name: Routes.Guidelines }).href,
+          url: this.$router.resolve({ name: Routes.Guidelines, query }).href,
         },
         {
-          title: this.$t('ifrc.footer.faqs'),
-          url: this.$router.resolve({ name: Routes.Faqs }).href,
+          title: this.$t('ifrc.footer.contact'),
+          url: this.$router.resolve({ name: 'Contact', query }).href,
         },
-      ],
-    }
+      ]
+    },
   },
 })
 </script>

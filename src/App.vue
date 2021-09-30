@@ -65,6 +65,9 @@ export default Vue.extend({
       }
     } else {
       await this.$store.dispatch('api/fetchData')
+      if (typeof this.$route.query.locale === 'string') {
+        setLocale(this.$route.query.locale)
+      }
     }
 
     this.timerId = setInterval(

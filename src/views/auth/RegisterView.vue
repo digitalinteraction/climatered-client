@@ -131,6 +131,7 @@ import { pause } from '@/lib/module'
 import countryData from '@/data/countries-en.json'
 import languageData from '@/data/languages.json'
 import { RegisterRequest } from '@openlab/deconf-shared'
+import { setLocale } from '@/i18n/module'
 
 const countryOptions = deepSeal(
   Object.entries(countryData.countries).map(([value, text]) => ({
@@ -216,10 +217,12 @@ export default Vue.extend({
       return this.state === 'error'
     },
     termsHref(): string {
-      return this.$router.resolve({ name: Routes.Terms }).href
+      const query = { locale: this.$i18n.locale }
+      return this.$router.resolve({ name: Routes.Terms, query }).href
     },
     privacyHref(): string {
-      return this.$router.resolve({ name: Routes.Privacy }).href
+      const query = { locale: this.$i18n.locale }
+      return this.$router.resolve({ name: Routes.Privacy, query }).href
     },
     loginRoute(): Location {
       return { name: Routes.Login }
@@ -234,7 +237,7 @@ export default Vue.extend({
   methods: {
     onLanguage(language: string) {
       this.registration.language = language
-      this.$i18n.locale = language
+      setLocale(language)
     },
     async submit() {
       this.errors = this.findErrors(this.registration)

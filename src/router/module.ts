@@ -181,15 +181,15 @@ const routes: Array<RouteConfig> = [
     },
   },
   {
-    path: '/faqs',
-    name: Routes.Faqs,
+    path: '/contact',
+    name: 'Contact',
     component: () =>
       import(
         /* webpackChunkName: "pages" */
-        '../views/pages/FaqsView.vue'
+        '../views/pages/ContactView.vue'
       ),
     meta: {
-      title: 'ifrc.footer.faqs',
+      title: 'ifrc.footer.contact',
     },
   },
 
