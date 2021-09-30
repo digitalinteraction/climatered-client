@@ -4,7 +4,7 @@
 deconf:
   appLayout:
     atrium: الملتقى الرئيسي
-    #whatsOn: Whats On
+    whatsOn: الأحداث
     schedule: جدول المواعيد
     coffeeChat: دردشة حول فنجان قهوة
     helpDesk: المساعدة
@@ -40,19 +40,19 @@ deconf:
 
   featuredSessions:
     #title: Featured Sessions
-    #action: View Schedule
+    action: عرض الجدول
 
   scheduleFilters:
     query: بحث
     showFilters: اظهر الفلاتر
-    #hideFilters: Hide filters
-    #clearFilters: Clear filters
-    #dateFilter: Date
-    #typeFilter: Type
-    #trackFilter: Track
-    #themeFilter: Theme
+    hideFilters: إخفاء المرشحات
+    clearFilters: مسح عوامل التصفية
+    dateFilter: بتاريخ
+    typeFilter: نوع
+    trackFilter: مسار
+    themeFilter: سمة
     #recordedFilter: Is Recorded
-    #offLabel: All
+    offLabel: الجميع
     'yes': نعم
     'no': لا
 
@@ -79,7 +79,7 @@ deconf:
     notRecorded: غير مسجلة
 
   addToCalendar:
-    #action: Add to calendar
+    action: إضافة إلى التقويم
 
   sessionLink:
     #copy: copy
@@ -117,7 +117,7 @@ deconf:
       بعد التسجيل ، سوف نرسل لك رسالة تأكيد بالبريد الإلكتروني. سيكون في البريد الإلكتروني رابط ، والذي سيسجل دخولك. ستنتهي صلاحية الرابط بعد 30 دقيقة. إذا لم تتلق أي شيء ، فيرجى التحقق من ملف الرسائل الغير مرغوب بها.
     email:
       label: البريد الإلكتروني
-      #placeholder: e.g. dan@example.com
+      placeholder: e.g. dan@example.com
       help: عنوان البريد الإلكتروني الذي سجلت به في المؤتمر
     badEmail: البريد الإلكتروني غير جيد
     doneText: تم إرسال رمز تسجيل الدخول
@@ -163,7 +163,7 @@ deconf:
     #teamsLink: Teams Meeting
     #miroLink: Miro Board
     #generalLink: Link
-    #backButton: Back to Schedule
+    #backButton: العودة إلى الجدول
 
 #
 # v2 - IFRC
@@ -204,8 +204,8 @@ ifrc:
     marketingText: أنا أوافق على الانضمام إلى القائمة البريدية لأكاديمية سولفرينو التابعة للاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر
     termsLink: المبادئ التوجيهية
     privacyLink: سياسة الخصوصية
-    #loginLabel: Already registered?
-    #loginAction: Log in here
+    loginLabel: مسجل بالفعل؟
+    loginAction: سجل الدخول هنا
     #genericError: Please check your submission and try again.
 
   atrium:
