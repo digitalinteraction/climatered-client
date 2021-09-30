@@ -202,7 +202,7 @@ ifrc:
     submitButton: Registrarse
     consentText: Confirmo que he leído y estoy de acuerdo con las políticas relacionadas a continuación
     marketingText: Doy mi consentimiento para unirme a la lista de correo de la Academia Solferino de la FICR.
-    termsLink: Términos y Condiciones
+    termsLink: Directrices
     privacyLink: Política de privacidad
     #loginLabel: Already registered?
     #loginAction: Log in here

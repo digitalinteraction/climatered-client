@@ -201,7 +201,7 @@ ifrc:
     submitButton: Inscrivez
     consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
     marketingText: Je consens à m'inscrire à la liste de diffusion de l'IFRC Solferino Academy
-    termsLink: Termes et conditions
+    termsLink: Directives
     privacyLink: Politique de confidentialité
     #loginLabel: Already registered?
     #loginAction: Log in here

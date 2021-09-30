@@ -218,7 +218,7 @@ export default Vue.extend({
     },
     termsHref(): string {
       const query = { locale: this.$i18n.locale }
-      return this.$router.resolve({ name: Routes.Terms, query }).href
+      return this.$router.resolve({ name: Routes.Guidelines, query }).href
     },
     privacyHref(): string {
       const query = { locale: this.$i18n.locale }

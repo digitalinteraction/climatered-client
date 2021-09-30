@@ -207,7 +207,7 @@ ifrc:
     submitButton: Register
     consentText: I confirm that I have read and agree with the policies linked below
     marketingText: I consent to join IFRC Solferino Academy’s mailing list
-    termsLink: Terms and Conditions
+    termsLink: Community Guidelines
     privacyLink: Privacy policy
     loginLabel: Already registered?
     loginAction: Log in here

@@ -202,7 +202,7 @@ ifrc:
     submitButton: تسجيل
     consentText: أؤكد أنني قد قرأت وأوافق على السياسات الموجودة في الرابط أدناه
     marketingText: أنا أوافق على الانضمام إلى القائمة البريدية لأكاديمية سولفرينو التابعة للاتحاد الدولي لجمعيات الصليب الأحمر والهلال الأحمر
-    termsLink: الأحكام والشروط
+    termsLink: المبادئ التوجيهية
     privacyLink: سياسة الخصوصية
     #loginLabel: Already registered?
     #loginAction: Log in here
