@@ -1,0 +1,26 @@
+[
+  {
+    "title": "IFRC",
+    "image": "/sponsor/ifrc.svg"
+  },
+  {
+    "title": "ICRC",
+    "image": "/sponsor/icrc.svg"
+  },
+  {
+    "title": "Italian RC",
+    "image": "/sponsor/italian-rc.svg"
+  },
+  {
+    "title": "Norweigan RC",
+    "image": "/sponsor/norweigan-rc.svg"
+  },
+  {
+    "title": "Finnish RC",
+    "image": "/sponsor/finnish-rc.svg"
+  },
+  {
+    "title": "Open Lab",
+    "image": "/openlab.svg"
+  }
+]

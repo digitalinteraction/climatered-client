@@ -57,6 +57,9 @@
           :current-date="scheduleDate"
         />
       </Stack>
+      <div slot="bottom">
+        <SponsorGrid :groups="sponsors" />
+      </div>
     </AtriumLayout>
   </IfrcAppLayout>
 </template>
@@ -74,9 +77,12 @@ import {
   mapMetricsState,
   Routes,
   Stack,
+  SponsorGrid,
 } from '@openlab/deconf-ui-toolkit'
 import ApiContent from '@/components/ApiContent.vue'
 import { ConferenceConfig, Session, SessionSlot } from '@openlab/deconf-shared'
+
+import sponsorData from '@/data/sponsors.json'
 
 // TODO: import type when available
 interface SessionAndSlot {
@@ -93,6 +99,7 @@ export default Vue.extend({
     ApiContent,
     FeaturedSessions,
     Stack,
+    SponsorGrid,
   },
   computed: {
     ...mapApiState('api', ['schedule', 'user', 'carbon']),
@@ -143,6 +150,15 @@ export default Vue.extend({
     },
     registerHref(): string {
       return this.$router.resolve({ name: Routes.Register }).href
+    },
+    sponsors(): unknown[] {
+      return [
+        {
+          size: 'small',
+          title: this.$t('ifrc.atrium.sponsorHeading'),
+          sponsors: sponsorData,
+        },
+      ]
     },
   },
   mounted() {
