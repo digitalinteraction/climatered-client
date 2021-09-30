@@ -229,3 +229,16 @@ ifrc:
   notFound:
     title: الصفحة غير موجودة
     info: لم نتمكن من العثور على الصفحة التي كنت تبحث عنها، يرجى التحقق من الرابط الذي نقرت عليه أو العودة إلى الملتقى الرئيسي.
+
+  channelControl:
+    channel: لغة الصوت
+    muteLabel: 'ملاحظة: أذا أردت الاستماع الى الترجمة بلغة أخرى، تذكر أن تقوم بكتم صوت البث أعلاه '
+    source: من الفيديو
+    start: ابدأ
+    stop: إيقاف
+    #isOnline: Channel is live
+    #isOffline: Channel is offline
+    stopped: ايقاف
+    playing: تشغيل
+    buffering: جاهز للتشغيل
+    ready: ready to play

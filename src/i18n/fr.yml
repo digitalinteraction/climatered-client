@@ -228,3 +228,16 @@ ifrc:
   notFound:
     title: Page introuvable
     info: Nous n'avons pas trouvé la page que vous recherchiez, veuillez vérifier le lien sur lequel vous avez cliqué ou retourner à l'atrium.
+
+  channelControl:
+    channel: Langue audio
+    muteLabel: 'A noter: pour écouter une autre langue, n’oubliez pas de mettre en sourdine le flux ci-dessus'
+    source: De la vidéo
+    start: Début
+    stop: Arrêtez
+    #isOnline: Channel is live
+    #isOffline: Channel is offline
+    stopped: arrêté
+    playing: en jouant
+    buffering: chargement {0}
+    ready: prêt à jouer

@@ -229,3 +229,16 @@ ifrc:
   notFound:
     title: Página no encontrada
     info: No pudimos encontrar la página que estaba buscando, verifique el enlace en el que hizo clic o regrese al atrio.
+
+  channelControl:
+    channel: Idioma de audio
+    muteLabel: 'NOTA: para escuchar en otro idioma, recuerde silenciar la transmisión arriba'
+    source: Desde el vídeo
+    start: Comienzo
+    stop: Pare
+    #isOnline: Channel is live
+    #isOffline: Channel is offline
+    stopped: parado
+    playing: reproduciendo
+    buffering: cargando {0}
+    ready: preparado para reproducir
