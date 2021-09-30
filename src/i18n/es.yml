@@ -4,7 +4,7 @@
 deconf:
   appLayout:
     atrium: Entrada
-    #whatsOn: Whats On
+    whatsOn: Que pasa
     schedule: Programa
     coffeeChat: Charlas de Cafe
     helpDesk: Ayuda
@@ -13,19 +13,19 @@ deconf:
     unavailable: Indisponible
 
   apiError:
-    #title: Something went wrong
-    #content: We're having a bit of trouble, try refresing or coming back later.
-    #retry: 'Retrying in {0}'
+    title: Algo salió mal
+    content: Estamos teniendo algunos problemas, intente actualizar o volver más tarde.
+    retry: 'Reintentando en {0}'
 
   appLoading:
-    #message: Loading...
+    message: Cargando...
 
   scheduleBlock:
     workshopTitle: Talleres Interactivos
     workshopDescription: Partícipe a uno de los talleres interactivos siguientes
-    #showWorkshops: Show all
-    #hideWorkshops: Hide all
-    #workshops: 'None | 1 tallere | {n} talleres'
+    showWorkshops: Mostrar todo
+    hideWorkshops: Ocultar todo
+    workshops: 'Ninguno | 1 tallere | {n} talleres'
 
   general:
     days: dias | día | dias
@@ -35,39 +35,39 @@ deconf:
     genericError: Algo salió mal. Por favor, vuelva a intentarlo
 
   miniSession:
-    #view: View
-    #live: Live
+    view: Vista
+    live: Vivir
 
   featuredSessions:
     title: Sesiones destacadas
-    #action: Explore Sessions
+    action: Explorar sesiones
 
   scheduleFilters:
     query: Buscar
     showFilters: Mostrar filtros
     hideFilters: Ocultar filtros
-    #clearFilters: Clear filters
-    #dateFilter: Date
-    #typeFilter: Type
-    #trackFilter: Track
-    #themeFilter: Theme
-    #recordedFilter: Is Recorded
+    clearFilters: Filtros claros
+    dateFilter: Fecha
+    typeFilter: Tipo
+    trackFilter: Pista
+    themeFilter: Tema
+    recordedFilter: Está grabada
     offLabel: Todos
     'yes': 'sí'
     'no': 'No'
 
   attendanceSection:
-    #loading: Fetching attendance
-    #processing: Processing
-    #registered: You are registered for this session
-    #full: This session is full
-    #spacesLeft: '{0}/{1} seats remaining.'
-    #registerButton: Register now
-    #unregisterButton: Release my seat
+    loading: Obteniendo asistencia
+    processing: Procesando
+    registered: Estás registrado para esta sesión
+    full: Esta sesión está llena
+    spacesLeft: '{0}/{1} asientos restantes'
+    registerButton: Regístrate ahora
+    unregisterButton: Suelta mi asiento
 
   timeSlot:
-    #past: Precedentemente
-    #live: Live
+    past: pasado
+    live: Vivir
 
   joinSession:
     future: Previsualizar sesión
@@ -79,16 +79,16 @@ deconf:
     notRecorded: No grabado
 
   addToCalendar:
-    #action: Add to calendar
+    action: Añadir al calendario
 
   sessionLink:
     copy: dupdo
-    #copied: copied
+    copied: copiado
 
   sessionState:
-    #liveNow: Live Now
-    #sessionOver: Session over
-    #interest: 'no interest | 1 person is attending | {n} people are attending'
+    liveNow: Vive ahora
+    sessionOver: Sesión terminada
+    interest: 'no hay interés| 1 persona está asistiendo | {n} personas asisten'
 
   sessionEmbed:
     #openTeams: Open Teams meeting
@@ -98,7 +98,7 @@ deconf:
     #noEmbed: Something went wrong, there is nothing to show here
 
   languageWarning:
-    #message: 'Please note this session is only available in {0}'
+    message: 'Tenga en cuenta que esta sesión solo está disponible en {0}'
 
   navigationBar:
     profile: Tu perfil
@@ -122,8 +122,8 @@ deconf:
     badEmail: Correo electrónico malo
     doneText: Código de inicio de sesión enviado
     submitButton: Solicitar código de inicio de sesión
-    #registerLabel: Not registered yet?
-    #registerAction: Register here
+    registerLabel: Todavía no estas registrado?
+    registerAction: Registrar aquí
 
   profile:
     title: Tu perfil
@@ -136,33 +136,33 @@ deconf:
       emailText: Su Correo Electrónico
       localeText: Idioma seleccionado
       whenText: Sesión iniciada
-      # registeredText: Registered
+      registeredText: Registrado
       nameText: Nombre
       countryText: País
       affiliationText: Afiliación
-      #marketingText: Marketing
+      marketingText: Márketing
 
   schedule:
     title: Programa
     description: Explore las sesiones disponibles y planifique su experiencia agregando recordatorios a su calendario.
-    #allSessions: All
-    #userSessions: User
+    allSessions: Todos
+    userSessions: Usuario
     hidePast: Esconder las sesiones pasadas
     showPast: Mostrar las sesiones pasadas
-    #noResults: Nothing matched your query
+    noResults: Nada coincide con tu consulta
 
   session:
     slot: Calendario
-    #countdown: Countdown
+    countdown: Cuenta regresiva
     links: Enlaces
     linkPreview: Los enlaces a la sesión estarán disponible 15 minutos antes de la hora de inicio.
     actions: Acciones
-    #logIn: Log in to attend this session
+    logIn: Inicie sesión para asistir a esta sesión
     speakers: Intervenants
-    #zoomLink: Zoom Room
-    #teamsLink: Teams Meeting
-    #miroLink: Miro Board
-    #generalLink: Link
+    zoomLink: Habitación Zoom
+    teamsLink: Reunión de Microsoft Teams
+    miroLink: Junta de Miro
+    generalLink: Enlace
     backButton: Volver a Programa
 
 #
@@ -204,9 +204,9 @@ ifrc:
     marketingText: Doy mi consentimiento para unirme a la lista de correo de la Academia Solferino de la FICR.
     termsLink: Directrices
     privacyLink: Política de privacidad
-    #loginLabel: Already registered?
-    #loginAction: Log in here
-    #genericError: Please check your submission and try again.
+    loginLabel: ¿Ya registrado?
+    loginAction: Entre aquí
+    genericError: Verifique su envío y vuelva a intentarlo.
 
   atrium:
     title: Entrada
