@@ -171,6 +171,9 @@ export default Vue.extend({
 
 <style lang="scss">
 .atriumView {
+  .atriumLayout {
+    overflow-x: hidden;
+  }
   @include mobile {
     .atriumLayout {
       padding-top: 3em;
@@ -183,7 +186,6 @@ export default Vue.extend({
       background-repeat: no-repeat;
       padding-top: 7em;
       flex: 1;
-      overflow-x: hidden;
     }
   }
 }
