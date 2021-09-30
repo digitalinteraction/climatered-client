@@ -13,33 +13,33 @@ deconf:
     unavailable: غير متوفره
 
   apiError:
-    #title: Something went wrong
-    #content: We're having a bit of trouble, try refresing or coming back later.
-    #retry: 'Retrying in {0}'
+    title: حدث خطأ
+    content: لدينا بعد التحديات التقنية، يرجه محاولة تحديث الصفحة أو العودة لاحقا
+    retry: '{إعادة المحاولة خلال {0'
 
   appLoading:
-    message: Loading...
+    message: قيد التحميل
 
   scheduleBlock:
     workshopTitle: ورشات العمل التفاعلية
     workshopDescription: شارك بإحدى ورش العمل التفاعلية التالية
     showWorkshops: إظهار الكل
     hideWorkshops: إخفاء الكل
-    #workshops: 'None | 1 workshop | {n} workshops'
+    workshops: لا يوجد | ١ جلسة | {n} جلسات
 
   general:
-    #days: days | day | days
-    #hours: hours | hour | hours
-    #minutes: minutes | minute | minutes
-    #seconds: seconds | second | seconds
+    days: الأيام | يوم | ايام
+    hours: الساعات | ساعة | ساعات
+    minutes: الدقائق | دقيقة | دقائق
+    seconds: الثواني | ثانية | ثواني
     genericError: حدث خطأ ما. أعد المحاولة من فضلك
 
   miniSession:
-    #view: View
-    #live: Live
+    view: عرض
+    live: سابقا
 
   featuredSessions:
-    #title: Featured Sessions
+    title: الجلسات المميزة
     action: عرض الجدول
 
   scheduleFilters:
@@ -51,23 +51,23 @@ deconf:
     typeFilter: نوع
     trackFilter: مسار
     themeFilter: سمة
-    #recordedFilter: Is Recorded
+    recordedFilter: تم تسجيله
     offLabel: الجميع
     'yes': نعم
     'no': لا
 
   attendanceSection:
-    #loading: Fetching attendance
-    #processing: Processing
-    #registered: You are registered for this session
-    #full: This session is full
-    #spacesLeft: '{0}/{1} seats remaining.'
-    #registerButton: Register now
-    #unregisterButton: Release my seat
+    loading: إحصاء عدد الحضور
+    processing: قيد المعالجة
+    registered: قمت بالتسجيل في هذه الجلسة
+    full: لا يوجد مقاعد متاحة قي هذه الجلسة
+    spacesLeft: 'يتبقى {0} /  من أصل {1} من المقاعد'
+    registerButton: التسجيل الان 
+    unregisterButton: إلغاء الاشتراك
 
   timeSlot:
-    #past: Past
-    #live: Live
+    past: سابقا
+    live: مباشر
 
   joinSession:
     future: معاينة الجلسة
@@ -82,34 +82,36 @@ deconf:
     action: إضافة إلى التقويم
 
   sessionLink:
-    #copy: copy
-    #copied: copied
+    copy: نسخ
+    copied: تم النسخ
 
   sessionState:
-    #liveNow: Live Now
-    #sessionOver: Session over
-    #interest: 'no interest | 1 person is attending | {n} people are attending'
+    liveNow: مباشر الان
+    sessionOver: الجلسة
+    interest: 'غير مهتم بالحضور | شخص واحد سيحضر | من أصل {n} أشخاص'
 
   sessionEmbed:
-    #openTeams: Open Teams meeting
-    #openZoom: Open Zoom meeting
-    #openHubs: Open Mozilla Hub
-    #openSpatial: Open Spatial Chat
-    #noEmbed: Something went wrong, there is nothing to show here
+    openTeams: فتح منصة Teams
+    openZoom: فتح منصة Zoom
+    openHubs: فتح تبويب متصفح Mozilla
+    openSpatial: المشاركة بمحادثة خاصة
+    noEmbed: حدث خطأ ما، للا يوجد شيء لعرضه هنا 
 
   languageWarning:
-    #message: 'Please note this session is only available in {0}'
+    message: {يرجى الملاحظة أن هذه الجلسة متاحة فقط في {0'
+
+
 
   navigationBar:
     profile: ملفك الشخصي
     login: تسجيل الدخول
-    #interpret: Interpret mode
+    interpret: وضعية الترجمة
     register: تسجيل
-    #unavailable: ' (Unavailable)'
+    unavailable: ' (غير متوفره)'
 
   whatsOn:
-    #title: What's On
-    #infoText: Browse the Schedule before release day
+    title: الأحداث
+    infoText: تصفح جدول المواعيد قبل يوم الإصدار
 
   login:
     title: تسجيل الدخول
@@ -136,34 +138,34 @@ deconf:
       emailText: بريدك الالكتروني
       localeText: اللغة المختارة
       whenText: تسجيل الدخول
-      #registeredText: Registered
+      registeredText: مسجل
       nameText: الإسم
       countryText: البلد
       affiliationText: جهة الانتساب
-      #marketingText: Marketing
+      marketingText: تسويق
 
   schedule:
     title: جدول المواعيد
     description: تصفح الجلسات المتاحة وقم بوضع خطة لتجربتك عن طريق إضافة تذكير إلى التقويم الخاص بك.
-    #allSessions: الكل
-    #userSessions: المستعمل
+    allSessions: الكل
+    userSessions: المستعمل
     hidePast: إخفاء الجلسات القديمة
     showPast: إظهار الجلسات السابقة
-    #noResults: Nothing matched your query
+    noResults: لا يوجد شيء يطابق طلبك
 
   session:
     slot: البرنامج
-    #countdown: Countdown
+    countdown: العد التنازلي
     links: الرابط الإلكتروني
     linkPreview: رابط الجلسة سيكون متاحا قبل 15 دقيقة من موعد بدء الجلسة
     actions: الاجراءات
-    #logIn: Log in to attend this session
+    logIn: يرجى التسجيل لحضور الجلسة
     speakers: المتحدث
-    #zoomLink: Zoom Room
-    #teamsLink: Teams Meeting
-    #miroLink: Miro Board
-    #generalLink: Link
-    #backButton: العودة إلى الجدول
+    zoomLink: غرفة زووم
+    teamsLink: منصة Teams
+    miroLink: Miro Board
+    generalLink: حلقة الوصل
+    backButton: العودة إلى الجدول
 
 #
 # v2 - IFRC
@@ -173,7 +175,7 @@ ifrc:
     appName: PlanetRed
     backToAtrium: العودة إلى الملتقى الرئيسي
     notSelected: (يرجى التحديد)
-    #genericError: Something went wrong, please try again
+    genericError: حدث خطأ، يرجى إعادة المحاولة
     'yes': نعم
     'no': لا
 
@@ -183,11 +185,11 @@ ifrc:
       التسجيل لمؤتمر قمة الصليب الأحمر والهلال الأحمر للمناخ
     name:
       label: الاسم الكامل
-      #placeholder: e.g. Dan Howard
+      placeholder: e.g. Dan Howard
       help: اسمك الكامل
     email:
       label: عنوان البريد الالكتروني
-      #placeholder: e.g. dan@example.com
+      placeholder: e.g. dan@example.com
       help: ستستخدم بريدك الإلكتروني لتسجيل الدخول إلى المؤتمر
     language:
       label: لغة
@@ -206,14 +208,14 @@ ifrc:
     privacyLink: سياسة الخصوصية
     loginLabel: مسجل بالفعل؟
     loginAction: سجل الدخول هنا
-    #genericError: Please check your submission and try again.
+    genericError: يرجى التحقق من تقديمك وحاول مرة أخرى.
 
   atrium:
     title: الملتقى الرئيسي
     sponsorHeading: شركاء
     onlineNow: مباشر الآن
     carbonSaved: التقليل من انبعاثات الكربون
-    #twitterTitle: Social
+    twitterTitle: وسائل التواصل الاجتماعي
     twitterSubtitle: 'تغريدة مع #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
     #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
@@ -236,9 +238,9 @@ ifrc:
     source: من الفيديو
     start: ابدأ
     stop: إيقاف
-    #isOnline: Channel is live
-    #isOffline: Channel is offline
+    isOnline: القناة مباشرة
+    isOffline: القناة غير متصلة بالإنترنت
     stopped: ايقاف
     playing: تشغيل
     buffering: جاهز للتشغيل
-    ready: ready to play
+    ready: مستعد للعب
