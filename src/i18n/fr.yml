@@ -235,8 +235,8 @@ ifrc:
     source: De la vidéo
     start: Début
     stop: Arrêtez
-    #isOnline: Channel is live
-    #isOffline: Channel is offline
+    isOnline: la chaîne est en direct
+    isOffline: la chaîne est hors ligne
     stopped: arrêté
     playing: en jouant
     buffering: chargement {0}
