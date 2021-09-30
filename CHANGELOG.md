@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.5...v2.0.0) (2021-09-30)
+
+
+### Features
+
+* add sponsors ([0ed0f35](https://github.com/digitalinteraction/climatered-client/commit/0ed0f3547d3e0767a7f0e8dded7f14c98ef63d19))
+* update default headshot ([e4003bc](https://github.com/digitalinteraction/climatered-client/commit/e4003bcd7c4f424c072540f686bbeb97c6f151c9))
+
+
+### Bug Fixes
+
+* ar i18n ([1a97888](https://github.com/digitalinteraction/climatered-client/commit/1a978883883bb4aaba579985cf72acc2a867c274))
+* update ar i18n ([050e62b](https://github.com/digitalinteraction/climatered-client/commit/050e62b7b41ecc3b230d0a5c69775baa87338fb1))
+* update ar i18n ([04a5023](https://github.com/digitalinteraction/climatered-client/commit/04a5023224604eb37d1563671936032e582a44ae))
+
 ## [2.0.0-beta.5](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2021-09-30)
 
 
