@@ -4,6 +4,7 @@ import {
   createApiStoreModule,
   decodeJwt,
   deepSeal,
+  FullSchedule,
   SessionAttendance,
 } from '@openlab/deconf-ui-toolkit'
 import { pause } from '@openlab/deconf-ui-toolkit'
@@ -60,16 +61,13 @@ export function apiModule(): ApiStoreModule {
       },
 
       async fetchData({ commit }) {
-        try {
-          const data = await agent.get('schedule').json()
+        const data = await agent
+          .get('schedule')
+          .json<FullSchedule>()
+          .catch(errorHandler)
 
-          commit('schedule', data)
-          return true
-        } catch (error) {
-          console.error(error)
-          commit('schedule', null)
-          return false
-        }
+        commit('schedule', data)
+        return data !== null
       },
       async fetchWhatsOn() {
         const response = await agent
@@ -84,42 +82,42 @@ export function apiModule(): ApiStoreModule {
       // Auth
       //
       async login(ctx, email: string) {
-        const response = await agent.post('auth/login', {
-          json: { email },
-        })
+        const response = await agent
+          .post('auth/login', {
+            json: { email },
+          })
+          .catch(errorHandler)
 
         await pause(API_DELAY)
 
-        return response.ok
+        return response?.ok ?? false
       },
 
       async register(ctx, registration: unknown) {
-        const response = await agent.post('auth/register', {
-          json: registration,
-        })
+        const response = await agent
+          .post('auth/register', {
+            json: registration,
+          })
+          .catch(errorHandler)
 
         await pause(API_DELAY)
 
-        return response.ok
+        return response?.ok ?? false
       },
 
       async unregister() {
-        const response = await agent.delete('auth/me')
+        const response = await agent.delete('auth/me').catch(errorHandler)
         await pause(API_DELAY)
-        return response.ok
+        return response?.ok ?? false
       },
 
       async fetchProfile({ commit }) {
-        try {
-          const { registration } = await agent
-            .get('auth/me')
-            .json<ProfileResponse>()
+        const response = await agent
+          .get('auth/me')
+          .json<ProfileResponse>()
+          .catch(errorHandler)
 
-          commit('profile', registration)
-        } catch (error) {
-          console.error(error)
-          commit('profile', null)
-        }
+        commit('profile', response?.registration ?? null)
       },
 
       async updateProfile() {
@@ -130,14 +128,12 @@ export function apiModule(): ApiStoreModule {
       // Carbon
       //
       async fetchCarbon({ commit }) {
-        try {
-          const carbon = await agent.get('carbon').json<CarbonCalculation>()
+        const response = await agent
+          .get('carbon')
+          .json<CarbonCalculation>()
+          .catch(errorHandler)
 
-          commit('carbon', carbon)
-        } catch (error) {
-          console.error(error)
-          commit('carbon', null)
-        }
+        commit('carbon', response)
       },
 
       //
