@@ -179,7 +179,7 @@ ifrc:
   register:
     title: Inscrivez
     infoText: >
-      Inscrivez-vous à Climate:Red
+      Inscrivez-vous à Planet:Red
     name:
       label: Nom complet
       placeholder: 'par exemple: Dan Howard'
@@ -200,7 +200,7 @@ ifrc:
       help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
     submitButton: Inscrivez
     consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
-    #marketingText: I consent to marketing emails from XYZ
+    marketingText: Je consens à m'inscrire à la liste de diffusion de l'IFRC Solferino Academy
     termsLink: Termes et conditions
     privacyLink: Politique de confidentialité
     #loginLabel: Already registered?
@@ -223,6 +223,7 @@ ifrc:
     guidelines: Directives
     terms: Termes
     faqs: FAQ
+    contact: Contact
 
   notFound:
     title: Page introuvable

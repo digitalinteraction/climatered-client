@@ -185,7 +185,7 @@ ifrc:
   register:
     title: Register
     infoText: >
-      Use this form to register for Climate:Red
+      Use this form to register for Planet:Red
     name:
       label: Full name
       placeholder: e.g. Dan Howard
@@ -206,7 +206,7 @@ ifrc:
       help: Affiliation with the RCRC movement (e.g. staff/volunteer/board member/member of national society/IFRC/ICRC/reference center/none)
     submitButton: Register
     consentText: I confirm that I have read and agree with the policies linked below
-    marketingText: I consent to marketing emails from Solferino Academy
+    marketingText: I consent to join IFRC Solferino Academy’s mailing list
     termsLink: Terms and Conditions
     privacyLink: Privacy policy
     loginLabel: Already registered?
@@ -217,7 +217,7 @@ ifrc:
     title: Atrium
     sponsorHeading: Partners
     onlineNow: Online now
-    carbonSaved: Kilograms of CO₂ saved by hosting climate.red virtually
+    carbonSaved: Kilograms of CO₂ saved by hosting virtually
     twitterTitle: Social
     twitterSubtitle: 'Tweet with #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
@@ -229,6 +229,7 @@ ifrc:
     guidelines: Community Guidelines
     terms: Terms & Conditions
     faqs: FAQs
+    contact: Contact
 
   notFound:
     title: Page not found
