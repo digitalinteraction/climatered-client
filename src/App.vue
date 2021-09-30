@@ -104,6 +104,38 @@ export default Vue.extend({
 }
 
 //
+// Fonts
+//
+@font-face {
+  font-display: swap;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/noto/NotoSans-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: url('/fonts/noto/NotoSans-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/noto/NotoSans-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Noto Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: url('/fonts/noto/NotoSans-BoldItalic.woff2') format('woff2');
+}
+
+//
 // Deconf hacks
 //
 .colorWidget {
