@@ -67,7 +67,8 @@ async function main() {
 
         for (const key of missing) {
           const value = dot.get(en, key) || ''
-          console.log(' -', key + `\n   en: ${value}\n`)
+          console.log(' -', key)
+          // console.log(' -', key + `\n   en: ${value}\n`)
         }
       } else {
         console.log(`${filename} is good`)
