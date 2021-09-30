@@ -23,8 +23,8 @@ deconf:
   scheduleBlock:
     workshopTitle: Ateliers interactifs
     workshopDescription: Participez à l'un des ateliers interactifs suivants
-    #showWorkshops: Show all
-    #hideWorkshops: Hide all
+    showWorkshops: Afficher tout
+    hideWorkshops: Cacher tout
     workshops: 'Rien | 1 atelier | {n} ateliers'
 
   general:
@@ -35,31 +35,31 @@ deconf:
     genericError: Une erreur s'est produite. Veuillez réessayer
 
   miniSession:
-    #view: View
+    #view: Vue
     #live: Live
 
   featuredSessions:
     title: Sessions vedettes
-    #action: View Schedule
+    action: Voir l'horaire
 
   scheduleFilters:
     query: Chercher
     showFilters: Afficher les filtres
     hideFilters: Masquer les filtres
-    #clearFilters: Clear filters
-    #dateFilter: Date
-    #typeFilter: Type
-    #trackFilter: Track
-    #themeFilter: Theme
-    #recordedFilter: Is Recorded
+    clearFilters: Effacer les filtres
+    dateFilter: Date
+    typeFilter: Type
+    trackFilter: Piste
+    themeFilter: Thème
+    recordedFilter: Est enregistré
     offLabel: Tout
     'yes': 'Oui'
     'no': 'Non'
 
   attendanceSection:
-    #loading: Fetching attendance
-    #processing: Processing
-    #registered: You are registered for this session
+    loading: Récupérer la fréquentation
+    processing: Traitement
+    registered: Vous êtes inscrit à cette session
     #full: This session is full
     #spacesLeft: '{0}/{1} seats remaining.'
     #registerButton: Register now
@@ -79,7 +79,7 @@ deconf:
     notRecorded: Non enregistré
 
   addToCalendar:
-    #action: Add to calendar
+    action: Ajouter au calendrier
 
   sessionLink:
     #copy: copy
@@ -108,8 +108,8 @@ deconf:
     unavailable: ' (Indisponible)'
 
   whatsOn:
-    #title: What's On
-    #infoText: Browse the Schedule before release day
+    title: Quoi de neuf
+    infoText: Parcourir l'horaire avant le jour de la sortie
 
   login:
     title: Connexion
@@ -121,8 +121,8 @@ deconf:
     badEmail: Mauvais e-mail
     doneText: Código de inicio de sesión enviado
     submitButton: Demander un code de connexion
-    #registerLabel: Not registered yet?
-    #registerAction: Register here
+    registerLabel: Pas encore inscrit?
+    registerAction: Inscrivez-vous ici
 
   profile:
     title: Votre profil
@@ -135,7 +135,7 @@ deconf:
       emailText: Votre adresse E-mail
       localeText: Langue choisie
       whenText: Connecté
-      # registeredText: Registered
+      registeredText: Inscrit
       nameText: Nom
       countryText: Pays
       affiliationText: Affiliation
@@ -144,8 +144,8 @@ deconf:
   schedule:
     title: Programme
     description: Explorez les sessions disponibles et planifiez votre expérience en ajoutant des rappels à votre calendrier.
-    #allSessions: Tous
-    #userSessions: User
+    allSessions: Tous
+    userSessions: Utilisateur
     hidePast: Cacher les sessions passées
     showPast: Montrer les sessions passées
     #noResults: Nothing matched your query
@@ -162,7 +162,7 @@ deconf:
     #teamsLink: Teams Meeting
     #miroLink: Miro Board
     #generalLink: Link
-    #backButton: Back to Schedule
+    backButton: Retour à l'horaire
 
 #
 # v2 - IFRC
