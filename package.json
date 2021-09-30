@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
     "lint": "vue-cli-service lint",
-    "preversion": "npm run lint && npm run build",
+    "preversion": "npm run lint",
     "readme-toc": "md-toc -i",
     "report": "vue-cli-service build --modern --report-json && webpack-bundle-analyzer dist/report.json",
     "release": "npm run preversion && standard-version",
