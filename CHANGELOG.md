@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/digitalinteraction/climatered-client/compare/v2.0.1...v2.0.2) (2021-10-01)
+
+
+### Bug Fixes
+
+* fix fonts not showing in Firefox ([aa9f26d](https://github.com/digitalinteraction/climatered-client/commit/aa9f26d529024304d3337c34c2c970659cfefdb3))
+
 ### [2.0.1](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0...v2.0.1) (2021-10-01)
 
 
