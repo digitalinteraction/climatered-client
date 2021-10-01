@@ -3,9 +3,6 @@
     <AtriumLayout v-if="settings">
       <BoxContent slot="left">
         <div class="atriumView-content">
-          <!-- <div class="atriumView-brand">
-            <img src="/img/full-brand.svg" width="253" height="64" />
-          </div> -->
           <ApiContent :slug="contentSlug" />
         </div>
       </BoxContent>
@@ -233,18 +230,5 @@ export default Vue.extend({
 }
 .atriumView-content {
   min-height: 500px;
-}
-.atriumView-brand {
-  margin-bottom: 1.5rem;
-
-  @include tablet {
-    display: flex;
-    justify-content: center;
-  }
-
-  // img {
-  //   width: 100%;
-  //   height: auto;
-  // }
 }
 </style>
