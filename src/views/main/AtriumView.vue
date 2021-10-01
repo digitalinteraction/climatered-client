@@ -3,6 +3,9 @@
     <AtriumLayout v-if="settings">
       <BoxContent slot="left">
         <div class="atriumView-content">
+          <!-- <div class="atriumView-brand">
+            <img src="/img/full-brand.svg" width="253" height="64" />
+          </div> -->
           <ApiContent :slug="contentSlug" />
         </div>
       </BoxContent>
@@ -58,7 +61,10 @@
         />
       </Stack>
       <div slot="bottom">
-        <SponsorGrid :groups="sponsors" />
+        <div class="sponsorGrid">
+          <SponsorGrid :groups="topSponsors" />
+          <SponsorGrid :groups="sponsors" />
+        </div>
       </div>
     </AtriumLayout>
   </IfrcAppLayout>
@@ -89,6 +95,17 @@ interface SessionAndSlot {
   session: Session
   slot: SessionSlot
 }
+
+const topSponsors = [
+  {
+    title: 'IFRC',
+    image: '/sponsor/ifrc.svg',
+  },
+  {
+    title: 'ICRC',
+    image: '/sponsor/icrc.svg',
+  },
+]
 
 export default Vue.extend({
   components: {
@@ -151,11 +168,20 @@ export default Vue.extend({
     registerHref(): string {
       return this.$router.resolve({ name: Routes.Register }).href
     },
+    topSponsors(): unknown[] {
+      return [
+        {
+          size: 'large',
+          title: this.$t('ifrc.atrium.sponsorHeading'),
+          sponsors: topSponsors,
+        },
+      ]
+    },
     sponsors(): unknown[] {
       return [
         {
           size: 'small',
-          title: this.$t('ifrc.atrium.sponsorHeading'),
+          title: '',
           sponsors: sponsorData,
         },
       ]
@@ -207,5 +233,18 @@ export default Vue.extend({
 }
 .atriumView-content {
   min-height: 500px;
+}
+.atriumView-brand {
+  margin-bottom: 1.5rem;
+
+  @include tablet {
+    display: flex;
+    justify-content: center;
+  }
+
+  // img {
+  //   width: 100%;
+  //   height: auto;
+  // }
 }
 </style>
