@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0...v2.0.1) (2021-10-01)
+
+
+### Bug Fixes
+
+* update favicon ([2e7201d](https://github.com/digitalinteraction/climatered-client/commit/2e7201d1a5754465e2c1a0394a670f73326596b3))
+* update main brand ([09272c5](https://github.com/digitalinteraction/climatered-client/commit/09272c56255726728ead15ba12d414c041a235ea))
+* update sponsors, add solferino and make ifrc/icrc bigger ([37c9268](https://github.com/digitalinteraction/climatered-client/commit/37c9268fe079e100f69da8d1b51ff9f6f60bc2b8))
+
 ## [2.0.0](https://github.com/digitalinteraction/climatered-client/compare/v2.0.0-beta.5...v2.0.0) (2021-09-30)
 
 
