@@ -1,5 +1,5 @@
 import _Vue from 'vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library, config } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 //
@@ -55,6 +55,9 @@ import {
 //
 // TODO: remove in future
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
+
+// We manually add the css in App.vue so it all gets bundled together
+config.autoAddCss = false
 
 //
 // Apply icons

@@ -94,6 +94,7 @@ export default Vue.extend({
 
 <style lang="scss">
 @import '~@openlab/deconf-ui-toolkit/dist/theme.scss';
+@import '~@fortawesome/fontawesome-svg-core/styles.css';
 
 .button .icon:first-child:not(:last-child) {
   margin-left: unset;
