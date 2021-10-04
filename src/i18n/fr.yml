@@ -4,7 +4,7 @@
 deconf:
   appLayout:
     atrium: Atrium
-    whatsOn: Ce qu’il se passe
+    whatsOn: "Ce qu'il se passe"
     schedule: Programme
     coffeeChat: Causerie Café
     helpDesk: Aide
@@ -15,7 +15,7 @@ deconf:
   apiError:
     title: Nous avons rencontré un problème
     content: Nous rencontrons quelques difficultés, essayez de rafraîchir la page ou de revenir plus tard.
-    retry: ‘Nouvel essai dans {0}’
+    retry: 'Nouvel essai dans {0}'
 
   appLoading:
     message: Chargement...
@@ -61,8 +61,8 @@ deconf:
     processing: Traitement
     registered: Vous êtes inscrit à cette session
     full: La capacité maximale de cette session est déjà atteinte
-    spacesLeft: ‘{0}/{1} places encore disponibles.’
-    registerButton: S’inscrire maintenant
+    spacesLeft: '{0}/{1} places encore disponibles.'
+    registerButton: S'inscrire maintenant
     unregisterButton: Libérer ma place
 
   timeSlot:
@@ -88,29 +88,29 @@ deconf:
   sessionState:
     liveNow: En Direct maintenant
     sessionOver: Session terminée
-    interest: ‘Personne n’est encore intéressé | 1 personne y assiste | {n} personnes y assistent’
+    interest: "Personne n'est encore intéressé | 1 personne y assiste | {n} personnes y assistent"
 
   sessionEmbed:
     openTeams: Ouvrir la réunion MS Teams
     openZoom: Ouvrir la réunion Zoom
     openHubs: Ouvrir le Hub Mozilla
     #openSpatial: Open Spatial Chat
-    noEmbed: Quelque chose a mal tourné, il n’y a rien à afficher ici.
+    noEmbed: "Quelque chose a mal tourné, il n'y a rien à afficher ici."
 
   languageWarning:
-    message: ‘Merci de bien vouloir noter que cette session n’est disponible qu’en {0}’
+    message: "Merci de bien vouloir noter que cette session n'est disponible qu'en {0}"
 
   navigationBar:
     profile: Votre profil
     login: Connexion
     interpret: Mode interprétation
     register: Inscrivez
-    unavailable: '(Indisponible)'
+    unavailable: ' (Indisponible)'
 
   whatsOn:
     title: Quoi de neuf
     infoText: Parcourir l'horaire avant le jour de la sortie
-    noResults: Votre requête n’a retourné aucun résultat.
+    noResults: Votre requête n'a retourné aucun résultat.
 
   login:
     title: Connexion
@@ -149,7 +149,7 @@ deconf:
     userSessions: Utilisateur
     hidePast: Cacher les sessions passées
     showPast: Montrer les sessions passées
-    noResults: Votre requête n’a retourné aucun résultat.
+    noResults: Votre requête n'a retourné aucun résultat.
 
   session:
     slot: Programme
@@ -171,7 +171,7 @@ deconf:
 ifrc:
   general:
     appName: PlanetRed
-    backToAtrium: Retourner à l’Atrium
+    backToAtrium: Retourner à l'Atrium
     notSelected: (Veuillez sélectionner)
     genericError: Une erreur s'est produite. Veuillez réessayer
     'yes': Oui
@@ -198,7 +198,7 @@ ifrc:
     affiliation:
       label: Votre affiliation
       placeholder: 'par exemple: Membre du personnel de la FICR'
-      help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
+      help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d'une Société nationale / FICR / CICR / centre de référence; ou aucun)
     submitButton: Inscrivez
     consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
     marketingText: Je consens à m'inscrire à la liste de diffusion de l'IFRC Solferino Academy
@@ -232,7 +232,7 @@ ifrc:
 
   channelControl:
     channel: Langue audio
-    muteLabel: 'A noter: pour écouter une autre langue, n’oubliez pas de mettre en sourdine le flux ci-dessus'
+    muteLabel: "A noter: pour écouter une autre langue, n'oubliez pas de mettre en sourdine le flux ci-dessus"
     source: De la vidéo
     start: Début
     stop: Arrêtez
