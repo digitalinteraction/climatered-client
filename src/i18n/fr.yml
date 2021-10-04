@@ -4,7 +4,7 @@
 deconf:
   appLayout:
     atrium: Atrium
-    #whatsOn: What's On
+    whatsOn: "Ce qu'il se passe"
     schedule: Programme
     coffeeChat: Causerie Café
     helpDesk: Aide
@@ -13,9 +13,9 @@ deconf:
     unavailable: Indisponible
 
   apiError:
-    #title: Something went wrong
-    #content: We're having a bit of trouble, try refresing or coming back later.
-    #retry: 'Retrying in {0}'
+    title: Nous avons rencontré un problème
+    content: Nous rencontrons quelques difficultés, essayez de rafraîchir la page ou de revenir plus tard.
+    retry: 'Nouvel essai dans {0}'
 
   appLoading:
     message: Chargement...
@@ -35,8 +35,8 @@ deconf:
     genericError: Une erreur s'est produite. Veuillez réessayer
 
   miniSession:
-    #view: Vue
-    #live: Live
+    view: Vue
+    live: En direct
 
   featuredSessions:
     title: Sessions vedettes
@@ -60,14 +60,14 @@ deconf:
     loading: Récupérer la fréquentation
     processing: Traitement
     registered: Vous êtes inscrit à cette session
-    #full: This session is full
-    #spacesLeft: '{0}/{1} seats remaining.'
-    #registerButton: Register now
-    #unregisterButton: Release my seat
+    full: La capacité maximale de cette session est déjà atteinte
+    spacesLeft: '{0}/{1} places encore disponibles.'
+    registerButton: S'inscrire maintenant
+    unregisterButton: Libérer ma place
 
   timeSlot:
-    #past: Past
-    #live: Live
+    past: Précédent
+    live: En direct
 
   joinSession:
     future: Prévisualiser la session
@@ -86,31 +86,31 @@ deconf:
     #copied: copied
 
   sessionState:
-    #liveNow: Live Now
-    #sessionOver: Session over
-    #interest: 'no interest | 1 person is attending | {n} people are attending'
+    liveNow: En Direct maintenant
+    sessionOver: Session terminée
+    interest: "Personne n'est encore intéressé | 1 personne y assiste | {n} personnes y assistent"
 
   sessionEmbed:
-    #openTeams: Open Teams meeting
-    #openZoom: Open Zoom meeting
-    #openHubs: Open Mozilla Hub
+    openTeams: Ouvrir la réunion MS Teams
+    openZoom: Ouvrir la réunion Zoom
+    openHubs: Ouvrir le Hub Mozilla
     #openSpatial: Open Spatial Chat
-    #noEmbed: Something went wrong, there is nothing to show here
+    noEmbed: "Quelque chose a mal tourné, il n'y a rien à afficher ici."
 
   languageWarning:
-    #message: 'Please note this session is only available in {0}'
+    message: "Merci de bien vouloir noter que cette session n'est disponible qu'en {0}"
 
   navigationBar:
     profile: Votre profil
     login: Connexion
-    #interpret: Interpret mode
+    interpret: Mode interprétation
     register: Inscrivez
     unavailable: ' (Indisponible)'
 
   whatsOn:
     title: Quoi de neuf
     infoText: Parcourir l'horaire avant le jour de la sortie
-    #noResults: Nothing matched your query
+    noResults: Votre requête n'a retourné aucun résultat.
 
   login:
     title: Connexion
@@ -140,7 +140,7 @@ deconf:
       nameText: Nom
       countryText: Pays
       affiliationText: Affiliation
-      #marketingText: Marketing
+      marketingText: Marketing
 
   schedule:
     title: Programme
@@ -149,20 +149,20 @@ deconf:
     userSessions: Utilisateur
     hidePast: Cacher les sessions passées
     showPast: Montrer les sessions passées
-    #noResults: Nothing matched your query
+    noResults: Votre requête n'a retourné aucun résultat.
 
   session:
     slot: Programme
-    #countdown: Countdown
+    countdown: Compte à rebours
     links: Liens
     linkPreview: Les liens des sessions seront disponibles 15 minutes avant l'heure de lancement.
     actions: Actions
-    #logIn: Log in to attend this session
+    logIn: Connectez-vous pour assister à cette session
     speakers: Intervenants
-    #zoomLink: Zoom Room
-    #teamsLink: Teams Meeting
-    #miroLink: Miro Board
-    #generalLink: Link
+    zoomLink: Salle Zoom
+    teamsLink: Réunion Zoom
+    miroLink: Tableau Miro
+    generalLink: Lien
     backButton: Retour à l'horaire
 
 #
@@ -171,7 +171,7 @@ deconf:
 ifrc:
   general:
     appName: PlanetRed
-    backToAtrium: Retourner à l’Atrium
+    backToAtrium: Retourner à l'Atrium
     notSelected: (Veuillez sélectionner)
     genericError: Une erreur s'est produite. Veuillez réessayer
     'yes': Oui
@@ -198,14 +198,14 @@ ifrc:
     affiliation:
       label: Votre affiliation
       placeholder: 'par exemple: Membre du personnel de la FICR'
-      help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d’une Société nationale / FICR / CICR / centre de référence; ou aucun)
+      help: Affiliation au mouvement Croix-Rouge Croissant-Rouge (par exemple, personnel / bénévole / membre du conseil d'administration / membre d'une Société nationale / FICR / CICR / centre de référence; ou aucun)
     submitButton: Inscrivez
     consentText: Je confirme avoir lu et accepté les conditions liées ci-dessous
     marketingText: Je consens à m'inscrire à la liste de diffusion de l'IFRC Solferino Academy
     termsLink: Directives
     privacyLink: Politique de confidentialité
-    #loginLabel: Already registered?
-    #loginAction: Log in here
+    loginLabel: Déjà inscrite ?
+    loginAction: Se connecter ici
     #genericError: Please check your submission and try again.
 
   atrium:
@@ -213,7 +213,7 @@ ifrc:
     sponsorHeading: Partenaires
     onlineNow: En ligne maintenant
     carbonSaved: Des kilogrammes de CO₂ économisés
-    #twitterTitle: Social
+    twitterTitle: Social
     twitterSubtitle: 'Tweeter avec #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
     #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
@@ -232,7 +232,7 @@ ifrc:
 
   channelControl:
     channel: Langue audio
-    muteLabel: 'A noter: pour écouter une autre langue, n’oubliez pas de mettre en sourdine le flux ci-dessus'
+    muteLabel: "A noter: pour écouter une autre langue, n'oubliez pas de mettre en sourdine le flux ci-dessus"
     source: De la vidéo
     start: Début
     stop: Arrêtez

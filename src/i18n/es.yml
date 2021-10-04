@@ -91,11 +91,11 @@ deconf:
     interest: 'no hay interés| 1 persona está asistiendo | {n} personas asisten'
 
   sessionEmbed:
-    #openTeams: Open Teams meeting
-    #openZoom: Open Zoom meeting
-    #openHubs: Open Mozilla Hub
-    #openSpatial: Open Spatial Chat
-    #noEmbed: Something went wrong, there is nothing to show here
+    openTeams: Abrir la reunión MS Teams
+    openZoom: Abrir la reunión Zoom
+    openHubs: Abrir el Hub Mozilla
+    openSpatial: Abrir el Spatial Chat
+    noEmbed: Algo ha salido mal, no hay nada que mostrar aquí
 
   languageWarning:
     message: 'Tenga en cuenta que esta sesión solo está disponible en {0}'
@@ -103,7 +103,7 @@ deconf:
   navigationBar:
     profile: Tu perfil
     login: Iniciar sesión
-    #interpret: Interpret mode
+    interpret: Modo interpretación
     register: Registrarse
     unavailable: ' (Indisponible)'
 
@@ -214,7 +214,7 @@ ifrc:
     sponsorHeading: Asociados
     onlineNow: En línea ahora
     carbonSaved: Kilogramos de CO₂ ahorrados
-    #twitterTitle: Social
+    twitterTitle: Social
     twitterSubtitle: 'Tuitear con #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
     #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
