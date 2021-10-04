@@ -110,6 +110,7 @@ deconf:
   whatsOn:
     title: الأحداث
     infoText: تصفح جدول المواعيد قبل يوم الإصدار
+    noResults: لا يوجد شيء يطابق طلبك
 
   login:
     title: تسجيل الدخول

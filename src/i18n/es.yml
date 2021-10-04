@@ -108,8 +108,9 @@ deconf:
     unavailable: ' (Indisponible)'
 
   whatsOn:
-    title: What's On
-    infoText: Browse the Schedule before release day
+    #title: What's On
+    #infoText: Browse the Schedule before release day
+    noResults: Nada coincide con tu consulta
 
   login:
     title: Ingreso

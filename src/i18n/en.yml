@@ -111,6 +111,7 @@ deconf:
   whatsOn:
     title: What's On
     infoText: Browse the Schedule before release day
+    noResults: Nothing matched your query
 
   # TODO: moved from "ifrc"
   login:

@@ -110,6 +110,7 @@ deconf:
   whatsOn:
     title: Quoi de neuf
     infoText: Parcourir l'horaire avant le jour de la sortie
+    #noResults: Nothing matched your query
 
   login:
     title: Connexion
