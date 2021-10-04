@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/digitalinteraction/climatered-client/compare/v2.0.2...v2.1.0) (2021-10-04)
+
+
+### Features
+
+* show vimeo chats alongside videos ([2d0e8b1](https://github.com/digitalinteraction/climatered-client/commit/2d0e8b1d4bf3dd11dac73cfecaf98529c7e1094e))
+
+
+### Bug Fixes
+
+* update i18n ([6cf4fcd](https://github.com/digitalinteraction/climatered-client/commit/6cf4fcdd0b3e11206a2792af5c78ddf55d3c383a))
+* update i18n ([#29](https://github.com/digitalinteraction/climatered-client/issues/29)) ([1352d91](https://github.com/digitalinteraction/climatered-client/commit/1352d9129c70988491e227c10ca294f3b78f8c1f))
+
 ### [2.0.2](https://github.com/digitalinteraction/climatered-client/compare/v2.0.1...v2.0.2) (2021-10-01)
 
 
