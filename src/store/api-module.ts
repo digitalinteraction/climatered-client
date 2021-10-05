@@ -216,6 +216,14 @@ export function apiModule(): ApiStoreModule {
 
         return data ? data.events : null
       },
+      async fetchAttendeeCounts() {
+        const data = await agent
+          .get('metrics/attendees')
+          .json<{ attendees: unknown[] }>()
+          .catch(errorHandler)
+
+        return data ? data.attendees : null
+      },
     },
   }
 }

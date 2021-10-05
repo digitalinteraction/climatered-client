@@ -69,13 +69,9 @@ interface MetricsRecord {
   created: Date
 }
 
-interface Data {
-  events: MetricsRecord[]
-  report: string
-  reportOptions: SelectOption[]
-
-  startDate: Date | null
-  endDate: Date | null
+interface AttendeeCount {
+  count: string
+  verified: boolean
 }
 
 function mapIncrease(map: Map<string, number>, key: string, change = 1) {
@@ -86,17 +82,42 @@ function sortMap(map: Map<string, number>) {
   return [...map.entries()].sort((a, b) => b[1] - a[1])
 }
 
+function startOfDay(date: Date) {
+  const result = new Date(date)
+  result.setHours(0, 0, 0, 0)
+  return result
+}
+
+function endOfDay(date: Date) {
+  const result = new Date(date)
+  result.setHours(23, 59, 59, 999)
+  return result
+}
+
 const knownRoutes = new Set(Object.values(Routes))
+
+interface Data {
+  events: MetricsRecord[]
+  attendeesCounts: AttendeeCount[]
+  report: string
+  reportOptions: SelectOption[]
+
+  startDate: Date | null
+  endDate: Date | null
+}
 
 export default Vue.extend({
   components: { IfrcUtilLayout, SegmentControl, DateInput, Stack },
   data(): Data {
     return {
       events: [],
+      attendeesCounts: [],
       report: 'pages',
       reportOptions: [
         { value: 'pages', text: 'Page Views' },
-        { value: 'atriumWidgets', text: 'Atrium Widgets' },
+        { value: 'atriumWidgets', text: 'Atrium' },
+        { value: 'ical', text: 'Calendar' },
+        { value: 'attendees', text: 'Attendees' },
       ],
       startDate: null,
       endDate: null,
@@ -108,9 +129,9 @@ export default Vue.extend({
       return this.user?.user_roles.includes('admin') ?? false
     },
     filteredEvents(): MetricsRecord[] {
-      const start = this.startDate?.getTime()
-      const end = this.endDate?.getTime()
-      if (!start || !end) return this.events
+      if (!this.startDate || !this.endDate) return this.events
+      const start = startOfDay(this.startDate).getTime()
+      const end = endOfDay(this.endDate).getTime()
 
       return this.events.filter(
         (e) => e.created.getTime() >= start && e.created.getTime() <= end
@@ -118,6 +139,8 @@ export default Vue.extend({
     },
     reportMessage(): string {
       const message: string[] = []
+
+      // Page views
       if (this.report === 'pages') {
         const routes = new Map<string, number>()
 
@@ -138,6 +161,7 @@ export default Vue.extend({
         }
       }
 
+      // Atrium widgets
       if (this.report === 'atriumWidgets') {
         const actions = new Map<string, number>()
         for (const event of this.filteredEvents) {
@@ -147,6 +171,27 @@ export default Vue.extend({
 
         for (const [action, count] of sortMap(actions)) {
           message.push(`${action} (${count})`)
+        }
+      }
+
+      // ical downloads
+      if (this.report === 'ical') {
+        const sessions = new Map<string, number>()
+        for (const event of this.filteredEvents) {
+          if (event.eventName !== 'session/ical') continue
+          mapIncrease(sessions, event.payload.sessionId)
+        }
+
+        for (const [sessionId, count] of sortMap(sessions)) {
+          message.push(`session/${sessionId} (${count})`)
+        }
+      }
+
+      // Attendees
+      if (this.report === 'attendees') {
+        for (const record of this.attendeesCounts) {
+          const v = record.verified ? 'Verified' : 'Unverified'
+          message.push(`${v} (${record.count})`)
         }
       }
 
@@ -173,6 +218,9 @@ export default Vue.extend({
   },
   methods: {
     async fetchData() {
+      this.attendeesCounts = await this.$store.dispatch(
+        'api/fetchAttendeeCounts'
+      )
       this.events = await this.$store.dispatch('api/fetchMetrics')
       this.events = this.events?.map((e) => this.hydrate(e))
     },
