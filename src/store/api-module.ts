@@ -228,6 +228,8 @@ export function apiModule(): ApiStoreModule {
           .json<{ events: unknown[] }>()
           .catch(errorHandler)
 
+        if (data) data.events = data.events.map((e) => deepSeal(e))
+
         return data ? data.events : null
       },
       async fetchAttendeeCounts() {
@@ -236,7 +238,15 @@ export function apiModule(): ApiStoreModule {
           .json<{ attendees: unknown[] }>()
           .catch(errorHandler)
 
-        return data ? data.attendees : null
+        return data ? deepSeal(data.attendees) : null
+      },
+      async fetchAttendanceCounts() {
+        const data = await agent
+          .get('metrics/attendance')
+          .json<{ attendance: unknown[] }>()
+          .catch(errorHandler)
+
+        return data ? deepSeal(data.attendance) : null
       },
     },
   }

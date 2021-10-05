@@ -74,6 +74,11 @@ interface AttendeeCount {
   verified: boolean
 }
 
+interface Attendance {
+  session: string
+  count: string
+}
+
 function mapIncrease(map: Map<string, number>, key: string, change = 1) {
   map.set(key, (map.get(key) ?? 0) + change)
 }
@@ -99,6 +104,7 @@ const knownRoutes = new Set(Object.values(Routes))
 interface Data {
   events: MetricsRecord[]
   attendeesCounts: AttendeeCount[]
+  attendance: Attendance[]
   report: string
   reportOptions: SelectOption[]
 
@@ -112,12 +118,14 @@ export default Vue.extend({
     return {
       events: [],
       attendeesCounts: [],
+      attendance: [],
       report: 'pages',
       reportOptions: [
         { value: 'pages', text: 'Page Views' },
         { value: 'atriumWidgets', text: 'Atrium' },
         { value: 'ical', text: 'Calendar' },
-        { value: 'attendees', text: 'Attendees' },
+        { value: 'attendees', text: 'Registrations' },
+        { value: 'attendance', text: 'Session Interest' },
       ],
       startDate: null,
       endDate: null,
@@ -190,8 +198,20 @@ export default Vue.extend({
       // Attendees
       if (this.report === 'attendees') {
         for (const record of this.attendeesCounts) {
-          const v = record.verified ? 'Verified' : 'Unverified'
+          const v = record.verified ? 'verified' : 'unverified'
           message.push(`${v} (${record.count})`)
+        }
+      }
+
+      // Session Attendance
+      if (this.report === 'attendance') {
+        const map = new Map<string, number>()
+        for (const item of this.attendance) {
+          map.set(item.session, parseInt(item.count, 10))
+        }
+
+        for (const [sessionId, count] of sortMap(map)) {
+          message.push(`session/${sessionId} (${count})`)
         }
       }
 
@@ -221,6 +241,7 @@ export default Vue.extend({
       this.attendeesCounts = await this.$store.dispatch(
         'api/fetchAttendeeCounts'
       )
+      this.attendance = await this.$store.dispatch('api/fetchAttendanceCounts')
       this.events = await this.$store.dispatch('api/fetchMetrics')
       this.events = this.events?.map((e) => this.hydrate(e))
     },
