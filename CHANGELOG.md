@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/digitalinteraction/climatered-client/compare/v2.2.0...v2.2.1) (2021-10-05)
+
+
+### Bug Fixes
+
+* mobile navigation now shows the active page ([58814e7](https://github.com/digitalinteraction/climatered-client/commit/58814e729b6484742f739871b250aa0a5d5fd6a9))
+
 ## [2.2.0](https://github.com/digitalinteraction/climatered-client/compare/v2.1.0...v2.2.0) (2021-10-05)
 
 
