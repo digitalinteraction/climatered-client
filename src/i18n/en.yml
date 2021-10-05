@@ -171,6 +171,11 @@ deconf:
     generalLink: Link
     backButton: Back to Schedule
 
+  interestSection:
+    message: Register your interest
+    unregisterButton: Remove from your sessions
+    registerButton: Add to your sessions
+
 #
 # IFRC section
 #
