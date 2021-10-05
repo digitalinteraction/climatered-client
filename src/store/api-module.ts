@@ -19,6 +19,13 @@ import {
 } from '@openlab/deconf-shared'
 import { SocketIoPlugin } from '@/plugins/socketio-plugin'
 
+// TODO: normalise with deconf attendance-routes
+interface AttendanceRecord {
+  id: number
+  created: string
+  session: string
+}
+
 const API_DELAY = 300
 
 function requestMiddleware(request: Request) {
@@ -185,10 +192,17 @@ export function apiModule(): ApiStoreModule {
       async fetchUserAttendance({ commit }) {
         const result = await agent
           .get('attendance/me')
-          .json<{ sessions: string[] }>()
+          .json<{ attendance: AttendanceRecord[] }>()
           .catch(errorHandler)
 
-        if (result) commit('userSessions', result.sessions)
+        if (result) {
+          commit(
+            'userSessions',
+            result.attendance.map((a) => a.session)
+          )
+        } else {
+          commit('userSessions', null)
+        }
 
         return deepSeal(result)
       },

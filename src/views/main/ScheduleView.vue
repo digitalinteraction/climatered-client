@@ -4,7 +4,7 @@
       v-if="schedule"
       :schedule="schedule"
       :sessions="filteredSessions"
-      :user-sessions="[]"
+      :user-sessions="userSessions"
       :filters-key="filtersKey"
       :config="config"
       :schedule-date="scheduleDate"
@@ -29,8 +29,6 @@ import {
 } from '@openlab/deconf-ui-toolkit'
 import { StorageKey } from '@/lib/constants'
 import { Session } from '@openlab/deconf-shared'
-
-// TODO: implement userSessions
 
 interface Data {
   filtersKey: string
