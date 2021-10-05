@@ -52,7 +52,7 @@
           />
         </div>
         <FeaturedSessions
-          v-if="featuredSessions.length > 0"
+          v-if="scheduleEnabled && featuredSessions.length > 0"
           :featured="featuredSessions"
           :current-date="scheduleDate"
         />
@@ -182,6 +182,9 @@ export default Vue.extend({
           sponsors: sponsorData,
         },
       ]
+    },
+    scheduleEnabled(): boolean {
+      return this.settings?.schedule.enabled ?? false
     },
   },
   mounted() {
