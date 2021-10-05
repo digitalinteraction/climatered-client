@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/digitalinteraction/climatered-client/compare/v2.2.1...v2.3.0) (2021-10-05)
+
+
+### Features
+
+* **metrics:** add attendance report ([67655ef](https://github.com/digitalinteraction/climatered-client/commit/67655eff256620ba060c6495e60a47647b8add57))
+* **session:** add "register interest" section to uncapped sessions ([9aa72be](https://github.com/digitalinteraction/climatered-client/commit/9aa72be215d04cdcb167843808eecf0404e12e48))
+
+
+### Bug Fixes
+
+* **schedule:** fix user session filtering ([2f46691](https://github.com/digitalinteraction/climatered-client/commit/2f4669121be732460d436759951d2ea77dbc1091))
+
 ### [2.2.1](https://github.com/digitalinteraction/climatered-client/compare/v2.2.0...v2.2.1) (2021-10-05)
 
 
