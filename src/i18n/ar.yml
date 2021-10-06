@@ -158,7 +158,7 @@ deconf:
     links: الرابط الإلكتروني
     linkPreview: رابط الجلسة سيكون متاحا قبل 15 دقيقة من موعد بدء الجلسة
     actions: الاجراءات
-    logIn: يرجى التسجيل لحضور الجلسة
+    logIn: لم تقم بتسجل الدخول بعد. للوصول إلى الروابط لهذه الجلسة، يرجى تسجيل الدخول.
     speakers: المتحدث
     zoomLink: غرفة زووم
     teamsLink: منصة Teams
@@ -217,6 +217,7 @@ ifrc:
     twitterTitle: وسائل التواصل الاجتماعي
     twitterSubtitle: 'تغريدة مع #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
+    logIn: يرجى التسجيل أو تسجيل الدخول للحساب لعرض المعلومات الكاملة والوصول إلى الروابط لجميع الجلسات في هذا الحدث.
     #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:

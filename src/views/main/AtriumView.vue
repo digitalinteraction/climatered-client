@@ -3,7 +3,22 @@
     <AtriumLayout v-if="settings">
       <BoxContent slot="left">
         <div class="atriumView-content">
-          <ApiContent :slug="contentSlug" />
+          <ApiContent :slug="contentSlug">
+            <div
+              slot="conference_over_message"
+              class="notification is-warning"
+              v-if="conferenceIsOver"
+            >
+              {{ $t('ifrc.atrium.conferenceOver') }}
+            </div>
+            <div
+              slot="register_message"
+              class="notification is-warning"
+              v-else-if="!user"
+            >
+              {{ $t('ifrc.atrium.logIn') }}
+            </div>
+          </ApiContent>
         </div>
       </BoxContent>
       <Stack slot="right" direction="vertical" gap="medium" align="stretch">
@@ -185,6 +200,10 @@ export default Vue.extend({
     },
     scheduleEnabled(): boolean {
       return this.settings?.schedule.enabled ?? false
+    },
+    conferenceIsOver(): boolean {
+      if (!this.settings) return false
+      return this.scheduleDate.getTime() > this.settings.endDate.getTime()
     },
   },
   mounted() {

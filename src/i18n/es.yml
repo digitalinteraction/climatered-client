@@ -158,7 +158,7 @@ deconf:
     links: Enlaces
     linkPreview: Los enlaces a la sesión estarán disponible 15 minutos antes de la hora de inicio.
     actions: Acciones
-    logIn: Inicie sesión para asistir a esta sesión
+    logIn: De momento no se encuentra conectado. Favor de conectarse para acceder al enlace de la sesión.
     speakers: Intervenants
     zoomLink: Habitación Zoom
     teamsLink: Reunión de Microsoft Teams
@@ -217,6 +217,7 @@ ifrc:
     twitterTitle: Social
     twitterSubtitle: 'Tuitear con #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
+    logIn: Favor de registrarse o conectarse para ver la información completa del evento y acceder a los enlaces de las sesiones.
     #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:

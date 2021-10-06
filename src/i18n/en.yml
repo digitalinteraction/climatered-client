@@ -163,7 +163,7 @@ deconf:
     links: Links
     linkPreview: The session links will be available 15 minutes before the start time
     actions: Actions
-    logIn: Log in to attend this session
+    logIn: You are not logged in right now. To access links for this session, please log in.
     speakers: Speakers
     zoomLink: Zoom Room
     teamsLink: Teams Meeting
@@ -227,6 +227,7 @@ ifrc:
     twitterTitle: Social
     twitterSubtitle: 'Tweet with #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
+    logIn: Please register or log in to view complete information and access links for all the sessions in this event.
     conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
 
   footer:
