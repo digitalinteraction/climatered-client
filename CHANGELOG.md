@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/digitalinteraction/climatered-client/compare/v2.3.1...v2.4.0) (2021-10-06)
+
+
+### Features
+
+* **atrium:** show "conference over" and "please register" messages in-content ([5a48c8f](https://github.com/digitalinteraction/climatered-client/commit/5a48c8fb75c8163d0286d492f8d66140be8b1b5d))
+
+
+### Bug Fixes
+
+* show "x interest" above sessions again ([6d112f1](https://github.com/digitalinteraction/climatered-client/commit/6d112f1f34228e64136f919dc503b5e4de9ae83a))
+* **whats-on:** fix tiles broken over columns in firefox ([94e9bac](https://github.com/digitalinteraction/climatered-client/commit/94e9bac7552e67156f6a4b726556cce4020bdbf5))
+
 ### [2.3.1](https://github.com/digitalinteraction/climatered-client/compare/v2.3.0...v2.3.1) (2021-10-05)
 
 
