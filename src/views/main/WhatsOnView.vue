@@ -8,6 +8,7 @@
       :enabled-filters="enabledFilters"
       :config="config"
       :slot-state="slotState"
+      :language-options="languages"
     />
   </IfrcAppLayout>
 </template>
@@ -21,15 +22,17 @@ import {
   ScheduleFilterRecord,
   WhatsOnView,
   SlotState,
+  SelectOption,
 } from '@openlab/deconf-ui-toolkit'
 import { Session } from '@openlab/deconf-shared'
-import { StorageKey } from '@/lib/module'
+import { getLanguageOptions, StorageKey } from '@/lib/module'
 
 interface Data {
   filtersKey: string
   enabledFilters: (keyof ScheduleFilterRecord)[]
   config: ScheduleConfig
   sessions: Session[] | null
+  languages: SelectOption[]
 }
 
 const typeBlocklist = new Set(['unknown', 'coffee-time'])
@@ -39,12 +42,13 @@ export default Vue.extend({
   data(): Data {
     return {
       filtersKey: StorageKey.WhatsOnFilters,
-      enabledFilters: ['query', 'sessionType', 'theme'],
+      enabledFilters: ['query', 'sessionType', 'theme', 'language'],
       config: {
         tileHeader: ['type'],
         tileAttributes: ['languages'],
       },
       sessions: null,
+      languages: getLanguageOptions(),
     }
   },
   computed: {

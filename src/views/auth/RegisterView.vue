@@ -126,10 +126,10 @@ import {
   CheckboxField,
   deepSeal,
   Routes,
+  SelectOption,
 } from '@openlab/deconf-ui-toolkit'
-import { pause } from '@/lib/module'
+import { getLanguageOptions, pause } from '@/lib/module'
 import countryData from '@/data/countries-en.json'
-import languageData from '@/data/languages.json'
 import { RegisterRequest } from '@openlab/deconf-shared'
 import { setLocale } from '@/i18n/module'
 
@@ -138,10 +138,6 @@ const countryOptions = deepSeal(
     value,
     text,
   }))
-)
-
-const languageOptions = deepSeal(
-  Object.entries(languageData).map(([value, text]) => ({ value, text }))
 )
 
 function isEmail(input: string) {
@@ -180,7 +176,7 @@ interface Data {
   state: 'pending' | 'working' | 'success' | 'error'
   registration: RegBody
   errors: RegErrors
-  languageOptions: unknown
+  languageOptions: SelectOption[]
   countryOptions: unknown
 }
 
@@ -199,7 +195,7 @@ export default Vue.extend({
       state: (this.$route.query.state as 'pending') ?? 'pending',
       registration: createRegistration(this.$i18n.locale),
       errors: createErrors(),
-      languageOptions: languageOptions,
+      languageOptions: getLanguageOptions(),
       countryOptions,
     }
   },
@@ -267,7 +263,7 @@ export default Vue.extend({
     },
     findErrors(reg: RegBody) {
       const errors = createErrors()
-      const langSet = new Set(Object.keys(languageData))
+      const langSet = new Set(this.languageOptions.map((o) => o.value))
 
       if (!reg.name || reg.name.length < 2) {
         errors.name = true

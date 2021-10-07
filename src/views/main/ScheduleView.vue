@@ -10,6 +10,7 @@
       :schedule-date="scheduleDate"
       :enabled-filters="enabledFilters"
       :is-during-conference="isDuringConference"
+      :language-options="languages"
     >
       <p slot="infoText">{{ $t('deconf.schedule.description') }}</p>
     </ScheduleView>
@@ -26,14 +27,17 @@ import {
   ScheduleConfig,
   ScheduleFilterRecord,
   ScheduleView,
+  SelectOption,
 } from '@openlab/deconf-ui-toolkit'
 import { StorageKey } from '@/lib/constants'
 import { Session } from '@openlab/deconf-shared'
+import { getLanguageOptions } from '@/lib/module'
 
 interface Data {
   filtersKey: string
   config: ScheduleConfig
   enabledFilters: Array<keyof ScheduleFilterRecord>
+  languages: SelectOption[]
 }
 
 export default Vue.extend({
@@ -45,7 +49,15 @@ export default Vue.extend({
         tileHeader: ['type'],
         tileAttributes: ['themes', 'recorded', 'languages'],
       },
-      enabledFilters: ['query', 'sessionType', 'theme', 'date', 'isRecorded'],
+      enabledFilters: [
+        'query',
+        'sessionType',
+        'theme',
+        'date',
+        'isRecorded',
+        'language',
+      ],
+      languages: getLanguageOptions(),
     }
   },
   computed: {
