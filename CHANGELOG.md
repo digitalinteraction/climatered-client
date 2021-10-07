@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/digitalinteraction/climatered-client/compare/v2.4.0...v2.5.0) (2021-10-07)
+
+
+### Features
+
+* add language filter ([b7754b4](https://github.com/digitalinteraction/climatered-client/commit/b7754b4e36dc901c4e85706e1f47cdc5337c435f))
+* show organisation on WhatsOn and Schedule pages ([d26be50](https://github.com/digitalinteraction/climatered-client/commit/d26be503bd882734f7bda3f20d58d98c7268cd20))
+
+
+### Bug Fixes
+
+* update i18n ([128bc7e](https://github.com/digitalinteraction/climatered-client/commit/128bc7eb9b7abe23a6bbe5a4cfa98f995b264b2b))
+
 ## [2.4.0](https://github.com/digitalinteraction/climatered-client/compare/v2.3.1...v2.4.0) (2021-10-06)
 
 
