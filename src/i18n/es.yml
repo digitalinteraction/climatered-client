@@ -52,6 +52,7 @@ deconf:
     trackFilter: Pista
     themeFilter: Tema
     recordedFilter: Está grabada
+    languageFilter: Idioma
     offLabel: Todos
     'yes': 'sí'
     'no': 'No'
@@ -191,7 +192,7 @@ ifrc:
       placeholder: por ejemplo, dan@example.com
       help: Usarás tu correo electrónico para iniciar sesión en la cumbre virtual
     language:
-      label: idioma
+      label: Idioma
       help: Este será su idioma preferido para la conferencia
     country:
       label: País
@@ -218,7 +219,7 @@ ifrc:
     twitterSubtitle: 'Tuitear con #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
     logIn: Favor de registrarse o conectarse para ver la información completa del evento y acceder a los enlaces de las sesiones.
-    #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+    conferenceOver: Planet:Red ya terminó, ¡pero no todo se acabó! ¡Todavía puede acceder a las sesiones desde el programa!
 
   footer:
     appName: PlanetRed

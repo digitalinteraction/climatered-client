@@ -52,6 +52,7 @@ deconf:
     trackFilter: مسار
     themeFilter: سمة
     recordedFilter: تم تسجيله
+    languageFilter: لغة
     offLabel: الجميع
     'yes': نعم
     'no': لا
@@ -218,7 +219,7 @@ ifrc:
     twitterSubtitle: 'تغريدة مع #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
     logIn: يرجى التسجيل أو تسجيل الدخول للحساب لعرض المعلومات الكاملة والوصول إلى الروابط لجميع الجلسات في هذا الحدث.
-    #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+    conferenceOver: Planet:Red الآن انتهت، لكن الأمر لم ينته بعد! لا يزال بإمكانك الوصول إلى الجلسات والأفكار الأساسية من خلال علامة تبويب الجدول الزمني!
 
   footer:
     appName: PlanetRed

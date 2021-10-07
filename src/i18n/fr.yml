@@ -52,6 +52,7 @@ deconf:
     trackFilter: Piste
     themeFilter: Thème
     recordedFilter: Est enregistré
+    languageFilter: Langue
     offLabel: Tout
     'yes': 'Oui'
     'no': 'Non'
@@ -217,7 +218,7 @@ ifrc:
     twitterSubtitle: 'Tweeter avec #PlanetRedSummit'
     twitterUrl: 'https://twitter.com/hashtag/PlanetRedSummit'
     logIn: Vous devez vous inscrire ou vous connecter pour accéder à l’information complète et accéder aux liens des sessions de l’évènement.
-    #conferenceOver: Planet:Red has now ended, but it's not over! You can still access the sessions and keynotes on the schedule tab!
+    conferenceOver: Planet:Red est fini, mais tout n’est pas terminé! Vous pouvez toujours avoir accès aux sessions à partir de l’onglet "programme"!
 
   footer:
     appName: PlanetRed
