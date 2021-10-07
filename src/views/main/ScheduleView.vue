@@ -47,7 +47,7 @@ export default Vue.extend({
       filtersKey: StorageKey.ScheduleFilters,
       config: {
         tileHeader: ['type'],
-        tileAttributes: ['themes', 'recorded', 'languages'],
+        tileAttributes: ['themes', 'recorded', 'languages', 'organisation'],
       },
       enabledFilters: [
         'query',

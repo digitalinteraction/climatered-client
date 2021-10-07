@@ -45,7 +45,7 @@ export default Vue.extend({
       enabledFilters: ['query', 'sessionType', 'theme', 'language'],
       config: {
         tileHeader: ['type'],
-        tileAttributes: ['languages'],
+        tileAttributes: ['languages', 'organisation'],
       },
       sessions: null,
       languages: getLanguageOptions(),
