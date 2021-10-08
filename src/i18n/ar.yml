@@ -245,3 +245,7 @@ ifrc:
     playing: تشغيل
     buffering: جاهز للتشغيل
     ready: مستعد للعب
+
+  contactHost:
+    #label: Need help with this session?
+    action: التواصل مع مضيف الجلسة

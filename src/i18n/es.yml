@@ -245,3 +245,7 @@ ifrc:
     playing: reproduciendo
     buffering: cargando {0}
     ready: preparado para reproducir
+
+  contactHost:
+    #label: Need help with this session?
+    action: Contactar el anfitrión

@@ -17,6 +17,20 @@
         :sessionId="sessionId"
         v-if="showChannelControl"
       />
+      <div class="contactHost" slot="afterContent" v-if="session.contactEmail">
+        <p class="contactHost-label">
+          {{ $t('ifrc.contactHost.label') }}
+        </p>
+        <a
+          class="button is-primary"
+          :href="`mailto:${session.contactEmail}?subject=${session.id}`"
+        >
+          <span class="icon">
+            <fa :icon="['fas', 'envelope']" />
+          </span>
+          <span> {{ $t('ifrc.contactHost.action') }} </span>
+        </a>
+      </div>
     </SessionView>
   </IfrcAppLayout>
   <NotFoundView v-else />
@@ -87,5 +101,12 @@ export default Vue.extend({
 <style lang="scss">
 .channelControl {
   margin-bottom: 1rem;
+}
+.contactHost {
+  margin-top: 1rem;
+}
+.contactHost-label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
 }
 </style>

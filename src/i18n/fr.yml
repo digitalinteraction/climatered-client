@@ -244,3 +244,7 @@ ifrc:
     playing: en jouant
     buffering: chargement {0}
     ready: prêt à jouer
+
+  contactHost:
+    #label: Need help with this session?
+    action: Contacter l’hôte

@@ -307,6 +307,10 @@ ifrc:
     playing: playing
     buffering: buffering {0}
     ready: ready to play
+
+  contactHost:
+    label: Need help with this session?
+    action: Contact Host
 #
 # ============================== OLD ==============================
 #
