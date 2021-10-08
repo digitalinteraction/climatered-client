@@ -246,5 +246,5 @@ ifrc:
     ready: prêt à jouer
 
   contactHost:
-    #label: Need help with this session?
+    label: Vous avez besoin d’aide à propos de cette session?
     action: Contacter l’hôte

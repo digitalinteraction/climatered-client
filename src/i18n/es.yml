@@ -247,5 +247,5 @@ ifrc:
     ready: preparado para reproducir
 
   contactHost:
-    #label: Need help with this session?
+    label: ¿Necesita ayuda a propósito de esta sesión?
     action: Contactar el anfitrión
