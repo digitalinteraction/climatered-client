@@ -89,7 +89,7 @@ deconf:
   sessionState:
     liveNow: مباشر الان
     sessionOver: الجلسة
-    interest: 'غير مهتم بالحضور | شخص واحد سيحضر | من أصل {n} أشخاص'
+    interest: لم يظهر أحد الاهتمام حتى الآن | شخص واحد مهتم | {n} عدد الأشخاص المهتمين
 
   sessionEmbed:
     openTeams: فتح منصة Teams
