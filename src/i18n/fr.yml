@@ -89,7 +89,7 @@ deconf:
   sessionState:
     liveNow: En Direct maintenant
     sessionOver: Session terminée
-    interest: "Personne n'est encore intéressé | 1 personne y assiste | {n} personnes y assistent"
+    interest: "personne n’a montré d’intérêt pour l'instant | 1 personne intéressée | {n} personnes intéressées"
 
   sessionEmbed:
     openTeams: Ouvrir la réunion MS Teams

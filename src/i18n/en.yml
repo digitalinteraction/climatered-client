@@ -89,7 +89,7 @@ deconf:
   sessionState:
     liveNow: Live Now
     sessionOver: Session over
-    interest: 'no interest | 1 person is attending | {n} people are attending'
+    interest: 'no interest yet | 1 person is interested | {n} people are interested'
 
   sessionEmbed:
     openTeams: Open Teams meeting
