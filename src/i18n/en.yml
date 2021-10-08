@@ -310,7 +310,7 @@ ifrc:
 
   contactHost:
     label: Need help with this session?
-    action: Contact Host
+    action: Contact Organiser
 #
 # ============================== OLD ==============================
 #

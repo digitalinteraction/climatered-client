@@ -248,4 +248,4 @@ ifrc:
 
   contactHost:
     label: ¿Necesita ayuda a propósito de esta sesión?
-    action: Contactar el anfitrión
+    action: Contactar al organizador

@@ -247,4 +247,4 @@ ifrc:
 
   contactHost:
     label: Vous avez besoin d’aide à propos de cette session?
-    action: Contacter l’hôte
+    action: Contacter l’organisateur
