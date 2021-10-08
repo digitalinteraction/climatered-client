@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/digitalinteraction/climatered-client/compare/v2.5.0...v2.6.0) (2021-10-08)
+
+
+### Features
+
+* **session:** add button to contact host if set ([d67c31a](https://github.com/digitalinteraction/climatered-client/commit/d67c31a588afebfa260a9f9649e1fdc3ed6df0bf))
+
+
+### Bug Fixes
+
+* **schedule:** fix all/user sesions toggle not localising ([03af449](https://github.com/digitalinteraction/climatered-client/commit/03af449555dc05914624a66650be6fd8fe974cae))
+* update i18n strings ([c17f65a](https://github.com/digitalinteraction/climatered-client/commit/c17f65aa5e06942cd175f6edb8e01eefd543fada))
+* updated i18n strings ([a574547](https://github.com/digitalinteraction/climatered-client/commit/a574547eed14049eddf8f1d1fd0801a3b311d3df))
+
 ## [2.5.0](https://github.com/digitalinteraction/climatered-client/compare/v2.4.0...v2.5.0) (2021-10-07)
 
 
