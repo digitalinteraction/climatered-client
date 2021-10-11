@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.1](https://github.com/digitalinteraction/climatered-client/compare/v2.6.0...v2.6.1) (2021-10-11)
+
+
+### Bug Fixes
+
+* fix vimeo embe URLs ([d83f708](https://github.com/digitalinteraction/climatered-client/commit/d83f708da3bf1a25d92548b1a4f32805a9a89d21))
+* update i18n strings ([3537098](https://github.com/digitalinteraction/climatered-client/commit/353709844400b0a1b39e6a224a9f0135608ffb4e))
+* update i18n strings ([979ed90](https://github.com/digitalinteraction/climatered-client/commit/979ed90ae4342b4a4eb365c50da9cc3b84d25103))
+
 ## [2.6.0](https://github.com/digitalinteraction/climatered-client/compare/v2.5.0...v2.6.0) (2021-10-08)
 
 
