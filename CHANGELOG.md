@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/digitalinteraction/climatered-client/compare/v2.6.2...v2.7.0) (2021-10-11)
+
+
+### Features
+
+* add live helpdesk URLs ([8fe48e6](https://github.com/digitalinteraction/climatered-client/commit/8fe48e6095d25152c74b9830c55f8629eb09319a))
+
+
+### Bug Fixes
+
+* fix schedule endDate off by 1 day ([907daf2](https://github.com/digitalinteraction/climatered-client/commit/907daf2b41000b90da2df3c831f4e1a655d4273e))
+* improve session localisation and warning text ([7d86401](https://github.com/digitalinteraction/climatered-client/commit/7d864015c352d9858732e5769b4099831cbbc467))
+
 ### [2.6.2](https://github.com/digitalinteraction/climatered-client/compare/v2.6.1...v2.6.2) (2021-10-11)
 
 
