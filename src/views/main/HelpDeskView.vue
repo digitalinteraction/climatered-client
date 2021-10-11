@@ -15,10 +15,10 @@ import Vue from 'vue'
 import IfrcAppLayout from '@/components/IfrcAppLayout.vue'
 
 const CHAT_SOURCES = {
-  en: 'https://chats.landbot.io/v3/H-696982-BAZDZ3L80F9LBJS0/index.html',
-  fr: 'https://chats.landbot.io/v3/H-700110-7X6TH2ZJ8EZAB2X4/index.html',
-  es: 'https://chats.landbot.io/v3/H-700112-RPM4983E6BWMSCLH/index.html',
-  ar: 'https://chats.landbot.io/v3/H-700114-DUJHTAN0MSA0GMLE/index.html',
+  en: 'https://chats.landbot.io/v3/H-998137-GHQDCSG2U61L6TZ2/index.html',
+  fr: 'https://chats.landbot.io/v3/H-1016832-19B4NU1OBO94R2HS/index.html',
+  es: 'https://chats.landbot.io/v3/H-1016833-N7UNJMW13WWG9AN2/index.html',
+  ar: 'https://chats.landbot.io/v3/H-1016831-UCIRF3TQQ1JK8LQT/index.html',
 }
 
 type Locale = 'en' | 'fr' | 'es' | 'ar'
