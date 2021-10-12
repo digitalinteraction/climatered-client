@@ -36,9 +36,9 @@
         >
           {{ $t('ifrc.interpretControls.start') }}
         </button>
-        <div class="audioIndicator">
-          <span :style="`width: ${audioHigh * 100}%`" />
-        </div>
+        <!-- <div class="audioIndicator">
+          <span :style="`height: ${audioHigh * 100}%`" />
+        </div> -->
         <p v-if="currentUserIsLive">
           <span>
             <span class="interpretControls-liveIndicator" />
@@ -296,9 +296,10 @@ export default Vue.extend({
   margin-inline-end: 0.2em;
 }
 .audioIndicator {
-  width: 64px;
-  height: 16px;
+  width: 16px;
+  height: 42px;
   display: flex;
+  flex-direction: column-reverse;
   background: $background;
   border-radius: 4px;
   overflow: hidden;
@@ -307,7 +308,7 @@ export default Vue.extend({
     display: block;
     background: $primary;
     height: 16px;
-    transition: 150ms ease width;
+    transition: 150ms ease height;
   }
 }
 </style>
