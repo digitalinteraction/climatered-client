@@ -36,6 +36,9 @@
         >
           {{ $t('ifrc.interpretControls.start') }}
         </button>
+        <div class="audioIndicator">
+          <span :style="`width: ${audioHigh * 100}%`" />
+        </div>
         <p v-if="currentUserIsLive">
           <span>
             <span class="interpretControls-liveIndicator" />
@@ -95,6 +98,7 @@ interface Data {
   broadcastState: BroadcasterState
   chosenDevice: string | undefined
   broadcaster: AudioBroadcaster
+  audioHigh: number
 }
 
 export default Vue.extend({
@@ -109,6 +113,7 @@ export default Vue.extend({
       chosenDevice: undefined,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       broadcaster: null as any,
+      audioHigh: 0,
     }
   },
   computed: {
@@ -156,6 +161,7 @@ export default Vue.extend({
         this.broadcastState = change.state
       },
       onData: (data) => {
+        this.audioHigh = this.largestNumber(data)
         this.$store.dispatch('interpret/sendAudio', data)
       },
       onDebug: (...args) => {
@@ -168,15 +174,26 @@ export default Vue.extend({
     })
 
     this.$io.socket.on('interpreter-started', this.onInterpreterStarted)
+    this.$io.socket.on('disconnect', this.onDisconnect)
   },
   destroyed() {
     this.$io.socket.off('interpreter-started', this.onInterpreterStarted)
+    this.$io.socket.off('disconnect', this.onDisconnect)
 
     if (this.currentUserIsLive) {
       this.onStop()
     }
   },
   methods: {
+    largestNumber(ab: ArrayBuffer) {
+      const ints = new Int16Array(ab)
+      let max = 0
+
+      for (const value of ints) {
+        if (Math.abs(value) > max) max = Math.abs(value)
+      }
+      return Math.min(1, max / 32767)
+    },
     onInterpreterStarted(user: Interpreter) {
       if (!this.self) return
 
@@ -186,6 +203,18 @@ export default Vue.extend({
       ) {
         this.stopBroadcast()
       }
+    },
+    onDisconnect() {
+      if (this.broadcastState === BroadcasterState.active) {
+        this.$store.commit('interpret/stopInterpret')
+        this.stopBroadcast()
+      }
+
+      // TODO: come up with a more graceful way to handle this
+      setTimeout(() => {
+        alert('Your connection has been interupted')
+        window.location.reload()
+      }, 200)
     },
     async onStart() {
       try {
@@ -198,8 +227,8 @@ export default Vue.extend({
       }
     },
     async onStop() {
-      this.stopBroadcast()
       this.$store.dispatch('interpret/stopInterpret', this.booth)
+      this.stopBroadcast()
     },
     async onTakeover() {
       let msg = this.$t('ifrc.interpretControls.takeoverConfirm') as string
@@ -209,6 +238,7 @@ export default Vue.extend({
     },
 
     stopBroadcast() {
+      this.audioHigh = 0
       this.broadcaster.stop()
     },
     async forceFetchDevices() {
@@ -264,5 +294,20 @@ export default Vue.extend({
   border-radius: 999px;
   background: red;
   margin-inline-end: 0.2em;
+}
+.audioIndicator {
+  width: 64px;
+  height: 16px;
+  display: flex;
+  background: $background;
+  border-radius: 4px;
+  overflow: hidden;
+
+  span {
+    display: block;
+    background: $primary;
+    height: 16px;
+    transition: 150ms ease width;
+  }
 }
 </style>
