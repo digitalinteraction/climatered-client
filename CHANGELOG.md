@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.3](https://github.com/digitalinteraction/climatered-client/compare/v2.7.2...v2.7.3) (2021-10-12)
+
+
+### Bug Fixes
+
+* hide interpreter gain for now ([921dcec](https://github.com/digitalinteraction/climatered-client/commit/921dcec536184476c8a6a93518c63aab5d5002c8))
+
 ### [2.7.2](https://github.com/digitalinteraction/climatered-client/compare/v2.7.1...v2.7.2) (2021-10-12)
 
 
