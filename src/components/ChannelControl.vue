@@ -179,6 +179,8 @@ export default Vue.extend({
     this.$io.socket.off('channel-started', this.onChannelStarted)
     this.$io.socket.off('channel-data', this.onChannelData)
     this.$io.socket.off('channel-stopped', this.onChannelStopped)
+
+    this.leaveChannel(this.currentChannel)
   },
   methods: {
     //
