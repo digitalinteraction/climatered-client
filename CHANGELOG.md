@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.2](https://github.com/digitalinteraction/climatered-client/compare/v2.7.1...v2.7.2) (2021-10-12)
+
+
+### Bug Fixes
+
+* alert interpreters to a disconnect, boot them out and reload the page and show rough audio gain ([3adbc35](https://github.com/digitalinteraction/climatered-client/commit/3adbc35f4e4d925b3c77229e12a98b7751b7877f))
+* audio not stopping when leaving a session page ([0fc87d8](https://github.com/digitalinteraction/climatered-client/commit/0fc87d810f67d96f5e010acb579925b6322cb193))
+
 ### [2.7.1](https://github.com/digitalinteraction/climatered-client/compare/v2.7.0...v2.7.1) (2021-10-12)
 
 
