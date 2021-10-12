@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.1](https://github.com/digitalinteraction/climatered-client/compare/v2.7.0...v2.7.1) (2021-10-12)
+
+
+### Bug Fixes
+
+* fix primary embed metric ([21d025d](https://github.com/digitalinteraction/climatered-client/commit/21d025ddcc62546dfa40fff3520e4347da2d38b4))
+
 ## [2.7.0](https://github.com/digitalinteraction/climatered-client/compare/v2.6.2...v2.7.0) (2021-10-11)
 
 
