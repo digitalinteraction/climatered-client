@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.4](https://github.com/digitalinteraction/climatered-client/compare/v2.7.3...v2.7.4) (2021-10-14)
+
+
+### Bug Fixes
+
+* add climate-centre sponsor ([3eb67f7](https://github.com/digitalinteraction/climatered-client/commit/3eb67f706fd8b668bcdb99fb14df04982305d222))
+
 ### [2.7.3](https://github.com/digitalinteraction/climatered-client/compare/v2.7.2...v2.7.3) (2021-10-12)
 
 
