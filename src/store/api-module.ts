@@ -196,6 +196,7 @@ export function apiModule(): ApiStoreModule {
           .catch(errorHandler)
 
         if (result) {
+          // TODO: migrate to commit('userAttendance', result.attendance)
           commit(
             'userSessions',
             result.attendance.map((a) => a.session)
