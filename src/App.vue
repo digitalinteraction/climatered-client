@@ -96,7 +96,7 @@ export default Vue.extend({
 @import '~@openlab/deconf-ui-toolkit/dist/theme.scss';
 @import '~@fortawesome/fontawesome-svg-core/styles.css';
 
-// TODO: move to deconf
+// TODO: remove when upgrading deconf
 .button .icon:first-child:not(:last-child) {
   margin-left: unset;
   margin-right: unset;
