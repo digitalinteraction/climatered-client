@@ -3,6 +3,7 @@ node_modules
 /dist
 public/uploads
 public/api
+.nova
 
 # local env files
 .env.local
