@@ -9,7 +9,7 @@
     "lint": "vue-cli-service lint",
     "preversion": "npm run lint",
     "readme-toc": "md-toc -i",
-    "report": "vue-cli-service build --modern --report-json && webpack-bundle-analyzer dist/report.json",
+    "report": "vue-cli-service build --report-json && webpack-bundle-analyzer dist/report.json",
     "release": "npm run preversion && standard-version",
     "release:beta": "npm run preversion && standard-version --prerelease=beta"
   },
