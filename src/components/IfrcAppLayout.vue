@@ -43,10 +43,6 @@ import HelpDeskIcon from '../icons/HelpDeskIcon.vue'
 import WhatsOnIcon from '../icons/WhatsOnIcon.vue'
 import ScheduleIcon from '../icons/ScheduleIcon.vue'
 
-// TODO:
-// - improve SideTabs variables and remove hacks below
-// - update #getDefaultRoutes to not include icons
-
 const iconMap: Record<string, Vue.Component | undefined> = {
   [Routes.Atrium]: AtriumIcon,
   [Routes.CoffeeChatLobby]: CoffeeIcon,
