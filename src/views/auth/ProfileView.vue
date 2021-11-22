@@ -26,7 +26,6 @@ interface FullAuthToken extends AuthToken {
   iss: string
 }
 
-// TODO: expose in deconf-ui
 interface ProfileField {
   label: TranslateResult
   value: unknown

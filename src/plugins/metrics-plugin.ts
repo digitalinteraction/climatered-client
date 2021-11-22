@@ -3,8 +3,6 @@ import _Vue from 'vue'
 
 import { SocketIoPlugin } from './socketio-plugin'
 
-// TODO: Could it take a SocketIoPlugin as a #install prop?
-
 export class MetricsPlugin {
   static install(Vue: typeof _Vue): void {
     Vue.prototype.$metrics = new MetricsPlugin()

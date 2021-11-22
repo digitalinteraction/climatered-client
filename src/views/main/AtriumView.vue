@@ -102,7 +102,6 @@ import { ConferenceConfig, Session, SessionSlot } from '@openlab/deconf-shared'
 
 import sponsorData from '@/data/sponsors.json'
 
-// TODO: import type when available
 interface SessionAndSlot {
   session: Session
   slot: SessionSlot

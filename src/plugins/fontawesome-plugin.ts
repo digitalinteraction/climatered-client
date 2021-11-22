@@ -54,7 +54,6 @@ import {
 //
 // Import regulars ~ https://fontawesome.com/icons?d=gallery&s=regular
 //
-// TODO: remove in future
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons'
 
 // We manually add the css in App.vue so it all gets bundled together

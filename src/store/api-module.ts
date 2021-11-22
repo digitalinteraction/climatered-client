@@ -19,7 +19,6 @@ import {
 } from '@openlab/deconf-shared'
 import { SocketIoPlugin } from '@/plugins/socketio-plugin'
 
-// TODO: normalise with deconf attendance-routes
 interface AttendanceRecord {
   id: number
   created: string
@@ -36,7 +35,6 @@ function requestMiddleware(request: Request) {
 }
 
 function errorHandler(error: unknown) {
-  // TODO: metrics? - can anything meaningful be gleamed here?
   console.error(error)
   return null
 }
@@ -128,7 +126,7 @@ export function apiModule(): ApiStoreModule {
       },
 
       async updateProfile() {
-        // TODO
+        // ...
       },
 
       //
@@ -161,7 +159,6 @@ export function apiModule(): ApiStoreModule {
           .json<SessionAttendance>()
           .catch(errorHandler)
 
-        // TODO: investigate int/string on the count
         return deepSeal(result)
       },
 
@@ -196,7 +193,6 @@ export function apiModule(): ApiStoreModule {
           .catch(errorHandler)
 
         if (result) {
-          // TODO: migrate to commit('userAttendance', result.attendance)
           commit(
             'userSessions',
             result.attendance.map((a) => a.session)

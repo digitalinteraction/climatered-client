@@ -26,10 +26,6 @@ import { Routes } from '@openlab/deconf-ui-toolkit'
 import Vue from 'vue'
 import { TranslateResult } from 'vue-i18n'
 
-//
-// TODO: move to deconf-ui-toolkit
-//
-
 interface Link {
   title: TranslateResult
   url: TranslateResult

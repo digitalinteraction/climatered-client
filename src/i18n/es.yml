@@ -108,7 +108,6 @@ deconf:
     register: Registrarse
     unavailable: ' (Indisponible)'
 
-  # TODO
   whatsOn:
     #title: What's On
     #infoText: Browse the Schedule before release day

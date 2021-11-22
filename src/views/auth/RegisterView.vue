@@ -258,8 +258,6 @@ export default Vue.extend({
       const success = await this.$store.dispatch('api/register', registration)
 
       this.state = success ? 'success' : 'error'
-
-      // TODO: metrics
     },
     findErrors(reg: RegBody) {
       const errors = createErrors()

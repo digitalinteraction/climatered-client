@@ -147,7 +147,6 @@ export default Vue.extend({
     onInterpretSelf(user: Interpreter) {
       console.debug('onInterpretSelf', user)
 
-      // TODO: update when fix is published
       this.$store.commit('interpret/self', user)
     },
     onInterpretJoined(user: Interpreter) {

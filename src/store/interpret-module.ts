@@ -3,10 +3,6 @@ import { createStateMapper } from '@openlab/deconf-ui-toolkit'
 import { Module } from 'vuex'
 import { SocketIoPlugin } from '@/plugins/socketio-plugin'
 
-//
-// TODO: migrate this back to deconf
-//
-
 export interface ActiveBooth {
   interpreter: Interpreter
   isSelf: boolean

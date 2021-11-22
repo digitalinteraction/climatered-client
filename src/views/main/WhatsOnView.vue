@@ -76,7 +76,6 @@ export default Vue.extend({
 
 <style lang="scss">
 .sessionTile {
-  // TODO: move to deconf
   // This fixes firefox breaking up tiles across multiple columns for some reason
   overflow: hidden;
 }

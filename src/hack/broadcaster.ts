@@ -4,10 +4,6 @@ import {
   getResampledLength,
 } from '@openlab/deconf-ui-toolkit'
 
-//
-// TODO: move correct logic back to deconf
-//
-
 type WebkitWindow = typeof window & { webkitAudioContext?: AudioContext }
 function getAudioContext(): typeof AudioContext | null {
   return (
@@ -82,7 +78,6 @@ export class AudioBroadcaster {
       sampleRate: this.options.audioTransportRate,
     })
 
-    // TODO: work out why `noiseSuppression` isn't working
     this.stream = await navigator.mediaDevices.getUserMedia({
       video: false,
       audio: {
@@ -92,14 +87,11 @@ export class AudioBroadcaster {
         // noiseSuppression: { ideal: true },
       },
     })
-    // TODO: what if the user manually closes the stream?
 
-    // TODO: what happens if sampleRate is not set
     const { deviceId } = this.stream.getAudioTracks()[0].getSettings()
     const { sampleRate } = this.ctx
 
     // Register the user's audio worklet
-    // TODO: provide an example one of these
     await this.ctx.audioWorklet.addModule(this.options.audioWorklet.path)
 
     // Create a recorder to process the oudio

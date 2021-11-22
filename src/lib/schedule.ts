@@ -1,5 +1,3 @@
-// TODO: to be moved to deconf-ui-toolkit
-
 import { Session } from '@openlab/deconf-shared'
 import {
   createFilterPredicate,
@@ -59,7 +57,6 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
       )
     },
 
-    // TODO: move to other side for client-specific logic
     filteredSessions() {
       const showUserSessions = this.filters.viewMode === 'user'
       const userSessions = new Set(this.userSessions)
@@ -106,7 +103,6 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
       if (!this.filterPredicate) return null
 
       return [
-        // TODO: localise and/or keep day grouping
         {
           title: 'Search Results',
           date: new Date(),

@@ -4,8 +4,6 @@ import { DeconfPlugin, MetricsEvent } from '@openlab/deconf-ui-toolkit'
 import { env } from './env-plugin'
 import { MetricsPlugin } from './metrics-plugin'
 
-// TODO: Could it take a MetricsPlugin as a #install prop?
-
 export class IfrcDeconfPlugin implements DeconfPlugin {
   static install(Vue: typeof _Vue): void {
     Vue.prototype.$deconf = new IfrcDeconfPlugin()

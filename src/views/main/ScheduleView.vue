@@ -68,7 +68,7 @@ export default Vue.extend({
     filteredSessions(): Session[] {
       if (!this.schedule) return []
 
-      // TODO: custom filtering here
+      // custom filtering here ?
 
       return this.schedule.sessions
     },

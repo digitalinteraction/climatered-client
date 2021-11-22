@@ -210,7 +210,6 @@ export default Vue.extend({
         this.stopBroadcast()
       }
 
-      // TODO: come up with a more graceful way to handle this
       setTimeout(() => {
         alert('Your connection has been interupted')
         window.location.reload()
